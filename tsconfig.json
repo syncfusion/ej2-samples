@@ -17,7 +17,7 @@
     "allowJs": false,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
-    "types": ["crossroads","hasher","systemjs","es6-promise","chai","jasmine","jasmine-ajax","requirejs"]
+    "types": ["crossroads","hasher","es6-promise","chai","jasmine","jasmine-ajax","requirejs"]
   },
   "exclude": [
     "node_modules"   

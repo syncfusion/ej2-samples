@@ -1,0 +1,31 @@
+{ 
+   "name": "Grid", 
+   "directory": "grid", 
+   "category":"Grid", 
+   "samples" : [
+    {"url":"default", "name": "Default Functionalities", "category":"Grid" },
+    {"url":"grouping", "name": "Grouping", "category":"Grid"},
+    {"url":"gridlines", "name": "GridLines" ,"category":"Grid" },
+    {"url":"scrolling", "name": "Scrolling", "category":"Grid"},
+    {"url":"print", "name": "Print", "category":"Grid", "hideOnDevice":true}, 
+    {"url":"events", "name": "Events", "category":"Grid"},
+    {"url":"localdata", "name": "Local Data", "category": "Data Binding"},
+    {"url":"remotedata", "name": "Remote Data", "category": "Data Binding"},
+    {"url":"autowrap", "name": "AutoWrap Column Cells", "category":"Columns"},    
+    {"url":"showhide", "name": "Show or Hide Column", "category":"Columns"},
+    {"url":"columntemplate", "name": "Column Template", "category":"Columns"},
+    {"url":"stackedheader", "name": "Stacked Header", "category":"Columns"},
+    {"url":"reorder", "name": "Reorder", "category": "Columns"},
+    {"url":"rowtemplate", "name": "Row Template", "category":"Rows"},
+    {"url":"hover", "name": "Row Hover", "category":"Rows", "hideOnDevice":true},
+    {"url":"draganddrop", "name": "Row Drag And Drop", "category":"Rows", "hideOnDevice":true},
+    {"url":"sorting", "name": "Multi Sorting", "category":"Sorting"},  
+    {"url":"sortingapi", "name": "Sorting API", "category":"Sorting"},
+    {"url":"filter", "name": "Default Filtering", "category":"Filtering"},
+    {"url":"search", "name": "Search", "category":"Filtering"},
+    {"url":"defaultpaging", "name": "Default Paging", "category": "Paging"},
+    {"url":"pagingapi", "name": "Paging API", "category": "Paging"},
+    {"url":"selection", "name": "Default Selection", "category":"Selection"},
+    {"url":"selectionapi", "name": "Selection API", "category": "Selection"}  
+   ]
+}

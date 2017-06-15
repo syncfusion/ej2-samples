@@ -1,0 +1,127 @@
+{
+    "name": "Chart",
+    "directory": "chart",
+    "category": "Data Visualization",
+    "samples": [
+        {
+            "url": "line",
+            "name": "Line",
+            "category": "Series"
+        },
+        {
+            "url": "column",
+            "name": "Column",
+            "category": "Series"
+        },
+        {
+            "url": "bar",
+            "name": "Bar",
+            "category": "Series"
+        },
+        {
+            "url": "area",
+            "name": "Area",
+            "category": "Series"
+        },
+        {
+            "url": "spline",
+            "name": "Spline",
+            "category": "Series"
+        },
+        {
+            "url": "stacked-column",
+            "name": "Stacked Column",
+            "category": "Series"
+        },
+        {
+            "url": "stacked-bar",
+            "name": "Stacked Bar",
+            "category": "Series"
+        },
+        {
+            "url": "stacked-area",
+            "name": "Stacked Area",
+            "category": "Series"
+        },
+        {
+            "url": "step-line",
+            "name": "Step Line",
+            "category": "Series"
+        },
+        {
+            "url": "scatter",
+            "name": "Scatter",
+            "category": "Series"
+        },
+        {
+            "url": "combination-series",
+            "name": "Combination Series",
+            "category": "Series"
+        },
+        {
+            "url": "performance",
+            "name": "Performance",
+            "category": "Series"
+        },
+        {
+            "url": "local-data",
+            "name": "Local Data",
+            "category": "Data Binding"
+        },
+        {
+            "url": "remote-data",
+            "name": "Remote Data",
+            "category": "Data Binding"
+        },
+        {
+            "url": "numeric",
+            "name": "Numeric Axis",
+            "category": "Chart Axes"
+        },
+        {
+            "url": "date-time",
+            "name": "Datetime Axis",
+            "category": "Chart Axes"
+        },
+        {
+            "url": "category",
+            "name": "Category Axis",
+            "category": "Chart Axes"
+        },
+        {
+            "url": "logarithmic",
+            "name": "Log Axis",
+            "category": "Chart Axes"
+        },
+        {
+            "url": "multiple-axes",
+            "name": "Multiple Axes",
+            "category": "Chart Axes"
+        },
+        {
+            "url": "symbols",
+            "name": "Symbols",
+            "category": "Chart Symbols"
+        },
+        {
+            "url": "selection",
+            "name": "Selection",
+            "category": "User Interaction"
+        },
+        {
+            "url": "cross-hair",
+            "name": "Crosshair",
+            "category": "User Interaction"
+        },
+        {
+            "url": "trackball",
+            "name": "Trackball",
+            "category": "User Interaction"
+        },
+        {
+            "url": "zooming",
+            "name": "Zooming and Panning",
+            "category": "User Interaction"
+        }
+    ]
+}

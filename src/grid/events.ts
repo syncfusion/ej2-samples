@@ -1,0 +1,74 @@
+import { Grid, Page, Selection, Reorder, Group, Sort } from '@syncfusion/ej2-grids';
+import { categoryData } from './datasource';
+import { createElement } from '@syncfusion/ej2-base/dom';
+
+Grid.Inject(Page, Selection, Reorder, Group, Sort);
+
+/**
+ * Events sample
+ */
+this.default = (): void => {
+    let grid: Grid = new Grid(
+        {
+            dataSource: categoryData,
+            allowPaging: true,
+            pageSettings: { pageCount: 2 },
+            allowGrouping: true,
+            allowReordering: true,
+            allowSorting: true,
+            columns: [
+                { field: 'CategoryName', headerText: 'Category Name', width: 170 },
+                { field: 'ProductName', headerText: 'Product Name', width: 170 },
+                { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 170 },
+            ],
+            load: load,
+            created: create,
+            actionBegin: actionBegin,
+            actionComplete: actionComplete,
+            dataBound: dataBound,
+            rowSelecting: rowSelecting,
+            rowSelected: rowSelected,
+            columnDragStart: columnDragStart,
+            columnDrag: columnDrag,
+            columnDrop: columnDrop
+        });
+    grid.appendTo('#Grid');
+    document.getElementById('clear').onclick = () => {
+        document.getElementById('EventLog').innerHTML = '';
+    };
+    function columnDragStart(): void {
+        appendElement('Grid <b>columnDragStart</b> event called<hr>');
+    }
+    function columnDrop(): void {
+        appendElement('Grid <b>columnDrop</b> event called<hr>');
+    }
+    function columnDrag(): void {
+        appendElement('Grid <b>columnDrag</b> event called<hr>');
+    }
+    function load(): void {
+        appendElement('Grid <b>load</b> event called<hr>');
+    }
+    function create(): void {
+        appendElement('Grid <b>create</b> event called<hr>');
+    }
+    function actionBegin(): void {
+        appendElement('Grid <b>actionBegin</b> event called<hr>');
+    }
+    function actionComplete(): void {
+        appendElement('Grid <b>actionComplete</b> event called<hr>');
+    }
+    function dataBound(): void {
+        appendElement('Grid <b>dataBound</b> event called<hr>');
+    }
+    function rowSelecting(): void {
+        appendElement('Grid <b>rowSelecting</b> event called<hr>');
+    }
+    function rowSelected(): void {
+        appendElement('Grid <b>rowSelected</b> event called<hr>');
+    }
+    function appendElement(html: string): void {
+        let span: HTMLElement = createElement('span', { innerHTML: html });
+        let log: HTMLElement = document.getElementById('EventLog');
+        log.insertBefore(span, log.firstChild);
+    }
+};

@@ -1,0 +1,150 @@
+<style>
+    @font-face {
+        font-family: 'tbicons';
+        src: url('src/toolbar/images/fonts/tbicons.ttf?gcjn6a') format('truetype'),
+        url('src/toolbar/images/fonts/tbicons.woff?gcjn6a') format('woff'), 
+        url('src/toolbar/images/fonts/tbicons.svg?gcjn6a#tbicons') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    .e-bigger .e-tbar-btn .tb-icons {
+      font-size: 18px;
+    }
+
+    .e-tbar-btn .tb-icons {
+        font-family: 'tbicons';
+        speak: none;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+    }
+
+    .e-cut-icon:before {
+        content: "\e612"
+    }
+    
+    .e-copy-icon:before {
+        content: "\e611"
+    }
+    
+    .e-paste-icon:before {
+        content: "\e617"
+    }
+    
+    .e-bold-icon:before {
+        content: "\e60d"
+    }
+    
+    .e-design-icon:before {
+        content: '\e603'
+    }
+    
+    .e-table-icon:before {
+        content: '\e607'
+    }
+    
+    .e-picture-icon:before {
+        content: '\e605'
+    }
+    
+    .e-alignleft-icon:before {
+        content: "\e60b"
+    }
+    
+    .e-italic-icon:before {
+        content: "\e615"
+    }
+    
+    .e-redo-icon:before {
+        content: "\e606"
+    }
+    
+    .e-bullets-icon:before {
+        content: "\e60e";
+        font-size: 18px;
+    }
+    
+    .e-numbering-icon:before {
+        content: "\e616";
+        font-size: 19px;
+    }
+    
+    .e-doughnut-icon:before {
+        content: "\e601"
+    }
+    
+    .e-bubble-icon:before {
+        content: "\e600"
+    }
+    
+    .e-line-icon:before {
+        content: "\e604"
+    }
+    
+    .e-radar-icon:before {
+        content: "\e602"
+    }
+    
+    .e-undo-icon:before {
+        content: "\e608"
+    }
+    
+    .e-alignright-icon:before {
+        content: "\e60c"
+    }
+    
+    .e-aligncenter-icon:before {
+        content: "\e609"
+    }
+    
+    .e-underline-icon:before {
+        content: "\e61d";
+        font-size: 17px;
+    }
+    
+    .e-alignjustify-icon:before {
+        content: "\e60a"
+    }
+    
+    .control-wrapper {
+        flex-direction: inherit
+    }
+    
+    @media only screen and (min-width: 1824px) {
+        .e-sample-resize-container {
+            width: 75%;
+        }
+    }
+</style>
+
+<div class="col-lg-8 control-section">
+    <div class="e-sample-resize-container">
+        <div id="ej2Toolbar_Scroll">
+        </div>
+    </div>
+</div>
+<div id="description">
+    <p>
+        The RTL sample illustrates the direction of the toolbar from <strong>right to left</strong>. You can switch between <strong>Popup</strong> and <strong>Scrollable</strong> mode using the options given in the drop down list.
+    </p>
+</div>
+<div class="col-lg-4 property-section">
+    <table id="property" title="Toolbar Mode Switch in RTL ">
+        <tr>
+            <td style="width: 30%">
+                <div>Mode</div>
+            </td>
+            <td style="width: 70%;padding-right: 10px">
+                <div>
+                    <select id="drop" class="form-control" style="padding: 6px">
+                        <option value="Scrollable">Scrollable</option>
+                        <option value="Popup">Popup</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

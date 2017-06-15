@@ -1,0 +1,87 @@
+<style>
+    .search-wrapper {
+        border: 1px rgb(211, 211, 211) solid;
+        border-bottom: none;
+        background: #f8f8f8;
+        font-family: 'Roboto';
+        height: 42px;
+        padding: 8.6px;
+    }
+
+    .e-bigger .search-wrapper {
+        height: 56px;
+        padding: 11.6px;
+    }
+    
+    #search {
+        float: right;
+        background-color: white;
+        border: 1px solid rgb(224, 224, 224);
+        display: inline-flex;
+    }
+
+    #btn {
+        padding: 5px;
+        float: right;
+        cursor: pointer;
+    }
+
+    .e-bigger #btn  {
+        padding: 10px 10px 0 10px;
+    }
+
+    #txt {
+        outline: none;
+        border: none;
+        padding: 2px 0 0 7px;
+        width: 100%;
+    }
+
+    .e-bigger #txt {
+        height: 32px;
+        padding-left: 12px
+    }
+
+    .searchtxt::-ms-clear {
+        display: none;
+    }
+    
+    .e-search-icon::before {
+        content: '\e806';
+    }
+
+    @media screen and (max-width: 590px) {
+        #search {
+            width: 100%;
+        }
+    }
+</style>
+<div class="control-section">
+    <div class="content-wrapper">
+        <div class="search-wrapper">
+            <div id="search">
+                <input id="txt" type="search" placeholder="Search" class="searchtxt"/>
+                <span id="btn" class="e-search-icon e-icons"></span>
+            </div>
+        </div>
+        <div id="Grid"></div>
+    </div>
+</div>
+
+<div id="description">
+    <p>The Grid has an option to search its content using the <code><a target="_blank" class="code"
+        href="http://ej2.syncfusion.com/documentation/grid/api-grid.html#search">search
+        </a></code> method 
+    with search key as parameter.</p>
+    <p>In this demo, type in the search box and click Search button to perform search operation. 
+        We have used <code><a target="_blank" class="code"
+        href="http://ej2.syncfusion.com/documentation/grid/api-grid.html#search">search
+        </a></code> method to initiate search.</p>
+    <p>
+        More information on the searching configuration can be found in this
+        <a target="_blank" 
+        href="http://ej2.syncfusion.com/documentation/grid/api-grid.html#searchsettings-searchsettingsmodel">
+        documentation section</a>.
+    </p>
+</div>
+

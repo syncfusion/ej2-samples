@@ -1,0 +1,12 @@
+{
+    "name": "Button",
+    "directory": "button",
+    "category": "Editors",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "category": "Button"
+        }
+    ]
+}

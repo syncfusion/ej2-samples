@@ -1,0 +1,52 @@
+<div class="col-lg-8 control-section">
+    <div class="content-wrapper">
+        <div class="control-label">Numeric TextBox</div>
+        <input id="numeric" type="text"/>
+        <div class="control-label">Percentage TextBox</div>
+        <input id="percent" type="text"/>
+        <div class="control-label">Currency TextBox</div>
+        <input id="currency" type="text"/>
+    </div>
+</div>
+<div id="description">
+    <p>
+        The NumericTextBox comes with built-in internationalization support to adapt based on culture. You can change the culture of the component using ‘locale’ property, which format the currency symbol, decimal separator, and group separators. 
+        <p>In this demo, NumericTextBox control renders with German culture; You can change to other cultures via the ‘culture’ option from the properties panel.</p>
+        <p>More information on the internationalization configuration can be found in this <a href="http://ej2.syncfusion.com/documentation/base/intl.html"
+            target="_blank"> documentation section</a>.</p>
+    </p>
+</div>
+<div class="col-lg-4 property-section">
+    <table id="property" title="Properties">
+        <tr>
+            <td>
+                <div>Culture</div>
+            </td>
+            <td>
+                <div>
+                    <select id="cultures" class="form-control">
+                        <option value="de">de</option>
+                        <option value="zh">zh</option>
+                        <option value="en">en</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<style>
+    .property-panel-content {
+        padding: 0 10px 10px 0;
+    }
+    .content-wrapper {
+        width: 50%;
+        margin: 0 auto;
+        min-width: 185px;
+    }
+    .control-label {
+        padding: 24px 0px 0px 0px;
+        font-size: 12px;
+        opacity: 0.54;
+    }
+</style>

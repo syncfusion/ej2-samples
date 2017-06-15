@@ -1,0 +1,12 @@
+{ "name": "DropDownList",
+"directory": "dropdownlist",
+"category":"Editors",
+"samples" : [
+    {"url":"default", "name": "Default Functionalities", "category":"DropDownList" },
+    {"url":"grouping", "name": "Grouping", "category":"DropDownList" },
+    {"url":"sorting", "name": "Sorting", "category":"DropDownList" },
+    {"url":"template", "name": "Template", "category":"DropDownList" },
+    {"url":"iconCss", "name": "IconCss", "category":"DropDownList" },
+    {"url":"cascading", "name": "Cascading", "category":"DropDownList" }
+    ]
+}

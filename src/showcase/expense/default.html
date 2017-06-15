@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Expense Tracker</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Essential JS 2 (Preview)" />
+    <meta name="author" content="Syncfusion" />
+    <link rel="shortcut icon" href="../../../favicon.ico" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../styles/material.css" rel="stylesheet" />
+    <link href="./css/expense-css.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="sb-loading" class='sb-loading'>
+        <svg class="circular" height="40" width="40">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="6" stroke-miterlimit="10"></circle>
+            </svg>
+    </div>
+    <div id="loading-overlay" class="loading-overlay">
+    </div>
+    <div class='expense-splitpane opacity'>
+        <div class="expense-header">
+            <div class='slide-nav'>
+                <span class="e-slide-nav e-icons"></span>
+            </div>
+            <div class='expense-title'>
+                <span class='expense-header-icon'></span>
+                <span class='expense-header-title'>EXPENSE TRACKER</span>
+            </div>
+        </div>
+        <div class='expense-left-pane'>
+            <div id="listview" tabindex="1">
+            </div>
+
+        </div>
+        <div class='expense-right-pane'>
+            <div class='expense-overview'>
+                <div class="col-md-4 ">
+                    <div id='categoryList'>
+                    </div>
+                </div>
+                <div class="col-md-8" id='gridTarget'>
+                    <div class="expense-grid-header">
+                        Auto
+                    </div>
+                    <div id='categoryGrid'>
+                    </div>
+                </div>
+            </div>
+            <div class='expense-chart'>
+                <div id="expense-chart">
+                </div>
+            </div>
+
+            <div class="expense-overlay">
+            </div>
+        </div>
+        <div id='categoryDialog'></div>
+
+        <script src="default.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+import { Grid, Filter, Page, Selection } from '@syncfusion/ej2-grids';
+import { categoryData } from './datasource';
+
+Grid.Inject(Filter, Page, Selection);
+
+/**
+ * Filtering sample
+ */
+this.default = (): void => {
+    let grid: Grid = new Grid(
+        {
+            dataSource: categoryData,
+            allowPaging: true,
+            allowFiltering: true,
+            columns: [
+                { field: 'CategoryName', headerText: 'Category Name', width: 160 },
+                { field: 'ProductName', headerText: 'Product Name', width: 170 },
+                { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 170, textAlign: 'right' },
+                { field: 'UnitsInStock', headerText: 'Units In Stock', width: 170, textAlign: 'right' },
+                {
+                    field: 'Discontinued', headerText: 'Discontinued', width: 150,
+                    textAlign: 'center', displayAsCheckBox: true, type: 'boolean'
+                }
+            ],
+            pageSettings: { pageCount: 5 }
+        });
+    grid.appendTo('#Grid');
+};

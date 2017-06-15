@@ -1,0 +1,59 @@
+<div class="col-lg-8 control-section">
+    <div class="control_wrapper">
+        <div id="container">
+            <div id="calendar"></div><br/>
+        </div>
+        <span id="date_label"> Selected Value: </span>
+    </div>
+</div>
+
+<div class="col-lg-4 property-section">
+    <table id="property" title="Properties">
+        <tr>
+            <td>
+                <div>Culture</div>
+            </td>
+            <td>
+                <div>
+                    <select id="cultures" class="form-control">
+                        <option value="de">de</option>
+                        <option value="en">en</option>
+                        <option value="zh">zh</option> 
+                    </select>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="description">
+    <p>
+        The calendar control was rendered with <b>German</b> culture.Here the date separator ,week header and month text content are updated based on current culture.
+    </p>
+    <p>
+        you can also change the control culture by selecting it from the culture options in the properties panel.
+    </p>
+</div>
+<style>
+    .property-panel-content {
+        padding: 0 10px 10px 0;
+    }
+    
+    #date_label {
+        display: block;
+        width: 248px;
+        color: rgba(0, 0, 0, 0.58);
+    }
+    
+    .control_wrapper {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    
+    .control_wrapper #container {
+        min-height: 310px;
+    }
+    
+    .e-bigger .control_wrapper #container {
+        min-height: 400px;
+    }
+</style>

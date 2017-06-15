@@ -1,0 +1,84 @@
+<div class="col-lg-8 control-section">
+    <div class="content-wrapper">
+        <div class="control-label">Numeric TextBox </div>
+        <input id="numeric" type="text"/>
+    </div>
+</div>
+<div id="description">
+    <p>
+        The NumericTextBox has options to restrict the input value between a specific range using <a href="http://ej2.syncfusion.com/documentation/numerictextbox/api-numericTextBoxModel.html#min-number"
+            target="_blank">min</a>, <a href="http://ej2.syncfusion.com/documentation/numerictextbox/api-numericTextBoxModel.html#max-number"
+            target="_blank">max</a>, and <a href="http://ej2.syncfusion.com/documentation/numerictextbox/api-numericTextBoxModel.html#strictmode-boolean"
+            target="_blank">strictMode</a> properties. 
+        <ul>
+        <li> When you enable <b>strictMode</b> property, the value will be automatically change within a range on passing out-of-range values.</li>
+        <li> When you disable <b>strictMode</b> property, the NumericTextBox component allows out-of-range value with highlight textbox using error class to indicate the given value is wrong.
+        </li></ul>
+         In this demo, numeric textboxes restricted between 10 to 100 through
+        min, max properties. So you can enter the value between those ranges alone. More information on the range validation configuration can be found in this <a href="http://ej2.syncfusion.com/documentation/numerictextbox/api-numericTextBoxModel.html#min-number"
+            target="_blank"> documentation section</a>.
+    </p>
+</div>
+<div class="col-lg-4 property-section">
+    <table id="property" title="Properties">
+        <tr>
+            <td>
+                <div>Min Value </div>
+            </td>
+            <td>
+                <div>
+                    <input id="min" type="number" class="form-control" value="10" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>Max Value </div>
+            </td>
+            <td>
+                <div>
+                    <input id="max" type="number" class="form-control" value="100" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>Increment Step </div>
+            </td>
+            <td>
+                <div>
+                    <input id="step" type="number" max="100" min="0" class="form-control" value="1" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div>
+                    <button id="buttonApply" class="e-flat e-primary">Apply</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<style>
+    .property-panel-content {
+        padding: 0 10px 10px 0;
+    }
+    .content-wrapper {
+        width: 48%;
+        margin: 0 auto;
+        min-width: 185px;
+    }
+    .control-label {
+        padding: 24px 0px 0px 0px;
+        font-size: 12px;
+        opacity: 0.54;
+    }
+    #buttonApply {
+        float: right;
+    }
+    .control-section {
+        min-height: 160px;
+    }
+</style>

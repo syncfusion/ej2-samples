@@ -19,11 +19,11 @@ describe('sample browser', (): void => {
 
     let samples: any = samplesList;
     beforeAll((done: Function) => {
-        let ajax: Ajax = new Ajax('../base/index.html', 'GET', true);
+        let ajax: Ajax = new Ajax('../../base/index.html', 'GET', true);
         ajax.send().then((value: Object): void => {
             document.body.innerHTML = document.body.innerHTML + value.toString();
             require(
-                ['../src/common/index.min'],
+                ['../../src/common/index.min'],
                 (): void => {
                     done();
                 });

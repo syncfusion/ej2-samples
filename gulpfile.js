@@ -12,7 +12,7 @@ gulp.task('scripts', function(done) {
     var ts = require('gulp-typescript');
     var tsProject = ts.createProject('tsconfig.json', { typescript: require('typescript') });
     var tsResult = gulp.src(['./src/**/*.ts', './spec/**/*.ts'], { base: '.' })
-        .pipe(tsProject());
+        .pipe(tsProject());        
     tsResult.js
         .pipe(gulp.dest('./'))
         .on('end', function() {
@@ -69,7 +69,7 @@ gulp.task('test', function(done) {
     new karma.Server({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true,
-        browsers: ['PhantomJS'],
+        browsers: ['Chrome'],
         browserNoActivityTimeout: 30000
     }, function(e) {
         done(e === 0 ? null : 'karma exited with status ' + e);
@@ -79,7 +79,7 @@ gulp.task('test', function(done) {
 /**
  * Load the samples
  */
-gulp.task('serve', ['build'], function(done) {
+gulp.task('serve', ['build'], function (done) {
     var browserSync = require('browser-sync');
     var bs = browserSync.create('Essential JS 2');
     var options = {

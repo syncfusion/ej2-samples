@@ -16,8 +16,7 @@ module.exports = function (config) {
             '/src/': '/base/src/',
             '/src/common': '/base/src/common',
             '/node_modules/': '/base/node_modules/',
-            '/styles/': '/base/styles/',
-            '/showcase.html': '/base/showcase.html'
+            '/styles/': '/base/styles/'
         },
 
         // list of files / patterns to load in the browser
@@ -28,13 +27,10 @@ module.exports = function (config) {
             { pattern: "src/common.min.js", included: true },
             { pattern: "spec/**/*.spec.js", included: false },
             { pattern: "node_modules/@syncfusion/ej2-base/**/*.js", included: false },
-            { pattern: "node_modules/bootstrap/dist/css/bootstrap.min.css", included: false },
             { pattern: 'node_modules/es6-promise/dist/es6-promise.js', included: false },
-            { pattern: "404.html", included: false },
             { pattern: "styles/index.css", included: true },
             { pattern: "styles/material.css", included: false },
-            { pattern: "index.html", included: false },
-            { pattern: "showcase.html", included: false },
+            { pattern: "index.html", included: false }
         ],
 
 

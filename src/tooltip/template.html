@@ -1,0 +1,88 @@
+<style type="text/css">
+    @font-face {
+        font-family: 'tbicons';
+        src: url('src/toolbar/images/fonts/tbicons.ttf?gcjn6a') format('truetype'), 
+        url('src/toolbar/images/fonts/tbicons.woff?gcjn6a') format('woff'),
+        url('src/toolbar/images/fonts/tbicons.svg?gcjn6a#tbicons') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .e-bigger .e-tbar-btn .tb-icons {
+        font-size: 18px;
+    }
+
+    .e-tbar-btn .tb-icons {
+        font-family: 'tbicons';
+        speak: none;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+    }
+
+    .e-cut-icon:before {
+        content: "\e612"
+    }
+
+    .e-copy-icon:before {
+        content: "\e611"
+    }
+
+    .e-paste-icon:before {
+        content: "\e617"
+    }
+
+    .e-bold-icon:before {
+        content: "\e60d"
+    }
+
+    .e-underline-icon:before {
+        content: "\e61d";
+        font-size: 17px;
+    }
+
+    .e-italic-icon:before {
+        content: "\e615"
+    }
+
+    #Toolbar {
+        margin: 0 auto;
+    }
+
+    .toolbarContainer {
+        width: 240px;
+        margin: 0 auto;
+    }
+
+    .e-bigger .toolbarContainer {
+        width: 330px;
+    }
+
+    .e-bigger .e-tooltip-wrap p {
+        font-size: 13px;
+    }
+
+    .e-bigger .e-tooltip-wrap h6 {
+        font-size: 14px;
+    }
+</style>
+<div id="targetContainer" class="col-lg-12 control-section">
+    <div id="Tooltip">
+        <div class="toolbarContainer">
+            <div id="Toolbar">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="description">
+    <p>This sample illustrates the way to display the template content on the tooltip. With the usage of Template, the user
+        can format and structure the HTML content to be displayed on tooltip as per their application needs.</p>
+    <p>In this sample, tooltip is integrated with toolbar component to display the respective icon’s information. Here, the
+        HTML template design is compiled and then the resultant output display is directly assigned to the <code> content</code>property
+        of the tooltip. The template compilation process needs to be done on the <code>beforeRender</code> event of the tooltip.</p>
+    <p>More information on setting template content on Tooltip can be found in this
+        <a href="http://ej2.syncfusion.com/documentation/tooltip/content.html#template-content" target="_blank"> documentation section</a>.
+    </p>
+</div>

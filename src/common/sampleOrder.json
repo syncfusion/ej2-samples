@@ -2,6 +2,6 @@
     "Data Visualization": ["Chart"],
     "Grids": ["Grid"],
     "Editors": ["Form Validator", "Calendar", "NumericTextBox", "Button", "TextBoxes"],
-    "Layout": ["ListView", "Dialog"],
+    "Layout": ["ListView", "Dialog", "Tooltip"],
     "Navigation": ["Toolbar"]
 }

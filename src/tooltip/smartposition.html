@@ -1,0 +1,32 @@
+<style type="text/css">
+    #demoSmart {
+        width: 100px;
+        height: 100px;
+        background: url('src/tooltip/images/smartposition.png') no-repeat;
+        background-size: 100px 100px;
+        position: absolute;
+        left: 45%;
+        top: 45%;
+    }
+
+    #targetContainer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+</style>
+<div id="targetContainer" class="col-lg-12 control-section">
+    <div id="demoSmart">
+    </div>
+</div>
+<div id="description">
+    <p>This sample shows the dynamic adjustment of the tooltip position within the specified Viewport. Start dragging the ant
+        image, so that the tooltip opens up immediately and keeps moving along with the target image. When the image reaches
+        the corners of the sample container on dragging, the tooltip and its arrow position will be auto adjusted, so as
+        to make it look fit within the sample container area. </p>
+    <p>In this sample, the tooltip is opened manually using it’s <code>open</code> method on drag start of the target image.
+        On further dragging, the <code>refresh</code> method of the tooltip needs to be called in order to reposition it
+        continuously and on drag stop, the tooltip will be hidden by using it’s <code>close</code> method.</p>
+    <p>More information on dynamic positioning of the tooltip can be found in this
+        <a href="http://ej2.syncfusion.com/documentation/tooltip/position.html#dynamic-positioning" target="_blank"> documentation section</a>.
+    </p>
+</div>

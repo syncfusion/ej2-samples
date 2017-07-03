@@ -17,9 +17,14 @@ this.default = () => {
         clone: false,
         dragArea: '#targetContainer',
         drag: (args: any) => {
-            tooltip.refresh(args.element);
+            if (args.element.getAttribute('data-tooltip-id') === null) {
+                tooltip.open(args.element);
+            } else {
+                tooltip.refresh(args.element);
+            }
         },
         dragStart: (args: any) => {
+            if (args.element.getAttribute('data-tooltip-id') !== null) { return; }
             tooltip.open(args.element);
         },
         dragStop: (args: any) => {

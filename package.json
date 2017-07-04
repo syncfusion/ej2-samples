@@ -13,7 +13,6 @@
 		"@syncfusion/ej2-calendars": "*",
 		"@syncfusion/ej2-inputs": "*",
 		"@syncfusion/ej2-popups": "*",
-		"@syncfusion/ej2-dropdowns": "*",
 		"@syncfusion/ej2-charts": "*",
 		"@syncfusion/ej2-navigations": "*",
 		"crossroads": "^0.12.2",

@@ -1,7 +1,3 @@
-import { ValueFormatter } from '@syncfusion/ej2-grids/src/grid/services/value-formatter';
-
-let valueFormatter: ValueFormatter = new ValueFormatter();
-
 /**
  * Grid datasource
  */

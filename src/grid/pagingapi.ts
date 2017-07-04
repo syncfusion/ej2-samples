@@ -1,4 +1,4 @@
-import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, PageEventArgs } from '@syncfusion/ej2-grids';
 import { productData } from './datasource';
 
 Grid.Inject(Page, Selection);
@@ -52,7 +52,7 @@ this.default = (): void => {
         let pageNumber: number = parseInt(currentPage.value, 10);
         grid.goToPage(pageNumber);
     };
-    function paging(args: any): void {
+    function paging(args: PageEventArgs): void {
         if (args.requestType === 'paging') {
             currentPage.value = args.currentPage;
         }

@@ -32,8 +32,7 @@ this.default = (): void => {
         grid.showHider.show(column.headerText, 'headerText');
         show.disabled = true;
         hide.disabled = false;
-        let textArea: string = hiddenColumns.value;
-        hiddenColumns.value = textArea.replace(column.headerText + '\n', '');
+        hiddenColumns.value = hiddenColumns.value.replace(column.headerText + '\n', '');
     };
     hide.onclick = () => {
         let columnName: string = drop.value;
@@ -44,9 +43,7 @@ this.default = (): void => {
             grid.showHider.hide(column.headerText, 'headerText');
             hide.disabled = true;
             show.disabled = false;
-            let textArea: string = hiddenColumns.value;
-            hiddenColumns.value = textArea === '' ?
-                column.headerText + '\n' : textArea + column.headerText + '\n';
+            hiddenColumns.value = hiddenColumns.value + column.headerText + '\n';
         }
     };
     drop.onchange = () => {

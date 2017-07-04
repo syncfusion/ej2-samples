@@ -1,7 +1,7 @@
-import { Grid, Page, Selection, Scroll } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
 import { orderData } from './datasource';
 
-Grid.Inject(Page, Selection, Scroll);
+Grid.Inject(Page, Selection);
 
 /**
  * scroll Grid sample

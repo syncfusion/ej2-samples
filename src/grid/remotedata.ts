@@ -35,15 +35,18 @@ this.default = (): void => {
     grid.appendTo('#Grid');
     function show(): void {
         let div: HTMLElement = document.getElementById('waitingpopup');
+        let popup: HTMLElement = document.getElementById('popup');
         let width: number = grid.element.offsetWidth;
         let height: number = grid.element.offsetHeight;
+        popup.style.width = width + 'px';
+        popup.style.height = height + 'px';
         div.style.top = (height / 2 - 25) + 'px';
         div.style.left = (width / 2 - 25) + 'px';
-        div.style.display = '';
+        popup.style.display = '';
     }
     function hide(): void {
-        let div: HTMLElement = document.getElementById('waitingpopup') as HTMLElement;
-        div.style.display = 'none';
+        let popup: HTMLElement = document.getElementById('popup') as HTMLElement;
+        popup.style.display = 'none';
     }
 };
 

@@ -1,8 +1,8 @@
-import { Grid, Page, Selection, Search } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
 import { categoryData } from './datasource';
 import { KeyboardEventArgs } from '@syncfusion/ej2-base';
 
-Grid.Inject(Page, Selection, Search);
+Grid.Inject(Page, Selection);
 
 /**
  * Search Grid sample

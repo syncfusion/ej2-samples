@@ -1,4 +1,4 @@
-import { Grid, Sort, Page, Selection } from '@syncfusion/ej2-grids';
+import { Grid, Sort, Page, Selection, SortEventArgs } from '@syncfusion/ej2-grids';
 import { orderData } from './datasource';
 
 Grid.Inject(Sort, Page, Selection);
@@ -65,7 +65,7 @@ this.default = (): void => {
             grid.removeSortColumn('ShipCountry');
         }
     };
-    function sort(args: any): void {
+    function sort(args: SortEventArgs): void {
         if (args.requestType === 'sorting') {
             for (let columns of grid.getColumns()) {
                 for (let sortcolumns of grid.sortSettings.columns) {

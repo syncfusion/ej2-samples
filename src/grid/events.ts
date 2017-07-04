@@ -1,6 +1,5 @@
 import { Grid, Page, Selection, Reorder, Group, Sort } from '@syncfusion/ej2-grids';
 import { categoryData } from './datasource';
-import { createElement } from '@syncfusion/ej2-base/dom';
 
 Grid.Inject(Page, Selection, Reorder, Group, Sort);
 
@@ -67,7 +66,8 @@ this.default = (): void => {
         appendElement('Grid <b>rowSelected</b> event called<hr>');
     }
     function appendElement(html: string): void {
-        let span: HTMLElement = createElement('span', { innerHTML: html });
+        let span: HTMLElement = document.createElement('span');
+        span.innerHTML = html;
         let log: HTMLElement = document.getElementById('EventLog');
         log.insertBefore(span, log.firstChild);
     }

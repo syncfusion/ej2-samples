@@ -144,16 +144,12 @@ function loadJSON(): void {
     mouseButton.appendTo('#mouse');
     touchButton.appendTo('#touch');
     mouseButton.element.onclick = () => {
-        document.body.classList.remove('e-bigger');
-        mouseButton.element.classList.add('active');
-        touchButton.element.classList.remove('active');
-        dispatchResize();
+        localStorage.setItem('ej2-switch', 'M');
+        location.reload();
     };
     touchButton.element.onclick = () => {
-        document.body.classList.add('e-bigger', 'active');
-        touchButton.element.classList.add('active');
-        mouseButton.element.classList.remove('active');
-        dispatchResize();
+        localStorage.setItem('ej2-switch', 'T');
+        location.reload();
     };
     if (Browser.info.name === 'chrome' && Browser.isDevice) {
         let htmlScrollElement: HTMLElement = document.getElementById('html-tab-scroll');
@@ -185,6 +181,19 @@ function loadJSON(): void {
     hasher.changed.add(parseHash);
     hasher.init();
     wireEvents();
+    let mouseOrTouch: string = localStorage.getItem('ej2-switch');
+    if (mouseOrTouch) {
+        if (mouseOrTouch === 'M') {
+            document.body.classList.remove('e-bigger');
+            mouseButton.element.classList.add('active');
+            touchButton.element.classList.remove('active');
+        } else {
+            document.body.classList.add('e-bigger', 'active');
+            touchButton.element.classList.add('active');
+            mouseButton.element.classList.remove('active');
+        }
+    }
+    localStorage.removeItem('ej2-switch');
     setResponsive();
 }
 

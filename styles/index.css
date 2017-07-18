@@ -34,7 +34,21 @@ body {
     height: 40px;
     background: url('images/sb_icons/sb-logo-preview.png') no-repeat;
 }
-
+.e-samplestatus {
+    margin: 7px 9px;
+    position: absolute;
+    height: 13px;
+    width: 66px;
+}
+.e-samplestatus.new {
+    background: url('images/sb_icons/new-light.svg') no-repeat;
+}
+.e-samplestatus.update {
+    background: url('images/sb_icons/updated-light.svg') no-repeat;
+}
+.e-samplestatus.preview {
+    background: url('images/sb_icons/preview-light.svg') no-repeat;
+}
 .header-right {
     float: right;
 }

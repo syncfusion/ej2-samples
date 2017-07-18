@@ -41,12 +41,14 @@ interface Controls {
     directory: string;
     name: string;
     uid: string;
+    type: string;
     samples: Samples[];
 }
 
 interface Samples {
     url: string;
     uid: string;
+    type: string;
     name: string;
     category: string;
 }
@@ -73,6 +75,9 @@ let sampleTree: ListView = new ListView(
         sortOrder: 'Ascending',
         headerTitle: 'All Controls',
         select: onSampleSelect,
+        template: '<div class="e-text-content"> ${if(directory)}<div class="e-icons e-icon-collapsible"></div>${/if}' +
+        '<span class="e-list-text" style="display: inline;" role="list-item">${name}</span>' +
+        '${if(type)}<span class="e-samplestatus ${type}"></span>${/if}</div>',
         groupTemplate: '${if(items[0]["category"])}<div class="e-text-content"><span class="e-list-text">${items[0].category}</span>' +
         '</div>${/if}'
     });

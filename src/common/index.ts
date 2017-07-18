@@ -137,6 +137,7 @@ function getSampleList(): Controls[] | { [key: string]: Object }[] {
     return samplesJSON.samplesList;
 }
 function loadJSON(): void {
+    overlay();
     routeDefault();
     showBackButton();
     addRoutes(<Controls[]>samplesList);

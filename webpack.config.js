@@ -3,8 +3,21 @@ var glob = require('glob');
 var webpack = require('webpack');
 var files = glob.sync('./src/**/sample.json', { silent: true });
 
+if (process.env.sampleList && process.env.sampleList.length && config.currentRepo === 'ej2-samples') {
+    files = getControlWiseBundle();
+}
+
 for (var inx = 0; inx < files.length; inx++) {
     samplesList.push(require(files[inx]));
+}
+
+function getControlWiseBundle() {
+    var bundleList = JSON.parse(fs.readFileSync('./sampleList.json'));
+    var controlWiseBundleList = [];
+    for (var i = 0; i < bundleList.length; i++) {
+        controlWiseBundleList.push('./src/' + bundleList[i] + '/sample.json');
+    }
+    return controlWiseBundleList;
 }
 
 module.exports = webpackConfig({

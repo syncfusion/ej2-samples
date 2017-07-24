@@ -2,8 +2,9 @@ var samplesList = [];
 var glob = require('glob');
 var webpack = require('webpack');
 var files = glob.sync('./src/**/sample.json', { silent: true });
+var fs = require('fs');
 
-if (process.env.sampleList && process.env.sampleList.length && config.currentRepo === 'ej2-samples') {
+if (process.env.sampleList && process.env.sampleList.length && config.currentRepo === 'ej2-samples' && process.env.isBreakingTest === 'true') {
     files = getControlWiseBundle();
 }
 

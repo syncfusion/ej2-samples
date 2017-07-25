@@ -76,8 +76,8 @@ let sampleTree: ListView = new ListView(
         headerTitle: 'All Controls',
         select: onSampleSelect,
         template: '<div class="e-text-content"> ${if(directory)}<div class="e-icons e-icon-collapsible"></div>${/if}' +
-        '<span class="e-list-text" style="display: inline;" role="list-item">${name}</span>' +
-        '${if(type)}<span class="e-samplestatus ${type}"></span>${/if}</div>',
+        '<span class="e-list-text" role="list-item">${name}' +
+        '${if(type)}<span class="e-samplestatus ${type}"></span>${/if}</span></div>',
         groupTemplate: '${if(items[0]["category"])}<div class="e-text-content"><span class="e-list-text">${items[0].category}</span>' +
         '</div>${/if}'
     });

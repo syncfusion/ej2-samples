@@ -1,7 +1,7 @@
 import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
-import { Ajax } from '@syncfusion/ej2-base/ajax';
+import { Ajax } from '@syncfusion/ej2-base';
 import { ListView } from '@syncfusion/ej2-lists';
-import '../../node_modules/es6-promise/dist/es6-promise';
+
 /**
  * loading ajax content sample
  */
@@ -38,7 +38,7 @@ function onBeforeRender(args: TooltipEventArgs): void {
             for (let i: number = 0; i < result.length; i++) {
                 if (result[i].Id === args.target.getAttribute('data-content')) {
                     /* tslint:disable */
-                    this.content = "<div class='contentWrap'><img src='src/tooltip/images/"
+                    this.content = "<div class='contentWrap'><img src='http://ej2.syncfusion.com/demos/src/tooltip/images/"
                         + result[i].Sports + ".png' class='logo' /><div class='def'>" + result[i].Sports + "</div></div>";
                     /* tslint:enable */
                 }
@@ -46,7 +46,7 @@ function onBeforeRender(args: TooltipEventArgs): void {
             this.dataBind();
         },
         (reason: any) => {
-            this.content = reason;
+            this.content = reason.message;
             this.dataBind();
         });
 }

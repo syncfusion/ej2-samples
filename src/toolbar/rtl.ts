@@ -2,6 +2,7 @@
  *  Toolbar sample to demonstrate RTL feature.
  */
 import { Toolbar, OverflowMode } from '@syncfusion/ej2-navigations';
+
 this.default = () => {
     let toolbarObj: Toolbar = new Toolbar({
         items: [
@@ -64,7 +65,7 @@ this.default = () => {
         }]
     });
     toolbarObj.enableRtl = true;
-    toolbarObj.appendTo('#ej2Toolbar_Scroll');
+    toolbarObj.appendTo('#toolbar_rtl');
     document.getElementById('drop').onchange = (e : Event) => {
         let ddl: HTMLSelectElement = document.getElementById('drop') as HTMLSelectElement;
         toolbarObj.overflowMode = ddl.value as OverflowMode;

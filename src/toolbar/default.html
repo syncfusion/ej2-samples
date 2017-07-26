@@ -1,16 +1,17 @@
 <style>
     /* Toolbar Styles */
+
     @font-face {
         font-family: 'tbicons';
-        src: url('src/toolbar/images/fonts/tbicons.ttf?gcjn6a') format('truetype'), 
+        src: url('src/toolbar/images/fonts/tbicons.ttf?gcjn6a') format('truetype'),
         url('src/toolbar/images/fonts/tbicons.woff?gcjn6a') format('woff'),
         url('src/toolbar/images/fonts/tbicons.svg?gcjn6a#tbicons') format('svg');
         font-weight: normal;
         font-style: normal;
     }
-    
+
     .e-bigger .e-tbar-btn .tb-icons {
-      font-size: 18px;
+        font-size: 18px;
     }
 
     .e-tbar-btn .tb-icons {
@@ -22,111 +23,112 @@
         font-variant: normal;
         text-transform: none;
     }
+
     .e-cut-icon:before {
         content: "\e612"
     }
-    
+
     .e-copy-icon:before {
         content: "\e611"
     }
-    
+
     .e-paste-icon:before {
         content: "\e617"
     }
-    
+
     .e-color-icon:before {
         content: "\e610";
         font-size: 18px;
     }
-    
+
     .e-bold-icon:before {
         content: "\e60d"
     }
-    
+
     .e-underline-icon:before {
         content: "\e61d";
         font-size: 17px;
     }
-    
+
     .e-alignleft-icon:before {
         content: "\e60b"
     }
-    
+
     .e-alignright-icon:before {
         content: "\e60c"
     }
-    
+
     .e-aligncenter-icon:before {
         content: "\e609"
     }
-    
+
     .e-alignjustify-icon:before {
         content: "\e60a"
     }
-    
+
     .e-upload-icon:before {
         content: "\e61e"
     }
-    
+
     .e-download-icon:before {
         content: "\e613"
     }
-    
+
     .e-indent-icon:before {
         content: "\e61c"
     }
-    
+
     .e-outdent-icon:before {
         content: "\e61b"
     }
-    
+
     .e-clear-icon:before {
         content: "\e60f"
     }
-    
+
     .e-reload-icon:before {
         content: "\e618"
     }
-    
+
     .e-export-icon:before {
         content: "\e614";
         font-size: 22px;
     }
-    
+
     .e-italic-icon:before {
         content: "\e615"
     }
-    
+
     .e-bullets-icon:before {
         content: "\e60e";
         font-size: 18px;
     }
-    
+
     .e-numbering-icon:before {
         content: "\e616";
         font-size: 19px;
     }
-    
+
     .e-ascending-icon:before {
         content: "\e619";
         font-size: 23px;
     }
-    
+
     .e-descending-icon:before {
         content: "\e61a";
         font-size: 23px;
     }
-    
+
     .control-wrapper {
         flex-direction: inherit
     }
-    
+
     @media only screen and (min-width: 1224px) {
         .e-sample-resize-container {
             width: 75%;
         }
     }
-    
+
     @media only screen and (min-width: 1824px) {
         .e-sample-resize-container {
             width: 50%;
@@ -135,7 +137,7 @@
 </style>
 <div class="col-lg-12 control-section">
     <div class="e-sample-resize-container">
-        <div id="ej2Toolbar">
+        <div id="toolbar_default">
         </div>
     </div>
 </div>
@@ -147,16 +149,16 @@
     <br>
     <p>
         You can use left / right navigation icon or touch swipe to see the hidden commands of the toolbar.
-    </p>    
-        <ul>
-            <li>
-              Initially toolbar rendered with the <code>right navigation</code> icon and you can see hidden commands by <code>moving in right</code> direction.
-            </li>
-            <li>
-              When you reach <code>right end of toolbar</code>, navigation will be switched to <code>left direction</code> and you can see hidden commands by moving in <code>left direction</code>.
-            </li>
-            <li>
-              You can continuously scroll the toolbar content by holding on the navigation icon.
-            </li>
-        </ul>
+    </p>
+    <ul>
+        <li>
+            Initially toolbar rendered with the <code>right navigation</code> icon and you can see hidden commands by <code>moving in right</code>            direction.
+        </li>
+        <li>
+            When you reach <code>right end of toolbar</code>, navigation will be switched to <code>left direction</code>            and you can see hidden commands by moving in <code>left direction</code>.
+        </li>
+        <li>
+            You can continuously scroll the toolbar content by holding on the navigation icon.
+        </li>
+    </ul>
 </div>

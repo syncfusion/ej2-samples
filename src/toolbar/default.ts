@@ -66,5 +66,5 @@ this.default = () => {
                 prefixIcon: 'e-export-icon tb-icons', tooltipText: 'Export'
             }]
     });
-    toolbarObj.appendTo('#ej2Toolbar');
+    toolbarObj.appendTo('#toolbar_default');
 };

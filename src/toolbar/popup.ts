@@ -66,5 +66,5 @@ this.default = () => {
                 text: 'Design', prefixIcon: 'e-design-icon tb-icons' , tooltipText: 'Design' , showTextOn : 'Overflow'
         }],
     });
-    toolbarObj.appendTo('#ej2Toolbar_pop');
+    toolbarObj.appendTo('#toolbar_pop');
 };

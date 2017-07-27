@@ -2,6 +2,7 @@
    "name": "Grid", 
    "directory": "grid", 
    "category":"Grid", 
+   "type": "update",
    "samples" : [
     {"url":"default", "name": "Default Functionalities", "category":"Grid" },
     {"url":"grouping", "name": "Grouping", "category":"Grid"},
@@ -28,6 +29,8 @@
     {"url":"defaultpaging", "name": "Default Paging", "category": "Paging"},
     {"url":"pagingapi", "name": "Paging API", "category": "Paging"},
     {"url":"selection", "name": "Default Selection", "category":"Selection"},
-    {"url":"selectionapi", "name": "Selection API", "category": "Selection"}  
+    {"url":"selectionapi", "name": "Selection API", "category": "Selection"},
+    { "url":"aggregatedefault", "name": "Default Aggregate", "category": "Aggregates", "type": "new" },
+    { "url":"aggregategroup", "name": "Group and Caption Aggregate", "category": "Aggregates", "type": "new" }  
    ]
 }

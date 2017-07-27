@@ -1,7 +1,9 @@
+import { InputObject } from  '@syncfusion/ej2-inputs';
 /**
  *   Sample for CSS input boxes with customized material animation effects.
  */
 this.default = () => {
+    let inputObject : InputObject = {};
     let input: NodeList = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
     let inputIcon: NodeList  = document.querySelectorAll('.e-input-group-icon');
     for (let i: number = 0; i < input.length; i++) {

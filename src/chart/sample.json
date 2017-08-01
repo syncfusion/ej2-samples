@@ -2,6 +2,7 @@
     "name": "Chart",
     "directory": "chart",
     "category": "Data Visualization",
+    "type": "update", 
     "samples": [
         {
             "url": "line",
@@ -33,15 +34,41 @@
             "name": "Stacked Column",
             "category": "Series"
         },
+          {
+            "url": "stacked-column100",
+            "name": "100% Stacked Column",
+            "category": "Series",
+            "type": "new"
+        },
+        {
+            "url": "range-column",
+            "name": "Range Column",
+            "category": "Series",
+            "type": "new"
+        },
         {
             "url": "stacked-bar",
             "name": "Stacked Bar",
             "category": "Series"
+            
+        },
+        {
+            "url": "stacked-bar100",
+            "name": "100% Stacked Bar",
+            "category": "Series",
+            "type": "new"
         },
         {
             "url": "stacked-area",
             "name": "Stacked Area",
             "category": "Series"
+        },
+          {
+            "url": "stacked-area100",
+            "name": "100% Stacked Area",
+            "category": "Series",
+            "type": "new"
+            
         },
         {
             "url": "step-line",
@@ -52,6 +79,12 @@
             "url": "scatter",
             "name": "Scatter",
             "category": "Series"
+        },
+        {
+            "url": "bubble",
+            "name": "Bubble",
+            "category": "Series",
+            "type": "new"
         },
         {
             "url": "combination-series",

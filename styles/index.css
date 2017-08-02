@@ -614,6 +614,9 @@ body {
         height: 26px;
         width: 210px;
     }
+    #plnk{
+        display: none;
+    }
 }
 
 .adjust-content {
@@ -638,6 +641,13 @@ a.code:visited {
     text-decoration: inherit;
     color: inherit;
     cursor: auto;
+}
+
+.no-space {
+    height: calc(100% - 62px) !important;
+}
+#plnk {
+    float: right;
 }
 
 /*.e-listview [uid="00"].e-level-0 .e-list-text::before {

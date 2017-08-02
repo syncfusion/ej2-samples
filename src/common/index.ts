@@ -175,12 +175,15 @@ function loadJSON(): void {
         let content: HTMLElement = <HTMLElement>select('#control-container');
         let sbHeader: HTMLElement = <HTMLElement>select('.sb-header');
         let sbContent: HTMLElement = <HTMLElement>select('.sb-content');
+        let cList: HTMLElement = <HTMLElement>select('#control-list');
         if (content.scrollTop > 40) {
             sbHeader.style.display = 'none';
             sbContent.classList.add('adjust-content');
+            cList.classList.add('no-space');
         } else if (content.scrollTop < 5) {
             sbHeader.style.display = '';
             sbContent.classList.remove('adjust-content');
+            cList.classList.remove('no-space');
         }
     });
     hasher.initialized.add(parseHash);
@@ -278,12 +281,15 @@ function addRoutes(samplesList: Controls[]): void {
                 select('#htab').innerHTML = sample + '.html';
                 select('#ttab').innerHTML = sample + '.ts';
                 ajaxTs.send().then((value: Object): void => {
-                    document.getElementById('ts-source').innerHTML = value.toString();
+                    document.getElementById('ts-source').innerHTML = value.toString().replace(/\</g, '&lt;').replace(/\>/g, '&gt;');
                     hljs.highlightBlock(document.getElementById('ts-source'));
                 });
+                let plunk: Ajax = new Ajax('src/' + control + '/' + sample + '-plnkr.json', 'GET', true);
+                let p3: Promise<Ajax> = plunk.send();
                 Promise.all([
                     p1,
                     p2,
+                    p3,
                 ]).then((results: Object[]): void => {
                     let htmlString: string = results[0].toString();
                     destroyControls();
@@ -336,6 +342,7 @@ function addRoutes(samplesList: Controls[]): void {
                     document.body.classList.remove('sb-overlay');
                     select('#source-panel').classList.remove('hidden');
                     isExternalNavigation = defaultTree = false;
+                    plunker(<string>results[2]);
                 });
             });
         }
@@ -526,6 +533,26 @@ function renderDescription(): void {
     } else if (descElement) {
         detach(descElement);
     }
+}
+
+function plunker(results: string): void {
+    let plnkr: { [key: string]: Object } = JSON.parse(results);
+    let form: HTMLFormElement = <HTMLFormElement>createElement('form');
+    form.setAttribute('action', 'http://plnkr.co/edit/?p=preview');
+    form.setAttribute('method', 'post');
+    form.setAttribute('target', '_blank');
+    form.id = 'plnkr-form';
+    form.style.display = 'none';
+    document.body.appendChild(form);
+    let plunks: string[] = Object.keys(plnkr);
+    for (let x: number = 0; x < plunks.length; x++) {
+        let ip: HTMLElement = createElement('input');
+        ip.setAttribute('type', 'hidden');
+        ip.setAttribute('value', <string>plnkr[plunks[x]]);
+        ip.setAttribute('name', 'files[' + plunks[x] + ']');
+        form.appendChild(ip);
+    }
+    document.getElementById('plnkr').addEventListener('click', () => { form.submit(); });
 }
 
 loadJSON();

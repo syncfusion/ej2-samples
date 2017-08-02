@@ -22,7 +22,6 @@ this.default = () => {
         });
         dialogObj.appendTo('#dialog');
         document.getElementById('dialogBtn').focus();
-        dialogObj.show();
         let button: Button = new Button({
         });
         button.appendTo('#dialogBtn');

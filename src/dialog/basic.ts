@@ -21,10 +21,10 @@ this.default = () => {
     });
     alertDialogObj.appendTo('#alertDialog');
     document.getElementById('alertBtn').focus();
-    alertDialogObj.show();
 
     let confirmDialogObj: Dialog = new Dialog({
         header: 'Delete Multiple Items',
+        visible: false,
         content: '<span>Are you sure you want to permanently delete all of these items?</span>',
         showCloseIcon: true,
         closeOnEscape: false,
@@ -42,6 +42,7 @@ this.default = () => {
     confirmDialogObj.appendTo('#confirmDialog');
     let promptDialogObj: Dialog = new Dialog({
         header: 'Join Wi-Fi network',
+        visible: false,
         showCloseIcon: false,
         closeOnEscape: false,
         buttons: [{

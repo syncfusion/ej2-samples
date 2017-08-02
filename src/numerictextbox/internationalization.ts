@@ -8,16 +8,13 @@ this.default = (): void => {
 
     L10n.load({
       'en': {
-        'numerictextbox': { incrementTitle: 'Increment value', decrementTitle: 'Decrement value',
-        placeholder: 'Enter the value' }
+        'numerictextbox': { incrementTitle: 'Increment value', decrementTitle: 'Decrement value'}
       },
       'de': {
-        'numerictextbox': { incrementTitle: 'Wert erhöhen', decrementTitle: 'Dekrementwert',
-        placeholder: 'Geben Sie den Wert ein' }
+        'numerictextbox': { incrementTitle: 'Wert erhöhen', decrementTitle: 'Dekrementwert'}
       },
       'zh': {
-        'numerictextbox': { incrementTitle: '增值', decrementTitle: '遞減值',
-        placeholder: '輸入值' }
+        'numerictextbox': { incrementTitle: '增值', decrementTitle: '遞減值'}
       }
     });
 
@@ -32,7 +29,8 @@ this.default = (): void => {
 
     let numeric: NumericTextBox = new NumericTextBox({
         locale: 'de',
-        value: 10
+        value: 10,
+        placeholder: 'Geben Sie den Wert ein'
     });
     numeric.appendTo('#numeric');
 
@@ -42,7 +40,8 @@ this.default = (): void => {
         value: 0.5,
         min: 0,
         max: 1,
-        step: 0.01
+        step: 0.01,
+        placeholder: 'Geben Sie den Prozentsatz ein'
     });
     percent.appendTo('#percent');
 
@@ -50,7 +49,8 @@ this.default = (): void => {
         format: 'c2',
         locale: 'de',
         value: 100,
-        currency: 'EUR'
+        currency: 'EUR',
+        placeholder: 'Geben Sie die Währung ein'
     });
     currency.appendTo('#currency');
 
@@ -63,10 +63,19 @@ this.default = (): void => {
         currency.locale = culture;
         if (culture === 'zh') {
             currency.currency = 'CNY';
+            numeric.placeholder = '输入值';
+            currency.placeholder = '输入货币';
+            percent.placeholder = '输入百分比';
         } else if (culture === 'de') {
             currency.currency = 'EUR';
+            numeric.placeholder = 'Geben Sie den Wert ein';
+            currency.placeholder = 'Geben Sie die Währung ein';
+            percent.placeholder = 'Geben Sie den Prozentsatz ein';
         } else {
             currency.currency = 'USD';
+            numeric.placeholder = 'Enter the value';
+            currency.placeholder = 'Enter the currency';
+            percent.placeholder = 'Enter the percentage';
         }
     }
 };

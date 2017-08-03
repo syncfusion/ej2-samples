@@ -272,6 +272,7 @@ function addRoutes(samplesList: Controls[]): void {
             addRoute(urlString, () => {
                 let controlID: string = node.uid;
                 let sampleID: string = subNode.uid;
+                document.getElementById('plnkr').classList.add('disabled');
                 select('#switch').classList.remove('hidden');
                 document.getElementById('source-panel').style.display = 'block';
                 let ajaxHTML: Ajax = new Ajax('src/' + control + '/' + sample + '.html', 'GET', true);
@@ -285,11 +286,13 @@ function addRoutes(samplesList: Controls[]): void {
                     hljs.highlightBlock(document.getElementById('ts-source'));
                 });
                 let plunk: Ajax = new Ajax('src/' + control + '/' + sample + '-plnkr.json', 'GET', true);
-                let p3: Promise<Ajax> = plunk.send();
+                plunk.send().then((value: Object): void => {
+                    plunker(<string>value);
+                    document.getElementById('plnkr').classList.remove('disabled');
+                });
                 Promise.all([
                     p1,
-                    p2,
-                    p3,
+                    p2
                 ]).then((results: Object[]): void => {
                     let htmlString: string = results[0].toString();
                     destroyControls();
@@ -342,8 +345,9 @@ function addRoutes(samplesList: Controls[]): void {
                     document.body.classList.remove('sb-overlay');
                     select('#source-panel').classList.remove('hidden');
                     isExternalNavigation = defaultTree = false;
-                    plunker(<string>results[2]);
-                });
+                    }).catch((): void => {
+                        location.reload();
+                    });
             });
         }
     }

@@ -1,5 +1,11 @@
 import {NumericTextBox} from '@syncfusion/ej2-inputs';
 import {loadCldr, L10n} from '@syncfusion/ej2-base';
+import * as numbers from '../common/cldr-data/main/de/numbers.json';
+import * as currencies from '../common/cldr-data/main/de/currencies.json';
+import * as zhNumbers from '../common/cldr-data/main/zh/numbers.json';
+import * as zhCurrencies from '../common/cldr-data/main/zh/currencies.json';
+import * as numberingSystems from '../common/cldr-data/supplemental/numberingSystems.json';
+import * as currencyData from '../common/cldr-data/supplemental/currencyData.json';
 /**
  * Internationalization NumericTextBox sample
  */
@@ -18,14 +24,7 @@ this.default = (): void => {
       }
     });
 
-    loadCldr(
-        require('../common/cldr-data/main/de/numbers.json'),
-        require('../common/cldr-data/main/de/currencies.json'),
-        require('../common/cldr-data/main/zh/numbers.json'),
-        require('../common/cldr-data/main/zh/currencies.json'),
-        require('../common/cldr-data/supplemental/numberingSystems.json'),
-        require('../common/cldr-data/supplemental/currencyData.json')
-    );
+    loadCldr(numbers, currencies, zhNumbers, zhCurrencies, numberingSystems, currencyData);
 
     let numeric: NumericTextBox = new NumericTextBox({
         locale: 'de',

@@ -1,0 +1,47 @@
+<div class="col-lg-12 control-section" style="height: 400px;">
+    <div class='control-wrapper'>
+        <div style='padding-top:75px;'>
+            <input type="text" tabindex="1" id='list' />
+        </div>
+    </div>
+</div>
+
+<div id="description">
+    <p>The DropDownList has built-in support to filter the data source when <code>allowFiltering</code> enabled. And it performs
+        when type characters in the search box. In <code>filtering</code> event, you can filter down the data source and
+        return the resulted data to DropDownList via <code>updateData</code> method to display its list items.</p>
+    <p>In this sample illustrates that, query the data source and passed the resulted data to DropDownList through the <code>updateData</code>        method in <code>filtering</code> event.</p>
+</div>
+
+<style>
+    .control-wrapper {
+        margin: 0 auto;
+        width: 250px;
+    }
+
+    .e-input-group .e-spinner-icon {
+        background-image: url(./styles/images/Medium-36px-spin.gif) !important;
+        background-size: 12px 12px !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+    }
+
+    .e-input-group .e-spinner-icon::before {
+        content: '';
+    }
+
+    .e-bigger .e-ddl-device .e-spinner-icon {
+        background-image: url(./styles/images/Medium-36px-spin.gif) !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        background-size: 30px 30px !important;
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+        position: absolute;
+        top: 25%;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+    }
+</style>

@@ -2,8 +2,8 @@
     <div class="control_wrapper">
         <div id="container">
             <div id="calendar"></div><br/>
-            <span id="date_label"> Selected Value: </span>
         </div>
+        <span id="date_label"> Selected Value: </span>
     </div>
 </div>
 <div id="description">
@@ -15,11 +15,18 @@
 
 </div>
 <style>
+    .control_wrapper #container {
+        min-height: 310px;
+    }
+    
+    .e-bigger .control_wrapper #container {
+        min-height: 400px;
+    }
+    
     #date_label {
         display: block;
         width: 248px;
         color: rgba(0, 0, 0, 0.58);
-        margin-left: 5px;
     }
     
     .control_wrapper {

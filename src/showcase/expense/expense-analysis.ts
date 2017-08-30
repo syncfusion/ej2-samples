@@ -1,8 +1,7 @@
 /**
  * Expense analyze show case sample
  */
-import { merge, isNullOrUndefined } from '@syncfusion/ej2-base/util';
-import { select, isVisible } from '@syncfusion/ej2-base/dom';
+import { merge, isNullOrUndefined, select, isVisible } from '@syncfusion/ej2-base';
 import { Internationalization } from '@syncfusion/ej2-base';
 import { Chart, ColumnSeries, Category, Legend, Tooltip } from '@syncfusion/ej2-charts';
 import { ChartModel } from '@syncfusion/ej2-charts/src/chart/chart-model';

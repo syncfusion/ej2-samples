@@ -1,4 +1,4 @@
-import { Chart, StepLineSeries, Marker, DateTime, Legend, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, StepLineSeries, Marker, DateTime, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(StepLineSeries, Marker, DateTime, Legend, Tooltip);
 
 /**
@@ -91,7 +91,11 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'Unemployment Rates 1975-2010',
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}'}
+        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}'},
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

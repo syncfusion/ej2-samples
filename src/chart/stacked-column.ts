@@ -1,4 +1,4 @@
-import { Chart, StackingColumnSeries, Category, Legend, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, StackingColumnSeries, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingColumnSeries, Category, Legend, Tooltip);
 
 /**
@@ -90,7 +90,11 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'Mobile Game Market by Country',
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}' }
+        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}' },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
 
     });
     chart.appendTo('#container');

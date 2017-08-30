@@ -1,4 +1,4 @@
-import { Chart, LineSeries, DateTime, Legend } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, DateTime, Legend);
 
 /**
@@ -65,7 +65,11 @@ this.default = (): void => {
         ],
 
         //Initializing Chart title
-        title: 'Stock Price Analysis'
+        title: 'Stock Price Analysis',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

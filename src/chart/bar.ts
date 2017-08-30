@@ -1,4 +1,4 @@
-import { Chart, BarSeries, Category, Legend, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, BarSeries, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(BarSeries, Category, Legend, Tooltip);
 
 /**
@@ -56,7 +56,11 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'UK Trade in Food Groups - 2015',
-        tooltip: { enable: true, format: '${series.name}<br> ${point.x} : ${point.y}' }
+        tooltip: { enable: true, format: '${series.name}<br> ${point.x} : ${point.y}' },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

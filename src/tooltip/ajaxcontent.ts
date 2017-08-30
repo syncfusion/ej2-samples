@@ -38,8 +38,7 @@ function onBeforeRender(args: TooltipEventArgs): void {
             for (let i: number = 0; i < result.length; i++) {
                 if (result[i].Id === args.target.getAttribute('data-content')) {
                     /* tslint:disable */
-                    this.content = "<div class='contentWrap'><img src='http://ej2.syncfusion.com/demos/src/tooltip/images/"
-                        + result[i].Sports + ".png' class='logo' /><div class='def'>" + result[i].Sports + "</div></div>";
+                    this.content = "<div class='contentWrap'><span class=" + result[i].Class + "></span><div class='def'>" + result[i].Sports + "</div></div>";
                     /* tslint:enable */
                 }
             }

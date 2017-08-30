@@ -1,4 +1,4 @@
-import { Chart, LineSeries, Crosshair, DateTime, Legend } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, Crosshair, DateTime, Legend, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, DateTime, Crosshair, Legend);
 
 /**
@@ -80,7 +80,11 @@ this.default = (): void => {
         crosshair: { enable: true },
         legendSettings: { visible: true },
         //Initializing Chart title
-        title: 'Weather Condition'
+        title: 'Weather Condition',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

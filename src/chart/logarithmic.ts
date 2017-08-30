@@ -1,4 +1,4 @@
-import { Chart, LineSeries, DateTime, Logarithmic, Legend, Marker, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, DateTime, Logarithmic, Legend, Marker, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, DateTime, Logarithmic, Legend, Marker, Tooltip);
 
 /**
@@ -56,7 +56,11 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'Product X Growth [1995-2005]', legendSettings: { visible: false },
-        tooltip: { enable: true, format: '${series.name}<br> ${point.x} : ${point.y}' }
+        tooltip: { enable: true, format: '${series.name}<br> ${point.x} : ${point.y}' },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

@@ -2,10 +2,17 @@ import { Chart, BubbleSeries, Tooltip, IPointRenderEventArgs } from '@syncfusion
 import { EmitType } from '@syncfusion/ej2-base';
 Chart.Inject(BubbleSeries, Tooltip);
 
-let seriesColor: string[] = ['#00bdae', '#404041', '#357cd2', '#e56590', '#f8b883', '#70ad47', '#dd8abd', '#7f84e8', '#7bb4eb',
-                             '#ea7a57', '#404041', '#00bdae' ];
+let materialColors: string[] = ['#00bdae', '#404041', '#357cd2', '#e56590', '#f8b883', '#70ad47', '#dd8abd', '#7f84e8', '#7bb4eb',
+'#ea7a57', '#404041', '#00bdae' ];
+let fabricColors: string[] = ['#4472c4', '#ed7d31', '#ffc000', '#70ad47', '#5b9bd5',
+    '#c1c1c1', '#6f6fe2', '#e269ae', '#9e480e', '#997300', '#4472c4', '#70ad47', '#ffc000', '#ed7d31'];
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
-    args.fill = seriesColor[args.point.index];
+    let selectedTheme: string = location.hash.split('/')[1];
+    if (selectedTheme.indexOf('fabric') > -1) {
+        args.fill = fabricColors[args.point.index];
+    } else {
+        args.fill = materialColors[args.point.index];
+    }
 };
 
 /**

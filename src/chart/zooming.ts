@@ -1,4 +1,4 @@
-import { Marker, DateTime } from '@syncfusion/ej2-charts';
+import { Marker, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import { Chart, AreaSeries, Legend, Zoom } from '@syncfusion/ej2-charts';
 Chart.Inject(AreaSeries, DateTime, Marker, Legend, Zoom);
 
@@ -64,6 +64,10 @@ this.default = (): void => {
         //Initializing Chart title
         title: 'Sales History of Product X',
         legendSettings: { visible: false },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

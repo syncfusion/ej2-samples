@@ -1,4 +1,4 @@
-import { Chart, LineSeries, Legend } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, Legend, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, Legend);
 
 /**
@@ -81,7 +81,11 @@ this.default = (): void => {
         ],
 
         width: '800',
-        height: '350'
+        height: '350',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 

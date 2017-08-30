@@ -1,4 +1,4 @@
-import { Chart, StackingColumnSeries, LineSeries, Legend, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, StackingColumnSeries, LineSeries, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import { Marker, ColumnSeries, Category } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingColumnSeries, LineSeries, Category, Marker, ColumnSeries, Legend, Tooltip);
 
@@ -12,7 +12,7 @@ this.default = (): void => {
         primaryXAxis: {
             title: 'Years',
             interval: 1,
-            labelIntersectAction : 'Rotate45',
+            labelIntersectAction: 'Rotate45',
             valueType: 'Category'
         },
 
@@ -95,7 +95,11 @@ this.default = (): void => {
         //Initializing Chart title
         title: 'Annual Growth GDP in France',
         legendSettings: { visible: false },
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}' }
+        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}' },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

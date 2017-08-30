@@ -1,4 +1,4 @@
-import { Chart, ColumnSeries, Category, Legend, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, ColumnSeries, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, Category, Legend, Tooltip);
 
 /**
@@ -56,7 +56,11 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'Olympic Medals - RIO',
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}' }
+        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}' },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

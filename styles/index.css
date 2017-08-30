@@ -52,11 +52,19 @@ body {
 .header-right {
     float: right;
 }
-
 .list-search {
     display: none;
     height: 48px;
     border-bottom: 1px solid #dddddd;
+}
+.error-content { 
+    height:150px;
+    border: 1px solid #dddddd;
+    padding: 10px;
+    
+}
+.e-icon-warning::before {
+    content: '\e7c4';
 }
 
 .left-panel {

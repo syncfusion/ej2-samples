@@ -1,7 +1,7 @@
 {
-    "Data Visualization": ["Chart"],
+    "Data Visualization": ["Chart", "Circular Gauge"],
     "Grids": ["Grid"],
-    "Editors": ["Form Validator", "Calendar", "DropDownList", "NumericTextBox", "Button", "TextBoxes"],
-    "Layout": ["ListView", "Dialog", "Tooltip"],
+    "Editors": ["Form Validator", "DropDownList", "Calendar", "NumericTextBox", "Button", "TextBoxes"],
+    "Layout": ["ListView", "Dialog", "Popup", "Tooltip"],
     "Navigation": ["Toolbar"]
 }

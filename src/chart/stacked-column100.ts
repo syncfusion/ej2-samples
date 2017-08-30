@@ -1,4 +1,4 @@
-import { Chart, StackingColumnSeries, Category, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, StackingColumnSeries, Category, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingColumnSeries, Category, Tooltip);
 let chartData: any[] = [
     { x: '2006', y: 900, y1: 190, y2: 250, y3: 150 },
@@ -43,6 +43,10 @@ this.default = (): void => {
 
             }
         ],
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        },
         title: 'Gross Domestic Product Growth',
         tooltip: { enable: true, format: '${point.x} <br>${series.name} : ${point.y} (${point.percent}%)' }
     });

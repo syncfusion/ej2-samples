@@ -2,7 +2,7 @@
 /**
  * Propertypanel generator
  */
-import { createElement, detach } from '@syncfusion/ej2-base/dom';
+import { createElement, detach } from '@syncfusion/ej2-base';
 
 
 

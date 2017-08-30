@@ -3,11 +3,8 @@
  * default script manupulation for sample browser
  */
 import '../../node_modules/es6-promise/dist/es6-promise';
-import { Ajax, Browser } from '@syncfusion/ej2-base';
-import { extend } from '@syncfusion/ej2-base/util';
-import { detach } from '@syncfusion/ej2-base/dom';
+import { Ajax, Browser, extend, detach, select, addClass, isVisible, createElement, selectAll } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
-import { select, addClass, isVisible, createElement, selectAll } from '@syncfusion/ej2-base/dom';
 import { DataManager, Query } from '@syncfusion/ej2-data';
 import { SelectEventArgs, ListView } from '@syncfusion/ej2-lists';
 import * as hasher from 'hasher';
@@ -212,9 +209,16 @@ function loadPage(page: string): void {
         document.getElementById('control-content').innerHTML = value.toString();
         document.getElementById('source-panel').style.display = 'none';
         addClass(document.getElementsByClassName('nav-btn'), 'hidden');
+    }).catch((reason: any): void => {
+        errorHandler(reason.message);
     });
 }
-
+function errorHandler(error: string): void {
+    document.getElementById('control-content').innerHTML = error ? error : 'Not Available';
+    select('#control-content').classList.add('error-content');
+    select('.sb-loading').classList.add('hidden');
+    document.body.classList.remove('sb-overlay');
+}
 function showBackButton(): void {
     if (location.hash) {
         select('#sidebar-title').innerHTML = 'All Controls';
@@ -257,7 +261,6 @@ function navigateURL(arg: Controls & Samples, isInteracted: boolean): void {
         currentListControl = arg.directory;
     }
 }
-
 function addRoutes(samplesList: Controls[]): void {
     for (let node of samplesList) {
         let dataManager: DataManager = new DataManager(node.samples);
@@ -345,9 +348,9 @@ function addRoutes(samplesList: Controls[]): void {
                     document.body.classList.remove('sb-overlay');
                     select('#source-panel').classList.remove('hidden');
                     isExternalNavigation = defaultTree = false;
-                    }).catch((): void => {
-                        location.reload();
-                    });
+                }).catch((): void => {
+                    location.reload();
+                });
             });
         }
     }

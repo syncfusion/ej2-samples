@@ -1,4 +1,4 @@
-import { Chart, StackingAreaSeries, DateTime } from '@syncfusion/ej2-charts';
+import { Chart, StackingAreaSeries, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingAreaSeries, DateTime);
 let chartData: any[] = [
     { x: new Date(2000, 0, 1), y: 0.61, y1: 0.03, y2: 0.48, y3: 0.23 },
@@ -52,6 +52,10 @@ this.default = (): void => {
                 type: 'StackingArea100', name: 'Others',
             }
         ],
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        },
         title: 'Trend in Sales of Ethical Produce'
     });
     chart.appendTo('#container');

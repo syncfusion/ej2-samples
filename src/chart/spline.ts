@@ -1,4 +1,4 @@
-import { Chart, SplineSeries, Marker, Category, Legend, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, SplineSeries, Marker, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(SplineSeries, Category, Marker, Legend, Tooltip);
 
 /**
@@ -85,7 +85,11 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'NC Weather Report - 2016',
-        tooltip: { enable: true, format: '${series.name} (°c)<br>${point.x} : ${point.y}' }
+        tooltip: { enable: true, format: '${series.name} (°c)<br>${point.x} : ${point.y}' },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

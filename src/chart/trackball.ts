@@ -1,4 +1,4 @@
-import { Marker, Tooltip, Crosshair, DateTime } from '@syncfusion/ej2-charts';
+import { Marker, Tooltip, Crosshair, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import { Chart, LineSeries, Legend } from '@syncfusion/ej2-charts';
 import { john, andrew, thomas, mark, william } from './trackball-data';
 Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Marker, Legend);
@@ -76,7 +76,11 @@ this.default = (): void => {
         tooltip: { enable: true, shared: true, format: '${series.name} : ${point.x} : ${point.y}' },
         crosshair: { enable: true, lineType: 'Vertical' },
         //Initializing Chart title
-        title: 'Average Sales per Person'
+        title: 'Average Sales per Person',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

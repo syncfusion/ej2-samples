@@ -22,12 +22,6 @@ let loadedChart: EmitType<Object> = (args: Chart): void => {
 this.default = (): void => {
     let chart: Chart = new Chart({
 
-        // Initializing Chart Area
-        chartArea:
-        {
-            border: { width: 1 }
-        },
-
         //Initializing Primary X Axis
         primaryXAxis: {
             rangePadding: 'Additional',
@@ -63,6 +57,8 @@ this.default = (): void => {
             div.style.top = (height ? height : 300 / 2 - 25) + 'px';
             div.style.left = (width / 2 - 25) + 'px';
             div.style.display = '';
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
         },
         //Initializing Chart title
         title: 'Sprint Task Analysis', legendSettings: { visible: false },

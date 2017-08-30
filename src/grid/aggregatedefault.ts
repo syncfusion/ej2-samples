@@ -10,6 +10,7 @@ this.default = (): void => {
         {
             dataSource: orderData,
             allowPaging: true,
+            pageSettings: {pageCount: 5},
             columns: [
                 { field: 'CustomerName', headerText: 'Customer Name', width: 150 },
                 { field: 'Freight', width: 160, format: 'C2', textAlign: 'right' },

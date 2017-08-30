@@ -1,4 +1,4 @@
-import { Chart, LineSeries, ColumnSeries, Marker, Category, Legend, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, ColumnSeries, Marker, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, ColumnSeries, Category, Marker, Legend, Tooltip);
 
 /**
@@ -67,7 +67,11 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'Weather Condition',
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}'}
+        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}'},
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

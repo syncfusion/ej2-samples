@@ -37,14 +37,12 @@
           {
             "url": "stacked-column100",
             "name": "100% Stacked Column",
-            "category": "Series",
-            "type": "new"
+            "category": "Series"
         },
         {
             "url": "range-column",
             "name": "Range Column",
-            "category": "Series",
-            "type": "new"
+            "category": "Series"
         },
         {
             "url": "stacked-bar",
@@ -55,8 +53,7 @@
         {
             "url": "stacked-bar100",
             "name": "100% Stacked Bar",
-            "category": "Series",
-            "type": "new"
+            "category": "Series"
         },
         {
             "url": "stacked-area",
@@ -66,8 +63,7 @@
           {
             "url": "stacked-area100",
             "name": "100% Stacked Area",
-            "category": "Series",
-            "type": "new"
+            "category": "Series"
             
         },
         {
@@ -83,8 +79,7 @@
         {
             "url": "bubble",
             "name": "Bubble",
-            "category": "Series",
-            "type": "new"
+            "category": "Series"
         },
         {
             "url": "combination-series",

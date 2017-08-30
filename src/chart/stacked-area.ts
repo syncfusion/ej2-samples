@@ -1,4 +1,4 @@
-import { Chart, StackingAreaSeries, Legend, DateTime } from '@syncfusion/ej2-charts';
+import { Chart, StackingAreaSeries, Legend, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingAreaSeries, Legend, DateTime);
 
 /**
@@ -90,7 +90,11 @@ this.default = (): void => {
         ],
 
         //Initializing Chart title
-        title: 'Trend in Sales of Ethical Produce'
+        title: 'Trend in Sales of Ethical Produce',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

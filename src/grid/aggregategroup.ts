@@ -10,6 +10,7 @@ this.default = (): void => {
         {
             dataSource: categoryData,
             allowPaging: true,
+            pageSettings: {pageCount: 5},
             allowGrouping: true,
             groupSettings: { showDropArea: false, columns: ['CategoryName'] },
             columns: [

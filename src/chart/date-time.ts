@@ -1,4 +1,4 @@
-import { Chart, LineSeries, DateTime, Legend, Marker, DataLabel } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, DateTime, Legend, Marker, DataLabel, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, DateTime, Legend, Marker, DataLabel);
 
 /**
@@ -65,7 +65,11 @@ this.default = (): void => {
         ],
 
         //Initializing Chart title
-        title: 'Alaska Weather Statistics - 2016'
+        title: 'Alaska Weather Statistics - 2016',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

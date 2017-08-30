@@ -1,4 +1,4 @@
-import { Chart, RangeColumnSeries, Category, Tooltip } from '@syncfusion/ej2-charts';
+import { Chart, RangeColumnSeries, Category, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(RangeColumnSeries, Category, Tooltip);
 
 /**
@@ -48,9 +48,13 @@ this.default = (): void => {
         ],
         tooltip: {
             enable: true,
-            format: '${point.x}<br>High : ${point.high}<br>Low : ${point.low}'
+            format: '${point.x}<br>high: ${point.high}<br>low: ${point.low}'
         },
-        title: 'Maximum and Minimum Temperature'
+        title: 'Maximum and Minimum Temperature',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

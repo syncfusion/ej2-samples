@@ -1,4 +1,5 @@
-import { Chart, Selection, SelectionMode, ColumnSeries, Legend, Category, ScatterSeries, Marker } from '@syncfusion/ej2-charts';
+import { Chart, Selection, SelectionMode, ColumnSeries } from '@syncfusion/ej2-charts';
+import { Legend, Category, ScatterSeries, Marker, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(Selection, Legend, ColumnSeries, Category, ScatterSeries, Marker);
 
 /**
@@ -67,6 +68,10 @@ this.default = (): void => {
         //Initializing Chart title
         title: 'Age Distribution by Country', legendSettings: { visible: true, toggleVisibility: false },
         selectionMode: 'Point',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
     let previousType: SelectionMode = 'Point';

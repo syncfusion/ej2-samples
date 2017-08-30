@@ -1,4 +1,4 @@
-import { Chart, DateTime, AreaSeries, Legend } from '@syncfusion/ej2-charts';
+import { Chart, DateTime, AreaSeries, Legend, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(AreaSeries, DateTime, Legend);
 
 /**
@@ -66,7 +66,11 @@ this.default = (): void => {
             }
         ],
         //Initializing Chart title
-        title: 'Average Sales Comparison'
+        title: 'Average Sales Comparison',
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        }
     });
     chart.appendTo('#container');
 };

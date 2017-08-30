@@ -1,4 +1,4 @@
-import { Chart, StackingBarSeries, Category, Tooltip, Legend } from '@syncfusion/ej2-charts';
+import { Chart, StackingBarSeries, Category, Tooltip, Legend, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingBarSeries, Category, Tooltip, Legend);
 let chartData: any[] = [
     { x: 'Jan', y: 6, y1: 6, y2: 1 }, { x: 'Feb', y: 8, y1: 8, y2:  1.5 },
@@ -38,6 +38,10 @@ this.default = (): void => {
                 dataSource: chartData, xName: 'x', yName: 'y2'
             }
         ],
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+        },
         title: 'Sales Comparison',
         tooltip: { enable: true, format: '${point.x} <br>${series.name} : ${point.y} (${point.percent}%)' }
     });

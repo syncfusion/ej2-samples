@@ -9,7 +9,8 @@ this.default = (): void => {
         format: 'n3',
         decimals: 3,
         validateDecimalOnType: true,
-        value: 10
+        value: 10,
+        placeholder: 'Numeric TextBox'
     });
     numeric.appendTo('#numeric');
 
@@ -20,7 +21,8 @@ this.default = (): void => {
         value: 0.5,
         min: 0,
         max: 1,
-        step: 0.01
+        step: 0.01,
+        placeholder: 'Percentage TextBox'
     });
     percent.appendTo('#percent');
 
@@ -28,7 +30,8 @@ this.default = (): void => {
         format: 'c3',
         decimals: 3,
         validateDecimalOnType: true,
-        value: 100
+        value: 100,
+        placeholder: 'Currency TextBox'
     });
     currency.appendTo('#currency');
 };

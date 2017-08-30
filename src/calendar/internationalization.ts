@@ -15,7 +15,7 @@ this.default = (): void => {
     // loadCldr method to load the culture specific JSON file.
     loadCldr(numberingSystems, zhgregorian, zhnumbers, degregorian, denumbers, vigregorian, vinumbers);
     let calendar: Calendar = new Calendar({
-        change: valueChange, locale: 'de', value: new Date()
+        change: valueChange, locale: 'de'
     });
     calendar.appendTo('#calendar');
     calendar.locale = 'de';
@@ -29,7 +29,10 @@ this.default = (): void => {
         let culture: string = (document.getElementById('cultures') as HTMLSelectElement).value;
         calendar.locale = culture;
         globalize = new Internationalization(calendar.locale);
-        (<HTMLInputElement>document.getElementById('date_label')).textContent = 'Selected Value: ' + globalize.formatDate(calendar.value);
-        calendar.dataBind();
+        if (calendar.value) {
+            let dateString: string = globalize.formatDate(calendar.value);
+            (<HTMLInputElement>document.getElementById('date_label')).textContent = 'Selected Value: ' + dateString;
+            calendar.dataBind();
+        }
     }
 };

@@ -9,7 +9,8 @@ this.default = (): void => {
     let numeric: NumericTextBox = new NumericTextBox({
         min: 10,
         max: 100,
-        value: 15
+        value: 15,
+        placeholder: 'Numeric TextBox'
     });
     numeric.appendTo('#numeric');
 

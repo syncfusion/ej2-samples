@@ -52,14 +52,11 @@ this.default = (): void => {
             let value: number = args.pointer.currentValue;
             let content: HTMLElement = <HTMLElement>args.content;
             if (value >= 0 && value <= 50) {
-                color = '#3A5DC8';
-                content.children[1].remove();
+                color = '#3A5DC8'; content.children[1].remove();
             } else {
-                color = '#33BCBD';
-                content.children[0].remove();
+                color = '#33BCBD'; content.children[0].remove();
             }
-            args.textStyle.color = color;
-            args.border.color = color;
+            args.textStyle.color = color; args.border.color = color;
             circulargauge.axes[0].pointers[0].animation.enable = false;
             circulargauge.axes[0].pointers[0].color = color;
             circulargauge.axes[0].pointers[0].cap.border.color = color;

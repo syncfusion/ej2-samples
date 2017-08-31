@@ -90,27 +90,33 @@
         }, {
             "url": "default-pie",
             "name": "Pie",
-            "category": "Accumulation Series"
+            "category": "Accumulation Series",
+			"type": "new"
         }, {
             "url": "default-doughnut",
             "name": "Pie With Legend",
-            "category": "Accumulation Series"
+            "category": "Accumulation Series",
+			"type":"new"
         }, {
             "url": "semi-pie",
             "name": "Semi Accumulation Series",
-            "category": "Accumulation Series"
+            "category": "Accumulation Series",
+			"type": "new"
         }, {
             "url": "smart-labels",
             "name": "Smart Labels",
-            "category": "Accumulation Series"
+            "category": "Accumulation Series",
+			"type": "new"
         }, {
             "url": "drilldown-pie",
             "name": "Drilldown",
-            "category": "Accumulation Series"
+            "category": "Accumulation Series",
+			"type": "new"
         }, {
             "url": "club-point",
             "name": "ClubPoint",
-            "category": "Accumulation Series"
+            "category": "Accumulation Series",
+			"type": "new"
         }, {
             "url": "local-data",
             "name": "Local Data",

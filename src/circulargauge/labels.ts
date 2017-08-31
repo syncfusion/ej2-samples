@@ -2,73 +2,75 @@
  * Default sample
  */
 import { CircularGauge, Annotations, Position, TickModel } from '@syncfusion/ej2-circulargauge';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 CircularGauge.Inject(Annotations);
 
 this.default = (): void => {
     let isMajorTicks: boolean = true;
     let circulargauge: CircularGauge = new CircularGauge({
-        margin: {
-            left: 0, right: 0, top: 0, bottom: 0
-        },
         axes: [{
             annotations: [{
                 content: '<div id="content" style="color:#518C03;font-size:20px;font-family:Segoe UI;font-weight:semibold;">145</div>',
                 angle: 0, radius: '0%', zIndex: '1',
             }],
             startAngle: 210, endAngle: 150,
-            lineStyle: {
-                width: 2, color: '#9E9E9E'
-            },
+            lineStyle: { width: 2, color: '#9E9E9E' },
             labelStyle: {
                 position: 'Outside', autoAngle: true,
-                font: {
-                    size: '10px', color: '#333333'
-                }
+                font: { size: '10px', color: '#333333' }
             }, majorTicks: {
-                position: 'Inside', color: '#757575', width: 2, height: 10, interval: 20
+                position: 'Inside', color: 'black', width: 0.7, height: 10, interval: 20
             }, minorTicks: {
-                position: 'Inside', color: '#757575', height: 5, width: 2, interval: 10
+                position: 'Inside', color: 'black', height: 5, width: 0.7, interval: 10
             },
             radius: '75%', minimum: 0, maximum: 180,
-            ranges: [{
-                start: 0, end: 145,
-                color: '#8BC34A', radius: '60%'
-            }],
+            ranges: [{  start: 0, end: 145, color: '#8BC34A', radius: '60%' }],
             pointers: []
         }]
     });
     circulargauge.appendTo('#labels-container');
-
-    document.getElementById('Ticks').onchange = () => {
-        let value: string = (<HTMLInputElement>document.getElementById('Ticks')).value;
-        let tick: TickModel; isMajorTicks = value === 'major';
-        if (isMajorTicks) {
-            tick = circulargauge.axes[0].majorTicks;
-        } else {
-            tick = circulargauge.axes[0].minorTicks;
+    let ticks: DropDownList; let tickPosition: DropDownList; let labelPosition: DropDownList;
+    ticks = new DropDownList({
+        index: 0, width: 100,
+        change: () => {
+            let value: string = ticks.value.toString();
+            let tick: TickModel; isMajorTicks = value === 'major';
+            if (isMajorTicks) {
+                tick = circulargauge.axes[0].majorTicks;
+            } else {
+                tick = circulargauge.axes[0].minorTicks;
+            }
+            tickPosition.value = tick.position;
+            (<HTMLInputElement>document.getElementById('tickOffset')).value = tick.offset.toString();
+            (<HTMLInputElement>document.getElementById('tickHeight')).value = tick.height.toString();
+            document.getElementById('offset').innerHTML = 'Tick Offset <span>&nbsp;&nbsp;&nbsp;' + tick.offset;
+            document.getElementById('height').innerHTML = 'Tick Height <span>&nbsp;&nbsp;&nbsp;' + tick.height;
         }
-        (<HTMLInputElement>document.getElementById('tickposition')).value = tick.position;
-        (<HTMLInputElement>document.getElementById('tickOffset')).value = tick.offset.toString();
-        (<HTMLInputElement>document.getElementById('tickHeight')).value = tick.height.toString();
-        document.getElementById('offset').innerHTML = 'Tick Offset <span>&nbsp;&nbsp;&nbsp;' + tick.offset;
-        document.getElementById('height').innerHTML = 'Tick Height <span>&nbsp;&nbsp;&nbsp;' + tick.height;
-    };
+    });
+    ticks.appendTo('#Ticks');
 
-    document.getElementById('tickposition').onchange = () => {
-        let value: string = (<HTMLInputElement>document.getElementById('tickposition')).value;
-        if (isMajorTicks) {
-            circulargauge.axes[0].majorTicks.position = <Position>value;
-        } else {
-            circulargauge.axes[0].minorTicks.position = <Position>value;
+    tickPosition = new DropDownList({
+        index: 0, width: 100,
+        change: () => {
+            let value: string = tickPosition.value.toString();
+            if (isMajorTicks) {
+                circulargauge.axes[0].majorTicks.position = <Position>value;
+            } else {
+                circulargauge.axes[0].minorTicks.position = <Position>value;
+            }
+            circulargauge.refresh();
         }
-        circulargauge.refresh();
-    };
+    });
+    tickPosition.appendTo('#tickposition');
 
-    document.getElementById('labelposition').onchange = () => {
-        let value: string = (<HTMLInputElement>document.getElementById('labelposition')).value;
-        circulargauge.axes[0].labelStyle.position = <Position>value;
-        circulargauge.refresh();
-    };
+    labelPosition = new DropDownList({
+        index: 0, width: 100,
+        change: () => {
+            circulargauge.axes[0].labelStyle.position = <Position>labelPosition.value.toString();
+            circulargauge.refresh();
+        }
+    });
+    labelPosition.appendTo('#labelposition');
 
     document.getElementById('tickOffset').onpointermove = document.getElementById('tickOffset').ontouchmove =
         document.getElementById('tickOffset').onchange = () => {

@@ -3,6 +3,7 @@
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2 } from './customization-gauge';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 this.default = (): void => {
 
     let random: CircularGauge = new CircularGauge(gauge1());
@@ -10,25 +11,55 @@ this.default = (): void => {
     let usage: CircularGauge = new CircularGauge(gauge2());
     let gauge: CircularGauge = random;
     let isUsage: boolean = false;
+    let barColor: DropDownList; let rangeColor: DropDownList; let pointerColor: DropDownList;
+    barColor = new DropDownList({
+        index: 0,
+        width: 100,
+        change: () => {
+            gauge.axes[0].pointers[0].color = barColor.value.toString();
+            gauge.refresh();
+        }
+    });
+    barColor.appendTo('#barColor');
+    rangeColor = new DropDownList({
+        index: 0,
+        width: 100,
+        change: () => {
+            gauge.axes[0].ranges[0].color = rangeColor.value.toString();
+            gauge.refresh();
+        }
+    });
+    rangeColor.appendTo('#rangeColor');
+    pointerColor = new DropDownList({
+        index: 0,
+        width: 100,
+        change: () => {
+            let color: string = pointerColor.value.toString();
+            if (!isUsage) {
+                gauge.axes[0].pointers[1].color = color;
+                gauge.axes[0].pointers[1].cap.border.color = color;
+                gauge.axes[0].pointers[1].cap.color = color;
+            }
+            gauge.refresh();
+        }
+    });
+    pointerColor.appendTo('#pointerColor');
     document.getElementById('usage').onclick = () => {
         random.destroy();
         usage.appendTo('#cutomization-container');
         gauge = usage;
         isUsage = true;
         let element: HTMLSelectElement = <HTMLSelectElement>document.getElementById('currentValue');
-        let barElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('barColor');
-        let rangeElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('rangeColor');
-        let pointerElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointerColor');
-        let pointElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointColor');
         element.min = '0.5';
         element.max = '100';
         element.value = usage.axes[0].pointers[0].value.toString();
         document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;'
             + usage.axes[0].pointers[0].value + '</span>';
-        barElement.value = usage.axes[0].pointers[0].color;
-        rangeElement.value = usage.axes[0].ranges[0].color;
-        pointerElement.style.visibility = 'hidden';
-        pointElement.style.visibility = 'hidden';
+        barColor.value = usage.axes[0].pointers[0].color;
+        rangeColor.value = usage.axes[0].ranges[0].color;
+        pointerColor.enabled = false;
+        let pointElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointColor');
+        pointElement.className = 'e-disabled';
         let currentElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('usage');
         let existElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('random');
         currentElement.style.border = '2px solid #E0E0E0';
@@ -44,20 +75,17 @@ this.default = (): void => {
         currentElement.style.border = '2px solid #E0E0E0';
         existElement.style.border = '';
         let element: HTMLSelectElement = <HTMLSelectElement>document.getElementById('currentValue');
-        let barElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('barColor');
-        let rangeElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('rangeColor');
-        let pointerElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointerColor');
         let pointElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointColor');
-        pointerElement.style.visibility = 'visible';
-        pointElement.style.visibility = 'visible';
+        pointElement.className = 'e-enabled';
+        pointerColor.enabled = true;
         element.min = '1000';
         element.max = '2000';
         element.value = random.axes[0].pointers[0].value.toString();
         document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;' +
             random.axes[0].pointers[0].value + '</span>';
-        barElement.value = random.axes[0].pointers[0].color;
-        rangeElement.value = random.axes[0].ranges[0].color;
-        pointerElement.value = random.axes[0].pointers[1].color;
+        barColor.value = random.axes[0].pointers[0].color;
+        rangeColor.value = random.axes[0].ranges[0].color;
+        pointerColor.value = random.axes[0].pointers[1].color;
     };
 
     document.getElementById('currentValue').onpointermove = document.getElementById('currentValue').ontouchmove =
@@ -72,26 +100,4 @@ this.default = (): void => {
             gauge.setAnnotationValue(0, 0, '<div style="color:#666666;font-size:35px;">' + value + (isUsage ? 'GB' : '') + '</div>');
             document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;' + value + '</span>';
         };
-
-    document.getElementById('barColor').onchange = () => {
-        let barColor: string = (<HTMLInputElement>document.getElementById('barColor')).value;
-        gauge.axes[0].pointers[0].color = barColor;
-        gauge.refresh();
-    };
-
-    document.getElementById('rangeColor').onchange = () => {
-        let barColor: string = (<HTMLInputElement>document.getElementById('rangeColor')).value;
-        gauge.axes[0].ranges[0].color = barColor;
-        gauge.refresh();
-    };
-
-    document.getElementById('pointerColor').onchange = () => {
-        let barColor: string = (<HTMLInputElement>document.getElementById('pointerColor')).value;
-        if (!isUsage) {
-            gauge.axes[0].pointers[1].color = barColor;
-            gauge.axes[0].pointers[1].cap.border.color = barColor;
-            gauge.axes[0].pointers[1].cap.color = barColor;
-        }
-        gauge.refresh();
-    };
 };

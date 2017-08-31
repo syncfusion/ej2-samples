@@ -2,8 +2,10 @@
  * Default sample
  */
 import { CircularGauge, IAxisLabelRenderEventArgs } from '@syncfusion/ej2-circulargauge';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 this.default = (): void => {
     let value: string[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', ''];
+    let pointerColor: DropDownList; let labelColor: DropDownList;
     let circulargauge: CircularGauge = new CircularGauge({
         axisLabelRender: (args: IAxisLabelRenderEventArgs) => {
             args.text = value[args.value];
@@ -59,15 +61,27 @@ this.default = (): void => {
     });
     circulargauge.appendTo('#direction-container');
 
-    document.getElementById('poiterColor').onchange = () => {
-        let rangeColor: string = (<HTMLInputElement>document.getElementById('poiterColor')).value;
-        circulargauge.axes[0].pointers[0].color = rangeColor;
-        circulargauge.refresh();
-    };
+    pointerColor = new DropDownList({
+        index: 0,
+        placeholder: 'Select Range Bar Color',
+        width: 100,
+        change: () => {
+            let rangeColor: string = pointerColor.value.toString();
+            circulargauge.axes[0].pointers[0].color = rangeColor;
+            circulargauge.refresh();
+        }
+    });
+    pointerColor.appendTo('#poiterColor');
 
-    document.getElementById('labelColor').onchange = () => {
-        let rangeColor: string = (<HTMLInputElement>document.getElementById('labelColor')).value;
-        circulargauge.axes[0].ranges[0].color = rangeColor;
-        circulargauge.refresh();
-    };
+    labelColor = new DropDownList({
+        index: 0,
+        placeholder: 'Select Range Bar Color',
+        width: 100,
+        change: () => {
+            let rangeColor: string = labelColor.value.toString();
+            circulargauge.axes[0].ranges[0].color = rangeColor;
+            circulargauge.refresh();
+        }
+    });
+    labelColor.appendTo('#labelColor');
 };

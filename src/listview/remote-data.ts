@@ -12,13 +12,13 @@ this.default = () => {
             adaptor: new ODataV4Adaptor
         }),
 
-        query: new Query().from('Products').select('ProductID,ProductName').take(30),
+        query: new Query().from('Products').select('ProductID,ProductName').take(10),
 
         fields: { id: 'ProductID', text: 'ProductName' },
 
         headerTitle: 'Products',
 
-        height: '400px'
+        showHeader: true
 
     });
 

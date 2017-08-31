@@ -44,7 +44,7 @@ this.default = (): void => {
                 end: 100,
                 startWidth: 8, endWidth: 8,
                 radius: '108%',
-                color: '#FFDD00'
+                color: '#E5C31C'
             }, {
                 start: 100, end: 120,
                 startWidth: 8, endWidth: 8,

@@ -3,6 +3,7 @@
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
+import { Browser } from '@syncfusion/ej2-base';
 CircularGauge.Inject(Annotations);
 
 export function gauge1(): CircularGauge {
@@ -15,7 +16,7 @@ export function gauge1(): CircularGauge {
         axes: [
             {
                 startAngle: 0, endAngle: 0,
-                lineStyle: { width: 0 }, radius: '70%',
+                lineStyle: { width: 0 }, radius: Browser.isDevice ? '90%' : '70%',
                 ranges: [
                     {
                         start: 0, end: 3,

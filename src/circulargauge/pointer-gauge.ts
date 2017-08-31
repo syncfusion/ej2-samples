@@ -1,8 +1,8 @@
 /**
  * Pointer Customization
  */
-import { CircularGauge } from '@syncfusion/ej2-circulargauge';
-
+import { CircularGauge, Annotations } from '@syncfusion/ej2-circulargauge';
+CircularGauge.Inject(Annotations);
 export function gauge1(): CircularGauge {
     let gauge1: CircularGauge = new CircularGauge({
         axes: [{
@@ -30,7 +30,14 @@ export function gauge1(): CircularGauge {
                 color: '#ff5985',
                 pointerWidth: 10,
                 animation: { enable: true, duration: 1000 }
-            }]
+            }],
+            annotations: [
+                {
+                    angle: 180,
+                    radius: '20%',
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Range Bar</div>'
+                }
+            ]
         }],
     });
     return gauge1;
@@ -64,7 +71,14 @@ export function gauge2(): CircularGauge {
                 markerWidth: 15,
                 markerHeight: 15,
                 color: 'rgb(0,171,169)'
-            }]
+            }],
+            annotations: [
+                {
+                    angle: 180,
+                    radius: '20%',
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Inverted Triangle</div>'
+                }
+            ]
         }],
     });
     return gauge2;
@@ -103,7 +117,14 @@ export function gauge3(): CircularGauge {
                     width: 1,
                     color: ' #1E7145'
                 }
-            }]
+            }],
+            annotations: [
+                {
+                    angle: 180,
+                    radius: '20%',
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Triangle</div>'
+                }
+            ]
         }],
     });
     return gauge3;
@@ -138,7 +159,14 @@ export function gauge4(): CircularGauge {
                 pointerWidth: 6,
                 cap: { radius: 0 },
                 needleTail: { length: '4%', color: '#923C99' }
-            }]
+            }],
+            annotations: [
+                {
+                    angle: 180,
+                    radius: '20%',
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Needle</div>'
+                }
+            ]
         }],
     });
     return gauge4;
@@ -180,7 +208,14 @@ export function gauge5(): CircularGauge {
                 value: 40,
                 color: '#067bc2',
                 pointerWidth: 5
-            }]
+            }],
+            annotations: [
+                {
+                    angle: 180,
+                    radius: '20%',
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Live Update</div>'
+                }
+            ]
         }],
     });
     return gauge5;

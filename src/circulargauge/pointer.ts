@@ -1,8 +1,9 @@
 /**
  * Default sample
  */
-import { CircularGauge } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, Annotations } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2, gauge3, gauge4, gauge5 } from './pointer-gauge';
+CircularGauge.Inject(Annotations);
 
 this.default = (): void => {
     let firstgauge: CircularGauge = new CircularGauge(gauge1());
@@ -61,16 +62,17 @@ this.default = (): void => {
                 pointerWidth: 10,
                 cap: {
                     radius: 8, color: 'white',
-                    border: {
-                        color: '#ffb133',
-                        width: 1
-                    }
+                    border: { color: '#ffb133', width: 1 }
                 },
-                needleTail: {
-                    length: '20%',
-                    color: '#e3a21a'
+                needleTail: { length: '20%', color: '#e3a21a' }
+            }],
+            annotations: [
+                {
+                    angle: 180,
+                    radius: '25%',
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Multiple Needle</div>'
                 }
-            }]
+            ]
         }],
     });
     fourthgauge.appendTo('#container5');

@@ -17,6 +17,7 @@
 		"@syncfusion/ej2-popups": "*",
 		"@syncfusion/ej2-charts": "*",
 		"@syncfusion/ej2-circulargauge": "*",
+		"@syncfusion/ej2-lineargauge": "*",
 		"@syncfusion/ej2-navigations": "*",
 		"cheerio": "^1.0.0-rc.1",
 		"crossroads": "^0.12.2",

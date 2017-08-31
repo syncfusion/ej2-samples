@@ -12,7 +12,7 @@ this.default = (): void => {
             dataSource: employeeData,
             gridLines: 'default',
             columns: [
-                { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'right', width: 125 },
+                { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'right', width: 140 },
                 { field: 'FirstName', headerText: 'Name', width: 125 },
                 { field: 'Title', headerText: 'Title', width: 180 },
                 {

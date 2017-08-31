@@ -1,5 +1,34 @@
+<style>
+    
+    .image {
+        position: absolute;
+        background-repeat: no-repeat;
+        background-image: url('src/grid/images/spinner.gif');
+        background-position: center;
+        width: 16px;
+        height: 35px;
+    }
+
+    .e-bigger .image {
+        height: 48px;
+    }
+    
+    #popup {
+        position: absolute;
+        background-color: transparent;
+        display: none;
+        z-index: 100;
+    }
+    .e-info{
+        margin: 5px 5px 5px 0;
+    }
+</style>
 <div class="control-section">
     <div class="content-wrapper">
+        <button id='genarate' class="e-info"> Load 100K Data</button>
+        <span id="popup">
+            <span id="gif" class="image"></span>
+        </span>
         <div id="Grid">
         </div>
     </div>
@@ -17,10 +46,12 @@
     <p>
         Note: The <code><a target="_blank" class="code"
         href="http://ej2.syncfusion.com/documentation/grid/api-grid.html#height-string---number">
-        height</a></code> property must be defined when enable row virtualization.
+        height</a></code> property must be defined when enable <code><a target="_blank" class="code"
+        href="http://ej2.syncfusion.com/documentation/grid/api-grid.html#enablevirtualization-boolean">
+        enableVirtualization </a></code>.
     </p>
     <p>
-        In this demo, the Grid have 5000 rows and 30 columns. Also row and column virtualization is enabled on this.
+        In this demo, Grid enabled row and column virtualization. Click the Load 100K Data button to bind 100000 rows and 30 columns.
     </p>    
     <p style="font-weight: 500">Injecting Module</p>
     <p>

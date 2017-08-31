@@ -12,7 +12,7 @@ this.default = (): void => {
         columns: [
             {
                 headerText: 'Employee Image', textAlign: 'center',
-                template: '#template', width: 150
+                template: '#template', width: 180
             },
             { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'right', width: 125 },
             { field: 'FirstName', headerText: 'Name', width: 120 },

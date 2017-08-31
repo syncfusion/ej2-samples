@@ -1,12 +1,12 @@
 { 
    "name": "Toolbar", 
-   "directory": "toolbar",
-   "type": "update",  
+   "directory": "toolbar",  
    "category":"Navigation", 
+   "type": "update",
    "samples" : [
-    {"url":"default", "name": "Default Functionalities", "category":"Toolbar"},
+    {"url":"default", "name": "Default Functionalities", "category":"Toolbar", "type": "update"},
     {"url":"popup", "name": "Popup", "category":"Toolbar"},
-    {"url":"alignment", "name": "Alignment", "category":"Toolbar", "type": "new"},
+    {"url":"alignment", "name": "Alignment", "category":"Toolbar"},
     {"url":"rtl", "name": "RTL", "category":"Toolbar"}
    ]
 }

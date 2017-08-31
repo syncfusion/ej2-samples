@@ -3,7 +3,7 @@
  * default script manupulation for sample browser
  */
 import '../../node_modules/es6-promise/dist/es6-promise';
-import { Ajax, Browser, extend, detach, select, addClass, isVisible, createElement, selectAll } from '@syncfusion/ej2-base';
+import { Ajax, Browser, enableRipple, extend, detach, select, addClass, isVisible, createElement, selectAll } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DataManager, Query } from '@syncfusion/ej2-data';
 import { SelectEventArgs, ListView } from '@syncfusion/ej2-lists';
@@ -16,6 +16,9 @@ declare let require: (url: string) => Object;
 const tabList: string[] = ['htab', 'ttab'];
 const urlSplit: RegExp = /\b(?!html)\b([A-Za-z-]+)/g;
 let execFunction: { [key: string]: Object } = {};
+let selectedTheme: string = location.hash.split('/')[1];
+let availableThemes: string[] = ['material', 'fabric'];
+let isHashChanged: boolean = true;
 
 interface DestroyMethod extends HTMLElement {
     destroy: Function;
@@ -139,6 +142,16 @@ function getSampleList(): Controls[] | { [key: string]: Object }[] {
     return samplesJSON.samplesList;
 }
 function loadJSON(): void {
+    //material is default theme.    
+    if (availableThemes.indexOf(selectedTheme) === -1) {
+        selectedTheme = 'material';
+    }
+    loadTheme(selectedTheme);
+    if (selectedTheme === 'fabric') {
+        enableRipple(false);
+    } else {
+        enableRipple(true);
+    }
     overlay();
     routeDefault();
     showBackButton();
@@ -201,6 +214,8 @@ function loadJSON(): void {
     }
     localStorage.removeItem('ej2-switch');
     setResponsive();
+    select('#themeswitcher').addEventListener('click', toggleTheme);
+    select('#themelist').addEventListener('click', changeTheme);
 }
 
 function loadPage(page: string): void {
@@ -231,7 +246,7 @@ function routeDefault(): void {
         // loadPage('showcase');
 
         //Redirected page until showcase page implemented
-        window.location.href = '#/chart/line.html';
+        window.location.href = '#/' + selectedTheme + '/chart/line.html';
         isInitRedirected = true;
     });
     bypassed.add((request: Object) => {
@@ -253,13 +268,24 @@ function navigateURL(arg: Controls & Samples, isInteracted: boolean): void {
     let cCtrl: string = (isInteracted ? currentListControl : currentControl);
     if (!arg.hasOwnProperty('samples')) {
         let sample: string = arg.url;
-        hasher.setHash(cCtrl + '/' + sample + '.html');
+        let targetHash: string = selectedTheme + '/' + cCtrl + '/' + sample + '.html';
+        if (location.hash === ('#/' + targetHash)) {
+            isHashChanged = false;
+        }
+        hasher.setHash(targetHash);
         if (isVisible(select('.slide-nav'))) {
             onCloseClick();
         }
     } else {
         currentListControl = arg.directory;
     }
+}
+function loadTheme(theme: string): void {
+    let doc: HTMLFormElement = <HTMLFormElement>document.getElementById('themelink');
+    selectedTheme = theme;
+    doc.href = 'styles/' + selectedTheme + '.css';
+    select('#themeswitcher-icon').setAttribute('src', 'styles/images/sb_icons/SB_Switcher_icon_' + theme + '.png');
+    document.getElementById(theme).style.background = '#DEDFE0';
 }
 function addRoutes(samplesList: Controls[]): void {
     for (let node of samplesList) {
@@ -270,12 +296,12 @@ function addRoutes(samplesList: Controls[]): void {
             let control: string = node.directory;
             let sample: string = subNode.url;
             let sampleName: string = node.name + ' / ' + subNode.name;
-            let urlString: string = '/' + control + '/' + sample + '.html';
+            let selectedTheme: string = location.hash.split('/')[1] ? location.hash.split('/')[1] : 'material';
+            let urlString: string = '/' + selectedTheme + '/' + control + '/' + sample + '.html';
             samplesAr.push('#' + urlString);
             addRoute(urlString, () => {
                 let controlID: string = node.uid;
                 let sampleID: string = subNode.uid;
-                document.getElementById('plnkr').classList.add('disabled');
                 select('#switch').classList.remove('hidden');
                 document.getElementById('source-panel').style.display = 'block';
                 let ajaxHTML: Ajax = new Ajax('src/' + control + '/' + sample + '.html', 'GET', true);
@@ -324,6 +350,7 @@ function addRoutes(samplesList: Controls[]): void {
                         toggleButtonState('prev-sample', false);
                     }
                     document.getElementById('html-tab-scroll').style.width = '';
+                    select('#control-content').classList.remove('error-content');
                     document.getElementById('control-content').innerHTML = htmlString;
                     let controlEle: Element = document.querySelector('.control-section');
                     let controlString: string = controlEle.innerHTML;
@@ -358,13 +385,14 @@ function addRoutes(samplesList: Controls[]): void {
 
 function onSampleSelect(arg: SelectEventArgs): void {
     if (arg.data.category !== 'ShowCase') {
+        isHashChanged = true;
         navigateURL(<any>arg.data, arg.isInteracted);
         // let currentItem: HTMLElement = <HTMLElement>arg.item;
         // this.element.scrollTop = currentItem.offsetTop;
         if (arg.isInteracted) {
             showBackButton();
         }
-        if (!(<Controls & { [key: string]: Object }>arg.data).samples) {
+        if (!(<Controls & { [key: string]: Object }>arg.data).samples && isHashChanged) {
             overlay();
         }
     } else {
@@ -392,6 +420,7 @@ function onOpenClick(arg: MouseEvent): void {
         slideOut();
     }
     arg.stopPropagation();
+    closeThemeSelection();
 }
 
 function dispatchResize(): void {
@@ -410,6 +439,7 @@ function onCloseClick(arg?: MouseEvent): void {
     if (isVisible(ele) && isVisible(select('.slide-nav'))) {
         slideOut();
     }
+    closeThemeSelection();
 }
 
 function onNextButtonClick(arg: MouseEvent): void {
@@ -449,7 +479,7 @@ function onPrevButtonClick(arg: MouseEvent): void {
 function checkLevel(prevhref: string, curhref: string): void {
     let prevHrefSplit: string[] = prevhref.match(urlSplit);
     let curhrefSplit: string[] = curhref.match(urlSplit);
-    if (prevHrefSplit[0] !== curhrefSplit[0]) {
+    if (prevHrefSplit[1] !== curhrefSplit[1]) {
         isSameParent = false;
         sampleTree.back();
     } else {
@@ -458,7 +488,11 @@ function checkLevel(prevhref: string, curhref: string): void {
     isExternalNavigation = true;
 }
 function parseHash(newHash: string, oldHash: string): void {
-    let control: string = newHash.split('/')[0];
+    let newTheme: string = newHash.split('/')[0];
+    let control: string = newHash.split('/')[1];
+    if (newTheme !== selectedTheme && availableThemes.indexOf(newTheme) !== -1) {
+        location.reload();
+    }
     if (newHash.length && !select('#' + control + '-common') && checkSampleLength(control)) {
         let scriptElement: HTMLScriptElement = document.createElement('script');
         scriptElement.src = 'src/' + control + '/common.js';
@@ -562,4 +596,22 @@ function plunker(results: string): void {
     document.getElementById('plnkr').addEventListener('click', () => { form.submit(); });
 }
 
+function toggleTheme(): void {
+    let target: any = document.getElementById('selectdiv');
+    target.classList.toggle('e-hidden');
+    select('#themeswitcher').classList.toggle('active');
+}
+function changeTheme(arg: MouseEvent): void {
+    let target: Element = <Element>arg.target;
+    let themeName: string = target.textContent || target.className.split(' ')[1];
+    themeName = themeName.toLowerCase();
+    let hash: string[] = location.hash.split('/');
+    hash[1] = themeName;
+    location.hash = hash.join('/');
+}
+function closeThemeSelection(): void {
+    if (!select('#selectdiv').classList.contains('e-hidden')) {
+        toggleTheme();
+    }
+}
 loadJSON();

@@ -51,6 +51,67 @@ body {
 }
 .header-right {
     float: right;
+    height: 100%;
+    padding-right: 16px;
+}
+.themeicon {
+    height: 100%;
+    width: 60px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.options li {
+    line-height: 28px;
+    padding: 10px 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333333;
+    font-size: 14px;        
+}
+.options {
+    list-style: none;
+    padding-left: 0px;
+    border:1px solid #EAEAEA;
+    background: white;
+    margin-bottom: 0px;
+}
+.switch-icon {
+    display: block;
+    float: right;
+    height: 28px;
+    width: 28px;
+}
+.switch-icon.material {
+    background: url(images/sb_icons/material.png) no-repeat 100% 100%;
+}
+.switch-icon.fabric {
+    background: url(images/sb_icons/fabric.png) no-repeat 100% 100%;
+}
+#selectdiv {
+    width:230px;
+    position:absolute;
+    z-index:1000;
+    right:16px;
+    box-shadow: 0px 0px 25px -5px #9a9a9a;
+}
+.options li:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+
+}
+#themeswitcher img{
+   padding-top: 3px;
+}
+#themeswitcher.active {
+    background: #3397DA;
+}
+#themeswitcher :hover {
+    background: #3397DA;
+}
+#themeswitcher .e-input {
+    margin-left: 5px;
+}
+#themeswitcher .e-input-group-icon.e-ddl-icon {
+    margin-right: 4px;
 }
 .list-search {
     display: none;
@@ -537,6 +598,12 @@ body {
 @media screen and (min-width: 769px) {
     .sample-name {
         padding-left: 30px;
+    }
+}
+
+@media screen and (max-width: 345px) {
+    #themeswitcher {
+        margin-left: 9px;
     }
 }
 

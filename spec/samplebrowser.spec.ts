@@ -51,7 +51,7 @@ describe('sample browser', (): void => {
                             expect(window.customError).not.toHaveBeenCalled();
                             done();
                         };
-                        window.location.href = '#' + control.directory + '/' + element.url + '.html';
+                        window.location.href = '#/material/' + control.directory + '/' + element.url + '.html';
                     });
                 });
             }

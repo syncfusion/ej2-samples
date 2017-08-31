@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="favicon.ico" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="src/common/lib/highlightjs/styles/default.css" rel="stylesheet" />
-    <link href="styles/material.css" rel="stylesheet" />
+    <link href="styles/material.css" rel="stylesheet" id="themelink" />
     <link href="styles/index.css" rel="stylesheet" />
     <script src="src/common.min.js" type="text/javascript"></script>
 </head>
@@ -28,7 +28,16 @@
                     <div class="sb-logo" title="Essential JS 2 (Preview)"></div>
                 </a>
             </div>
-            <div class="header-right"></div>
+            <div class="header-right">
+                <div id="themeswitcher" class="themeicon"><img id="themeswitcher-icon" src='styles/images/sb_icons/SB_Switcher_icon_material.png'></div>
+                <div id="selectdiv" class='e-hidden'>                
+                    <ul id="themelist" class="options">
+                        <li class="e-list" id="material"><span class='switch-text'>Material</span><span class='switch-icon material'></span></a></li>
+                        <li class="e-list" id="fabric"><span class='switch-text'>Fabric</span><span class='switch-icon fabric'></span></a></li>                          
+                    </ul>
+
+                </div>
+            </div>
         </div>
         <div class="sb-content" role="main">
             <div id="left-panel" class="left-panel">

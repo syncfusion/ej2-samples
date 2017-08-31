@@ -2,9 +2,8 @@
     "name": "Chart",
     "directory": "chart",
     "category": "Data Visualization",
-    "type": "update", 
-    "samples": [
-        {
+    "type": "update",
+    "samples": [{
             "url": "line",
             "name": "Line",
             "category": "Series"
@@ -34,10 +33,10 @@
             "name": "Stacked Column",
             "category": "Series"
         },
-          {
-            "url": "stacked-column100",
-            "name": "100% Stacked Column",
-            "category": "Series"
+        {
+            "url":"stacked-column100",
+            "name":"100% stacked Column",
+            "category":"Series"
         },
         {
             "url": "range-column",
@@ -48,23 +47,21 @@
             "url": "stacked-bar",
             "name": "Stacked Bar",
             "category": "Series"
-            
         },
         {
-            "url": "stacked-bar100",
-            "name": "100% Stacked Bar",
-            "category": "Series"
+            "url":"stacked-bar100",
+            "name":"100% stacked Bar",
+            "category":"Series"
         },
         {
             "url": "stacked-area",
             "name": "Stacked Area",
             "category": "Series"
         },
-          {
-            "url": "stacked-area100",
-            "name": "100% Stacked Area",
-            "category": "Series"
-            
+        {
+            "url":"stacked-area100",
+            "name":"100% stacked Area",
+            "category":"Series"
         },
         {
             "url": "step-line",
@@ -75,11 +72,11 @@
             "url": "scatter",
             "name": "Scatter",
             "category": "Series"
-        },
+        },        
         {
-            "url": "bubble",
-            "name": "Bubble",
-            "category": "Series"
+            "url":"bubble",
+            "name":"Bubble",
+            "category":"Series"
         },
         {
             "url": "combination-series",
@@ -90,8 +87,31 @@
             "url": "performance",
             "name": "Performance",
             "category": "Series"
-        },
-        {
+        }, {
+            "url": "default-pie",
+            "name": "Pie",
+            "category": "Accumulation Series"
+        }, {
+            "url": "default-doughnut",
+            "name": "Pie With Legend",
+            "category": "Accumulation Series"
+        }, {
+            "url": "semi-pie",
+            "name": "Semi Accumulation Series",
+            "category": "Accumulation Series"
+        }, {
+            "url": "smart-labels",
+            "name": "Smart Labels",
+            "category": "Accumulation Series"
+        }, {
+            "url": "drilldown-pie",
+            "name": "Drilldown",
+            "category": "Accumulation Series"
+        }, {
+            "url": "club-point",
+            "name": "ClubPoint",
+            "category": "Accumulation Series"
+        }, {
             "url": "local-data",
             "name": "Local Data",
             "category": "Data Binding"

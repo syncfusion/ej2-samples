@@ -19,9 +19,9 @@ this.default = (): void => {
                 position: 'Outside', autoAngle: true,
                 font: { size: '10px', color: '#333333' }
             }, majorTicks: {
-                position: 'Inside', color: 'black', width: 0.7, height: 10, interval: 20
+                position: 'Inside', color: 'black', width: 0.5, height: 10, interval: 20
             }, minorTicks: {
-                position: 'Inside', color: 'black', height: 5, width: 0.7, interval: 10
+                position: 'Inside', color: 'black', height: 5, width: 0.5, interval: 10
             },
             radius: '75%', minimum: 0, maximum: 180,
             ranges: [{  start: 0, end: 145, color: '#8BC34A', radius: '60%' }],

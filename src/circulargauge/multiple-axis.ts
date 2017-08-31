@@ -17,9 +17,9 @@ this.default = (): void => {
                 hiddenLabel: 'None', font: { color: '#333333' }
             }, majorTicks: {
                 position: 'Inside',
-                width: 0.7, height: 10, color: '#757575'
+                width: 0.5, height: 10, color: '#757575'
             }, minorTicks: {
-                position: 'Inside', width: 0.7,
+                position: 'Inside', width: 0.5,
                 height: 5, color: '#757575'
             },
             minimum: 0, maximum: 160, startAngle: 220, endAngle: 140,
@@ -34,10 +34,10 @@ this.default = (): void => {
                 position: 'Outside', autoAngle: true,
                 hiddenLabel: 'None', font: { color: '#E84011' }
             }, majorTicks: {
-                position: 'Outside', width: 2, height: 10,
+                position: 'Outside', width: 0.5, height: 10,
                 color: '#E84011'
             }, minorTicks: {
-                position: 'Outside', width: 2,
+                position: 'Outside', width: 0.5,
                 height: 5, color: '#E84011'
             },
             minimum: 0, maximum: 240, startAngle: 220, endAngle: 140,

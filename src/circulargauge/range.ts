@@ -11,7 +11,7 @@ this.default = (): void => {
             labelStyle: {
                 position: 'Inside', useRangeColor: false,
                 font: { size: '12px', color: '#424242', fontFamily: 'Roboto', fontStyle: 'Regular' }
-            }, majorTicks: { height: 10, width: 0.7, offset: 10, color: 'black' }, minorTicks: { height: 0, width: 0.5 },
+            }, majorTicks: { height: 10, width: 0.5, offset: 10, color: 'black' }, minorTicks: { height: 0, width: 0.5 },
             annotations: [{
                 content: '<div><span style="font-size:14px; color:#9E9E9E; font-family:Regular">Speedometer</span></div>',
                 radius: '30%', angle: 0

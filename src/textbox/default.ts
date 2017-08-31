@@ -7,11 +7,11 @@ this.default = () => {
     let input: NodeList = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
     let inputIcon: NodeList  = document.querySelectorAll('.e-input-group-icon');
     for (let i: number = 0; i < input.length; i++) {
-        input[i].addEventListener('focus', function() : void {
-            this.parentNode.classList.add('e-input-focus');
+        input[i].addEventListener('focus', () => {
+            getParentNode(input[i] as HTMLElement).classList.add('e-input-focus');
         });
-        input[i].addEventListener('blur', function() : void {
-            this.parentNode.classList.remove('e-input-focus');
+        input[i].addEventListener('blur', () => {
+            getParentNode(input[i] as HTMLElement).classList.remove('e-input-focus');
         });
     }
     for (let i: number = 0; i < inputIcon.length; i++) {
@@ -24,5 +24,12 @@ this.default = () => {
                 () => {ele.classList.remove('e-input-btn-ripple'); },
                 500);
         });
+    }
+    function getParentNode(element: HTMLInputElement | HTMLElement): HTMLElement {
+        let parentNode: HTMLElement = <HTMLElement> element.parentNode;
+        if (parentNode.classList.contains('e-input-in-wrap')) {
+            return <HTMLElement> parentNode.parentNode;
+        }
+        return parentNode;
     }
 };

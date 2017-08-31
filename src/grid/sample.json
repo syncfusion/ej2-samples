@@ -7,7 +7,8 @@
     {"url":"default", "name": "Default Functionalities", "category":"Grid" },
     {"url":"grouping", "name": "Grouping", "category":"Grid"},
     {"url":"gridlines", "name": "GridLines" ,"category":"Grid" },
-    {"url":"scrolling", "name": "Scrolling", "category":"Grid"},
+    {"url":"scrolling", "name": "Default Scrolling", "category":"Scrolling"},
+    {"url":"virtualscrolling", "name": "Virtual Scrolling", "category":"Scrolling", "type": "new"},
     {"url":"print", "name": "Print", "category":"Grid", "hideOnDevice":true}, 
     {"url":"events", "name": "Events", "category":"Grid"},
     {"url":"hierarchy", "name": "Hierarchy Grid" ,"category":"Grid" },
@@ -30,7 +31,7 @@
     {"url":"pagingapi", "name": "Paging API", "category": "Paging"},
     {"url":"selection", "name": "Default Selection", "category":"Selection"},
     {"url":"selectionapi", "name": "Selection API", "category": "Selection"},
-    { "url":"aggregatedefault", "name": "Default Aggregate", "category": "Aggregates", "type": "new" },
-    { "url":"aggregategroup", "name": "Group and Caption Aggregate", "category": "Aggregates", "type": "new" }  
+    { "url":"aggregatedefault", "name": "Default Aggregate", "category": "Aggregates" },
+    { "url":"aggregategroup", "name": "Group and Caption Aggregate", "category": "Aggregates" }  
    ]
 }

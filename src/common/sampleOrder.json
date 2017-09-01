@@ -2,6 +2,6 @@
     "Data Visualization": ["Chart", "Circular Gauge", "Linear Gauge"],
     "Grids": ["Grid"],
     "Editors": ["Form Validator", "DropDownList", "Calendar", "NumericTextBox", "Button", "TextBoxes"],
-    "Layout": ["ListView", "Dialog", "Popup", "Tooltip"],
+    "Layout": ["ListView", "Dialog", "Tooltip"],
     "Navigation": ["Toolbar"]
 }

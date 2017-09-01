@@ -1,9 +1,0 @@
-{ 
-   "name": "Popup", 
-   "directory": "popup", 
-   "category":"Layout", 
-   "samples" : [
-        {"url":"offset", "name": "Basic Usage", "category":"Popup"},
-        {"url":"position", "name": "Position", "category":"Popup"}
-    ]
-}

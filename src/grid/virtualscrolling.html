@@ -6,11 +6,11 @@
         background-image: url('src/grid/images/spinner.gif');
         background-position: center;
         width: 16px;
-        height: 35px;
+        height: 28px;
     }
 
     .e-bigger .image {
-        height: 48px;
+        height: 36px;
     }
     
     #popup {
@@ -19,16 +19,27 @@
         display: none;
         z-index: 100;
     }
-    .e-info{
+    .div-button{
         margin: 5px 5px 5px 0;
+    }
+    #performanceTime {
+        float: right;
+        margin-top: 3px;
+    }
+
+    .e-bigger #performanceTime{
+        margin-top: 8px;
     }
 </style>
 <div class="control-section">
     <div class="content-wrapper">
-        <button id='genarate' class="e-info"> Load 100K Data</button>
-        <span id="popup">
-            <span id="gif" class="image"></span>
-        </span>
+        <div class='div-button'>
+            <button id='genarate' class="e-info"> Load 100K Data</button>
+            <span id="popup">
+                <span id="gif" class="image"></span>
+            </span>
+            <span id="performanceTime">Time Taken: 0 ms</span>
+        </div>
         <div id="Grid">
         </div>
     </div>

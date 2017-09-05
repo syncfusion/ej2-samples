@@ -68,6 +68,12 @@
             "name": "Step Line",
             "category": "Series"
         },
+         {
+            "url": "step-area",
+            "name": "Step Area",
+            "category": "Series",
+            "type":"new"
+        },
         {
             "url": "scatter",
             "name": "Scatter",

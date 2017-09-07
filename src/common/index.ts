@@ -216,6 +216,13 @@ function loadJSON(): void {
     setResponsive();
     select('#themeswitcher').addEventListener('click', toggleTheme);
     select('#themelist').addEventListener('click', changeTheme);
+    let body: HTMLElement = document.body;
+    if (body.classList.length > 0) {
+        for (let theme of availableThemes) {
+            body.classList.remove(theme);
+        }
+    }
+    body.classList.add(selectedTheme);
 }
 
 function loadPage(page: string): void {
@@ -339,6 +346,7 @@ function addRoutes(samplesList: Controls[]): void {
                     }
                     let curIndex: number = samplesAr.indexOf(location.hash);
                     let samLength: number = samplesAr.length - 1;
+                    scrollElement(sampleID);
                     if (curIndex === samLength) {
                         toggleButtonState('next-sample', true);
                     } else {
@@ -379,6 +387,18 @@ function addRoutes(samplesList: Controls[]): void {
                     location.reload();
                 });
             });
+        }
+    }
+}
+
+function scrollElement(arg: string): void {
+    let scrollElement: HTMLElement = document.querySelector('#control-list') as HTMLElement;
+    let curEle: HTMLElement = document.querySelector('[uid=\'' + arg + '\']') as HTMLElement;
+    if (curEle && scrollElement.scrollHeight !== scrollElement.offsetHeight) {
+        if (scrollElement.scrollHeight > scrollElement.offsetTop) {
+            scrollElement.scrollTop = (curEle.offsetTop - scrollElement.offsetHeight) + curEle.offsetHeight;
+        } else {
+            scrollElement.scrollTop = (curEle.offsetTop - scrollElement.scrollTop) + curEle.offsetHeight;
         }
     }
 }

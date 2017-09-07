@@ -383,8 +383,8 @@ function addRoutes(samplesList: Controls[]): void {
                     document.body.classList.remove('sb-overlay');
                     select('#source-panel').classList.remove('hidden');
                     isExternalNavigation = defaultTree = false;
-                }).catch((): void => {
-                    location.reload();
+                }).catch((e: any): void => {
+                    errorHandler(e.message);
                 });
             });
         }

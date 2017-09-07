@@ -9,7 +9,8 @@ this.default = (): void => {
         placeholder: 'Enter the distance',
         format: '###.### km',
         value: 250,
-        min: 0
+        min: 0,
+        floatLabelType: 'Auto'
     });
     numeric.appendTo('#numeric');
 
@@ -18,7 +19,8 @@ this.default = (): void => {
         placeholder: 'Enter the tax',
         min: 0,
         value: 25,
-        max: 100
+        max: 100,
+        floatLabelType: 'Auto'
     });
     percent.appendTo('#percent');
 
@@ -27,6 +29,7 @@ this.default = (): void => {
         placeholder: 'Enter the amount',
         min: 0,
         value: 1025,
+        floatLabelType: 'Auto'
     });
     currency.appendTo('#currency');
 };

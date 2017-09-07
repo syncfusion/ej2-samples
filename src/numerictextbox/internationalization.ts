@@ -29,7 +29,8 @@ this.default = (): void => {
     let numeric: NumericTextBox = new NumericTextBox({
         locale: 'de',
         value: 10,
-        placeholder: 'Geben Sie den Wert ein'
+        placeholder: 'Geben Sie den Wert ein',
+        floatLabelType: 'Auto'
     });
     numeric.appendTo('#numeric');
 
@@ -40,7 +41,8 @@ this.default = (): void => {
         min: 0,
         max: 1,
         step: 0.01,
-        placeholder: 'Geben Sie den Prozentsatz ein'
+        placeholder: 'Geben Sie den Prozentsatz ein',
+        floatLabelType: 'Auto'
     });
     percent.appendTo('#percent');
 
@@ -49,7 +51,8 @@ this.default = (): void => {
         locale: 'de',
         value: 100,
         currency: 'EUR',
-        placeholder: 'Geben Sie die Währung ein'
+        placeholder: 'Geben Sie die Währung ein',
+        floatLabelType: 'Auto'
     });
     currency.appendTo('#currency');
 

@@ -7,7 +7,8 @@ this.default = (): void => {
 
     let numeric: NumericTextBox = new NumericTextBox({
         value: 10,
-        placeholder: 'Numeric TextBox'
+        placeholder: 'Numeric TextBox',
+        floatLabelType: 'Auto'
     });
     numeric.appendTo('#numeric');
 
@@ -17,14 +18,16 @@ this.default = (): void => {
         min: 0,
         max: 1,
         step: 0.01,
-        placeholder: 'Percentage TextBox'
+        placeholder: 'Percentage TextBox',
+        floatLabelType: 'Auto'
     });
     percent.appendTo('#percent');
 
     let currency: NumericTextBox = new NumericTextBox({
         format: 'c2',
         value: 100,
-        placeholder: 'Currency TextBox'
+        placeholder: 'Currency TextBox',
+        floatLabelType: 'Auto'
     });
     currency.appendTo('#currency');
 };

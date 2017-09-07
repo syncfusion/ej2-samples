@@ -10,7 +10,8 @@ this.default = (): void => {
         min: 10,
         max: 100,
         value: 15,
-        placeholder: 'Numeric TextBox'
+        placeholder: 'Numeric TextBox',
+        floatLabelType: 'Auto'
     });
     numeric.appendTo('#numeric');
 

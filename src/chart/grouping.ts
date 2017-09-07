@@ -59,7 +59,7 @@ this.default = (): void => {
         title: 'Rio Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.pie.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.accumulation.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
         }
     });
     pie.appendTo('#container');

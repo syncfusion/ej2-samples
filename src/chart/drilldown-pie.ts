@@ -30,7 +30,7 @@ this.default = (): void => {
         tooltip: { enable: false, format: '${point.x} <br> ${point.y} %' },
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.pie.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.accumulation.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
         }
     };
     let pointClick: EmitType<IMouseEventArgs> = (args: IMouseEventArgs) => {
@@ -93,7 +93,7 @@ this.default = (): void => {
         title: 'Automobile Sales by Category',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.pie.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.accumulation.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
         }
     };
     let pie: AccumulationChart = new AccumulationChart(instance);

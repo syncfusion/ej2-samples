@@ -49,12 +49,12 @@ this.default = (): void => {
             width: '44%'
         },
         animationComplete: (args: IAccAnimationCompleteEventArgs) => {
-            centerTitle.style.fontSize = getFontSize(args.pie.initialClipRect.width);
+            centerTitle.style.fontSize = getFontSize(args.accumulation.initialClipRect.width);
             let rect: ClientRect = centerTitle.getBoundingClientRect();
-            centerTitle.style.top = (args.pie.center.y - rect.height / 2) + 'px';
-            centerTitle.style.left = (args.pie.center.x - rect.width / 2) + 'px';
+            centerTitle.style.top = (args.accumulation.center.y - rect.height / 2) + 'px';
+            centerTitle.style.left = (args.accumulation.center.x - rect.width / 2) + 'px';
             centerTitle.style.visibility = 'visible';
-            let points: AccPoints[] = args.pie.visibleSeries[0].points;
+            let points: AccPoints[] = args.accumulation.visibleSeries[0].points;
             for (let point of points) {
                 if (point.labelPosition === 'Outside' && point.labelVisible) {
                     let label: Element = document.getElementById('container_datalabel_Series_0_text_' + point.index);
@@ -72,7 +72,7 @@ this.default = (): void => {
         title: 'Education Institutional Revenue',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.pie.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.accumulation.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
         }
     });
     pie.appendTo('#container');

@@ -38,7 +38,7 @@ this.default = (): void => {
         title: 'Agricultural land percentage',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.pie.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.accumulation.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
         }
     });
     pie.appendTo('#container');

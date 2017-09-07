@@ -68,11 +68,11 @@ this.default = (): void => {
         title: 'Rio Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.pie.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
-            if (args.pie.availableSize.width < 400) {
-                args.pie.legendSettings.visible = false;
+            args.accumulation.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            if (args.accumulation.availableSize.width < 400) {
+                args.accumulation.legendSettings.visible = false;
             } else {
-                args.pie.legendSettings.visible = true;
+                args.accumulation.legendSettings.visible = true;
             }
         }
     });

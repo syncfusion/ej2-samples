@@ -14,7 +14,7 @@ this.default = (): void => {
             maximum: 21
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             title: 'Runs',

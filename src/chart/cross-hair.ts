@@ -38,7 +38,7 @@ this.default = (): void => {
             labelFormat: 'yMMM'
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             minimum: 10, maximum: 90, interval: 10,
@@ -83,7 +83,7 @@ this.default = (): void => {
         title: 'Weather Condition',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
         }
     });
     chart.appendTo('#container');

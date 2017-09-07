@@ -13,7 +13,7 @@ this.default = (): void => {
             interval: 1, labelIntersectAction: 'Rotate45'
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             title: 'Penetration (%)', rangePadding: 'None',
@@ -94,7 +94,7 @@ this.default = (): void => {
         tooltip: { enable: true, format: '${series.name}<br>${point.text} : ${point.y}' },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
         }
     });
     chart.appendTo('#container');

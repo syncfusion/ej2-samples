@@ -54,7 +54,7 @@ this.default = (): void => {
             majorGridLines: { width: 0 }
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             minimum: 0,
@@ -84,7 +84,7 @@ this.default = (): void => {
         height: '350',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
         }
     });
     chart.appendTo('#container');

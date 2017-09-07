@@ -11,7 +11,7 @@ let fabricColors: string[] = ['#4472c4', '#ed7d31', '#ffc000', '#70ad47', '#5b9b
     '#c1c1c1', '#6f6fe2', '#e269ae', '#9e480e', '#997300'];
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];
-    if (selectedTheme.indexOf('fabric') > -1) {
+    if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
         args.fill = fabricColors[args.point.index];
     } else {
         args.fill = materialColors[args.point.index];
@@ -26,7 +26,7 @@ this.default = (): void => {
             valueType: 'Category'
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             title: 'Users in Millions',

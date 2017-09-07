@@ -68,7 +68,7 @@ this.default = (): void => {
         title: 'Rio Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.accumulation.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.accumulation.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
             if (args.accumulation.availableSize.width < 400) {
                 args.accumulation.legendSettings.visible = false;
             } else {

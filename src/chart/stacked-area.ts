@@ -17,7 +17,7 @@ this.default = (): void => {
             edgeLabelPlacement: 'Shift'
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             title: 'Spend in Billions',
@@ -93,7 +93,7 @@ this.default = (): void => {
         title: 'Trend in Sales of Ethical Produce',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
         }
     });
     chart.appendTo('#container');

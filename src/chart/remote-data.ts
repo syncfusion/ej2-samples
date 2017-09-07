@@ -29,7 +29,7 @@ this.default = (): void => {
             title: 'Assignee'
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             title: 'Estimate',
@@ -58,7 +58,7 @@ this.default = (): void => {
             div.style.left = (width / 2 - 25) + 'px';
             div.style.display = '';
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
         },
         //Initializing Chart title
         title: 'Sprint Task Analysis', legendSettings: { visible: false },

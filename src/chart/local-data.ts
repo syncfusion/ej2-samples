@@ -2,7 +2,7 @@ import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs } from '@syncfusi
 Chart.Inject(LineSeries, DateTime, Legend);
 
 /**
- * Local data 
+ * Local data
  */
 
 let series1: Object[] = [];
@@ -38,7 +38,7 @@ this.default = (): void => {
             edgeLabelPlacement: 'Shift'
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             title: 'Price ($)',
@@ -68,7 +68,7 @@ this.default = (): void => {
         title: 'Stock Price Analysis',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = selectedTheme.indexOf('fabric') > -1 ? 'Fabric' : 'Material';
+            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
         }
     });
     chart.appendTo('#container');

@@ -34,8 +34,6 @@
     {"url":"aggregatedefault", "name": "Default Aggregate", "category": "Aggregates" },
     {"url":"aggregategroup", "name": "Group and Caption Aggregate", "category": "Aggregates" },
     {"url":"normal-editing", "name": "Inline On LocalData", "category":"Editing", "type": "new"},
-    {"url":"dialog-editing", "name": "Dialog On LocalData", "category":"Editing", "type": "new"},
-    {"url":"batch-editing", "name": "Batch Editing", "category":"Editing", "type": "new" },
-    {"url":"columnchooser", "name": "Column Chooser", "category":"Columns", "type": "new" }
+    {"url":"dialog-editing", "name": "Dialog On LocalData", "category":"Editing", "type": "new"}
    ]
 }

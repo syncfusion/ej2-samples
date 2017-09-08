@@ -33,7 +33,7 @@
     {"url":"selectionapi", "name": "Selection API", "category": "Selection"},
     {"url":"aggregatedefault", "name": "Default Aggregate", "category": "Aggregates" },
     {"url":"aggregategroup", "name": "Group and Caption Aggregate", "category": "Aggregates" },
-    {"url":"normal-editing", "name": "Inline On LocalData", "category":"Editing", "type": "new"},
-    {"url":"dialog-editing", "name": "Dialog On LocalData", "category":"Editing", "type": "new"}
+    {"url":"normal-editing", "name": "Inline Editing", "category":"Editing", "type": "new"},
+    {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing", "type": "new"}
    ]
 }

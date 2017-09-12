@@ -19,6 +19,7 @@
     {"url":"columntemplate", "name": "Column Template", "category":"Columns"},
     {"url":"stackedheader", "name": "Stacked Header", "category":"Columns"},
     {"url":"reorder", "name": "Reorder", "category": "Columns"},
+	{"url":"columnchooser", "name": "Column Chooser", "category": "Columns", "type": "new"},
     {"url":"rowtemplate", "name": "Row Template", "category":"Rows"},
     {"url":"detailtemplate", "name": "Detail Template", "category":"Rows"},
     {"url":"hover", "name": "Row Hover", "category":"Rows", "hideOnDevice":true},

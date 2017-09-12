@@ -18,7 +18,9 @@ this.default = (): void => {
                 { field: 'CustomerName', headerText: 'Customer Name', width: 150, showInColumnChooser: false },
                 { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'right' },
                 { field: 'Freight', width: 120, format: 'C2', textAlign: 'right' },
-                { field: 'ShipCountry', visible: false, headerText: 'Ship Country', width: 150 }
+                { field: 'ShippedDate', headerText: 'Shipped Date', width: 140, format: 'yMd', textAlign: 'right' },
+                { field: 'ShipCountry', visible: false, headerText: 'Ship Country', width: 150 },
+                { field: 'ShipCity', visible: false, headerText: 'Ship City', width: 150 }
             ]
         });
     grid.appendTo('#Grid');

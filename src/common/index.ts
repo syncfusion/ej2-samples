@@ -19,6 +19,7 @@ let execFunction: { [key: string]: Object } = {};
 let selectedTheme: string = location.hash.split('/')[1];
 let availableThemes: string[] = ['material', 'fabric'];
 let isHashChanged: boolean = true;
+let isButtonClick: boolean = false;
 
 interface DestroyMethod extends HTMLElement {
     destroy: Function;
@@ -346,7 +347,10 @@ function addRoutes(samplesList: Controls[]): void {
                     }
                     let curIndex: number = samplesAr.indexOf(location.hash);
                     let samLength: number = samplesAr.length - 1;
-                    scrollElement(sampleID);
+                    if (isButtonClick) {
+                        scrollElement(sampleID);
+                        isButtonClick = false;
+                    }
                     if (curIndex === samLength) {
                         toggleButtonState('next-sample', true);
                     } else {
@@ -463,6 +467,7 @@ function onCloseClick(arg?: MouseEvent): void {
 }
 
 function onNextButtonClick(arg: MouseEvent): void {
+    isButtonClick = true;
     overlay();
     let curSampleUrl: string = location.hash;
     let inx: number = samplesAr.indexOf(curSampleUrl);
@@ -485,6 +490,7 @@ function toggleButtonState(id: string, state: boolean): void {
 }
 
 function onPrevButtonClick(arg: MouseEvent): void {
+    isButtonClick = true;
     overlay();
     let curSampleUrl: string = location.hash;
     let inx: number = samplesAr.indexOf(curSampleUrl);

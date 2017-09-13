@@ -8,7 +8,7 @@
     {"url":"grouping", "name": "Grouping", "category":"Grid"},
     {"url":"gridlines", "name": "GridLines" ,"category":"Grid" },
     {"url":"scrolling", "name": "Default Scrolling", "category":"Scrolling"},
-    {"url":"virtualscrolling", "name": "Virtual Scrolling", "category":"Scrolling", "type": "new"},
+    {"url":"virtualscrolling", "name": "Virtual Scrolling", "category":"Scrolling"},
     {"url":"print", "name": "Print", "category":"Grid", "hideOnDevice":true}, 
     {"url":"events", "name": "Events", "category":"Grid"},
     {"url":"hierarchy", "name": "Hierarchy Grid" ,"category":"Grid" },
@@ -35,6 +35,7 @@
     {"url":"aggregatedefault", "name": "Default Aggregate", "category": "Aggregates" },
     {"url":"aggregategroup", "name": "Group and Caption Aggregate", "category": "Aggregates" },
     {"url":"normal-editing", "name": "Inline Editing", "category":"Editing", "type": "new"},
-    {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing", "type": "new"}
+    {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing", "type": "new"},
+    {"url":"batch-editing", "name": "Batch Editing", "category":"Editing", "type": "new"}
    ]
 }

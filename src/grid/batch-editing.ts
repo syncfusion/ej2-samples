@@ -25,7 +25,7 @@ this.default = (): void => {
                 },
                 {
                     field: 'Freight', headerText: 'Freight', textAlign: 'right', editType: 'numericedit',
-                    width: 120, format: 'C2'
+                    width: 120, format: 'C2', validationRules: { required: true }
                 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 170 },
                 {

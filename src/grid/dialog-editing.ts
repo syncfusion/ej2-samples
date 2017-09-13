@@ -12,7 +12,7 @@ this.default = (): void => {
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'dialog' },
             allowPaging: true,
             pageSettings: {pageCount: 5},
-            toolbar: ['add', 'edit', 'delete', 'update', 'cancel'],
+            toolbar: ['add', 'edit', 'delete'],
             columns: [
                 {
                     field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'right',

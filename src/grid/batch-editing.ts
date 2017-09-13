@@ -13,7 +13,7 @@ this.default = (): void => {
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'batch' },
             allowPaging: true,
             pageSettings: {pageCount: 5},
-            toolbar: ['add', 'edit', 'delete', 'update', 'cancel'],
+            toolbar: ['add', 'delete', 'update', 'cancel'],
             columns: [
                 {
                     field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'right',

@@ -35,7 +35,7 @@
         },
         {
             "url":"stacked-column100",
-            "name":"100% stacked Column",
+            "name":"100% Stacked Column",
             "category":"Series"
         },
         {
@@ -50,7 +50,7 @@
         },
         {
             "url":"stacked-bar100",
-            "name":"100% stacked Bar",
+            "name":"100% Stacked Bar",
             "category":"Series"
         },
         {
@@ -60,7 +60,7 @@
         },
         {
             "url":"stacked-area100",
-            "name":"100% stacked Area",
+            "name":"100% Stacked Area",
             "category":"Series"
         },
         {

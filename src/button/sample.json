@@ -2,11 +2,18 @@
     "name": "Button",
     "directory": "button",
     "category": "Editors",
+    "type": "update",
     "samples": [
         {
             "url": "default",
             "name": "Default Functionalities",
             "category": "Button"
+        },
+        {
+            "url": "check-box",
+            "name": "CheckBox",
+            "category": "Button",
+            "type": "new"
         }
     ]
 }

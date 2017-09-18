@@ -159,6 +159,12 @@
             "category": "Chart Axes"
         },
         {
+            "url": "inversed",
+            "name": "Inversed Axis",
+            "category": "Chart Axes",
+            "type": "new"
+        },
+        {
             "url": "symbols",
             "name": "Symbols",
             "category": "Chart Symbols"

@@ -37,7 +37,7 @@ this.default = (): void => {
                 radius: '70%',
                 xName: 'x',
                 yName: 'y',
-                groupTo: '6',
+                groupTo: '10',
                 startAngle: 0,
                 endAngle: 360,
                 innerRadius: '0%',

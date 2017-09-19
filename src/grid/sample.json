@@ -36,6 +36,7 @@
     {"url":"aggregategroup", "name": "Group and Caption Aggregate", "category": "Aggregates" },
     {"url":"normal-editing", "name": "Inline Editing", "category":"Editing", "type": "new"},
     {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing", "type": "new"},
-    {"url":"batch-editing", "name": "Batch Editing", "category":"Editing", "type": "new"}
+    {"url":"batch-editing", "name": "Batch Editing", "category":"Editing", "type": "new"},
+    {"url":"columnresize", "name": "Column Resizing", "category":"Columns", "type": "new"}
    ]
 }

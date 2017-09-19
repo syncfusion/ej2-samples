@@ -15,7 +15,7 @@ this.default = () => {
         animationSettings: { effect: 'None' },
         buttons: [{
             click: dlgButtonClick,
-            buttonModel: { content: 'OK', cssClass: 'e-flat', isPrimary: true }
+            buttonModel: { content: 'Ok', cssClass: 'e-flat', isPrimary: true }
         }],
         open: dialogOpen,
         close: dialogClose

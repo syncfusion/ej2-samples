@@ -14,6 +14,12 @@
             "name": "CheckBox",
             "category": "Button",
             "type": "new"
+        },
+        {
+            "url": "radio-button",
+            "name": "RadioButton",
+            "category": "Button",
+            "type": "new"
         }
     ]
 }

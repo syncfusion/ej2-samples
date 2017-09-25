@@ -1,10 +1,11 @@
 /**
- * DropDownList Cascading Sample
+ * ComboBox Cascading Sample
  */
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { ComboBox } from '@syncfusion/ej2-dropdowns';
 import { Query } from '@syncfusion/ej2-data';
 
 this.default = () => {
+
     let country: { [key: string]: Object }[] = [
         { countryName: 'Australia', countryId: '2' },
         { countryName: 'United States', countryId: '1' }
@@ -35,46 +36,61 @@ this.default = () => {
         { cityName: 'Lockport', stateId: '101', cityId: 203 },
         { cityName: 'Melbourne', stateId: '106', cityId: 216 },
         { cityName: 'Pasco', stateId: '103', cityId: 209 },
-        { cityName: 'Townsville', stateId: '104', cityId: 210 }
+        { cityName: 'Townsville', stateId: '104', cityId: 210 },
     ];
-    let countryObj: DropDownList = new DropDownList({
+    let countryList: ComboBox = new ComboBox({
         dataSource: country,
         fields: { value: 'countryId', text: 'countryName' },
+        allowCustom: false,
         change: () => {
-            stateObj.enabled = true;
-            let tempQuery: Query = new Query().where('countryId', 'equal', countryObj.value);
-            stateObj.query = tempQuery;
-            stateObj.text = null;
-            stateObj.dataBind();
-            cityObj.text = null;
-            cityObj.enabled = false;
-            cityObj.dataBind();
+            if (countryList.value === null) {
+                stateList.enabled = false;
+                cityList.enabled = false;
+                stateList.value = null;
+                cityList.value = null;
+            } else {
+                stateList.enabled = true;
+                let tempQuery: Query = new Query().where('countryId', 'equal', countryList.value);
+                stateList.query = tempQuery;
+                stateList.value = null;
+                cityList.value = null;
+                cityList.enabled = false;
+            }
+            stateList.dataBind();
+            cityList.dataBind();
         },
         placeholder: 'Select a country'
     });
-    countryObj.appendTo('#country');
+    countryList.appendTo('#country');
 
-
-    let stateObj: DropDownList = new DropDownList({
+    let stateList: ComboBox = new ComboBox({
         dataSource: state,
         fields: { value: 'stateId', text: 'stateName' },
         enabled: false,
+        allowCustom: false,
         change: () => {
-            cityObj.enabled = true;
-            let tempQuery1: Query = new Query().where('stateId', 'equal', stateObj.value);
-            cityObj.query = tempQuery1;
-            cityObj.text = null;
-            cityObj.dataBind();
+            if (stateList.value === null) {
+                cityList.enabled = false;
+                cityList.value = null;
+            } else {
+                cityList.enabled = true;
+                let tempQuery: Query = new Query().where('stateId', 'equal', stateList.value);
+                cityList.query = tempQuery;
+                cityList.value = null;
+            }
+            cityList.dataBind();
         },
         placeholder: 'Select a state'
     });
-    stateObj.appendTo('#state');
+    stateList.appendTo('#state');
 
-    let cityObj: DropDownList = new DropDownList({
+
+    let cityList: ComboBox = new ComboBox({
         dataSource: cities,
         fields: { text: 'cityName', value: 'cityId' },
         enabled: false,
+        allowCustom: false,
         placeholder: 'Select a city'
     });
-    cityObj.appendTo('#city');
+    cityList.appendTo('#city');
 };

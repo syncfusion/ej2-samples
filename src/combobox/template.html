@@ -1,24 +1,22 @@
 <div class="col-lg-12 control-section" style="height: 400px;">
     <div class='control-wrapper'>
-        <div style='padding-top:75px;'>
+        <div style='padding-top:70px;'>
             <input type="text" tabindex="1" id='employees' />
         </div>
     </div>
 </div>
 
 <div id="description">
-    </p>The DropDownList has been provided with several options to customize each list items, group title, selected value, header
-    and footer elements.
+    </p>The ComboBox has been provided with several options to customize each list items, group title, header and footer elements.
     </p>
 
-    <p>In this sample, used below list of templates in DropDownList</p>
+    <p>In this sample, used below list of templates in ComboBox</p>
     <ul>
         <li><code>ItemTemplate</code> - To customize the list item's content.</li>
-        <li><code>ValueTemplate</code> - To customize the value element content which holds the selected item's text.</li>
         <li><code>HeaderTemplate</code> - To customize the header element.</li>
     </ul>
     <p> More information on the template feature configuration can be found in this
-        <a href="../documentation/drop-down-list/templates.html" target="_blank"> documentation section</a>.
+        <a href="../documentation/combo-box/templates.html" target="_blank"> documentation section</a>.
     </p>
 </div>
 
@@ -44,12 +42,6 @@
         margin-top: 8px;
     }
 
-    .name {
-        padding: 5px 42px;
-        opacity: .87;
-        line-height: 1.063em;
-    }
-
     .job {
         opacity: .54;
         font-size: 14px;
@@ -64,21 +56,6 @@
         height: 50px;
     }
 
-    .value {
-        border-radius: 50%;
-        float: left;
-        margin-top: 2px;
-        margin-left: 2px;
-    }
-
-    .e-bigger .value {
-        margin-top: 7px;
-    }
-
-    .e-bigger .name {
-        padding: 11px 42px;
-    }
-
     #employees_popup.e-popup .e-list-item * {
         display: block;
         text-indent: 0;
@@ -89,7 +66,7 @@
         height: 80px;
     }
 
-    .e-bigger #employees_popup.e-popup .empImage {
+    .e-bigger #employees_popup .e-popup .empImage {
         margin: 10px 16px;
     }
 </style>

@@ -1,12 +1,10 @@
 /**
- * DropDownList Grouping & Icons Samples
+ * ComboBox Grouping & Icon Samples
  */
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
-
+import { ComboBox } from '@syncfusion/ej2-dropdowns';
 
 this.default = () => {
-
-    let vegetables: { [key: string]: Object }[] = [
+    let vegetableData: { [key: string]: Object }[] = [
         { vegetable: 'Cabbage', category: 'Leafy and Salad', id: 'item1' },
         { vegetable: 'Chickpea', category: 'Beans', id: 'item2' },
         { vegetable: 'Garlic', category: 'Bulb and Stem', id: 'item3' },
@@ -19,7 +17,6 @@ this.default = () => {
         { vegetable: 'Wheat grass', category: 'Leafy and Salad', id: 'item10' },
         { vegetable: 'Yarrow', category: 'Leafy and Salad', id: 'item11' }
     ];
-
     let socialMedia: { [key: string]: Object }[] = [
         { class: 'facebook', socialMedia: 'Facebook', id: 'media1' },
         { class: 'google-plus', socialMedia: 'Google Plus', id: 'media2' },
@@ -32,20 +29,19 @@ this.default = () => {
         { class: 'whatsapp', socialMedia: 'WhatsApp', id: 'media9' },
         { class: 'youtube', socialMedia: 'YouTube', id: 'media10' }
     ];
-
-    let groupList: DropDownList = new DropDownList({
-        dataSource: vegetables,
+    let groupComboBoxObj: ComboBox = new ComboBox({
+        dataSource: vegetableData,
         fields: { groupBy: 'category', text: 'vegetable', value: 'id' },
         placeholder: 'Select a vegetable',
         popupHeight: '200px'
     });
-    groupList.appendTo('#vegetables');
+    groupComboBoxObj.appendTo('#vegetables');
 
-    let iconList: DropDownList = new DropDownList({
+    let iconComboBoxObj: ComboBox = new ComboBox({
         dataSource: socialMedia,
         fields: { text: 'socialMedia', iconCss: 'class', value: 'id' },
         placeholder: 'Select a social media',
         popupHeight: '200px'
     });
-    iconList.appendTo('#icons');
+    iconComboBoxObj.appendTo('#icons');
 };

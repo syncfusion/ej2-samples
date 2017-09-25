@@ -1,7 +1,7 @@
 /**
- * DropDownList Filtering Sample
+ * ComboBox Filtering Samples
  */
-import { DropDownList, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+import { ComboBox, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Query } from '@syncfusion/ej2-data';
 
 this.default = () => {
@@ -26,12 +26,11 @@ this.default = () => {
         { name: 'United Kingdom', code: 'GB' },
         { name: 'United States', code: 'US' }
     ];
-    let dropDownListObj: DropDownList = new DropDownList({
-        placeholder: 'Select a country',
-        filterBarPlaceholder: 'Search',
+    let comboBoxObj: ComboBox = new ComboBox({
         dataSource: countries,
         fields: { text: 'name', value: 'code' },
-        popupHeight: '250px',
+        placeholder: 'Select a country',
+        popupHeight: '270px',
         allowFiltering: true,
         filtering: (e: FilteringEventArgs) => {
             let query: Query = new Query();
@@ -39,5 +38,5 @@ this.default = () => {
             e.updateData(countries, query);
         }
     });
-    dropDownListObj.appendTo('#country');
+    comboBoxObj.appendTo('#country');
 };

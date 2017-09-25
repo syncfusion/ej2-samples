@@ -1,4 +1,4 @@
-<div class="control-section col-lg-12">
+<div class="control-section col-lg-9">
     <div id='local-data' class='col-lg-6' style='padding-top:15px'>
         <div class='content'>
             <h4> Local Data</h4>
@@ -12,11 +12,17 @@
         </div>
     </div>
 </div>
+<div class="col-lg-3 property-section">
+    <div id="property" title="Properties">
+        <div style='margin-left:50px; padding-top: 25px'>
+            <input id="checkAutofill" type="checkbox" checked='true'>
+        </div>
+    </div>
+</div>
 
 <div id="description">
-    <p>The DropDownList loads the data either from local data sources or remote data services which is through the <code>dataSource</code>        property. It supports the data type of <code>array</code> or <code>DataManager</code>.
-    </p>
-    <p>The DataManager, which will act as an interface between service endpoint and DropDownList, will require the below minimal
+    <p>The ComboBox loads the data either from local data sources or remote data services which is through the <code>dataSource</code>        property. It supports the data type of <code>array</code> or <code>DataManager</code>.</p>
+    <p>The DataManager, which will act as an interface between service endpoint and ComboBox, will require the below minimal
         information to interact with service endpoint properly.
     </p>
     <ul>
@@ -24,7 +30,7 @@
         <li><code>DataManager->adaptor</code> - Defines the adaptor option. By default, <code>ODataAdaptor</code> is used for
             remote binding.</li>
     </ul>
-    <p>Adaptor is responsible for processing response and request from/to the service endpoint.
+    <p>The adaptor is responsible for processing response and request from/to the service endpoint.
         <code>@syncfusion/ej2-data</code> package provides some predefined adaptors which are designed to interact with particular
         service endpoints. They are,</p>
     <ul>
@@ -35,13 +41,12 @@
         <li><code>WebMethodAdaptor</code> - Use this to interact with web methods.</li>
     </ul>
     <p>In this sample, the local data is bound to a collection of sports data and the remote data is bound to a collection of
-        customer data as an instance of <code>DataManager</code>.
+        customer data as an instance of <code>DataManager</code>. Also, provided option to enable/disable <code>autofill</code>        feature in the property panel.
     </p>
     <p> More information on the data binding feature configuration can be found in this
-        <a href="../documentation/drop-down-list/data-binding.html" target="_blank"> documentation section</a>.
+        <a href="../documentation/combo-box/data-binding.html" target="_blank"> documentation section</a>.
     </p>
 </div>
-
 <style>
     .content {
         margin: 0 auto;

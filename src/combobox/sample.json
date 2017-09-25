@@ -1,0 +1,14 @@
+{
+    "name": "ComboBox",
+    "directory": "combobox",
+    "category": "Editors",
+    "type": "new",
+    "samples": [
+        { "url": "default", "name": "Default Functionalities", "category": "ComboBox" },
+        { "url": "grouping-icon", "name": "Grouping and Icons", "category": "ComboBox" },
+        { "url": "databinding", "name": "Data Binding", "category": "ComboBox" },
+        { "url": "template", "name": "Template", "category": "ComboBox" },
+        { "url": "filtering", "name": "Filtering", "category": "ComboBox" },
+        { "url": "cascading", "name": "Cascading", "category": "ComboBox" }
+    ]
+}

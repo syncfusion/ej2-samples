@@ -10,14 +10,15 @@ this.default = () => {
         index: 2,
         placeholder: 'Select a game',
         popupHeight: '200px',
-        change: () => {
-            let value: Element = document.getElementById('value');
-            let index: Element = document.getElementById('index');
-            let text: Element = document.getElementById('text');
-            value.innerHTML = listObj.value as string;
-            text.innerHTML = listObj.text;
-            index.innerHTML = listObj.index.toString();
-        }
+        change: () => { valueChange();  }
     });
-    listObj.appendTo('#list');
+    listObj.appendTo('#games');
+    valueChange();
+
+    function valueChange(): void {
+        let value: Element = document.getElementById('value');
+        let text: Element = document.getElementById('text');
+        value.innerHTML = listObj.value as string;
+        text.innerHTML = listObj.text;
+    }
 };

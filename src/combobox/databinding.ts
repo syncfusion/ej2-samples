@@ -1,13 +1,12 @@
 /**
- * DropDownList Remote Data & Local Data Samples
+ * ComboBox Remote-Data & Local-Data Samples
  */
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { ComboBox } from '@syncfusion/ej2-dropdowns';
 import { Query, DataManager, ODataV4Adaptor } from '@syncfusion/ej2-data';
-
+import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 
 this.default = () => {
-
-    let gameList: { [key: string]: Object }[] = [
+    let sportsData: { [key: string]: Object }[] = [
         { id: 'Game1', game: 'American Football' },
         { id: 'Game2', game: 'Badminton' },
         { id: 'Game3', game: 'Basketball' },
@@ -20,7 +19,7 @@ this.default = () => {
         { id: 'Game10', game: 'Tennis' },
     ];
 
-    let dropDownListObj: DropDownList = new DropDownList({
+    let comboBoxObj1: ComboBox = new ComboBox({
         dataSource: new DataManager({
             url: 'http://services.odata.org/V4/Northwind/Northwind.svc/Customers',
             adaptor: new ODataV4Adaptor,
@@ -28,9 +27,10 @@ this.default = () => {
         }),
         query: new Query().select(['ContactName', 'CustomerID']).take(25),
         fields: { text: 'ContactName', value: 'CustomerID' },
-        placeholder: 'Select a customer',
-        sortOrder: 'Ascending',
+        placeholder: 'Select a name',
         popupHeight: '200px',
+        sortOrder: 'Ascending',
+        autofill: true,
         actionBegin: () => {
             let element: HTMLElement[] = <HTMLElement[] & NodeListOf<Element>>
                 document.querySelector('.control-section').querySelectorAll('.e-input-group-icon');
@@ -44,15 +44,29 @@ this.default = () => {
             removeIcon();
         }
     });
-    dropDownListObj.appendTo('#customers');
-
-    let games: DropDownList = new DropDownList({
-        dataSource: gameList,
-        fields: { text: 'game' },
+    comboBoxObj1.appendTo('#customers');
+    let comboBoxObj2: ComboBox = new ComboBox({
+        dataSource: sportsData,
+        fields: { text: 'game', value: 'id' },
         placeholder: 'Select a game',
-        popupHeight: '200px'
+        sortOrder: 'Ascending',
+        popupHeight: '230px',
+        autofill: true
     });
-    games.appendTo('#games');
+    comboBoxObj2.appendTo('#games');
+
+    let checkBoxObj: CheckBox = new CheckBox({
+        checked: true,
+        label: 'Autofill',
+        change: (args: ChangeEventArgs) => {
+            comboBoxObj1.autofill = args.checked;
+            comboBoxObj1.dataBind();
+            comboBoxObj2.autofill = args.checked;
+            comboBoxObj2.dataBind();
+        }
+    });
+    checkBoxObj.appendTo('#checkAutofill');
+
     function removeIcon(): void {
         let element: HTMLElement[] = <HTMLElement[] & NodeListOf<Element>>
             document.querySelector('.control-section').querySelectorAll('.e-input-group-icon');

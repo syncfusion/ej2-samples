@@ -26,8 +26,8 @@ this.default = (): void => {
 
     function changeTime(): void {
         let element: HTMLInputElement = <HTMLInputElement>document.getElementById('dayRange');
+        isStartTimeChange = false;
         if (element.checked) {
-            isStartTimeChange = false;
             startTime.value = new Date('9/6/2017 9:00');
             endTime.enabled = true;
             endTime.value = new Date('9/6/2017 18:00');
@@ -40,7 +40,6 @@ this.default = (): void => {
             startTime.readonly = false;
             endTime.readonly = false;
             endTime.enabled = false;
-            isStartTimeChange = true;
         }
     }
     function onEnableEndTime(args: ChangeEventArgs): void {

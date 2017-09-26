@@ -408,19 +408,20 @@ function scrollElement(arg: string): void {
 }
 
 function onSampleSelect(arg: SelectEventArgs): void {
-    if (arg.data.category !== 'ShowCase') {
+    let data: { [key: string]: Object } = arg.data as { [key: string]: Object };
+    if (data.category !== 'ShowCase') {
         isHashChanged = true;
-        navigateURL(<any>arg.data, arg.isInteracted);
+        navigateURL(<any>data, arg.isInteracted);
         // let currentItem: HTMLElement = <HTMLElement>arg.item;
         // this.element.scrollTop = currentItem.offsetTop;
         if (arg.isInteracted) {
             showBackButton();
         }
-        if (!(<Controls & { [key: string]: Object }>arg.data).samples && isHashChanged) {
+        if (!(<Controls & { [key: string]: Object }>data).samples && isHashChanged) {
             overlay();
         }
     } else {
-        window.open('./src/' + arg.data.directory + '/default.html');
+        window.open('./src/' + data.directory + '/default.html');
     }
 }
 

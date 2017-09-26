@@ -2,7 +2,6 @@
     "name": "DropDownList",
     "directory": "dropdownlist",
     "category": "Editors",
-    "type": "new",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "DropDownList" },
         { "url": "grouping-icon", "name": "Grouping and Icons", "category": "DropDownList" },

@@ -143,7 +143,7 @@ function getSampleList(): Controls[] | { [key: string]: Object }[] {
     return samplesJSON.samplesList;
 }
 function loadJSON(): void {
-    //material is default theme.    
+    //material is default theme.  
     if (availableThemes.indexOf(selectedTheme) === -1) {
         selectedTheme = 'material';
     }
@@ -303,7 +303,8 @@ function addRoutes(samplesList: Controls[]): void {
         for (let subNode of samples) {
             let control: string = node.directory;
             let sample: string = subNode.url;
-            let sampleName: string = node.name + ' / ' + subNode.name;
+            let sampleName: string = node.name + ' / ' + ((node.name !== subNode.category) ?
+                (subNode.category + ' / ') : '') + subNode.name;
             let selectedTheme: string = location.hash.split('/')[1] ? location.hash.split('/')[1] : 'material';
             let urlString: string = '/' + selectedTheme + '/' + control + '/' + sample + '.html';
             samplesAr.push('#' + urlString);
@@ -323,13 +324,11 @@ function addRoutes(samplesList: Controls[]): void {
                     hljs.highlightBlock(document.getElementById('ts-source'));
                 });
                 let plunk: Ajax = new Ajax('src/' + control + '/' + sample + '-plnkr.json', 'GET', true);
-                plunk.send().then((value: Object): void => {
-                    plunker(<string>value);
-                    document.getElementById('plnkr').classList.remove('disabled');
-                });
+                let p3: Promise<Ajax> = plunk.send();
                 Promise.all([
                     p1,
-                    p2
+                    p2,
+                    p3,
                 ]).then((results: Object[]): void => {
                     let htmlString: string = results[0].toString();
                     destroyControls();
@@ -381,14 +380,15 @@ function addRoutes(samplesList: Controls[]): void {
                     document.getElementById('html-source').innerHTML = htmlCodeSnippet;
                     hljs.highlightBlock(document.getElementById('html-source'));
                     getExecFunction(control + sample)();
-                    changeTab(0);
+                    changeTab(1);
                     window.navigateSample();
                     select('.sb-loading').classList.add('hidden');
                     document.body.classList.remove('sb-overlay');
                     select('#source-panel').classList.remove('hidden');
                     isExternalNavigation = defaultTree = false;
-                }).catch((e: any): void => {
-                    errorHandler(e.message);
+                    plunker(<string>results[2]);
+                }).catch((reason: any): void => {
+                    errorHandler(reason.message);
                 });
             });
         }

@@ -16,7 +16,7 @@
 <script type="text/javascript" src="https://syncfusion.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/tu9duo/b/c/7ebd7d8b8f8cafb14c7b0966803e5701/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=b1db4791"></script>
 </head>
 
-<body>
+<body class="e-view">
     <div class="sample-browser">
         <div class="sb-loading">
             <svg class="circular" height="40" width="40">
@@ -31,7 +31,7 @@
             </div>
             <div class="header-right">
                 <div id="themeswitcher" class="themeicon"><img id="themeswitcher-icon" src='styles/images/sb_icons/SB_Switcher_icon_material.png'></div>
-                <div id="selectdiv" class='e-hidden'>                
+                <div id="selectdiv" class='e-hidden'>
                     <ul id="themelist" class="options">
                         <li class="e-list" id="material"><span class='switch-text'>Material</span><span class='switch-icon material'></span></a></li>
                         <li class="e-list" id="fabric"><span class='switch-text'>Fabric</span><span class='switch-icon fabric'></span></a></li>                          
@@ -89,20 +89,20 @@
                     <div id="source-panel" class="hidden">
                         <div id="source-tab">
                             <ul class='nav nav-tabs' role='tablist'>
-                                <li class="active" id='hcode' role='presentation'><a id='htab' role='tab' aria-controls='html-tab' aria-selected='true'>Markup</a></li>
-                                <li id='tcode' role='presentation'><a id='ttab' role='tab' aria-controls='ts-tab'>Code</a></li>
+                                <li class="active" id='tcode' role='presentation'><a id='ttab' role='tab' aria-controls='ts-tab' aria-selected='true'>Code</a></li>
+                                <li id='hcode' role='presentation'><a id='htab' role='tab' aria-controls='html-tab'>Markup</a></li>
                                 <li id='plnk'><a id='plnkr'>Open in Plunker</a></li>
                             </ul>
+                            <div id="ts-tab" role="tabpanel" aria-hidden="true" class="lang-tab">
+                                <div class="source-cnt" tabindex="1">
+                                    <div id="ts-source" class="javascript src"></div>
+                                </div>
+                            </div>
                             <div id="html-tab" role="tabpanel" class="lang-tab">
                                 <div id="html-tab-scroll" class="source-cnt" tabindex="1">
                                     <div id="html-source" class="xml src"></div>
                                 </div>
 
-                            </div>
-                            <div id="ts-tab" role="tabpanel" aria-hidden="true" class="lang-tab">
-                                <div class="source-cnt" tabindex="1">
-                                    <div id="ts-source" class="javascript src"></div>
-                                </div>
                             </div>
                         </div>
                     </div>

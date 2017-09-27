@@ -343,7 +343,7 @@ body {
 
 .property-panel-table div {
     padding-left: 10px;
-    margin-top: 10px;
+    padding-top: 10px;
 }
 
 .property-panel-section,
@@ -448,7 +448,10 @@ body {
     background-color: transparent;
     color: #007dd1;
 }
-
+#switch button, #search{
+    background-color: transparent;
+    border-color: transparent; 
+}
 #mouse {
     float: left;
 }

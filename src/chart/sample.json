@@ -167,7 +167,19 @@
         {
             "url": "symbols",
             "name": "Symbols",
-            "category": "Chart Symbols"
+            "category": "Chart Customization"
+        },
+        {
+            "url": "pie-annotation",
+            "name": "Annotation",
+            "category": "Chart Customization",
+            "type": "new"
+        },
+        {
+            "url": "data-label-template",
+            "name": "DataLabel template",
+            "category": "Chart Customization",
+            "type": "new"
         },
         {
             "url": "selection",

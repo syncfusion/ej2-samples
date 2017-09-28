@@ -16,8 +16,8 @@ this.default = (): void => {
     button = new Button({ cssClass: 'e-outline', isPrimary: true });
     button.appendTo('#outlinebtn');
 
-    button = new Button({ iconCss: 'e-icons e-prev-icon', cssClass: 'e-flat' });
-    button.appendTo('#previconbtn');
+    button = new Button({ iconCss: 'e-icons e-add-icon', cssClass: 'e-small e-round', isPrimary: true });
+    button.appendTo('#roundbtn');
 
     let togglebtn: Button = new Button({ iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isToggle: true });
     togglebtn.appendTo('#togglebtn');

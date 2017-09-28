@@ -12,8 +12,7 @@
         {
             "url": "check-box",
             "name": "CheckBox",
-            "category": "Button",
-            "type": "new"
+            "category": "Button"
         },
         {
             "url": "radio-button",

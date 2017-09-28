@@ -48,7 +48,7 @@ this.default = (): void => {
         ],
         tooltip: {
             enable: true,
-            format: '${point.x}<br>high: ${point.high}<br>low: ${point.low}'
+            format: '${point.x}<br>High: ${point.high}<br>Low: ${point.low}'
         },
         title: 'Maximum and Minimum Temperature',
         load: (args: ILoadedEventArgs) => {

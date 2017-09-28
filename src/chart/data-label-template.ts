@@ -62,7 +62,7 @@ this.default = (): void => {
                         margin: { right : 30},
                         template: '#Male-Material'
                     }
-                }, legendShape: 'Rectangle', width: 2
+                }, width: 2
             }, {
                 name: 'Female',
                 dataSource: [
@@ -80,7 +80,7 @@ this.default = (): void => {
                         margin: { right : 15},
                         template: '#Female-Material'
                     }
-                }, legendShape: 'Rectangle', width: 2
+                }, width: 2
             }
         ],
         textRender: (args: ITextRenderEventArgs) => {

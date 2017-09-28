@@ -40,6 +40,7 @@ this.default = () => {
     let countryObj: DropDownList = new DropDownList({
         dataSource: country,
         fields: { value: 'countryId', text: 'countryName' },
+        popupHeight: 'auto',
         change: () => {
             stateObj.enabled = true;
             let tempQuery: Query = new Query().where('countryId', 'equal', countryObj.value);
@@ -58,6 +59,7 @@ this.default = () => {
     let stateObj: DropDownList = new DropDownList({
         dataSource: state,
         fields: { value: 'stateId', text: 'stateName' },
+        popupHeight: 'auto',
         enabled: false,
         change: () => {
             cityObj.enabled = true;
@@ -72,6 +74,7 @@ this.default = () => {
 
     let cityObj: DropDownList = new DropDownList({
         dataSource: cities,
+        popupHeight: 'auto',
         fields: { text: 'cityName', value: 'cityId' },
         enabled: false,
         placeholder: 'Select a city'

@@ -21,7 +21,7 @@ this.default = () => {
         dataSource: employees,
         fields: { text: 'name' },
         headerTemplate:
-        '<div class="header"> <span>Photo</span> <span style="margin-left:17px">Employee Info</span></div>',
+        '<div class="header"> <span>Photo</span> <span class="info">Employee Info</span></div>',
         itemTemplate: '<div><img class="empImage" src="src/dropdownlist/Employees/${eimg}.png" alt="employee"/>' +
         '<div class="ename"> ${name} </div><div class="job"> ${designation} </div></div>',
         valueTemplate: '<div style="width:100%;height:100%;">'

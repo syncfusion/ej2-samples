@@ -1,0 +1,13 @@
+{
+    "name": "AutoComplete",
+    "directory": "autocomplete",
+    "category": "Editors",
+    "type": "new",
+    "samples": [
+        { "url": "default", "name": "Default Functionalities", "category": "AutoComplete" },
+        { "url": "grouping-icon", "name": "Grouping and Icons", "category": "AutoComplete" },
+        { "url": "databinding", "name": "Data Binding", "category": "AutoComplete" },
+        { "url": "template", "name": "Template", "category": "AutoComplete" },
+        { "url": "highlight", "name": "Highlight", "category": "AutoComplete" }
+    ]
+}

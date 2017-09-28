@@ -42,6 +42,7 @@ this.default = () => {
         dataSource: country,
         fields: { value: 'countryId', text: 'countryName' },
         allowCustom: false,
+        popupHeight: 'auto',
         change: () => {
             if (countryList.value === null) {
                 stateList.enabled = false;
@@ -68,6 +69,7 @@ this.default = () => {
         fields: { value: 'stateId', text: 'stateName' },
         enabled: false,
         allowCustom: false,
+        popupHeight: 'auto',
         change: () => {
             if (stateList.value === null) {
                 cityList.enabled = false;
@@ -87,6 +89,7 @@ this.default = () => {
 
     let cityList: ComboBox = new ComboBox({
         dataSource: cities,
+        popupHeight: 'auto',
         fields: { text: 'cityName', value: 'cityId' },
         enabled: false,
         allowCustom: false,

@@ -1,7 +1,7 @@
 /**
- * ComboBox Template Sample
+ * AutoComplete Template Sample
  */
-import { ComboBox } from '@syncfusion/ej2-dropdowns';
+import { AutoComplete } from '@syncfusion/ej2-dropdowns';
 
 this.default = () => {
 
@@ -17,15 +17,15 @@ this.default = () => {
         { name: 'Steven Buchanan', eimg: '10', designation: 'CEO', country: 'England' }
     ];
 
-    let comboBoxObj: ComboBox = new ComboBox({
+    let atcObj: AutoComplete = new AutoComplete({
         dataSource: empList,
-        fields: { text: 'name', value: 'eimg' },
+        fields: { value: 'name' },
         headerTemplate:
         '<div class="header"> <span>Photo</span> <span class="info">Employee Info</span></div>',
-        itemTemplate: '<div><img class="empImage" src="src/combobox/Employees/${eimg}.png" alt="employee"/>' +
-            '<div class="ename"> ${name} </div><div class="job"> ${designation} </div></div>',
-        placeholder: 'Select an employee',
-        popupHeight: '270px'
+        itemTemplate: '<div><img class="empImage" src="src/autocomplete/Employees/${eimg}.png" alt="employee"/>' +
+        '<div class="ename"> ${name} </div><div class="job"> ${designation} </div></div>',
+        placeholder: 'e.g. Andrew Fuller',
+        popupHeight: '450px'
     });
-    comboBoxObj.appendTo('#employees');
+    atcObj.appendTo('#employees');
 };

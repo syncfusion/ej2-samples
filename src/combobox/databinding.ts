@@ -60,9 +60,7 @@ this.default = () => {
         label: 'Autofill',
         change: (args: ChangeEventArgs) => {
             comboBoxObj1.autofill = args.checked;
-            comboBoxObj1.dataBind();
             comboBoxObj2.autofill = args.checked;
-            comboBoxObj2.dataBind();
         }
     });
     checkBoxObj.appendTo('#checkAutofill');

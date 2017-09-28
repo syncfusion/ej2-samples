@@ -9,7 +9,7 @@ this.default = (): void => {
     checkBoxObj.appendTo('#checked');
 
     checkBoxObj = new CheckBox({ label: 'Checked, Disabled', disabled: true, checked: true });
-    checkBoxObj.appendTo('#unchecked');
+    checkBoxObj.appendTo('#disabled');
 
     checkBoxObj = new CheckBox({ label: 'Indeterminate, Disabled', indeterminate: true, disabled: true });
     checkBoxObj.appendTo('#indeterminate');

@@ -17,7 +17,7 @@ const tabList: string[] = ['htab', 'ttab'];
 const urlSplit: RegExp = /\b(?!html)\b([A-Za-z-]+)/g;
 let execFunction: { [key: string]: Object } = {};
 let selectedTheme: string = location.hash.split('/')[1];
-let availableThemes: string[] = ['material', 'fabric'];
+let availableThemes: string[] = ['material', 'fabric', 'bootstrap'];
 let isHashChanged: boolean = true;
 let isButtonClick: boolean = false;
 
@@ -148,11 +148,7 @@ function loadJSON(): void {
         selectedTheme = 'material';
     }
     loadTheme(selectedTheme);
-    if (selectedTheme === 'fabric') {
-        enableRipple(false);
-    } else {
-        enableRipple(true);
-    }
+    enableRipple(selectedTheme === 'material');
     overlay();
     routeDefault();
     showBackButton();

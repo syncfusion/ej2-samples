@@ -86,6 +86,9 @@ body {
 .switch-icon.fabric {
     background: url(images/sb_icons/fabric.png) no-repeat 100% 100%;
 }
+.switch-icon.bootstrap {
+    background: url(images/sb_icons/bootstrap.png) no-repeat 100% 100%;
+}
 #selectdiv {
     width:230px;
     position:absolute;

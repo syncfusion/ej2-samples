@@ -285,11 +285,14 @@ function navigateURL(arg: Controls & Samples, isInteracted: boolean): void {
     }
 }
 function loadTheme(theme: string): void {
-    let doc: HTMLFormElement = <HTMLFormElement>document.getElementById('themelink');
-    selectedTheme = theme;
-    doc.href = 'styles/' + selectedTheme + '.css';
-    select('#themeswitcher-icon').setAttribute('src', 'styles/images/sb_icons/SB_Switcher_icon_' + theme + '.png');
-    document.getElementById(theme).style.background = '#DEDFE0';
+    let ajax: Ajax = new Ajax('./styles/' + theme + '.css', 'GET', true);
+    ajax.send().then((result: any) => {
+        let doc: HTMLFormElement = <HTMLFormElement>document.getElementById('themelink');
+        selectedTheme = theme;
+        doc.href = 'styles/' + selectedTheme + '.css';
+        select('#themeswitcher-icon').setAttribute('src', 'styles/images/sb_icons/SB_Switcher_icon_' + theme + '.png');
+        document.getElementById(theme).style.background = '#DEDFE0';
+    });
 }
 function addRoutes(samplesList: Controls[]): void {
     for (let node of samplesList) {

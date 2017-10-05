@@ -1,0 +1,81 @@
+<div class="col-lg-8 control-section">
+    <div class="content-wrapper">
+        <div class="control-label">Formats</div>
+        <input id="mask1" type="text" />
+    </div>
+</div>
+<div class="col-lg-4 property-section">
+    <table id="property" title="Properties" style="width: 100%">
+        <tbody>
+            <tr>
+                <td style="width: 50%">
+                    <div>Mask</div>
+                </td>
+                <td style="width: 50%">
+                    <div>
+                        <input id="input1" type="text" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50%">
+                    <div>Prompt Character</div>
+                </td>
+                <td style="width: 50%">
+                    <div>
+                        <select id="ddl">
+                        <option value="_">_</option>
+                        <option value="#">#</option>
+                        <option value="@">@</option>
+                        <option value="*">*</option>
+			          </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50%;padding-top:10px">
+                    <div>Value</div>
+                </td>
+                <td style="width: 50%;padding-top:10px">
+                    <div id="val1" type="text"></div>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 50%;padding-top:10px">
+                    <div>Masked Value</div>
+                </td>
+                <td style="width: 50%;padding-top:10px">
+                    <div id="val2" type="text"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="description">
+    <p>This example demonstrates the usage of <b><a href="../documentation/maskedtextbox/api-maskedTextBox.html#mask-string" target="_blank">mask</a></b>        and
+        <b><a href="../documentation/maskedtextbox/api-maskedTextBox.html#promptchar-string" target="_blank">prompt character</a></b>,
+        also you can tryout these properties by dynamically updating from the properties panel.</p>
+    <p>And here, the "Value" and "Masked Value" labels from the properties panel returns the raw value (unmasked value) and masked value of MaskedTextBox component.
+        Also you can get these raw value and masked value anytime through the
+        <b><a href="../documentation/maskedtextbox/api-maskedTextBox.html#value-string" target="_blank">value</a></b> property
+        and <b><a href="http://npmci.syncfusion.com/development/documentation/maskedtextbox/api-maskedTextBox.html#getmaskedvalue" target="_blank">getMaskedValue</a></b>        method.
+    </p>
+</div>
+
+
+<style>
+    .property-panel-content {
+        padding: 0 10px 10px 0;
+    }
+    
+    .content-wrapper {
+        width: 45%;
+        margin: 0 auto;
+        min-width: 185px;
+    }
+    
+    .control-label {
+        padding: 24px 0px 10px 0px;
+        font-size: 12px;
+    }
+</style>

@@ -3,7 +3,7 @@ import { orderData } from './datasource';
 
 Grid.Inject(Page, Toolbar, ExcelExport, PdfExport);
 /**
- * Excel,PDF, CSV export sample
+ * Excel,PDF export sample
  */
 this.default = (): void => {
     let grid: Grid = new Grid(
@@ -12,7 +12,7 @@ this.default = (): void => {
             allowExcelExport: true,
             allowPdfExport: true,
             allowPaging: true,
-            toolbar: ['excelexport', 'pdfexport', 'csvexport'],
+            toolbar: ['excelexport', 'pdfexport'],
             pageSettings: { pageCount: 5 },
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'right' },
@@ -31,9 +31,6 @@ this.default = (): void => {
         }
         if ((args as any)['item'].id === 'Grid_excelexport') {
             grid.excelExport();
-        }
-        if ((args as any)['item'].id === 'Grid_csvexport') {
-            grid.csvExport();
         }
         /* tslint:enable */
     };

@@ -19,6 +19,10 @@
 		"@syncfusion/ej2-circulargauge": "*",
 		"@syncfusion/ej2-lineargauge": "*",
 		"@syncfusion/ej2-navigations": "*",
+		"@syncfusion/ej2-pdf": "*",
+		"@syncfusion/ej2-excel-export": "*",
+		"@syncfusion/ej2-file-utils": "*",
+		"@syncfusion/ej2-compression": "*",
 		"cheerio": "^1.0.0-rc.1",
 		"crossroads": "^0.12.2",
 		"hasher": "^1.2.0"

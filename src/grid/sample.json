@@ -37,6 +37,8 @@
     {"url":"normal-editing", "name": "Inline Editing", "category":"Editing", "type": "new"},
     {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing", "type": "new"},
     {"url":"batch-editing", "name": "Batch Editing", "category":"Editing", "type": "new"},
-    {"url":"columnresize", "name": "Column Resizing", "category":"Columns", "type": "new"}
+    {"url":"columnresize", "name": "Column Resizing", "category":"Columns", "type": "new"},
+    {"url":"exporting", "name": "Basic", "category":"Exporting", "type": "new"},
+    {"url":"multiple-exporting", "name": "Multiple Exporting", "category":"Exporting", "type": "new"}
    ]
 }

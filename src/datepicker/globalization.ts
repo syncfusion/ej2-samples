@@ -1,12 +1,12 @@
 import { DatePicker } from '@syncfusion/ej2-calendars';
 import { loadCldr, L10n, Internationalization } from '@syncfusion/ej2-base';
 import * as numberingSystems from '../common/cldr-data/supplemental/numberingSystems.json';
+import * as zhgregorian from '../common/cldr-data/main/zh/ca-gregorian.json';
+import * as zhnumbers from '../common/cldr-data/main/zh/numbers.json';
 import * as degregorian from '../common/cldr-data/main/de/ca-gregorian.json';
 import * as denumbers from '../common/cldr-data/main/de/numbers.json';
-import * as detimeZoneNames from '../common/cldr-data/main/de/timeZoneNames.json';
 import * as argregorian from '../common/cldr-data/main/ar/ca-gregorian.json';
 import * as arnumbers from '../common/cldr-data/main/ar/numbers.json';
-import * as artimeZoneNames from '../common/cldr-data/main/ar/timeZoneNames.json';
 /**
  * Globalization DatePicker sample
  */
@@ -16,6 +16,11 @@ this.default = (): void => {
         'de': {
             'datepicker': {
                 placeholder: 'Wählen Sie ein Datum'
+            }
+        },
+        'zh': {
+            'datepicker': {
+                placeholder: '选择日期'
             }
         },
         'en': {
@@ -31,7 +36,7 @@ this.default = (): void => {
     });
 
     // loadCldr method to load the culture specific JSON file.
-    loadCldr(numberingSystems, degregorian, detimeZoneNames, denumbers, argregorian, arnumbers, artimeZoneNames);
+    loadCldr(numberingSystems, zhgregorian, zhnumbers, degregorian, denumbers, argregorian, arnumbers);
 
     let datepicker: DatePicker = new DatePicker({
         locale: 'de'

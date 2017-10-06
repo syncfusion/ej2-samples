@@ -19,7 +19,7 @@ this.default = (): void => {
                 { field: 'ShippedDate', headerText: 'Shipped Date', width: 140, format: 'yMd', textAlign: 'right' },
                 { field: 'ShipCountry', headerText: 'Ship Country', width: 150 }
             ],
-            pageSettings: { pageCount: 5 }
+            pageSettings: { pageCount: 4, pageSizes: true }
         });
     grid.appendTo('#Grid');
 };

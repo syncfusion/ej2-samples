@@ -1,0 +1,14 @@
+{
+    "name": "MultiSelect",
+    "directory": "multiselect",
+    "category": "Editors",
+    "type": "new",
+    "samples": [
+        { "url": "default", "name": "Default Functionalities", "category": "MultiSelect" },
+        { "url": "data-binding", "name": "Data Binding", "category": "MultiSelect" },
+        { "url": "grouping-icon", "name": "Grouping", "category": "MultiSelect" },
+        { "url": "template", "name": "Template", "category": "MultiSelect" },
+        { "url": "filtering", "name": "Filtering", "category": "MultiSelect" },
+        { "url": "custom-value", "name": "Custom Value", "category": "MultiSelect" }
+    ]
+}

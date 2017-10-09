@@ -1,0 +1,13 @@
+{
+    "name": "DateRangePicker",
+    "directory": "daterangepicker",
+    "category": "Editors",
+    "type": "new",
+    "samples": [
+        { "url": "default", "name": "Default Functionalities", "category": "DateRangePicker" },   
+        { "url": "minmax", "name": "Date Range", "category": "DateRangePicker" },
+        { "url": "minmaxdays", "name": "Restrict Range", "category": "DateRangePicker" },
+        { "url": "globalization", "name": "Globalization", "category": "DateRangePicker" },
+        { "url": "presets", "name": "Preset Ranges", "category": "DateRangePicker" }
+    ]
+}

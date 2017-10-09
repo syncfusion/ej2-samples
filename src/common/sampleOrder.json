@@ -1,7 +1,7 @@
 {
     "Data Visualization": ["Chart", "Circular Gauge", "Linear Gauge"],
     "Grids": ["Grid"],
-    "Editors": ["Form Validator", "DropDownList", "ComboBox", "AutoComplete", "Calendar", "DatePicker", "NumericTextBox", "Button", "TextBoxes", "TimePicker", "MaskedTextBox"],
+    "Editors": ["Form Validator", "DropDownList", "ComboBox", "AutoComplete", "Calendar", "DatePicker", "DateRangePicker", "NumericTextBox", "Button", "TextBoxes", "TimePicker", "MaskedTextBox"],
     "Layout": ["ListView", "Dialog", "Tooltip"],
     "Navigation": ["Toolbar"]
 }

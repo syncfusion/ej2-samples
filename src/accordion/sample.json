@@ -1,0 +1,28 @@
+{
+    "name": "Accordion",
+    "directory": "accordion",
+    "category": "Navigation",
+    "type": "new",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "category": "Accordion"
+        },
+        {
+            "url": "ajax",
+            "name": "Ajax Content",
+            "category": "Accordion"
+        },
+        {
+            "url": "icon",
+            "name": "Icons",
+            "category": "Accordion"
+        },
+        {
+            "url": "rtl",
+            "name": "RTL",
+            "category": "Accordion"
+        }
+    ]
+}

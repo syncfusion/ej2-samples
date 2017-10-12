@@ -2,12 +2,13 @@
  * Context Menu default sample
  */
 
-import { ContextMenu, MenuAnimationSettings, BeforeItemRenderEventArgs } from '@syncfusion/ej2-navigations';
+import { ContextMenu, MenuAnimationSettings, BeforeItemRenderEventArgs, MenuItemModel,
+ContextMenuModel } from '@syncfusion/ej2-navigations';
 import { select, Browser } from '@syncfusion/ej2-base';
 
 this.default = () => {
     let animationSettings: MenuAnimationSettings;
-    let menuItems: { [key: string]: Object }[] = [
+    let menuItems: MenuItemModel[] = [
         {
             text: 'Cut',
             iconCss: 'e-cm-icons e-cut'
@@ -42,7 +43,7 @@ this.default = () => {
             iconCss: 'e-cm-icons e-comment'
         }];
 
-    let menuOptions: { [key: string]: Object } = {
+    let menuOptions: ContextMenuModel = {
         target: '#target',
         items: menuItems,
         animationSettings: animationSettings,

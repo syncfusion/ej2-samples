@@ -1,8 +1,8 @@
-import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, Toolbar } from '@syncfusion/ej2-grids';
 import { orderData } from './datasource';
 
 
-Grid.Inject(Page, Selection);
+Grid.Inject(Page, Selection, Toolbar);
 
 /**
  * Print Grid sample
@@ -12,6 +12,7 @@ this.default = (): void => {
         {
             dataSource: orderData.slice(0, 200),
             allowPaging: true,
+            toolbar: ['print'],
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'right' },
                 { field: 'CustomerName', headerText: 'Customer Name', width: 150 },
@@ -22,8 +23,4 @@ this.default = (): void => {
             pageSettings: { pageCount: 5 }
         });
     grid.appendTo('#Grid');
-
-    document.getElementById('print').onclick = () => {
-        grid.print();
-    };
 };

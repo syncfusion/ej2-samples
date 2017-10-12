@@ -1,9 +1,10 @@
 import { Grid, Page, Toolbar, ExcelExport, PdfExport } from '@syncfusion/ej2-grids';
+import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { orderData } from './datasource';
 
 Grid.Inject(Page, Toolbar, ExcelExport, PdfExport);
 /**
- * Excel,PDF export sample
+ * Excel,PDF, CSV export sample
  */
 this.default = (): void => {
     let grid: Grid = new Grid(
@@ -12,7 +13,7 @@ this.default = (): void => {
             allowExcelExport: true,
             allowPdfExport: true,
             allowPaging: true,
-            toolbar: ['excelexport', 'pdfexport'],
+            toolbar: ['excelexport', 'pdfexport', 'csvexport'],
             pageSettings: { pageCount: 5 },
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'right' },
@@ -24,14 +25,15 @@ this.default = (): void => {
             ]
         });
     grid.appendTo('#Grid');
-    grid.toolbarClick = (args: Object) => {
-        /* tslint:disable */
-        if ((args as any)['item'].id === 'Grid_pdfexport') {
+    grid.toolbarClick = (args: ClickEventArgs) => {
+        if (args.item.id === 'Grid_pdfexport') {
             grid.pdfExport();
         }
-        if ((args as any)['item'].id === 'Grid_excelexport') {
+        if (args.item.id === 'Grid_excelexport') {
             grid.excelExport();
         }
-        /* tslint:enable */
+        if (args.item.id === 'Grid_csvexport') {
+            grid.csvExport();
+        }
     };
 };

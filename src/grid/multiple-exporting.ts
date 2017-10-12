@@ -1,4 +1,5 @@
 import { Grid, Toolbar, ExcelExport, PdfExport } from '@syncfusion/ej2-grids';
+import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { orderData, productData } from './datasource';
 
 Grid.Inject(Toolbar, ExcelExport, PdfExport);
@@ -31,20 +32,18 @@ this.default = (): void => {
     });
     firstGrid.appendTo('#FirstGrid');
     secondGrid.appendTo('#SecondGrid');
-    firstGrid.toolbarClick = (args: Object) => {
-        /* tslint:disable */
-        if ((args as any)['item'].id === 'FirstGrid_excelexport') {
+    firstGrid.toolbarClick = (args: ClickEventArgs) => {
+        if (args.item.id === 'FirstGrid_excelexport') {
             let firstGridExcelExport: Promise<any> = firstGrid.excelExport({}, true);
             firstGridExcelExport.then((bookData: any) => {
                 secondGrid.excelExport({}, false, bookData);
             });
         }
-        if ((args as any)['item'].id === 'FirstGrid_pdfexport') {
+        if (args.item.id === 'FirstGrid_pdfexport') {
             let firstGridPdfExport: Promise<Object> = firstGrid.pdfExport({}, true);
             firstGridPdfExport.then((pdfData: Object) => {
                 secondGrid.pdfExport({}, false, pdfData);
             });
         }
-        /* tslint:enable */
     };
 };

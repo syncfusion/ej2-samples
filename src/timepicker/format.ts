@@ -9,7 +9,7 @@ this.default = (): void => {
     let timeObj: TimePicker = new TimePicker({
         value: new Date(),
         step: 60,
-        format: '\'Time: \' HH:mm'
+        format: 'dd/MM/yyyy HH:mm'
     });
     timeObj.appendTo('#timepicker');
 };

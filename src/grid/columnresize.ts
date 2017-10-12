@@ -13,7 +13,7 @@ this.default = (): void => {
             allowResizing: true,
             height: 400,
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', minWidth: 10, width: 200, maxWidth: 300, textAlign: 'right' },
+                { field: 'OrderID', headerText: 'Order ID', minWidth: 120, width: 200, maxWidth: 300, textAlign: 'right' },
                 { field: 'CustomerName', headerText: 'Customer Name', minWidth: 10, width: 200 },
                 { field: 'OrderDate', headerText: 'Order Date', width: 200, minWidth: 10, format: 'yMd', textAlign: 'right' },
                 { field: 'Freight', width: 150, format: 'C2', minWidth: 10, textAlign: 'right' },

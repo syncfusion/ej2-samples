@@ -2,8 +2,13 @@ html,
 body {
     height: 100%;
     overflow: hidden;
-    font-family: Roboto, Segoe UI;
+    font-family: "Segoe UI","GeezaPro","DejaVu Serif", "sans-serif";
 }
+
+.material {
+    font-family: "Roboto","Segoe UI","GeezaPro","DejaVu Serif", "sans-serif";
+}
+
 
 .sample-browser {
     width: 100%;

@@ -1,0 +1,43 @@
+<div class="col-lg-12 control-section">
+    <div class="control_wrapper">
+        <div id="tree"></div>
+    </div>
+</div>
+<style>
+    .control_wrapper {
+        max-width: 500px;
+        margin: auto;
+        border: 1px solid #dddddd;
+        border-radius: 3px;
+    }
+    .custom.e-treeview .e-fullrow {
+        height: 72px;
+    }
+    .custom.e-treeview .e-list-text {
+        line-height: normal;
+    }
+    .eimage {
+        float: left;
+        padding: 11px 16px 11px 0;
+    }
+    .ename {
+        font-size: 16px;
+        padding: 14px 0 0;
+    }
+    .ejob {
+        font-size: 14px;
+        opacity: .87;
+    }
+</style>
+<script id="treeTemplate" type="text/x-template">
+    <div>
+        <img class="eimage" src="src/treeview/Employees/${eimg}.png" alt="${eimg}"/>
+        <div class="ename">${name}</div>
+        <div class="ejob">${job}</div>
+    </div>
+</script>
+<div id="description">
+    <p>The <code>TreeView</code> component has the option to customize the node structure through the <code>nodeTemplate</code> property, so the tree node can be formed with any custom structure.</p>
+    <p>In this demo, the node was formed with employee's image, name and designation.</p>
+    <p>For more information, you can refer the <a href="../documentation/treeview/templates.html" target="_blank">Templates</a> section from the documentation.</p>
+</div>

@@ -3,5 +3,5 @@
     "Grids": ["Grid"],
     "Editors": ["Form Validator", "DropDownList", "ComboBox", "AutoComplete", "MultiSelect", "Calendar", "DatePicker", "DateRangePicker", "NumericTextBox", "Button", "TextBoxes", "TimePicker", "MaskedTextBox"],
     "Layout": ["ListView", "Dialog", "Tooltip"],
-    "Navigation": ["ContextMenu", "Accordion", "Toolbar", "Tab"]
+    "Navigation": ["ContextMenu", "Accordion", "Toolbar", "Tab", "TreeView"]
 }

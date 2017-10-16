@@ -2,9 +2,8 @@
    "name": "Toolbar", 
    "directory": "toolbar",  
    "category":"Navigation", 
-   "type": "update",
    "samples" : [
-    {"url":"default", "name": "Default Functionalities", "category":"Toolbar", "type": "update"},
+    {"url":"default", "name": "Default Functionalities", "category":"Toolbar"},
     {"url":"popup", "name": "Popup", "category":"Toolbar"},
     {"url":"alignment", "name": "Alignment", "category":"Toolbar"},
     {"url":"rtl", "name": "RTL", "category":"Toolbar"}

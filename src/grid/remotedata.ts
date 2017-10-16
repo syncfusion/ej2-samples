@@ -16,10 +16,6 @@ this.default = (): void => {
         {
             dataSource: data,
             allowPaging: true,
-            actionBegin: show,
-            actionComplete: hide,
-            created: show,
-            dataBound: hide,
             columns: [
                 { field: 'ProductID', headerText: 'Product ID', width: 130, textAlign: 'right' },
                 { field: 'ProductName', headerText: 'Product Name', width: 170 },
@@ -33,20 +29,5 @@ this.default = (): void => {
             pageSettings: { pageCount: 5 }
         });
     grid.appendTo('#Grid');
-    function show(): void {
-        let div: HTMLElement = document.getElementById('waitingpopup');
-        let popup: HTMLElement = document.getElementById('popup');
-        let width: number = grid.element.offsetWidth;
-        let height: number = grid.element.offsetHeight;
-        popup.style.width = width + 'px';
-        popup.style.height = height + 'px';
-        div.style.top = (height / 2 - 25) + 'px';
-        div.style.left = (width / 2 - 25) + 'px';
-        popup.style.display = '';
-    }
-    function hide(): void {
-        let popup: HTMLElement = document.getElementById('popup') as HTMLElement;
-        popup.style.display = 'none';
-    }
 };
 

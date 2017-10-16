@@ -9,13 +9,13 @@ import { ListView } from '@syncfusion/ej2-lists';
 this.default = () => {
     let listObj: ListView = new ListView({
         dataSource: [
-            { id: 1, text: 'Australia' },
-            { id: 2, text: 'Bhutan' },
-            { id: 3, text: 'China' },
-            { id: 4, text: 'Cuba' },
-            { id: 5, text: 'India' },
-            { id: 6, text: 'Switzerland' },
-            { id: 7, text: 'United States' }
+            { id: '1', text: 'Australia' },
+            { id: '2', text: 'Bhutan' },
+            { id: '3', text: 'China' },
+            { id: '4', text: 'Cuba' },
+            { id: '5', text: 'India' },
+            { id: '6', text: 'Switzerland' },
+            { id: '7', text: 'United States' }
         ],
         fields: { text: 'text', tooltip: 'id' }
     });

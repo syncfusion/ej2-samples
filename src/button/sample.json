@@ -2,7 +2,6 @@
     "name": "Button",
     "directory": "button",
     "category": "Editors",
-    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -17,8 +16,7 @@
         {
             "url": "radio-button",
             "name": "RadioButton",
-            "category": "Button",
-            "type": "new"
+            "category": "Button"
         }
     ]
 }

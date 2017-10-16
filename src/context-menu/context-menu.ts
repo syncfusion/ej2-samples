@@ -44,7 +44,7 @@ this.default = () => {
         }];
 
     let menuOptions: ContextMenuModel = {
-        target: '#target',
+        target: '#contextmenutarget',
         items: menuItems,
         animationSettings: animationSettings,
         beforeItemRender: (args: BeforeItemRenderEventArgs) => {
@@ -57,10 +57,10 @@ this.default = () => {
     let menuObj: ContextMenu = new ContextMenu(menuOptions, '#contextmenu');
 
     if (Browser.isDevice) {
-        select('#target').textContent = 'Touch hold to open the ContextMenu';
+        select('#contextmenutarget').textContent = 'Touch hold to open the ContextMenu';
         menuObj.animationSettings.effect = 'ZoomIn';
     } else {
-        select('#target').textContent = 'Right click / Touch hold to open the ContextMenu';
+        select('#contextmenutarget').textContent = 'Right click / Touch hold to open the ContextMenu';
         menuObj.animationSettings.effect = 'SlideDown';
     }
 };

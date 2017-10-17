@@ -604,6 +604,10 @@ function renderDescription(): void {
 
 function plunker(results: string): void {
     let plnkr: { [key: string]: Object } = JSON.parse(results);
+    let prevForm: Element = select('#plnkr-form');
+    if (prevForm) {
+        detach(prevForm);
+    }
     let form: HTMLFormElement = <HTMLFormElement>createElement('form');
     form.setAttribute('action', 'http://plnkr.co/edit/?p=preview');
     form.setAttribute('method', 'post');

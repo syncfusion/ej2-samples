@@ -1,8 +1,7 @@
 {
     "name": "Circular Gauge",
     "directory": "circulargauge",
-    "category": "Data Visualization",
-    "type": "new",
+    "category": "Data Visualization",    
     "samples": [
         {
             "url": "default",

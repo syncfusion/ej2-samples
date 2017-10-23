@@ -1,8 +1,7 @@
 {
     "name": "Chart",
     "directory": "chart",
-    "category": "Data Visualization",
-    "type": "update",
+    "category": "Data Visualization",    
     "samples": [{
             "url": "line",
             "name": "Line",
@@ -71,8 +70,7 @@
          {
             "url": "step-area",
             "name": "Step Area",
-            "category": "Series",
-            "type":"new"
+            "category": "Series"            
         },
         {
             "url": "scatter",
@@ -96,33 +94,27 @@
         }, {
             "url": "default-pie",
             "name": "Pie",
-            "category": "Accumulation Series",
-			"type": "new"
+            "category": "Accumulation Series"			
         }, {
             "url": "default-doughnut",
             "name": "Pie With Legend",
-            "category": "Accumulation Series",
-			"type":"new"
+            "category": "Accumulation Series"			
         }, {
             "url": "semi-pie",
             "name": "Semi Accumulation Series",
-            "category": "Accumulation Series",
-			"type": "new"
+            "category": "Accumulation Series"			
         }, {
             "url": "smart-labels",
             "name": "Smart Labels",
-            "category": "Accumulation Series",
-			"type": "new"
+            "category": "Accumulation Series"			
         }, {
             "url": "drilldown-pie",
             "name": "Drilldown",
-            "category": "Accumulation Series",
-			"type": "new"
+            "category": "Accumulation Series"			
         }, {
             "url": "grouping",
             "name": "Grouping",
-            "category": "Accumulation Series",
-			"type": "new"
+            "category": "Accumulation Series"			
         }, {
             "url": "local-data",
             "name": "Local Data",
@@ -161,8 +153,7 @@
         {
             "url": "inversed",
             "name": "Inversed Axis",
-            "category": "Chart Axes",
-            "type": "new"
+            "category": "Chart Axes"            
         },
         {
             "url": "symbols",
@@ -172,14 +163,12 @@
         {
             "url": "pie-annotation",
             "name": "Annotation",
-            "category": "Chart Customization",
-            "type": "new"
+            "category": "Chart Customization"            
         },
         {
             "url": "data-label-template",
             "name": "DataLabel Template",
-            "category": "Chart Customization",
-            "type": "new"
+            "category": "Chart Customization"            
         },
         {
             "url": "selection",

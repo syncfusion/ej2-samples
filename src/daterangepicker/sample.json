@@ -2,7 +2,6 @@
     "name": "DateRangePicker",
     "directory": "daterangepicker",
     "category": "Editors",
-    "type": "new",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "DateRangePicker" },   
         { "url": "minmax", "name": "Date Range", "category": "DateRangePicker" },

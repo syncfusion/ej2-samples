@@ -2,7 +2,6 @@
    "name": "Grid", 
    "directory": "grid", 
    "category":"Grid", 
-   "type": "update",
    "samples" : [
     {"url":"default", "name": "Default Functionalities", "category":"Grid" },
     {"url":"grouping", "name": "Grouping", "category":"Grid"},
@@ -19,7 +18,7 @@
     {"url":"columntemplate", "name": "Column Template", "category":"Columns"},
     {"url":"stackedheader", "name": "Stacked Header", "category":"Columns"},
     {"url":"reorder", "name": "Reorder", "category": "Columns"},
-	{"url":"columnchooser", "name": "Column Chooser", "category": "Columns", "type": "new"},
+	{"url":"columnchooser", "name": "Column Chooser", "category": "Columns"},
     {"url":"rowtemplate", "name": "Row Template", "category":"Rows"},
     {"url":"detailtemplate", "name": "Detail Template", "category":"Rows"},
     {"url":"hover", "name": "Row Hover", "category":"Rows", "hideOnDevice":true},
@@ -28,17 +27,17 @@
     {"url":"sortingapi", "name": "Sorting API", "category":"Sorting"},
     {"url":"filter", "name": "Default Filtering", "category":"Filtering"},
     {"url":"search", "name": "Search", "category":"Filtering"},
-    {"url":"defaultpaging", "name": "Default Paging", "category": "Paging", "type": "update"},
+    {"url":"defaultpaging", "name": "Default Paging", "category": "Paging"},
     {"url":"pagingapi", "name": "Paging API", "category": "Paging"},
     {"url":"selection", "name": "Default Selection", "category":"Selection"},
     {"url":"selectionapi", "name": "Selection API", "category": "Selection"},
     {"url":"aggregatedefault", "name": "Default Aggregate", "category": "Aggregates" },
     {"url":"aggregategroup", "name": "Group and Caption Aggregate", "category": "Aggregates" },
-    {"url":"normal-editing", "name": "Inline Editing", "category":"Editing", "type": "new"},
-    {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing", "type": "new"},
-    {"url":"batch-editing", "name": "Batch Editing", "category":"Editing", "type": "new"},
-    {"url":"columnresize", "name": "Column Resizing", "category":"Columns", "type": "new"},
-    {"url":"exporting", "name": "Basic", "category":"Exporting", "type": "new"},
-    {"url":"multiple-exporting", "name": "Multiple Exporting", "category":"Exporting", "type": "new"}
+    {"url":"normal-editing", "name": "Inline Editing", "category":"Editing"},
+    {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing"},
+    {"url":"batch-editing", "name": "Batch Editing", "category":"Editing"},
+    {"url":"columnresize", "name": "Column Resizing", "category":"Columns"},
+    {"url":"exporting", "name": "Basic", "category":"Exporting"},
+    {"url":"multiple-exporting", "name": "Multiple Exporting", "category":"Exporting"}
    ]
 }

@@ -2,7 +2,6 @@
     "name": "Tab",
     "directory": "tab",
     "category": "Navigation",
-    "type": "new",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "Tab" },
         { "url": "orientation", "name": "Orientation", "category": "Tab" },

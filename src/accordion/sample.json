@@ -2,7 +2,6 @@
     "name": "Accordion",
     "directory": "accordion",
     "category": "Navigation",
-    "type": "new",
     "samples": [
         {
             "url": "default",

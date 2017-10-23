@@ -20,6 +20,9 @@ let selectedTheme: string = location.hash.split('/')[1];
 let availableThemes: string[] = ['material', 'fabric', 'bootstrap'];
 let isHashChanged: boolean = true;
 let isButtonClick: boolean = false;
+let themeRegex: RegExp = /#\/(material|fabric|bootstrap)/i;
+let defaultSamples: any = [];
+let samplePath: string[] = [];
 
 interface DestroyMethod extends HTMLElement {
     destroy: Function;
@@ -253,9 +256,22 @@ function routeDefault(): void {
         window.location.href = '#/' + selectedTheme + '/chart/line.html';
         isInitRedirected = true;
     });
-    bypassed.add((request: Object) => {
-        loadPage('404');
+    bypassed.add((request: string) => {
+        let hash: string[] = request.split('.html')[0].split('/');
+        if (samplePath.indexOf(hash.slice(1).join('/')) === -1) {
+            let path: string;
+            for (let sample of samplePath) {
+                if (sample.indexOf(hash[1] + '/') !== -1) {
+                    path = hash[0] + '/' + sample + '.html';
+                    break;
+                }
+            }
+            location.hash = path ? path : '#/material/chart/line.html';
+            location.hash = '#/' + hash[0] + '/' + (defaultSamples[hash[1]] || 'chart/line.html');
+            isInitRedirected = true;
+        }
     });
+
 }
 
 function wireEvents(): void {
@@ -296,12 +312,14 @@ function loadTheme(theme: string): void {
 }
 function addRoutes(samplesList: Controls[]): void {
     for (let node of samplesList) {
+        defaultSamples[node.directory] = node.directory + '/' + node.samples[0].url + '.html';
         let dataManager: DataManager = new DataManager(node.samples);
         let samples: Samples[] & { [key: string]: Object }[] = <Samples[] & { [key: string]: Object }[]>
             dataManager.executeLocal(new Query().sortBy('order', 'ascending'));
         for (let subNode of samples) {
             let control: string = node.directory;
             let sample: string = subNode.url;
+            samplePath = samplePath.concat(control + '/' + sample);
             let sampleName: string = node.name + ' / ' + ((node.name !== subNode.category) ?
                 (subNode.category + ' / ') : '') + subNode.name;
             let selectedTheme: string = location.hash.split('/')[1] ? location.hash.split('/')[1] : 'material';
@@ -536,6 +554,16 @@ function parseHash(newHash: string, oldHash: string): void {
 function checkSampleLength(directory: string): boolean {
     let data: DataManager = new DataManager(samplesList);
     let controls: Controls[] = <Controls[]>data.executeLocal(new Query().where('directory', 'equal', directory));
+    if (!controls.length) {
+        let hash: string  = location.hash;
+        let split: string[] = hash.split('/');
+        if (!themeRegex.test(hash) && split.length === 3) {
+            location.hash = '#/material/' + split[1] + '/' + split[2];
+        } else {
+            location.hash = '#/material/chart/line.html';
+        }
+        location.reload();
+    }
     return controls[0].samples.length > 1;
 }
 

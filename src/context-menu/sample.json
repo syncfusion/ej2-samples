@@ -2,7 +2,6 @@
     "name": "ContextMenu",
     "directory": "context-menu",
     "category": "Navigation",
-    "type": "new",
     "samples": [
         {
             "url": "context-menu",

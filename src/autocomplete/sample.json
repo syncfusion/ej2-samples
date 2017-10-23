@@ -2,7 +2,6 @@
     "name": "AutoComplete",
     "directory": "autocomplete",
     "category": "Editors",
-    "type": "new",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "AutoComplete" },
         { "url": "grouping-icon", "name": "Grouping and Icons", "category": "AutoComplete" },

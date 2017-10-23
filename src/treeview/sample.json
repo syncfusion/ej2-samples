@@ -2,7 +2,6 @@
     "name": "TreeView",
     "directory": "treeview",
     "category":"Navigation",
-    "type": "new",
     "samples" : [
         {"url":"default", "name": "Default Functionalities", "category": "TreeView"},
         {"url":"localdata", "name": "Local Data", "category": "Data Binding"},

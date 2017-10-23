@@ -2,7 +2,6 @@
     "name": "MultiSelect",
     "directory": "multiselect",
     "category": "Editors",
-    "type": "new",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "MultiSelect" },
         { "url": "data-binding", "name": "Data Binding", "category": "MultiSelect" },

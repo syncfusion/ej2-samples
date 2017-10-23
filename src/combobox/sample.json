@@ -2,7 +2,6 @@
     "name": "ComboBox",
     "directory": "combobox",
     "category": "Editors",
-    "type": "new",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "ComboBox" },
         { "url": "grouping-icon", "name": "Grouping and Icons", "category": "ComboBox" },

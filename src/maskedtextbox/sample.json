@@ -2,7 +2,6 @@
     "name": "MaskedTextBox",
     "directory": "maskedtextbox",
     "category": "Editors",
-    "type": "new",
     "samples": [
         {
             "url": "default",

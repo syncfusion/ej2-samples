@@ -37,6 +37,7 @@
     {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing"},
     {"url":"batch-editing", "name": "Batch Editing", "category":"Editing"},
     {"url":"columnresize", "name": "Column Resizing", "category":"Columns"},
+	{"url":"headertemplate", "name": "Header Template", "category":"Columns","type": "new"},
     {"url":"exporting", "name": "Basic", "category":"Exporting"},
     {"url":"multiple-exporting", "name": "Multiple Exporting", "category":"Exporting"}
    ]

@@ -12,13 +12,13 @@ this.default = (): void => {
             dataSource: data,
             columns: [
                 { field: 'EmployeeID', headerText: 'Employee ID', width: 120, textAlign: 'right', headerTemplate: '#employeetemplate' },
-                { field: 'FirstName', headerText: 'First Name', width: 140 },
+                { field: 'FirstName', headerText: 'Name', width: 140 },
+                { field: 'Title', headerText: 'Title', width: 170 },
                 {
-                    field: 'BirthDate', headerText: 'Birth Date', width: 130, format: 'yMd',
+                    field: 'HireDate', headerText: 'Hire Date', width: 130, format: 'yMd',
                     textAlign: 'right', headerTemplate: '#datetemplate'
                 },
-                { field: 'City', width: 120 },
-                { field: 'Country', headerText: 'Country', width: 140, format: 'yMd', textAlign: 'right' },
+                { field: 'ReportsTo', headerText: 'Reports To', width: 120, textAlign: 'right' }
             ]
         });
     grid.appendTo('#Grid');

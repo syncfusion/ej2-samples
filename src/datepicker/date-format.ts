@@ -11,10 +11,11 @@ this.default = (): void => {
     });
     datepicker.appendTo('#datepicker');
 
-    document.getElementById('dateformat').addEventListener('change', changeLocale);
+    document.getElementById('dateformats').addEventListener('change', changeLocale);
 
     function changeLocale(): void {
-        let dateFormat: string = (document.getElementById('dateformat') as HTMLSelectElement).value;
+        //Apply selected format to the component
+        let dateFormat: string = (document.getElementById('dateformats') as HTMLSelectElement).value;
         datepicker.format = dateFormat;
         datepicker.dataBind();
     }

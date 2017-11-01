@@ -3,9 +3,9 @@
     "directory": "timepicker",
     "category": "Editors",
     "samples": [
-        { "url": "default", "name": "Default Functionalities", "category": "TimePicker" },
-        { "url": "range", "name": "Time Range", "category": "TimePicker" },
-        { "url": "globalization", "name": "Globalization", "category": "TimePicker" },
-        { "url": "format", "name": "Time Format", "category": "TimePicker" }
+        { "url": "default", "name": "Default Functionalities", "category": "TimePicker", "api":{"TimePicker": [ "placeholder" ]} },
+        { "url": "range", "name": "Time Range", "category": "TimePicker", "api":{"TimePicker": [ "placeholder", "value", "readonly", "enabled", "min", "change" ]} },
+        { "url": "globalization", "name": "Globalization", "category": "TimePicker", "api":{"TimePicker": [ "value", "locale", "enableRtl" ]} },
+        { "url": "format", "name": "Time Format", "category": "TimePicker", "api":{"TimePicker": [ "value", "step", "format" ]} }
     ]
 }

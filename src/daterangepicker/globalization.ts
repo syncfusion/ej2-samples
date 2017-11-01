@@ -61,6 +61,7 @@ this.default = (): void => {
     let globalize: Internationalization = new Internationalization(daterangepicker.locale);
     document.getElementById('cultures').addEventListener('change', changeLocale);
 
+    //Apply selected locale to the component
     function changeLocale(): void {
         let culture: string = (document.getElementById('cultures') as HTMLSelectElement).value;
         daterangepicker.locale = culture;

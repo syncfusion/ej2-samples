@@ -47,6 +47,7 @@ this.default = (): void => {
     });
     dropObj.appendTo('#culture');
 
+    //Apply selected locale to the component
     function cultureChange(): void {
         let culture: string = this.text;
         timepicker.locale = culture;

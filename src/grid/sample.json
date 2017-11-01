@@ -11,6 +11,7 @@
     {"url":"print", "name": "Print", "category":"Grid", "hideOnDevice":true}, 
     {"url":"events", "name": "Events", "category":"Grid"},
     {"url":"hierarchy", "name": "Hierarchy Grid" ,"category":"Grid" },
+    {"url":"clipboard", "name": "Clipboard", "category":"Grid", "type": "new"},
     {"url":"localdata", "name": "Local Data", "category": "Data Binding"},
     {"url":"remotedata", "name": "Remote Data", "category": "Data Binding"},
     {"url":"autowrap", "name": "AutoWrap Column Cells", "category":"Columns"},    

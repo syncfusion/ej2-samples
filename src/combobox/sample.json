@@ -3,11 +3,12 @@
     "directory": "combobox",
     "category": "Editors",
     "samples": [
-        { "url": "default", "name": "Default Functionalities", "category": "ComboBox" },
-        { "url": "grouping-icon", "name": "Grouping and Icons", "category": "ComboBox" },
-        { "url": "databinding", "name": "Data Binding", "category": "ComboBox" },
-        { "url": "template", "name": "Template", "category": "ComboBox" },
-        { "url": "filtering", "name": "Filtering", "category": "ComboBox" },
-        { "url": "cascading", "name": "Cascading", "category": "ComboBox" }
+        { "url": "default", "name": "Default Functionalities", "category": "ComboBox", "api": {"ComboBox": ["popupHeight", "index", "change"]} },
+        { "url": "grouping-icon", "name": "Grouping and Icons", "category": "ComboBox", "api": {"ComboBox": ["dataSource", "fields"]} },
+        { "url": "databinding", "name": "Data Binding", "category": "ComboBox", "api": {"ComboBox": ["dataSource", "query", "sortOrder", "autofill", "actionBegin", "actionComplete", "actionFailure"]} },
+        { "url": "custom-value", "name": "Custom Value", "category": "ComboBox", "api": {"ComboBox": ["allowFiltering", "noRecordsTemplate", "filtering", "width"]} },
+        { "url": "template", "name": "Template", "category": "ComboBox", "api": {"ComboBox": ["headerTemplate", "itemTemplate"]} },
+        { "url": "filtering", "name": "Filtering", "category": "ComboBox", "api": {"ComboBox": ["allowFiltering", "filtering"]} },
+        { "url": "cascading", "name": "Cascading", "category": "ComboBox", "api": {"ComboBox": ["fields", "change"]} }
     ]
 }

@@ -39,20 +39,7 @@ this.default = () => {
         query: new Query().select(['ContactName', 'CustomerID']).take(25),
         fields: { text: 'ContactName', value: 'CustomerID' },
         placeholder: 'Select customer',
-        sortOrder: 'Ascending',
-        actionBegin: () => {
-            let element: HTMLElement[] = <HTMLElement[] & NodeListOf<Element>>
-                document.querySelector('.control-section').querySelectorAll('.e-chips-close.e-icon');
-            element[1].classList.remove('e-close-hooker');
-            element[1].classList.add('e-spinner-icon');
-            element[1].style.display = 'block';
-        },
-        actionComplete: () => {
-            removeIcon();
-        },
-        actionFailure: () => {
-            removeIcon();
-        }
+        sortOrder: 'Ascending'
     });
     listObj.appendTo('#remote');
 
@@ -62,11 +49,4 @@ this.default = () => {
         placeholder: 'Select countries',
     });
     games.appendTo('#local');
-    function removeIcon(): void {
-        let element: HTMLElement[] = <HTMLElement[] & NodeListOf<Element>>
-            document.querySelector('.control-section').querySelectorAll('.e-chips-close.e-icon');
-        element[1].classList.add('e-close-hooker');
-        element[1].classList.remove('e-spinner-icon');
-        element[1].style.display = 'none';
-    }
 };

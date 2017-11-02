@@ -5,40 +5,40 @@ import { AutoComplete } from '@syncfusion/ej2-dropdowns';
 
 this.default = () => {
     let vegetableData: { [key: string]: Object }[] = [
-        { vegetable: 'Cabbage', category: 'Leafy and Salad', id: 'item1' },
-        { vegetable: 'Chickpea', category: 'Beans', id: 'item2' },
-        { vegetable: 'Garlic', category: 'Bulb and Stem', id: 'item3' },
-        { vegetable: 'Green bean', category: 'Beans', id: 'item4' },
-        { vegetable: 'Horse gram', category: 'Beans', id: 'item5' },
-        { vegetable: 'Nopal', category: 'Bulb and Stem', id: 'item6' },
-        { vegetable: 'Onion', category: 'Bulb and Stem', id: 'item7' },
-        { vegetable: 'Pumpkins', category: 'Leafy and Salad', id: 'item8' },
-        { vegetable: 'Spinach', category: 'Leafy and Salad', id: 'item9' },
-        { vegetable: 'Wheat grass', category: 'Leafy and Salad', id: 'item10' },
-        { vegetable: 'Yarrow', category: 'Leafy and Salad', id: 'item11' }
+        { Vegetable: 'Cabbage', Category: 'Leafy and Salad', Id: 'item1' },
+        { Vegetable: 'Chickpea', Category: 'Beans', Id: 'item2' },
+        { Vegetable: 'Garlic', Category: 'Bulb and Stem', Id: 'item3' },
+        { Vegetable: 'Green bean', Category: 'Beans', Id: 'item4' },
+        { Vegetable: 'Horse gram', Category: 'Beans', Id: 'item5' },
+        { Vegetable: 'Nopal', Category: 'Bulb and Stem', Id: 'item6' },
+        { Vegetable: 'Onion', Category: 'Bulb and Stem', Id: 'item7' },
+        { Vegetable: 'Pumpkins', Category: 'Leafy and Salad', Id: 'item8' },
+        { Vegetable: 'Spinach', Category: 'Leafy and Salad', Id: 'item9' },
+        { Vegetable: 'Wheat grass', Category: 'Leafy and Salad', Id: 'item10' },
+        { Vegetable: 'Yarrow', Category: 'Leafy and Salad', Id: 'item11' }
     ];
     let socialMedia: { [key: string]: Object }[] = [
-        { class: 'facebook', socialMedia: 'Facebook', id: 'media1' },
-        { class: 'google-plus', socialMedia: 'Google Plus', id: 'media2' },
-        { class: 'instagram', socialMedia: 'Instagram', id: 'media3' },
-        { class: 'linkedin', socialMedia: 'LinkedIn', id: 'media4' },
-        { class: 'skype', socialMedia: 'Skype', id: 'media5' },
-        { class: 'tumblr', socialMedia: 'Tumblr', id: 'media6' },
-        { class: 'twitter', socialMedia: 'Twitter', id: 'media7' },
-        { class: 'vimeo', socialMedia: 'Vimeo', id: 'media8' },
-        { class: 'whatsapp', socialMedia: 'WhatsApp', id: 'media9' },
-        { class: 'youtube', socialMedia: 'YouTube', id: 'media10' }
+        { Class: 'facebook', SocialMedia: 'Facebook', Id: 'media1' },
+        { Class: 'google-plus', SocialMedia: 'Google Plus', Id: 'media2' },
+        { Class: 'instagram', SocialMedia: 'Instagram', Id: 'media3' },
+        { Class: 'linkedin', SocialMedia: 'LinkedIn', Id: 'media4' },
+        { Class: 'skype', SocialMedia: 'Skype', Id: 'media5' },
+        { Class: 'tumblr', SocialMedia: 'Tumblr', Id: 'media6' },
+        { Class: 'twitter', SocialMedia: 'Twitter', Id: 'media7' },
+        { Class: 'vimeo', SocialMedia: 'Vimeo', Id: 'media8' },
+        { Class: 'whatsapp', SocialMedia: 'WhatsApp', Id: 'media9' },
+        { Class: 'youtube', SocialMedia: 'YouTube', Id: 'media10' }
     ];
     let groupObj: AutoComplete = new AutoComplete({
         dataSource: vegetableData,
-        fields: { groupBy: 'category', value: 'vegetable' },
+        fields: { groupBy: 'Category', value: 'Vegetable' },
         placeholder: 'e.g. Cabbage'
     });
     groupObj.appendTo('#vegetables');
 
     let iconObj: AutoComplete = new AutoComplete({
         dataSource: socialMedia,
-        fields: { iconCss: 'class', value: 'socialMedia' },
+        fields: { iconCss: 'Class', value: 'SocialMedia' },
         placeholder: 'e.g. Facebook'
     });
     iconObj.appendTo('#icons');

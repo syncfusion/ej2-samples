@@ -37,6 +37,7 @@
 		"@types/jasmine-ajax": "^3.1.27",
 		"@types/requirejs": "^2.1.26",
 		"@types/signals": "0.0.16",
+		"fuse.js": "^3.2.0",
 		"es6-promise": "^3.2.1",
 		"gulp": "^3.9.1",
 		"gulp-sass": "^3.1.0",

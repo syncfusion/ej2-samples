@@ -7,25 +7,25 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 
 this.default = () => {
     let countries: { [key: string]: Object; }[] = [
-        { name: 'Australia', code: 'AU' },
-        { name: 'Bermuda', code: 'BM' },
-        { name: 'Canada', code: 'CA' },
-        { name: 'Cameroon', code: 'CM' },
-        { name: 'Denmark', code: 'DK' },
-        { name: 'France', code: 'FR' },
-        { name: 'Finland', code: 'FI' },
-        { name: 'Germany', code: 'DE' },
-        { name: 'Greenland', code: 'GL' },
-        { name: 'Hong Kong', code: 'HK' },
-        { name: 'India', code: 'IN' },
-        { name: 'Italy', code: 'IT' },
-        { name: 'Japan', code: 'JP' },
-        { name: 'Mexico', code: 'MX' },
-        { name: 'Norway', code: 'NO' },
-        { name: 'Poland', code: 'PL' },
-        { name: 'Switzerland', code: 'CH' },
-        { name: 'United Kingdom', code: 'GB' },
-        { name: 'United States', code: 'US' }
+        { Name: 'Australia', Code: 'AU' },
+        { Name: 'Bermuda', Code: 'BM' },
+        { Name: 'Canada', Code: 'CA' },
+        { Name: 'Cameroon', Code: 'CM' },
+        { Name: 'Denmark', Code: 'DK' },
+        { Name: 'France', Code: 'FR' },
+        { Name: 'Finland', Code: 'FI' },
+        { Name: 'Germany', Code: 'DE' },
+        { Name: 'Greenland', Code: 'GL' },
+        { Name: 'Hong Kong', Code: 'HK' },
+        { Name: 'India', Code: 'IN' },
+        { Name: 'Italy', Code: 'IT' },
+        { Name: 'Japan', Code: 'JP' },
+        { Name: 'Mexico', Code: 'MX' },
+        { Name: 'Norway', Code: 'NO' },
+        { Name: 'Poland', Code: 'PL' },
+        { Name: 'Switzerland', Code: 'CH' },
+        { Name: 'United Kingdom', Code: 'GB' },
+        { Name: 'United States', Code: 'US' }
     ];
     let loader: HTMLElement;
     let atcObj1: AutoComplete = new AutoComplete({
@@ -40,27 +40,12 @@ this.default = () => {
         placeholder: 'e.g. Alice Mutton',
         sortOrder: 'Ascending',
         autofill: true,
-        filterType: 'StartsWith',
-        actionBegin: () => {
-            let spinner: HTMLElement = <HTMLElement>document.querySelector('.e-spinner-icon');
-            if (!spinner) {
-                loader = <HTMLElement>document.querySelectorAll('.e-clear-icon')[1];
-                loader.classList.remove('e-clear-icon');
-                loader.classList.add('e-spinner-icon');
-                loader.classList.add('e-input-group-icon');
-            }
-        },
-        actionComplete: () => {
-            removeIcon();
-        },
-        actionFailure: () => {
-            removeIcon();
-        }
+        filterType: 'StartsWith'
     });
     atcObj1.appendTo('#products');
     let atcObj2: AutoComplete = new AutoComplete({
         dataSource: countries,
-        fields: { value: 'name' },
+        fields: { value: 'Name' },
         placeholder: 'e.g. Australia',
         sortOrder: 'Ascending',
         filterType: 'StartsWith',
@@ -77,9 +62,4 @@ this.default = () => {
         }
     });
     checkBoxObj.appendTo('#checkAutofill');
-    function removeIcon(): void {
-        loader.classList.remove('e-spinner-icon');
-        loader.classList.remove('e-input-group-icon');
-        loader.classList.add('e-clear-icon');
-    }
 };

@@ -17,25 +17,32 @@ this.default = () => {
         { Name: 'Greenland', Code: 'GL' },
         { Name: 'Hong Kong', Code: 'HK' },
         { Name: 'India', Code: 'IN' },
-        { Name: 'Italy', Code: 'IT' },
-        { Name: 'Japan', Code: 'JP' },
-        { Name: 'Mexico', Code: 'MX' },
-        { Name: 'Norway', Code: 'NO' },
-        { Name: 'Poland', Code: 'PL' },
-        { Name: 'Switzerland', Code: 'CH' },
-        { Name: 'United Kingdom', Code: 'GB' },
-        { Name: 'United States', Code: 'US' }
+        { Name: 'Italy', Code: 'IT' }
     ];
     let comboBoxObj: ComboBox = new ComboBox({
         dataSource: countries,
         fields: { text: 'Name', value: 'Code' },
         placeholder: 'Select a country',
-        popupHeight: '270px',
+        popupHeight: '300px',
+        width: '300px',
         allowFiltering: true,
+        noRecordsTemplate:
+        '<div><div id="nodata"> No matched item, do you want to add it as new item in list?</div>'
+        + '<button id="btn" class="e-control e-btn">Add New Item</button></div>',
         filtering: (e: FilteringEventArgs) => {
             let query: Query = new Query();
             query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
             e.updateData(countries, query);
+            if (document.getElementById('nodata')) {
+              document.getElementById('btn').onclick = () => {
+                let customValue: string = (document.getElementsByClassName('e-input')[0] as HTMLInputElement).value;
+                let newItem: { [key: string]: Object; } = {'Name': customValue, 'Code': customValue };
+                (comboBoxObj.dataSource as Object[]).push(newItem);
+                comboBoxObj.hidePopup();
+                comboBoxObj.addItem(newItem);
+                comboBoxObj.value = customValue;
+              };
+            }
         }
     });
     comboBoxObj.appendTo('#country');

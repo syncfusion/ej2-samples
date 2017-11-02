@@ -8,16 +8,16 @@ import { Query, DataManager, ODataV4Adaptor } from '@syncfusion/ej2-data';
 this.default = () => {
 
     let gameList: { [key: string]: Object }[] = [
-        { id: 'Game1', game: 'American Football' },
-        { id: 'Game2', game: 'Badminton' },
-        { id: 'Game3', game: 'Basketball' },
-        { id: 'Game4', game: 'Cricket' },
-        { id: 'Game5', game: 'Football' },
-        { id: 'Game6', game: 'Golf' },
-        { id: 'Game7', game: 'Hockey' },
-        { id: 'Game8', game: 'Rugby' },
-        { id: 'Game9', game: 'Snooker' },
-        { id: 'Game10', game: 'Tennis' },
+        { Id: 'Game1', Game: 'American Football' },
+        { Id: 'Game2', Game: 'Badminton' },
+        { Id: 'Game3', Game: 'Basketball' },
+        { Id: 'Game4', Game: 'Cricket' },
+        { Id: 'Game5', Game: 'Football' },
+        { Id: 'Game6', Game: 'Golf' },
+        { Id: 'Game7', Game: 'Hockey' },
+        { Id: 'Game8', Game: 'Rugby' },
+        { Id: 'Game9', Game: 'Snooker' },
+        { Id: 'Game10', Game: 'Tennis' },
     ];
 
     let dropDownListObj: DropDownList = new DropDownList({
@@ -30,33 +30,15 @@ this.default = () => {
         fields: { text: 'ContactName', value: 'CustomerID' },
         placeholder: 'Select a customer',
         sortOrder: 'Ascending',
-        popupHeight: '200px',
-        actionBegin: () => {
-            let element: HTMLElement[] = <HTMLElement[] & NodeListOf<Element>>
-                document.querySelector('.control-section').querySelectorAll('.e-input-group-icon');
-            element[1].classList.add('e-spinner-icon');
-            element[1].classList.remove('e-ddl-icon', 'e-search-icon');
-        },
-        actionComplete: () => {
-            removeIcon();
-        },
-        actionFailure: () => {
-            removeIcon();
-        }
+        popupHeight: '200px'
     });
     dropDownListObj.appendTo('#customers');
 
     let games: DropDownList = new DropDownList({
         dataSource: gameList,
-        fields: { text: 'game' },
+        fields: { text: 'Game' },
         placeholder: 'Select a game',
         popupHeight: '200px'
     });
     games.appendTo('#games');
-    function removeIcon(): void {
-        let element: HTMLElement[] = <HTMLElement[] & NodeListOf<Element>>
-            document.querySelector('.control-section').querySelectorAll('.e-input-group-icon');
-        element[1].classList.add('e-ddl-icon', 'e-search-icon');
-        element[1].classList.remove('e-spinner-icon');
-    }
 };

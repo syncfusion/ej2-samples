@@ -9,7 +9,6 @@ this.default = () => {
         'Hockey', 'Rugby', 'Snooker', 'Tennis'];
     let atcObj: AutoComplete = new AutoComplete({
         dataSource: sportsData,
-        value: 'Basketball',
         placeholder: 'e.g. Basketball'
     });
     atcObj.appendTo('#games');

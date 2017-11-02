@@ -14,6 +14,7 @@ this.default = (): void => {
     checkBoxObj = new CheckBox({ label: 'Indeterminate, Disabled', indeterminate: true, disabled: true });
     checkBoxObj.appendTo('#indeterminate');
 
+    // function to handle the CheckBox change event
     function onChange(args: ChangeEventArgs): void {
         this.label = 'CheckBox: ' + args.checked;
     }

@@ -2,12 +2,13 @@
  * Context Menu default sample
  */
 
-import { ContextMenu, MenuAnimationSettings, BeforeItemRenderEventArgs, MenuItemModel,
+import { ContextMenu, MenuEventArgs, MenuItemModel,
 ContextMenuModel } from '@syncfusion/ej2-navigations';
 import { select, Browser } from '@syncfusion/ej2-base';
 
 this.default = () => {
-    let animationSettings: MenuAnimationSettings;
+
+    //ContextMenu items definition 
     let menuItems: MenuItemModel[] = [
         {
             text: 'Cut',
@@ -43,13 +44,14 @@ this.default = () => {
             iconCss: 'e-cm-icons e-comment'
         }];
 
+    //ContextMenu model definition 
     let menuOptions: ContextMenuModel = {
         target: '#contextmenutarget',
         items: menuItems,
-        animationSettings: animationSettings,
-        beforeItemRender: (args: BeforeItemRenderEventArgs) => {
-            if (args.data.text === 'Link') {
-                args.item.classList.add('e-disabled');
+        // Event triggers while rendering each menu item where “Link” menu item is disabled
+        beforeItemRender: (args: MenuEventArgs) => {
+            if (args.item.text === 'Link') {
+                args.element.classList.add('e-disabled');
             }
         }
     };

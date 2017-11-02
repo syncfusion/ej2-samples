@@ -19,8 +19,8 @@ this.default = (): void => {
     button = new Button({ iconCss: 'e-icons e-add-icon', cssClass: 'e-small e-round', isPrimary: true });
     button.appendTo('#roundbtn');
 
-    let togglebtn: Button = new Button({ iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isToggle: true });
-    togglebtn.appendTo('#togglebtn');
+    let toggleBtn: Button = new Button({ iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isToggle: true });
+    toggleBtn.appendTo('#togglebtn');
 
     button = new Button({ iconCss: 'e-icons e-open-icon', cssClass: 'e-flat', iconPosition: 'right' });
     button.appendTo('#openiconbtn');
@@ -40,14 +40,14 @@ this.default = (): void => {
     button = new Button({ cssClass: 'e-small' });
     button.appendTo('#smallbtn');
 
-
-    document.getElementById('togglebtn').onclick = (): void => {
-        if (document.getElementById('togglebtn').classList.contains('e-active')) {
-            togglebtn.content = 'Pause';
-            togglebtn.iconCss = 'e-icons e-pause-icon';
+    //Toggle button click event handler
+    toggleBtn.element.onclick = (): void => {
+        if (toggleBtn.element.classList.contains('e-active')) {
+            toggleBtn.content = 'Pause';
+            toggleBtn.iconCss = 'e-icons e-pause-icon';
         } else {
-            togglebtn.content = 'Play';
-            togglebtn.iconCss = 'e-icons e-play-icon';
+            toggleBtn.content = 'Play';
+            toggleBtn.iconCss = 'e-icons e-play-icon';
         }
     };
 };

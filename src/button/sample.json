@@ -6,17 +6,20 @@
         {
             "url": "default",
             "name": "Default Functionalities",
-            "category": "Button"
+            "category": "Button",
+            "api":{"Button":["isPrimary","cssClass", "iconCss", "isToggle", "iconPosition", "content"] }
         },
         {
             "url": "check-box",
             "name": "CheckBox",
-            "category": "Button"
+            "category": "Button",
+            "api":{"CheckBox":["label", "checked", "indeterminate", "disabled", "change"] }
         },
         {
             "url": "radio-button",
             "name": "RadioButton",
-            "category": "Button"
+            "category": "Button",
+            "api":{"RadioButton":["label", "name", "value", "checked"] }
         }
     ]
 }

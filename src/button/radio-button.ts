@@ -5,15 +5,15 @@ import { RadioButton } from '@syncfusion/ej2-buttons';
  */
 this.default = (): void => {
     //Checked State
-    let radiobutton: RadioButton = new RadioButton({label: 'Credit/Debit Card', name: 'payment', value: 'credit/debit', checked: true});
-    radiobutton.appendTo('#radio1');
+    let radioButton: RadioButton = new RadioButton({label: 'Credit/Debit Card', name: 'payment', value: 'credit/debit', checked: true});
+    radioButton.appendTo('#radio1');
 
-    let radiobutton1: RadioButton = new RadioButton({label: 'Net Banking', name: 'payment', value: 'netbanking'});
-    radiobutton1.appendTo('#radio2');
+    radioButton = new RadioButton({label: 'Net Banking', name: 'payment', value: 'netbanking'});
+    radioButton.appendTo('#radio2');
 
-    let radiobutton2: RadioButton = new RadioButton({label: 'Cash on Delivery', name: 'payment', value: 'cashondelivery'});
-    radiobutton2.appendTo('#radio3');
+    radioButton = new RadioButton({label: 'Cash on Delivery', name: 'payment', value: 'cashondelivery'});
+    radioButton.appendTo('#radio3');
 
-    let radiobutton3: RadioButton = new RadioButton({label: 'Other Wallets', name: 'payment', value: 'others'});
-    radiobutton3.appendTo('#radio4');
+    radioButton = new RadioButton({label: 'Other Wallets', name: 'payment', value: 'others'});
+    radioButton.appendTo('#radio4');
 };

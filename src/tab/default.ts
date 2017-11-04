@@ -4,6 +4,7 @@
 import { Tab } from '@syncfusion/ej2-navigations';
 
 this.default = () => {
+    //Initialize Tab component
     let tabObj: Tab = new Tab({
         items: [
             {
@@ -34,5 +35,6 @@ this.default = () => {
             }
         ]
     });
+    //Render initialized Tab component
     tabObj.appendTo('#tab_default');
 };

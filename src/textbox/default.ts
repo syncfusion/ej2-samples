@@ -1,15 +1,17 @@
 import { InputObject } from  '@syncfusion/ej2-inputs';
 /**
- *   Sample for CSS input boxes with customized material animation effects.
+ *   Sample for CSS input boxes.
  */
 this.default = () => {
     let inputObject : InputObject = {};
     let input: NodeList = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
     let inputIcon: NodeList  = document.querySelectorAll('.e-input-group-icon');
     for (let i: number = 0; i < input.length; i++) {
+        //Focus Event binding for input component
         input[i].addEventListener('focus', () => {
             getParentNode(input[i] as HTMLElement).classList.add('e-input-focus');
         });
+        //Blur Event binding for input component
         input[i].addEventListener('blur', () => {
             getParentNode(input[i] as HTMLElement).classList.remove('e-input-focus');
         });

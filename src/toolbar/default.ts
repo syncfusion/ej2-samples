@@ -4,6 +4,7 @@
 import { Toolbar } from '@syncfusion/ej2-navigations';
 
 this.default = () => {
+    //Initialize Toolbar component
     let toolbarObj: Toolbar = new Toolbar({
         items: [
             {
@@ -66,5 +67,6 @@ this.default = () => {
                 prefixIcon: 'e-export-icon tb-icons', tooltipText: 'Export'
             }]
     });
+    //Render initialized Toolbar component
     toolbarObj.appendTo('#toolbar_default');
 };

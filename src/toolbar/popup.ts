@@ -4,6 +4,7 @@
 import { Toolbar } from '@syncfusion/ej2-navigations';
 
 this.default = () => {
+    //Initialize Toolbar component
     let toolbarObj: Toolbar = new Toolbar({
         overflowMode: 'Popup',
         items: [
@@ -66,5 +67,6 @@ this.default = () => {
                 text: 'Design', prefixIcon: 'e-design-icon tb-icons' , tooltipText: 'Design' , showTextOn : 'Overflow'
         }],
     });
+    //Render initialized Toolbar component
     toolbarObj.appendTo('#toolbar_pop');
 };

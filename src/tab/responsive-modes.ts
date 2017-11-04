@@ -5,6 +5,7 @@ import { Tab } from '@syncfusion/ej2-navigations';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 this.default = () => {
+    //Initialize Tab component
     let tabObj: Tab = new Tab({
         heightAdjustMode: 'Auto',
         items: [
@@ -68,6 +69,7 @@ this.default = () => {
             }
         ]
     });
+    //Render initialized Tab component
     tabObj.appendTo('#tab_adaptive');
 
     let overflowModes: DropDownList = new DropDownList({

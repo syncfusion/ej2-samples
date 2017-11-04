@@ -11,6 +11,7 @@ this.default = () => {
     let ajax: Ajax = new Ajax('./src/accordion/Ajax_content.html', 'GET', true);
     ajax.send().then();
     ajax.onSuccess = (data: string): void => {
+        //Initialize Accordion component
         acrdnObj = new Accordion({
             expandMode: 'Single',
             expanding: expand,
@@ -20,14 +21,17 @@ this.default = () => {
                 { header: 'Hardware & Software', content: '#Hard_Soft_features' }
             ]
         });
+        //Render initialized Accordion component
         acrdnObj.appendTo('#Accordion_Nested');
     };
 };
+//Expanding Event function for Accordion component.
 function expand(e: ExpandEventArgs): void {
     if (e.isExpanded && [].indexOf.call(this.items, e.item) === 1) {
         if (e.element.querySelectorAll('.e-accordion').length > 0) {
             return;
         }
+        //Initialize Nested Accordion component
         nestAcrdn = new Accordion({
             expandMode: 'Single',
             items: [
@@ -36,6 +40,7 @@ function expand(e: ExpandEventArgs): void {
                 { header: 'Video Recording', content: '#Video_Rec_features' },
             ]
         });
+        //Render initialized Nested Accordion component
         nestAcrdn.appendTo('#nested_Acc');
     }
 }

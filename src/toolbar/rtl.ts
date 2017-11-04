@@ -4,67 +4,69 @@
 import { Toolbar, OverflowMode } from '@syncfusion/ej2-navigations';
 
 this.default = () => {
+    //Initialize Toolbar component
     let toolbarObj: Toolbar = new Toolbar({
         items: [
             {
-              prefixIcon: 'e-cut-icon tb-icons', tooltipText: 'يقطع' , overflow: 'Show' },
+              prefixIcon: 'e-cut-icon tb-icons', tooltipText: 'Cut' , overflow: 'Show' },
             {
-              prefixIcon: 'e-copy-icon tb-icons', tooltipText: 'نسخ', overflow: 'Show' },
+              prefixIcon: 'e-copy-icon tb-icons', tooltipText: 'Copy', overflow: 'Show' },
             {
-              prefixIcon: 'e-paste-icon tb-icons', tooltipText: 'معجون' , overflow: 'Show' },
-            {
-              type: 'Separator' },
-            {
-              prefixIcon: 'e-bold-icon tb-icons', tooltipText: 'بالخط العريض', overflow: 'Show' },
-            {
-              prefixIcon: 'e-underline-icon tb-icons', tooltipText: 'أكد' , overflow: 'Show' },
-            {
-              prefixIcon: 'e-italic-icon tb-icons', tooltipText: 'مائل' , overflow: 'Show' },
+              prefixIcon: 'e-paste-icon tb-icons', tooltipText: 'Paste' , overflow: 'Show' },
             {
               type: 'Separator' },
             {
-              text: 'الرصاص', prefixIcon: 'e-bullets-icon tb-icons', tooltipText: 'الرصاص', showTextOn: 'Overflow' },
+              prefixIcon: 'e-bold-icon tb-icons', tooltipText: 'Bold', overflow: 'Show' },
             {
-              text: 'الترقيم', prefixIcon: 'e-numbering-icon tb-icons', tooltipText: 'الترقيم' , showTextOn: 'Overflow' },
+              prefixIcon: 'e-underline-icon tb-icons', tooltipText: 'Underline' , overflow: 'Show' },
+            {
+              prefixIcon: 'e-italic-icon tb-icons', tooltipText: 'Italic' , overflow: 'Show' },
             {
               type: 'Separator' },
             {
-                prefixIcon: 'e-alignleft-icon tb-icons', tooltipText: 'محاذاة اليسار',
-                showTextOn : 'Overflow', overflow: 'Show', text: 'اليسار' },
+              text: 'Bullets', prefixIcon: 'e-bullets-icon tb-icons', tooltipText: 'Bullets', showTextOn: 'Overflow' },
             {
-                prefixIcon: 'e-alignright-icon tb-icons', tooltipText: 'محاذاة اليمين',
-                showTextOn : 'Overflow', text: 'حق' },
+              text: 'Numbering', prefixIcon: 'e-numbering-icon tb-icons', tooltipText: 'Numbering' , showTextOn: 'Overflow' },
             {
-               prefixIcon: 'e-aligncenter-icon tb-icons', tooltipText: 'محاذاة سنتر',
-               showTextOn : 'Overflow', text: 'مركز' },
+              type: 'Separator' },
             {
-                prefixIcon: 'e-alignjustify-icon tb-icons', tooltipText: 'محاذاة، ضبط',
-                showTextOn : 'Overflow', overflow: 'Show', text: 'تبرير' },
+                prefixIcon: 'e-alignleft-icon tb-icons', tooltipText: 'Align-Left',
+                showTextOn : 'Overflow', overflow: 'Show', text: 'Left' },
+            {
+                prefixIcon: 'e-alignright-icon tb-icons', tooltipText: 'Align-Right',
+                showTextOn : 'Overflow', text: 'Right' },
+            {
+               prefixIcon: 'e-aligncenter-icon tb-icons', tooltipText: 'Align-Center',
+               showTextOn : 'Overflow', text: 'Center' },
+            {
+                prefixIcon: 'e-alignjustify-icon tb-icons', tooltipText: 'Align-Justify',
+                showTextOn : 'Overflow', overflow: 'Show', text: 'Justify' },
             {
                 type: 'Separator' },
             {
-              prefixIcon: 'e-undo-icon tb-icons', tooltipText: 'فك', text: 'فك' },
+              prefixIcon: 'e-undo-icon tb-icons', tooltipText: 'Undo', text: 'Undo' },
             {
-              prefixIcon: 'e-redo-icon tb-icons', tooltipText: 'فعل ثانية', text: 'فعل ثانية' },
+              prefixIcon: 'e-redo-icon tb-icons', tooltipText: 'Redo', text: 'Redo' },
             {
               type: 'Separator' },
             {
-                text: 'رادار', prefixIcon: 'e-radar-icon tb-icons', tooltipText: 'مخطط الرادار' , showTextOn: 'Overflow' },
+                text: 'Radar', prefixIcon: 'e-radar-icon tb-icons', tooltipText: 'Radar Chart' , showTextOn: 'Overflow' },
             {
-                text: 'خط', prefixIcon: 'e-line-icon tb-icons', tooltipText: 'خط الرسم البياني' , showTextOn: 'Overflow' },
+                text: 'Line', prefixIcon: 'e-line-icon tb-icons', tooltipText: 'Line Chart' , showTextOn: 'Overflow' },
             {
                 type: 'Separator' },
             {
-              prefixIcon: 'e-table-icon tb-icons', text: 'الطاولة', tooltipText: 'الطاولة' , showTextOn: 'Overflow' },
+              prefixIcon: 'e-table-icon tb-icons', text: 'Table', tooltipText: 'Table' , showTextOn: 'Overflow' },
             {
-                prefixIcon: 'e-picture-icon tb-icons', overflow: 'Hide', text: 'صورة',
-                tooltipText: 'صورة' , showTextOn: 'Overflow' },
+                prefixIcon: 'e-picture-icon tb-icons', overflow: 'Hide', text: 'Picture',
+                tooltipText: 'Picture' , showTextOn: 'Overflow' },
             {
-                text: 'التصميم', prefixIcon: 'e-design-icon tb-icons', overflow: 'Hide',
-                tooltipText: 'التصميم', showTextOn: 'Overflow'
+                text: 'Design', prefixIcon: 'e-design-icon tb-icons', overflow: 'Hide',
+                tooltipText: 'Design', showTextOn: 'Overflow'
         }]
     });
     toolbarObj.enableRtl = true;
+    //Render initialized Toolbar component
     toolbarObj.appendTo('#toolbar_rtl');
     document.getElementById('drop').onchange = (e : Event) => {
         let ddl: HTMLSelectElement = document.getElementById('drop') as HTMLSelectElement;

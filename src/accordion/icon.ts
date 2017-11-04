@@ -4,6 +4,7 @@
 import { Accordion } from '@syncfusion/ej2-navigations';
 
 this.default = () => {
+    //Initialize Accordion component
     let acrdnObj: Accordion = new Accordion({
         items: [
             { header: 'Athletics', iconCss: 'e-athletics e-acrdn-icons', content: '#athletics', expanded: true },
@@ -12,5 +13,6 @@ this.default = () => {
             { header: 'Indoor Games', iconCss: 'e-indoor-games e-acrdn-icons', content: '#indoor_games' }
         ]
     });
+    //Render initialized Accordion component
     acrdnObj.appendTo('#Accordion_icon');
 };

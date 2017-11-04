@@ -21,16 +21,19 @@ let londonEmployees: { [key: string]: Object }[] = [
     { id: '9', name: 'Nancy Davolio', role: 'Product Manager' }
 ];
 
+//Initialize ListView component
 let listObj1: ListView = new ListView({
     dataSource: romeEmployees,
     template: '<div class="template-container"><div class="left"><img class="empImg" src="src/dropdownlist/Employees/${id}.png" ' +
         'alt="${id}" /></div><div class="left info"><div class="name">${name}</div> <div class="role">${role}</div></div></div>'
 });
+//Initialize ListView component
 let listObj2: ListView = new ListView({
     dataSource: parisEmployees,
     template: '<div class="template-container"><div class="left"><img class="empImg" src="src/dropdownlist/Employees/${id}.png" ' +
         'alt="${id}" /></div><div class="left info"><div class="name">${name}</div> <div class="role">${role}</div></div></div>'
 });
+//Initialize ListView component
 let listObj3: ListView = new ListView({
     dataSource: londonEmployees,
     template: '<div class="template-container"><div class="left"><img class="empImg" src="src/dropdownlist/Employees/${id}.png" ' +
@@ -38,29 +41,39 @@ let listObj3: ListView = new ListView({
 });
 
 this.default = () => {
+    //Initialize Tab component
     let tabObj: Tab = new Tab({
         heightAdjustMode: 'None',
         height: 320,
         showCloseButton: true
     });
+    //Render initialized Tab component
     tabObj.appendTo('#tab_orientation');
 
+    //Render initialized ListView component
     listObj1.appendTo('#rome');
+    //Render initialized ListView component
     listObj2.appendTo('#paris');
+    //Render initialized ListView component
     listObj3.appendTo('#london');
 
+    //Initialize DropDownList component
     let headerPositions: DropDownList = new DropDownList({
         width: '90%',
         change: changeHeaderPosition
     });
+    //Render initialized DropDownList component
     headerPositions.appendTo('#orientation');
 
+    //Initialize DropDownList component
     let headerStyles: DropDownList = new DropDownList({
         width: '90%',
         change: changeHeaderStyle
     });
+    //Render initialized DropDownList component
     headerStyles.appendTo('#headerStyles');
 
+    // Change event funtion for DropDownList component
     function changeHeaderPosition(e: ChangeEventArgs): void {
         if (e.itemData.value === 'bottom') {
             tabObj.headerPlacement = 'Bottom';
@@ -70,6 +83,7 @@ this.default = () => {
         tabObj.dataBind();
     }
 
+    // Change event funtion for DropDownList component
     function changeHeaderStyle(e: ChangeEventArgs): void {
         removeStyleClass();
         let name: string = e.itemData.value;

@@ -26,9 +26,8 @@ this.default = (): void => {
             allowSelection: true,
             selectionSettings: { type: 'multiple' },
             toolbarClick: (args: ClickEventArgs) => {
-                let target: Element = (<HTMLElement>args.originalEvent.target).closest('.e-toolbar-item');
                 let withHeader: boolean = false;
-                if (target.textContent === 'Copy With Header') {
+                if (args.item.id === 'copyHeader') {
                     withHeader = true;
                 }
                 grid.copy(withHeader);

@@ -24,6 +24,7 @@
     {"url":"detailtemplate", "name": "Detail Template", "category":"Rows","api":{"Grid":["dataSource","detailTemplate","height","width","columns"] }},
     {"url":"hover", "name": "Row Hover", "category":"Rows", "hideOnDevice":true,"api":{"Grid":["dataSource","allowPaging","pageSettings","columns","allowSelection","enableHover"] }},
     {"url":"draganddrop", "name": "Row Drag And Drop", "category":"Rows", "hideOnDevice":true,"api":{"Grid":["dataSource","allowPaging","pageSettings","columns","allowRowDragAndDrop","selectionSettings","rowDropSettings","width"] }},
+    {"url":"rowheight", "name": "Row Height", "category":"Rows","type": "new","api":{"Grid":["dataSource","allowPaging","columns","pageSettings","rowHeight"] }},
     {"url":"sorting", "name": "Multi Sorting", "category":"Sorting","api":{"Grid":["dataSource","allowSelection","selectionSettings","columns","enableHover"] }},
     {"url":"sortingapi", "name": "Sorting API", "category":"Sorting","api":{"Grid":["dataSource","allowPaging","allowSelection","selectionSettings","enableHover","columns","pageSettings"] }},
     {"url":"filter", "name": "Default Filtering", "category":"Filtering","api":{"Grid":["allowFiltering","dataSource","allowPaging","pageSettings","columns"] }},

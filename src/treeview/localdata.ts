@@ -4,6 +4,7 @@ import { TreeView } from '@syncfusion/ej2-navigations';
  * TreeView local data sample
  */
 this.default = () => {
+    // Hierarchical data source for TreeView component
     let continents: { [key: string]: Object; }[] = [
         {
             code: 'NA', name: 'North America', expanded: true, countries: [
@@ -55,11 +56,13 @@ this.default = () => {
         },
     ];
 
+    // Render the TreeView with hierarchical data source
     let treeObj: TreeView = new TreeView({
         fields: { dataSource: continents, id: 'code', text: 'name', child: 'countries' }
     });
     treeObj.appendTo('#tree');
 
+    // Self-referential list data source for TreeView component
     let localData: { [key: string]: Object }[] = [
         { id: 1, name: 'Discover Music', hasChild: true, expanded: true },
         { id: 2, pid: 1, name: 'Hot Singles', selected: true },
@@ -90,6 +93,7 @@ this.default = () => {
         { id: 29, pid: 25, name: 'The Hobbit' },
     ];
 
+    // Render the TreeView with list data source
     let listTreeObj: TreeView = new TreeView({
         fields: { dataSource: localData, id: 'id', parentID: 'pid', text: 'name', hasChildren: 'hasChild' }
     });

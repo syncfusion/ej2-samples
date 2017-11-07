@@ -1,23 +1,26 @@
 <div class="col-lg-8 control-section">
     <div class="content-wrapper">
+        <div class="control-label">Numeric TextBox
+        </div>
+        <!-- Initialize Numeric Textbox -->
         <input id="numeric" type="text" />
     </div>
 </div>
 <div id="description">
     <p>
-        The NumericTextBox has options to restrict the input value between a specific range using
+        The NumericTextBox has the options to restrict the input value between a specific range using the
         <a href="http://ej2.syncfusion.com/documentation/numerictextbox/api-numericTextBox.html#min-number" target="_blank">min</a>,
         <a href="http://ej2.syncfusion.com/documentation/numerictextbox/api-numericTextBox.html#max-number" target="_blank">max</a>, and
-        <a href="http://ej2.syncfusion.com/documentation/numerictextbox/api-numericTextBox.html#strictmode-boolean" target="_blank">strictMode</a>        properties.
+        <a href="http://ej2.syncfusion.com/documentation/numerictextbox/api-numericTextBox.html#strictmode-boolean" target="_blank">strictMode</a> properties.
         <ul>
-            <li> When you enable <b>strictMode</b> property, the value will be automatically change within a range on passing
-                out-of-range values.</li>
-            <li> When you disable <b>strictMode</b> property, the NumericTextBox component allows out-of-range value with highlight
-                textbox using error class to indicate the given value is wrong.
+            <li> When you enable the <b>strictMode</b> property, the value will automatically change within a range on passing
+                the out-of-range values.</li>
+            <li> When you disable the <b>strictMode</b> property, the NumericTextBox component allows the out-of-range value with the highlighted
+                textbox to indicate the given value is wrong.
             </li>
         </ul>
-        In this demo, numeric textboxes restricted between 10 to 100 through min, max properties. So you can enter the value between
-        those ranges alone. More information on the range validation configuration can be found in this
+        In this demo, numeric textboxe is restricted between 10 to 100 through the min and max properties. So you can enter only the value between
+        this range. More information on the range validation configuration can be found in the
         <a href="http://ej2.syncfusion.com/documentation/numerictextbox/getting-started.html#range-validation" target="_blank"> documentation section</a>.
     </p>
 </div>
@@ -29,6 +32,7 @@
             </td>
             <td>
                 <div>
+                    <!-- Textbox to set minimum value -->
                     <input id="min" type="number" class="form-control" value="10" />
                 </div>
             </td>
@@ -39,6 +43,7 @@
             </td>
             <td>
                 <div>
+                    <!-- Textbox to set maximum value -->
                     <input id="max" type="number" class="form-control" value="100" />
                 </div>
             </td>
@@ -49,6 +54,7 @@
             </td>
             <td>
                 <div>
+                    <!-- Textbox to set increment step -->
                     <input id="step" type="number" max="100" min="0" class="form-control" value="1" />
                 </div>
             </td>
@@ -84,5 +90,10 @@
     
     .control-section {
         min-height: 160px;
+    }
+    
+    .control-label {
+        padding: 24px 0px 10px 0px;
+        font-size: 12px;
     }
 </style>

@@ -4,6 +4,7 @@ import { TreeView } from '@syncfusion/ej2-navigations';
  * TreeView node editing sample
  */
 this.default = () => {
+    // Hierarchical data source for TreeView component
     let treeData: { [key: string]: Object }[] = [
         {
             id: 1, name: 'Discover Music', expanded: true,
@@ -49,6 +50,7 @@ this.default = () => {
         }
     ];
 
+    // Render the TreeView with editing option
     let treeObj: TreeView = new TreeView({
         fields: { dataSource: treeData, id: 'id', text: 'name', child: 'child' },
         allowEditing: true,

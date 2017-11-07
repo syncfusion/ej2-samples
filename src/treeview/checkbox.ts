@@ -4,6 +4,7 @@ import { TreeView } from '@syncfusion/ej2-navigations';
  * TreeView checkbox sample
  */
 this.default = () => {
+    // Data source for TreeView component
     let countries: { [key: string]: Object }[] = [
         { id: 1, name: 'Australia', hasChild: true, expanded: true },
         { id: 2, pid: 1, name: 'New South Wales' },
@@ -31,6 +32,7 @@ this.default = () => {
         { id: 25, pid: 21, name: 'Punjab' }
     ];
 
+    // Render the TreeView with checkboxes
     let treeObj: TreeView = new TreeView({
         fields: { dataSource: countries, id: 'id', parentID: 'pid', text: 'name', hasChildren: 'hasChild' },
         showCheckBox: true,

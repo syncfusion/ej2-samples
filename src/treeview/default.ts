@@ -4,6 +4,7 @@ import { TreeView } from '@syncfusion/ej2-navigations';
  * TreeView default functionalities sample
  */
 this.default = () => {
+    // Hierarchical data source for TreeView component
     let hierarchicalData: { [key: string]: Object }[] = [
         { id: '01', name: 'Local Disk (C:)', expanded: true,
             subChild: [
@@ -93,6 +94,7 @@ this.default = () => {
         }
     ];
 
+    // Render the TreeView by mapping its fields property with data source properties
     let treeObj: TreeView = new TreeView({
         fields: { dataSource: hierarchicalData, id: 'id', text: 'name', child: 'subChild' }
     });

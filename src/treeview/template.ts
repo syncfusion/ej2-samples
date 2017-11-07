@@ -4,6 +4,7 @@ import { TreeView } from '@syncfusion/ej2-navigations';
  * TreeView template sample
  */
 this.default = () => {
+    // Data source for TreeView component
     let employees: { [key: string]: Object }[] = [
         { id: 1, name: 'Steven Buchanan', eimg: '10', job: 'CEO', hasChild: true, expanded: true },
         { id: 2, pid: 1, name: 'Laura Callahan', eimg: '2', job: 'Product Manager', hasChild: true },
@@ -16,6 +17,7 @@ this.default = () => {
         { id: 9, pid: 1, name: 'Janet Leverling', eimg: '3', job: 'HR' },
     ];
 
+    // Render the TreeView using template option
     let treeObj: TreeView = new TreeView({
         fields: { dataSource: employees, id: 'id', parentID: 'pid', text: 'name', hasChildren: 'hasChild' },
         cssClass: 'custom',

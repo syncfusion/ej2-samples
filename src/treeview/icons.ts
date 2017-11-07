@@ -4,6 +4,7 @@ import { TreeView } from '@syncfusion/ej2-navigations';
  * TreeView icons and images sample
  */
 this.default = () => {
+    // Hierarchical data source for TreeView component
     let hierarchicalData: { [key: string]: Object }[] = [
         {
             nodeId: '01', nodeText: 'Music', icon: 'folder',
@@ -53,6 +54,7 @@ this.default = () => {
         },
     ];
 
+    // Render the TreeView with image icons
     let treeObj: TreeView = new TreeView({
         fields: { dataSource: hierarchicalData, id: 'nodeId', text: 'nodeText', child: 'nodeChild', iconCss: 'icon', imageUrl: 'image' },
         sortOrder: 'Ascending'

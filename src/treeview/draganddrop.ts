@@ -4,6 +4,7 @@ import { TreeView } from '@syncfusion/ej2-navigations';
  * TreeView drag and drop sample
  */
 this.default = () => {
+    // Hierarchical data source for TreeView component
     let productTeam: { [key: string]: Object }[] = [
         {
             id: 1, name: 'ASP.NET MVC Team', expanded: true,
@@ -47,6 +48,7 @@ this.default = () => {
         }
     ];
 
+    // Render the TreeView with multi selection and drag and drop option
     let treeObj: TreeView = new TreeView({
         fields: { dataSource: productTeam, id: 'id', text: 'name', child: 'child', selected: 'isSelected' },
         allowDragAndDrop: true,

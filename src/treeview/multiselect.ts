@@ -31,6 +31,7 @@ this.default = () => {
         { id: 25, pid: 21, name: 'Punjab' }
     ];
 
+    // Render the TreeView with node multi select option
     let treeObj: TreeView = new TreeView({
         fields: { dataSource: countries, id: 'id', parentID: 'pid', text: 'name', hasChildren: 'hasChild', selected: 'isSelected' },
         allowMultiSelection: true,

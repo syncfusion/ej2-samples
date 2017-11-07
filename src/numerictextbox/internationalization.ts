@@ -12,6 +12,7 @@ import * as currencyData from '../common/cldr-data/supplemental/currencyData.jso
 
 this.default = (): void => {
 
+    // Loading English, German and Chinese cultures
     L10n.load({
       'en': {
         'numerictextbox': { incrementTitle: 'Increment value', decrementTitle: 'Decrement value'}
@@ -26,14 +27,16 @@ this.default = (): void => {
 
     loadCldr(numbers, currencies, zhNumbers, zhCurrencies, numberingSystems, currencyData);
 
+    // Render the Numeric Textbox
     let numeric: NumericTextBox = new NumericTextBox({
         locale: 'de',
         value: 10,
         placeholder: 'Geben Sie den Wert ein',
-        floatLabelType: 'Auto'
+        floatLabelType: 'Always'
     });
     numeric.appendTo('#numeric');
 
+    // Render the Percentage Textbox
     let percent: NumericTextBox = new NumericTextBox({
         format: 'p2',
         locale: 'de',
@@ -42,22 +45,24 @@ this.default = (): void => {
         max: 1,
         step: 0.01,
         placeholder: 'Geben Sie den Prozentsatz ein',
-        floatLabelType: 'Auto'
+        floatLabelType: 'Always'
     });
     percent.appendTo('#percent');
 
+    // Render the Currency Textbox
     let currency: NumericTextBox = new NumericTextBox({
         format: 'c2',
         locale: 'de',
         value: 100,
         currency: 'EUR',
         placeholder: 'Geben Sie die Währung ein',
-        floatLabelType: 'Auto'
+        floatLabelType: 'Always'
     });
     currency.appendTo('#currency');
 
     document.getElementById('cultures').addEventListener('change', changeLocale);
 
+    // While changing culture 'locale', 'currency' and 'placeholder' values will be modified.
     function changeLocale(): void {
         let culture: string = (document.getElementById('cultures') as HTMLSelectElement).value;
         numeric.locale = culture;

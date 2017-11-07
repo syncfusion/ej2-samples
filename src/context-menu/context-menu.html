@@ -4,6 +4,9 @@
         <ul id='contextmenu'></ul>
     </div>
 </div>
+<div id="action-description">
+    <p>This sample demonstrates the default functionalities of the ContextMenu. Right click/Touch hold the rectangular area to open the ContextMenu.</p>
+</div>
 <div id="description">
     <p>
         ContextMenu is a graphical user interface that appears on the user right click/touch hold action. It has support to provide single level/multiple level of ContextMenu.
@@ -56,16 +59,18 @@
         position: relative;
         text-align: center;
         color: gray;
-        line-height: 16;
+        line-height: 17;
+        font-size: 14px;
     }
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 700px) {
         .contextmenu-control {
             margin: 5% 10%;
             width: auto;
         }
         #contextmenutarget {
-            line-height: 17;
+            line-height: 19;
+            font-size: 12px;
         }
     }
 

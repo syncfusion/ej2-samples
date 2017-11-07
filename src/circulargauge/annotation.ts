@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Annotation sample
  */
 import { CircularGauge, Pointer } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';

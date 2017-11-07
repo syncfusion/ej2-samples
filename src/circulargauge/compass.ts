@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Compass sample
  */
 import { CircularGauge, IAxisLabelRenderEventArgs } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -64,11 +64,11 @@ this.default = (): void => {
     pointerColor = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 100,
+        width: 120,
         change: () => {
             let rangeColor: string = pointerColor.value.toString();
             circulargauge.axes[0].pointers[0].color = rangeColor;
-            circulargauge.refresh();
+            circulargauge.setPointerValue(0, 0, circulargauge.axes[0].pointers[0].value);
         }
     });
     pointerColor.appendTo('#poiterColor');
@@ -76,7 +76,7 @@ this.default = (): void => {
     labelColor = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 100,
+        width: 120,
         change: () => {
             let rangeColor: string = labelColor.value.toString();
             circulargauge.axes[0].ranges[0].color = rangeColor;

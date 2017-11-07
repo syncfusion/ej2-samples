@@ -1,0 +1,52 @@
+<div class="control-section">
+    <div id="container" align="center"></div>
+</div>
+<div id="action-description">
+    <p>
+        This sample demonstrates waterfall series for a company's various expenses and income.
+    </p>
+</div>
+<div id="description">
+    <p>
+        In this example, you can see how to render and configure the Waterfall type chart You can use <code>border</code>,
+        <code>fill</code> properties to customize the area. <code>dataLabel</code> are used to represent individual data
+        and its value.
+    </p>
+    <p>
+        Tooltip is enabled in this example, to see the tooltip in action, hover a point or tap on a point in touch enabled devices.
+    </p>
+
+    <p style="font-weight: 500">Injecting Module</p>
+    <p>
+        chart component features are segregated into individual feature-wise modules. To use Waterfall series, we need to Injecting
+        <code>WaterfallSeries</code> module using <code>chart.Inject(WaterfallSeries)</code> method.
+    </p>
+    <p>
+        More information on the Waterfall series can be found in this
+        <a target="_blank" href="http://ej2.syncfusion.com/documentation/chart/api-series.html#type-chartseriestype">documentation section</a>.
+    </p>
+</div>
+<style>
+    #control-container {
+        padding: 0px !important;
+    }
+
+    #container_Series_0_Connector_ {
+        stroke-dasharray: 10px 10px;
+        stroke-linejoin: round; stroke-linecap: round;
+        -webkit-animation: dash 1s linear infinite;
+        animation: dash 1s linear infinite;
+    }
+
+    @-webkit-keyframes dash {
+        100% {
+            stroke-dashoffset: -20px;
+        }
+    }
+
+    @keyframes dash {
+        100% {
+            stroke-dashoffset: -20px;
+        }
+    }
+</style>

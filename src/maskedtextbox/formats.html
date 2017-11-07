@@ -1,6 +1,7 @@
 <div class="col-lg-8 control-section">
     <div class="content-wrapper">
         <div class="control-label">Formats</div>
+        <!-- Initialize Masked Textbox -->
         <input id="mask1" type="text" />
     </div>
 </div>
@@ -13,6 +14,7 @@
                 </td>
                 <td style="width: 50%">
                     <div>
+                        <!-- Input to customize mask format -->
                         <input id="input1" type="text" />
                     </div>
                 </td>
@@ -24,6 +26,7 @@
                 <td style="width: 50%">
                     <div>
                         <select id="ddl">
+                        <!-- Prompt character options -->
                         <option value="_">_</option>
                         <option value="#">#</option>
                         <option value="@">@</option>
@@ -37,6 +40,7 @@
                     <div>Value</div>
                 </td>
                 <td style="width: 50%;padding-top:10px">
+                    <!-- Display un-masked value -->
                     <div id="val1" type="text"></div>
                 </td>
             </tr>
@@ -45,20 +49,24 @@
                     <div>Masked Value</div>
                 </td>
                 <td style="width: 50%;padding-top:10px">
+                    <!-- Display masked value -->
                     <div id="val2" type="text"></div>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+<div id="action-description">
+    <p>
+    This sample demonstrates that the different format can be apply to MaskedTextBox component.
+    You can customize the mask and prompt character values in property panel.
+    </p>
+</div>
 <div id="description">
-    <p>This example demonstrates the usage of <b><a href="http://ej2.syncfusion.com/documentation/maskedtextbox/api-maskedTextBox.html#mask-string" target="_blank">mask</a></b>        and
-        <b><a href="http://ej2.syncfusion.com/documentation/maskedtextbox/api-maskedTextBox.html#promptchar-string" target="_blank">prompt character</a></b>,
-        also you can tryout these properties by dynamically updating from the properties panel.</p>
-    <p>And here, the "Value" and "Masked Value" labels from the properties panel returns the raw value (unmasked value) and masked value of MaskedTextBox component.
-        Also you can get these raw value and masked value anytime through the
+    <p>Here, the "Value" and "Masked Value" labels from the properties panel returns the raw value (unmasked value) and masked value of the MaskedTextBox component.
+        You can also get these raw value and masked value anytime through the
         <b><a href="http://ej2.syncfusion.com/documentation/maskedtextbox/api-maskedTextBox.html#value-string" target="_blank">value</a></b> property
-        and <b><a href="http://npmci.syncfusion.com/development/documentation/maskedtextbox/api-maskedTextBox.html#getmaskedvalue" target="_blank">getMaskedValue</a></b>        method.
+        and <b><a href="http://ej2.syncfusion.com/development/documentation/maskedtextbox/api-maskedTextBox.html#getmaskedvalue" target="_blank">getMaskedValue</a></b> method.
     </p>
 </div>
 

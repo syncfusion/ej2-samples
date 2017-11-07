@@ -1,5 +1,6 @@
-import { Chart, LineSeries, Marker, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, Category, Marker, Legend, Tooltip);
+import { Chart, LineSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, Category, Legend, Tooltip);
+import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * Chart Symbols Sample
@@ -10,15 +11,22 @@ this.default = (): void => {
         //Initializing Primary X Axis
         primaryXAxis: {
             title: 'Countries', valueType: 'Category',
-            interval: 1, labelIntersectAction: 'Rotate45'
+            interval: 1, labelIntersectAction: 'Rotate45',
+            majorGridLines: { width: 0 },
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Penetration (%)', rangePadding: 'None',
+            title: 'Penetration', rangePadding: 'None',
             labelFormat: '{value}%', minimum: 0,
-            maximum: 90
+            lineStyle: { width: 0},
+            maximum: 75, interval: 15
+        },
+        chartArea: {
+            border: {
+                width: 0
+            }
         },
         //Initializing Chart Series
         series: [
@@ -69,32 +77,20 @@ this.default = (): void => {
                     dataLabel: { name: 'text' }
                 },
                 yName: 'y', name: 'December 2009',
-            },
-            {
-                type: 'Line',
-                dataSource: [{ x: 'WW', y: 50, text: 'World Wide' },
-                { x: 'EU', y: 63.6, text: 'Europe' },
-                { x: 'APAC', y: 20.9, text: 'Asia Pacific' },
-                { x: 'LATAM', y: 65.1, text: 'Latin America' },
-                { x: 'MEA', y: 73, text: 'Middle East Africa' },
-                { x: 'NA', y: 81.4, text: 'North America' }],
-                xName: 'x', width: 2,
-                marker: {
-                    visible: true,
-                    width: 10, height: 10,
-                    shape: 'Circle',
-                    dataLabel: { name: 'text' }
-                },
-                yName: 'y', name: 'December 2010',
             }
         ],
         //Initializing Chart title
         title: 'FB Penetration of Internet Audience',
         legendSettings: { visible: false },
-        tooltip: { enable: true, format: '${series.name}<br>${point.text} : ${point.y}' },
+        //Initializing User Interaction Tooltip
+        tooltip: {
+            enable: true
+        },
+        width : Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

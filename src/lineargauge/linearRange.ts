@@ -2,7 +2,7 @@ import { LinearGauge, Annotations } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations);
 
 /**
- * Default linear gauge
+ * Linear Gauge Range Sample
  */
 export function linear(): LinearGauge {
     let gauge: LinearGauge = new LinearGauge({
@@ -59,7 +59,7 @@ export function linear(): LinearGauge {
         }],
         annotations: [{
             content: '<div id="pointer" style="width:20px"><h1 style="font-size:18px;color:#424242">35</h1></div>',
-            axisIndex: 0,
+            axisIndex: 0, zIndex: '1',
             axisValue: 35,
             y: -50
         }]

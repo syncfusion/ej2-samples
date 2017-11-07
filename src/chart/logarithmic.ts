@@ -1,15 +1,15 @@
-import { Chart, LineSeries, DateTime, Logarithmic, Legend, Marker, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, DateTime, Logarithmic, Legend, Marker, Tooltip);
+import { Chart, LineSeries, DateTime, Logarithmic, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, DateTime, Logarithmic, Legend, Tooltip);
+import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Logarithmic Axis
+ * Logarithmic Axis Sample
  */
 this.default = (): void => {
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Years',
             labelFormat: 'y',
             valueType: 'DateTime',
             edgeLabelPlacement: 'Shift'
@@ -26,7 +26,7 @@ this.default = (): void => {
             minimum: 0,
             maximum: 100000,
             interval: 1,
-            title: 'Profit ($)',
+            title: Browser.isDevice ? '' : 'Profit',
             labelFormat: '${value}'
         },
 
@@ -56,10 +56,13 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'Product X Growth [1995-2005]', legendSettings: { visible: false },
-        tooltip: { enable: true, format: '${series.name}<br> ${point.x} : ${point.y}' },
+        //Initializing User Interaction Tooltip
+        tooltip: { enable: true, header: 'Profit' },
+        width : Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

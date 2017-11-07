@@ -1,5 +1,9 @@
-import { Chart, SplineSeries, Marker, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(SplineSeries, Category, Marker, Legend, Tooltip);
+import {
+    Chart, SplineSeries, ChartAnnotation, Category,
+    Legend, Tooltip, ILoadedEventArgs, ChartTheme
+} from '@syncfusion/ej2-charts';
+import { Browser } from '@syncfusion/ej2-base';
+Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation);
 
 /**
  * Spline Series
@@ -9,20 +13,33 @@ this.default = (): void => {
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Months',
             valueType: 'Category',
-            interval: 1,
-            labelIntersectAction : 'Rotate90'
+            interval: 1, majorGridLines: { width: 0 },
+            labelIntersectAction: 'Rotate90'
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
+        //Initializing Annotations
+        annotations: [{
+            content: '<div id="chart_cloud"><img src="src/chart/images/cloud.png"  style="width: 41px; height: 41px"/></div>',
+            x: 'Sun', y: 2, coordinateUnits: 'Point', verticalAlignment: 'Top'
+        }, {
+            content: '<div id="chart_cloud"><img src="src/chart/images/sunny.png"  style="width: 41px; height: 41px"/></div>',
+            x: 'Tue', y: 33, coordinateUnits: 'Point', verticalAlignment: 'Top'
+        }],
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Temperature (Celsius)',
             minimum: 0,
-            maximum: 35,
-            interval: 5,
-            labelFormat: '{value}°C'
+            maximum: 40,
+            interval: 10,
+            labelFormat: '{value}°C',
+            lineStyle: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
 
         //Initializing Chart Series
@@ -30,54 +47,48 @@ this.default = (): void => {
             {
                 type: 'Spline',
                 dataSource: [
-                    { x: 'Jan', y: 7 }, { x: 'Feb', y: 10 },
-                    { x: 'Mar', y: 19 }, { x: 'Apr', y: 22 },
-                    { x: 'May', y: 25 }, { x: 'Jun', y: 32 },
-                    { x: 'Jul', y: 33 }, { x: 'Aug', y: 31 },
-                    { x: 'Sep', y: 29 }, { x: 'Oct', y: 24 },
-                    { x: 'Nov', y: 18 }, { x: 'Dec', y: 10 }
+                    { x: 'Sun', y: 15 }, { x: 'Mon', y: 22 },
+                    { x: 'Tue', y: 32 },
+                    { x: 'Wed', y: 31 },
+                    { x: 'Thu', y: 29 }, { x: 'Fri', y: 24 },
+                    { x: 'Sat', y: 18 },
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
                     width: 10,
-                    height: 10,
-                    opacity: 0.6
+                    height: 10
                 },
                 yName: 'y', name: 'Max Temp',
             },
             {
                 type: 'Spline',
                 dataSource: [
-                    { x: 'Jan', y: 4 }, { x: 'Feb', y: 7 },
-                    { x: 'Mar', y: 15 }, { x: 'Apr', y: 18 },
-                    { x: 'May', y: 22 }, { x: 'Jun', y: 28 },
-                    { x: 'Jul', y: 29 }, { x: 'Aug', y: 28 },
-                    { x: 'Sep', y: 26 }, { x: 'Oct', y: 20 },
-                    { x: 'Nov', y: 15 }, { x: 'Dec', y: 8 }
+                    { x: 'Sun', y: 10 }, { x: 'Mon', y: 18 },
+                    { x: 'Tue', y: 28 },
+                    { x: 'Wed', y: 28 },
+                    { x: 'Thu', y: 26 }, { x: 'Fri', y: 20 },
+                    { x: 'Sat', y: 15 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
                     width: 10,
-                    height: 10,
-                    opacity: 0.6
+                    height: 10
                 },
                 yName: 'y', name: 'Avg Temp',
             },
             {
                 type: 'Spline',
                 dataSource: [
-                    { x: 'Jan', y: 0 }, { x: 'Feb', y: 3 },
-                    { x: 'Mar', y: 10 }, { x: 'Apr', y: 12 },
-                    { x: 'May', y: 16 }, { x: 'Jun', y: 22 },
-                    { x: 'Jul', y: 23 }, { x: 'Aug', y: 23 },
-                    { x: 'Sep', y: 19 }, { x: 'Oct', y: 13 },
-                    { x: 'Nov', y: 8 }, { x: 'Dec', y: 5 }
+                    { x: 'Sun', y: 2 }, { x: 'Mon', y: 12 },
+                    { x: 'Tue', y: 22 },
+                    { x: 'Wed', y: 23 },
+                    { x: 'Thu', y: 19 }, { x: 'Fri', y: 13 },
+                    { x: 'Sat', y: 8 },
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
                     width: 10,
-                    height: 10,
-                    opacity: 0.6
+                    height: 10
                 },
                 yName: 'y', name: 'Min Temp',
             }
@@ -85,10 +96,14 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'NC Weather Report - 2016',
-        tooltip: { enable: true, format: '${series.name} (°c)<br>${point.x} : ${point.y}' },
+        //Initializing User Interaction Tooltip
+        tooltip: { enable: true },
+        legendSettings: { toggleVisibility: false },
+        width: Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

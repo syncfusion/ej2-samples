@@ -1,7 +1,11 @@
-import { Chart, LineSeries, DataLabel, Marker, ILoadedEventArgs, ChartTheme, Category, ITextRenderEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, DataLabel, Marker, Category);
+import {
+    Chart, LineSeries, DataLabel, Legend, ILoadedEventArgs,
+    ChartTheme, Category, ITextRenderEventArgs
+} from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, DataLabel, Category, Legend);
+import { Browser } from '@syncfusion/ej2-base';
 /**
- * dataLabel template
+ * DataLabel template
  */
 this.default = (): void => {
     let theme: ChartTheme;
@@ -11,10 +15,11 @@ this.default = (): void => {
             color: '#606060', fontFamily: 'Roboto',
             fontStyle: 'medium', size: '14px'
         },
-        chartArea: { border: { width: 0 }},
+        chartArea: { border: { width: 0 } },
+        // Initialize the chart axes
         primaryXAxis: {
             minimum: 2010, maximum: 2016,
-            interval: 1,
+            interval: Browser.isDevice ? 2 : 1,
             edgeLabelPlacement: 'Shift',
             labelStyle: {
                 color: '#606060',
@@ -23,27 +28,25 @@ this.default = (): void => {
                 size: '14px'
             },
             majorGridLines: { width: 0 },
-            lineStyle: { color: '#eaeaea',  width: 1 }
+            lineStyle: { color: '#eaeaea', width: 1 }
         },
         primaryYAxis: {
             minimum: 900, maximum: 1300,
             labelFormat: '{value}M',
+            title: Browser.isDevice ? '' : 'Population',
             labelStyle: {
-                color: '#606060',
-                fontFamily: 'Roboto',
-                fontStyle: 'medium',
-                size: '14px'
+                color: '#606060', fontFamily: 'Roboto',
+                fontStyle: 'medium', size: '14px'
             },
             interval: 80,
             majorGridLines: {
-                color: '#eaeaea',
-                width: 1
+                color: '#eaeaea', width: 1
             },
             lineStyle: {
-                color: '#eaeaea',
-                width: 1
+                color: '#eaeaea', width: 1
             }
         },
+        // Initialize the chart series
         series: [
             {
                 name: 'Male',
@@ -59,7 +62,7 @@ this.default = (): void => {
                     dataLabel: {
                         visible: true,
                         position: 'Top',
-                        margin: { right : 30},
+                        margin: { right: 30 },
                         template: '#Male-Material'
                     }
                 }, width: 2
@@ -77,23 +80,23 @@ this.default = (): void => {
                     dataLabel: {
                         visible: true,
                         position: 'Bottom',
-                        margin: { right : 15},
+                        margin: { right: 15 },
                         template: '#Female-Material'
                     }
                 }, width: 2
             }
         ],
+        // Triggered text render and load event in chart
         textRender: (args: ITextRenderEventArgs) => {
             args.template = '#' + args.series.name + '-' + theme;
         },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            theme = args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
             args.chart.theme = theme;
         },
-        legendSettings: {
-            visible: true,
-        }
+        width: Browser.isDevice ? '100%' : '80%'
     });
     chart.appendTo('#container');
 };

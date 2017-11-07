@@ -1,5 +1,5 @@
 /**
- * Annotations
+ * Data Sample Gauge
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
@@ -10,11 +10,11 @@ export function gauge1(): CircularGauge {
         axes: [{
             annotations: [{
                 content: '#germany',
-                angle: 180,
+                angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
                 content: '<div style="color:#9E9E9E;font-size:16px;font-family:Roboto">Germany</div>',
-                angle: 180,
+                angle: 180, zIndex: '1',
                 radius: '65%'
             }],
             startAngle: 230,
@@ -54,11 +54,11 @@ export function gauge2(): CircularGauge {
         axes: [{
             annotations: [{
                 content: '#usa',
-                angle: 180,
+                angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
                 content: '<div style="color:#9E9E9E;font-size:16px;font-family:Roboto">USA</div>',
-                angle: 180,
+                angle: 180, zIndex: '1',
                 radius: '65%'
             }],
             startAngle: 230,
@@ -98,11 +98,11 @@ export function gauge3(): CircularGauge {
         axes: [{
             annotations: [{
                 content: '#uk',
-                angle: 180,
+                angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
                 content: '<div style="color:#9E9E9E;font-size:16px;font-family:Roboto">UK</div>',
-                angle: 180,
+                angle: 180, zIndex: '1',
                 radius: '65%'
             }],
             startAngle: 230,

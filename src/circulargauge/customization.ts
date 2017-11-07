@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Gauge Customization sample
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2 } from './customization-gauge';
@@ -9,12 +9,10 @@ this.default = (): void => {
     let random: CircularGauge = new CircularGauge(gauge1());
     random.appendTo('#cutomization-container');
     let usage: CircularGauge = new CircularGauge(gauge2());
-    let gauge: CircularGauge = random;
-    let isUsage: boolean = false;
+    let gauge: CircularGauge = random; let isUsage: boolean = false;
     let barColor: DropDownList; let rangeColor: DropDownList; let pointerColor: DropDownList;
     barColor = new DropDownList({
-        index: 0,
-        width: 100,
+        index: 0, width: 120,
         change: () => {
             gauge.axes[0].pointers[0].color = barColor.value.toString();
             gauge.refresh();
@@ -22,8 +20,7 @@ this.default = (): void => {
     });
     barColor.appendTo('#barColor');
     rangeColor = new DropDownList({
-        index: 0,
-        width: 100,
+        index: 0, width: 120,
         change: () => {
             gauge.axes[0].ranges[0].color = rangeColor.value.toString();
             gauge.refresh();
@@ -31,8 +28,7 @@ this.default = (): void => {
     });
     rangeColor.appendTo('#rangeColor');
     pointerColor = new DropDownList({
-        index: 0,
-        width: 100,
+        index: 0, width: 120,
         change: () => {
             let color: string = pointerColor.value.toString();
             if (!isUsage) {
@@ -47,39 +43,36 @@ this.default = (): void => {
     document.getElementById('usage').onclick = () => {
         random.destroy();
         usage.appendTo('#cutomization-container');
-        gauge = usage;
-        isUsage = true;
+        gauge = usage; isUsage = true;
         let element: HTMLSelectElement = <HTMLSelectElement>document.getElementById('currentValue');
-        element.min = '0.5';
-        element.max = '100';
+        element.min = '0.5'; element.max = '100';
         element.value = usage.axes[0].pointers[0].value.toString();
         document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;'
             + usage.axes[0].pointers[0].value + '</span>';
-        barColor.value = usage.axes[0].pointers[0].color;
-        rangeColor.value = usage.axes[0].ranges[0].color;
+        barColor.value = usage.axes[0].pointers[0].color; rangeColor.value = usage.axes[0].ranges[0].color;
         pointerColor.enabled = false;
         let pointElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointColor');
         pointElement.className = 'e-disabled';
         let currentElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('usage');
         let existElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('random');
-        currentElement.style.border = '2px solid #E0E0E0';
-        existElement.style.border = '';
+        let currentLine: HTMLSelectElement = <HTMLSelectElement>document.getElementById('usage_line');
+        let exisLine: HTMLSelectElement = <HTMLSelectElement>document.getElementById('random_line');
+        currentLine.style.display = 'block';
+        exisLine.style.display = 'none';
     };
     document.getElementById('random').onclick = () => {
         usage.destroy();
         random.appendTo('#cutomization-container');
-        gauge = random;
-        isUsage = false;
+        gauge = random; isUsage = false;
         let currentElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('random');
         let existElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('usage');
-        currentElement.style.border = '2px solid #E0E0E0';
-        existElement.style.border = '';
+        let exisLine: HTMLSelectElement = <HTMLSelectElement>document.getElementById('usage_line');
+        let currentLine: HTMLSelectElement = <HTMLSelectElement>document.getElementById('random_line');
+        currentLine.style.display = 'block'; exisLine.style.display = 'none';
         let element: HTMLSelectElement = <HTMLSelectElement>document.getElementById('currentValue');
         let pointElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointColor');
-        pointElement.className = 'e-enabled';
-        pointerColor.enabled = true;
-        element.min = '1000';
-        element.max = '2000';
+        pointElement.className = 'e-enabled'; pointerColor.enabled = true;
+        element.min = '1000'; element.max = '2000';
         element.value = random.axes[0].pointers[0].value.toString();
         document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;' +
             random.axes[0].pointers[0].value + '</span>';
@@ -100,4 +93,15 @@ this.default = (): void => {
             gauge.setAnnotationValue(0, 0, '<div style="color:#666666;font-size:35px;">' + value + (isUsage ? 'GB' : '') + '</div>');
             document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;' + value + '</span>';
         };
+    let selectedTheme: string = location.hash.split('/')[1]; let color: string;
+    if (selectedTheme === 'bootstrap') {
+        color = '#a16ee5';
+    } else if (selectedTheme === 'fabric') {
+        color = '#1783FF';
+    } else {
+        color = '#ff4081';
+    }
+    let exisLine: HTMLSelectElement = <HTMLSelectElement>document.getElementById('usage_line');
+    let currentLine: HTMLSelectElement = <HTMLSelectElement>document.getElementById('random_line');
+    exisLine.style.background = color; currentLine.style.background = color;
 };

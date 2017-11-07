@@ -1,12 +1,16 @@
-import { AccumulationChart, AccumulationLegend, PieSeries, AccumulationTooltip, IAccTextRenderEventArgs } from '@syncfusion/ej2-charts';
+import {
+    AccumulationChart, AccumulationLegend, PieSeries, AccumulationTooltip,
+    IAccTextRenderEventArgs, AccumulationTheme
+} from '@syncfusion/ej2-charts';
 import { IAccPointRenderEventArgs, IAccLoadedEventArgs, AccumulationDataLabel } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
- * Club Point
+ * Grouping Sample
  */
 this.default = (): void => {
     let pie: AccumulationChart = new AccumulationChart({
+        //Initializing Series
         series: [
             {
                 dataSource: [
@@ -29,7 +33,7 @@ this.default = (): void => {
                 dataLabel: {
                     visible: true,
                     position: 'Outside',
-                    connectorStyle: { type: 'Line', length: '2%', color: 'transparent' },
+                    connectorStyle: { type: 'Line', length: '5%' },
                     font: {
                         size: '14px'
                     }
@@ -55,11 +59,14 @@ this.default = (): void => {
         textRender: (args: IAccTextRenderEventArgs) => {
             args.text = args.point.x + ' ' + args.point.y;
         },
+        //Initializing tooltip
         tooltip: { enable: true, format: '${point.x} <br> ${point.y} Medals' },
-        title: 'Rio Olympics Gold',
+        //Initializing title
+        title: 'Rio Olympic Gold',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.accumulation.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     pie.appendTo('#container');

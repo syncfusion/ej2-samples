@@ -6,6 +6,7 @@ import { Button } from '@syncfusion/ej2-buttons';
  */
 
 this.default = () => {
+    // Rendering modal Dialog by enabling 'isModal' as true
     let dialogObj: Dialog = new Dialog({
         width: '335px',
         header: 'Software Update',
@@ -22,6 +23,8 @@ this.default = () => {
     });
     dialogObj.appendTo('#modalDialog');
     document.getElementById('dialogBtn').focus();
+
+    // Button has been created to open the modal Dialog
     let button: Button = new Button({
     });
     button.appendTo('#dialogBtn');
@@ -29,17 +32,21 @@ this.default = () => {
         dialogObj.show();
     };
 
+    // Dialog will be closed, while clicking 'OK' button of the Dialog
     function dlgButtonClick(): void {
         dialogObj.hide();
     }
 
+    // 'Open' Button will be shown, if modal Dialog is closed
     function dialogClose(): void {
         document.getElementById('dialogBtn').style.display = 'block';
     }
+
+    // 'Open' Button will be hidden, if modal Dialog is opened
     function dialogOpen(): void {
         document.getElementById('dialogBtn').style.display = 'none';
     }
-
+    // Dialog will be closed, while clicking on overlay
     document.getElementById('checkbox').onclick = () => {
         if ((document.getElementById('checkbox') as HTMLInputElement).checked) {
             dialogObj.overlayClick = (): void => {

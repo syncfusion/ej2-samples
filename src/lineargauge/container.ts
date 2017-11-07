@@ -1,7 +1,8 @@
 import { LinearGauge, ContainerType, Orientation } from '@syncfusion/ej2-lineargauge';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Default linear gauge
+ * Container Sample
  */
 this.default = (): void => {
     let gauge: LinearGauge = new LinearGauge({
@@ -64,16 +65,27 @@ this.default = (): void => {
     });
     gauge.appendTo('#boxContainer');
 
-    document.getElementById('containerMode').onchange = () => {
-        let ele: HTMLSelectElement = <HTMLSelectElement>document.getElementById('containerMode');
-        gauge.container.type = <ContainerType>ele.value;
-        gauge.refresh();
-    };
-    document.getElementById('orientationMode').onchange = () => {
-        let ele: HTMLSelectElement = <HTMLSelectElement>document.getElementById('orientationMode');
-        gauge.orientation = <Orientation>ele.value;
-        gauge.refresh();
-    };
+    let containerMode: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select Range Bar Color',
+        width: 120,
+        change: () => {
+            gauge.container.type = <ContainerType>containerMode.value;
+            gauge.refresh();
+        }
+    });
+    containerMode.appendTo('#containerMode');
+
+    let orientationMode: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select Range Bar Color',
+        width: 120,
+        change: () => {
+            gauge.orientation = <Orientation>orientationMode.value;
+            gauge.refresh();
+        }
+    });
+    orientationMode.appendTo('#orientationMode');
 };
 
 

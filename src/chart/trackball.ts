@@ -1,7 +1,8 @@
-import { Marker, Tooltip, Crosshair, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import { Tooltip, Crosshair, DateTime, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { Chart, LineSeries, Legend } from '@syncfusion/ej2-charts';
-import { john, andrew, thomas, mark, william } from './trackball-data';
-Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Marker, Legend);
+import { john, andrew, thomas } from './trackball-data';
+import { Browser } from '@syncfusion/ej2-base';
+Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
 
 /**
  * TrackBall Sample
@@ -11,10 +12,9 @@ this.default = (): void => {
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Years',
             minimum: new Date(2000, 1, 1), maximum: new Date(2006, 2, 11),
-            intervalType: 'Years',
             valueType: 'DateTime',
+            skeleton: 'y',
             lineStyle: { width: 0 },
             majorGridLines: { width: 0 },
             edgeLabelPlacement: 'Shift'
@@ -23,13 +23,17 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Revenue in Millions',
+            title: 'Revenue',
             labelFormat: '{value}M',
             majorTickLines: { width: 0 },
-            minimum: 10, maximum: 90,
-            lineStyle: { width: 0 }
+            minimum: 10, maximum: 80,
+            lineStyle: { width: 0 },
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
         //Initializing Chart Series
         series: [
             {
@@ -55,31 +59,18 @@ this.default = (): void => {
                 xName: 'x', width: 2,
                 yName: 'y',
                 marker: { visible: true }
-            },
-            {
-                type: 'Line',
-                dataSource: mark,
-                name: 'Mark',
-                xName: 'x', width: 2,
-                yName: 'y',
-                marker: { visible: true }
-            },
-            {
-                type: 'Line',
-                dataSource: william,
-                name: 'William',
-                xName: 'x', width: 2,
-                yName: 'y',
-                marker: { visible: true }
             }
         ],
-        tooltip: { enable: true, shared: true, format: '${series.name} : ${point.x} : ${point.y}' },
+        //Initializing User Interaction Tooltip and Crosshair
+        tooltip: { enable: true, shared: true },
         crosshair: { enable: true, lineType: 'Vertical' },
         //Initializing Chart title
         title: 'Average Sales per Person',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.width = Browser.isDevice ? '100%' : '60%';
         }
     });
     chart.appendTo('#container');

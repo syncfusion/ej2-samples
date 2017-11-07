@@ -8,11 +8,13 @@
         <table id="property" title="Properties" style="width: 100%">
             <tr style="height: 50px">
                 <td>
-                    <img id='random' src="src/circulargauge/images/gauge1.png" style="margin-left:25px;margin-top:10px;border: 2px solid #E0E0E0"
+                    <img id='random' src="src/circulargauge/images/gauge1.png" style="margin-left:25px;margin-top:10px;"
                     />
+                    <div id="random_line" style="display:block;left: 0px;background: #ff4081;padding-top: 0px;height: 2px !important;width: 85px;margin: 2px 2px 2px 17px;"></div>
                 </td>
                 <td>
                     <img id='usage' src="src/circulargauge/images/gauge2.png" style="margin-left:25px;margin-top:10px;" />
+                    <div id="usage_line" style="display:none;left: 0px;background: #ff4081;padding-top: 0px;height: 2px !important;width: 85px;margin: 2px 2px 2px 17px;"></div>
                 </td>
             </tr>
             <tr style="height: 50px">
@@ -21,7 +23,7 @@
                 </td>
                 <td>
                     <div>
-                        <input type="range" id="currentValue" value="1800" min="1000" max="2000" style="width:90%" />
+                        <input type="range" id="currentValue" value="1800" min="1000" max="2000"  />
                     </div>
                 </td>
             </tr>
@@ -31,7 +33,7 @@
                 </td>
                 <td>
                     <div>
-                        <select id="barColor" class="form-control" style="width:90%"> 
+                        <select id="barColor" class="form-control" > 
                             <option value="#FFDD00" selected = true>#FFDD00</option>
                             <option value="#00bdae">#00bdae</option>
                             <option value="#FF2680">#FF2680</option>
@@ -45,7 +47,7 @@
                 </td>
                 <td>
                     <div>
-                        <select id="rangeColor" class="form-control" style="width:90%"> 
+                        <select id="rangeColor" class="form-control" > 
                             <option value="#E0E0E0" selected = true>#E0E0E0</option>
                             <option value="#7bb4eb">#7bb4eb</option>
                             <option value="#ea7a57">#ea7a57</option>
@@ -59,7 +61,7 @@
                 </td>
                 <td>
                     <div>
-                        <select id="pointerColor" class="form-control" style="width:90%"> 
+                        <select id="pointerColor" class="form-control" > 
                             <option value="#424242" selected = true>#424242</option>
                             <option value="#6f6fe2">#6f6fe2</option>
                             <option value="#9e480e">#9e480e</option>
@@ -70,7 +72,11 @@
         </table>
     </div>
 </div>
-
+<div id="action-description">
+    <p>
+        This sample demonstrates customization of circulargauge.
+    </p>
+</div>
 <div id="description">
     <p>
         In this example, you can see how to customize the gauge elements such as <code>pointers</code> and <code>range</code>.
@@ -79,7 +85,7 @@
     </p>
     <p>
         More information on the range and pointer customization can be found in this
-        <a target="_blank" href="http://ej2.syncfusion.com/documentation/circular-gauge/api-range.html"> documentation section</a>.
+        <a target="_blank" href="http://ej2.syncfusion.com/documentation"> documentation section</a>.
     </p>
 </div>
 

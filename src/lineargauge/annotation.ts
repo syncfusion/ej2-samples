@@ -2,7 +2,7 @@ import { LinearGauge, Annotations, ILoadEventArgs } from '@syncfusion/ej2-linear
 LinearGauge.Inject(Annotations);
 
 /**
- * Default linear gauge
+ * Linear Gauge Annotation Sample
  */
 let gauge: LinearGauge;
 this.default = (): void => {
@@ -68,7 +68,7 @@ function gaugeLoad(args: ILoadEventArgs): void {
             {
                 content: '<div id="title" style="width:200px;"><p style="font-size:18px;">CPU Utilization</p></div>',
                 horizontalAlignment: 'Center',
-                x: 35,
+                x: 35, zIndex: '1',
                 y: 50
             },
             {
@@ -94,19 +94,19 @@ function gaugeLoad(args: ILoadEventArgs): void {
             },
             {
                 content: '<div id="lowText"><p style="font-size:15px;color:#248622;">Low</p></div>',
-                axisIndex: 0,
+                axisIndex: 0, zIndex: '1',
                 axisValue: 15,
                 y: 20
             },
             {
                 content: '<div id="moderateText"><p style="font-size:15px;color:#ba9e2a;">Moderate</p></div>',
-                axisIndex: 0,
+                axisIndex: 0, zIndex: '1',
                 axisValue: 45,
                 y: 20
             },
             {
                 content: '<div id="highText"><p style="font-size:15px;color:#b42f2f;">High</p></div>',
-                axisIndex: 0,
+                axisIndex: 0, zIndex: '1',
                 axisValue: 75,
                 y: 20
             }

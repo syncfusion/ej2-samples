@@ -1,7 +1,12 @@
 <div class="control-section">
-    <div id="container"></div>
+    <div id="container" align="center"></div>
     <div style="float: right; margin-right: 10px;">
     </div>
+</div>
+<div id="action-description">
+    <p>
+        This sample demonstrates datalabel template support. In this sample, images are placed as datalabel by means of templates.
+    </p>
 </div>
 <div id="description">
     <p>
@@ -26,7 +31,7 @@
     #templateWrap img {
         border-radius: 0px;
         width: 24px;
-        padding: 2px;
+        padding: 4px;
         height: 24px;
     }
     
@@ -63,6 +68,22 @@
 </script>
 <script id='Female-Material' type="text/x-template">
     <div id='templateWrap' style="background-color:#404041;border-radius: 3px;">
+        <img src='src/chart/images/female.png' />
+        <div class='des' style="color:white; font-family:Roboto; font-style: medium; fontp-size:14px;padding-right:6px">
+            <span>${point.y}M </span>
+        </div>
+    </div>
+</script>
+<script id='Male-Bootstrap' type="text/x-template">
+    <div id='templateWrap' style="background-color:#a16ee5;border-radius: 3px;">
+        <img src='src/chart/images/male.png' />
+        <div class='des' style="color:white; font-family:Roboto; font-style: medium; fontp-size:14px;padding-right:6px">
+            <span>${point.y}M </span>
+        </div>
+    </div>
+</script>
+<script id='Female-Bootstrap' type="text/x-template">
+    <div id='templateWrap' style="background-color:#f7ce69;border-radius: 3px;">
         <img src='src/chart/images/female.png' />
         <div class='des' style="color:white; font-family:Roboto; font-style: medium; fontp-size:14px;padding-right:6px">
             <span>${point.y}M </span>

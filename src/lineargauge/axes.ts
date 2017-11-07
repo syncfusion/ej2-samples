@@ -1,8 +1,9 @@
-import { LinearGauge, Point, Annotations, Placement } from '@syncfusion/ej2-lineargauge';
+import { LinearGauge, Point, Annotations, Placement, Pointer } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations);
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Default linear gauge
+ * Axes Sample
  */
 this.default = (): void => {
     let gauge: LinearGauge = new LinearGauge(linearAxes());
@@ -44,6 +45,8 @@ this.default = (): void => {
             gauge.axes[0].maximum = parseInt(max.value, 10);
             document.getElementById('minValue').innerHTML = 'Axis Minimum <span>&nbsp;&nbsp;&nbsp;' + min.value;
             gauge.refresh();
+            gauge.annotations[0].axisValue = (<Pointer>gauge.axes[0].pointers[0]).currentValue;
+            gauge.refresh();
         };
 
     document.getElementById('max').ontouchmove = document.getElementById('max').onpointermove =
@@ -54,6 +57,8 @@ this.default = (): void => {
             gauge.axes[0].minimum = parseInt(min.value, 10);
             document.getElementById('maxValue').innerHTML = 'Axis Maximum <span>&nbsp;&nbsp;&nbsp;' + max.value;
             gauge.refresh();
+            gauge.annotations[0].axisValue = (<Pointer>gauge.axes[0].pointers[0]).currentValue;
+            gauge.refresh();
         };
 
     document.getElementById('format').onchange = () => {
@@ -62,19 +67,34 @@ this.default = (): void => {
         gauge.refresh();
     };
 
+    let pointerPlace: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select Range Bar Color',
+        width: 120,
+        change: () => {
+            gauge.axes[0].pointers[0].placement = <Placement>pointerPlace.value;
+            gauge.refresh();
+        }
+    });
+    pointerPlace.appendTo('#pointerType');
+
+    let pointerType: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select Range Bar Color',
+        width: 120,
+        change: () => {
+            gauge.axes[0].pointers[0].type = <Point>pointerPlace.value;
+            pointerType.enabled = (<Point>pointerPlace.value === 'Marker');
+            gauge.refresh();
+        }
+    });
+    pointerType.appendTo('#pointerPlace');
+
     document.getElementById('pointerType').onchange = () => {
         let place: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointerPlace');
         let ele: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointerType');
-        let marker: HTMLSelectElement = <HTMLSelectElement>document.getElementById('markerType');
         gauge.axes[0].pointers[0].type = <Point>ele.value;
         place.disabled = (<Point>ele.value === 'Marker') ? false : true;
-        marker.disabled = (<Point>ele.value === 'Marker') ? false : true;
-        gauge.refresh();
-    };
-
-    document.getElementById('pointerPlace').onchange = () => {
-        let ele: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointerPlace');
-        gauge.axes[0].pointers[0].placement = <Placement>ele.value;
         gauge.refresh();
     };
 };
@@ -113,11 +133,13 @@ export function linearAxes(): LinearGauge {
             }
         }],
         annotations: [{
-            content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px;color:#424242">10 Kms</h1></div>',
+            content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px;' +
+            'color:#424242">${axes[0].pointers[0].currentValue} MPH</h1></div>',
             axisIndex: 0,
             axisValue: 10,
             x: 10,
-            y: 60
+            y: 60,
+            zIndex: '1'
         }]
     });
     return gauge;

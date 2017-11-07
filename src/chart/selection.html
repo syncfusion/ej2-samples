@@ -1,65 +1,75 @@
 <div>
     <div class="col-md-8 control-section">
         <div class="content-wrapper">
-            <div id="container"style="width:92%"></div>
+            <div id="container" style="width:92%"></div>
         </div>
     </div>
     <div class="col-md-4 property-section">
         <table id="property" title="Properties" style="width: 100%">
             <tr style="height: 50px">
-               <td style="width: 60%">
-                  <div>Selection Mode:</div>
-               </td>
-               <td style="width: 40%;">
-                  <div>
-                     <select name="selectIndex" autocomplete="off" id="selmode" style="margin-left: -5px">
+                <td style="width: 60%">
+                    <div>Selection Mode:</div>
+                </td>
+                <td style="width: 40%;">
+                    <select name="selectIndex" autocomplete="off" id="selmode" style="margin-left: -25px">
                         <option value="Point">Point</option>
                         <option value="Series">Series</option>
                         <option value="Cluster">Cluster</option>
-                        <option value="DragXY">DragXY</option>
-                        <option value="DragX">DragX</option>
-                        <option value="DragY">DragY</option>
                         <option value="None">None</option>
-                     </select>
-                  </div>
-               </td>
+                    </select>
+                </td>
             </tr>
             <tr id='' style="height: 50px">
-               <td style="width: 80%">
-                  <div> Enable MultipleSelection:</div>
-               </td>
-               <td style="width: 20%;">
-                  <div><input type="checkbox" id="select"></div>
-               </td>
+                <td style="width: 80%">
+                    <div> Enable Multi Selection:</div>
+                </td>
+                <td>
+                    <input type="checkbox" id="select" style="margin-top: 15px">
+                </td>
             </tr>
         </table>
     </div>
 </div>
+<div id="action-description">
+    <p>
+        This sample demonstrates selection feature in chart. To select a specific point, you can click on a point. You can change selection mode, by changing <code>Selection Mode</code> in properities. Also, multiple selection could be enabled by <code>Enable MultiplecSelection</code>.
+    </p>
+</div>
+
 <div id="description">
     <p>
-        This sample demonstrates the selection behavior in a chart. Any point or a series can be selected in a chart by clicking or touching the point. 
-        We can also select the point while loading chart through <code>selectedDataIndexes</code> properties. Click to select a point or series, click and drag to enable rectangular selection. 
-        Rectangular selection will return the collection point that are selected under the region.  
+        This sample demonstrates the selection behavior in a chart. Any point or a series can be selected in a chart by clicking
+        or touching the point. We can also select the point while loading chart through
+        <code>selectedDataIndexes</code> properties. Click to select a point or series, click and drag to enable rectangular selection. Rectangular selection
+        will return the collection point that are selected under the region.
     </p>
     <p>
-         Tap to select a point or series, double tap and drag to enable rectangular selection in touch enabled devices.
+        Tap to select a point or series, double tap and drag to enable rectangular selection in touch enabled devices.
     </p>
-    <p>Chart supports five mode of selection which can be set using <code>SelectionMode</code> property.
+    <p>Chart supports five mode of selection which can be set using
+        <code>SelectionMode</code> property.
     </p>
     <ul>
-          <li><code>Series</code> - Select the series in chart.</li>
-          <li><code>Point</code> - Select a point in the series .</li>
-          <li><code>Cluster</code> - Select a group of points in the chart.</li>
-          <li><code>DragXY</code> - Rectangular selection with respect to both axis.</li>
-          <li><code>DragX</code> - Rectangular selection with respect to horizontal axis.</li>
-          <li><code>DragY</code> - Rectangular selection with respect to vertical axis.</li>
-    </ul> 
+        <li>
+            <code>Series</code> - Select the series in chart.</li>
+        <li>
+            <code>Point</code> - Select a point in the series .</li>
+        <li>
+            <code>Cluster</code> - Select a group of points in the chart.</li>
+        <li>
+            <code>DragXY</code> - Rectangular selection with respect to both axis.</li>
+        <li>
+            <code>DragX</code> - Rectangular selection with respect to horizontal axis.</li>
+        <li>
+            <code>DragY</code> - Rectangular selection with respect to vertical axis.</li>
+    </ul>
     <br>
     <p style="font-weight: 500">Injecting Module</p>
     <p>
-          Chart component features are segregated into individual feature-wise modules. To use selection feature, we need to inject
-          <code>Selection</code> module using <code>Chart.Inject(Selection)</code> method.
-     </p> 
+        Chart component features are segregated into individual feature-wise modules. To use selection feature, we need to inject
+        <code>Selection</code> module using
+        <code>Chart.Inject(Selection)</code> method.
+    </p>
 </div>
 <style>
     #control-container {

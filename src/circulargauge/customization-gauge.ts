@@ -1,5 +1,5 @@
 /**
- * Annotations
+ * Gauge Customization
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
@@ -12,6 +12,7 @@ export function gauge1(): CircularGauge {
             annotations: [{
                 content: '<div style="color:#666666;font-size:35px;">1800</div>',
                 angle: 0,
+                zIndex: '1',
                 radius: '110%'
             }],
             lineStyle: { width: 0 },
@@ -49,10 +50,10 @@ export function gauge2(): CircularGauge {
         axes: [{
             annotations: [{
                 content: '<div style="color:#666666;font-size:35px;">50.5GB</div>',
-                angle: 180, radius: '0%'
+                angle: 180, radius: '0%', zIndex: '1',
             }, {
                 content: '<div style="color:#757575;font-size:15px;">Used</div>',
-                angle: 180, radius: '25%',
+                angle: 180, radius: '25%', zIndex: '1',
                 textStyle: {
                     fontFamily: 'Roboto',
                     color: '#9E9E9E',

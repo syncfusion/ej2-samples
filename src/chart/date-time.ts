@@ -1,41 +1,44 @@
-import { Chart, LineSeries, DateTime, Legend, Marker, DataLabel, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, DateTime, Legend, Marker, DataLabel);
+import { ChartTheme, Chart, LineSeries, DateTime, Legend, DataLabel, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, DateTime, Legend, DataLabel);
+import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * DateTime Axis
  */
 this.default = (): void => {
     let chart: Chart = new Chart({
-        //Initializing Primary X Axis
+        //Initializing Primary X and Y Axis
         primaryXAxis: {
-            title: 'Months',
             valueType: 'DateTime',
-            labelFormat: 'yMMM',
-            edgeLabelPlacement: 'Shift'
+            labelFormat: 'MMM',
+            edgeLabelPlacement: 'Shift',
+            majorGridLines: { width: 0 }
         },
-
-        //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Temperature (Celsius)',
             minimum: -20,
-            maximum: 25,
-            interval: 5,
+            maximum: 30,
+            interval: 10,
             edgeLabelPlacement: 'Shift',
-            labelFormat: '{value}°C'
+            labelFormat: '{value}°C',
+            lineStyle: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
         //Initializing Chart Series
         series: [
             {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2016, 0, 1), y: -7.1 }, { x: new Date(2016, 1, 1), y: -3.7 },
-                    { x: new Date(2016, 2, 1), y: 0.8 }, { x: new Date(2016, 3, 1), y: 6.3 },
+                    { x: new Date(2016, 3, 1), y: 6.3 },
                     { x: new Date(2016, 4, 1), y: 13.3 }, { x: new Date(2016, 5, 1), y: 18.0 },
                     { x: new Date(2016, 6, 1), y: 19.8 }, { x: new Date(2016, 7, 1), y: 18.1 },
-                    { x: new Date(2016, 8, 1), y: 13.1 }, { x: new Date(2016, 9, 1), y: 4.1 },
-                    { x: new Date(2016, 10, 1), y: -3.8 }, { x: new Date(2016, 11, 1), y: -6.8 },
+                    { x: new Date(2016, 8, 1), y: 13.1 }, { x: new Date(2016, 9, 1), y: 4.1 }
                 ],
                 xName: 'x', width: 2,
                 yName: 'y', name: 'Warmest',
@@ -48,12 +51,10 @@ this.default = (): void => {
             }, {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2016, 0, 1), y: -17.4 }, { x: new Date(2016, 1, 1), y: -15.6 },
-                    { x: new Date(2016, 2, 1), y: -12.3 }, { x: new Date(2016, 3, 1), y: -5.3 },
+                    { x: new Date(2016, 3, 1), y: -5.3 },
                     { x: new Date(2016, 4, 1), y: 1.0 }, { x: new Date(2016, 5, 1), y: 6.9 },
                     { x: new Date(2016, 6, 1), y: 9.4 }, { x: new Date(2016, 7, 1), y: 7.6 },
-                    { x: new Date(2016, 8, 1), y: 2.6 }, { x: new Date(2016, 9, 1), y: -4.9 },
-                    { x: new Date(2016, 10, 1), y: -13.4 }, { x: new Date(2016, 11, 1), y: -16.4 },
+                    { x: new Date(2016, 8, 1), y: 2.6 }, { x: new Date(2016, 9, 1), y: -4.9 }
                 ],
                 xName: 'x', width: 2,
                 yName: 'y', name: 'Coldest',
@@ -63,12 +64,13 @@ this.default = (): void => {
                 }
             }
         ],
-
+        width: Browser.isDevice ? '100%' : '60%',
         //Initializing Chart title
         title: 'Alaska Weather Statistics - 2016',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

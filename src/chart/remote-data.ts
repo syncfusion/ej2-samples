@@ -1,7 +1,11 @@
-import { Chart, ColumnSeries, Category, Legend, Tooltip, IAxisLabelRenderEventArgs, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import {
+    Chart, ColumnSeries, IPointRenderEventArgs, DataLabel,
+    Category, Legend, Tooltip, IAxisLabelRenderEventArgs, ILoadedEventArgs, ChartTheme
+} from '@syncfusion/ej2-charts';
 import { DataManager, Query } from '@syncfusion/ej2-data';
 import { EmitType } from '@syncfusion/ej2-base';
-Chart.Inject(ColumnSeries, Category, Legend, Tooltip);
+import { Browser } from '@syncfusion/ej2-base';
+Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
 
 /**
  * Remote Data Sample
@@ -9,15 +13,32 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip);
 let dataManager: DataManager = new DataManager({
     url: 'http://mvc.syncfusion.com/Services/Northwnd.svc/Tasks/'
 });
+import { fabricColors, materialColors, bootstrapColors } from './theme-color';
 let query: Query = new Query().take(5).where('Estimate', 'lessThan', 3, false);
 let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEventArgs): void => {
     if (args.axis.orientation === 'Horizontal') {
         args.text = args.text.split(' ')[0];
     }
 };
-let loadedChart: EmitType<Object> = (args: Chart): void => {
+let loaded: number = 1;
+let loadedChart: EmitType<Object> = (args: ILoadedEventArgs): void => {
     let div: HTMLElement = document.getElementById('waitingpopup') as HTMLElement;
     div.style.display = 'none';
+    if (loaded) {
+        args.chart.refresh();
+    }
+    loaded = 0;
+};
+let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
+    let selectedTheme: string = location.hash.split('/')[1];
+    selectedTheme = selectedTheme ? selectedTheme : 'Material';
+    if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
+        args.fill = fabricColors[args.point.index % 10];
+    } else if (selectedTheme === 'material') {
+        args.fill = materialColors[args.point.index % 10];
+    } else {
+        args.fill = bootstrapColors[args.point.index % 10];
+    }
 };
 this.default = (): void => {
     let chart: Chart = new Chart({
@@ -26,29 +47,48 @@ this.default = (): void => {
         primaryXAxis: {
             rangePadding: 'Additional',
             valueType: 'Category',
-            title: 'Assignee'
+            title: 'Assignee',
+            majorGridLines: { width: 0 },
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Estimate',
-            minimum: 0,
-            maximum: 3,
-            interval: 1
+            majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+            lineStyle: { width: 0 },
+            labelStyle: {
+                color: 'transparent'
+            }
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
         //Initializing Chart Series
         series: [
             {
                 type: 'Column',
                 dataSource: dataManager,
                 xName: 'Assignee', yName: 'Estimate', query: query,
-                name: 'Inprogress'
+                name: 'Story Point',
+                animation: { enable: false },
+                marker: {
+                    dataLabel: {
+                        visible: true,
+                        position: 'Top',
+                        font: {
+                            fontWeight: '600', color: '#ffffff'
+                        }
+                    }
+                }
             }
         ],
+        pointRender: pointRender,
         axisLabelRender: labelRender,
         loaded: loadedChart,
+        width: Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs): void => {
             let div: HTMLElement = document.getElementById('waitingpopup');
             div.style.display = 'block';
@@ -58,11 +98,16 @@ this.default = (): void => {
             div.style.left = (width / 2 - 25) + 'px';
             div.style.display = '';
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
         //Initializing Chart title
         title: 'Sprint Task Analysis', legendSettings: { visible: false },
-        tooltip: { enable: true, format: 'Name: ${point.x} <br>Story Point: ${point.y}' }
+        //Initializing User Interaction Tooltip
+        tooltip: {
+            enable: true
+        }
+
     });
     chart.appendTo('#container');
 };

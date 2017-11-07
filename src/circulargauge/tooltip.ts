@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Tooltip sample
  */
 import { CircularGauge, ITooltipRenderEventArgs } from '@syncfusion/ej2-circulargauge';
 import { GaugeTooltip } from '@syncfusion/ej2-circulargauge';

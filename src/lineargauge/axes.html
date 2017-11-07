@@ -8,7 +8,9 @@
         <table id="property" title="Properties" style="width: 100%;">
             <tr>
                 <td>
-                    <div id='minValue'>Axis Minimum <span>&nbsp;&nbsp;&nbsp;0</span> </div>
+                    <div id='minValue'>Axis Minimum
+                        <span>&nbsp;&nbsp;&nbsp;0</span>
+                    </div>
                 </td>
                 <td>
                     <div>
@@ -18,7 +20,9 @@
             </tr>
             <tr>
                 <td>
-                    <div id='maxValue'>Axis Maximum <span>&nbsp;&nbsp;&nbsp;100</span> </div>
+                    <div id='maxValue'>Axis Maximum
+                        <span>&nbsp;&nbsp;&nbsp;100</span>
+                    </div>
                 </td>
                 <td>
                     <div>
@@ -51,7 +55,7 @@
                     <div>Label Format</div>
                 </td>
                 <td>
-                    <div>
+                    <div class="e-float-input" style='margin-top: 0px;'>
                         <input type="text" value="{value}" id='format' class="form-control" style="width:90%" />
                     </div>
                 </td>
@@ -63,9 +67,9 @@
                 <td>
                     <div>
                         <select name="selectIndex" autocomplete="off" id="pointerType" class="form-control" style="width:90%">
-                        <option value="Marker" selected>Marker</option>
-                        <option value="Bar">Bar</option>
-                     </select>
+                            <option value="Marker">Marker</option>
+                            <option value="Bar">Bar</option>
+                        </select>
                     </div>
                 </td>
             </tr>
@@ -76,21 +80,28 @@
                 <td>
                     <div>
                         <select name="selectIndex" autocomplete="off" id="pointerPlace" class="form-control" style="width:90%">
-                        <option value="Near">Near</option>
-                        <option value="Center">Center</option>
-                         <option value="Far" selected>Far</option>
-                     </select>
+                            <option value="Far">Far</option>
+                            <option value="Near">Near</option>
+                            <option value="Center">Center</option>
+                        </select>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
 </div>
+<div id="action-description">
+    <p>
+        This sample demonstrates customization axes in linear gauge. You can change minimium and maximum value of pointer by using <code>Axis Minimum</code> and <code>Axis Maximum</code> in property panel. Inversed and opposed position of an axis can be changed by <code>Axis Inversed</code> and <code>Axis Opposed</code>. Type of pointer and placing marker can be customized by <code>Pointer Type</code> and <code>Marker Placement</code>.
+     </p>
+</div>
 <div id="description">
     <p>
-        In this example, you can see how to customize the axes and pointers. Use <code>format</code> of labelStyle property
-        to customize the axis labels and use <code>type</code>, <code>markerType</code> and <code>placement</code> properties
-        to customize the pointers in linear gauge.
+        In this example, you can see how to customize the axes and pointers. Use
+        <code>format</code> of labelStyle property to customize the axis labels and use
+        <code>type</code>,
+        <code>markerType</code> and
+        <code>placement</code> properties to customize the pointers in linear gauge.
     </p>
     <br>
     <p>

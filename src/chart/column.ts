@@ -1,65 +1,47 @@
-import { Chart, ColumnSeries, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(ColumnSeries, Category, Legend, Tooltip);
+import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+Chart.Inject(ColumnSeries, DataLabel, Category, Legend, Tooltip);
+import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * Column Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({
-
-        //Initializing Primary X Axis
+        //Initializing Primary X and Y Axis
         primaryXAxis: {
-            title: 'Countries',
-            valueType: 'Category',
-            interval: 1
+            valueType: 'Category', interval: 1, majorGridLines: { width: 0 }
         },
-
-        //Initializing Primary Y Axis
+        chartArea: { border: { width: 0 } },
         primaryYAxis:
         {
-            title: 'Medals',
-            minimum: 0,
-            maximum: 50,
-            interval: 5
+            minimum: 0, maximum: 50, interval: 10, majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 }, lineStyle: { width: 0 }, labelStyle: { color: 'transparent' }
         },
-
         //Initializing Chart Series
         series: [
             {
-                type: 'Column',
-                dataSource: [
-                    { x: 'USA', y: 46 }, { x: 'GBR', y: 27 }, { x: 'CHN', y: 26 }, { x: 'RUS', y: 19 },
-                    { x: 'GER', y: 17 }, { x: 'JAP', y: 12 }, { x: 'FRA', y: 10 }
-                ],
-                xName: 'x', width: 2,
-                yName: 'y', name: 'Gold',
+                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Gold',
+                dataSource: [{ x: 'USA', y: 46 }, { x: 'GBR', y: 27 }, { x: 'CHN', y: 26 }],
+                marker: { dataLabel: { visible: true, position: 'Top', font: { fontWeight: '600', color: '#ffffff' } } }
             },
             {
-                type: 'Column',
-                dataSource: [
-                    { x: 'USA', y: 37 }, { x: 'GBR', y: 23 }, { x: 'CHN', y: 18 }, { x: 'RUS', y: 17 },
-                    { x: 'GER', y: 10 }, { x: 'JAP', y: 8 }, { x: 'FRA', y: 18 }
-                ],
-                xName: 'x', width: 2,
-                yName: 'y', name: 'Silver',
+                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Silver',
+                dataSource: [{ x: 'USA', y: 37 }, { x: 'GBR', y: 23 }, { x: 'CHN', y: 18 }],
+                marker: { dataLabel: { visible: true, position: 'Top', font: { fontWeight: '600', color: '#ffffff' } } }
             },
             {
-                type: 'Column',
-                dataSource: [
-                    { x: 'USA', y: 38 }, { x: 'GBR', y: 17 }, { x: 'CHN', y: 26 }, { x: 'RUS', y: 19 },
-                    { x: 'GER', y: 15 }, { x: 'JAP', y: 21 }, { x: 'FRA', y: 14 }
-                ],
-                xName: 'x', width: 2,
-                yName: 'y', name: 'Bronze',
+                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Bronze',
+                dataSource: [{ x: 'USA', y: 38 }, { x: 'GBR', y: 17 }, { x: 'CHN', y: 26 }],
+                marker: { dataLabel: { visible: true, position: 'Top', font: { fontWeight: '600', color: '#ffffff' } } }
             }
         ],
-
         //Initializing Chart title
-        title: 'Olympic Medals - RIO',
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}' },
+        width: Browser.isDevice ? '100%' : '60%',
+        title: 'Olympic Medal Counts - RIO', tooltip: { enable: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

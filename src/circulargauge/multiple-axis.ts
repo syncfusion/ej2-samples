@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Multiple Axis sample
  */
 import { CircularGauge, isCompleteAngle, GaugeDirection } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -17,9 +17,9 @@ this.default = (): void => {
                 hiddenLabel: 'None', font: { color: '#333333' }
             }, majorTicks: {
                 position: 'Inside',
-                width: 0.5, height: 10, color: '#757575'
+                width: 2, height: 10, color: '#757575'
             }, minorTicks: {
-                position: 'Inside', width: 0.5,
+                position: 'Inside', width: 2,
                 height: 5, color: '#757575'
             },
             minimum: 0, maximum: 160, startAngle: 220, endAngle: 140,
@@ -34,10 +34,10 @@ this.default = (): void => {
                 position: 'Outside', autoAngle: true,
                 hiddenLabel: 'None', font: { color: '#E84011' }
             }, majorTicks: {
-                position: 'Outside', width: 0.5, height: 10,
+                position: 'Outside', width: 2, height: 10,
                 color: '#E84011'
             }, minorTicks: {
-                position: 'Outside', width: 0.5,
+                position: 'Outside', width: 2,
                 height: 5, color: '#E84011'
             },
             minimum: 0, maximum: 240, startAngle: 220, endAngle: 140,
@@ -51,7 +51,7 @@ this.default = (): void => {
     circulargauge.appendTo('#axis-container');
 
     axis = new DropDownList({
-        index: 0, width: 110,
+        index: 0, width: 120,
         change: () => {
             axisIndex = +axis.value;
             direction.value = circulargauge.axes[axisIndex].direction;
@@ -66,7 +66,7 @@ this.default = (): void => {
     axis.appendTo('#axisIndex');
 
     direction = new DropDownList({
-        index: 0, width: 110,
+        index: 0, width: 120,
         change: () => {
             circulargauge.axes[axisIndex].direction = <GaugeDirection>direction.value.toString();
             circulargauge.axes[0].pointers[0].animation.enable = false;

@@ -58,7 +58,7 @@ export function firstGauge(): LinearGauge {
                 content: '<div id="title" style="width:300px;"> <img style="float:left" src'
                 + '="src/lineargauge/images/Exercise Tracking.svg"/><p style="font-size:18px;color:#4285F4;float:left;margin-left:12px;'
                 + 'margin-top:4px">Exercise Tracking </p></div>',
-                axisIndex: 0,
+                axisIndex: 0, zIndex: '1',
                 axisValue: 0,
                 x: 150,
                 y: -180
@@ -66,14 +66,14 @@ export function firstGauge(): LinearGauge {
             {
                 content: '<div id="running" style="width:100px;"><img style="height:25px;width:25px;float:left" src="src/lineargauge' +
                 '/images/Running.svg" /></span><p style="float:left;margin-left:10px;">Running</p></div>',
-                axisIndex: 0,
+                axisIndex: 0, zIndex: '1',
                 axisValue: 0,
                 x: 50,
                 y: -130
             },
             {
-                content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;color:#30b32d;">10 Kms</p></div>',
-                axisIndex: 0,
+                content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;color:#30b32d;">10 MPH</p></div>',
+                axisIndex: 0, zIndex: '1',
                 axisValue: 10,
                 y: -65
             }
@@ -125,13 +125,13 @@ export function secondGauge(): LinearGauge {
         annotations: [{
             content: '<div id="cycle" style="width:100px;"><img style="height:25px;width:25px;float:left" src="src/lineargauge'
             + '/images/Cycling.svg" /></span><p style="float:left;margin-left:10px;">Cycling</p></div>',
-            axisIndex: 0,
+            axisIndex: 0, zIndex: '1',
             axisValue: 0,
             x: 50,
             y: -110
         },
         {
-            content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;color:#30b32d;">28 Kms</p></div>',
+            content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;color:#30b32d;">28 MPH</p></div>',
             axisIndex: 0,
             axisValue: 28,
             y: -70
@@ -186,14 +186,14 @@ export function thirdGauge(): LinearGauge {
             content: '<div id="walk" style="width:100px;"><img style="height:25px;width:25px;float:left" src="src/' +
             'lineargauge/images/Walking.svg" /></span><p style="float:left;margin-left:10px;">Walking</p></div>',
             axisIndex: 0,
-            axisValue: 0,
+            axisValue: 0, zIndex: '1',
             x: 50,
             y: -120
         },
         {
             content: '<div id="pointerText" style="width:100px;"><p style="font-size:15px;color:#30b32d;">2000 Steps</p></div>',
             axisIndex: 0,
-            axisValue: 2.2,
+            axisValue: 2.2, zIndex: '1',
             y: -65
         }]
     });

@@ -4,7 +4,7 @@ import { ITooltipRenderEventArgs, IResizeEventArgs } from '@syncfusion/ej2-linea
 LinearGauge.Inject(Annotations, GaugeTooltip);
 
 /**
- * Default linear gauge
+ * Linear Gauge Tooltip Sample
  */
 let gauge: LinearGauge;
 this.default = (): void => {
@@ -103,7 +103,7 @@ this.default = (): void => {
 };
 
 function renderTooltip(args: ITooltipRenderEventArgs): void {
-    args.content = (args.axis.visibleRange.max === 25) ? args.content + ' cms' : args.content + ' inches';
+    args.content = (args.axis.visibleRange.max === 25) ? args.content + ' cm' : args.content + ' in';
 }
 
 function labelRender(args: IAxisLabelRenderEventArgs): void {

@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * User Interaction sample
  */
 import { CircularGauge, IPointerDragEventArgs, Annotations, getRangeColor, Range } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
@@ -13,7 +13,7 @@ this.default = (): void => {
             pointerValue = Math.round(args.currentValue);
             document.getElementById('pointerValue').innerHTML = 'Pointer Value <span> &nbsp;&nbsp;&nbsp;' + pointerValue;
             (<HTMLInputElement>document.getElementById('value')).value = pointerValue.toString();
-            circulargauge.setAnnotationValue(0, 0, content + pointerValue + ' km/h</span></div>');
+            circulargauge.setAnnotationValue(0, 0, content + pointerValue + ' MPH</span></div>');
         },
         dragEnd: (args: IPointerDragEventArgs) => {
             pointerValue = Math.round(args.currentValue);
@@ -21,7 +21,7 @@ this.default = (): void => {
         },
         axes: [{
             annotations: [{
-                content: content + '70 km/h</span></div>',
+                content: content + '70 MPH</span></div>',
                 angle: 180, zIndex: '1',
                 radius: '45%'
             }],
@@ -83,7 +83,7 @@ this.default = (): void => {
         circulargauge.setPointerValue(0, 1, pointerValue);
         circulargauge.setPointerValue(0, 0, pointerValue);
         content = '<div style="font-size: 14px;color:' + color + ';font-weight: lighter;font-style: oblique;"><span>';
-        circulargauge.setAnnotationValue(0, 0, content + pointerValue + ' km/h</span></div>');
+        circulargauge.setAnnotationValue(0, 0, content + pointerValue + ' MPH</span></div>');
     }
     document.getElementById('value').ontouchmove = document.getElementById('value').onpointermove =
         document.getElementById('value').onchange = () => {

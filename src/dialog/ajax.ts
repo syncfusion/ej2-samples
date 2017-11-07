@@ -6,9 +6,10 @@ import { Ajax } from '@syncfusion/ej2-base';
  */
 
 this.default = () => {
-
+    // Request to load AJAX content
     let ajax: Ajax = new Ajax('./src/dialog/twitter.html', 'GET', true);
     ajax.send().then();
+    // Rendering Dialog on AJAX success
     ajax.onSuccess = (data: string): void => {
         let dialogObj: Dialog = new Dialog({
             header: 'Twitter',
@@ -22,6 +23,8 @@ this.default = () => {
         });
         dialogObj.appendTo('#dialog');
         document.getElementById('dialogBtn').focus();
+
+        // Button has been created to open the Dialog
         let button: Button = new Button({
         });
         button.appendTo('#dialogBtn');
@@ -29,9 +32,12 @@ this.default = () => {
             dialogObj.show();
         };
 
+        // 'Open' Button will be shown, if Dialog is closed
         function dialogClose(): void {
             document.getElementById('dialogBtn').style.display = 'block';
         }
+
+        // 'Open' Button will be hidden, if Dialog is opened
         function dialogOpen(): void {
             document.getElementById('dialogBtn').style.display = 'none';
         }

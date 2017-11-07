@@ -1,8 +1,9 @@
-import { Chart, ScatterSeries, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import { Chart, ScatterSeries, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
+import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(ScatterSeries, Legend, Tooltip);
 
 /**
- * Scatter Series
+ * Scatter Series Sample
  */
 this.default = (): void => {
     let series1: Object[] = [];
@@ -18,7 +19,7 @@ this.default = (): void => {
             value -= Math.random();
         }
         value = value < 60 ? 60 : value > 90 ? 90 : value;
-        point1 = { x: 120 + (i / 2), y: value.toFixed(1) };
+        point1 = { x: (145 + (i / 3)).toFixed(1), y: value.toFixed(1) };
         series1.push(point1);
     }
     for (i = 1; i < 120; i++) {
@@ -28,7 +29,7 @@ this.default = (): void => {
             value1 -= Math.random();
         }
         value1 = value1 < 60 ? 60 : value1 > 90 ? 90 : value1;
-        point1 = { x: 120 + (i / 2), y: value1.toFixed(1) };
+        point1 = { x: (145 + (i / 3)).toFixed(1), y: value1.toFixed(1) };
         series2.push(point1);
     }
     let chart: Chart = new Chart({
@@ -36,12 +37,17 @@ this.default = (): void => {
         //Initializing Primary X Axis
         primaryXAxis: {
             title: 'Height (cm)',
-            minimum: 120,
-            maximum: 180,
+            minimum: 145,
+            maximum: 185,
+            majorGridLines: { width: 0 },
             edgeLabelPlacement: 'Shift',
             labelFormat: '{value}cm'
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
         //Initializing Primary Y Axis
         primaryYAxis:
         {
@@ -59,30 +65,36 @@ this.default = (): void => {
                 dataSource: series1,
                 xName: 'x', width: 2, marker: {
                     visible: false,
-                    width: 10,
-                    height: 10
+                    width: 8,
+                    height: 8
                 },
-                yName: 'y', name: 'Male', opacity : 0.7
+                yName: 'y', name: 'Male', opacity: 0.7
             },
             {
                 type: 'Scatter',
                 dataSource: series2,
                 xName: 'x', width: 2, marker: {
                     visible: false,
-                    width: 10,
-                    height: 10
+                    width: 8,
+                    height: 8
                 },
-                yName: 'y', name: 'Female', opacity : 0.7
+                yName: 'y', name: 'Female', opacity: 0.7
             },
         ],
 
         //Initializing Chart title
-        title: 'Height Vs Weight', legendSettings: { visible: true },
-        tooltip: { enable: true, format: '${series.name}<br>Height: ${point.x}<br>Weight: ${point.y}', enableAnimation : false },
+        title: 'Height Vs Weight',
+        //Initializing User Interaction Tooltip
+        tooltip: {
+            enable: true
+        },
+        width : Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
+
     });
     chart.appendTo('#container');
 };

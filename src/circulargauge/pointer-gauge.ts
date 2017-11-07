@@ -1,5 +1,5 @@
 /**
- * Pointer Customization
+ * Pointer Customization Sample
  */
 import { CircularGauge, Annotations } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
@@ -33,7 +33,7 @@ export function gauge1(): CircularGauge {
             }],
             annotations: [
                 {
-                    angle: 180,
+                    angle: 180, zIndex: '1',
                     radius: '20%',
                     content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Range Bar</div>'
                 }
@@ -74,7 +74,7 @@ export function gauge2(): CircularGauge {
             }],
             annotations: [
                 {
-                    angle: 180,
+                    angle: 180, zIndex: '1',
                     radius: '20%',
                     content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Inverted Triangle</div>'
                 }
@@ -120,7 +120,7 @@ export function gauge3(): CircularGauge {
             }],
             annotations: [
                 {
-                    angle: 180,
+                    angle: 180, zIndex: '1',
                     radius: '20%',
                     content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Triangle</div>'
                 }
@@ -162,7 +162,7 @@ export function gauge4(): CircularGauge {
             }],
             annotations: [
                 {
-                    angle: 180,
+                    angle: 180, zIndex: '1',
                     radius: '20%',
                     content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Needle</div>'
                 }
@@ -211,7 +211,7 @@ export function gauge5(): CircularGauge {
             }],
             annotations: [
                 {
-                    angle: 180,
+                    angle: 180, zIndex: '1',
                     radius: '20%',
                     content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Live Update</div>'
                 }

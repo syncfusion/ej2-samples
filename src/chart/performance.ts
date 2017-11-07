@@ -1,4 +1,4 @@
-import { Chart, LineSeries, Legend, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, Legend, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 Chart.Inject(LineSeries, Legend);
@@ -29,7 +29,8 @@ this.default = (): void => {
         legendSettings: { visible: false },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

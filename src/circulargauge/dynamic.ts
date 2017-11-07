@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Dynamic sample
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';

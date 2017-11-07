@@ -1,8 +1,13 @@
 <div class="control-section">
-    <div id="container"></div>
+    <div id="container" align='center'></div>
     <div style="float: right; margin-right: 10px;">Source:
        <a href="https://www.worldweatheronline.com/mooresville-weather/north-carolina/us.aspx" target="_blank">www.worldweatheronline.com</a>
     </div>
+</div>
+<div id="action-description">
+    <p>
+        This sample demonstrates spline series type in the chart.
+    </p>
 </div>
 <div id="description">
      <p>
@@ -26,5 +31,25 @@
 <style>
     #control-container {
         padding: 0px !important;
+    }
+    #container_Series_0_Point_2_Symbol {
+        -webkit-animation: opac 1s ease-out infinite;
+        animation: opac 1s ease-out infinite;
+    }
+
+    #container_Series_2_Point_0_Symbol {
+        -webkit-animation: opac 1s ease-out infinite;
+        animation: opac 1s ease-in-out infinite;
+    }
+
+    @keyframes opac {
+        0% {
+            stroke-opacity: 1;
+            stroke-width: 0px;
+        }
+        100% {
+            stroke-opacity: 0;
+            stroke-width: 10px;
+        }
     }
 </style>

@@ -3,7 +3,7 @@
  */
 import { MaskedTextBox } from '@syncfusion/ej2-inputs';
 this.default = (): void => {
-
+    // Render Masked Textbox with default mask
     let mask: MaskedTextBox = new MaskedTextBox({
         mask: '000-000-0000'
     });

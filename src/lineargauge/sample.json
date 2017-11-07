@@ -1,47 +1,56 @@
 {
     "name": "Linear Gauge",
     "directory": "lineargauge",
-    "category": "Data Visualization",    
+    "category": "Data Visualization",
+    "type": "new",
     "samples": [
         {
             "url": "default",
             "name": "Default",
-            "category": "Linear Gauge"
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["orientation", "annotations", "axes"]}
         },
         {
             "url": "container",
             "name": "Container",
-            "category": "Linear Gauge"
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["axes", "container"]}
         },
         {
             "url": "ranges",
             "name": "Ranges",
-            "category": "Linear Gauge"
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["axes"]}
         },
         {
             "url": "data",
             "name": "Data Sample",
-            "category": "Linear Gauge"
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["orientation", "annotations", "axes"]}
         },
         {
             "url": "axes",
             "name": "Axes and Pointers",
-            "category": "Linear Gauge"
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["orientation", "annotations", "axes"]}
         },
         {
             "url": "annotation",
             "name": "Annotation",
-            "category": "Linear Gauge"
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["orientation", "annotations", "axes", "rangePalettes"]}
         },
         {
             "url": "tooltip",
             "name": "Tooltip",
-            "category": "Linear Gauge"
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["orientation", "annotations", "axes", "tooltip", "tooltipRender", "axisLabelRender"]}            
         },
         {
             "url": "style",
             "name": "Styles",
-            "category": "Linear Gauge"
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["orientation", "container", "axes"]}
         }
     ]
 }

@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Gauge Labels sample
  */
 import { CircularGauge, Annotations, Position, TickModel } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -19,9 +19,9 @@ this.default = (): void => {
                 position: 'Outside', autoAngle: true,
                 font: { size: '10px', color: '#333333' }
             }, majorTicks: {
-                position: 'Inside', color: 'black', width: 0.5, height: 10, interval: 20
+                position: 'Inside', color: '#757575', width: 2, height: 10, interval: 20
             }, minorTicks: {
-                position: 'Inside', color: 'black', height: 5, width: 0.5, interval: 10
+                position: 'Inside', color: '#757575', height: 5, width: 2, interval: 10
             },
             radius: '75%', minimum: 0, maximum: 180,
             ranges: [{  start: 0, end: 145, color: '#8BC34A', radius: '60%' }],
@@ -31,7 +31,7 @@ this.default = (): void => {
     circulargauge.appendTo('#labels-container');
     let ticks: DropDownList; let tickPosition: DropDownList; let labelPosition: DropDownList;
     ticks = new DropDownList({
-        index: 0, width: 100,
+        index: 0, width: 120,
         change: () => {
             let value: string = ticks.value.toString();
             let tick: TickModel; isMajorTicks = value === 'major';
@@ -50,7 +50,7 @@ this.default = (): void => {
     ticks.appendTo('#Ticks');
 
     tickPosition = new DropDownList({
-        index: 0, width: 100,
+        index: 0, width: 120,
         change: () => {
             let value: string = tickPosition.value.toString();
             if (isMajorTicks) {
@@ -64,7 +64,7 @@ this.default = (): void => {
     tickPosition.appendTo('#tickposition');
 
     labelPosition = new DropDownList({
-        index: 0, width: 100,
+        index: 0, width: 120,
         change: () => {
             circulargauge.axes[0].labelStyle.position = <Position>labelPosition.value.toString();
             circulargauge.refresh();

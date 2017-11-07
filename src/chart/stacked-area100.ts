@@ -1,5 +1,6 @@
-import { Chart, StackingAreaSeries, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(StackingAreaSeries, DateTime);
+import { Chart, StackingAreaSeries, DateTime, ILoadedEventArgs, Legend, ChartTheme } from '@syncfusion/ej2-charts';
+Chart.Inject(StackingAreaSeries, DateTime, Legend);
+import { Browser } from '@syncfusion/ej2-base';
 let chartData: any[] = [
     { x: new Date(2000, 0, 1), y: 0.61, y1: 0.03, y2: 0.48, y3: 0.23 },
     { x: new Date(2001, 0, 1), y: 0.81, y1: 0.05, y2: 0.53, y3: 0.17 },
@@ -23,18 +24,28 @@ let chartData: any[] = [
  */
 this.default = (): void => {
     let chart: Chart = new Chart({
+        //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Years',
             valueType: 'DateTime',
+            majorGridLines: { width: 0 },
             intervalType: 'Years',
             labelFormat: 'y',
             edgeLabelPlacement: 'Shift'
         },
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Spend in Percentage',
-            rangePadding: 'None'
+            title: 'Spends',
+            majorGridLines: { width: 0 },
+            rangePadding: 'None',
+            interval: 20
         },
+        //Initializing Chart Series
         series: [
             {
                 dataSource: chartData, xName: 'x', yName: 'y',
@@ -52,10 +63,13 @@ this.default = (): void => {
                 type: 'StackingArea100', name: 'Others',
             }
         ],
+        width : Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        //Initializing Chart Title
         title: 'Trend in Sales of Ethical Produce'
     });
     chart.appendTo('#container');

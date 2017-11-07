@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Range sample
  */
 import { CircularGauge, Annotations } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -11,18 +11,19 @@ this.default = (): void => {
             labelStyle: {
                 position: 'Inside', useRangeColor: false,
                 font: { size: '12px', color: '#424242', fontFamily: 'Roboto', fontStyle: 'Regular' }
-            }, majorTicks: { height: 10, width: 0.5, offset: 10, color: 'black' }, minorTicks: { height: 0, width: 0.5 },
+            }, majorTicks: { height: 10, offset: 5, color: '#9E9E9E' }, minorTicks: { height: 0 },
             annotations: [{
                 content: '<div><span style="font-size:14px; color:#9E9E9E; font-family:Regular">Speedometer</span></div>',
-                radius: '30%', angle: 0
+                radius: '30%', angle: 0, zIndex: '1'
             }, {
                 content: '<div><span style="font-size:20px; color:#424242; font-family:Regular">65 MPH</span></div>',
-                radius: '40%', angle: 180
+                radius: '40%', angle: 180, zIndex: '1'
             }],
             startAngle: 210, endAngle: 150, minimum: 0, maximum: 120, radius: '80%',
             ranges: [{ start: 0, end: 40, color: '#30B32D' }, { start: 40, end: 80, color: '#FFDD00' },
             { start: 80, end: 120, color: '#F03E3E' }],
-            pointers: [{ value: 65, radius: '60%', color: '#757575', pointerWidth: 8,
+            pointers: [{
+                value: 65, radius: '60%', color: '#757575', pointerWidth: 8,
                 cap: { radius: 7, color: '#757575' }, needleTail: { length: '18%' }
             }]
         }]
@@ -30,9 +31,9 @@ this.default = (): void => {
     circulargauge.appendTo('#range-container');
     let colortObj: DropDownList;
     let listObj: DropDownList = new DropDownList({
-        index: 0, width: 100,
+        index: 0, width: 120,
         change: () => {
-            let index: number =  +listObj.value;
+            let index: number = +listObj.value;
             colortObj.value = circulargauge.axes[0].ranges[index].color;
             (<HTMLInputElement>document.getElementById('endWidth')).value = circulargauge.axes[0].ranges[index].endWidth.toString();
             document.getElementById('rangeEndWidth').innerHTML = 'End Width <span> &nbsp;&nbsp;&nbsp;' +
@@ -51,7 +52,7 @@ this.default = (): void => {
     listObj.appendTo('#rangeSelect');
 
     colortObj = new DropDownList({
-        index: 0, width: 100,
+        index: 0, width: 120,
         change: () => {
             circulargauge.axes[0].ranges[+listObj.value].color = colortObj.value.toString();
             circulargauge.axes[0].pointers[0].animation.enable = false; circulargauge.refresh();

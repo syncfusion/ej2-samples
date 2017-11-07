@@ -12,7 +12,7 @@
                 </td>
                 <td>
                     <div>
-                        <select id="axisIndex" class="form-control" style="width:90%"> 
+                        <select id="axisIndex" class="form-control" > 
                             <option value="0" selected = true>Axis 1</option>
                             <option value="1">Axis 2</option>
                         </select>
@@ -25,7 +25,7 @@
                 </td>
                 <td>
                     <div>
-                        <select id="axisDirection" class="form-control" style="width:90%"> 
+                        <select id="axisDirection" class="form-control" > 
                             <option value="ClockWise" selected = true>ClockWise</option>
                             <option value="AntiClockWise">AntiClockWise</option>
                         </select>
@@ -38,7 +38,7 @@
                 </td>
                 <td>
                     <div>
-                        <input type="range" id="startAngle" value="220" min="0" max="360" style="width:90%" />
+                        <input type="range" id="startAngle" value="220" min="0" max="360"  />
                     </div>
                 </td>
             </tr>&nbsp;
@@ -48,13 +48,19 @@
                 </td>
                 <td>
                     <div>
-                        <input type="range" id="endAngle" value="140" min="0" max="360" style="width:90%" />
+                        <input type="range" id="endAngle" value="140" min="0" max="360"  />
                     </div>
                 </td>
             </tr>
         </table>
     </div>
 </div>
+<div id="action-description">
+    <p>
+        This sample demonstrates customization of multiple axis in circular gauge. You can select axis by using <code>Axis</code>. Direction, start and end angle of the selected axis can be set by <code>Direction</code>, <code>Start Angle</code> and <code>End Angle</code> respectively.
+    </p>
+</div>
+
 <div id="description">
     <p>
         In this example, you can see how to render and configure multipe axes in gauge. Use <code>axes</code> collection
@@ -66,6 +72,6 @@
     </p>
     <p>
         More information on the axis can be found in this
-        <a target="_blank" href="http://ej2.syncfusion.com/documentation/circular-gauge/api-axis.html">documentation section</a>.
+        <a target="_blank" href="http://ej2.syncfusion.com/documentation">documentation section</a>.
     </p>
 </div>

@@ -36,10 +36,10 @@ this.default = (): void => {
             }
         }],
         annotations: [{
-            content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px;color:#424242">10 Kms</h1></div>',
+            content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px;color:#424242">10 MPH</h1></div>',
             axisIndex: 0,
             axisValue: 10,
-            x: 10,
+            x: 10, zIndex: '1',
             y: -70
         }]
     });

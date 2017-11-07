@@ -40,6 +40,7 @@
     {"url":"normal-editing", "name": "Inline Editing", "category":"Editing","api":{"Grid":["dataSource","allowPaging","pageSettings","columns","editSettings","toolbar"] }},
     {"url":"dialog-editing", "name": "Dialog Editing", "category":"Editing","api":{"Grid":["dataSource","allowPaging","pageSettings","columns","editSettings","toolbar"] }},
     {"url":"batch-editing", "name": "Batch Editing", "category":"Editing","api":{"Grid":["dataSource","allowPaging","pageSettings","columns","editSettings","toolbar"] }},
+    {"url":"command-column", "name": "Command Column", "category":"Editing", "api":{"Grid":["dataSource","allowPaging","pageSettings","columns","editSettings"] }},
     {"url":"columnresize", "name": "Column Resizing", "category":"Columns","api":{"Grid":["dataSource","allowResizing","height","columns"] }},
 	{"url":"headertemplate", "name": "Header Template", "category":"Columns","api":{"Grid":["dataSource","columns"] }},
     {"url":"exporting", "name": "Basic", "category":"Exporting","api":{"Grid":["dataSource","allowExcelExport","allowPdfExport","allowPaging","toolbar","pageSettings","columns"] }},

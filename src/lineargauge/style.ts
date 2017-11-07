@@ -2,7 +2,7 @@ import { LinearGauge, Annotations } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations);
 
 /**
- * Thermometer linear gauge
+ * Linear Gauge Style Sample
  */
 this.default = (): void => {
     let gauge1: LinearGauge = new LinearGauge(firstGauge());

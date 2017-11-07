@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Pointer sample
  */
 import { CircularGauge, Annotations } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2, gauge3, gauge4, gauge5 } from './pointer-gauge';
@@ -68,7 +68,7 @@ this.default = (): void => {
             }],
             annotations: [
                 {
-                    angle: 180,
+                    angle: 180, zIndex: '1',
                     radius: '25%',
                     content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Multiple Needle</div>'
                 }

@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Point Image Customization Sample
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';

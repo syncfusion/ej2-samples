@@ -5,7 +5,7 @@
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder" ]} },
         { "url": "minmax", "name": "Date Range", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "min", "max" ]} },
-        { "url": "minmaxdays", "name": "Restrict Range", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "minDays", "maxDays" ]} },
+        { "url": "minmaxdays", "name": "Day Span", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "minDays", "maxDays" ]} },
         { "url": "globalization", "name": "Globalization", "category": "DateRangePicker", "api":{"DateRangePicker": [ "locale", "enableRtl" ]} },
         { "url": "presets", "name": "Preset Ranges", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "presets" ]} }
     ]

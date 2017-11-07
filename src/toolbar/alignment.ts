@@ -1,5 +1,5 @@
 /**
- *  Toolbar sample to demonstrate default functionalities.
+ *  Toolbar sample to demonstrate alignment functionalities.
  */
 import { Toolbar } from '@syncfusion/ej2-navigations';
 

@@ -1,5 +1,6 @@
-import { Chart, StackingAreaSeries, Legend, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import { Chart, StackingAreaSeries, Legend, DateTime, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingAreaSeries, Legend, DateTime);
+import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * Stacked-Area Series
@@ -9,10 +10,9 @@ this.default = (): void => {
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Years',
             valueType: 'DateTime',
             intervalType: 'Years',
-            majorTickLines: { width: 0 },
+            majorGridLines: { width: 0 },
             labelFormat: 'y',
             edgeLabelPlacement: 'Shift'
         },
@@ -20,14 +20,19 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Spend in Billions',
+            title: 'Spends',
             minimum: 0,
             maximum: 7,
             interval: 1,
-            majorTickLines: { width: 0 },
-            labelFormat: '{value}B'
+            majorGridLines: { width: 0 },
+            labelFormat: '{value}B',
+            opposedPosition: true,
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
         //Initializing Chart Series
         series: [
             {
@@ -91,9 +96,11 @@ this.default = (): void => {
 
         //Initializing Chart title
         title: 'Trend in Sales of Ethical Produce',
+        width : Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

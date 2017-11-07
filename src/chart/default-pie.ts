@@ -1,5 +1,7 @@
-import { AccumulationChart, AccumulationLegend, PieSeries, AccumulationTooltip, IAccLoadedEventArgs,
-    AccumulationDataLabel } from '@syncfusion/ej2-charts';
+import {
+    AccumulationTheme, AccumulationChart, AccumulationLegend, PieSeries, AccumulationTooltip, IAccLoadedEventArgs,
+    AccumulationDataLabel
+} from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
@@ -7,38 +9,40 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
  */
 this.default = (): void => {
     let pie: AccumulationChart = new AccumulationChart({
+        // Initialize the chart series
         series: [
             {
                 dataSource: [
-                    { 'x': 'Chrome', y: 37.42, text: 'Chrome 37.42%' }, { 'x': 'UC Browser', y: 16.94, text: 'UC Browser 16.94%' },
-                    { 'x': 'iPhone', y: 17.94, text: 'iPhone 17.94%' },
-                    { 'x': 'Internet Explorer Mobile', y: 2.04, text: 'Internet Explorer Mobile 2.04%' },
-                    { 'x': 'Others', y: 3.69, text: 'Others 3.69%' }, { 'x': 'Opera mini', y: 11.37, text: 'Opera mini 11.37%' },
-                    { 'x': 'Android', y: 11.73, text: 'Android 11.73%' }
+                    { 'x': 'Chrome', y: 37.42, text: '37.42%' }, { 'x': 'UC Browser', y: 16.94, text: '16.94%' },
+                    { 'x': 'iPhone', y: 17.94, text: '17.94%' },
+                    { 'x': 'Others', y: 3.69, text: '3.69%' }, { 'x': 'Opera', y: 11.37, text: '11.37%' },
+                    { 'x': 'Android', y: 11.73, text: '11.73%' }
                 ],
                 dataLabel: {
                     visible: true,
-                    position: 'Outside', name: 'text',
-                    connectorStyle: { type: 'Curve', length: '10%' },
+                    position: 'Inside', name: 'text',
                     font: {
-                        size: '14px'
+                        fontWeight: '600',
+                        color: '#ffffff'
                     }
                 },
                 radius: '70%', xName: 'x',
                 yName: 'y', startAngle: 0,
                 endAngle: 360, innerRadius: '0%',
-                explode: true, explodeOffset: '10%', explodeIndex: 5
+                explode: true, explodeOffset: '10%', explodeIndex: 0
             }
         ],
         enableSmartLabels: true,
         legendSettings: {
             visible: false,
         },
+        // Initialize tht tooltip
         tooltip: { enable: true, format: '${point.x} <br> ${point.y} %' },
         title: 'Mobile Browser Statistics',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.accumulation.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     pie.appendTo('#container');
@@ -64,17 +68,6 @@ this.default = (): void => {
     document.getElementById('pieradius').onpointermove = document.getElementById('pieradius').ontouchmove =
         document.getElementById('pieradius').onchange = (e: Event) => {
             radiuschange(+(document.getElementById('pieradius') as HTMLInputElement).value);
-        };
-    function innerRadius(value: number): void {
-        pie.series[0].innerRadius = value + '%';
-        document.getElementById('innerradius').innerHTML = (value / 100).toFixed(2);
-        pie.removeSvg();
-        pie.refreshSeries();
-        pie.refreshChart();
-    }
-    document.getElementById('pieinnerradius').onpointermove = document.getElementById('pieinnerradius').ontouchmove =
-        document.getElementById('pieinnerradius').onchange = (e: Event) => {
-            innerRadius(+(document.getElementById('pieinnerradius') as HTMLInputElement).value);
         };
     function exploderadius(value: number): void {
         pie.visibleSeries[0].explodeOffset = value + '%';

@@ -1,5 +1,5 @@
 /**
- * Default sample
+ * Data sample
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2, gauge3 } from './datasample-gauge';
@@ -22,7 +22,7 @@ this.default = (): void => {
             'Country': 'UK',
             'Sales': 600,
             'Target': 700,
-            'vsTarget': 100
+            'vsTarget': -100
         }
     ];
     let germany: CircularGauge = new CircularGauge(gauge1(), '#container1');
@@ -65,7 +65,7 @@ this.default = (): void => {
                         'Country': 'UK',
                         'Sales': 600,
                         'Target': 700,
-                        'vsTarget': gridData3
+                        'vsTarget': -gridData3
                     }
                 ];
                 let data: Object = new DataManager(orderData).executeLocal(new Query().take(3));

@@ -1,6 +1,6 @@
 <div>
     <div class="col-md-8 control-section">
-            <div id="rangeContainer" style="width:100%"></div>
+        <div id="rangeContainer" style="width:100%"></div>
     </div>
     <div class="col-md-4 property-section">
         <table id="property" title="Properties" style="width: 100%">
@@ -10,11 +10,11 @@
                 </td>
                 <td>
                     <div>
-                        <select name="selectIndex" autocomplete="off" id="rangeIndex" class="form-control" style="width:90%">
-                        <option value="0" selected>Low</option>
-                        <option value="1">Moderate</option>
-                        <option value="2">High</option>
-                     </select>
+                        <select name="selectIndex" autocomplete="off" id="rangeIndex" style="width:90%">
+                            <option value="0">Low</option>
+                            <option value="1">Moderate</option>
+                            <option value="2">High</option>
+                        </select>
                     </div>
                 </td>
             </tr>
@@ -24,7 +24,10 @@
                 </td>
                 <td>
                     <div>
-                        <input type="text" value="#F03E3E" id='color' class="form-control" style="width:90%" />
+                        <div class="e-float-input" style='margin-top: 0px;'>
+                            <input type="text" value="#F03E3E" id='color' style="margin-left: -10px">
+                        </div>
+
                     </div>
                 </td>
             </tr>
@@ -34,16 +37,18 @@
                 </td>
                 <td>
                     <div>
-                        <select name="selectIndex" autocomplete="off" id="useRangeColor" class="form-control" style="width:90%">
-                                <option value="font" selected>Default Color</option>
+                        <select name="selectIndex" autocomplete="off" id="useRangeColor" style="width:90%">
+                            <option value="font" selected>Default Color</option>
                             <option value="range">Range Color</option>
-                         </select>
+                        </select>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <div id='startRangeValue'>Range Start <span>&nbsp;&nbsp;&nbsp;0</span> </div>
+                    <div id='startRangeValue'>Range Start
+                        <span>&nbsp;&nbsp;&nbsp;0</span>
+                    </div>
                 </td>
                 <td>
                     <div>
@@ -53,7 +58,9 @@
             </tr>
             <tr>
                 <td>
-                    <div id='endRangeValue'>Range End <span>&nbsp;&nbsp;&nbsp;32</span> </div>
+                    <div id='endRangeValue'>Range End
+                        <span>&nbsp;&nbsp;&nbsp;32</span>
+                    </div>
                 </td>
                 <td>
                     <div>
@@ -64,7 +71,9 @@
 
             <tr>
                 <td>
-                    <div id='startWidthValue'> Range Start Width<span>&nbsp;&nbsp;&nbsp;15</span> </div>
+                    <div id='startWidthValue'> Range Start Width
+                        <span>&nbsp;&nbsp;&nbsp;15</span>
+                    </div>
                 </td>
                 <td>
                     <div>
@@ -74,7 +83,9 @@
             </tr>
             <tr>
                 <td>
-                    <div id='endWidthValue'>Range End Width<span>&nbsp;&nbsp;&nbsp;15</span> </div>
+                    <div id='endWidthValue'>Range End Width
+                        <span>&nbsp;&nbsp;&nbsp;15</span>
+                    </div>
                 </td>
                 <td>
                     <div>
@@ -85,13 +96,21 @@
         </table>
     </div>
 </div>
+<div id="action-description">
+    <p>
+        This sample demonstrates customization of range in linear gauge. Ranges of linear gauge are seperated into three categories Low, Medium and High. For each range, start, end and color can be changed by <code>Range Start</code>, <code>Range End</code> and <code>Range Color</code> respectively. Start and end width of axis for each range can be changed by <code>Start Width</code> and <code>End Width</code>.
+    </p>
+</div>
 <div id="description">
     <p>
-        In this example, you can see how to render and configure the ranges in linear gauge. You can use <code>start</code>,
-        <code>end</code>, <code>startWidth</code>,
-        <code>endWidth</code> and <code>position</code> properties to customize the ranges. You can also specify various
-        colors for the ranges in the axis. If you enable the <code>useRangeColor</code> property, then the axis labels will
-        be displayed based on its range color.
+        In this example, you can see how to render and configure the ranges in linear gauge. You can use
+        <code>start</code>,
+        <code>end</code>,
+        <code>startWidth</code>,
+        <code>endWidth</code> and
+        <code>position</code> properties to customize the ranges. You can also specify various colors for the ranges in the axis. If you enable
+        the
+        <code>useRangeColor</code> property, then the axis labels will be displayed based on its range color.
         <br>
         <p>
             More information about ranges can be found in this

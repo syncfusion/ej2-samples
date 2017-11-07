@@ -2,12 +2,13 @@
 /**
  * Propertypanel generator
  */
-import { createElement, detach } from '@syncfusion/ej2-base';
+import { createElement, detach, select } from '@syncfusion/ej2-base';
 
 
 
 export function renderPropertyPane(ele: string): void {
-    let elem: Element = document.querySelector(ele);
+    let controlSection: Element = document.getElementById('control-content');
+    let elem: Element = controlSection.querySelector(ele);
     let title: string;
     if (!elem) { return; }
     title = elem.getAttribute('title');
@@ -22,3 +23,27 @@ export function renderPropertyPane(ele: string): void {
     parentEle.appendChild(parentPane);
 }
 
+export function renderDescription(): void {
+    let header: HTMLElement;
+    let description: HTMLElement = <HTMLElement>select('#description', select('#control-content'));
+    let descElement: HTMLElement = <HTMLElement>select('.description-section');
+    let iDescription: Element = select('#description', descElement);
+    if (iDescription) {
+        detach(iDescription);
+    }
+    if (description) {
+        descElement.appendChild(description);
+    }
+}
+
+export function renderActionDescription(): void {
+    let aDescription: HTMLElement = <HTMLElement>select('#action-description', select('#control-content'));
+    let aDescElem: HTMLElement = <HTMLElement>select('.sb-action-description');
+    if (aDescription) {
+        aDescElem.innerHTML = '';
+        aDescElem.appendChild(aDescription);
+        aDescElem.style.display = '';
+    } else if (aDescElem) {
+        aDescElem.style.display = 'none';
+    }
+}

@@ -1,5 +1,5 @@
 /**
- * Circulargauge
+ * Dynamic Gauge
  */
 import { CircularGauge, ILoadedEventArgs, IAxisLabelRenderEventArgs, IResizeEventArgs } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';

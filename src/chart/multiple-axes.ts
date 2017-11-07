@@ -1,29 +1,36 @@
-import { Chart, LineSeries, ColumnSeries, Marker, Category, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, ColumnSeries, Category, Marker, Legend, Tooltip);
+import {
+    Chart, LineSeries, ChartAnnotation, ColumnSeries,
+    Category, Tooltip, ILoadedEventArgs, ChartTheme
+} from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, ColumnSeries, Category, Tooltip, ChartAnnotation);
+import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Multiple Axes
+ * Multiple Axes Sample
  */
 this.default = (): void => {
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Months',
             valueType: 'Category',
             interval: 1,
-            labelIntersectAction : 'Rotate90'
+            labelIntersectAction: 'Rotate90',
+            majorGridLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            minimum: 0, maximum: 90, interval: 10,
+            minimum: 0, maximum: 100, interval: 20,
             lineStyle: { width: 0 },
-            title: 'Temperature (Fahrenheit)',
             labelFormat: '{value}°F'
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
         // Initializing axes
         axes:
         [
@@ -33,19 +40,24 @@ this.default = (): void => {
                 lineStyle: { width: 0 },
                 minimum: 24, maximum: 36, interval: 2,
                 name: 'yAxis',
-                title: 'Temperature (Celsius)',
                 labelFormat: '{value}°C'
             }
         ],
-
+        annotations: [{
+            content: '<div id="chart_cloud"><img src="src/chart/images/cloud.png"  style="width: 41px; height: 41px"/></div>',
+            x: 'Sun', y: 35, coordinateUnits: 'Point', verticalAlignment: 'Top'
+        }, {
+            content: '<div id="chart_cloud"><img src="src/chart/images/sunny.png"  style="width: 41px; height: 41px"/></div>',
+            x: 'Sat', y: 34, coordinateUnits: 'Point', yAxisName: 'yAxis'
+        }],
         //Initializing Chart Series
         series: [
             {
                 type: 'Column',
                 dataSource: [
-                    { x: 'Jan', y: 15 }, { x: 'Feb', y: 20 }, { x: 'Mar', y: 35 }, { x: 'Apr', y: 40 },
-                    { x: 'May', y: 80 }, { x: 'Jun', y: 70 }, { x: 'Jul', y: 65 }, { x: 'Aug', y: 55 },
-                    { x: 'Sep', y: 50 }, { x: 'Oct', y: 30 }, { x: 'Nov', y: 35 }, { x: 'Dec', y: 35 }
+                    { x: 'Sun', y: 35 }, { x: 'Mon', y: 40 },
+                    { x: 'Tue', y: 80 }, { x: 'Wed', y: 70 }, { x: 'Thu', y: 65 }, { x: 'Fri', y: 55 },
+                    { x: 'Sat', y: 50 }
                 ],
                 width: 2,
                 xName: 'x', yName: 'y',
@@ -54,9 +66,9 @@ this.default = (): void => {
             {
                 type: 'Line',
                 dataSource: [
-                    { x: 'Jan', y: 33 }, { x: 'Feb', y: 31 }, { x: 'Mar', y: 30 }, { x: 'Apr', y: 28 },
-                    { x: 'May', y: 29 }, { x: 'Jun', y: 30 }, { x: 'Jul', y: 33 }, { x: 'Aug', y: 32 },
-                    { x: 'Sep', y: 34 }, { x: 'Oct', y: 32 }, { x: 'Nov', y: 32 }, { x: 'Dec', y: 31 }
+                    { x: 'Sun', y: 30 }, { x: 'Mon', y: 28 },
+                    { x: 'Tue', y: 29 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 33 }, { x: 'Fri', y: 32 },
+                    { x: 'Sat', y: 34 }
                 ],
                 xName: 'x', yName: 'y',
                 width: 2, yAxisName: 'yAxis',
@@ -66,11 +78,17 @@ this.default = (): void => {
         ],
 
         //Initializing Chart title
-        title: 'Weather Condition',
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}'},
+        title: 'Weather Condition JPN vs DEU',
+        //Initializing User Interaction Tooltip
+        tooltip: { enable: true },
+        legendSettings: {
+            visible: false
+        },
+        width: Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

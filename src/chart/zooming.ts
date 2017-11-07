@@ -1,6 +1,7 @@
-import { Marker, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import { DateTime, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { Chart, AreaSeries, Legend, Zoom } from '@syncfusion/ej2-charts';
-Chart.Inject(AreaSeries, DateTime, Marker, Legend, Zoom);
+import { Browser } from '@syncfusion/ej2-base';
+Chart.Inject(AreaSeries, DateTime, Legend, Zoom);
 
 /**
  * Zooming Sample
@@ -26,7 +27,7 @@ this.default = (): void => {
         primaryXAxis: {
             title: 'Years',
             valueType: 'DateTime',
-            labelFormat: 'yMMM',
+            skeleton: 'yMMM',
             edgeLabelPlacement: 'Shift',
             majorGridLines : { width : 0 }
         },
@@ -64,9 +65,11 @@ this.default = (): void => {
         //Initializing Chart title
         title: 'Sales History of Product X',
         legendSettings: { visible: false },
+        width: Browser.isDevice ? '100%' : '80%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

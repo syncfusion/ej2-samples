@@ -1,5 +1,6 @@
-import { Chart, StepLineSeries, Marker, DateTime, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(StepLineSeries, Marker, DateTime, Legend, Tooltip);
+import { Chart, StepLineSeries, DateTime, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
+Chart.Inject(StepLineSeries, DateTime, Legend, Tooltip);
+import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * StepLine Series
@@ -9,10 +10,9 @@ this.default = (): void => {
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Years',
-            lineStyle: { width: 0 },
             labelFormat: 'y',
             intervalType: 'Years',
+            majorGridLines: { width: 0 },
             valueType: 'DateTime',
             edgeLabelPlacement: 'Shift'
         },
@@ -20,13 +20,18 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Percentage (%)',
             minimum: 0,
             maximum: 20,
-            interval: 2,
+            lineStyle: { width: 0 },
+            majorTickLines: { width: 0 },
+            interval: 5,
             labelFormat: '{value}%'
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
         //Initializing Chart Series
         series: [
             {
@@ -66,35 +71,20 @@ this.default = (): void => {
                     width: 10,
                     height: 10
                 },
-            },
-            {
-                type: 'StepLine',
-                dataSource: [
-                    { x: new Date(1975, 0, 1), y: 4.5 },
-                    { x: new Date(1980, 0, 1), y: 5 },
-                    { x: new Date(1985, 0, 1), y: 6.5 },
-                    { x: new Date(1990, 0, 1), y: 4.4 },
-                    { x: new Date(1995, 0, 1), y: 5 },
-                    { x: new Date(2000, 0, 1), y: 1.5 },
-                    { x: new Date(2005, 0, 1), y: 2.5 },
-                    { x: new Date(2010, 0, 1), y: 3.7 }],
-                xName: 'x', width: 2,
-                yName: 'y', name: 'Japan',
-                marker: {
-                    visible: true,
-                    width: 10,
-                    height: 10
-                },
-
-            },
+            }
         ],
 
         //Initializing Chart title
         title: 'Unemployment Rates 1975-2010',
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}'},
+        //Initializing Usr Interaction Tooltip
+        tooltip: {
+            enable: true
+        },
+        width : Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         }
     });
     chart.appendTo('#container');

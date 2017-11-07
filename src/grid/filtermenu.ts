@@ -27,5 +27,6 @@ this.default = (): void => {
     drop.onchange = () => {
         let dropSelectedValue: FilterType = <FilterType>drop.value;
         grid.filterSettings.type = dropSelectedValue;
+        grid.clearFiltering();
     };
 };

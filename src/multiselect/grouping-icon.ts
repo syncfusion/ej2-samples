@@ -20,9 +20,13 @@ this.default = () => {
         { Vegetable: 'Yarrow', Category: 'Leafy and Salad', Id: 'item11' }
     ];
 
+    // initialize the MultiSelect component
     let groupList: MultiSelect = new MultiSelect({
+        // set the vegetables data to dataSource property
         dataSource: vegetables,
+        // map the appropriate columns to fields property
         fields: { groupBy: 'Category', text: 'Vegetable', value: 'Id' },
+        // set placeholder to MultiSelect input element
         placeholder: 'Select vegetables',
     });
     groupList.appendTo('#group');

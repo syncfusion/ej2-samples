@@ -3,7 +3,6 @@
  */
 import { MultiSelect, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Query } from '@syncfusion/ej2-data';
-import { EmitType } from '@syncfusion/ej2-base';
 
 this.default = () => {
     let countries: { [key: string]: Object; }[] = [
@@ -27,46 +26,26 @@ this.default = () => {
         { Name: 'United Kingdom', Code: 'GB' },
         { Name: 'United States', Code: 'US' }
     ];
-    let targetElement: HTMLElement;
-    let popupElement: HTMLElement;
-    let spinnerElement: HTMLElement;
-    let onFiltering: EmitType<FilteringEventArgs> = debounce(
-        (e: FilteringEventArgs) => {
-            let query: Query = new Query();
-            query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
-            e.updateData(countries, query);
-        },
-        200);
+
+    // initialize the MultiSelect component
     let listObj: MultiSelect = new MultiSelect({
+        // set placeholder to MultiSelect input element
         placeholder: 'Select countries',
+        // set the countries data to dataSource property
         dataSource: countries,
         query: new Query(),
+        // map the appropriate columns to fields property
         fields: { text: 'Name', value: 'Code' },
+        // set true for enable the filtering support.
         allowFiltering: true,
-        filtering: onFiltering,
+        // bind the filtering event
+        filtering: (e: FilteringEventArgs) => {
+            let query: Query = new Query();
+            // frame the query based on search string with filter type.
+            query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
+            // pass the filter data source, filter query to updateData method.
+            e.updateData(countries, query);
+        }
     });
     listObj.appendTo('#list');
-    function debounce(func: Function, wait: number): EmitType<FilteringEventArgs> {
-        let timeout: number;
-        let isTypedFirst: boolean = false;
-        /* tslint:disable */
-        return function () {
-            /* tslint:enable */
-            let context: object = this;
-            let args: IArguments = arguments;
-            let later: Function = () => {
-                timeout = null;
-                if (!isTypedFirst) { func.apply(context, args); }
-            };
-            let callNow: boolean = !isTypedFirst && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) {
-                isTypedFirst = true;
-                func.apply(context, args);
-            } else {
-                isTypedFirst = false;
-            }
-        };
-    }
 };

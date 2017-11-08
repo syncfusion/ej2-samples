@@ -29,16 +29,25 @@ this.default = () => {
         { Class: 'whatsapp', SocialMedia: 'WhatsApp', Id: 'media9' },
         { Class: 'youtube', SocialMedia: 'YouTube', Id: 'media10' }
     ];
+
+    // initialize AutoComplete component
     let groupObj: AutoComplete = new AutoComplete({
+        //set the local data to dataSource property
         dataSource: vegetableData,
+        // map the appropriate columns to fields property
         fields: { groupBy: 'Category', value: 'Vegetable' },
+        // set the placeholder to AutoComplete input element
         placeholder: 'e.g. Cabbage'
     });
     groupObj.appendTo('#vegetables');
 
+    // initialize AutoComplete component
     let iconObj: AutoComplete = new AutoComplete({
+        //set the local data to dataSource property
         dataSource: socialMedia,
+        // map the appropriate columns to fields property
         fields: { iconCss: 'Class', value: 'SocialMedia' },
+        // set the placeholder to AutoComplete input element
         placeholder: 'e.g. Facebook'
     });
     iconObj.appendTo('#icons');

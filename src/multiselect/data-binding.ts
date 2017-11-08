@@ -29,23 +29,32 @@ this.default = () => {
         { Name: 'United States', Code: 'US' }
     ];
 
-
+    // initialize MultiSelect component
     let listObj: MultiSelect = new MultiSelect({
+        // bind the DataManager instance to dataSource property
         dataSource: new DataManager({
             url: 'http://services.odata.org/V4/Northwind/Northwind.svc/Customers',
             adaptor: new ODataV4Adaptor,
             crossDomain: true
         }),
+        // bind the Query instance to query property
         query: new Query().select(['ContactName', 'CustomerID']).take(25),
+        // map the appropriate columns to fields property
         fields: { text: 'ContactName', value: 'CustomerID' },
+        // set the placeholder to MultiSelect input element
         placeholder: 'Select customer',
+        // sort the resulted items
         sortOrder: 'Ascending'
     });
     listObj.appendTo('#remote');
 
+    // initialize MultiSelect component
     let games: MultiSelect = new MultiSelect({
+        // set the local data to dataSource property
         dataSource: countries,
+        // map the appropriate columns to fields property
         fields: { text: 'Name', value: 'Code'},
+        // set the placeholder to MultiSelect input element
         placeholder: 'Select countries',
     });
     games.appendTo('#local');

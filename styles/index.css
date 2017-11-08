@@ -153,6 +153,13 @@
 .sb-header-text {
     cursor: default;
 }
+
+.sb-header-preview{
+    background: url(images/Preview-label.svg) no-repeat right;
+    height: 100%;
+    width: 75px;
+
+}
 .sb-header {
     height: 48px;
     background: #FFFFFF;
@@ -633,7 +640,9 @@
 #controlTree ul.e-list-parent {
     padding-left: 10px;
 }
-
+#sb-left-back {
+    outline: none;
+}
 .sb-left-pane #sb-left-back {
     padding: 12px 20px;
     width: 100%;
@@ -1045,6 +1054,9 @@ propertye pane
     }
     .control-section {
         min-height: auto;
+    }
+    .e-sb-header-text>.sb-header-text-left {
+        display: none;
     }
 }
 

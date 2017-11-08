@@ -135,10 +135,11 @@ let hsplitter: string = '<div class="sb-toolbar-splitter sb-custom-item"></div>'
 let openNewTemplate: string = `<div class="sb-custom-item sb-open-new-wrapper"><a id="openNew" target="_blank">
 <div class="sb-icons sb-icon-Popout"></div></a></div>`;
 // tslint:disable-next-line:no-multiline-string
-let sampleNavigation: string = `<div class="sb-custom-item sample-navigation"><button id='prev-sample' class="sb-navigation-prev">
+let sampleNavigation: string = `<div class="sb-custom-item sample-navigation"><button id='prev-sample' class="sb-navigation-prev" 
+    aria-label="previous sample">
 <span class='sb-icons sb-icon-Previous'></span>
 </button>
-<button  id='next-sample' class="sb-navigation-next">
+<button  id='next-sample' class="sb-navigation-next" aria-label="next sample">
 <span class='sb-icons sb-icon-Next'></span>
 </button>
 </div>`;
@@ -227,7 +228,6 @@ function renderSbPopups(): void {
     apiGrid = new Grid({
         width: '100%',
         dataSource: [],
-        toolbar: ['search'],
         allowTextWrap: true,
         columns: [
             { field: 'name', headerText: 'Name', template: '#template', width: 180, textAlign: 'center' },
@@ -312,6 +312,12 @@ function taghideless(target: HTMLElement): void {
     target.querySelector('#showtag').classList.remove('e-display');
     target.classList.add('e-custDesription');
 }
+
+function setPressedAttribute(ele: HTMLElement): void {
+    let status: boolean = ele.classList.contains('active');
+    ele.setAttribute('aria-pressed', status ? 'true' : 'false');
+}
+
 // tslint:disable-next-line:max-func-body-length
 function sbHeaderClick(action: string, preventSearch?: boolean): void {
     if (openedPopup) {
@@ -320,6 +326,7 @@ function sbHeaderClick(action: string, preventSearch?: boolean): void {
     if (preventSearch !== true && !searchOverlay.classList.contains('sb-hide')) {
         searchOverlay.classList.add('sb-hide');
         searchButton.classList.remove('active');
+        setPressedAttribute(<HTMLElement>searchButton);
     }
     let curPopup: Popup;
     switch (action) {
@@ -328,10 +335,12 @@ function sbHeaderClick(action: string, preventSearch?: boolean): void {
             break;
         case 'changeTheme':
             headerThemeSwitch.classList.toggle('active');
+            setPressedAttribute(headerThemeSwitch);
             curPopup = themeSwitherPopup;
             break;
         case 'toggleSettings':
             settingElement.classList.toggle('active');
+            setPressedAttribute(settingElement);
             themeDropDown.index = themeCollection.indexOf(selectedTheme);
             curPopup = settingsPopup;
             break;
@@ -339,6 +348,8 @@ function sbHeaderClick(action: string, preventSearch?: boolean): void {
     if (action === 'closePopup') {
         headerThemeSwitch.classList.remove('active');
         settingElement.classList.remove('active');
+        setPressedAttribute(headerThemeSwitch);
+        setPressedAttribute(settingElement);
     }
     if (curPopup && curPopup !== openedPopup) {
         curPopup.show(new Animation({ name: 'FadeIn', duration: 400, delay: 0 }));
@@ -356,6 +367,7 @@ function toggleSearchOverlay(): void {
     inputele.value = '';
     searchPopup.hide();
     searchButton.classList.toggle('active');
+    setPressedAttribute(<HTMLElement>searchButton);
     searchOverlay.classList.toggle('sb-hide');
     if (!searchOverlay.classList.contains('sb-hide')) {
         inputele.focus();
@@ -576,6 +588,9 @@ function processResize(e: any): void {
             toggleRightPane();
         }
     }
+    if (switcherPopup) {
+        switcherPopup.refresh();
+      }
 }
 /**
  * Binding events for sample browser operations
@@ -1031,7 +1046,6 @@ function toggleButtonState(id: string, state: boolean): void {
  */
 
 function setPropertySectionHeight(): void {
-    if (!isTablet && !isMobile) {
         let propertypane: HTMLElement = <any>select('.property-section');
         let ele: HTMLElement = <any>document.querySelector('.control-section');
         if (ele && propertypane) {
@@ -1039,8 +1053,6 @@ function setPropertySectionHeight(): void {
         } else {
             ele.classList.remove('sb-property-border');
         }
-
-    }
 }
 
 function routeDefault(): void {
@@ -1263,6 +1275,7 @@ function addRoutes(samplesList: Controls[]): void {
     }
 }
 function removeOverlay(): void {
+    document.body.setAttribute('aria-busy', 'false');
     sbContentOverlay.classList.add('sb-hide');
     sbRightPane.classList.remove('sb-right-pane-overlay');
     sbHeader.classList.remove('sb-right-pane-overlay');
@@ -1274,6 +1287,7 @@ function removeOverlay(): void {
 }
 
 function sampleOverlay(): void {
+    document.body.setAttribute('aria-busy', 'true');
     sbHeader.classList.add('sb-right-pane-overlay');
     sbRightPane.classList.add('sb-right-pane-overlay');
     mobNavOverlay(true);

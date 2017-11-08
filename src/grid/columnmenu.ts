@@ -22,7 +22,7 @@ this.default = (): void => {
                 { field: 'CustomerName', headerText: 'Customer Name', width: 200 },
                 { field: 'Freight', width: 150, format: 'C2', textAlign: 'right', editType: 'numericedit' },
                 { field: 'ShipName', headerText: 'Ship Name', width: 300 },
-                { field: 'ShipCountry', headerText: 'Ship Country', width: 200 },
+                { field: 'ShipCountry', visible: false, headerText: 'Ship Country', width: 200 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 200 }
             ]
         });

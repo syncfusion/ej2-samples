@@ -861,16 +861,16 @@
 
 .sb-toolbar-splitter {
     border-left: 1px solid rgb(196, 196, 196);
-    height: 34px;
+    height: 31px;
     margin-top: 3px;
 }
 
-.sb-content-toolbar.sb-mouse {
-    padding: 0px;
+.e-bigger .sb-content-toolbar {
+    padding: 5px 0px;
 }
 
-.sb-mouse .sb-toolbar-splitter {
-    height: 31px;
+.e-bigger .sb-toolbar-splitter {
+    height: 34px;
 }
 
 .sb-content-toolbar>div {
@@ -927,7 +927,6 @@ button#tab-navigation-prev {
     position: absolute;
     right: 0px;
     display: inline-flex;
-    padding: 5px 0px;
 }
 
 .sb-bread-crumb-text>div.seperator {

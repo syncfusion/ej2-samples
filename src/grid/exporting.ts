@@ -1,8 +1,8 @@
-import { Grid, Page, Toolbar, ExcelExport, PdfExport } from '@syncfusion/ej2-grids';
+import { Grid, Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate } from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { orderData } from './datasource';
 
-Grid.Inject(Page, Toolbar, ExcelExport, PdfExport);
+Grid.Inject(Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate);
 /**
  * Excel,PDF, CSV export sample
  */
@@ -13,7 +13,9 @@ this.default = (): void => {
             allowExcelExport: true,
             allowPdfExport: true,
             allowPaging: true,
+            allowGrouping: true,
             toolbar: ['excelexport', 'pdfexport', 'csvexport'],
+            groupSettings: { showDropArea: false, columns: ['ShipCountry'] },
             pageSettings: { pageCount: 5 },
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'right' },
@@ -22,7 +24,15 @@ this.default = (): void => {
                 { field: 'Freight', width: 120, format: 'C2', textAlign: 'right' },
                 { field: 'ShipCountry', visible: false, headerText: 'Ship Country', width: 150 },
                 { field: 'ShipCity', visible: false, headerText: 'Ship City', width: 150 }
-            ]
+            ],
+            aggregates: [{
+                columns: [{
+                    type: 'sum',
+                    field: 'Freight',
+                    format: 'C2',
+                    groupFooterTemplate: 'Total freight: ${sum}'
+                }]
+            }]
         });
     grid.appendTo('#Grid');
     grid.toolbarClick = (args: ClickEventArgs) => {

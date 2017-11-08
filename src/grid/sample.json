@@ -43,6 +43,9 @@
     {"url":"columnresize", "name": "Column Resizing", "category":"Columns","api":{"Grid":["dataSource","allowResizing","height","columns"] }},
 	{"url":"headertemplate", "name": "Header Template", "category":"Columns","api":{"Grid":["dataSource","columns"] }},
     {"url":"exporting", "name": "Basic", "category":"Exporting","api":{"Grid":["dataSource","allowExcelExport","allowPdfExport","allowPaging","toolbar","pageSettings","columns"] }},
-    {"url":"multiple-exporting", "name": "Multiple Exporting", "category":"Exporting","api":{"Grid":["dataSource","allowExcelExport","allowPdfExport","toolbar","allowPaging","pageSettings","columns"] }}
+    {"url":"multiple-exporting", "name": "Multiple Exporting", "category":"Exporting","api":{"Grid":["dataSource","allowExcelExport","allowPdfExport","toolbar","allowPaging","pageSettings","columns"] }},
+    {"url":"columnspanning", "name": "Column Spanning", "category":"Columns", "type": "new","api":{"Grid":["dataSource","allowTextWrap","columns","queryCellInfo","gridLines","width","height"] }},
+    {"url":"contextmenu", "name": "Context Menu", "category":"Grid", "type": "new", "api":{"Grid":["dataSource","allowSorting", "allowGrouping", "allowPdfExport", "allowExcelExport", "editSettings", "allowPaging", "contextMenuItems", "groupSettings", "columns"]}},
+    {"url":"columnmenu", "name": "Column Menu", "category":"Columns", "type": "new", "api":{"Grid":["dataSource","allowSorting", "allowGrouping","showColumnMenu", "groupSettings", "columns", "allowSorting"]}}
    ]
 }

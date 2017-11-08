@@ -1,4 +1,4 @@
-import { Chart, LineSeries, Legend, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, Legend, ILoadedEventArgs, getElement } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, Legend);
 
 /**
@@ -68,15 +68,13 @@ this.default = (): void => {
                 type: 'Line',
                 dataSource: series1,
                 xName: 'x',
-                yName: 'y',
-                fill: '#69D2E7'
+                yName: 'y', animation: { enable: false }
             },
             {
                 type: 'Line',
                 dataSource: series2,
                 xName: 'x',
-                yName: 'y',
-                fill: '#C4C24A'
+                yName: 'y', animation: { enable: false }
             }
         ],
 
@@ -87,48 +85,49 @@ this.default = (): void => {
             args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
         }
     });
-    chart.appendTo('#container');
+    chart.appendTo('#container-live');
 
 
 
     let setTimeoutValue: number = 100;
     intervalId = setInterval(
         (): void => {
-            if (Math.random() > .5) {
-                if (value < 45) {
-                    value += Math.random() * 2.0;
-                } else {
-                    value -= 2.0;
-                }
-
-
-                if (value1 < 40) {
-                    value1 += Math.random() * 1.8;
-                } else {
-                    value1 -= 2.0;
-                }
+            if (getElement('container-live') === null) {
+                clearInterval(intervalId);
             } else {
-                if (value > 5) {
-                    value -= Math.random() * 2.0;
+                if (Math.random() > .5) {
+                    if (value < 45) {
+                        value += Math.random() * 2.0;
+                    } else {
+                        value -= 2.0;
+                    }
+                    if (value1 < 40) {
+                        value1 += Math.random() * 1.8;
+                    } else {
+                        value1 -= 2.0;
+                    }
                 } else {
-                    value += 2.0;
-                }
+                    if (value > 5) {
+                        value -= Math.random() * 2.0;
+                    } else {
+                        value += 2.0;
+                    }
 
-                if (value1 > 5) {
-                    value1 -= Math.random() * 1.8;
-                } else {
-                    value1 += 2.0;
+                    if (value1 > 5) {
+                        value1 -= Math.random() * 1.8;
+                    } else {
+                        value1 += 2.0;
+                    }
                 }
+                series1.push({ x: i.toString(), y: value });
+                series2.push({ x: i.toString(), y: value1 + 10 });
+                i++;
+                series1.shift();
+                series2.shift();
+                chart.series[0].dataSource = series1;
+                chart.series[1].dataSource = series2;
+                chart.refresh();
             }
-
-            series1.push({ x: i.toString(), y: value });
-            series2.push({ x: i.toString(), y: value1 + 10 });
-            i++;
-            series1.shift();
-            series2.shift();
-            chart.series[0].dataSource = series1;
-            chart.series[1].dataSource = series2;
-            chart.refresh();
         },
         setTimeoutValue);
 };

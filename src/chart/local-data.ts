@@ -1,5 +1,5 @@
-import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs, ChartTheme, Tooltip, Crosshair } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Crosshair);
+import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs, ChartTheme, Tooltip } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, DateTime, Legend, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -61,13 +61,13 @@ this.default = (): void => {
             {
                 type: 'Line',
                 dataSource: series1,
-                xName: 'x', yName: 'y',
+                xName: 'x', yName: 'y', marker: { visible: false },
                 width: 2, name: 'Product X',
                 animation: { enable: true }
             },
             {
                 type: 'Line',
-                dataSource: series2,
+                dataSource: series2, marker: { visible: false },
                 xName: 'x', yName: 'y',
                 width: 2, name: 'Product Y',
                 animation: { enable: true }
@@ -79,10 +79,6 @@ this.default = (): void => {
         //Initializing User Interaction Tooltip and Crosshair
         tooltip: {
             enable: true, shared: true
-        },
-        crosshair: {
-            enable: true,
-            lineType: 'Vertical'
         },
         width: Browser.isDevice ? '100%' : '80%',
         load: (args: ILoadedEventArgs) => {

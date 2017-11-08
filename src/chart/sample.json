@@ -72,7 +72,14 @@
         {
             "url": "area",
             "name": "Area",
-            "category": "Area Charts"
+            "category": "Area Charts",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series"
+                ]
+            }
         },
         {
             "url": "step-area",
@@ -595,8 +602,8 @@
         },
         {
             "url": "performance",
-            "name": "Performance",
-            "category": "Other Types",
+            "name": "Benchmark",
+            "category": "Performance",
             "api": {
                 "Chart": [
                     "primaryXAxis",

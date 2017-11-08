@@ -14,10 +14,10 @@
                 </td>
                 <td style="width: 50%;">
                     <div>
-                        <select id="SelectSeriesType">				 
-                                    <option>Polar</option>
-                                    <option>Radar</option>
-                                </select>
+                        <select id="SelectSeriesType">
+                            <option>Polar</option>
+                            <option>Radar</option>
+                        </select>
                     </div>
                 </td>
             </tr>
@@ -34,6 +34,7 @@
             <tr style="height: 50px">
                 <td style="width: 30%">
                     <div>Start Angle:
+                        <p id="startangle" style="font-weight: normal;">0</p>
                     </div>
                 </td>
                 <td style="width: 70%;">
@@ -57,16 +58,22 @@
 </div>
 <div id="action-description">
     <p>
-        This sample demonstrates polar series with line type for weather statistics for alaska. You can change <code>Series Type</code> in property panel. Start angle of as series can be changed by <code>Start Angle</code> and 
-        Series can be closed by enabling <code>Enabled</code> and inversed axis can be acheived by <code>Inversed</code> in property panel.
+        This sample demonstrates polar series with line type for weather statistics for alaska. You can change
+        <code>Series Type</code> in property panel. Start angle of as series can be changed by
+        <code>Start Angle</code> and Series can be closed by enabling
+        <code>Enabled</code> and inversed axis can be acheived by
+        <code>Inversed</code> in property panel.
     </p>
 </div>
 <div id="description">
     <p>
         In this example, you can see how to render and configure the line type charts. Line type charts are used to represent time-dependent
-        data, showing trends in data at equal intervals. You can use <code>dashArray</code>, <code>width</code>,
-        <code>fill</code> properties to customize the line. <code>marker</code> and <code>dataLabel</code> are used to represent
-        individual data and its value.
+        data, showing trends in data at equal intervals. You can use
+        <code>dashArray</code>,
+        <code>width</code>,
+        <code>fill</code> properties to customize the line.
+        <code>marker</code> and
+        <code>dataLabel</code> are used to represent individual data and its value.
     </p>
     <p>
         Tooltip is enabled in this example, to see the tooltip in action, hover a point or tap on a point in touch enabled devices.
@@ -76,7 +83,10 @@
     <p>
         Chart component features are segregated into individual feature-wise modules. To use Line drawtype in Polar series and Radar
         series, we need to inject
-        <code>PolarSeries</code>, <code>RadarSeries</code> and <code>LineSeries</code> module using <code>Chart.Inject(PolarSeries, RadarSeries, LineSeries)</code>        method.
+        <code>PolarSeries</code>,
+        <code>RadarSeries</code> and
+        <code>LineSeries</code> module using
+        <code>Chart.Inject(PolarSeries, RadarSeries, LineSeries)</code> method.
     </p>
     <p>
         More information on the polar series can be found in this

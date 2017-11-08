@@ -23,16 +23,13 @@ this.default = (): void => {
         primaryYAxis:
         {
             title: 'Temperature (Celsius)',
-            minimum: -25,
-            maximum: 25,
-            interval: 10,
+            minimum: -25, maximum: 25, interval: 10,
             edgeLabelPlacement: 'Shift',
             labelFormat: '{value}°C'
         },
         //Initializing Chart Series
         series: [
             {
-                type: 'Polar',
                 dataSource: [
                     { x: 'Jan', y: -7.1 }, { x: 'Feb', y: -3.7 },
                     { x: 'Mar', y: 0.8 }, { x: 'Apr', y: 6.3 },
@@ -41,14 +38,13 @@ this.default = (): void => {
                     { x: 'Sep', y: 13.1 }, { x: 'Oct', y: 4.1 },
                     { x: 'Nov', y: -3.8 }, { x: 'Dec', y: -6.8 },
                 ],
-                xName: 'x', width: 2, yName: 'y', name: 'Warmest',
+                xName: 'x', width: 2, yName: 'y', name: 'Warmest', type: 'Polar',
                 marker: {
                     visible: true,
                     height: 10, width: 10,
                     shape: 'Pentagon',
                 }
             }, {
-                type: 'Polar',
                 dataSource: [
                     { x: 'Jan', y: -17.4 }, { x: 'Feb', y: -15.6 },
                     { x: 'Mar', y: -12.3 }, { x: 'Apr', y: -5.3 },
@@ -57,7 +53,7 @@ this.default = (): void => {
                     { x: 'Sep', y: 2.6 }, { x: 'Oct', y: -4.9 },
                     { x: 'Nov', y: -13.4 }, { x: 'Dec', y: -16.4 },
                 ],
-                xName: 'x', width: 2, yName: 'y', name: 'Coldest',
+                xName: 'x', width: 2, yName: 'y', name: 'Coldest', type: 'Polar',
                 marker: {
                     visible: true, height: 10, width: 10, shape: 'Diamond',
                 }
@@ -97,11 +93,13 @@ this.default = (): void => {
         }
     });
     polarType.appendTo('#SelectSeriesType');
-    document.getElementById('startangle').onchange = () => {
-        let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('startangle'));
-        chart.primaryXAxis.startAngle = parseInt(element.value, 10);
-        chart.refresh();
-    };
+    document.getElementById('startangle').onpointermove = document.getElementById('startangle').ontouchmove =
+        document.getElementById('startangle').onchange = () => {
+            let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('startangle'));
+            chart.primaryXAxis.startAngle = parseInt(element.value, 10);
+            document.getElementById('startangle').innerHTML = parseInt(element.value, 10) + '';
+            chart.refresh();
+        };
     document.getElementById('isinversed').onchange = () => {
         let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('isinversed'));
         chart.primaryXAxis.isInversed = element.checked;

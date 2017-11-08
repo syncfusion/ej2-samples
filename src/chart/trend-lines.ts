@@ -49,6 +49,41 @@ this.default = (): void => {
         },
     });
     chart.appendTo('#container');
+    let forward: NumericTextBox = new NumericTextBox({
+        value: 0, min: 1, max: 20, width: 120, step: 1,
+        change: () => {
+            chart.series[0].animation.enable = false;
+            chart.series[0].trendlines[0].forwardForecast = forward.value;
+            chart.refresh();
+        }
+    });
+    forward.appendTo('#forwardForecast');
+    let backward: NumericTextBox = new NumericTextBox({
+        value: 0, min: 1, max: 20, width: 120, step: 1, change: () => {
+            chart.series[0].animation.enable = false;
+            chart.series[0].trendlines[0].backwardForecast = backward.value;
+            chart.refresh();
+        }
+    });
+    backward.appendTo('#backwardForecast');
+    let polynomial: NumericTextBox = new NumericTextBox({
+        value: 0, min: 1, max: 20, width: 120, step: 1, enabled: false,
+        change: () => {
+            chart.series[0].animation.enable = false;
+            chart.series[0].trendlines[0].polynomialOrder = polynomial.value;
+            chart.refresh();
+        }
+    });
+    polynomial.appendTo('#polynomialOrder');
+    let periodValue: NumericTextBox = new NumericTextBox({
+        value: 0, min: 1, max: 20, width: 120, step: 1, enabled: false,
+        change: () => {
+            chart.series[0].animation.enable = false;
+            chart.series[0].trendlines[0].period = periodValue.value;
+            chart.refresh();
+        }
+    });
+    periodValue.appendTo('#period');
     let trend: DropDownList = new DropDownList({
         index: 0, width: 120,
         change: () => {
@@ -77,49 +112,12 @@ this.default = (): void => {
             } else {
                 forwardForecast = backwardForecast = polynomialOrder = false; period = true;
             }
-            (<HTMLInputElement>document.getElementById('forwardForecast')).disabled = forwardForecast;
-            (<HTMLInputElement>document.getElementById('backwardForecast')).disabled = backwardForecast;
-            (<HTMLInputElement>document.getElementById('polynomialOrder')).disabled = polynomialOrder;
-            (<HTMLInputElement>document.getElementById('period')).disabled = period;
+            forward.enabled = !forwardForecast;
+            backward.enabled = !backwardForecast;
+            polynomial.enabled = !polynomialOrder;
+            periodValue.enabled = !period;
             chart.refresh();
         }
     });
     trend.appendTo('#trendLineType');
-    let forwardForecast: NumericTextBox = new NumericTextBox({
-        value: 0, min: 1, max: 20, width: 120, step: 1,
-        change: () => {
-            chart.series[0].animation.enable = false;
-            chart.series[0].trendlines[0].forwardForecast = forwardForecast.value;
-            chart.refresh();
-        }
-    });
-    forwardForecast.appendTo('#forwardForecast');
-    let backwardForecast: NumericTextBox = new NumericTextBox({
-        value: 0, min: 1, max: 20, width: 120, step: 1, change: () => {
-            chart.series[0].animation.enable = false;
-            chart.series[0].trendlines[0].backwardForecast = backwardForecast.value;
-            chart.refresh();
-        }
-    });
-    backwardForecast.appendTo('#backwardForecast');
-    let polynomialOrder: NumericTextBox = new NumericTextBox({
-        value: 0, min: 1, max: 20, width: 120, step: 1,
-        change: () => {
-            chart.series[0].animation.enable = false;
-            chart.series[0].trendlines[0].polynomialOrder = polynomialOrder.value;
-            chart.refresh();
-        }
-    });
-    polynomialOrder.appendTo('#polynomialOrder');
-    let period: NumericTextBox = new NumericTextBox({
-        value: 0, min: 1, max: 20, width: 120, step: 1,
-        change: () => {
-            chart.series[0].animation.enable = false;
-            chart.series[0].trendlines[0].period = period.value;
-            chart.refresh();
-        }
-    });
-    period.appendTo('#period');
-    (<HTMLInputElement>document.getElementById('polynomialOrder')).disabled = true;
-    (<HTMLInputElement>document.getElementById('period')).disabled = true;
 };

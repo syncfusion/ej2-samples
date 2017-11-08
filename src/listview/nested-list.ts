@@ -4,6 +4,8 @@
 import {ListView} from '@syncfusion/ej2-lists';
 
 this.default = () => {
+
+    //Define an array of JSON data
     let dataSource: { [key: string]: Object }[] = [
         {
             id: '01', text: 'Music', icon: 'folder',
@@ -64,12 +66,25 @@ this.default = () => {
         },
     ];
 
+    //Initialize ListView component
     let nestedListObj: ListView = new ListView({
+
+        //Set defined data to dataSource property
         dataSource: dataSource,
+
+        //Map appropriate columns to fields property
         fields: { iconCss: 'icon', tooltip: 'text' },
+
+        //Set true to show icons
         showIcon: true,
+
+        //Set header title
         headerTitle: 'Folders',
+
+        //Set true to show header title
         showHeader: true
     });
+
+    //Render initialized ListView component
     nestedListObj.appendTo('#listview');
 };

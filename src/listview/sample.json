@@ -1,6 +1,23 @@
-{ "name": "ListView", "directory": "listview", "category":"Layout", "samples" : [
-    {"url":"default", "name": "Default Functionalities", "category":"ListView" },
-    {"url":"remote-data", "name": "Remote Data", "category":"ListView"},
-    {"url":"nested-list", "name": "Nested List", "category":"ListView"},
-    {"url":"rtl", "name": "RTL", "category":"ListView"}
-]}
+{ "name": "ListView", "directory": "listview", "category":"Layout", "samples" : 
+    [
+        {   "url":"default", "name": "Default Functionalities", "category":"ListView",
+            "api":  {   "ListView":[ "dataSource", "fields", "appendTo" ],
+                        "FieldSettings":[ "groupBy" ]
+                    }
+        },
+        {   "url":"remote-data", "name": "Remote Data", "category":"ListView",
+            "api":  {   "ListView": [ "dataSource", "fields", "query", "headerTitle", "showHeader", "appendTo" ],
+                        "FieldSettings": [ "groupBy" ]
+                    }
+        },
+        {   "url":"nested-list", "name": "Nested List", "category":"ListView",
+            "api":  {   "ListView": [ "dataSource", "fields", "headerTitle", "showHeader", "showIcon", "appendTo" ],
+                        "FieldSettings": [ "id", "text", "icon", "child", "iconCss", "tooltip" ]
+                    }
+        },
+        {   "url":"rtl", "name": "RTL", "category":"ListView",
+            "api":  {   "ListView":[ "enableRtl", "headerTitle", "showHeader", "height", "appendTo" ]
+                    }
+        }
+    ]
+}

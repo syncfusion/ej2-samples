@@ -3,14 +3,14 @@
         height: 24px;
         width: 30px;
     }
-    
+
     .folder {
         background-repeat: no-repeat;
         background-image: url('./src/listview/images/file_icons.png');
         background-position: -5px -466px;
         background-size: 302%;
     }
-    
+
     .file {
         background-repeat: no-repeat;
         background-image: url('./src/listview/images/file_icons.png');
@@ -25,5 +25,18 @@
     }
 </style>
 <div class="col-lg-12 control-section">
+
+    <!-- ListView element -->
     <div id="listview" tabindex="1"></div>
+</div>
+
+<div id="action-description">
+        <p>This sample demonstrates the nested list functionalities of the ListView. Click any list item to navigate to their sub items. To navigate back to the parent list, click the back icon at the top left area.
+        </p>
+</div>
+
+<div id="description">
+    <p>ListView component supports Nested list. To achieve list navigation, the <code>child</code> property should be defined for the nested list in the array of JSON.</p>
+
+    <p>This sample have Nested folder with the sub folders/files.</p>
 </div>

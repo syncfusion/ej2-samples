@@ -1,13 +1,17 @@
+/**
+ * Loading ajax content sample
+ */
+
 import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
 import { Ajax } from '@syncfusion/ej2-base';
 import { ListView } from '@syncfusion/ej2-lists';
 
-/**
- * loading ajax content sample
- */
-
 this.default = () => {
+
+    //Initialize ListView component
     let listObj: ListView = new ListView({
+
+        //Set data to datasource property
         dataSource: [
             { id: '1', text: 'Australia' },
             { id: '2', text: 'Bhutan' },
@@ -17,17 +21,38 @@ this.default = () => {
             { id: '6', text: 'Switzerland' },
             { id: '7', text: 'United States' }
         ],
+
+        //Map appropriate columns to fields property
         fields: { text: 'text', tooltip: 'id' }
     });
+
+    //Render initialized ListView component
     listObj.appendTo('#countrylist');
+
+    //Initialize Tooltip component
     let tooltip: Tooltip = new Tooltip({
+
+        //Set tooltip content
         content: 'Loading...',
+
+        //Set tooltip target
         target: '#countrylist [title]',
+
+        //Set tooltip position
         position: 'right center',
+
+        //Raise beforeRender event
         beforeRender: onBeforeRender
     });
+
+    //Render initialized Tooltip component
     tooltip.appendTo('#Tooltip');
 };
+
+/**
+ * Process tooltip ajax content.
+ */
+
 function onBeforeRender(args: TooltipEventArgs): void {
     this.content = 'Loading...';
     this.dataBind();

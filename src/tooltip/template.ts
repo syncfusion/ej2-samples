@@ -1,9 +1,13 @@
+/**
+ * Tooltip template sample
+ */
+
 import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
 import { Toolbar } from '@syncfusion/ej2-navigations';
-/**
- * tooltip template sample
- */
+
 this.default = () => {
+
+    //Initialize Toolbar component
     let toolbarObj: Toolbar = new Toolbar({
         items: [
             {
@@ -29,17 +33,36 @@ this.default = () => {
             }
         ]
     });
+
+    //Render initialized Toolbar component
     toolbarObj.appendTo('#Toolbar');
+
+    //Initialize Tooltip component
     let tooltip: Tooltip = new Tooltip({
+
+        //Set tooltip target
         target: '#Toolbar [title]',
+
+        //Raise beforeRender event
         beforeRender: onBeforeRender,
+
+        //Set true to show Tip pointer
         showTipPointer: false,
+
+        //Set tooltip offsetX
         offsetX: 70,
+
+        //Set tooltip width
         width: 170
     });
+
+    //Render initialized Tooltip component
     tooltip.appendTo('#Tooltip');
 };
 
+/**
+ * Tooltip content customization.
+ */
 function onBeforeRender(args: TooltipEventArgs): void {
     let data: any = [
         { title: 'Bold', name: 'Bold (Ctrl+B)', description: 'Makes your text bold.' },

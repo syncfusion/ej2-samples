@@ -1370,6 +1370,9 @@ function loadJSON(): void {
     if (Browser.isDevice || window.screen.width <= 850) {
         switchText = 'touch';
     }
+    if (switchText === 'mouse') {
+        tabContentToolbar.classList.add('sb-mouse');
+    }
     /**
      * Left Pane Height Setting
      */

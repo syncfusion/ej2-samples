@@ -185,6 +185,7 @@
     width: 32px;
     height: 27px;
     text-align: center;
+    border-radius: 2px;
 }
 
 .sb-search-btn:hover, .sb-search-btn.active, .sb-setting-btn:hover, .sb-setting-btn.active {
@@ -268,10 +269,12 @@
 
 .theme-wrapper {
     height: 32px;
-    width: 128px;
+    width: 145px;
     margin-top: 5px;
     cursor: default;
-    padding-left: 3px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 2px;
 }
 
 .theme-wrapper>div {
@@ -313,7 +316,7 @@
 }
 
 .switch-text {
-    padding-left: 16px;
+    padding-left: 8px;
 }
 
 .sb-switch-popup ul {
@@ -359,9 +362,9 @@
 }
 
 .sb-theme-select {
-    padding-left: 18px;
+    padding-left: 12px;
     vertical-align: middle;
-    font-size: 18px;
+    font-size: 24   px;
     color: #ffffff;
 }
 
@@ -387,7 +390,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(126, 125, 125, 0.54);
+    background-color: rgba(126, 125, 125, 0.78);
 }
 
 #search-input-wrapper {
@@ -597,7 +600,7 @@
     top: 27px;
     font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 500;
     padding-left: 16px;
 }
 
@@ -858,8 +861,16 @@
 
 .sb-toolbar-splitter {
     border-left: 1px solid rgb(196, 196, 196);
-    height: 32px;
+    height: 34px;
     margin-top: 3px;
+}
+
+.sb-content-toolbar.sb-mouse {
+    padding: 0px;
+}
+
+.sb-mouse .sb-toolbar-splitter {
+    height: 31px;
 }
 
 .sb-content-toolbar>div {
@@ -916,6 +927,7 @@ button#tab-navigation-prev {
     position: absolute;
     right: 0px;
     display: inline-flex;
+    padding: 5px 0px;
 }
 
 .sb-bread-crumb-text>div.seperator {
@@ -1266,7 +1278,7 @@ propertye pane
         color: #5a5a5a;
     }
     .sb-mobilefooter {
-        top: 93%;
+        top: 91%;
         background-color: #e6e4e4;
         font-size: 15px;
         display: inline-block;
@@ -1338,6 +1350,9 @@ propertye pane
     }
     .atlwdg-popup {
         width: 100% !important
+    }
+    span.sb-icon-Next, span.sb-icon-Previous {
+        font-size: 18px !important;
     }
 }
 

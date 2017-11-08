@@ -1355,6 +1355,20 @@ propertye pane
     }
 }
 
+@media (max-width: 350px) {
+    #sb-toggle-left {
+        padding-left: 12px;
+    }
+    #sb-header-text {
+        padding-left: 12px;
+    }
+    .sb-search-wrapper {
+        padding: 0 12px;
+    }
+    .sb-header-settings {
+        padding-right: 14px;
+    }   
+}
 
 /* #sb-content.e-tab>.e-header .e-indicator{
     background-color:rgb(255, 109, 63);

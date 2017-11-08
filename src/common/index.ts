@@ -708,7 +708,7 @@ function setSbLink(): void {
     let sample: string = href.match(sampleRegex)[1];
     for (let sb of sbArray) {
         let ele: HTMLFormElement = <HTMLFormElement>select('#' + sb);
-        ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('http://npmci.syncfusion.com/production/')) +
+        ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('http://ej2.syncfusion.com/')) +
             sb + '/' + 'demos/#/' + sample + (sb === 'javascript' ? '.html' : '');
     }
 }

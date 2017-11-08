@@ -7,7 +7,7 @@ import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Numeric Axis Sample
+ * Sample for Numeric Axis
  */
 let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEventArgs): void => {
     if (args.axis.orientation === 'Horizontal') {

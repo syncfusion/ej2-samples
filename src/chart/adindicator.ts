@@ -11,7 +11,7 @@ Chart.Inject(
 );
 
 /**
- * Accumulation Distribution
+ * Sample for Accumulation Distribution Indicator
  */
 this.default = (): void => {
 

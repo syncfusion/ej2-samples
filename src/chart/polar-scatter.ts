@@ -7,7 +7,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries);
 
 /**
- * Polar Series DrawType Scatter Sample
+ * Sample for Polar Series with DrawType Scatter
  */
 this.default = (): void => {
     let data: Object[] = [

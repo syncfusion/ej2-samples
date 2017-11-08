@@ -6,7 +6,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
 
 /**
- * Column Series with Empty Points
+ * Sample for Empty Points
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

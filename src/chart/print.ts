@@ -8,7 +8,7 @@ import { fabricColors, materialColors, bootstrapColors } from './theme-color';
 import { EmitType } from '@syncfusion/ej2-base';
 
 /**
- * Print Sample
+ * Sample for Chart print
  */
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];

@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * RSI Indicator
+ * Sample for RSI Indicator
  */
 this.default = (): void => {
 

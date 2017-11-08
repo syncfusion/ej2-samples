@@ -7,7 +7,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType } from '@syncfusion/ej2-base';
 
 /**
- * Box and Whisker Series
+ * Sample for Box and Whisker series
  */
 this.default = (): void => {
     let materialColors: string[] = ['#00bdae', '#404041', '#357cd2', '#e56590', '#f8b883', '#70ad47', '#dd8abd', '#7f84e8', '#7bb4eb',

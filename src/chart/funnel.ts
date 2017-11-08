@@ -5,7 +5,7 @@ import {
 AccumulationChart.Inject(AccumulationLegend, FunnelSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
- * Funnel Sample
+ * Sample for Funnel chart
  */
 this.default = (): void => {
     let data: object[] = [{ x: 'Renewed', y: 18.20, text: '18.20%' },

@@ -2,7 +2,7 @@ import { Chart, LineSeries, Legend, ILoadedEventArgs, getElement } from '@syncfu
 Chart.Inject(LineSeries, Legend);
 
 /**
- * Line Series
+ * Sample for live data
  */
 
 let series1: Object[] = [];

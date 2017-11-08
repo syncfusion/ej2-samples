@@ -7,7 +7,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(CandleSeries, StripLine, Category, Tooltip, DateTime, Zoom, ColumnSeries, Logarithmic, Crosshair);
 
 /**
- * Candle series
+ * Sample for Candle series
  */
 this.default = (): void => {
     let getLabelText: Function = (value: number): string => {

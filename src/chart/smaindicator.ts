@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * SMA Indicator Sample
+ * Sample for SMA Indicator
  */
 this.default = (): void => {
 

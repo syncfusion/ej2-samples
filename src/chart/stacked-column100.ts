@@ -9,7 +9,7 @@ let chartData: any[] = [
 ];
 
 /**
- * StackingColumn100 Series Sample
+ * Sample for StackingColumn100 Series Sample
  */
 this.default = (): void => {
     let chart: Chart = new Chart({
@@ -25,7 +25,7 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'GDP (%) Per Annum',
+            title: 'GDP (%) per Annum',
             rangePadding: 'None',
             interval: 20,
             majorTickLines: { width: 0 },

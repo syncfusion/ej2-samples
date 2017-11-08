@@ -8,7 +8,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
 
 /**
- * Remote Data Sample
+ * Sample for Remote Data bind in chart
  */
 let dataManager: DataManager = new DataManager({
     url: 'http://mvc.syncfusion.com/Services/Northwnd.svc/Tasks/'

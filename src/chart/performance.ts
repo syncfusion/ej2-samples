@@ -3,7 +3,7 @@ import { EmitType } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 Chart.Inject(LineSeries, Legend);
 /**
- * Performance Sample
+ * Sample for Chart Performance
  */
 let chart: Chart;
 let loaded: EmitType<ILoadedEventArgs>;

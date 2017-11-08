@@ -4,7 +4,7 @@ Chart.Inject(Selection, Legend, ColumnSeries, Category, ScatterSeries);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Range Selection Sample
+ * Sample for Range Selection in Chart
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

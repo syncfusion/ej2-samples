@@ -3,7 +3,7 @@ Chart.Inject(StepAreaSeries, Legend);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * StepArea Series
+ * Sample for StepArea Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

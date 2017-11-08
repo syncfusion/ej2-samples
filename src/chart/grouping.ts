@@ -6,7 +6,7 @@ import { IAccPointRenderEventArgs, IAccLoadedEventArgs, AccumulationDataLabel } 
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
- * Grouping Sample
+ * Sample for grouping in Pie chart
  */
 this.default = (): void => {
     let pie: AccumulationChart = new AccumulationChart({

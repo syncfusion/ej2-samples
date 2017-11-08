@@ -19,7 +19,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
     }
 };
 /**
- * Smart Axis Labels Sample
+ * Sample for Smart Axis Labels
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

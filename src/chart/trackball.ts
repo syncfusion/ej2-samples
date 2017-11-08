@@ -5,7 +5,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
 
 /**
- * TrackBall Sample
+ * Sample for TrackBall in chart
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

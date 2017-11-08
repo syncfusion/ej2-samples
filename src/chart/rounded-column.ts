@@ -8,7 +8,7 @@ Chart.Inject(ColumnSeries, DataLabel, Category, Tooltip);
 import { EmitType } from '@syncfusion/ej2-base';
 
 /**
- * Rounded Column Series
+ * Sample for Column series with rounded corner
  */
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];

@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * Stochastic Indicator
+ * Sample for Stochastic Indicator
  */
 this.default = (): void => {
 

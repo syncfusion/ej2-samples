@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * Average True Range Indicator
+ * Average True Range Indicator sample
  */
 this.default = (): void => {
 

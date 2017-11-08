@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * MACD Indicator Sample
+ * Sample for MACD Indicator
  */
 this.default = (): void => {
 

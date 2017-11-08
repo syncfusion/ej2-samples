@@ -3,7 +3,7 @@ Chart.Inject(AreaSeries, DateTime, Legend);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Area Series
+ * Sample for Area Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

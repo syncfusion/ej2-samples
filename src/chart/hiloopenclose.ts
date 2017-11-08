@@ -7,7 +7,7 @@ Chart.Inject(HiloOpenCloseSeries, Category, Tooltip, DateTime, Zoom, Logarithmic
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Hilo Open Close series Sample
+ * Sample for Hilo Open Close series
  */
 this.default = (): void => {
 

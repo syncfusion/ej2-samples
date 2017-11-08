@@ -8,7 +8,7 @@ import { EmitType } from '@syncfusion/ej2-base';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel, AccumulationAnnotation);
 
 /**
- * Drill Down Sample
+ * Sample fro Drill Down in Pie chart
  */
 this.default = (): void => {
     let suvs: Object = [{ x: 'Toyota', y: 8 }, { x: 'Ford', y: 12 }, { x: 'GM', y: 17 }, { x: 'Renault', y: 6 }, { x: 'Fiat', y: 3 },

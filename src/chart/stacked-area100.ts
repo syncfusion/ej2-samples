@@ -20,7 +20,7 @@ let chartData: any[] = [
 ];
 
 /**
- * stackedArea100 series
+ * Sample for StackedArea100 series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

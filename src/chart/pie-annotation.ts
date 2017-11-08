@@ -8,7 +8,7 @@ AccumulationChart.Inject(AccumulationChart, AccumulationDataLabel);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Pie chart annootation
+ * Sample for annotation in chart
  */
 export function getValue(series: Series[], pointIndex: number, y: number): string {
     let totalValue: number = 0;
@@ -59,7 +59,7 @@ this.default = (): void => {
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
-        legendSettings: { visible: true },
+        legendSettings: { toggleVisibility: true },
         //Initializing Annotation
         annotations: [{
             content: '<div id="chart_annotation" style="width: 200px; height: 200px"></div>',

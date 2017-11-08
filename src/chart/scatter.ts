@@ -3,7 +3,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(ScatterSeries, Legend, Tooltip);
 
 /**
- * Scatter Series Sample
+ * Sample for Scatter Series
  */
 this.default = (): void => {
     let series1: Object[] = [];

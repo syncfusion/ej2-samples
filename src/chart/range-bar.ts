@@ -3,7 +3,7 @@ Chart.Inject(RangeColumnSeries, Category, Tooltip, Legend);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Range Bar series
+ * Sample fpr Range Bar
  */
 this.default = (): void => {
 

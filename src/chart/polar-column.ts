@@ -7,7 +7,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries);
 
 /**
- * Polar Series DrawType Column Sample
+ * Sample for Polar Series with DrawType Column
  */
 this.default = (): void => {
     let data: Object[] = [

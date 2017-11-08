@@ -6,7 +6,7 @@ Chart.Inject(LineSeries, ColumnSeries, Category, Tooltip, ChartAnnotation);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Multiple Axes Sample
+ * Sample for Multiple Axes
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

@@ -3,7 +3,7 @@ Chart.Inject(LineSeries, Category, Legend, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Chart Symbols Sample
+ * Sample for Chart Symbols
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

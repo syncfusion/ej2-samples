@@ -3,7 +3,7 @@ Chart.Inject(ColumnSeries, DataLabel, Category, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Column Series with SBS Placement
+ * Sample for Column Series with Side by side placement
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

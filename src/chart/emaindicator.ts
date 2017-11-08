@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * EMA Indicator
+ * Sample for EMA Indicator
  */
 this.default = (): void => {
 

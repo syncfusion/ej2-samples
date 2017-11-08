@@ -3,7 +3,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(BarSeries, DataLabel, Category, Legend, Tooltip);
 
 /**
- * Bar Series
+ * Sample for bar series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

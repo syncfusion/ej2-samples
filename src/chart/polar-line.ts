@@ -7,7 +7,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries);
 
 /**
- * Polar Series DrawType Line Sample
+ * Sample for Polar Series with DrawType Line
  */
 this.default = (): void => {
     let chart: Chart = new Chart({
@@ -97,7 +97,7 @@ this.default = (): void => {
         document.getElementById('startangle').onchange = () => {
             let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('startangle'));
             chart.primaryXAxis.startAngle = parseInt(element.value, 10);
-            document.getElementById('startangle').innerHTML = parseInt(element.value, 10) + '';
+            document.getElementById('startAngleValue').innerHTML = parseInt(element.value, 10) + '';
             chart.refresh();
         };
     document.getElementById('isinversed').onchange = () => {

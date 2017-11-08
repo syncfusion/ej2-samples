@@ -6,7 +6,7 @@ Chart.Inject(RangeAreaSeries, Category, DateTime, Zoom);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * RangeArea series
+ * Sample for RangeArea series
  */
 this.default = (): void => {
 

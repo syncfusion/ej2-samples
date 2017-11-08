@@ -17,7 +17,7 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
 };
 
 /**
- * Bubble series
+ * Sample for Bubble series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

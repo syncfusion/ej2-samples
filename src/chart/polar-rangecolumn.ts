@@ -3,7 +3,7 @@ Chart.Inject(PolarSeries, Category, Tooltip, RadarSeries);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Polar Series DrawType RangeColumn Sample
+ * Sample for Polar Series with DrawType RangeColumn
  */
 this.default = (): void => {
 

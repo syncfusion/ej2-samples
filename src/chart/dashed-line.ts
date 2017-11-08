@@ -3,7 +3,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Crosshair);
 
 /**
- * Line Series with Dashed Line
+ * Sample for Line Series with Dashed Line
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

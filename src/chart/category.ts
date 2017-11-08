@@ -8,7 +8,7 @@ import { fabricColors, materialColors, bootstrapColors } from './theme-color';
 Chart.Inject(BarSeries, Category, Tooltip, DataLabel);
 
 /**
- * Category Axis
+ * Sample for Category Axis
  */
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];

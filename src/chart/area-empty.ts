@@ -3,7 +3,7 @@ Chart.Inject(AreaSeries, Category, Legend);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Area Series with Empty Point
+ * Sample for Area Series with Empty Point
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

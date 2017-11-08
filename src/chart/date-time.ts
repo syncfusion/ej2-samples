@@ -3,7 +3,7 @@ Chart.Inject(LineSeries, DateTime, Legend, DataLabel);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * DateTime Axis
+ * Sample for DateTime Axis
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

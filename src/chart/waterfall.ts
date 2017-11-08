@@ -6,7 +6,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(WaterfallSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, Legend, DataLabel);
 
 /**
- * Waterfall series
+ * Sample for Waterfall series
  */
 this.default = (): void => {
 

@@ -3,7 +3,7 @@ Chart.Inject(LineSeries, DateTime, Logarithmic, Legend, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Logarithmic Axis Sample
+ * Sample for Logarithmic Axis
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

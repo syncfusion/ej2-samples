@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * TMA Indicator
+ * Sample for TMA Indicator
  */
 this.default = (): void => {
 

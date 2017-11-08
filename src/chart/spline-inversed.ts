@@ -3,7 +3,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(SplineSeries, Category, Legend, Tooltip);
 
 /**
- * Spline Series Inversed Sample
+ * Sample for Inversed Spline Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

@@ -5,7 +5,7 @@ import {
 AccumulationChart.Inject(AccumulationLegend, PyramidSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
- * Pyramid Sample
+ * Sample for Pyramid Chart
  */
 this.default = (): void => {
     let data: object[] = [{ x: 'Sweet Treats', y: 120, text: '120 cal' },

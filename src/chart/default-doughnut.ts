@@ -7,7 +7,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Doghnut Sample
+ * Sample for Doughnut
  */
 let centerTitle: HTMLDivElement = document.createElement('div') as HTMLDivElement;
 centerTitle.innerHTML = 'Expenses <br> Year  &nbsp 2013';

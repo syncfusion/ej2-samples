@@ -2,7 +2,7 @@ import { Chart, LineSeries, ILoadedEventArgs, Series, ChartTheme, getElement } f
 Chart.Inject(LineSeries);
 import { Browser } from '@syncfusion/ej2-base';
 /**
- * vertical axis sample
+ * Sample for vertical chart
  */
 this.default = (): void => {
     let interval: number;
@@ -10,7 +10,7 @@ this.default = (): void => {
         //Initializing Primary X Axis
         primaryXAxis: { title: 'Time (s)', majorGridLines: { width: 0 } },
         //Initializing Primary Y Axis
-        primaryYAxis: { title: 'Vilocity (m/s)', majorGridLines: { width: 0 }, minimum: -15, maximum: 15, interval: 5 },
+        primaryYAxis: { title: 'Velocity (m/s)', majorGridLines: { width: 0 }, minimum: -15, maximum: 15, interval: 5 },
         series: [
             {
                 type: 'Line', xName: 'x', yName: 'y', dataSource: [{ x: 0, y: 0 }],

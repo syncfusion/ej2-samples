@@ -4,7 +4,7 @@ import { axesData } from './financial-data';
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Crosshair
+ * Sample for Crosshair
  */
 
 this.default = (): void => {

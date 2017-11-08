@@ -7,7 +7,7 @@ Chart.Inject(Category, Tooltip, ScatterSeries, SplineSeries, LineSeries, Trendli
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Trend Lines Sample
+ * Samples for Trend Lines
  */
 let series1: Object[] = [];
 let yValue: number[] = [7.66, 8.03, 8.41, 8.97, 8.77, 8.20, 8.16, 7.89, 8.68, 9.48, 10.11, 11.36, 12.34, 12.60, 12.95,

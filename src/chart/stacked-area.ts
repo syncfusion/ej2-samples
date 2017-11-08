@@ -3,7 +3,7 @@ Chart.Inject(StackingAreaSeries, Legend, DateTime);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Stacked-Area Series
+ * Sample for Stacked-Area Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

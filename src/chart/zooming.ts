@@ -4,7 +4,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(AreaSeries, DateTime, Legend, Zoom);
 
 /**
- * Zooming Sample
+ * Sample for Zooming in chart
  */
 this.default = (): void => {
     let series1: Object[] = [];

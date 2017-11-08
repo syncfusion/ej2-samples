@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * Mementum Sample
+ * Sample for Momentum indicator
  */
 this.default = (): void => {
 

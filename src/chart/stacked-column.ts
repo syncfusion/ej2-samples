@@ -3,7 +3,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(StackingColumnSeries, Category, Legend, Tooltip);
 
 /**
- * Stacked-Column Series
+ * Sample for StackedColumn Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

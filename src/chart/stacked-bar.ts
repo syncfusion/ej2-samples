@@ -3,7 +3,7 @@ Chart.Inject(StackingBarSeries, Category, Legend, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Stacked-Bar Series
+ * Sample for StackedBar Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

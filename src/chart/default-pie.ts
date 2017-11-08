@@ -5,7 +5,7 @@ import {
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
- * Pie Sample
+ * Sample for Pie chart
  */
 this.default = (): void => {
     let pie: AccumulationChart = new AccumulationChart({

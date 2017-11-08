@@ -3,7 +3,7 @@ Chart.Inject(LineSeries, Category, Legend, Tooltip, StripLine);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * StepLine Sample
+ * Sample for Striplines
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

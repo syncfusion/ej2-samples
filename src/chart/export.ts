@@ -10,7 +10,7 @@ import { EmitType } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Print Sample
+ * Sample for chart export
  */
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];

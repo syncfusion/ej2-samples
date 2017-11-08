@@ -3,7 +3,7 @@ Chart.Inject(StepLineSeries, DateTime, Legend, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * StepLine Series
+ * Sample for StepLine Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

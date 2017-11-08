@@ -5,7 +5,7 @@ import {
 Chart.Inject(ColumnSeries, LineSeries, Category, Legend, Crosshair, Tooltip);
 
 /**
- * Indexed Category Axis Sample
+ * Sample for Indexed Category Axis
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

@@ -8,7 +8,7 @@ let chartData: any[] = [
 ];
 
 /**
- * StackingBar100 series
+ * Sample for StackingBar100 series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

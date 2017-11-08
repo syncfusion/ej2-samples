@@ -3,7 +3,7 @@ Chart.Inject(RangeColumnSeries, Category, Tooltip, Legend);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * RangeColumn series
+ * Sample for RangeColumn series
  */
 this.default = (): void => {
 

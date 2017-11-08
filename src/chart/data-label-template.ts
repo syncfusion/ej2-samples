@@ -5,7 +5,7 @@ import {
 Chart.Inject(LineSeries, DataLabel, Category, Legend);
 import { Browser } from '@syncfusion/ej2-base';
 /**
- * DataLabel template
+ * Sample for DataLabel template
  */
 this.default = (): void => {
     let theme: ChartTheme;

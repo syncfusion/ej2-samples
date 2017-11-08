@@ -4,7 +4,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(StackingColumnSeries, LineSeries, Category, ColumnSeries, Legend, Tooltip);
 
 /**
- * Pareto Sample
+ * Sample for Pareto chart
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

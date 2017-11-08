@@ -7,7 +7,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries);
 
 /**
- * Polar Series DrawType Spline Sample
+ * Sample for Polar Series with DrawType Spline
  */
 this.default = (): void => {
     let cardData: Object[] = [];

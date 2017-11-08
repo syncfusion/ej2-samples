@@ -6,7 +6,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
 
 /**
- * Pie Empty Point Series
+ * Sample for Empty Points in Pie chart
  */
 this.default = (): void => {
     let chart: AccumulationChart = new AccumulationChart({

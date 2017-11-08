@@ -9,7 +9,7 @@ import { EmitType } from '@syncfusion/ej2-base';
 import { fabricColors, materialColors, bootstrapColors } from './theme-color';
 Chart.Inject(ScatterSeries, Category, ErrorBar, Tooltip);
 /**
- * Error bar Sample
+ * Sample for error bar
  */
 let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];

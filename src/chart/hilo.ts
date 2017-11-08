@@ -7,7 +7,7 @@ Chart.Inject(HiloSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crossha
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Hilo series Sample
+ * Sample for Hilo series
  */
 this.default = (): void => {
 

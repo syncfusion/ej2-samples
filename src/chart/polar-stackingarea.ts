@@ -6,7 +6,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(Tooltip, Legend, PolarSeries, Category, StackingAreaSeries, RadarSeries);
 
 /**
- * Polar Series DrawType Stacking Area Sample
+ * Sample for Polar Series with DrawType StackingArea
  */
 this.default = (): void => {
     let data: Object[] = [

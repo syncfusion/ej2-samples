@@ -4,7 +4,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(StackingColumnSeries, LineSeries, Category, ColumnSeries, Tooltip, Legend);
 
 /**
- * Combination Series
+ * Sample for Combination Series
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

@@ -3,7 +3,7 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
- * Local data Sample
+ * Sample for local data bind
  */
 
 let series1: Object[] = [];

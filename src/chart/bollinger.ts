@@ -10,7 +10,7 @@ Chart.Inject(
 );
 
 /**
- * Indicator - Bollinger Band
+ * Sample for Bollinger Band indicator
  */
 this.default = (): void => {
 

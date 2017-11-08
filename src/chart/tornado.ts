@@ -6,7 +6,7 @@ import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(StackingBarSeries, DataLabel, Category, Legend, Tooltip);
 
 /**
- * Tornado Sample
+ * Sample for Tornado sample
  */
 this.default = (): void => {
     let chart: Chart = new Chart({

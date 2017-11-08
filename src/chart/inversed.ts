@@ -6,7 +6,7 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
 import { fabricColors, materialColors, bootstrapColors } from './theme-color';
 import { Browser, EmitType } from '@syncfusion/ej2-base';
 /**
- * Inversed axis sample
+ * Sample for invesed axis
  */
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];

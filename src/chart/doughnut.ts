@@ -4,7 +4,7 @@ import {
 } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 /**
- * Doughnut Sample
+ * Sample for Doughnut chart
  */
 this.default = (): void => {
     let pie: AccumulationChart = new AccumulationChart({

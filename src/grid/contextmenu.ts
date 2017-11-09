@@ -21,8 +21,8 @@ this.default = (): void => {
                 'lastPage', 'nextPage'],
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 200, maxWidth: 300, textAlign: 'right', isPrimaryKey: true },
-                { field: 'CustomerName', headerText: 'Customer Name', width: 200 },
-                { field: 'Freight', width: 150, format: 'C2', textAlign: 'right', editType: 'numericedit' },
+                { field: 'CustomerName', headerText: 'Customer Name'},
+                { field: 'Freight', format: 'C2', textAlign: 'right', editType: 'numericedit' },
                 { field: 'ShipName', headerText: 'Ship Name', width: 300 },
                 { field: 'ShipCountry', headerText: 'Ship Country', width: 200 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 200 }

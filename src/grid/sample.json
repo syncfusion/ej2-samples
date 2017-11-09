@@ -27,7 +27,7 @@
     {"url":"sorting", "name": "Multi Sorting", "category":"Sorting","api":{"Grid":["dataSource","allowSelection","selectionSettings","columns","enableHover"] }},
     {"url":"sortingapi", "name": "Sorting API", "category":"Sorting","api":{"Grid":["dataSource","allowPaging","allowSelection","selectionSettings","enableHover","columns","pageSettings"] }},
     {"url":"filter", "name": "Default Filtering", "category":"Filtering","api":{"Grid":["allowFiltering","dataSource","allowPaging","pageSettings","columns"] }},
-	{"url":"filtermenu", "name": "Filtering Menu", "category":"Filtering","api":{"Grid":["allowFiltering","filterSettings","dataSource","allowPaging","pageSettings","columns"] }},
+	{"url":"filtermenu", "name": "Filter Menu", "category":"Filtering","api":{"Grid":["allowFiltering","filterSettings","dataSource","allowPaging","pageSettings","columns"] }},
     {"url":"search", "name": "Search", "category":"Filtering","api":{"Grid":["dataSource","allowPaging","pageSettings","columns","toolbar"] }},
     {"url":"defaultpaging", "name": "Default Paging", "category": "Paging","api":{"Grid":["dataSource","allowPaging","pageSettings","columns"] }},
     {"url":"pagingapi", "name": "Paging API", "category": "Paging","api":{"Grid":["dataSource","allowPaging","pageSettings","columns","actionComplete","goToPage"] }},

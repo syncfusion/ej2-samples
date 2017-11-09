@@ -25,10 +25,11 @@ this.default = (): void => {
     let endInput: HTMLInputElement = <HTMLInputElement>document.getElementById('end');
 
     function changeTime(): void {
+        /*To determine whether we have selected business hours or not*/
         let element: HTMLInputElement = <HTMLInputElement>document.getElementById('dayRange');
         isStartTimeChange = false;
         if (element.checked) {
-            //Business hours
+            /*Business hours*/
             startTime.value = new Date('9/6/2017 9:00');
             endTime.enabled = true;
             endTime.value = new Date('9/6/2017 18:00');
@@ -44,6 +45,7 @@ this.default = (): void => {
         }
     }
     function onEnableEndTime(args: ChangeEventArgs): void {
+        /*Enables end time if start time is selected*/
         if (isStartTimeChange) {
             endTime.enabled = true;
             endTime.value = null;

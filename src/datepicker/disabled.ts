@@ -10,7 +10,7 @@ this.default = (): void => {
     });
     datepicker.appendTo('#datepicker');
     function disableDate(args: RenderDayCellEventArgs): void {
-        //Date need to be disabled
+        /*Date need to be disabled*/
         if (args.date.getDay() === 0 || args.date.getDay() === 6) {
             args.isDisabled = true;
         }

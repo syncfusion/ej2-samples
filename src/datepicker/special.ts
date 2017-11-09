@@ -9,8 +9,8 @@ this.default = (): void => {
     });
     datepicker.appendTo('#datepicker');
 };
-//Date need to be customized
 function customDates(args: RenderDayCellEventArgs): void {
+    /*Date need to be customized*/
     if (+args.date === +new Date('1/2/2017')) {
         let span: HTMLElement;
         span = document.createElement('span');

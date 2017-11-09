@@ -12,6 +12,7 @@ import * as artimeZoneNames from '../common/cldr-data/main/ar/timeZoneNames.json
  */
 
 this.default = (): void => {
+    /*loads the localization text*/
     L10n.load({
         'de': {
             'datepicker': {
@@ -30,7 +31,7 @@ this.default = (): void => {
         }
     });
 
-    // loadCldr method to load the culture specific JSON file.
+    /* loadCldr method to load the culture specific JSON file.*/
     loadCldr(numberingSystems, detimeZoneNames, degregorian, denumbers, argregorian, arnumbers, artimeZoneNames);
 
     let datepicker: DatePicker = new DatePicker({
@@ -40,9 +41,8 @@ this.default = (): void => {
 
     let globalize: Internationalization = new Internationalization(datepicker.locale);
     document.getElementById('cultures').addEventListener('change', changeLocale);
-
-    //Apply selected locale to the component
     function changeLocale(): void {
+        /*Apply selected locale to the component*/
         let culture: string = (document.getElementById('cultures') as HTMLSelectElement).value;
         datepicker.locale = culture;
         datepicker.locale === 'ar' ? datepicker.enableRtl = true : datepicker.enableRtl = false;

@@ -1,6 +1,6 @@
 import { DatePicker } from '@syncfusion/ej2-calendars';
 /**
- * Date Format DatePicker sample
+ * Date format DatePicker sample
  */
 
 this.default = (): void => {
@@ -14,7 +14,7 @@ this.default = (): void => {
     document.getElementById('dateformats').addEventListener('change', changeLocale);
 
     function changeLocale(): void {
-        //Apply selected format to the component
+        /*Apply selected format to the component*/
         let dateFormat: string = (document.getElementById('dateformats') as HTMLSelectElement).value;
         datepicker.format = dateFormat;
         datepicker.dataBind();

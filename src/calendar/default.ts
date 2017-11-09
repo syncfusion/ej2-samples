@@ -1,6 +1,6 @@
 import { Calendar, ChangedEventArgs } from '@syncfusion/ej2-calendars';
 /**
- * Default calendar sample
+ * Default Calendar sample
  */
 
 this.default = (): void => {
@@ -9,6 +9,7 @@ this.default = (): void => {
     });
     calendar.appendTo('#calendar');
     function valueChange(args: ChangedEventArgs): void {
+        /*Displays selected date in the label*/
         (<HTMLInputElement>document.getElementById('date_label')).textContent = 'Selected Value: ' + args.value.toLocaleDateString();
     }
 };

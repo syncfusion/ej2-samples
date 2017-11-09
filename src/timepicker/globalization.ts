@@ -15,6 +15,7 @@ import * as vinumbers from '../common/cldr-data/main/vi/numbers.json';
  */
 
 this.default = (): void => {
+    /*loads the localization text*/
     L10n.load({
         'de': {
             'timepicker': { placeholder: 'Wählen Sie Zeit' }
@@ -32,6 +33,7 @@ this.default = (): void => {
             'timepicker': { placeholder: 'حدد الوقت' }
         }
     });
+    /* loadCldr method to load the culture specific JSON file.*/
     loadCldr(numberingSystems, zhgregorian, zhnumbers, degregorian, denumbers, argregorian, arnumbers, vigregorian, vinumbers);
     let date: Date = new Date();
     let day: number = date.getDate();
@@ -46,9 +48,8 @@ this.default = (): void => {
         width: '100%', change: cultureChange, value: 'de'
     });
     dropObj.appendTo('#culture');
-
-    //Apply selected locale to the component
     function cultureChange(): void {
+        /*Apply selected locale to the component*/
         let culture: string = this.text;
         timepicker.locale = culture;
         timepicker.enableRtl = culture === 'ar' ? true : false;

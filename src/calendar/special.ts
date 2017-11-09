@@ -1,6 +1,6 @@
 import { Calendar, RenderDayCellEventArgs, ChangedEventArgs } from '@syncfusion/ej2-calendars';
 /**
- * Special calendar sample
+ * Special Calendar sample
  */
 
 this.default = (): void => {
@@ -10,6 +10,7 @@ this.default = (): void => {
     calendar.appendTo('#calendar');
 };
 function customDates(args: RenderDayCellEventArgs): void {
+    /*Date need to be customized*/
     if (args.date.getDate() === 10) {
         let span: HTMLElement;
         span = document.createElement('span');

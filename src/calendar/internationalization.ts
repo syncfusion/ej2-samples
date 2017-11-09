@@ -5,12 +5,12 @@ import * as degregorian from '../common/cldr-data/main/de/ca-gregorian.json';
 import * as denumbers from '../common/cldr-data/main/de/numbers.json';
 import * as detimeZoneNames from '../common/cldr-data/main/de/timeZoneNames.json';
 /**
- * Internationalization calendar sample
+ * Internationalization Calendar sample
  */
 
 this.default = (): void => {
-    // loadCldr method to load the culture specific JSON file.
-    loadCldr(numberingSystems, degregorian, denumbers, detimeZoneNames);
+    /* loadCldr method to load the culture specific JSON file.*/
+    loadCldr(numberingSystems, detimeZoneNames, degregorian, denumbers);
     let calendar: Calendar = new Calendar({
         change: valueChange, locale: 'de'
     });
@@ -18,11 +18,12 @@ this.default = (): void => {
     calendar.locale = 'de';
     let globalize: Internationalization = new Internationalization(calendar.locale);
     function valueChange(args: ChangedEventArgs): void {
+        /*Displays selected date in the label*/
         (<HTMLInputElement>document.getElementById('date_label')).textContent = 'Selected Value: ' + globalize.formatDate(args.value);
     }
     document.getElementById('cultures').addEventListener('change', changeLocale);
-
     function changeLocale(): void {
+        /*Apply selected locale to the component*/
         let culture: string = (document.getElementById('cultures') as HTMLSelectElement).value;
         calendar.locale = culture;
         globalize = new Internationalization(calendar.locale);

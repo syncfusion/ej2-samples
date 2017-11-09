@@ -8,8 +8,8 @@ this.default = (): void => {
         presets: [
             {
                 label: 'This Week',
-                start: new Date(new Date().setDate(new Date().getDate() - new Date().getDay())),
-                end: new Date()
+                start: new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)),
+                end: new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 6 + 7))
             },
             {
                 label: 'This Month',

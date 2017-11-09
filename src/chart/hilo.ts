@@ -51,7 +51,11 @@ this.default = (): void => {
         tooltip: {
             enable: true, shared: true
         },
-        crosshair: { enable: true, lineType: 'Vertical' },
+        crosshair: {
+            enable: true, lineType: 'Vertical', line: {
+                width: 0,
+            }
+        },
         zoomSettings:
         {
             enableMouseWheelZooming: true,

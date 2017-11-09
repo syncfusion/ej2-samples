@@ -31,7 +31,7 @@ this.default = (): void => {
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'Category',
-            labelPlacement: 'OnTicks',
+            labelPlacement: 'OnTicks', interval: 1,
             coefficient: Browser.isDevice ? 80 : 100
         },
 

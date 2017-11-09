@@ -1,5 +1,5 @@
-import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs, ChartTheme, Tooltip } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, DateTime, Legend, Tooltip);
+import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs, ChartTheme, Tooltip, Crosshair } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Crosshair);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -73,7 +73,15 @@ this.default = (): void => {
                 animation: { enable: true }
             }
         ],
-
+        // Initializing the crosshair
+        crosshair: {
+            enable: true,
+            line: {
+                color: 'rgba(204,214,235,0.25)',
+                width: Browser.isDevice ? 50 : 20,
+            },
+            lineType: 'Vertical'
+        },
         //Initializing Chart title
         title: 'Stock Price Analysis',
         //Initializing User Interaction Tooltip and Crosshair

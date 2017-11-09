@@ -76,27 +76,19 @@ this.default = (): void => {
             gauge.refresh();
         }
     });
-    pointerPlace.appendTo('#pointerType');
+    pointerPlace.appendTo('#pointerPlace');
 
     let pointerType: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
         width: 120,
         change: () => {
-            gauge.axes[0].pointers[0].type = <Point>pointerPlace.value;
-            pointerType.enabled = (<Point>pointerPlace.value === 'Marker');
+            gauge.axes[0].pointers[0].type = <Point>pointerType.value;
+            pointerPlace.enabled = (pointerType.value === 'Marker');
             gauge.refresh();
         }
     });
-    pointerType.appendTo('#pointerPlace');
-
-    document.getElementById('pointerType').onchange = () => {
-        let place: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointerPlace');
-        let ele: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointerType');
-        gauge.axes[0].pointers[0].type = <Point>ele.value;
-        place.disabled = (<Point>ele.value === 'Marker') ? false : true;
-        gauge.refresh();
-    };
+    pointerType.appendTo('#pointerType');
 };
 
 export function getRandomArbitrary(min: number, max: number): number {

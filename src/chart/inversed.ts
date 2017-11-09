@@ -68,7 +68,7 @@ this.default = (): void => {
         },
         legendSettings: { visible: false },
         //Initializing Chart Title
-        title: 'Exchange rate (INR per USD)',
+        title: 'Exchange Rate (INR per USD)',
         width: Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

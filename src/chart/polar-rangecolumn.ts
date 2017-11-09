@@ -1,6 +1,7 @@
 import { Chart, PolarSeries, Category, Tooltip, ILoadedEventArgs, RadarSeries, ChartDrawType, ChartTheme } from '@syncfusion/ej2-charts';
 Chart.Inject(PolarSeries, Category, Tooltip, RadarSeries);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * Sample for Polar Series with DrawType RangeColumn
@@ -13,9 +14,10 @@ this.default = (): void => {
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'Category',
-            title: 'Months',
+            title: 'Months', interval: 1,
             labelPlacement: 'OnTicks',
-            startAngle: 90
+            startAngle: 90,
+            coefficient: Browser.isDevice ? 80 : 100
         },
 
         //Initializing Primary Y Axis

@@ -161,7 +161,7 @@
         },
         {
             "url": "column-placement",
-            "name": "Side by Placement",
+            "name": "Back to Back Column",
             "type": "updated",
             "category": "Bar Charts",
             "api": {
@@ -813,7 +813,7 @@
         },
         {
             "url": "polar-stackingcolumn",
-            "name": "Stacked Column",
+            "name": "Wind Rose",
             "type": "new",
             "category": "Polar Radar",
             "api": {

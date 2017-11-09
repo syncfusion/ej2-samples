@@ -13,17 +13,16 @@ this.default = (): void => {
         series: [
             {
                 dataSource: [
-                    { 'x': 'Chrome', y: 37.42, text: '37.42%' }, { 'x': 'UC Browser', y: 16.94, text: '16.94%' },
-                    { 'x': 'iPhone', y: 17.94, text: '17.94%' },
-                    { 'x': 'Others', y: 3.69, text: '3.69%' }, { 'x': 'Opera', y: 11.37, text: '11.37%' },
-                    { 'x': 'Android', y: 11.73, text: '11.73%' }
+                    { 'x': 'Chrome', y: 37, text: '37%' }, { 'x': 'UC Browser', y: 17, text: '17%' },
+                    { 'x': 'iPhone', y: 19, text: '19%' },
+                    { 'x': 'Others', y: 4, text: '4%' }, { 'x': 'Opera', y: 11, text: '11%' },
+                    { 'x': 'Android', y: 12, text: '12%' }
                 ],
                 dataLabel: {
                     visible: true,
                     position: 'Inside', name: 'text',
                     font: {
-                        fontWeight: '600',
-                        color: '#ffffff'
+                        fontWeight: '600'
                     }
                 },
                 radius: '70%', xName: 'x',

@@ -25,7 +25,7 @@ let powerData: object[] = [
 this.default = (): void => {
     let chart: Chart = new Chart({
         //Initializing Primary X and Y Axis
-        primaryXAxis: { majorGridLines: { width: 0 } },
+        primaryXAxis: { majorGridLines: { width: 0 }, edgeLabelPlacement: 'Shift' },
         primaryYAxis: {
             title: 'Rupees against Dollars',
             interval: 10, lineStyle: { width: 0 }, majorTickLines: { width: 0 }
@@ -33,9 +33,10 @@ this.default = (): void => {
         //Initializing Chart Series
         series: [{
             dataSource: series1, xName: 'x', yName: 'y',
-            name: 'Apple Inc', fill: '#0066FF', type: 'Scatter',
+            name: 'Rupees', fill: '#0066FF', type: 'Spline',
+            marker: { visible: true },
             //Initializing TrendLines
-            trendlines: [{ type: 'Linear', width: 3, marker: { visible: false }, name: 'Linear' }]
+            trendlines: [{ type: 'Linear', width: 3, name: 'Linear' }]
         }],
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },

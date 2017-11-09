@@ -33,8 +33,7 @@ this.default = (): void => {
         primaryXAxis: {
             valueType: 'DateTime',
             edgeLabelPlacement: 'Shift',
-            majorGridLines: { width: 0 },
-            skeleton: 'MMM'
+            majorGridLines: { width: 0 }
         },
         chartArea: {
             border: {

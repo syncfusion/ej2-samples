@@ -43,8 +43,7 @@ this.default = (): void => {
     document.getElementById('startWidth').ontouchmove = document.getElementById('startWidth').onpointermove =
         document.getElementById('startWidth').onchange = (): void => {
             let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('startWidth');
-            let rangeIndex: HTMLSelectElement = <HTMLSelectElement>document.getElementById('rangeIndex');
-            gauge.axes[0].ranges[parseInt(rangeIndex.value, 10)].startWidth = parseInt(ele.value, 10);
+            gauge.axes[0].ranges[+rangeIndex.value].startWidth = parseInt(ele.value, 10);
             document.getElementById('startWidthValue').innerHTML = 'Range Start Width<span>&nbsp;&nbsp;&nbsp;' + ele.value;
             gauge.refresh();
         };
@@ -52,8 +51,7 @@ this.default = (): void => {
     document.getElementById('endWidth').ontouchmove = document.getElementById('endWidth').onpointermove =
         document.getElementById('endWidth').onchange = (): void => {
             let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('endWidth');
-            let rangeIndex: HTMLSelectElement = <HTMLSelectElement>document.getElementById('rangeIndex');
-            gauge.axes[0].ranges[parseInt(rangeIndex.value, 10)].endWidth = parseInt(ele.value, 10);
+            gauge.axes[0].ranges[+rangeIndex.value].endWidth = parseInt(ele.value, 10);
             document.getElementById('endWidthValue').innerHTML = 'Range End Width<span>&nbsp;&nbsp;&nbsp;' + ele.value;
             gauge.refresh();
         };

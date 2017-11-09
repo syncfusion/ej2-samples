@@ -22,6 +22,7 @@ this.default = (): void => {
             title: 'Death Overs',
             minimum: 15,
             maximum: 21,
+            interval: 1,
             majorGridLines: { width: 0 }
         },
         //Initializing Primary Y Axis

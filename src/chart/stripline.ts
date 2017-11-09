@@ -60,8 +60,7 @@ this.default = (): void => {
                 dataSource: [
                     { x: 'Sun', y: 28 }, { x: 'Mon', y: 27 }, { x: 'Tue', y: 33 }, { x: 'Wed', y: 36 },
                     { x: 'Thu', y: 28 }, { x: 'Fri', y: 30 }, { x: 'Sat', y: 31 }],
-                xName: 'x', width: 2, yName: 'y', fill: '#ffffff', type: 'Line',
-                name: 'Weather',
+                xName: 'x', width: 2, yName: 'y', fill: '#ffffff', type: 'Line', name: 'Weather',
                 marker: { visible: true, width: 10, height: 10, border: { width: 2, color: '#ffffff' }, fill: '#666666' },
             },
         ],
@@ -69,9 +68,7 @@ this.default = (): void => {
         //Initializing Chart Title
         title: 'Weather Report',
         //Initializing User Interaction Tooltip
-        tooltip: {
-            enable: true
-        },
+        tooltip: { enable: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -79,21 +76,23 @@ this.default = (): void => {
         }
     });
     chart.appendTo('#container');
-
     let mode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
         width: 120,
         change: () => {
             if (mode.value === 'Vertical') {
-                for (let i: number = 0; i <= 4; i++) {
-                    if (i === 3 || i === 4) { chart.primaryYAxis.stripLines[i] = {}; }
+                for (let i: number = 0; i < 3; i++) {
                     chart.primaryYAxis.stripLines[i].visible = false;
+                }
+                for (let i: number = 0; i <= 4; i++) {
                     chart.primaryXAxis.stripLines[i].visible = true;
                 }
             } else {
-                for (let i: number = 0; i <= 4; i++) {
+                for (let i: number = 0; i < 3; i++) {
                     chart.primaryYAxis.stripLines[i].visible = true;
+                }
+                for (let i: number = 0; i <= 4; i++) {
                     chart.primaryXAxis.stripLines[i].visible = false;
                 }
             }

@@ -57,19 +57,19 @@ this.default = (): void => {
             switch (index.point) {
                 case 0:
                     clickInstance.series[0].dataSource = suvs; getElement('text').innerHTML = 'SUV';
-                    clickInstance.title = 'Automobile Sales in the SUV segment';
+                    clickInstance.title = 'Automobile Sales in the SUV Segment';
                     break;
                 case 1:
                     clickInstance.series[0].dataSource = cars; getElement('text').innerHTML = 'Car';
-                    clickInstance.title = 'Automobile Sales in the Car segment';
+                    clickInstance.title = 'Automobile Sales in the Car Segment';
                     break;
                 case 2:
                     clickInstance.series[0].dataSource = pickups; getElement('text').innerHTML = 'Pickup';
-                    clickInstance.title = 'Automobile Sales in the Pickup segment';
+                    clickInstance.title = 'Automobile Sales in the Pickup Segment';
                     break;
                 case 3:
                     clickInstance.series[0].dataSource = minivans; getElement('text').innerHTML = 'Minivan';
-                    clickInstance.title = 'Automobile Sales in the Minivan segment';
+                    clickInstance.title = 'Automobile Sales in the Minivan Segment';
                     break;
             }
             pie = new AccumulationChart(clickInstance); pie.appendTo('#container');

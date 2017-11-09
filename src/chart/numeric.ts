@@ -95,7 +95,7 @@ this.default = (): void => {
         //Initializing Chart title
         title: 'England vs West Indies',
         //Initializing User Interaction Tooltip
-        tooltip: { enable: true, format: '${point.x}th Over : ${point.y} Runs' }
+        tooltip: { enable: true, format: '${point.x}th Over : <b>${point.y} Runs</b>' }
     });
     chart.appendTo('#container');
 };

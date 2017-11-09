@@ -73,7 +73,7 @@ this.default = (): void => {
     chart.appendTo('#container');
     let mode: DropDownList = new DropDownList({
         index: 0,
-        width: 100
+        width: 90
     });
     mode.appendTo('#mode');
     let togglebtn: Button = new Button({

@@ -16,7 +16,7 @@ this.default = (): void => {
             valueType: 'Category',
             interval: 1,
             labelIntersectAction: 'Rotate90',
-            majorGridLines: { width: 0 }
+            majorGridLines: { width: 0 },
         },
 
         //Initializing Primary Y Axis
@@ -37,9 +37,9 @@ this.default = (): void => {
             {
                 majorGridLines: { width: 0 },
                 rowIndex: 0, opposedPosition: true,
-                lineStyle: { width: 0 },
+                lineStyle: { width: 0 }, majorTickLines: { width: 0 },
                 minimum: 24, maximum: 36, interval: 2,
-                name: 'yAxis',
+                name: 'yAxis', minorTickLines: { width: 0 },
                 labelFormat: '{value}°C'
             }
         ],

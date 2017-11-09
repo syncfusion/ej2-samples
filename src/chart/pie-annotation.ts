@@ -59,7 +59,7 @@ this.default = (): void => {
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
-        legendSettings: { toggleVisibility: true },
+        legendSettings: { visible: true, toggleVisibility: false },
         //Initializing Annotation
         annotations: [{
             content: '<div id="chart_annotation" style="width: 200px; height: 200px"></div>',

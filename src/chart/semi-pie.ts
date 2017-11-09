@@ -40,7 +40,7 @@ this.default = (): void => {
             visible: false,
         },
         //Initializing Title
-        title: 'Agricultural Land percentage',
+        title: 'Agricultural Land Percentage',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

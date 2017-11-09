@@ -771,7 +771,7 @@
         },
         {
             "url": "polar-stackingarea",
-            "name": "Stacking Area",
+            "name": "Stacked Area",
             "type": "new",
             "category": "Polar Radar",
             "api": {
@@ -813,7 +813,7 @@
         },
         {
             "url": "polar-stackingcolumn",
-            "name": "Stacking Column",
+            "name": "Stacked Column",
             "type": "new",
             "category": "Polar Radar",
             "api": {

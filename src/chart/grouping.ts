@@ -62,7 +62,7 @@ this.default = (): void => {
         //Initializing tooltip
         tooltip: { enable: true, format: '${point.x} <br> ${point.y} Medals' },
         //Initializing title
-        title: 'Rio Olympic Gold',
+        title: 'RIO Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

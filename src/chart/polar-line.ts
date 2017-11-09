@@ -98,6 +98,8 @@ this.default = (): void => {
             let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('startangle'));
             chart.primaryXAxis.startAngle = parseInt(element.value, 10);
             document.getElementById('startAngleValue').innerHTML = parseInt(element.value, 10) + '';
+            chart.series[0].animation.enable = false;
+            chart.series[1].animation.enable = false;
             chart.refresh();
         };
     document.getElementById('isinversed').onchange = () => {

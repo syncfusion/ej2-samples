@@ -83,7 +83,7 @@ this.default = (): void => {
         ],
 
         //Initializing Chart title
-        title: 'Height Vs Weight',
+        title: 'Height vs Weight',
         //Initializing User Interaction Tooltip
         tooltip: {
             enable: true

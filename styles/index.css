@@ -661,7 +661,8 @@
 #controlList {
     overflow-y: auto;
     position: absolute;
-    padding-left: 5px
+    padding-left: 5px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .sb-control-list-top {
@@ -672,6 +673,7 @@
     overflow-y: auto;
     top: 66px;
     height: calc(100% - 66px);
+    -webkit-overflow-scrolling: touch;
 }
 
 .sb-left-back {
@@ -1100,6 +1102,7 @@ propertye pane
     .sb-left-pane {
         position: absolute;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     .sb-left-footer{
         padding-top: 20px;

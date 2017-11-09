@@ -54,6 +54,7 @@ interface MyWindow extends Window {
     default: () => void;
     navigateSample: () => void;
     apiList: any;
+    hashString: string;
 }
 
 let switcherPopup: Popup;
@@ -487,6 +488,7 @@ function onNextButtonClick(arg: MouseEvent): void {
         let curhref: string = samplesAr[inx + 1];
         location.href = curhref;
     }
+    window.hashString = location.hash;
     setSelectList();
 }
 
@@ -499,6 +501,7 @@ function onPrevButtonClick(arg: MouseEvent): void {
         let curhref: string = samplesAr[inx - 1];
         location.href = curhref;
     }
+    window.hashString = location.hash;
     setSelectList();
 }
 /**
@@ -972,6 +975,7 @@ function controlSelect(arg: any): void {
                 ((isTablet || (Browser.isDevice && isPc)) && isLeftPaneOpen()))) {
                 toggleLeftPane();
             }
+            window.hashString = '#/' + theme + path;
             setTimeout(() => { location.hash = '#/' + theme + path; }, 600);
         }
     }
@@ -1015,7 +1019,8 @@ function viewSwitch(from: HTMLElement, to: HTMLElement, reverse: boolean): void 
 }
 
 function setSelectList(): void {
-    let hash: string[] = location.hash.split('/');
+    let hString: string = window.hashString || location.hash;
+    let hash: string[] = hString.split('/');
     let list: ListView = (select('#controlList') as any).ej2_instances[0];
     let control: Element = select('[control-name="' + hash[2] + '"]');
     if (control) {

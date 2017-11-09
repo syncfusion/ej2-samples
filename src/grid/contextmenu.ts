@@ -1,7 +1,7 @@
-import { Grid, Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort, Group } from '@syncfusion/ej2-grids';
+import { Grid, Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort } from '@syncfusion/ej2-grids';
 import { orderData } from './datasource';
 
-Grid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort, Group);
+Grid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort);
 
 /**
  * Context menu in grid sample
@@ -12,13 +12,11 @@ this.default = (): void => {
             dataSource: orderData.slice(0, 60),
             allowExcelExport: true,
             allowPdfExport: true,
-            allowGrouping: true,
             allowSorting: true,
-            groupSettings: { showGroupedColumn: true },
             editSettings: { allowAdding: true, allowDeleting: true, allowEditing: true },
             allowPaging: true,
-            contextMenuItems: ['sortAscending', 'sortDescending', 'group', 'ungroup',
-                'autoFit', 'autoFitAll', 'copy', 'edit', 'delete', 'save', 'cancel',
+            contextMenuItems: ['autoFit', 'autoFitAll', 'sortAscending', 'sortDescending',
+                'copy', 'edit', 'delete', 'save', 'cancel',
                 'pdfExport', 'excelExport', 'csvExport', 'firstPage', 'prevPage',
                 'lastPage', 'nextPage'],
             columns: [

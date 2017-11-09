@@ -23,7 +23,6 @@ this.default = (): void => {
     checkboxObject.appendTo('#dayRange');
 
     let endInput: HTMLInputElement = <HTMLInputElement>document.getElementById('end');
-
     function changeTime(): void {
         /*To determine whether we have selected business hours or not*/
         let element: HTMLInputElement = <HTMLInputElement>document.getElementById('dayRange');

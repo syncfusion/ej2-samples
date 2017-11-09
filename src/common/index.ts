@@ -848,9 +848,6 @@ function toggleLeftPane(): void {
             }
             resizeManualTrigger = true;
             window.dispatchEvent(new Event('resize'));
-            if (Browser.isDevice) {
-                window.dispatchEvent(new Event('orientationchange'));
-            }
             resizeManualTrigger = false;
         }
     });
@@ -968,8 +965,8 @@ function controlSelect(arg: any): void {
         if (path !== curHashCollection) {
             sampleOverlay();
             let theme: string = location.hash.split('/')[1] || 'material';
-            if (arg.item && ((isMobile && !select('.sb-mobile-left-pane').classList.contains('sb-hide')) ||
-                ((isTablet || (Browser.isDevice && isPc)) && isLeftPaneOpen()))) {
+            if ((arg.item && isMobile && !select('.sb-mobile-left-pane').classList.contains('sb-hide')) ||
+                ((isTablet || (Browser.isDevice && isPc)) && isLeftPaneOpen())) {
                 toggleLeftPane();
             }
             setTimeout(() => { location.hash = '#/' + theme + path; }, 600);

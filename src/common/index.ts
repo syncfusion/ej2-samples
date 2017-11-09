@@ -561,7 +561,7 @@ function processResize(e: any): void {
                 removeMobileOverlay();
             }
         }
-        if (isTablet) {
+        if (isTablet || (Browser.isDevice && isPc)) {
             if (!leftPane.classList.contains('sb-hide')) {
                 toggleLeftPane();
             }
@@ -571,9 +571,9 @@ function processResize(e: any): void {
                 }
             },
                 // tslint:disable-next-line:align
-                500);
+                600);
         }
-        if (isPc && isVisible('.sb-left-pane')) {
+        if (isPc && !Browser.isDevice && isVisible('.sb-left-pane')) {
             rightPane.classList.remove('control-fullview');
         }
         if (pref.parentElement.classList.contains('sb-mobile-preference')) {
@@ -958,10 +958,11 @@ function controlSelect(arg: any): void {
         if (path !== curHashCollection) {
             sampleOverlay();
             let theme: string = location.hash.split('/')[1] || 'material';
-            location.hash = '#/' + theme + path;
-        }
-        if ((arg.item && isMobile && !select('.sb-mobile-left-pane').classList.contains('sb-hide')) || (isTablet && isLeftPaneOpen())) {
-            toggleLeftPane();
+            if ((arg.item && isMobile && !select('.sb-mobile-left-pane').classList.contains('sb-hide')) ||
+                ((isTablet || (Browser.isDevice && isPc)) && isLeftPaneOpen())) {
+                toggleLeftPane();
+            }
+            setTimeout(() => { location.hash = '#/' + theme + path; }, 600);
         }
     }
 }
@@ -1381,6 +1382,14 @@ function loadJSON(): void {
         select('.sb-left-footer-links').appendChild(select('.sb-footer-left'));
         select('.sb-mobile-left-pane').appendChild(select('.sb-left-pane'));
         leftToggle.classList.remove('toggle-active');
+    }
+    /**
+     * Tab View
+     */
+    if (isTablet || (Browser.isDevice && isPc)) {
+        leftToggle.classList.remove('toggle-active');
+        select('.sb-left-pane').classList.add('sb-hide');
+        select('.sb-right-pane').classList.add('control-fullview');
     }
     overlay();
     changeMouseOrTouch(switchText);

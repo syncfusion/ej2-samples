@@ -42,6 +42,7 @@
     font-style: normal;
 }
 
+
 .sb-icons {
     font-family: 'sbicons';
     speak: none;
@@ -721,6 +722,7 @@
     padding-left: 26px;
     padding-right: 36px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .sb-content-section {

@@ -29,8 +29,6 @@ this.default = () => {
         placeholder: 'Select a country',
         // set the height of the popup element
         popupHeight: '300px',
-        // set the width of the ComboBox element
-        width: '300px',
         // set true for enable the filtering support
         allowFiltering: true,
         // set the template content when the typed character(s) is not present in the list

@@ -1299,7 +1299,11 @@ function removeOverlay(): void {
     if (!sbBodyOverlay.classList.contains('sb-hide')) {
         sbBodyOverlay.classList.add('sb-hide');
     }
-    sbRightPane.scrollTop = 0;
+    if (!isMobile) {
+        sbRightPane.scrollTop = 0;
+    } else {
+        sbRightPane.scrollTop = 74;
+    }
 }
 
 function sampleOverlay(): void {

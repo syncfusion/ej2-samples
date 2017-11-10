@@ -1,7 +1,7 @@
 import {
     Chart, StackingColumnSeries, Category, Legend, ILoadedEventArgs, Selection, IMouseEventArgs, IAccLoadedEventArgs,
     ChartAnnotation, AccumulationChart, AccumulationDataLabel, IAnimationCompleteEventArgs, AccumulationTheme, ChartTheme,
-    Series
+    Series, IAccResizeEventArgs
 } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingColumnSeries, Category, Legend, Selection, ChartAnnotation);
 AccumulationChart.Inject(AccumulationChart, AccumulationDataLabel);
@@ -30,7 +30,6 @@ this.default = (): void => {
         { x: 'France', y: 66, text: '29%' }, { x: 'Italy', y: 34, text: '15%' }
     ];
     let chart: Chart = new Chart({
-
         //Initializing Primary X Axis
         primaryXAxis: {
             title: 'Years', valueType: 'Category', majorGridLines: { width: 0 }, minorGridLines: { width: 1 },
@@ -111,7 +110,8 @@ this.default = (): void => {
                     xName: 'x', yName: 'y', dataLabel: { visible: true, position: 'Inside', name: 'text' },
                 }],
                 theme: <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)),
-                legendSettings: { visible: false }
+                legendSettings: { visible: false },
+                resized: (args: IAccResizeEventArgs) => { location.reload();  }
             });
             pie.appendTo('#chart_annotation');
         }

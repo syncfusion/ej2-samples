@@ -33,10 +33,10 @@ this.default = (): void => {
         //Initializing Chart Series
         series: [{
             dataSource: series1, xName: 'x', yName: 'y',
-            name: 'Rupees', fill: '#0066FF', type: 'Spline',
+            name: 'Rupees', type: 'Spline',
             marker: { visible: true },
             //Initializing TrendLines
-            trendlines: [{ type: 'Linear', width: 3, name: 'Linear' }]
+            trendlines: [{ type: 'Linear', width: 3, name: 'Linear',  fill:  '#C64A75' }]
         }],
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },

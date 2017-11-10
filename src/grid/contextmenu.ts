@@ -20,12 +20,12 @@ this.default = (): void => {
                 'pdfExport', 'excelExport', 'csvExport', 'firstPage', 'prevPage',
                 'lastPage', 'nextPage'],
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 200, maxWidth: 300, textAlign: 'right', isPrimaryKey: true },
-                { field: 'CustomerName', headerText: 'Customer Name'},
+                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'right', isPrimaryKey: true },
+                { field: 'CustomerName', headerText: 'Customer Name' },
                 { field: 'Freight', format: 'C2', textAlign: 'right', editType: 'numericedit' },
-                { field: 'ShipName', headerText: 'Ship Name', width: 300 },
-                { field: 'ShipCountry', headerText: 'Ship Country', width: 200 },
-                { field: 'ShipCity', headerText: 'Ship City', width: 200 }
+                { field: 'ShipName', headerText: 'Ship Name', width: 200 },
+                { field: 'ShipCountry', headerText: 'Ship Country', width: 150, editType: 'dropdownedit' },
+                { field: 'ShipCity', headerText: 'Ship City', width: 150 }
             ]
         });
     grid.appendTo('#Grid');

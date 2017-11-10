@@ -3,13 +3,14 @@ import { DateRangePicker } from '@syncfusion/ej2-calendars';
  * DateRangePicker Presets sample
  */
 this.default = (): void => {
+    let start: Date = new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7));
     let daterangepicker: DateRangePicker = new DateRangePicker({
         placeholder: 'Select a range',
         presets: [
             {
                 label: 'This Week',
-                start: new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)),
-                end: new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 6 + 7))
+                start: start,
+                end: new Date(new Date().setDate(start.getDate() + 6))
             },
             {
                 label: 'This Month',

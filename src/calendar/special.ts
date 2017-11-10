@@ -29,6 +29,7 @@ function customDates(args: RenderDayCellEventArgs): void {
     }
 }
 function valueChange(args: ChangedEventArgs): void {
+    /*Displays selected date in the label*/
     let title: string = (<HTMLElement>args.event.currentTarget).querySelector('.e-day').getAttribute('data-val');
     title = title == null ? '' : ' ( ' + title + ' )';
     (<HTMLInputElement>document.getElementById('date_label')).textContent = 'Selected Value: ' + args.value.toLocaleDateString() + title;

@@ -133,7 +133,7 @@ let breadCrumbSubCategory: HTMLElement = <any>document.querySelector('.sb-bread-
 let breadCrumbSample: Element = document.querySelector('.sb-bread-crumb-text>.crumb-sample');
 let hsplitter: string = '<div class="sb-toolbar-splitter sb-custom-item"></div>';
 // tslint:disable-next-line:no-multiline-string
-let openNewTemplate: string = `<div class="sb-custom-item sb-open-new-wrapper"><a id="openNew" target="_blank">
+let openNewTemplate: string = `<div class="sb-custom-item sb-open-new-wrapper" title="Open in New Window"><a id="openNew" target="_blank">
 <div class="sb-icons sb-icon-Popout"></div></a></div>`;
 // tslint:disable-next-line:no-multiline-string
 let sampleNavigation: string = `<div class="sb-custom-item sample-navigation"><button id='prev-sample' class="sb-navigation-prev" 
@@ -1352,7 +1352,7 @@ function parseHash(newHash: string, oldHash: string): void {
 }
 
 function getSourceTabHeader(index: number): Element {
-    return document.querySelectorAll('.sb-source-code-section>.e-header .e-tab-text')[index];
+    return document.querySelectorAll('.sb-source-code-section>.e-tab-header .e-tab-text')[index];
 }
 
 function processDeviceDependables(): void {

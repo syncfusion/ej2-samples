@@ -740,15 +740,15 @@
     border-bottom: 1px solid #D7D7D7;
 }
 
-.sb-source-section .e-tab .e-header .e-indicator {
+.sb-source-section .e-tab .e-tab-header .e-indicator {
     display: none;
 }
 
-.sb-source-section .e-tab .e-header {
+.sb-source-section .e-tab .e-tab-header {
     border-top: 1px solid #D7D7D7;
 }
 
-.sb-source-section .e-tab .e-header .e-toolbar-item.e-active .e-tab-text {
+.sb-source-section .e-tab .e-tab-header .e-toolbar-item.e-active .e-tab-text {
     color: #3C78EF;
 }
 
@@ -940,7 +940,7 @@ button#tab-navigation-prev {
     vertical-align: bottom;
 }
 
-.sb-source-code-section .e-header .sb-api-section {
+.sb-source-code-section .e-tab-header .sb-api-section {
     padding: 20px;
 }
 
@@ -1463,12 +1463,3 @@ propertye pane
     display: none;
 }
 
-/* Description Format */
-
-#description {
-    margin: 30px;
-    padding: 15px;
-    background: #f0f0f0;
-    border: 1px solid #dddddd;
-    display: block;
-}

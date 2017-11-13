@@ -930,6 +930,7 @@ button#tab-navigation-prev {
 .sb-content-toolbar {
     position: absolute;
     right: 0px;
+    top: 0px;
     display: inline-flex;
 }
 

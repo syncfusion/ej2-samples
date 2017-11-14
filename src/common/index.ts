@@ -508,10 +508,10 @@ function onPrevButtonClick(arg: MouseEvent): void {
  * Resize event processing
  */
 function processResize(e: any): void {
-    if (resizeManualTrigger) {
+    isMobile = window.matchMedia('(max-width:550px)').matches;
+    if (resizeManualTrigger || (isMobile && !select('.sb-mobile-right-pane').classList.contains('sb-hide'))) {
         return;
     }
-    isMobile = window.matchMedia('(max-width:550px)').matches;
     isTablet = window.matchMedia('(min-width:550px) and (max-width: 850px)').matches;
     isPc = window.matchMedia('(min-width:850px)').matches;
     processDeviceDependables();

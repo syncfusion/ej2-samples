@@ -1,6 +1,6 @@
 import { LinearGauge, GaugeTooltip, Annotations } from '@syncfusion/ej2-lineargauge';
 import { IAxisLabelRenderEventArgs, ILoadedEventArgs, ILoadEventArgs } from '@syncfusion/ej2-lineargauge';
-import { ITooltipRenderEventArgs, IResizeEventArgs } from '@syncfusion/ej2-lineargauge';
+import { ITooltipRenderEventArgs, IResizeEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations, GaugeTooltip);
 
 /**
@@ -36,11 +36,6 @@ this.default = (): void => {
                 },
                 minorTicks: {
                     interval: 0.2
-                },
-                labelStyle: {
-                    font: {
-                        color: '#000000'
-                    }
                 },
                 pointers: [{
                     type: 'Bar',
@@ -133,6 +128,9 @@ function gaugeResized(args: IResizeEventArgs): void {
 }
 
 function gaugeLoad(args: ILoadEventArgs): void {
+    let selectedTheme: string = location.hash.split('/')[1];
+    selectedTheme = selectedTheme ? selectedTheme : 'Material';
+    args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
     let width: number = parseInt(((this.width, this.element.offsetWidth) || this.element.offsetWidth || 600), 10);
     if (width < 500) {
         gauge.axes[1].majorTicks.interval = 2;

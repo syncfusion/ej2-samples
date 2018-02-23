@@ -39,7 +39,7 @@ this.default = () => {
         target: '#countrylist [title]',
 
         //Set tooltip position
-        position: 'right center',
+        position: 'RightCenter',
 
         //Raise beforeRender event
         beforeRender: onBeforeRender

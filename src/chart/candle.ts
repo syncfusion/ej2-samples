@@ -13,12 +13,18 @@ this.default = (): void => {
     let getLabelText: Function = (value: number): string => {
         return (((value) / 1000000000)).toFixed(1) + 'bn';
     };
+    let date1: Date = new Date(2017, 1, 1);
+    let returnValue: any = chartData.filter(filterValue);
+    function filterValue(value: { x: Date, high: number, low: number }): any {
+        return value.x >= date1;
+    }
     let chart: Chart = new Chart({
         // Initialize the axes
         primaryXAxis: {
             valueType: 'DateTime',
-            skeleton: 'yMd', zoomFactor: 0.2, zoomPosition: 0.6,
             crosshairTooltip: { enable: true },
+            minimum: new Date(2016, 12, 31),
+            maximum: new Date(2017, 9, 31),
             majorGridLines: { width: 0 },
         },
         primaryYAxis: {
@@ -35,7 +41,7 @@ this.default = (): void => {
                 }]
         },
         axes: [{
-            name: 'secondary', minimum: 50, maximum: 180, interval: 40, opposedPosition: true, rowIndex: 1, majorGridLines: { width: 1 },
+            name: 'secondary', minimum: 100, maximum: 180, interval: 20, opposedPosition: true, rowIndex: 1, majorGridLines: { width: 1 },
             labelFormat: '${value}', title: 'Price', plotOffset: 30, lineStyle: { width: 0 }
         }],
         // Initialize the chart rows
@@ -50,12 +56,12 @@ this.default = (): void => {
         series: [
             {
                 type: 'Column',
-                dataSource: chartData, animation: { enable: true }, xName: 'x', yName: 'volume',
+                dataSource: returnValue, animation: { enable: true }, xName: 'x', yName: 'volume',
                 name: 'Volume'
             },
             {
                 type: 'Candle', yAxisName: 'secondary', bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
-                dataSource: chartData, animation: { enable: true },
+                dataSource: returnValue, animation: { enable: true },
                 xName: 'x', low: 'low', high: 'high', open: 'open', close: 'close', name: 'Apple Inc',
                 volume: 'volume'
             }
@@ -63,13 +69,7 @@ this.default = (): void => {
         /**
          * Initialize the user interactions zooming, tooltip and crosshair
          */
-        zoomSettings:
-        {
-            enableMouseWheelZooming: true,
-            enablePinchZooming: true,
-            enableSelectionZooming: true,
-            mode: 'X'
-        },
+
         title: 'AAPL Historical',
         tooltip: {
             enable: true, shared: true
@@ -79,8 +79,8 @@ this.default = (): void => {
          */
         tooltipRender: (args: ITooltipRenderEventArgs) => {
             if (!args.series.index) {
-                args.textCollections = 'Volume : <b>' +
-                    getLabelText(args.textCollections.split('<b>')[1].split('</b>')[0]) + '</b>';
+                args.text = 'Volume : <b>' +
+                    getLabelText(args.text.split('<b>')[1].split('</b>')[0]) + '</b>';
             }
         },
         axisLabelRender: (args: IAxisLabelRenderEventArgs) => {

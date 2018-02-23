@@ -4,8 +4,6 @@ import { DatePicker } from '@syncfusion/ej2-calendars';
  */
 
 this.default = (): void => {
-    let datepicker: DatePicker = new DatePicker({
-        placeholder: 'Choose a date'
-    });
+    let datepicker: DatePicker = new DatePicker({});
     datepicker.appendTo('#datepicker');
 };

@@ -2,11 +2,12 @@
     "name": "DateRangePicker",
     "directory": "daterangepicker",
     "category": "Editors",
+    "type": "update",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder" ]} },
         { "url": "daterange", "name": "Date Range", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "min", "max" ]} },
         { "url": "dayspan", "name": "Day Span", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "minDays", "maxDays" ]} },
-        { "url": "globalization", "name": "Globalization", "category": "DateRangePicker", "api":{"DateRangePicker": [ "locale", "enableRtl" ]} },
-        { "url": "presets", "name": "Preset Ranges", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "presets" ]} }
+        { "url": "presets", "name": "Preset Ranges", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "presets" ]}},
+        { "url": "format", "name": "Format", "category": "DateRangePicker", "api":{"DateRangePicker": [ "format", "value" ]},"type": "new" }
     ]
 }

@@ -28,7 +28,7 @@ this.default = (): void => {
                 radius: '70%', xName: 'x',
                 yName: 'y', startAngle: 0,
                 endAngle: 360, innerRadius: '0%',
-                explode: true, explodeOffset: '10%', explodeIndex: 0
+                explode: true, explodeOffset: '10%', explodeIndex: 0, name: 'Browser'
             }
         ],
         enableSmartLabels: true,
@@ -36,7 +36,7 @@ this.default = (): void => {
             visible: false,
         },
         // Initialize tht tooltip
-        tooltip: { enable: true, format: '${point.x} <br> ${point.y} %' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
         title: 'Mobile Browser Statistics',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

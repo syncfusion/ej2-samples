@@ -3,17 +3,20 @@ import {
     Tooltip, DataLabel, ILoadedEventArgs, ChartTheme
 } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
-import { fabricColors, materialColors, bootstrapColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
 import { Browser, EmitType } from '@syncfusion/ej2-base';
 /**
  * Sample for invesed axis
  */
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];
+    selectedTheme = selectedTheme ? selectedTheme : 'Material';
     if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
         args.fill = fabricColors[args.point.index % 10];
     } else if (selectedTheme === 'material') {
         args.fill = materialColors[args.point.index % 10];
+    } else if (selectedTheme === 'highcontrast') {
+        args.fill = highContrastColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }

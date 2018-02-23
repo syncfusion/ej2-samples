@@ -1,7 +1,8 @@
 /**
  *  Toolbar sample to demonstrate RTL feature.
  */
-import { Toolbar, OverflowMode } from '@syncfusion/ej2-navigations';
+import { Toolbar } from '@syncfusion/ej2-navigations';
+import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 this.default = () => {
     //Initialize Toolbar component
@@ -68,10 +69,22 @@ this.default = () => {
     toolbarObj.enableRtl = true;
     //Render initialized Toolbar component
     toolbarObj.appendTo('#toolbar_rtl');
-    document.getElementById('drop').onchange = (e : Event) => {
-        let ddl: HTMLSelectElement = document.getElementById('drop') as HTMLSelectElement;
-        toolbarObj.overflowMode = ddl.value as OverflowMode;
+
+    //Initialize DropDownList component
+    let modes: DropDownList = new DropDownList({
+        width: '90%',
+        change: changeOverflow
+    });
+    //Render initialized DropDownList component
+    modes.appendTo('#drop');
+
+    function changeOverflow(e: ChangeEventArgs): void {
+        if (e.itemData.value === 'Scrollable') {
+            toolbarObj.overflowMode = 'Scrollable';
+        } else {
+            toolbarObj.overflowMode = 'Popup';
+        }
         toolbarObj.dataBind();
-   };
+    }
 };
 

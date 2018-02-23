@@ -32,7 +32,6 @@ module.exports = webpackConfig({
         libraryTarget: 'this'
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false, unused: true, dead_code: true } }),
         new webpack.optimize.CommonsChunkPlugin('src/common.min')
     ]
 });

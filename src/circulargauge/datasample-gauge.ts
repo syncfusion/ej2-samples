@@ -1,12 +1,17 @@
 /**
  * Data Sample Gauge
  */
-import { CircularGauge } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
 
 export function gauge1(): CircularGauge {
     let gauge1: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [{
             annotations: [{
                 content: '#germany',
@@ -42,7 +47,8 @@ export function gauge1(): CircularGauge {
                     color: '#777777'
                 },
                 needleTail: {
-                    length: '25%'
+                    length: '25%',
+                    color: '#777777'
                 }
             }]
         }]
@@ -51,6 +57,11 @@ export function gauge1(): CircularGauge {
 }
 export function gauge2(): CircularGauge {
     let gauge2: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [{
             annotations: [{
                 content: '#usa',
@@ -86,7 +97,8 @@ export function gauge2(): CircularGauge {
                     color: '#777777'
                 },
                 needleTail: {
-                    length: '25%'
+                    length: '25%',
+                    color: '#777777'
                 }
             }]
         }]
@@ -95,6 +107,11 @@ export function gauge2(): CircularGauge {
 }
 export function gauge3(): CircularGauge {
     let gauge3: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [{
             annotations: [{
                 content: '#uk',
@@ -130,7 +147,8 @@ export function gauge3(): CircularGauge {
                     color: '#777777'
                 },
                 needleTail: {
-                    length: '25%'
+                    length: '25%',
+                    color: '#777777'
                 }
             }]
         }]

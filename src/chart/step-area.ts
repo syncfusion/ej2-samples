@@ -20,8 +20,9 @@ this.default = (): void => {
         {
             title: 'Production (Billion as kWh)',
             valueType: 'Double',
-            majorGridLines: { width: 0 },
-            labelFormat: '{value}B'
+            labelFormat: '{value}B',
+            lineStyle: { width: 0},
+            majorTickLines: { width: 0}
         },
         chartArea: {
             border: {

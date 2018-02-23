@@ -1,22 +1,25 @@
 import { DatePicker } from '@syncfusion/ej2-calendars';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 /**
  * Date format DatePicker sample
  */
 
 this.default = (): void => {
     let datepicker: DatePicker = new DatePicker({
-        format: 'dd-MMM-yy',
         value: new Date(),
-        placeholder: 'Choose a date'
+        format: 'dd-MMM-yy',
     });
     datepicker.appendTo('#datepicker');
 
-    document.getElementById('dateformats').addEventListener('change', changeLocale);
+    let dropdownInstance: DropDownList = new DropDownList({
+        placeholder: 'Format',
+        floatLabelType: 'Auto',
+        change: onChange
+    });
+    dropdownInstance.appendTo('#dateformats');
 
-    function changeLocale(): void {
+    function onChange(): void {
         /*Apply selected format to the component*/
-        let dateFormat: string = (document.getElementById('dateformats') as HTMLSelectElement).value;
-        datepicker.format = dateFormat;
-        datepicker.dataBind();
+        datepicker.format = <string>dropdownInstance.value;
     }
 };

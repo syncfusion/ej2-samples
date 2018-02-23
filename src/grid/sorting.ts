@@ -1,3 +1,4 @@
+import { CheckBox } from '@syncfusion/ej2-buttons';
 import { Grid, Sort, Page, Selection, SortEventArgs } from '@syncfusion/ej2-grids';
 import { orderData } from './datasource';
 
@@ -13,54 +14,63 @@ this.default = (): void => {
             pageSettings: { pageCount: 2 },
             allowSorting: true,
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'right' },
+                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },
                 { field: 'CustomerName', headerText: 'Customer Name', width: 170 },
-                { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'right' },
-                { field: 'Freight', width: 120, format: 'C2', textAlign: 'right' },
+                { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'Right' },
+                { field: 'Freight', width: 120, format: 'C2', textAlign: 'Right' },
                 { field: 'ShipCountry', headerText: 'Ship Country', width: 150 }
             ],
             actionComplete: sort,
-            sortSettings: { columns: [{ field: 'OrderDate', direction: 'ascending' }, { field: 'Freight', direction: 'descending' }] }
+            sortSettings: { columns: [{ field: 'OrderDate', direction: 'Ascending' }, { field: 'Freight', direction: 'Descending' }] }
         });
     grid.appendTo('#Grid');
 
-    let orderID: HTMLInputElement = document.getElementById('OrderID') as HTMLInputElement;
-    let customerName: HTMLInputElement = document.getElementById('CustomerName') as HTMLInputElement;
-    let orderDate: HTMLInputElement = document.getElementById('OrderDate') as HTMLInputElement;
-    let freight: HTMLInputElement = document.getElementById('Freight') as HTMLInputElement;
-    let shipCountry: HTMLInputElement = document.getElementById('ShipCountry') as HTMLInputElement;
+    let orderID: CheckBox = new CheckBox();
+    orderID.appendTo('#OrderID');
 
-    orderID.onclick = () => {
+    let customerName: CheckBox = new CheckBox();
+    customerName.appendTo('#CustomerName');
+
+    let orderDate: CheckBox = new CheckBox({ checked: true });
+    orderDate.appendTo('#OrderDate');
+
+    let freight: CheckBox = new CheckBox({ checked: true });
+    freight.appendTo('#Freight');
+
+    let shipCountry: CheckBox = new CheckBox();
+    shipCountry.appendTo('#ShipCountry');
+
+    document.getElementById('OrderID').onclick = () => {
         if (orderID.checked) {
-            grid.sortColumn('OrderID', 'ascending', true);
+            grid.sortColumn('OrderID', 'Ascending', true);
         } else {
             grid.removeSortColumn('OrderID');
         }
     };
-    customerName.onclick = () => {
+    document.getElementById('CustomerName').onclick = () => {
         if (customerName.checked) {
-            grid.sortColumn('CustomerName', 'ascending', true);
+            grid.sortColumn('CustomerName', 'Ascending', true);
         } else {
             grid.removeSortColumn('CustomerName');
         }
     };
-    orderDate.onclick = () => {
+    document.getElementById('OrderDate').onclick = () => {
         if (orderDate.checked) {
-            grid.sortColumn('OrderDate', 'ascending', true);
+            grid.sortColumn('OrderDate', 'Ascending', true);
         } else {
             grid.removeSortColumn('OrderDate');
         }
     };
-    freight.onclick = () => {
+    document.getElementById('Freight').onclick = () => {
         if (freight.checked) {
-            grid.sortColumn('Freight', 'ascending', true);
+            grid.sortColumn('Freight', 'Ascending', true);
         } else {
             grid.removeSortColumn('Freight');
         }
     };
-    shipCountry.onclick = () => {
+    document.getElementById('ShipCountry').onclick = () => {
         if (shipCountry.checked) {
-            grid.sortColumn('ShipCountry', 'ascending', true);
+            grid.sortColumn('ShipCountry', 'Ascending', true);
         } else {
             grid.removeSortColumn('ShipCountry');
         }
@@ -70,14 +80,26 @@ this.default = (): void => {
             for (let columns of grid.getColumns()) {
                 for (let sortcolumns of grid.sortSettings.columns) {
                     if (sortcolumns.field === columns.field) {
-                        (document.getElementById(sortcolumns.field) as HTMLInputElement).checked = true;
-                        break;
+                        check(sortcolumns.field, true); break;
                     } else {
-                        (document.getElementById(columns.field) as HTMLInputElement).checked = false;
+                        check(columns.field, false);
                     }
                 }
             }
         }
     }
+    function check(field: string, state: boolean): void {
+        switch (field) {
+            case 'OrderID':
+                orderID.checked = state; break;
+            case 'CustomerName':
+                customerName.checked = state; break;
+            case 'OrderDate':
+                orderDate.checked = state; break;
+            case 'Freight':
+                freight.checked = state; break;
+            case 'ShipCountry':
+                shipCountry.checked = state;
+        }
+    }
 };
-

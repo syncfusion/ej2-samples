@@ -1,10 +1,10 @@
 /**
  * Pointer sample
  */
-import { CircularGauge, Annotations } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2, gauge3, gauge4, gauge5 } from './pointer-gauge';
 CircularGauge.Inject(Annotations);
-
+//tslint:disable
 this.default = (): void => {
     let firstgauge: CircularGauge = new CircularGauge(gauge1());
     let gauge5Interval1: number;
@@ -15,6 +15,11 @@ this.default = (): void => {
     let thirdgauge: CircularGauge = new CircularGauge(gauge3());
     thirdgauge.appendTo('#container3');
     let fourthgauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         centerY: '40%',
         axes: [{
             startAngle: 270,

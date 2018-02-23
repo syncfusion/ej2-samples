@@ -66,7 +66,7 @@ this.default = (): void => {
         ],
         width: Browser.isDevice ? '100%' : '80%',
         //Initializing Chart Title
-        title: 'Maximum and Minimum Temperature',
+        title: 'Temperature Variation',
         seriesRender: (args: ISeriesRenderEventArgs) => {
             let theme: ChartTheme = args.series.chart.theme;
             let color: string;

@@ -26,7 +26,7 @@ this.default = (): void => {
             }, explode: true,
         }],
         //Initializing tooltip
-        tooltip: { enable: true, format: '${point.x} : ${point.y} %' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

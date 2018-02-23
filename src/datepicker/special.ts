@@ -1,98 +1,42 @@
-import { DatePicker, RenderDayCellEventArgs } from '@syncfusion/ej2-calendars';
+﻿import { DatePicker, RenderDayCellEventArgs } from '@syncfusion/ej2-calendars';
+import { addClass } from '@syncfusion/ej2-base';
 /**
  * Special DatePicker sample
  */
 
 this.default = (): void => {
     let datepicker: DatePicker = new DatePicker({
-        renderDayCell: customDates, placeholder: 'Choose a date', value: new Date('1/13/2017')
+        renderDayCell: customDates, value: new Date('1/13/2017'),
+        cssClass: 'e-customStyle'
     });
     datepicker.appendTo('#datepicker');
 };
 function customDates(args: RenderDayCellEventArgs): void {
     /*Date need to be customized*/
-    if (+args.date === +new Date('1/2/2017')) {
+    if (args.date.getDate() === 10) {
         let span: HTMLElement;
         span = document.createElement('span');
         span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day federal';
-        args.element.setAttribute('title', ' Federal New Year’s Day !');
+        addClass([args.element], ['special', 'e-day', 'birthday']);
+        args.element.setAttribute('title', 'Birthday !');
         args.element.appendChild(span);
     }
-    if (+args.date === +new Date('1/16/2017')) {
+    if (args.date.getDate() === 15) {
         let span: HTMLElement;
         span = document.createElement('span');
         span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day luther';
-        args.element.setAttribute('title', 'Birthday of Martin Luther King!');
+        addClass([args.element], ['special', 'e-day', 'farewell']);
+        args.element.setAttribute('title', 'Farewell !');
         args.element.appendChild(span);
 
     }
-    if (+args.date === +new Date('2/20/2017')) {
+    if (args.date.getDate() === 25) {
         let span: HTMLElement;
         span = document.createElement('span');
         span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day washington';
-        args.element.setAttribute('title', 'Washington’s Birthday!');
+        addClass([args.element], ['special', 'e-day', 'vacation']);
+        args.element.setAttribute('title', 'Vacation !');
         args.element.appendChild(span);
 
-    }
-    if (+args.date === +new Date('5/29/2017')) {
-        let span: HTMLElement;
-        span = document.createElement('span');
-        span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day memorial';
-        args.element.setAttribute('title', 'Memorial Day!');
-        args.element.appendChild(span);
-
-    }
-    if (+args.date === +new Date('7/4/2017')) {
-        let span: HTMLElement;
-        span = document.createElement('span');
-        span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day independence';
-        args.element.setAttribute('title', 'Independence Day!');
-        args.element.appendChild(span);
-
-    }
-    if (+args.date === +new Date('9/4/2017')) {
-        let span: HTMLElement;
-        span = document.createElement('span');
-        span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day labour';
-        args.element.setAttribute('title', 'Labor Day!');
-        args.element.appendChild(span);
-    }
-    if (+args.date === +new Date('10/9/2017')) {
-        let span: HTMLElement;
-        span = document.createElement('span');
-        span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day columbus';
-        args.element.setAttribute('title', 'Columbus Day!');
-        args.element.appendChild(span);
-    }
-    if (+args.date === +new Date('11/10/2017')) {
-        let span: HTMLElement;
-        span = document.createElement('span');
-        span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day veterans';
-        args.element.setAttribute('title', 'Veterans Day!');
-        args.element.appendChild(span);
-    }
-    if (+args.date === +new Date('11/23/2017')) {
-        let span: HTMLElement;
-        span = document.createElement('span');
-        span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day thanksgiving';
-        args.element.setAttribute('title', 'Thanksgiving Day!');
-        args.element.appendChild(span);
-    }
-    if (+args.date === +new Date('12/25/2017')) {
-        let span: HTMLElement;
-        span = document.createElement('span');
-        span.setAttribute('class', 'e-icons highlight');
-        args.element.className = 'special e-day christmas';
-        args.element.setAttribute('title', 'Christmas Day!');
-        args.element.appendChild(span);
     }
 }

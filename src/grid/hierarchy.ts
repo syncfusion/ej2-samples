@@ -22,7 +22,7 @@ this.default = (): void => {
         dataSource: employeeData,
         allowSorting: true,
         columns: [
-            { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'right', width: 125 },
+            { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 125 },
             { field: 'FirstName', headerText: 'Name', width: 125 },
             { field: 'Title', headerText: 'Title', width: 180 },
             { field: 'City', headerText: 'City', width: 110 },
@@ -33,7 +33,7 @@ this.default = (): void => {
             queryString: 'EmployeeID',
             allowPaging: true,
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', textAlign: 'right', width: 120 },
+                { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 120 },
                 { field: 'Freight', headerText: 'Freight', width: 120 },
                 { field: 'ShipName', headerText: 'Ship Name', width: 150 }
@@ -42,7 +42,7 @@ this.default = (): void => {
                 dataSource: dataManger2,
                 queryString: 'CustomerID',
                 columns: [
-                    { field: 'CustomerID', headerText: 'Customer ID', textAlign: 'right', width: 75 },
+                    { field: 'CustomerID', headerText: 'Customer ID', textAlign: 'Right', width: 75 },
                     { field: 'Phone', headerText: 'Phone', width: 100 },
                     { field: 'Address', headerText: 'Address', width: 120 },
                     { field: 'Country', headerText: 'Country', width: 100 }

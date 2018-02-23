@@ -2,11 +2,10 @@
     "name": "Circular Gauge",
     "directory": "circulargauge",
     "category": "Data Visualization",
-    "type": "new",
     "samples": [
         {
             "url": "default",
-            "name": "Default",
+            "name": "Default Functionalities",
             "category": "Circular Gauge",
              "api":{"CircularGauge": [ "axes"]}
         },

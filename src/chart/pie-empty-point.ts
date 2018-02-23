@@ -35,7 +35,7 @@ this.default = (): void => {
         //Initializing title
         title: 'Annual Product-Wise Profit Analysis',
         legendSettings: { visible: false },
-        tooltip: { enable: true, format: '${series.name}<br>${point.x} : ${point.y}' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>' },
         //Initializing User Interaction Tooltip
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

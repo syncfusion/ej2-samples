@@ -9,9 +9,9 @@ this.default = (): void => {
         {
             dataSource: columnSpanData,
             queryCellInfo: QueryCellEvent,
-            gridLines: 'both',
+            gridLines: 'Both',
             columns: [
-                { field: 'EmployeeID', headerText: 'Employee ID', isPrimaryKey: true, textAlign: 'right', width: 150 },
+                { field: 'EmployeeID', headerText: 'Employee ID', isPrimaryKey: true, textAlign: 'Right', width: 150 },
                 { field: 'EmployeeName', headerText: 'Employee Name', width: 200 },
                 { field: '9:00', headerText: '9.00 AM', width: 120 },
                 { field: '9:30', headerText: '9.30 AM', width: 120 },

@@ -10,13 +10,13 @@ this.default = (): void => {
     let grid: Grid = new Grid(
         {
             dataSource: orderData,
-            editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'batch' },
+            editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
             allowPaging: true,
             pageSettings: {pageCount: 5},
-            toolbar: ['add', 'delete', 'update', 'cancel'],
+            toolbar: ['Add', 'Delete', 'Update', 'Cancel'],
             columns: [
                 {
-                    field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'right',
+                    field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right',
                     validationRules: { required: true }, width: 120
                 },
                 {
@@ -24,7 +24,7 @@ this.default = (): void => {
                     validationRules: { required: true }, width: 140
                 },
                 {
-                    field: 'Freight', headerText: 'Freight', textAlign: 'right', editType: 'numericedit',
+                    field: 'Freight', headerText: 'Freight', textAlign: 'Right', editType: 'numericedit',
                     width: 120, format: 'C2', validationRules: { required: true }
                 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 170 },

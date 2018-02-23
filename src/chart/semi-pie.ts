@@ -21,7 +21,7 @@ this.default = (): void => {
                     { x: 'United Kingdom', y: 71, text: 'UK: 19%' },
                     { x: 'United States', y: 45, text: 'USA: 12%' }
                 ],
-                xName: 'x',
+                xName: 'x', name: 'Agricultural',
                 yName: 'y',
                 startAngle: 270,
                 endAngle: 90,
@@ -35,7 +35,7 @@ this.default = (): void => {
             }
         ],
         //Initializing Tooltip
-        tooltip: { enable: true, format: '${point.text}' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
         legendSettings: {
             visible: false,
         },

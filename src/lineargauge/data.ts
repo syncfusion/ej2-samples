@@ -1,4 +1,4 @@
-import { LinearGauge, Annotations } from '@syncfusion/ej2-lineargauge';
+import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations);
 
 /**
@@ -15,6 +15,11 @@ this.default = (): void => {
 
 export function firstGauge(): LinearGauge {
     let gauge1: LinearGauge = new LinearGauge({
+        load: (args: ILoadEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         orientation: 'Horizontal',
         container: {
             width: 30,
@@ -29,9 +34,6 @@ export function firstGauge(): LinearGauge {
                 offset: 30
             },
             labelStyle: {
-                font: {
-                    color: '#424242',
-                },
                 offset: 50
             },
             pointers: [{
@@ -40,7 +42,6 @@ export function firstGauge(): LinearGauge {
                 offset: -60,
                 height: 10,
                 width: 10,
-                color: '#424242',
                 markerType: 'Triangle'
             }],
             ranges: [
@@ -72,7 +73,7 @@ export function firstGauge(): LinearGauge {
                 y: -130
             },
             {
-                content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;color:#30b32d;">10 MPH</p></div>',
+                content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;">10 MPH</p></div>',
                 axisIndex: 0, zIndex: '1',
                 axisValue: 10,
                 y: -65
@@ -84,6 +85,11 @@ export function firstGauge(): LinearGauge {
 
 export function secondGauge(): LinearGauge {
     let gauge1: LinearGauge = new LinearGauge({
+        load: (args: ILoadEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         orientation: 'Horizontal',
         container: {
             width: 30,
@@ -98,9 +104,6 @@ export function secondGauge(): LinearGauge {
                 offset: 30
             },
             labelStyle: {
-                font: {
-                    color: '#424242',
-                },
                 offset: 50
             },
             pointers: [{
@@ -109,7 +112,6 @@ export function secondGauge(): LinearGauge {
                 width: 10,
                 placement: 'Near',
                 offset: -60,
-                color: '#424242',
                 markerType: 'Triangle'
             }],
             ranges: [
@@ -131,7 +133,7 @@ export function secondGauge(): LinearGauge {
             y: -110
         },
         {
-            content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;color:#30b32d;">28 MPH</p></div>',
+            content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;">28 MPH</p></div>',
             axisIndex: 0,
             axisValue: 28,
             y: -70
@@ -142,6 +144,11 @@ export function secondGauge(): LinearGauge {
 
 export function thirdGauge(): LinearGauge {
     let gauge3: LinearGauge = new LinearGauge({
+        load: (args: ILoadEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         orientation: 'Horizontal',
         container: {
             width: 30,
@@ -157,9 +164,6 @@ export function thirdGauge(): LinearGauge {
                 offset: 30
             },
             labelStyle: {
-                font: {
-                    color: '#424242',
-                },
                 format: '{value}k',
                 offset: 50
             },
@@ -169,7 +173,6 @@ export function thirdGauge(): LinearGauge {
                 width: 10,
                 placement: 'Near',
                 offset: -60,
-                color: '#424242',
                 markerType: 'Triangle'
             }],
             ranges: [
@@ -191,7 +194,7 @@ export function thirdGauge(): LinearGauge {
             y: -120
         },
         {
-            content: '<div id="pointerText" style="width:100px;"><p style="font-size:15px;color:#30b32d;">2000 Steps</p></div>',
+            content: '<div id="pointerText" style="width:100px;"><p style="font-size:15px;">2000 Steps</p></div>',
             axisIndex: 0,
             axisValue: 2.2, zIndex: '1',
             y: -65

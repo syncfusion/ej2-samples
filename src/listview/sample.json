@@ -1,23 +1,140 @@
-{ "name": "ListView", "directory": "listview", "category":"Layout", "samples" : 
-    [
-        {   "url":"default", "name": "Default Functionalities", "category":"ListView",
-            "api":  {   "ListView":[ "dataSource", "fields", "appendTo" ],
-                        "FieldSettings":[ "groupBy" ]
-                    }
+{
+    "name": "ListView",
+    "directory": "listview",
+    "category": "Layout",
+    "type": "update",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "category": "ListView",
+            "api": {
+                "ListView": [
+                    "dataSource",
+                    "fields",
+                    "appendTo"
+                ],
+                "FieldSettings": [
+                    "groupBy"
+                ]
+            }
         },
-        {   "url":"remote-data", "name": "Remote Data", "category":"ListView",
-            "api":  {   "ListView": [ "dataSource", "fields", "query", "headerTitle", "showHeader", "appendTo" ],
-                        "FieldSettings": [ "groupBy" ]
-                    }
+        {
+            "url": "remote-data",
+            "name": "Remote Data",
+            "category": "ListView",
+            "api": {
+                "ListView": [
+                    "dataSource",
+                    "fields",
+                    "query",
+                    "headerTitle",
+                    "showHeader",
+                    "appendTo"
+                ],
+                "FieldSettings": [
+                    "groupBy"
+                ]
+            }
         },
-        {   "url":"nested-list", "name": "Nested List", "category":"ListView",
-            "api":  {   "ListView": [ "dataSource", "fields", "headerTitle", "showHeader", "showIcon", "appendTo" ],
-                        "FieldSettings": [ "id", "text", "icon", "child", "iconCss", "tooltip" ]
-                    }
+        {
+            "url": "checklist",
+            "name": "Checklist",
+            "category": "ListView",
+            "type": "new",
+            "api": {
+                "ListView": [
+                    "dataSource",
+                    "fields",
+                    "showCheckBox",
+                    "appendTo"
+                ],
+                "FieldSettings": [
+                    "groupBy"
+                ]
+            }
         },
-        {   "url":"rtl", "name": "RTL", "category":"ListView",
-            "api":  {   "ListView":[ "enableRtl", "headerTitle", "showHeader", "height", "appendTo" ]
-                    }
+        {
+            "url": "nested-list",
+            "name": "Nested List",
+            "category": "ListView",
+            "api": {
+                "ListView": [
+                    "dataSource",
+                    "fields",
+                    "headerTitle",
+                    "showHeader",
+                    "showIcon",
+                    "appendTo"
+                ],
+                "FieldSettings": [
+                    "id",
+                    "text",
+                    "icon",
+                    "child",
+                    "iconCss",
+                    "tooltip"
+                ]
+            }
+        },
+        {
+            "url": "templates",
+            "name": "Templates",
+            "category": "Customization",
+            "api": {
+                "ListView": [
+                    "dataSource",
+                    "template",
+                    "headerTitle",
+                    "showHeader",
+                    "appendTo"
+                ],
+                "FieldSettings": [
+                    "id",
+                    "text",
+                    "child"
+                ]
+            }
+        },
+        {
+            "url": "group-template",
+            "name": "Group Template",
+            "category": "Customization",
+            "api": {
+                "ListView": [
+                    "dataSource",
+                    "template",
+                    "groupTemplate",
+                    "headerTitle",
+                    "showHeader",
+                    "appendTo"
+                ],
+                "FieldSettings": [
+                    "text",
+                    "groupBy"
+                ]
+            }
+        },
+        {
+            "url": "call-history",
+            "name": "Call History",
+            "category": "Use Case",
+            "type": "new",
+            "api": {
+                "ListView": [
+                    "dataSource",
+                    "fields",
+                    "showCheckBox",
+                    "checkBoxPosition",
+                    "showIcon",
+                    "select",
+                    "appendTo"
+                ],
+                "FieldSettings": [
+                    "groupBy",
+                    "iconCss"
+                ]
+            }
         }
     ]
 }

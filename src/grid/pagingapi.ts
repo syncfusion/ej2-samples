@@ -1,3 +1,5 @@
+import { CheckBox } from '@syncfusion/ej2-buttons';
+import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { Grid, Page, Selection, PageEventArgs } from '@syncfusion/ej2-grids';
 import { productData } from './datasource';
 
@@ -13,48 +15,72 @@ this.default = (): void => {
             allowPaging: true,
             pageSettings: { pageCount: 2 },
             columns: [
-                { field: 'ProductID', headerText: 'Product ID', width: 130, textAlign: 'right' },
+                { field: 'ProductID', headerText: 'Product ID', width: 130, textAlign: 'Right' },
                 { field: 'ProductName', headerText: 'Product Name', width: 190 },
-                { field: 'UnitPrice', headerText: 'Unit Price', width: 135, textAlign: 'right', format: 'C2', },
-                { field: 'UnitsInStock', headerText: 'Units In Stock', width: 160, textAlign: 'right' }
+                { field: 'UnitPrice', headerText: 'Unit Price', width: 135, textAlign: 'Right', format: 'C2', },
+                { field: 'UnitsInStock', headerText: 'Units In Stock', width: 160, textAlign: 'Right' }
             ],
             actionComplete: paging
         });
     grid.appendTo('#Grid');
-    let pageSize: HTMLInputElement = document.getElementById('pagesize') as HTMLInputElement;
-    let pageCount: HTMLInputElement = document.getElementById('counttxt') as HTMLInputElement;
-    let currentPage: HTMLInputElement = document.getElementById('pageno') as HTMLInputElement;
-    let enablePaging: HTMLInputElement = document.getElementById('allowCheck') as HTMLInputElement;
-    enablePaging.onclick = () => {
+    let pageSize: NumericTextBox = new NumericTextBox({
+        min: 1,
+        max: 200,
+        format: '##',
+        value: 12,
+        change: (e: ChangeEventArgs) => {
+            pageSize.value = pageSize.value > grid.pageSettings.totalRecordsCount ?
+                grid.pageSettings.totalRecordsCount : pageSize.value;
+            grid.pageSettings.pageSize = pageSize.value;
+            currentPage.max = Math.ceil(grid.pageSettings.totalRecordsCount / grid.pageSettings.pageSize);
+        }
+    });
+    pageSize.appendTo('#pagesize');
+
+    let pageCount: NumericTextBox = new NumericTextBox({
+        min: 1,
+        max: 8,
+        format: '##',
+        value: 2,
+        change: (e: ChangeEventArgs) => {
+            pageCount.value = pageCount.value > 8 ? 8 : pageCount.value;
+            grid.pageSettings.pageCount = pageCount.value;
+
+        }
+    });
+    pageCount.appendTo('#pagecount');
+
+    let currentPage: NumericTextBox = new NumericTextBox({
+        min: 1,
+        max: 17,
+        format: '##',
+        value: 1,
+        change: (e: ChangeEventArgs) => {
+            currentPage.value = currentPage.value > currentPage.max ? currentPage.max : currentPage.value;
+            let pageNumber: number = currentPage.value;
+            grid.goToPage(pageNumber);
+        }
+    });
+    currentPage.appendTo('#currentpage');
+
+    let enablePaging: CheckBox = new CheckBox({ checked: true });
+    enablePaging.appendTo('#allowCheck');
+
+    document.getElementById('allowCheck').onclick = () => {
         grid.allowPaging = enablePaging.checked;
         if (!grid.allowPaging) {
-            pageCount.disabled = true;
-            pageSize.disabled = true;
-            currentPage.disabled = true;
+            pageCount.enabled = false;
+            pageSize.enabled = false;
+            currentPage.enabled = false;
         } else {
-            pageCount.disabled = false;
-            pageSize.disabled = false;
-            currentPage.disabled = false;
+            pageCount.enabled = true;
+            pageSize.enabled = true;
+            currentPage.enabled = true;
         }
-    };
-    pageSize.onchange = () => {
-        pageSize.value = parseInt(pageSize.value, 10) > grid.pageSettings.totalRecordsCount ?
-            grid.pageSettings.totalRecordsCount.toString() : pageSize.value;
-        grid.pageSettings.pageSize = parseInt(pageSize.value, 10);
-        currentPage.max = Math.ceil(grid.pageSettings.totalRecordsCount / grid.pageSettings.pageSize).toString();
-    };
-    pageCount.onchange = () => {
-        pageCount.value = parseInt(pageCount.value, 10) > 8 ? '8' : pageCount.value;
-        grid.pageSettings.pageCount = parseInt(pageCount.value, 10);
-    };
-    currentPage.onchange = () => {
-        currentPage.value = parseInt(currentPage.value, 10) > parseInt(currentPage.max, 10) ? currentPage.max : currentPage.value;
-        let pageNumber: number = parseInt(currentPage.value, 10);
-        grid.goToPage(pageNumber);
     };
     function paging(args: PageEventArgs): void {
         if (args.requestType === 'paging') {
-            currentPage.value = args.currentPage;
+            currentPage.value = parseInt(args.currentPage, 10);
         }
     }
 };

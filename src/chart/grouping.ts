@@ -29,7 +29,7 @@ this.default = (): void => {
                     { 'x': 'Spain', y: 7, text: 'Spain: 7' },
                     { 'x': 'Kenya', y: 6, text: 'Kenya: 6' },
                 ],
-                animation: { enable: true },
+                animation: { enable: true }, name: 'RIO',
                 dataLabel: {
                     visible: true,
                     position: 'Outside',
@@ -60,7 +60,7 @@ this.default = (): void => {
             args.text = args.point.x + ' ' + args.point.y;
         },
         //Initializing tooltip
-        tooltip: { enable: true, format: '${point.x} <br> ${point.y} Medals' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y} Medals</b>' },
         //Initializing title
         title: 'RIO Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {

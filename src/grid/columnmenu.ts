@@ -1,5 +1,5 @@
 import { Grid, Resize, Sort, Group, Filter, ColumnMenu, Page } from '@syncfusion/ej2-grids';
-import { orderData } from './datasource';
+import { orderDetails } from './datasource';
 
 Grid.Inject(Resize, Sort, Group, Filter, ColumnMenu, Page);
 
@@ -9,18 +9,18 @@ Grid.Inject(Resize, Sort, Group, Filter, ColumnMenu, Page);
 this.default = (): void => {
     let grid: Grid = new Grid(
         {
-            dataSource: orderData.slice(0, 60),
+            dataSource: orderDetails,
             allowGrouping: true,
             allowSorting: true,
             allowFiltering: true,
-            filterSettings: { type: 'checkbox' },
+            filterSettings: { type: 'CheckBox' },
             allowPaging: true,
             groupSettings: { showGroupedColumn: true },
             showColumnMenu: true,
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 200, textAlign: 'right', showInColumnChooser: false },
+                { field: 'OrderID', headerText: 'Order ID', width: 200, textAlign: 'Right', showInColumnChooser: false },
                 { field: 'CustomerName', headerText: 'Customer Name' },
-                { field: 'Freight', format: 'C2', textAlign: 'right', editType: 'numericedit' },
+                { field: 'Freight', format: 'C2', textAlign: 'Right', editType: 'numericedit' },
                 { field: 'ShipName', headerText: 'Ship Name', width: 300 },
                 { field: 'ShipCountry', visible: false, headerText: 'Ship Country', width: 200 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 200 }

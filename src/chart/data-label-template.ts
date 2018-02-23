@@ -12,7 +12,7 @@ this.default = (): void => {
     let chart: Chart = new Chart({
         title: 'Population of India ( 2010 - 2016 )',
         titleStyle: {
-            color: '#606060', fontFamily: 'Roboto',
+            fontFamily: 'Roboto',
             fontStyle: 'medium', size: '14px'
         },
         chartArea: { border: { width: 0 } },
@@ -22,7 +22,6 @@ this.default = (): void => {
             interval: Browser.isDevice ? 2 : 1,
             edgeLabelPlacement: 'Shift',
             labelStyle: {
-                color: '#606060',
                 fontFamily: 'Roboto',
                 fontStyle: 'medium',
                 size: '14px'
@@ -35,7 +34,7 @@ this.default = (): void => {
             labelFormat: '{value}M',
             title: Browser.isDevice ? '' : 'Population',
             labelStyle: {
-                color: '#606060', fontFamily: 'Roboto',
+                fontFamily: 'Roboto',
                 fontStyle: 'medium', size: '14px'
             },
             interval: 80,

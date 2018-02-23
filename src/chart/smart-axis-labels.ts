@@ -1,10 +1,10 @@
 import {
     Chart, LabelIntersectAction, DataLabel, ColumnSeries, Category, ILoadedEventArgs,
-    EdgeLabelPlacement, IPointRenderEventArgs, ChartTheme, Tooltip
+    EdgeLabelPlacement, IPointRenderEventArgs, ChartTheme, Tooltip, AxisPosition
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType, Browser } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
 Chart.Inject(ColumnSeries, Category, DataLabel, Tooltip);
 
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
@@ -14,6 +14,8 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fabricColors[args.point.index % 10];
     } else if (selectedTheme === 'material') {
         args.fill = materialColors[args.point.index % 10];
+    } else if (selectedTheme === 'highcontrast') {
+        args.fill = highContrastColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }
@@ -38,12 +40,12 @@ this.default = (): void => {
         },
         //Initializing Primary Y Axis
         primaryYAxis:
-        {
-            labelStyle: { color: 'white' },
-            majorTickLines: { width: 0 },
-            majorGridLines: { width: 0 },
-            lineStyle: { width: 0 },
-        },
+            {
+                labelStyle: { size: '0px' },
+                majorTickLines: { width: 0 },
+                majorGridLines: { width: 0 },
+                lineStyle: { width: 0 },
+            },
 
         //Initializing Chart Series
         series: [
@@ -91,7 +93,6 @@ this.default = (): void => {
 
     let edgeMode: DropDownList = new DropDownList({
         index: 0,
-        placeholder: 'Select Range Bar Color',
         width: 120,
         change: () => {
             chart.primaryXAxis.edgeLabelPlacement = <EdgeLabelPlacement>edgeMode.value;
@@ -99,4 +100,14 @@ this.default = (): void => {
         }
     });
     edgeMode.appendTo('#edgemode');
+
+    let labelMode: DropDownList = new DropDownList({
+        index: 0,
+        width: 120,
+        change: () => {
+            chart.primaryXAxis.labelPosition = <AxisPosition>labelMode.value;
+            chart.refresh();
+        }
+    });
+    labelMode.appendTo('#position');
 };

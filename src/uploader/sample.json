@@ -1,0 +1,13 @@
+{
+    "name": "Uploader",
+    "directory": "uploader",
+    "category":"Editors",
+	"type": "preview",
+    "samples" : [
+        {"url":"default", "name": "Default Functionalities", "category": "Uploader", "api": { "Uploader": ["autoUpload", "asyncSettings", "success", "dropArea"] }},
+        {"url":"customtemplate", "name": "Template", "category": "Uploader", "api": { "Uploader": ["asyncSettings", "dropArea", "selected", "progress", "success", "failure"] }},
+        {"url":"preloadfiles", "name": "Preload Files", "category": "Uploader", "api": { "Uploader": ["asyncSettings", "files", "removing", "failure", "success", "dropArea"] }},
+        {"url":"validation", "name": "File Validation", "category": "Uploader", "api": { "Uploader": ["autoUpload", "minFileSize", "maxFileSize", "allowedExtensions", "asyncSettings", "selected", "success", "dropArea"] }},
+        {"url":"preview", "name": "Image Preview", "category": "Uploader", "api": { "Uploader": ["asyncSettings", "template", "success", "progress", "allowedExtensions"] }}
+     ]
+ }

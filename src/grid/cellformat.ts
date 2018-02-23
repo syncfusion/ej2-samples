@@ -20,9 +20,9 @@ this.default = (): void => {
 
     let grid: Grid = new Grid({
         columns: [
-            { field: 'Number', format: 'N2', textAlign: 'right', width: 110 },
-            { field: 'Currency', format: 'C2', textAlign: 'right', width: 110 },
-            { field: 'Date', format: 'yMd', textAlign: 'right', width: 110 },
+            { field: 'Number', format: 'N2', textAlign: 'Right', width: 110 },
+            { field: 'Currency', format: 'C2', textAlign: 'Right', width: 110 },
+            { field: 'Date', format: 'yMd', textAlign: 'Right', width: 110 },
         ],
         dataSource: details,
         allowSelection: false,

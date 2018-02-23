@@ -1,4 +1,4 @@
-import { LinearGauge, Annotations, ILoadEventArgs } from '@syncfusion/ej2-lineargauge';
+import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations);
 
 /**
@@ -63,6 +63,9 @@ this.default = (): void => {
 };
 
 function gaugeLoad(args: ILoadEventArgs): void {
+    let selectedTheme: string = location.hash.split('/')[1];
+    selectedTheme = selectedTheme ? selectedTheme : 'Material';
+    args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
     if (this.count === undefined) {
         gauge.annotations = [
             {

@@ -11,7 +11,7 @@ Grid.Inject(Selection, Freeze, Sort, Resize);
  * Grid frozen rows and columns sample
  */
 this.default = (): void => {
-    let data: Object = new DataManager(orderData).executeLocal(new Query().take(50));
+    let data: Object = new DataManager(orderData as JSON[]).executeLocal(new Query().take(50));
     let grid: Grid = new Grid(
         {
             dataSource: data,
@@ -24,12 +24,12 @@ this.default = (): void => {
             frozenColumns: 1,
             frozenRows: 2,
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'right' },
+                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },
                 { field: 'Freight', width: 125, format: 'C2' },
                 { field: 'CustomerID', headerText: 'Customer ID', width: 130 },
                 { field: 'CustomerName', headerText: 'Customer Name', width: 180 },
-                { field: 'OrderDate', headerText: 'Order Date', width: 150, format: 'yMd', textAlign: 'right' },
-                { field: 'ShippedDate', headerText: 'Shipped Date', width: 180, format: 'yMd', textAlign: 'right' },
+                { field: 'OrderDate', headerText: 'Order Date', width: 150, format: 'yMd', textAlign: 'Right' },
+                { field: 'ShippedDate', headerText: 'Shipped Date', width: 180, format: 'yMd', textAlign: 'Right' },
                 { field: 'ShipName', headerText: 'Ship Name', width: 300 },
                 { field: 'ShipAddress', headerText: 'Ship Address', width: 270 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 250 },
@@ -48,7 +48,7 @@ this.default = (): void => {
 
     //Render NumericTextbox component with specific range for frozen columns.
     let columns: NumericTextBox = new NumericTextBox({
-        min: 1,
+        min: 0,
         max: 2,
         value: 1
     });

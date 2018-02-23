@@ -1,9 +1,10 @@
 import {
     Chart, ColumnSeries, Category, DataLabel,
-    Tooltip, IPointRenderEventArgs, ITooltipRenderEventArgs
+    Tooltip, IPointRenderEventArgs, ITooltipRenderEventArgs,
+    ILoadedEventArgs, ChartTheme
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
 Chart.Inject(ColumnSeries, DataLabel, Category, Tooltip);
 import { EmitType } from '@syncfusion/ej2-base';
 
@@ -17,6 +18,8 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fabricColors[args.point.index % 10];
     } else if (selectedTheme === 'material') {
         args.fill = materialColors[args.point.index % 10];
+    } else if (selectedTheme === 'highcontrast') {
+        args.fill = highContrastColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }
@@ -25,15 +28,17 @@ this.default = (): void => {
     let chart: Chart = new Chart({
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'Category', interval: 1, majorGridLines: { width: 0 }
+            valueType: 'Category', interval: 1, majorGridLines: { width: 0 },
+            tickPosition: 'Inside',
+            labelPosition: 'Inside', labelStyle: { color: '#ffffff' }
         },
         chartArea: { border: { width: 0 } },
         //Initializing Primary Y Axis
         primaryYAxis:
-        {
-            minimum: 0, maximum: 300, interval: 50, majorGridLines: { width: 0 },
-            majorTickLines: { width: 0 }, lineStyle: { width: 0 }, labelStyle: { color: 'transparent' }
-        },
+            {
+                minimum: 0, maximum: 300, interval: 50, majorGridLines: { width: 0 },
+                majorTickLines: { width: 0 }, lineStyle: { width: 0 }, labelStyle: { color: 'transparent' }
+            },
 
         //Initializing Chart Series
         series: [
@@ -55,10 +60,15 @@ this.default = (): void => {
         legendSettings: { visible: false },
         //Initializing Chart title
         title: 'Tiger Population - 2016', tooltip: { enable: true },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         pointRender: labelRender,
         width: Browser.isDevice ? '100%' : '60%',
         tooltipRender: (args: ITooltipRenderEventArgs) => {
-            let tooltip: string = args.textCollections;
+            let tooltip: string = args.text;
             if (tooltip.indexOf('BGD') > -1) {
                 tooltip = tooltip.replace('BGD', 'Bangladesh');
             } else if (tooltip.indexOf('BTN') > -1) {
@@ -70,7 +80,7 @@ this.default = (): void => {
             } else {
                 tooltip = tooltip.replace('MYS', 'Malaysia');
             }
-            args.textCollections = tooltip;
+            args.text = tooltip;
         }
     });
     chart.appendTo('#container');

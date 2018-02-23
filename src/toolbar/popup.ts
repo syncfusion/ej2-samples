@@ -69,4 +69,32 @@ this.default = () => {
     });
     //Render initialized Toolbar component
     toolbarObj.appendTo('#toolbar_pop');
+    let today: Date = new Date();
+    // tslint:disable:max-line-length
+    let ele: string = '<div class = "e-tool-name">' + today.toLocaleString('en-us', { month: 'long' }) + ' ' + today.getFullYear() + '</div>';
+    // tslint:enable:max-line-length
+    let toolbarObj1: Toolbar = new Toolbar({
+        overflowMode: 'Popup',
+        items: [
+            {
+              template: ele,
+              overflow: 'Show'},
+            {
+               prefixIcon: 'e-icon-day e-icons', tooltipText: 'Today', text: 'Today', overflow: 'Hide', align: 'Right' },
+            {
+              type: 'Separator' },
+            {
+               prefixIcon: 'e-icon-week e-icons', tooltipText: 'Week', text: 'Week', overflow: 'Hide', align: 'Right' },
+            {
+               prefixIcon: 'e-icon-month e-icons', tooltipText: 'Month', text: 'Month', overflow: 'Hide', align: 'Right'},
+            {
+               prefixIcon: 'e-icon-year e-icons', tooltipText: 'Year', text: 'Year', overflow: 'Hide', align: 'Right'},
+            {
+               prefixIcon: 'e-print e-icons', tooltipText: 'Print', text: 'Print', overflow: 'Hide', showAlwaysInPopup: true},
+            {
+               prefixIcon: 'e-reccurence-icon e-icons', tooltipText: 'Sync', text: 'Sync', overflow: 'Hide', showAlwaysInPopup: true}
+            ]
+    });
+    //Render initialized Toolbar component
+    toolbarObj1.appendTo('#toolbar_popalways');
 };

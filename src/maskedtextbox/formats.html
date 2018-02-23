@@ -13,7 +13,7 @@
                     <div>Mask</div>
                 </td>
                 <td style="width: 50%">
-                    <div>
+                    <div style="max-width: 200px">
                         <!-- Input to customize mask format -->
                         <input id="input1" type="text" />
                     </div>
@@ -24,7 +24,7 @@
                     <div>Prompt Character</div>
                 </td>
                 <td style="width: 50%">
-                    <div>
+                    <div  style="max-width: 200px">
                         <select id="ddl">
                         <!-- Prompt character options -->
                         <option value="_">_</option>
@@ -74,12 +74,14 @@
 <style>
     .property-panel-content {
         padding: 0 10px 10px 0;
+        overflow: auto;
     }
     
     .content-wrapper {
         width: 45%;
         margin: 0 auto;
         min-width: 185px;
+        max-width: 350px;
     }
     
     .control-label {

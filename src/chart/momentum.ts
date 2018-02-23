@@ -19,8 +19,8 @@ this.default = (): void => {
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'DateTime',
-            intervalType: 'Months', majorGridLines: { width: 0 }, zoomFactor: 0.2, zoomPosition: 0.6,
-            skeleton: 'yMd',
+            majorGridLines: { width: 0 },
+            zoomFactor: 0.2, zoomPosition: 0.6,
             crosshairTooltip: { enable: true }
         },
         //Initializing Primary Y Axis
@@ -64,10 +64,10 @@ this.default = (): void => {
         //Initializing UserInteraction Zoom, Tooltip and Crosshair
         zoomSettings:
         {
-            enableMouseWheelZooming: true,
-            enablePinchZooming: true,
+
             enableSelectionZooming: true,
-            mode: 'X'
+            mode: 'X',
+            enablePan : true
         },
         tooltip: {
             enable: true, shared: true
@@ -76,7 +76,7 @@ this.default = (): void => {
         chartArea: { border: { width: 0 } },
         //Initializing Primary Y Axis
         title: 'AAPL 2012-2017',
-        width : Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '80%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

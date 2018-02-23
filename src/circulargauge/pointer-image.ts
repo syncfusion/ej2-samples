@@ -1,12 +1,17 @@
 /**
  * Point Image Customization Sample
  */
-import { CircularGauge } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
 
 this.default = (): void => {
     let circulargauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         title: 'Short Put Distance',
         titleStyle: {
             size: '18px'

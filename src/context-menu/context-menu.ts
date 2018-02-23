@@ -62,7 +62,7 @@ this.default = () => {
         select('#contextmenutarget').textContent = 'Touch hold to open the ContextMenu';
         menuObj.animationSettings.effect = 'ZoomIn';
     } else {
-        select('#contextmenutarget').textContent = 'Right click / Touch hold to open the ContextMenu';
+        select('#contextmenutarget').textContent = 'Right click/Touch hold to open the ContextMenu';
         menuObj.animationSettings.effect = 'SlideDown';
     }
 };

@@ -10,11 +10,11 @@ this.default = (): void => {
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'DateTime',
-            labelFormat: 'y',
-            intervalType: 'Years',
-            edgeLabelPlacement: 'Shift',
-            majorGridLines: { width: 0 }
+                valueType: 'DateTime',
+                labelFormat: 'y',
+                intervalType: 'Years',
+                edgeLabelPlacement: 'Shift',
+                majorGridLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis

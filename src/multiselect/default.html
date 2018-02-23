@@ -1,7 +1,7 @@
 <div class="control-section">
     <div class="control-wrapper">
         <div id='content'>
-            <div class="control-styles">
+            <div>
                 <h4> Default Mode</h4>
                 <select id="default"> 
                 <option value="Game1">American Football</option>
@@ -72,11 +72,14 @@
 </div>
 
 <style>
-    .control-wrapper {
+    .control-section .control-wrapper {
+        width: 80%;
         margin: 0 auto;
-        width: 300px;
+        min-width: 185px;
     }
-
+   .e-bigger .control-section .control-wrapper {
+        width: 100%;
+    }
     .property-section .right-side {
         padding-left: 10px;
     }
@@ -86,11 +89,6 @@
         width: 25%
     }
     .control-styles {
-        margin: 0 auto; 
-        width:400px; 
         padding-top: 30px
-    }
-    .e-bigger .control-styles {
-        width:300px;
     }
 </style>

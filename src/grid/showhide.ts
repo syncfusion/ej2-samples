@@ -1,3 +1,5 @@
+import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
+import { Button } from '@syncfusion/ej2-buttons';
 import { Grid, Page, Selection, Column } from '@syncfusion/ej2-grids';
 import { categoryData } from './datasource';
 
@@ -6,6 +8,13 @@ Grid.Inject(Page, Selection);
  * Show Hide sample
  */
 this.default = (): void => {
+    let columnsName: { [key: string]: Object }[] = [
+        { id: 'CategoryName', name: 'Category Name' },
+        { id: 'ProductName', name: 'Product Name' },
+        { id: 'UnitsInStock', name: 'Units In Stock' },
+        { id: 'Discontinued', name: 'Discontinued' }
+    ];
+
     let grid: Grid = new Grid({
         dataSource: categoryData,
         allowPaging: true,
@@ -13,29 +22,50 @@ this.default = (): void => {
         columns: [
             { field: 'CategoryName', headerText: 'Category Name', width: 160 },
             { field: 'ProductName', headerText: 'Product Name', width: 170 },
-            { field: 'UnitsInStock', headerText: 'Units In Stock', width: 170, textAlign: 'right' },
+            { field: 'UnitsInStock', headerText: 'Units In Stock', width: 170, textAlign: 'Right' },
             {
-                field: 'Discontinued', headerText: 'Discontinued', width: 150, textAlign: 'center', type: 'boolean',
+                field: 'Discontinued', headerText: 'Discontinued', width: 150, textAlign: 'Center', type: 'boolean',
                 displayAsCheckBox: true
             }
         ]
     });
     grid.appendTo('#Grid');
 
-    let show: HTMLButtonElement = document.getElementById('show') as HTMLInputElement;
-    let hide: HTMLButtonElement = document.getElementById('hide') as HTMLInputElement;
+    let dropDownListObject: DropDownList = new DropDownList({
+        dataSource: columnsName,
+        fields: { text: 'name', value: 'id' },
+        value: 'CategoryName',
+        change: (e: ChangeEventArgs) => {
+            let columnName: string = <string>e.value;
+            let column: Column = grid.getColumnByField(columnName);
+            if (column.visible === undefined || column.visible) {
+                show.disabled = true;
+                hide.disabled = false;
+            } else {
+                hide.disabled = true;
+                show.disabled = false;
+            }
+        }
+    });
+    dropDownListObject.appendTo('#ddlelement');
+
+    let show: Button = new Button({ disabled: true });
+    show.appendTo('#show');
+
+    let hide: Button = new Button();
+    hide.appendTo('#hide');
+
     let hiddenColumns: HTMLTextAreaElement = document.getElementById('hiddencolumns') as HTMLTextAreaElement;
-    let drop: HTMLSelectElement = document.getElementById('drop') as HTMLSelectElement;
-    show.onclick = () => {
-        let columnName: string = drop.value;
+    document.getElementById('show').addEventListener('click', () => {
+        let columnName: string = <string>dropDownListObject.value;
         let column: Column = grid.getColumnByField(columnName);
         grid.showHider.show(column.headerText, 'headerText');
         show.disabled = true;
         hide.disabled = false;
         hiddenColumns.value = hiddenColumns.value.replace(column.headerText + '\n', '');
-    };
-    hide.onclick = () => {
-        let columnName: string = drop.value;
+    });
+    document.getElementById('hide').addEventListener('click', () => {
+        let columnName: string = <string>dropDownListObject.value;
         let column: Column = grid.getColumnByField(columnName);
         if (grid.getHeaderTable().querySelectorAll('th.e-hide').length === 3) {
             alert('Atleast one Column should be visible');
@@ -45,16 +75,5 @@ this.default = (): void => {
             show.disabled = false;
             hiddenColumns.value = hiddenColumns.value + column.headerText + '\n';
         }
-    };
-    drop.onchange = () => {
-        let columnName: string = drop.value;
-        let column: Column = grid.getColumnByField(columnName);
-        if (column.visible === undefined || column.visible) {
-            show.disabled = true;
-            hide.disabled = false;
-        } else {
-            hide.disabled = true;
-            show.disabled = false;
-        }
-    };
+    });
 };

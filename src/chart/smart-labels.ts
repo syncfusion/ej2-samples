@@ -32,7 +32,7 @@ this.default = (): void => {
                     { 'x': 'Argentina', y: 3, text: 'Argentina: 3' },
                     { 'x': 'South Africa', y: 2, text: 'South Africa: 2' },
                     { 'x': 'North Korea', y: 2, text: 'North Korea: 2' }
-                ],
+                ], name: 'RIO',
                 xName: 'x',
                 yName: 'y',
                 startAngle: 0,
@@ -48,7 +48,7 @@ this.default = (): void => {
             visible: false
         },
         //Initializing Tooltip
-        tooltip: { enable: true, format: '${point.x} : ${point.y}%' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
         //Initializing Title
         title: 'RIO Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {

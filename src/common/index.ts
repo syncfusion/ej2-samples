@@ -4,21 +4,37 @@
  */
 
 import { Popup, Tooltip } from '@syncfusion/ej2-popups';
-import { select, selectAll, Animation, Browser, extend, enableRipple, Ajax, closest, createElement, detach } from '@syncfusion/ej2-base';
+import { Animation, Browser, extend, setCulture, enableRipple, Ajax, closest, createElement, detach, L10n } from '@syncfusion/ej2-base';
+import { select, setCurrencyCode, loadCldr, selectAll } from '@syncfusion/ej2-base';
 import { DataManager, Query, DataUtil } from '@syncfusion/ej2-data';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
-import { Tab, TreeView } from '@syncfusion/ej2-navigations';
+import { Tab, TreeView, Sidebar } from '@syncfusion/ej2-navigations';
 import { ListBase, ListView } from '@syncfusion/ej2-lists';
 import { Grid } from '@syncfusion/ej2-grids';
 import { addRoute, bypassed, parse } from 'crossroads';
 import { renderPropertyPane, renderDescription, renderActionDescription } from './propertypane';
+import { Locale } from './locale-string';
 import * as samplesJSON from './sampleList';
 import * as elasticlunr from './lib/elasticlunr';
 import * as searchJson from './search-index.json';
 import * as hljs from './lib/highlightjs';
 import * as hasher from 'hasher';
+import * as numberingSystems from '../common/cldr-data/supplemental/numberingSystems.json';
+import * as currencyData from '../common/cldr-data/supplemental/currencyData.json';
+import * as deCultureData from '../common/cldr-data/main/de/all.json';
+import * as arCultureData from '../common/cldr-data/main/ar/all.json';
+import * as swissCultureDate from '../common/cldr-data/main/fr-CH/all.json';
+import * as enCultureData from '../common/cldr-data/main/fr-CH/all.json';
+import * as chinaCultureData from '../common/cldr-data/main/zh/all.json';
 let cBlock: string[] = ['ts-src-tab', 'html-src-tab'];
+const matchedCurrency: { [key: string]: string } = {
+    'en': 'USD',
+    'de': 'EUR',
+    'ar': 'AED',
+    'zh': 'CNY',
+    'fr-CH': 'CHF'
+};
 import '../../node_modules/es6-promise/dist/es6-promise';
 /**
  * interfaces
@@ -43,6 +59,7 @@ interface Samples {
 interface DestroyMethod extends HTMLElement {
     destroy: Function;
     ej2_instances: Object[];
+    enableRtl: Boolean;
 }
 
 interface HighlightJS {
@@ -56,19 +73,26 @@ interface MyWindow extends Window {
     apiList: any;
     hashString: string;
 }
-
+loadCldr(numberingSystems, chinaCultureData, enCultureData, swissCultureDate, currencyData, deCultureData, arCultureData);
+L10n.load(Locale);
+setCulture('en');
 let switcherPopup: Popup;
+let preventToggle: boolean;
 let themeSwitherPopup: Popup;
 let openedPopup: any;
 let searchPopup: Popup;
 let settingsPopup: Popup;
 let prevAction: string;
+export let sidebar: Sidebar;
+let settingsidebar: Sidebar;
 let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
 let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
 let themeList: HTMLElement = document.getElementById('themelist');
-const themeCollection: string[] = ['material', 'fabric', 'bootstrap'];
+const themeCollection: string[] = ['material', 'fabric', 'bootstrap', 'highcontrast'];
 let themeDropDown: DropDownList;
+let cultureDropDown: DropDownList;
+let currencyDropDown: DropDownList;
 let contentTab: Tab;
 let sourceTab: Tab;
 let isExternalNavigation: boolean = true;
@@ -80,12 +104,13 @@ let sbRightPane: HTMLElement = <any>select('.sb-right-pane');
 let sbContentOverlay: HTMLElement = <any>select('.sb-content-overlay');
 let sbBodyOverlay: HTMLElement = <any>select('.sb-body-overlay');
 let sbHeader: HTMLElement = <HTMLElement>select('#sample-header');
+let resetSearch: Element = select('.sb-reset-icon');
 /**
  * constant to process the sample url
  */
 const urlRegex: RegExp = /(npmci\.syncfusion\.com|ej2\.syncfusion\.com)(\/)(development|production)*/;
 const sampleRegex: RegExp = /#\/(([^\/]+\/)+[^\/\.]+)/;
-const sbArray: string[] = ['angular', 'react', 'javascript'];
+const sbArray: string[] = ['angular', 'react', 'javascript', 'aspnetcore', 'aspnetmvc'];
 /**
  * constant for search operations
  */
@@ -122,6 +147,27 @@ let controlSampleData: any = {};
 let samplesList: Controls[] | { [key: string]: Object }[] = getSampleList();
 let samplesTreeList: any = [];
 let execFunction: { [key: string]: Object } = {};
+isMobile = window.matchMedia('(max-width:550px)').matches;
+if (Browser.isDevice || isMobile) {
+    if (sidebar) {
+        sidebar.destroy();
+    }
+    sidebar = new Sidebar({ width: '280px', showBackdrop: true, closeOnDocumentClick: true, enableGestures: false });
+    sidebar.appendTo('#left-sidebar');
+} else {
+    sidebar = new Sidebar({
+        width: '282px', target: <HTMLElement>document.querySelector('.sb-content '),
+        showBackdrop: false,
+        closeOnDocumentClick: false,
+        enableGestures: false,
+    });
+    sidebar.appendTo('#left-sidebar');
+}
+settingsidebar = new Sidebar({
+    position: 'Right', width: '282', zIndex: '1003', showBackdrop: true, type: 'Over', enableGestures: false,
+    closeOnDocumentClick: true
+});
+settingsidebar.appendTo('#right-sidebar');
 /**
  * Right pane
  */
@@ -133,7 +179,7 @@ let breadCrumbSubCategory: HTMLElement = <any>document.querySelector('.sb-bread-
 let breadCrumbSample: Element = document.querySelector('.sb-bread-crumb-text>.crumb-sample');
 let hsplitter: string = '<div class="sb-toolbar-splitter sb-custom-item"></div>';
 // tslint:disable-next-line:no-multiline-string
-let openNewTemplate: string = `<div class="sb-custom-item sb-open-new-wrapper" title="Open in New Window"><a id="openNew" target="_blank">
+let openNewTemplate: string = `<div class="sb-custom-item sb-open-new-wrapper"><a id="openNew" target="_blank">
 <div class="sb-icons sb-icon-Popout"></div></a></div>`;
 // tslint:disable-next-line:no-multiline-string
 let sampleNavigation: string = `<div class="sb-custom-item sample-navigation"><button id='prev-sample' class="sb-navigation-prev" 
@@ -152,6 +198,7 @@ let contentToolbarTemplate: string = '<div class="sb-desktop-setting"><button id
 
 let tabContentToolbar: Element = createElement('div', { className: 'sb-content-toolbar', innerHTML: contentToolbarTemplate });
 let apiGrid: Grid;
+let demoSection: Element = select('.sb-demo-section');
 /**
  * Routing variables
  */
@@ -172,6 +219,7 @@ function preventTabSwipe(e: any): void {
         e.cancel = true;
     }
 }
+// tslint:disable-next-line:max-func-body-length
 function renderSbPopups(): void {
     switcherPopup = new Popup(document.getElementById('sb-switcher-popup'), {
         relateTo: <HTMLElement>document.querySelector('.sb-header-text-right'), position: { X: 'left' },
@@ -192,12 +240,14 @@ function renderSbPopups(): void {
     settingsPopup = new Popup(document.getElementById('settings-popup'), {
         offsetX: -245,
         offsetY: 5,
+        zIndex: 1001,
         relateTo: <any>settingElement,
         position: { X: 'right', Y: 'bottom' }
         , collision: { X: 'flip', Y: 'flip' }
     });
     if (!isMobile) {
         settingsPopup.hide();
+        settingsidebar.hide();
     } else {
         select('.sb-mobile-preference').appendChild(select('#settings-popup'));
     }
@@ -208,6 +258,25 @@ function renderSbPopups(): void {
         index: 0,
         change: (e: any) => { switchTheme(e.value); }
     });
+    cultureDropDown = new DropDownList({
+        index: 0,
+        change: (e: any) => {
+            let value: string = e.value;
+            if (value === 'ar') {
+                changeRtl(true);
+            } else {
+                changeRtl(false);
+            }
+            currencyDropDown.value = matchedCurrency[value];
+            setCulture(e.value);
+        }
+    });
+    currencyDropDown = new DropDownList({
+        index: 0,
+        change: (e: any) => { setCurrencyCode(e.value); }
+    });
+    cultureDropDown.appendTo('#sb-setting-culture');
+    currencyDropDown.appendTo('#sb-setting-currency');
     themeDropDown.appendTo('#sb-setting-theme');
     /**
      * Render tab for content
@@ -231,7 +300,7 @@ function renderSbPopups(): void {
         dataSource: [],
         allowTextWrap: true,
         columns: [
-            { field: 'name', headerText: 'Name', template: '#template', width: 180, textAlign: 'center' },
+            { field: 'name', headerText: 'Name', template: '#template', width: 180, textAlign: 'Center' },
             { field: 'type', headerText: 'Type', width: 180 },
             { field: 'description', headerText: 'Description', template: '#template-description', width: 200 },
         ],
@@ -245,16 +314,36 @@ function renderSbPopups(): void {
     let nextbutton: Button = new Button(
         {
             iconCss: 'sb-icons sb-icon-Next',
-            cssClass: 'e-flat', iconPosition: 'right'
+            cssClass: 'e-flat', iconPosition: 'Right'
         },
         // tslint:disable-next-line:align
         '#mobile-next-sample');
     let tabHeader: Element = document.getElementById('sb-content-header');
     tabHeader.appendChild(tabContentToolbar);
+    let openNew: Tooltip = new Tooltip({
+        content: 'Open in New Window'
+    });
+
+    openNew.appendTo('.sb-open-new-wrapper');
+    let previous: Tooltip = new Tooltip({
+        content: 'Previous Sample'
+    });
+
+    previous.appendTo('#prev-sample');
+    let next: Tooltip = new Tooltip({
+        content: 'Next Sample'
+    });
+
+    next.appendTo('#next-sample');
     let ele: HTMLElement = createElement('div', { className: 'copy-tooltip', innerHTML: '<div class="e-icons copycode"></div>' });
     document.getElementById('sb-source-tab').appendChild(ele);
-    let copiedTooltip: Tooltip = new Tooltip(
-        { content: 'Copied', position: 'bottom center', opensOn: 'click', closeDelay: 500 }, '.copy-tooltip');
+    let copiedTooltip: Tooltip = new Tooltip({
+        content: 'Copied to clipboard ',
+        position: 'BottomCenter',
+        opensOn: 'Click',
+        closeDelay: 500
+    });
+    copiedTooltip.appendTo(ele);
 }
 
 /**
@@ -280,7 +369,21 @@ function changeTab(args: any): void {
         }
     }
 }
+function changeRtl(args: any): void {
+    let elementlist: HTMLElement[] = selectAll('.e-control', document.getElementById('control-content'));
+    for (let control of elementlist) {
+        let eleinstance: Object[] = (<DestroyMethod>control).ej2_instances;
+        if (eleinstance) {
+            for (let instance of eleinstance) {
+                (<DestroyMethod>instance).enableRtl = args;
+            }
+        }
+    }
+}
 function dataBound(args: object): void {
+    if (!this.getRows()) {
+        return;
+    }
     let gridtrs: number = this.getRows().length;
     let trs: any = this.getRows();
     for (let count: number = 0; count < gridtrs; count++) {
@@ -419,7 +522,11 @@ function onsearchInputChange(e: KeyboardEvent): void {
     if (val.length) {
         let data: DataManager = new DataManager(val);
         let controls: any = data.executeLocal(new Query().take(10).select('doc'));
-        let ds: any = DataUtil.group(controls, 'component');
+        let controlsAccess: any = [];
+        for (let cont of controls) {
+            controlsAccess.push(cont.doc);
+        }
+        let ds: any = DataUtil.group(controlsAccess, 'component');
         let dataSource: { [key: string]: Object }[] & Object[] = [];
         for (let j: number = 0; j < ds.length; j++) {
             let itemObj: any = ds[j].items;
@@ -437,11 +544,11 @@ function onsearchInputChange(e: KeyboardEvent): void {
         let ele: any = ListBase.createList(dataSource, {
             fields: { id: 'uid', groupBy: 'component', text: 'name' },
             template: '<div class="e-text-content e-icon-wrapper" data="${dir}/${url}" uid="${uid}" pid="${parentId}">' +
-            '<span class="e-list-text" role="list-item">' +
-            '${name}</span></div>',
+                '<span class="e-list-text" role="list-item">' +
+                '${name}</span></div>',
             groupTemplate:
-            '${if(items[0]["component"])}<div class="e-text-content"><span class="e-search-group">${items[0].component}</span>' +
-            '</div>${/if}'
+                '${if(items[0]["component"])}<div class="e-text-content"><span class="e-search-group">${items[0].component}</span>' +
+                '</div>${/if}'
         });
         searchPopup.element.innerHTML = '';
         highlight(searchString, ele);
@@ -507,12 +614,14 @@ function onPrevButtonClick(arg: MouseEvent): void {
 /**
  * Resize event processing
  */
+// tslint:disable-next-line:max-func-body-length
 function processResize(e: any): void {
+    let toggle: boolean = sidebar.isOpen();
     isMobile = window.matchMedia('(max-width:550px)').matches;
-    if (resizeManualTrigger || (isMobile && !select('.sb-mobile-right-pane').classList.contains('sb-hide'))) {
+    isTablet = window.matchMedia('(min-width:550px) and (max-width: 850px)').matches;
+    if (resizeManualTrigger || (isMobile && select('#right-sidebar').classList.contains('sb-hide'))) {
         return;
     }
-    isTablet = window.matchMedia('(min-width:550px) and (max-width: 850px)').matches;
     isPc = window.matchMedia('(min-width:850px)').matches;
     processDeviceDependables();
     setLeftPaneHeight();
@@ -525,23 +634,13 @@ function processResize(e: any): void {
     } else {
         contentTab.hideTab(1, false);
     }
+    if (toggle) {
+        toggleLeftPane();
+    }
     if (isMobile) {
-        leftPane.classList.remove('sb-hide');
-        if (leftPane.parentElement.classList.contains('sb-mobile-left-pane')) {
-            if (!leftPane.parentElement.classList.contains('sb-hide')) {
-                toggleLeftPane();
-            }
-        } else {
-            select('.sb-mobile-left-pane').appendChild(leftPane);
-            select('.sb-left-footer-links').appendChild(footer);
-            if (!select('.sb-mobile-left-pane').classList.contains('sb-hide')) {
-                toggleLeftPane();
-            } else {
-                leftToggle.classList.remove('toggle-active');
-            }
-            if (isVisible('.sb-mobile-overlay')) {
-                removeMobileOverlay();
-            }
+        select('.sb-left-footer-links').appendChild(footer);
+        if (isVisible('.sb-mobile-overlay')) {
+            removeMobileOverlay();
         }
         if (!pref.parentElement.classList.contains('sb-mobile-preference')) {
             select('.sb-mobile-preference').appendChild(pref);
@@ -557,30 +656,16 @@ function processResize(e: any): void {
         }
     }
     if (isTablet || isPc) {
-        if (leftPane.parentElement.classList.contains('sb-mobile-left-pane')) {
-            select('.sb-content').appendChild(leftPane);
-            select('.sb-footer').appendChild(footer);
-            if (isVisible('.sb-mobile-overlay')) {
-                removeMobileOverlay();
-            }
-        }
-        if (isTablet || (Browser.isDevice && isPc)) {
-            if (!leftPane.classList.contains('sb-hide')) {
-                toggleLeftPane();
-            }
-            setTimeout(() => {
-                if (!rightPane.classList.contains('control-fullview')) {
-                    rightPane.classList.add('control-fullview');
-                }
-            },
-                // tslint:disable-next-line:align
-                600);
+        select('.sb-footer').appendChild(footer);
+        if (isVisible('.sb-mobile-overlay')) {
+            removeMobileOverlay();
         }
         if (isPc && !Browser.isDevice && isVisible('.sb-left-pane')) {
             rightPane.classList.remove('control-fullview');
         }
         if (pref.parentElement.classList.contains('sb-mobile-preference')) {
             select('#sb-popup-section').appendChild(pref);
+            settingsidebar.hide();
             settingsPopup.hide();
         }
         let mobilePropPane: Element = select('.sb-mobile-prop-pane .property-section');
@@ -593,13 +678,25 @@ function processResize(e: any): void {
     }
     if (switcherPopup) {
         switcherPopup.refresh();
-      }
+    }
+}
+function resetInput(arg: MouseEvent): void {
+    arg.preventDefault();
+    arg.stopPropagation();
+    (<HTMLInputElement>document.getElementById('search-input')).value = '';
+    document.getElementById('search-input-wrapper').setAttribute('data-value', '');
+    searchPopup.hide();
 }
 /**
  * Binding events for sample browser operations
  */
 function bindEvents(): void {
     document.getElementById('sb-switcher').addEventListener('click', (e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        sbHeaderClick('changeSampleBrowser');
+    });
+    select('.sb-header-text-right').addEventListener('click', (e: MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
         sbHeaderClick('changeSampleBrowser');
@@ -633,9 +730,9 @@ function bindEvents(): void {
     setResponsiveElement.addEventListener('click', setMouseOrTouch);
     select('#sb-left-back').addEventListener('click', showHideControlTree);
     leftToggle.addEventListener('click', toggleLeftPane);
-    select('.sb-mobile-overlay').addEventListener('click', toggleMobileOverlay);
     select('.sb-header-settings').addEventListener('click', viewMobilePrefPane);
     select('.sb-mobile-setting').addEventListener('click', viewMobilePropPane);
+    resetSearch.addEventListener('click', resetInput);
     /**
      * plnkr trigger
      */
@@ -711,8 +808,12 @@ function setSbLink(): void {
     let sample: string = href.match(sampleRegex)[1];
     for (let sb of sbArray) {
         let ele: HTMLFormElement = <HTMLFormElement>select('#' + sb);
-        ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('http://ej2.syncfusion.com/')) +
-            sb + '/' + 'demos/#/' + sample + (sb === 'javascript' ? '.html' : '');
+        if (sb === 'aspnetcore' || sb === 'aspnetmvc') {
+            ele.href = sb === 'aspnetcore' ? 'https://aspdotnetcore.syncfusion.com' : 'https://aspnetmvc.syncfusion.com';
+        } else {
+            ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('https://ej2.syncfusion.com/')) +
+                sb + '/' + 'demos/#/' + sample + (sb === 'javascript' ? '.html' : '');
+        }
     }
 }
 /**
@@ -780,19 +881,12 @@ function loadTheme(theme: string): void {
 /**
  * Mobile Overlay 
  */
-function toggleMobileOverlay(): void {
-    if (!select('.sb-mobile-left-pane').classList.contains('sb-hide')) {
-        toggleLeftPane();
-    }
-    if (!select('.sb-mobile-right-pane').classList.contains('sb-hide')) {
-        toggleRightPane();
-    }
-}
+
 function removeMobileOverlay(): void {
     select('.sb-mobile-overlay').classList.add('sb-hide');
 }
 function isLeftPaneOpen(): boolean {
-    return leftToggle.classList.contains('toggle-active');
+    return sidebar.isOpen();
 }
 function isVisible(elem: string): boolean {
     return !select(elem).classList.contains('sb-hide');
@@ -806,74 +900,39 @@ function setLeftPaneHeight(): void {
 }
 
 function toggleLeftPane(): void {
-    let leftPane: HTMLElement = select('.sb-left-pane') as HTMLElement;
-    let rightPane: HTMLElement = select('.sb-right-pane') as HTMLElement;
-    let mobileLeftPane: Element = select('.sb-mobile-left-pane');
-    let reverse: boolean = leftPane.classList.contains('sb-hide');
-    if (reverse) {
+    let reverse: boolean = sidebar.isOpen();
+    select('#left-sidebar').classList.remove('sb-hide');
+    if (!reverse) {
         leftToggle.classList.add('toggle-active');
     } else {
         leftToggle.classList.remove('toggle-active');
     }
-    if (!isMobile) {
-        leftPane.classList.remove('sb-hide');
-        rightPane.classList.add('control-transition');
-        rightPane.style.overflowY = 'hidden';
-        if (!reverse) {
-            rightPane.classList.add('control-animate');
-        } else {
-            rightPane.classList.add('control-reverse-animate');
-        }
-    } else {
-        reverse = mobileLeftPane.classList.contains('sb-hide');
-        mobileLeftPane.classList.remove('sb-hide');
-    }
-    select('.sb-mobile-overlay').classList.toggle('sb-hide');
-    if (!reverse) {
-        rightPane.classList.remove('control-fullview');
-    } else {
-        rightPane.classList.add('control-fullview');
-    }
-    toggleAnim.animate(leftPane, {
-        name: reverse ? 'SlideLeftIn' : 'SlideLeftOut', end: (): void => {
+    if (sidebar) {
+        reverse = sidebar.isOpen();
+        if (reverse) {
+            sidebar.hide();
             if (!isMobile) {
-                rightPane.classList.remove('control-transition');
-                rightPane.style.overflowY = 'auto';
-                if (!reverse) {
-                    leftPane.classList.add('sb-hide');
-                    rightPane.classList.remove('control-animate');
-                } else {
-                    rightPane.classList.remove('control-reverse-animate');
-                }
-                rightPane.classList.toggle('control-fullview');
-            } else if (isMobile && !reverse) {
-                mobileLeftPane.classList.add('sb-hide');
+                resizeManualTrigger = true;
+                setTimeout(() => { window.dispatchEvent(new Event('resize')); }, 200);
             }
+        } else {
+            sidebar.show();
             resizeManualTrigger = true;
-            window.dispatchEvent(new Event('resize'));
-            if (Browser.isDevice) {
-                window.dispatchEvent(new Event('orientationchange'));
+            if (!isMobile) {
+                setTimeout(() => { window.dispatchEvent(new Event('resize')); }, 200);
             }
-            resizeManualTrigger = false;
         }
-    });
+    }
 }
 /**
  * Mobile Right pane toggle functions
  */
 function toggleRightPane(): void {
+    select('#right-sidebar').classList.remove('sb-hide');
     themeDropDown.index = themeCollection.indexOf(selectedTheme);
-    let mRightPane: HTMLElement = select('.sb-mobile-right-pane') as HTMLElement;
-    select('.sb-mobile-overlay').classList.toggle('sb-hide');
-    let reverse: boolean = mRightPane.classList.contains('sb-hide');
-    mRightPane.classList.remove('sb-hide');
-    toggleAnim.animate(mRightPane, {
-        name: reverse ? 'SlideRightIn' : 'SlideRightOut', end: (): void => {
-            if (!reverse) {
-                mRightPane.classList.add('sb-hide');
-            }
-        }
-    });
+    if (isMobile) {
+        settingsidebar.toggle();
+    }
 }
 function viewMobilePrefPane(): void {
     select('.sb-mobile-prop-pane').classList.add('sb-hide');
@@ -909,7 +968,9 @@ function renderLeftPaneComponents(): void {
                 dataSource: samplesTreeList, id: 'id', parentID: 'pid',
                 text: 'name', hasChildren: 'hasChild', htmlAttributes: 'url'
             },
-            nodeClicked: controlSelect
+            nodeClicked: controlSelect,
+            nodeTemplate: '<div class="sb-tree-component"> <span class="e-component text" role="listitem">${name}' +
+                '${if(type)}<span class="e-samplestatus ${type}"></span>${/if}</span'
         },
         '#controlTree');
     let controlList: ListView = new ListView(
@@ -918,11 +979,11 @@ function renderLeftPaneComponents(): void {
             fields: { id: 'uid', text: 'name', groupBy: 'order', htmlAttributes: 'data' },
             select: controlSelect,
             template: '<div class="e-text-content e-icon-wrapper"> <span class="e-list-text" role="listitem">${name}' +
-            '${if(type)}<span class="e-samplestatus ${type}"></span>${/if}</span>' +
-            '${if(directory)}<div class="e-icons e-icon-collapsible"></div>${/if}</div>',
+                '${if(type)}<span class="e-samplestatus ${type}"></span>${/if}</span>' +
+                '${if(directory)}<div class="e-icons e-icon-collapsible"></div>${/if}</div>',
             groupTemplate: '${if(items[0]["category"])}<div class="e-text-content">' +
-            '<span class="e-list-text">${items[0].category}</span>' +
-            '</div>${/if}',
+                '<span class="e-list-text">${items[0].category}</span>' +
+                '</div>${/if}',
             actionComplete: setSelectList
         },
         '#controlList');
@@ -945,6 +1006,7 @@ function getTreeviewList(list: any[]): Controls[] | { [key: string]: Object }[] 
                 id: id,
                 pid: pid,
                 name: list[i].name,
+                type: list[i].type,
                 url: {
                     'data-path': '/' + list[i].directory + '/' + list[i].samples[0].url + '.html',
                     'control-name': list[i].directory,
@@ -971,7 +1033,7 @@ function controlSelect(arg: any): void {
         if (path !== curHashCollection) {
             sampleOverlay();
             let theme: string = location.hash.split('/')[1] || 'material';
-            if (arg.item && ((isMobile && !select('.sb-mobile-left-pane').classList.contains('sb-hide')) ||
+            if (arg.item && ((isMobile && !select('#left-sidebar').classList.contains('sb-hide')) ||
                 ((isTablet || (Browser.isDevice && isPc)) && isLeftPaneOpen()))) {
                 toggleLeftPane();
             }
@@ -1062,13 +1124,13 @@ function toggleButtonState(id: string, state: boolean): void {
  */
 
 function setPropertySectionHeight(): void {
-        let propertypane: HTMLElement = <any>select('.property-section');
-        let ele: HTMLElement = <any>document.querySelector('.control-section');
-        if (ele && propertypane) {
-            ele.classList.add('sb-property-border');
-        } else {
-            ele.classList.remove('sb-property-border');
-        }
+    let propertypane: HTMLElement = <any>select('.property-section');
+    let ele: HTMLElement = <any>document.querySelector('.control-section');
+    if (ele && propertypane) {
+        ele.classList.add('sb-property-border');
+    } else {
+        ele.classList.remove('sb-property-border');
+    }
 }
 
 function routeDefault(): void {
@@ -1087,11 +1149,15 @@ function routeDefault(): void {
 function destroyControls(): void {
     let elementlist: HTMLElement[] = selectAll('.e-control', document.getElementById('control-content'));
     for (let control of elementlist) {
-        for (let instance of (<Object[]>(<DestroyMethod>control).ej2_instances)) {
-            (<DestroyMethod>instance).destroy();
+        let eleinstance: Object[] = (<DestroyMethod>control).ej2_instances;
+        if (eleinstance) {
+            for (let instance of eleinstance) {
+                (<DestroyMethod>instance).destroy();
+            }
         }
     }
 }
+
 
 function loadScriptfile(path: string): Promise<Object> {
     let scriptEle: HTMLScriptElement = <HTMLScriptElement>document.querySelector('script[src="' + path + '"]');
@@ -1131,7 +1197,8 @@ function plunker(results: string): void {
         detach(prevForm);
     }
     let form: HTMLFormElement = <HTMLFormElement>createElement('form');
-    form.setAttribute('action', 'http://plnkr.co/edit/?p=preview');
+    let res: string = ((location.href as any).includes('ej2.syncfusion.com') ? 'https:' : 'http:') + '//plnkr.co/edit/?p=preview';
+    form.setAttribute('action', res);
     form.setAttribute('method', 'post');
     form.setAttribute('target', '_blank');
     form.id = 'plnkr-form';
@@ -1201,6 +1268,17 @@ function addRoutes(samplesList: Controls[]): void {
                     breadCrumSeperator.style.display = 'none';
                 }
                 breadCrumbSample.innerHTML = subNode.name;
+                let title: HTMLElement = document.querySelector('title');
+                let txt: string = title.innerHTML;
+                let num: number = txt.indexOf('-');
+                if (num !== -1) {
+                    txt = txt.slice(0, num + 1);
+                    txt += ' ' + node.name + ' > ' + subNode.name;
+                } else {
+                    txt += ' - ' + node.name + ' > ' + subNode.name;
+                }
+                title.innerHTML = txt;
+
                 for (let k: number = 0; k < 2; k++) {
                     let header: Element = getSourceTabHeader(k);
                     if (header) {
@@ -1304,6 +1382,9 @@ function removeOverlay(): void {
     } else {
         sbRightPane.scrollTop = 74;
     }
+    if (cultureDropDown.value === 'ar') {
+        changeRtl(true);
+    }
 }
 
 function sampleOverlay(): void {
@@ -1341,7 +1422,8 @@ function parseHash(newHash: string, oldHash: string): void {
     if (newTheme !== selectedTheme && themeCollection.indexOf(newTheme) !== -1) {
         location.reload();
     }
-    if (newHash.length && !select('#' + control + '-common') && checkSampleLength(control)) {
+    if (newHash.length && !select('#' + control + '-common') && checkSampleLength(control) &&
+        samplesJSON.skipCommonChunk.indexOf(control) === -1) {
         let scriptElement: HTMLScriptElement = document.createElement('script');
         scriptElement.src = 'src/' + control + '/common.js';
         scriptElement.id = control + '-common';
@@ -1399,7 +1481,7 @@ function loadJSON(): void {
      */
     if (isMobile) {
         select('.sb-left-footer-links').appendChild(select('.sb-footer-left'));
-        select('.sb-mobile-left-pane').appendChild(select('.sb-left-pane'));
+        select('#left-sidebar').classList.add('sb-hide');
         leftToggle.classList.remove('toggle-active');
     }
     /**
@@ -1407,7 +1489,6 @@ function loadJSON(): void {
      */
     if (isTablet || (Browser.isDevice && isPc)) {
         leftToggle.classList.remove('toggle-active');
-        select('.sb-left-pane').classList.add('sb-hide');
         select('.sb-right-pane').classList.add('control-fullview');
     }
     overlay();

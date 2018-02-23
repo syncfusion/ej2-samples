@@ -1,5 +1,5 @@
 /**
- * DropDownList Default Sample
+ * MultiSelect Custom Value Sample
  */
 import { MultiSelect } from '@syncfusion/ej2-dropdowns';
 
@@ -38,7 +38,7 @@ this.default = () => {
         // set true to enable the custom value support.
         allowCustomValue: true,
         // set the type of mode for how to visualized the selected items in input element.
-        mode: 'box'
+        mode: 'Box'
     });
     games.appendTo('#default');
 };

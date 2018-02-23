@@ -1,7 +1,7 @@
 /**
  * Compass sample
  */
-import { CircularGauge, IAxisLabelRenderEventArgs } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, IAxisLabelRenderEventArgs, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 this.default = (): void => {
     let value: string[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', ''];
@@ -10,12 +10,17 @@ this.default = (): void => {
         axisLabelRender: (args: IAxisLabelRenderEventArgs) => {
             args.text = value[args.value];
         },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [{
             radius: '70%',
             lineStyle: { width: 10, color: '#E0E0E0' },
             labelStyle: {
                 font: {
-                    size: '12px', color: '#333333', fontFamily: 'Roboto'
+                    size: '12px', fontFamily: 'Roboto'
                 },
                 useRangeColor: true,
                 autoAngle: true,

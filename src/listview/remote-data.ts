@@ -4,7 +4,7 @@
 import {ListView} from '@syncfusion/ej2-lists';
 
 //Import DataManager related classes
-import {DataManager, Query, ODataV4Adaptor } from '@syncfusion/ej2-data';
+import {DataManager, Query } from '@syncfusion/ej2-data';
 
 this.default = () => {
 
@@ -13,8 +13,8 @@ this.default = () => {
 
         //Initialize dataSource with the DataManager instance.
         dataSource: new DataManager({
-            url: 'http://services.odata.org/V4/Northwind/Northwind.svc',
-            adaptor: new ODataV4Adaptor
+            url: '//js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/',
+            crossDomain: true
         }),
 
         //Initialize query with the Query instance to get specified set of data

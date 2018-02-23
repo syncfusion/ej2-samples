@@ -1,3 +1,4 @@
+import { Button } from '@syncfusion/ej2-buttons';
 import { Grid, Page, Selection, Reorder, Group, Sort } from '@syncfusion/ej2-grids';
 import { categoryData } from './datasource';
 
@@ -32,6 +33,10 @@ this.default = (): void => {
             columnDrop: columnDrop
         });
     grid.appendTo('#Grid');
+
+    let clear: Button = new Button();
+    clear.appendTo('#clear');
+
     document.getElementById('clear').onclick = () => {
         document.getElementById('EventLog').innerHTML = '';
     };

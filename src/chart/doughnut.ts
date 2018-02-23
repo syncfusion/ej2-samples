@@ -26,7 +26,7 @@ this.default = (): void => {
                 },
                 radius: '70%', xName: 'x',
                 yName: 'y', startAngle: 0,
-                endAngle: 360, innerRadius: '40%',
+                endAngle: 360, innerRadius: '40%', name: 'Project',
                 explode: true, explodeOffset: '10%', explodeIndex: 3
             }
         ],
@@ -35,7 +35,7 @@ this.default = (): void => {
             visible: false,
         },
         // Initialize the tooltip
-        tooltip: { enable: true, format: '${point.x} <br> ${point.y} %' },
+        tooltip: { enable: true, header : '<b>${point.x}</b>', format: 'Composition : <b>${point.y}%</b>'},
         title: 'Project Cost Breakdown',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

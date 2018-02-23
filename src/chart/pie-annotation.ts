@@ -82,7 +82,7 @@ this.default = (): void => {
         loaded: (args: ILoadedEventArgs) => {
             if (isRender) {
                 pie.destroy();
-                pie = new AccumulationChart(pie = new AccumulationChart({
+                pie = new AccumulationChart({
                     background: 'transparent',
                     series: [{
                         radius: '65%', animation: { enable: false },
@@ -95,7 +95,7 @@ this.default = (): void => {
                         args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
                     },
                     legendSettings: { visible: false }
-                }));
+                });
                 pie.appendTo('#chart_annotation');
             }
         },

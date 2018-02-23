@@ -28,7 +28,7 @@ this.default = (): void => {
     let germany: CircularGauge = new CircularGauge(gauge1(), '#container1');
     let usa: CircularGauge = new CircularGauge(gauge2(), '#container2');
     let uk: CircularGauge = new CircularGauge(gauge3(), '#container3');
-    let data: Object = new DataManager(orderData).executeLocal(new Query().take(15));
+    let data: Object = new DataManager(orderData as JSON[]).executeLocal(new Query().take(15));
     let grid: Grid = new Grid(
         {
             dataSource: data,
@@ -68,7 +68,7 @@ this.default = (): void => {
                         'vsTarget': -gridData3
                     }
                 ];
-                let data: Object = new DataManager(orderData).executeLocal(new Query().take(3));
+                let data: Object = new DataManager(orderData as JSON[]).executeLocal(new Query().take(3));
 
                 grid.dataSource = data;
                 grid.refresh();

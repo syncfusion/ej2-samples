@@ -1,38 +1,48 @@
 import { Grid, Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate } from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
-import { orderData } from './datasource';
+import { orderDetails } from './datasource';
 
 Grid.Inject(Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate);
 /**
  * Excel,PDF, CSV export sample
  */
 this.default = (): void => {
+    let refresh: Boolean;
     let grid: Grid = new Grid(
         {
-            dataSource: orderData.splice(0, 200),
+            dataSource: orderDetails,
             allowExcelExport: true,
             allowPdfExport: true,
             allowPaging: true,
             allowGrouping: true,
-            toolbar: ['excelexport', 'pdfexport', 'csvexport'],
+            toolbar: ['ExcelExport', 'PdfExport', 'CsvExport'],
             groupSettings: { showDropArea: false, columns: ['ShipCountry'] },
             pageSettings: { pageCount: 5 },
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'right' },
-                { field: 'CustomerName', headerText: 'Customer Name', width: 150 },
-                { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'right' },
-                { field: 'Freight', width: 120, format: 'C2', textAlign: 'right' },
+                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },
+                { field: 'CustomerID', headerText: 'Customer ID', width: 150 },
+                { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'Right' },
+                { field: 'Freight', width: 120, format: 'C2', textAlign: 'Right' },
                 { field: 'ShipCountry', visible: false, headerText: 'Ship Country', width: 150 },
                 { field: 'ShipCity', visible: false, headerText: 'Ship City', width: 150 }
             ],
             aggregates: [{
                 columns: [{
-                    type: 'sum',
+                    type: 'Sum',
                     field: 'Freight',
                     format: 'C2',
-                    groupFooterTemplate: 'Total freight: ${sum}'
+                    groupFooterTemplate: 'Total freight: ${Sum}'
                 }]
-            }]
+            }],
+            load: () => {
+                refresh = (<any>grid).refreshing;
+            },
+            dataBound: () => {
+                if (refresh) {
+                    grid.groupColumn('ShipCountry');
+                    refresh = false;
+                }
+            }
         });
     grid.appendTo('#Grid');
     grid.toolbarClick = (args: ClickEventArgs) => {

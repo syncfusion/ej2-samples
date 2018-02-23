@@ -1,7 +1,8 @@
 import { Chart, BubbleSeries, Tooltip, IPointRenderEventArgs } from '@syncfusion/ej2-charts';
+import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2-base';
-import { fabricColors, bootstrapColors, materialColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
 Chart.Inject(BubbleSeries, Tooltip);
 
 let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
@@ -11,6 +12,8 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fabricColors[args.point.index % 10];
     } else if (selectedTheme === 'material') {
         args.fill = materialColors[args.point.index % 10];
+    } else if (selectedTheme === 'highcontrast') {
+        args.fill = highContrastColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }
@@ -67,12 +70,17 @@ this.default = (): void => {
         ],
         // Initiazlize the point render event
         pointRender: pointRender,
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         title: 'World Countries Details',
         // Initializing the tooltip with format
         tooltip: {
             enable: true,
             format: '${point.text}<br/>Literacy Rate : <b>${point.x}%</b>' +
-            '<br/>GDP Annual Growth Rate : <b>${point.y}</b><br/>Population : <b>${point.size} Billion</b>'
+                '<br/>GDP Annual Growth Rate : <b>${point.y}</b><br/>Population : <b>${point.size} Billion</b>'
         },
         legendSettings: { visible: false }
     });

@@ -13,7 +13,6 @@ this.default = (): void => {
     let grid: Grid = new Grid({
         dataSource: employeeData,
         detailTemplate: '#detailtemplate',
-        height: 335,
         width: 'auto',
         columns: [
             { field: 'FirstName', headerText: 'First Name', width: 110 },

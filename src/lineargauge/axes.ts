@@ -1,4 +1,4 @@
-import { LinearGauge, Point, Annotations, Placement, Pointer } from '@syncfusion/ej2-lineargauge';
+import { LinearGauge, Point, Annotations, Placement, Pointer, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
@@ -97,6 +97,11 @@ export function getRandomArbitrary(min: number, max: number): number {
 
 export function linearAxes(): LinearGauge {
     let gauge: LinearGauge = new LinearGauge({
+        load: (args: ILoadEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         orientation: 'Horizontal',
         axes: [{
             line: {
@@ -118,15 +123,12 @@ export function linearAxes(): LinearGauge {
                 interval: 2
             },
             labelStyle: {
-                font: {
-                    color: '#424242'
-                },
                 offset: 48
             }
         }],
         annotations: [{
-            content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px;' +
-            'color:#424242">${axes[0].pointers[0].currentValue} MPH</h1></div>',
+            content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px;">' +
+            '${axes[0].pointers[0].currentValue} MPH</h1></div>',
             axisIndex: 0,
             axisValue: 10,
             x: 10,

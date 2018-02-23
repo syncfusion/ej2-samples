@@ -1,12 +1,18 @@
 /**
  * Multiple Axis sample
  */
-import { CircularGauge, isCompleteAngle, GaugeDirection } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, isCompleteAngle, GaugeDirection, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+//tslint:disable
 this.default = (): void => {
     let axisIndex: number = 0;
     let axis: DropDownList; let direction: DropDownList;
     let circulargauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         title: 'Gauge with Multiple Axes',
         titleStyle: { color: 'gray', size: '16px' },
         axes: [{
@@ -14,7 +20,7 @@ this.default = (): void => {
             radius: '95%',
             labelStyle: {
                 position: 'Inside', autoAngle: true,
-                hiddenLabel: 'None', font: { color: '#333333' }
+                hiddenLabel: 'None',
             }, majorTicks: {
                 position: 'Inside',
                 width: 2, height: 10, color: '#757575'

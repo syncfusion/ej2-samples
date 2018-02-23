@@ -2,6 +2,7 @@
     "name": "Button",
     "directory": "button",
     "category": "Editors",
+    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -20,6 +21,20 @@
             "name": "RadioButton",
             "category": "Button",
             "api":{"RadioButton":["label", "name", "value", "checked"] }
+        },
+        {
+            "url": "drop-down-button",
+            "name": "DropDownButton",
+            "category": "Button",
+            "api":{"DropDownButton":["items", "cssClass", "iconCss"] },
+            "type": "preview"
+        },
+        {
+            "url": "split-button",
+            "name": "SplitButton",
+            "category": "Button",
+            "api":{"SplitButton":[ "items", "content", "iconCss", "beforeItemRender"] },
+            "type": "preview"
         }
     ]
 }

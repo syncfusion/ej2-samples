@@ -1,11 +1,11 @@
 /**
  * Annotation sample
  */
-import { CircularGauge, Pointer } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, Pointer, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2 } from './annotation-gauge';
 CircularGauge.Inject(Annotations);
-
+//tslint:disable
 function calcTime(offset: string): Date {
     let date: Date = new Date();
     let localTime: number = date.getTime();
@@ -28,6 +28,11 @@ this.default = (): void => {
     }
     function updateSubGauge2(): void {
         subGauge2 = new CircularGauge({
+            load: (args: ILoadedEventArgs) => {
+                let selectedTheme: string = location.hash.split('/')[1];
+                selectedTheme = selectedTheme ? selectedTheme : 'Material';
+                args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            },
             axes: [{
                 ranges: [{ start: 0, end: 3, startWidth: 4, endWidth: 4, color: 'rgba(29,29,29,0.4)' },
                 { start: 3, end: 12, startWidth: 4, endWidth: 4, color: 'rgba(168,145,102,0.1)' }],

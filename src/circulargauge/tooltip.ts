@@ -1,12 +1,17 @@
 /**
  * Tooltip sample
  */
-import { CircularGauge, ITooltipRenderEventArgs } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, ITooltipRenderEventArgs, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { GaugeTooltip } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(GaugeTooltip);
 
 this.default = (): void => {
     let circulargauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         title: 'Tooltip Customization',
         titleStyle: { size: '15px', color: 'grey' },
         axes: [{
@@ -42,6 +47,7 @@ this.default = (): void => {
         }],
         tooltip: {
             enable: true,
+            fill: 'transparent',
             template: '#gauge-tooltip', border: {
                 color: '#33BCBD',
                 width: 2

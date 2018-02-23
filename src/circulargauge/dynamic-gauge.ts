@@ -2,7 +2,7 @@
  * Dynamic Gauge
  */
 import { CircularGauge, ILoadedEventArgs, IAxisLabelRenderEventArgs, IResizeEventArgs } from '@syncfusion/ej2-circulargauge';
-import { Annotations } from '@syncfusion/ej2-circulargauge';
+import { Annotations, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
 
 let gauge1StartAngle: number = 200;
@@ -81,6 +81,9 @@ export function gauge(): CircularGauge {
             }
         ],
         load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
             let width: number = args.gauge.element.offsetWidth;
             let height: number = args.gauge.element.offsetHeight;
             if (width < 700) {
@@ -125,6 +128,11 @@ export function gauge(): CircularGauge {
 export function gauge1(): CircularGauge {
 
     let gauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         centerX: centerX,
         centerY: centerY,
         axes: [
@@ -187,6 +195,11 @@ export function gauge1(): CircularGauge {
 export function gauge2(): CircularGauge {
 
     let gauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [
             {
                 lineStyle: {
@@ -260,6 +273,11 @@ export function gauge2(): CircularGauge {
 export function gauge3(): CircularGauge {
 
     let gauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [
             {
                 lineStyle: {

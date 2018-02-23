@@ -24,8 +24,9 @@ this.default = (): void => {
             minimum: 2,
             maximum: 5,
             interval: 1,
-            majorGridLines: { width: 0 },
-            labelFormat: '{value}M'
+            labelFormat: '{value}M',
+            lineStyle: { width: 0},
+            majorTickLines: { width: 0}
         },
         chartArea: {
             border: {

@@ -1,13 +1,18 @@
 /**
  * Gauge Labels sample
  */
-import { CircularGauge, Annotations, Position, TickModel } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, Annotations, Position, TickModel, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 CircularGauge.Inject(Annotations);
-
+//tslint:disable
 this.default = (): void => {
     let isMajorTicks: boolean = true;
     let circulargauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [{
             annotations: [{
                 content: '<div id="content" style="color:#518C03;font-size:20px;font-family:Segoe UI;font-weight:semibold;">145</div>',
@@ -17,7 +22,7 @@ this.default = (): void => {
             lineStyle: { width: 2, color: '#9E9E9E' },
             labelStyle: {
                 position: 'Outside', autoAngle: true,
-                font: { size: '10px', color: '#333333' }
+                font: { size: '10px' }
             }, majorTicks: {
                 position: 'Inside', color: '#757575', width: 2, height: 10, interval: 20
             }, minorTicks: {

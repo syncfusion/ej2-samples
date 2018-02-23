@@ -18,9 +18,7 @@ this.default = (): void => {
         // Initiazlizing the axes
         primaryXAxis: {
             valueType: 'DateTime',
-            intervalType: 'Months',
             majorGridLines: { width: 0 },
-            skeleton: 'yMd',
             zoomFactor: 0.2, zoomPosition: 0.6,
             crosshairTooltip: { enable: true },
         },
@@ -68,10 +66,10 @@ this.default = (): void => {
          */
         zoomSettings:
         {
-            enableMouseWheelZooming: true,
-            enablePinchZooming: true,
+
             enableSelectionZooming: true,
-            mode: 'X'
+            mode: 'X',
+            enablePan : true
         },
         tooltip: {
             enable: true, shared: true

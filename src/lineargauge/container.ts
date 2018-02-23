@@ -1,4 +1,4 @@
-import { LinearGauge, ContainerType, Orientation } from '@syncfusion/ej2-lineargauge';
+import { LinearGauge, ContainerType, Orientation, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
@@ -6,6 +6,11 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
  */
 this.default = (): void => {
     let gauge: LinearGauge = new LinearGauge({
+        load: (args: ILoadEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         title: 'Temperature Measure',
         container: {
             width: 13,
@@ -17,11 +22,6 @@ this.default = (): void => {
             maximum: 180,
             line: {
                 width: 0
-            },
-            labelStyle: {
-                font: {
-                    color: '#000000'
-                }
             },
             majorTicks: {
                 interval: 20,
@@ -46,11 +46,6 @@ this.default = (): void => {
             maximum: 180,
             line: {
                 width: 0
-            },
-            labelStyle: {
-                font: {
-                    color: '#000000'
-                }
             },
             majorTicks: {
                 interval: 20

@@ -14,19 +14,19 @@ this.default = (): void => {
             intervalType: 'Years',
             majorGridLines: { width: 0 },
             labelFormat: 'y',
-            edgeLabelPlacement: 'Shift'
+            edgeLabelPlacement: 'Shift',
+            lineStyle: { width: 0},
+            majorTickLines: { width: 0}
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
             title: 'Spends',
-            minimum: 0,
-            maximum: 7,
-            interval: 1,
-            majorGridLines: { width: 0 },
+            minimum: 0, maximum: 7, interval: 1,
             labelFormat: '{value}B',
-            opposedPosition: true,
+            lineStyle: { width: 0},
+            majorTickLines: { width: 0}
         },
         chartArea: {
             border: {

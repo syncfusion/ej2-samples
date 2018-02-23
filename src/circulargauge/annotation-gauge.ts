@@ -1,11 +1,11 @@
 /**
  * Annotations
  */
-import { CircularGauge } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
 import { Browser } from '@syncfusion/ej2-base';
 CircularGauge.Inject(Annotations);
-
+//tslint:disable
 export function gauge1(): CircularGauge {
     let gauge1: CircularGauge = new CircularGauge({
         centerY: '45%',
@@ -13,6 +13,11 @@ export function gauge1(): CircularGauge {
             location.reload();
         },
         titleStyle: { color: 'black', size: '16px' },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [
             {
                 startAngle: 0, endAngle: 0,
@@ -109,6 +114,11 @@ export function gauge1(): CircularGauge {
 export function gauge2(): CircularGauge {
     let gauge2: CircularGauge = new CircularGauge({
         titleStyle: { color: 'black' },
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [
             {
                 startAngle: 0, endAngle: 0,

@@ -19,7 +19,7 @@ this.default = (): void => {
         //Initializing Chart Series
         series: [{
             type: 'Pyramid', dataSource: data, xName: 'x', yName: 'y', width: '45%', height: '80%',
-            neckWidth: '15%', gapRatio: 0.03,
+            neckWidth: '15%', gapRatio: 0.03, name: 'Food',
             dataLabel: {
                 name: 'text', visible: true, position: 'Inside', font: {
                     fontWeight: '600'
@@ -30,7 +30,7 @@ this.default = (): void => {
             visible: false
         },
         //Initializing User Interaction Tooltip
-        tooltip: { enable: true, format: '${point.x} : ${point.y} cal' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y} cal</b>' },
         textRender: (args: IAccTextRenderEventArgs) => {
             args.text = args.text;
         },

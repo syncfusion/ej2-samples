@@ -18,9 +18,9 @@ this.default = (): void => {
         primaryYAxis:
         {
             title: 'Rates',
-
-            majorGridLines: { width: 0 },
-            labelFormat: '{value}M'
+            labelFormat: '{value}M',
+            lineStyle: { width: 0},
+            majorTickLines: { width: 0}
         },
         chartArea: {
             border: {

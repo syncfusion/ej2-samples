@@ -22,7 +22,7 @@ this.default = (): void => {
     let toggleBtn: Button = new Button({ iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isToggle: true });
     toggleBtn.appendTo('#togglebtn');
 
-    button = new Button({ iconCss: 'e-icons e-open-icon', cssClass: 'e-flat', iconPosition: 'right' });
+    button = new Button({ iconCss: 'e-icons e-open-icon', cssClass: 'e-flat', iconPosition: 'Right' });
     button.appendTo('#openiconbtn');
 
     button = new Button({ cssClass: 'e-success' });

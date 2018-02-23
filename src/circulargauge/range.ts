@@ -1,16 +1,21 @@
 /**
  * Range sample
  */
-import { CircularGauge, Annotations } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 CircularGauge.Inject(Annotations);
 this.default = (): void => {
     let circulargauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [{
             lineStyle: { width: 10, color: 'transparent' },
             labelStyle: {
                 position: 'Inside', useRangeColor: false,
-                font: { size: '12px', color: '#424242', fontFamily: 'Roboto', fontStyle: 'Regular' }
+                font: { size: '12px', fontFamily: 'Roboto', fontStyle: 'Regular' }
             }, majorTicks: { height: 10, offset: 5, color: '#9E9E9E' }, minorTicks: { height: 0 },
             annotations: [{
                 content: '<div><span style="font-size:14px; color:#9E9E9E; font-family:Regular">Speedometer</span></div>',
@@ -24,7 +29,7 @@ this.default = (): void => {
             { start: 80, end: 120, color: '#F03E3E' }],
             pointers: [{
                 value: 65, radius: '60%', color: '#757575', pointerWidth: 8,
-                cap: { radius: 7, color: '#757575' }, needleTail: { length: '18%' }
+                cap: { radius: 7, color: '#757575' }, needleTail: { length: '18%', color: '#757575' }
             }]
         }]
     });

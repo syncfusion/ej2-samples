@@ -2,9 +2,11 @@
    "name": "Dialog", 
    "directory": "dialog", 
    "category":"Layout", 
+   "type": "update",
    "samples" : [
-{"url":"basic", "name": "Basic Usage", "category":"Dialog","api":{"Dialog":["header","content","showCloseIcon","buttons","closeOnEscape","target","width","animationSettings","open","close","visible","show","hide"] } },
-{"url":"modal", "name": "Modal", "category":"Dialog","api":{"Dialog":["width","header","content","target","isModal","animationSettings","buttons","open","close","show","hide","overlayClick"] } },
-{"url":"ajax", "name": "Ajax Content", "category":"Dialog","api":{"Dialog":["header","showCloseIcon","width","target","animationSettings","open","close","content","show"] } },
-{"url":"rtl", "name": "RTL", "category":"Dialog","api":{"Dialog":["header","content","showCloseIcon","buttons","target","width","enableRtl","open","close","animationSettings","show","hide"]}}
+{"url":"default", "name": "Default Functionalities", "type": "update", "category":"Dialog","api":{"Dialog":["header","content","showCloseIcon","buttons","closeOnEscape","target","width","animationSettings","open","close","visible","show","hide"] } },
+{"url":"basic", "name": "Custom Dialogs", "category":"Dialog","api":{"Dialog":["header","content","showCloseIcon","buttons","closeOnEscape","target","width","animationSettings","open","close","visible","show","hide"] } },
+{"url":"modal", "name": "Modal", "type": "update", "category":"Dialog","api":{"Dialog":["width","header","content","target","isModal","animationSettings","buttons","open","close","show","hide","overlayClick"] } },
+{"url":"template", "name": "Template","type": "new", "category":"Dialog","api":{"Dialog":["width","header","content","target","isModal","animationSettings","buttons","open","close","show","hide"] } },
+{"url":"ajax", "name": "Ajax Content","type": "update", "category":"Dialog","api":{"Dialog":["header","showCloseIcon","width","target","animationSettings","open","close","content","show"] } }
 ]}

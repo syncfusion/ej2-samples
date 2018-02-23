@@ -2,7 +2,7 @@
  * MultiSelect Remote Data & Local Data Samples
  */
 import { MultiSelect } from '@syncfusion/ej2-dropdowns';
-import { Query, DataManager, ODataV4Adaptor } from '@syncfusion/ej2-data';
+import { Query, DataManager, ODataAdaptor } from '@syncfusion/ej2-data';
 
 
 this.default = () => {
@@ -33,8 +33,8 @@ this.default = () => {
     let listObj: MultiSelect = new MultiSelect({
         // bind the DataManager instance to dataSource property
         dataSource: new DataManager({
-            url: 'http://services.odata.org/V4/Northwind/Northwind.svc/Customers',
-            adaptor: new ODataV4Adaptor,
+            url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Customers',
+            adaptor: new ODataAdaptor,
             crossDomain: true
         }),
         // bind the Query instance to query property

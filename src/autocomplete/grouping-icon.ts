@@ -37,7 +37,9 @@ this.default = () => {
         // map the appropriate columns to fields property
         fields: { groupBy: 'Category', value: 'Vegetable' },
         // set the placeholder to AutoComplete input element
-        placeholder: 'e.g. Cabbage'
+        placeholder: 'e.g. Cabbage',
+        // enabled the popup button to AutoComplete
+        showPopupButton: true
     });
     groupObj.appendTo('#vegetables');
 
@@ -48,7 +50,9 @@ this.default = () => {
         // map the appropriate columns to fields property
         fields: { iconCss: 'Class', value: 'SocialMedia' },
         // set the placeholder to AutoComplete input element
-        placeholder: 'e.g. Facebook'
+        placeholder: 'e.g. Facebook',
+        // enabled the popup button to AutoComplete
+        showPopupButton: true
     });
     iconObj.appendTo('#icons');
 };

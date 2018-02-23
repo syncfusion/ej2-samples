@@ -10,14 +10,20 @@ import { Browser } from '@syncfusion/ej2-base';
  * Sample for Hilo Open Close series
  */
 this.default = (): void => {
+    let date1: Date = new Date(2017, 1, 1);
+    let returnValue: any = chartData.filter(filterValue);
+    function filterValue(value: { x: Date, high: number, low: number }): any {
+        return value.x >= date1;
+    }
 
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'DateTime',
-            skeleton: 'yMd', zoomFactor: 0.2, zoomPosition: 0.6,
             crosshairTooltip: { enable: true },
+            minimum: new Date(2016, 12, 31),
+            maximum: new Date(2017, 9, 31),
             majorGridLines: { width: 0 }
 
         },
@@ -25,8 +31,8 @@ this.default = (): void => {
         primaryYAxis: {
             title: 'Price',
             labelFormat: '${value}',
-            minimum: 50, maximum: 170,
-            interval: 40,
+            minimum: 100, maximum: 180,
+            interval: 20,
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 }
         },
@@ -39,7 +45,7 @@ this.default = (): void => {
         series: [
             {
                 type: 'HiloOpenClose',
-                dataSource: chartData, animation: { enable: true },
+                dataSource: returnValue, animation: { enable: true },
                 bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
                 xName: 'x', low: 'low', high: 'high', open: 'open', close: 'close', name: 'Apple Inc'
             }
@@ -55,13 +61,7 @@ this.default = (): void => {
                 width: 0,
             }
         },
-        zoomSettings:
-        {
-            enableMouseWheelZooming: true,
-            enablePinchZooming: true,
-            enableSelectionZooming: true,
-            mode: 'X'
-        },
+
         legendSettings: {
             visible: false
         },

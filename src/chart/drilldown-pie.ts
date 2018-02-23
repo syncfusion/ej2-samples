@@ -6,7 +6,6 @@ import {
 } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel, AccumulationAnnotation);
-
 /**
  * Sample fro Drill Down in Pie chart
  */
@@ -46,6 +45,9 @@ this.default = (): void => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            if (selectedTheme === 'highcontrast') {
+                args.accumulation.annotations[0].content = '#white' ;
+            }
         }
     };
     let pointClick: EmitType<IMouseEventArgs> = (args: IMouseEventArgs) => {
@@ -84,11 +86,9 @@ this.default = (): void => {
                 dataSource: [{ x: 'SUV', y: 25 }, { x: 'Car', y: 37 }, { x: 'Pickup', y: 15 }, { x: 'Minivan', y: 23 }],
                 dataLabel: {
                     visible: true, position: 'Inside', connectorStyle: { type: 'Curve', length: '10%' },
-                    font: { fontWeight: '600', color: 'white' }
-                },
+                    font: { fontWeight: '600', color: 'white' }},
                 radius: '70%', xName: 'x', yName: 'y', startAngle: 0, endAngle: 360, innerRadius: '0%',
-                explode: true, explodeOffset: '10%', explodeIndex: 2,
-            }
+                explode: true, explodeOffset: '10%', explodeIndex: 2 }
         ], enableSmartLabels: false, legendSettings: { visible: false }, chartMouseClick: pointClick,
         textRender: (args: IAccTextRenderEventArgs) => { args.text = args.point.x + ' ' + args.point.y + ' %'; },
         tooltip: { enable: false, format: '${point.x} <br> ${point.y} %' },
@@ -103,8 +103,7 @@ this.default = (): void => {
     (getElement('category') as HTMLElement).onclick = (e: MouseEvent) => {
         let tooltip: Element = document.getElementsByClassName('e-tooltip-wrap')[0];
         if (tooltip) { tooltip.remove(); }
-        pie.destroy(); pie.removeSvg();
-        pie = null; pie = new AccumulationChart(instance);
+        pie.destroy(); pie.removeSvg(); pie = null; pie = new AccumulationChart(instance);
         pie.appendTo('#container');
         (e.target as HTMLButtonElement).style.visibility = 'hidden';
         (getElement('symbol') as HTMLElement).style.visibility = 'hidden';

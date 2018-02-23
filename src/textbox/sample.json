@@ -2,7 +2,8 @@
    "name": "TextBoxes", 
    "directory": "textbox",
    "category":"Editors",
+   "type": "update",
    "samples" : [
-    {"url":"default", "name": "Default Functionalities", "category":"TextBoxes" }
+    {"url":"default", "name": "Default Functionalities", "category":"TextBoxes", "type":"update" }
    ]
 }

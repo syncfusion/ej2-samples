@@ -19,7 +19,6 @@ this.default = (): void => {
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'DateTime',
-            intervalType: 'Months',
             majorGridLines: { width: 0 },
             zoomFactor: 0.2, zoomPosition: 0.6,
             crosshairTooltip: { enable: true },
@@ -55,11 +54,10 @@ this.default = (): void => {
         },
         crosshair: { enable: true, lineType: 'Vertical' },
         zoomSettings: {
-            enableMouseWheelZooming: true,
+
             enableSelectionZooming: true,
-            enableDeferredZooming: true,
-            enablePinchZooming: true,
-            mode: 'X'
+            mode: 'X',
+            enablePan : true
         },
         //Initializing Chart Title
         title: 'AAPL - 2012-2017',

@@ -16,8 +16,8 @@ this.default = (): void => {
         height: 335,
         width: 'auto',
         columns: [
-            { headerText: 'Employee Image', width: 180, textAlign: 'center', field: 'OrderID' },
-            { headerText: 'Employee Details', width: 300, field: 'EmployeeID', textAlign: 'left' }
+            { headerText: 'Employee Image', width: 180, textAlign: 'Center', field: 'OrderID' },
+            { headerText: 'Employee Details', width: 300, field: 'EmployeeID', textAlign: 'Left' }
         ]
     });
     grid.appendTo('#Grid');

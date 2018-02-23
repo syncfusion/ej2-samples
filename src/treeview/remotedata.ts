@@ -1,5 +1,5 @@
 import { TreeView } from '@syncfusion/ej2-navigations';
-import { DataManager, Query, ODataV4Adaptor } from '@syncfusion/ej2-data';
+import { DataManager, Query, ODataAdaptor } from '@syncfusion/ej2-data';
 
 /**
  * TreeView remote data sample
@@ -7,8 +7,8 @@ import { DataManager, Query, ODataV4Adaptor } from '@syncfusion/ej2-data';
 this.default = () => {
     // Use data manager to get tree data from remote source
     let data: DataManager = new DataManager({
-        url: 'http://services.odata.org/V4/Northwind/Northwind.svc',
-        adaptor: new ODataV4Adaptor,
+        url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc',
+        adaptor: new ODataAdaptor,
         crossDomain: true,
     });
     // Set queries to filter and fetch remote data

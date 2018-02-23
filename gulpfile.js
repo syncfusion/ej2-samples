@@ -69,7 +69,7 @@ gulp.task('test', function(done) {
     new karma.Server({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true,
-        browsers: ['Chrome'],
+        browsers: ['ChromeHeadless'],
         browserNoActivityTimeout: 30000
     }, function(e) {
         done(e === 0 ? null : 'karma exited with status ' + e);

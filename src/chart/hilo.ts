@@ -10,14 +10,20 @@ import { Browser } from '@syncfusion/ej2-base';
  * Sample for Hilo series
  */
 this.default = (): void => {
-
+    let date1: Date = new Date(2017, 1, 1);
+    let returnValue: any = chartData.filter(filterValue);
+    function filterValue(value: { x: Date, high: number, low: number }): any {
+        return value.x >= date1;
+    }
     let chart: Chart = new Chart({
+
 
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'DateTime',
-            skeleton: 'yMd', zoomFactor: 0.2, zoomPosition: 0.6,
             crosshairTooltip: { enable: true },
+            minimum: new Date(2016, 12, 31),
+            maximum: new Date(2017, 9, 31),
             majorGridLines: { width: 0 }
 
         },
@@ -29,9 +35,9 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis: {
             title: 'Price',
-            minimum: 50,
-            maximum: 170,
-            interval: 30,
+            minimum: 100,
+            maximum: 180,
+            interval: 20,
             labelFormat: '${value}',
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 }
@@ -41,7 +47,7 @@ this.default = (): void => {
         series: [
             {
                 type: 'Hilo',
-                dataSource: chartData, animation: { enable: true },
+                dataSource: returnValue, animation: { enable: true },
                 xName: 'x', low: 'low', high: 'high', name: 'Apple Inc'
             }
         ],
@@ -56,13 +62,7 @@ this.default = (): void => {
                 width: 0,
             }
         },
-        zoomSettings:
-        {
-            enableMouseWheelZooming: true,
-            enablePinchZooming: true,
-            enableSelectionZooming: true,
-            mode: 'X'
-        },
+
         width: Browser.isDevice ? '100%' : '80%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

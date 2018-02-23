@@ -11,9 +11,9 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
  * Sample for Remote Data bind in chart
  */
 let dataManager: DataManager = new DataManager({
-    url: 'http://mvc.syncfusion.com/Services/Northwnd.svc/Tasks/'
+    url: 'https://mvc.syncfusion.com/Services/Northwnd.svc/Tasks/'
 });
-import { fabricColors, materialColors, bootstrapColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
 let query: Query = new Query().take(5).where('Estimate', 'lessThan', 3, false);
 let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEventArgs): void => {
     if (args.axis.orientation === 'Horizontal') {
@@ -36,6 +36,8 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fabricColors[args.point.index % 10];
     } else if (selectedTheme === 'material') {
         args.fill = materialColors[args.point.index % 10];
+    } else if (selectedTheme === 'highcontrast') {
+        args.fill = highContrastColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }
@@ -53,14 +55,14 @@ this.default = (): void => {
 
         //Initializing Primary Y Axis
         primaryYAxis:
-        {
-            majorGridLines: { width: 0 },
-            majorTickLines: { width: 0 },
-            lineStyle: { width: 0 },
-            labelStyle: {
-                color: 'transparent'
-            }
-        },
+            {
+                majorGridLines: { width: 0 },
+                majorTickLines: { width: 0 },
+                lineStyle: { width: 0 },
+                labelStyle: {
+                    color: 'transparent'
+                }
+            },
         chartArea: {
             border: {
                 width: 0

@@ -35,7 +35,7 @@ this.default = (): void => {
                     visible: true, position: 'Inside',
                     name: 'text',
                     font: { color: 'white', fontWeight: '600', size: '14px' }
-                },
+                }, name: 'Revenue'
             }
         ],
         legendSettings: {
@@ -68,7 +68,9 @@ this.default = (): void => {
             args.accumulation.legendSettings.position = Browser.isDevice ? 'Bottom' : 'Right';
         },
         tooltip: {
-            enable: true, format: '${point.x} <br> Composition: ${point.y}%'
+            enable: true,
+            header: '<b>${point.x}</b>',
+            format: 'Composition : <b>${point.y}%</b>'
         },
         title: 'Education Institutional Revenue',
     });

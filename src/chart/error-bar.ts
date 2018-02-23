@@ -6,17 +6,20 @@ import {
     IPointRenderEventArgs
 } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
 Chart.Inject(ScatterSeries, Category, ErrorBar, Tooltip);
 /**
  * Sample for error bar
  */
 let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];
+    selectedTheme = selectedTheme ? selectedTheme : 'Material';
     if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
         args.fill = fabricColors[args.point.index % 10];
     } else if (selectedTheme === 'material') {
         args.fill = materialColors[args.point.index % 10];
+    } else if (selectedTheme === 'highcontrast') {
+        args.fill = highContrastColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }
@@ -33,9 +36,9 @@ this.default = (): void => {
         },
         //Initializing Primary Y Axis
         primaryYAxis:
-        {
-            labelFormat: '{value}%', minimum: 15, maximum: 45, lineStyle: { width: 0 }
-        },
+            {
+                labelFormat: '{value}%', minimum: 15, maximum: 45, lineStyle: { width: 0 }
+            },
         pointRender: pointRender,
         //Initializing Chart Series
         series: [

@@ -5,8 +5,7 @@ import { DatePicker, RenderDayCellEventArgs } from '@syncfusion/ej2-calendars';
 
 this.default = (): void => {
     let datepicker: DatePicker = new DatePicker({
-        renderDayCell: disableDate,
-        placeholder: 'Choose a date'
+        renderDayCell: disableDate
     });
     datepicker.appendTo('#datepicker');
     function disableDate(args: RenderDayCellEventArgs): void {

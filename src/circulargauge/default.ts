@@ -1,10 +1,15 @@
 /**
  * Default sample
  */
-import { CircularGauge } from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 
 this.default = (): void => {
     let circulargauge: CircularGauge = new CircularGauge({
+        load: (args: ILoadedEventArgs) => {
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+        },
         axes: [{
             radius: '80%',
             startAngle: 230,
@@ -18,7 +23,6 @@ this.default = (): void => {
             },
             labelStyle: {
                 font: {
-                    color: '#424242',
                     fontFamily: 'Roboto',
                     size: '12px',
                     fontWeight: 'Regular'
@@ -36,6 +40,7 @@ this.default = (): void => {
                     border: { width: 0 }
                 },
                 needleTail: {
+                    color: '#757575',
                     length: '25%'
                 }
             }]

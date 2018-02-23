@@ -9,12 +9,10 @@ this.default = (): void => {
     let value: Date;
     let isStartTimeChange: Boolean = true;
     let startTime: TimePicker = new TimePicker({
-        placeholder: 'Start Time',
         change: onEnableEndTime
     });
     startTime.appendTo('#start');
     let endTime: TimePicker = new TimePicker({
-        placeholder: 'End Time',
         enabled: false
     });
     endTime.appendTo('#end');

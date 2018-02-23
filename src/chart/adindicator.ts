@@ -19,11 +19,9 @@ this.default = (): void => {
         // Initializing the axes
         primaryXAxis: {
             valueType: 'DateTime',
-            intervalType: 'Months',
             majorGridLines: { width: 0 },
             zoomFactor: 0.2, zoomPosition: 0.6,
-            skeleton: 'yMd',
-            crosshairTooltip: { enable: true },
+            crosshairTooltip: { enable: true }
         },
         primaryYAxis: {
             title: 'Price',
@@ -58,6 +56,7 @@ this.default = (): void => {
             name: 'Apple Inc', bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
             type: 'Candle', animation: { enable: true }
         }],
+
         // Initializing the indicators
         indicators: [{
             type: 'AccumulationDistribution', field: 'Close', seriesName: 'Apple Inc', yAxisName: 'secondary', fill: '#6063ff',
@@ -68,10 +67,11 @@ this.default = (): void => {
          */
         zoomSettings:
         {
-            enableMouseWheelZooming: true,
-            enablePinchZooming: true,
+
             enableSelectionZooming: true,
-            mode: 'X'
+            mode: 'X',
+            enablePan : true
+
         },
         tooltip: {
             enable: true, shared: true

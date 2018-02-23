@@ -1,6 +1,6 @@
 {
   "name": "@syncfusion/ej2-samples",
-  "version": "0.0.1",
+  "version": "16.1.24",
   "description": "Samples for Syncfusion Essential JS 2",
   "author": "Syncfusion Inc.",
   "license": "SEE LICENSE IN license",
@@ -46,13 +46,8 @@
     "webpack-stream": "^3.2.0"
   },
   "scripts": {
-    "test": "gulp sample-test",
-    "ci-publish": "gulp publish-samples"
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "gulp test",
-      "commit-msg": "gulp commit-message"
-    }
+    "build": "gulp build",
+		"serve": "gulp serve",
+		"test": "gulp test"
   }
 }

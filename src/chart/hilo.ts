@@ -2,28 +2,20 @@ import {
     Chart, HiloSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic,
     Crosshair, ChartTheme
 } from '@syncfusion/ej2-charts';
-import { chartData } from './financial-data';
 Chart.Inject(HiloSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair);
-import { Browser } from '@syncfusion/ej2-base';
+import { Browser, Ajax } from '@syncfusion/ej2-base';
 
 /**
  * Sample for Hilo series
  */
-this.default = (): void => {
-    let date1: Date = new Date(2017, 1, 1);
-    let returnValue: any = chartData.filter(filterValue);
-    function filterValue(value: { x: Date, high: number, low: number }): any {
-        return value.x >= date1;
-    }
+this.renderChart = (chartData: Object[]): void => {
     let chart: Chart = new Chart({
-
-
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'DateTime',
             crosshairTooltip: { enable: true },
-            minimum: new Date(2016, 12, 31),
-            maximum: new Date(2017, 9, 31),
+            minimum: new Date('2016-12-31'),
+            maximum: new Date('2017-09-30'),
             majorGridLines: { width: 0 }
 
         },
@@ -47,7 +39,7 @@ this.default = (): void => {
         series: [
             {
                 type: 'Hilo',
-                dataSource: returnValue, animation: { enable: true },
+                dataSource: chartData, animation: { enable: true },
                 xName: 'x', low: 'low', high: 'high', name: 'Apple Inc'
             }
         ],
@@ -71,4 +63,18 @@ this.default = (): void => {
         }
     });
     chart.appendTo('#container');
+};
+this.default = (): void => {
+    let chartData: Object[];
+    let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
+    ajax.send().then();
+    // Rendering Dialog on AJAX success
+    ajax.onSuccess = (data: string): void => {
+        chartData = JSON.parse(data);
+        chartData.map((data: Object) => {
+            // tslint:disable-next-line:no-string-literal
+            data['x'] = new Date(data['x']);
+        });
+        this.renderChart(chartData);
+    };
 };

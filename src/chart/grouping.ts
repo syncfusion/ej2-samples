@@ -2,8 +2,9 @@ import {
     AccumulationChart, AccumulationLegend, PieSeries, AccumulationTooltip,
     IAccTextRenderEventArgs, AccumulationTheme
 } from '@syncfusion/ej2-charts';
-import { IAccPointRenderEventArgs, IAccLoadedEventArgs, AccumulationDataLabel } from '@syncfusion/ej2-charts';
+import { IAccPointRenderEventArgs, IAccLoadedEventArgs, AccumulationDataLabel, GroupModes } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
  * Sample for grouping in Pie chart
@@ -30,6 +31,7 @@ this.default = (): void => {
                     { 'x': 'Kenya', y: 6, text: 'Kenya: 6' },
                 ],
                 animation: { enable: true }, name: 'RIO',
+                explode: true,
                 dataLabel: {
                     visible: true,
                     position: 'Outside',
@@ -41,14 +43,15 @@ this.default = (): void => {
                 radius: '70%',
                 xName: 'x',
                 yName: 'y',
-                groupTo: '10',
+                groupTo: '9',
+                groupMode: 'Point',
                 startAngle: 0,
                 endAngle: 360,
                 innerRadius: '0%',
             }
         ],
         pointRender: (args: IAccPointRenderEventArgs) => {
-            if ((args.point.x as string).indexOf('Others') > -1) {
+            if (args.point.isClubbed || args.point.isSliced) {
                 args.fill = '#D3D3D3';
             }
         },
@@ -60,7 +63,7 @@ this.default = (): void => {
             args.text = args.point.x + ' ' + args.point.y;
         },
         //Initializing tooltip
-        tooltip: { enable: true, format: '${point.x} : <b>${point.y} Medals</b>' },
+        tooltip: { enable: false },
         //Initializing title
         title: 'RIO Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {
@@ -70,6 +73,18 @@ this.default = (): void => {
         }
     });
     pie.appendTo('#container');
+    let mode: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select Range Bar Color',
+        width: 120,
+        change: () => {
+            let currentValue: number = mode.value === 'Point' ? 9 : 8;
+            (document.getElementById('clubpoint') as HTMLInputElement).value =  currentValue.toString();
+            pie.series[0].groupMode = <GroupModes>mode.value;
+            clubchange(currentValue);
+        }
+    });
+    mode.appendTo('#mode');
     function clubchange(value: number): void {
         pie.series[0].groupTo = value.toString();
         pie.series[0].animation.enable = false;
@@ -78,8 +93,8 @@ this.default = (): void => {
         pie.refreshSeries();
         pie.refreshChart();
     }
-    document.getElementById('clubpoint').onpointermove = document.getElementById('clubpoint').ontouchmove =
-        document.getElementById('clubpoint').onchange = (e: Event) => {
-            clubchange(+(document.getElementById('clubpoint') as HTMLInputElement).value);
-        };
+
+    document.getElementById('clubpoint').onchange = (e: Event) => {
+        clubchange(+(document.getElementById('clubpoint') as HTMLInputElement).value);
+    };
 };

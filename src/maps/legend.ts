@@ -1,10 +1,9 @@
 /**
  * Legend Sample
  */
-import { Maps, Legend, MapsTooltip, ITooltipRenderEventArgs, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
-import { World_Map } from './MapData/WorldMap';
-import { Population_Density } from './MapData/PopulationDensity';
+import { Maps, Legend, MapsTooltip, ITooltipRenderEventArgs, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Legend, MapsTooltip);
+/* tslint:disable:no-string-literal */
 this.default = (): void => {
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
@@ -13,8 +12,8 @@ this.default = (): void => {
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
         tooltipRender: (args: ITooltipRenderEventArgs) => {
-            if (args.content.toString().indexOf('density') > -1) {
-            args.cancel = true;
+            if (!args.options['data']) {
+                args.cancel = true;
             }
         },
         zoomSettings: {
@@ -32,10 +31,10 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: World_Map,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                dataSource: Population_Density,
+                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/legend-datasource.json'),
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'name',

@@ -8,7 +8,7 @@ let acrdnObj: Accordion;
 let nestAcrdn: Accordion;
 this.default = () => {
 
-    let ajax: Ajax = new Ajax('./src/accordion/Ajax_content.html', 'GET', true);
+    let ajax: Ajax = new Ajax('./src/accordion/ajax-content.html', 'GET', true);
     ajax.send().then();
     ajax.onSuccess = (data: string): void => {
         //Initialize Accordion component

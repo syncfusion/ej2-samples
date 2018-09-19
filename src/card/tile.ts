@@ -4,7 +4,7 @@
 import { compile, detach} from '@syncfusion/ej2-base';
 import { MultiSelect, SelectEventArgs, RemoveEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Query, DataManager, Predicate } from '@syncfusion/ej2-data';
-import { cardBook } from './datasource';
+import { cardBook } from './data-source';
 
 /* tslint:disable:max-line-length
    tslint:disable:max-func-body-length
@@ -76,7 +76,7 @@ this.default = () => {
     }
     /* Select event function for multiSelect component */
     function multiSelectFun(e: SelectEventArgs): void {
-      let keywords: string[] = (<FilterKey>e.itemData).Code.split(','); let dublicate: Object[];
+      let keywords: string[] = ((<FilterKey>e.itemData).Code).split(','); let dublicate: Object[];
       let cardDa: Object[] = searchData.length > 0 ? searchData : cardObj;
       if (multiselectComp.value && multiselectComp.value.length === 0 && searchValCount === 0) {
          multiSelectData = []; }

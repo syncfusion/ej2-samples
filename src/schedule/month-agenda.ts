@@ -12,7 +12,7 @@ this.default = () => {
     let data: Object[] = <Object[]>extend([], fifaEventsData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '550px',
+        height: '650px',
         views: ['MonthAgenda'],
         selectedDate: new Date(2018, 5, 20),
         eventSettings: { dataSource: data }

@@ -2,7 +2,7 @@
  *  Sample for CSS Swipeable Cards.
  */
 // tslint:disable:max-line-length
-import { Touch, ScrollEventArgs, SwipeEventArgs, closest } from '@syncfusion/ej2-base';
+import { Touch, SwipeEventArgs, closest } from '@syncfusion/ej2-base';
 
 
 this.default = () => {
@@ -48,32 +48,15 @@ this.default = () => {
         if (ele.parentElement.querySelector('.card-out-left')) {
             ele.parentElement.querySelector('.card-out-left').classList.remove('card-out-left');
         }
-        e.swipeDirection === 'Right' ? ele.classList.add('card-out') : ele.classList.add('card-out-left');
+        if (e.swipeDirection === 'Right') {
+            ele.classList.add('card-out');
+        } else if (e.swipeDirection === 'Left') {
+            ele.classList.add('card-out-left');
+        } else {
+            return;
+        }
         ele.parentElement.insertBefore(ele, ele.parentElement.children[0]);
         swipeable();
         ele.style.removeProperty('left');
-    }
-
-    function touchScrollHandler(e: ScrollEventArgs): void {
-        let ele: HTMLElement = <HTMLElement>closest(<Element>e.originalEvent.target, '.e-card');
-        let leftVal: number = Math.abs(parseInt(ele.style.left, 10));
-        if (!ele.classList.contains('e-card')) {
-            return;
-        }
-        if (isNaN(leftVal) || dir !== e.scrollDirection) {
-            leftVal = 0;
-        }
-        if (e.scrollDirection === 'Down') {
-            let index: number = [].slice.call(ele.parentElement.children).indexOf(ele);
-            let len: number = ele.parentElement.childElementCount;
-            let el: HTMLElement;
-            for (let i: number = index + 1; i < len; i++) {
-                el = (<HTMLElement>ele.parentElement.children[i]);
-                el.style.top = (parseInt(el.style.top, 10) + e.distanceY) + 'px';
-            }
-        } else {
-            e.scrollDirection === 'Left' ? ele.style.left = - (leftVal + e.distanceX) + 'px' : ele.style.left = (leftVal + e.distanceX) + 'px';
-        }
-        dir = e.scrollDirection;
     }
 };

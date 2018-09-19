@@ -1,6 +1,6 @@
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { Grid, Sort, Page, Selection, SortEventArgs } from '@syncfusion/ej2-grids';
-import { orderData } from './datasource';
+import { orderData } from './data-source';
 
 Grid.Inject(Sort, Page, Selection);
 /**

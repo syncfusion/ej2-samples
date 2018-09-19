@@ -23,9 +23,6 @@ this.default = (): void => {
         primaryYAxis:
         {
             title: 'Revenue in Millions',
-            minimum: 0,
-            maximum: 4,
-            interval: 1,
             labelFormat: '{value}M'
         },
 

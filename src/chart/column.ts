@@ -14,7 +14,7 @@ this.default = (): void => {
         chartArea: { border: { width: 0 } },
         primaryYAxis:
         {
-            minimum: 0, maximum: 50, interval: 10, majorGridLines: { width: 0 },
+            majorGridLines: { width: 0 },
             majorTickLines: { width: 0 }, lineStyle: { width: 0 }, labelStyle: { color: 'transparent' }
         },
         //Initializing Chart Series

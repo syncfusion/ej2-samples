@@ -24,19 +24,19 @@ let londonEmployees: { [key: string]: Object }[] = [
 //Initialize ListView component
 let listObj1: ListView = new ListView({
     dataSource: romeEmployees,
-    template: '<div class="template-container"><div class="left"><img class="empImg" src="src/dropdownlist/Employees/${id}.png" ' +
+    template: '<div class="template-container"><div class="left"><img class="empImg" src="src/tab/images/employees/${id}.png" ' +
         'alt="${id}" /></div><div class="left info"><div class="name">${name}</div> <div class="role">${role}</div></div></div>'
 });
 //Initialize ListView component
 let listObj2: ListView = new ListView({
     dataSource: parisEmployees,
-    template: '<div class="template-container"><div class="left"><img class="empImg" src="src/dropdownlist/Employees/${id}.png" ' +
+    template: '<div class="template-container"><div class="left"><img class="empImg" src="src/tab/images/employees/${id}.png" ' +
         'alt="${id}" /></div><div class="left info"><div class="name">${name}</div> <div class="role">${role}</div></div></div>'
 });
 //Initialize ListView component
 let listObj3: ListView = new ListView({
     dataSource: londonEmployees,
-    template: '<div class="template-container"><div class="left"><img class="empImg" src="src/dropdownlist/Employees/${id}.png" ' +
+    template: '<div class="template-container"><div class="left"><img class="empImg" src="src/tab/images/employees/${id}.png" ' +
         'alt="${id}" /></div><div class="left info"><div class="name">${name}</div> <div class="role">${role}</div></div></div>'
 });
 

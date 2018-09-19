@@ -84,7 +84,7 @@ this.default = (): void => {
     dropdownInstance.appendTo('#types');
 
     // open new tab
-    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'samples/sidebar/api/index.html');
+    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'sidebar/api/index.html');
 
     // Close the Sidebar
     document.getElementById('close').onclick = (): void => {

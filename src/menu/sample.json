@@ -1,0 +1,44 @@
+{
+    "name": "Menu",
+    "directory": "menu",
+    "category": "Navigation",
+    "type": "preview",
+    "ftName" :"menu",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "category": "Menu",
+            "api":{ "Menu":["items", "orientation"], "MenuItem": ["text", "iconCss", "items", "separator"] },
+            "description": "This demo for Syncfusion Essential JS2 Menu control demonstrates the default functionalities. It shows menu items with icon, text, separator and its sub menu."
+        },
+        {
+            "url": "data-binding",
+            "name": "Data Binding",
+            "category": "Menu",
+            "api":{ "Menu": ["items"] },
+            "description": "This demo for Essential JS2 Menu control shows data binding of the local data source. It can either be hierarchical or self-referential data."
+        },
+        {
+            "url": "template",
+            "name": "Template",
+            "category": "Menu",
+            "api":{ "Menu": ["items", "fields", "template"], "FieldSettings": ["text", "children"] },
+            "description": "This demo for Essential JS2 Menu control shows the template functionalities. It supports customization of menu items using data source with fields."            
+        },
+        {
+            "url": "api",
+            "name": "API",
+            "category": "Menu",
+            "api":{ "Menu": ["orientation", "showItemOnClick", "enableItems"] },
+            "description": "This demo for Essential JS2 Menu control shows the supported APIs and its functionalities. It includes enable/disable item, show item on click and orientation."            
+        },
+        {
+            "url": "toolbar-integration",
+            "name": "Toolbar Integration",
+            "category": "Menu",
+            "api":{ "Menu": ["items"] },
+            "description": "This demo for Essential JS2 Menu control shows integration of Menu in the toolbar control and its customization using button, drop-down button, and text box."
+        }
+    ]
+}

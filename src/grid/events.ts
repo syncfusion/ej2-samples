@@ -1,6 +1,6 @@
 import { Button } from '@syncfusion/ej2-buttons';
 import { Grid, Page, Selection, Reorder, Group, Sort } from '@syncfusion/ej2-grids';
-import { categoryData } from './datasource';
+import { categoryData } from './data-source';
 
 Grid.Inject(Page, Selection, Reorder, Group, Sort);
 

@@ -18,7 +18,6 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis: {
             labelFormat: '{value}˚F',
-            minimum: 0, maximum: 100, interval: 20,
             edgeLabelPlacement: 'Shift',
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 }

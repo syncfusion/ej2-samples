@@ -2,7 +2,7 @@ import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(true);
 import { Grid, Toolbar, ExcelExport, PdfExport, Page } from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
-import { productData } from './datasource';
+import { productData } from './data-source';
 
 Grid.Inject(Toolbar, ExcelExport, PdfExport, Page);
 /**
@@ -89,7 +89,8 @@ function getExcelExportProperties(): any {
                 { cells: [{ colSpan: 6, value: 'Thank you for your business!', style: { fontColor: '#C67878', hAlign: 'Center', bold: true } }] },
                 { cells: [{ colSpan: 6, value: '!Visit Again!', style: { fontColor: '#C67878', hAlign: 'Center', bold: true } }] }
             ]
-        }
+        },
+        fileName: 'exceldocument.xlsx'
     };
 }
 /* tslint:disable-next-line:no-any */
@@ -188,7 +189,8 @@ function getPdfExportProperties(): any {
                     style: { textBrushColor: '#C67878', fontSize: 14 }
                 }
             ]
-        }
+        },
+        fileName: 'pdfdocument.pdf'
     };
 }
 let date : string = '';

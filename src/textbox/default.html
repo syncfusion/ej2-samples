@@ -5,18 +5,10 @@
         </div>
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-float-input">
-                    <input type="text" required>
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text">First Name</label>
-                </div>
+                <input id="firstname" />
             </div>
             <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <div class="e-float-input e-rtl">
-                    <input type="text" required>
-                    <span class="e-float-line"></span>
-                    <label class="e-float-text">Last Name</label>
-                </div>
+                <input id="lastname" />
             </div>
         </div>
         <div class="row">
@@ -226,7 +218,7 @@
     }
     
     .e-input-calendar:before {
-        content: "";
+        content: '\e901';
         font-family: e-icons;
         font-size: 13px;
     }

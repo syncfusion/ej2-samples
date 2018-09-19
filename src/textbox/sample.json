@@ -2,8 +2,9 @@
    "name": "TextBoxes", 
    "directory": "textbox",
    "category":"Editors",
-   "type": "update",
+   "ftName": "textbox",
+   "type": "update",  
    "samples" : [
-    {"url":"default", "name": "Default Functionalities", "category":"TextBoxes", "type":"update" }
+    {"url":"default", "name": "Default Functionalities", "category":"TextBoxes", "description":"This sample covers the major features of the text box component, such as floating labels and placeholders, integrated icons, validation states, sizing, types, and more.", "type": "update", "api": { "TextBoxes": ["placeholder", "floatLabelType", "enableRtl"]}}
    ]
 }

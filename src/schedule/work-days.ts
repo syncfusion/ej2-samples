@@ -1,9 +1,12 @@
 import { extend } from '@syncfusion/ej2-base';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Schedule, Week, Month, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import {
+    Schedule, Week, WorkWeek, Month, TimelineViews, TimelineMonth,
+    EventRenderedArgs, Resize, DragAndDrop
+} from '@syncfusion/ej2-schedule';
 import { employeeEventData, applyCategoryColor } from './datasource';
 
-Schedule.Inject(Week, Month);
+Schedule.Inject(Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
 /**
  * Schedule Work days sample
@@ -14,10 +17,13 @@ this.default = () => {
     // Initialize schedule component
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '550px',
+        height: '650px',
         workDays: [1, 3, 5],
-        views: ['Week', 'Month'],
-        selectedDate: new Date(2018, 1, 15),
+        workHours: {
+            start: '08:00'
+        },
+        views: ['Week', 'WorkWeek', 'Month', 'TimelineWeek', 'TimelineMonth'],
+        selectedDate: new Date(2018, 1, 14),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });

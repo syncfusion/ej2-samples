@@ -2,127 +2,419 @@
     "name": "Maps",
     "directory": "maps",
     "category": "Data Visualization",
-    "type": "preview",
-    "samples": [
-        {
+    "ftName": "maps", 
+    "samples": [{
             "url": "default",
             "name": "Default Functionalities",
+            "description": "This demo for Essential JS2 Maps control visualizes the continents in the world by rendering those in a map layer.",
             "category": "Maps",
-            "api": { }
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "zoomSettings",
+                    "legendSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "default-datasource.json", "path":"src/maps/map-data/default-datasource.json" },
+                { "displayName": "default.html", "path":"src/maps/default.html" },
+                { "displayName": "default.ts", "path":"src/maps/default.ts" }
+            ]
         },
         {
             "url": "projection",
             "name": "Projection",
+            "description": "This demo for Essential JS2 Maps control shows the details of permanent and non-permanent countries in the UN Security Council, in 2017.",
             "category": "Features",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "legendSettings",
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "projection-datasource.json", "path":"src/maps/map-data/projection-datasource.json" },
+                { "displayName": "projection.html", "path":"src/maps/projection.html" },
+                { "displayName": "projection.ts", "path":"src/maps/projection.ts" }
+            ]
         },
         {
             "url": "multilayer",
             "name": "Multi-layers",
+            "description": "This demo for Essential JS2 Maps control depicts the layer along with sublayers for California and Texas.",
             "category": "Features",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
+                { "displayName": "texas.json", "path":"src/maps/map-data/texas.json" },
+                { "displayName": "california.json", "path":"src/maps/map-data/california.json" },
+                { "displayName": "multilayer.html", "path":"src/maps/multilayer.html" },
+                { "displayName": "multilayer.ts", "path":"src/maps/multilayer.ts" }
+            ]
         },
         {
             "url": "marker",
             "name": "Marker",
+            "description": "This demo for Essential JS2 Maps control shows the top 25 populated cities in the world by displaying the markers in their locations.",
             "category": "Features",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "titleSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "marker-location.ts", "path":"src/maps/map-data/marker-location.ts" },
+                { "displayName": "marker.html", "path":"src/maps/marker.html" },
+                { "displayName": "marker.ts", "path":"src/maps/marker.ts" }
+            ]
         },
         {
-            "url": "markertemplate",
+            "url": "marker-template",
             "name": "Marker template",
+            "description": "This demo for Essential JS2 Maps control indicates the temperature of various cities of Australia in marker templates.",
             "category": "Features",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "titleSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "australia.json", "path":"src/maps/map-data/australia.json" },
+                { "displayName": "marker-template.html", "path":"src/maps/marker-template.html" },
+                { "displayName": "marker-template.ts", "path":"src/maps/marker-template.ts" }
+            ]
         },
         {
-            "url": "datalabel",
+            "url": "data-label",
             "name": "Labels",
+            "description": "This demo for Essential JS2 Maps control shows the names of all the states in USA in data label. Intersect action and smart labels mode can be changed.",
             "category": "Features",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
+                { "displayName": "data-label.html", "path":"src/maps/data-label.html" },
+                { "displayName": "data-label.ts", "path":"src/maps/data-label.ts" }
+            ]
         },
         {
             "url": "bubble",
             "name": "Bubble",
+            "description": "This demo for Essential JS2 Maps control illustrates the top 30 countries which has highest Internet users in bubbles of the year 2016.",
             "category": "Features",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "titleSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "population-data.ts", "path":"src/maps/map-data/population-data.ts" },
+                { "displayName": "bubble.html", "path":"src/maps/bubble.html" },
+                { "displayName": "bubble.ts", "path":"src/maps/bubble.ts" }
+            ]
         },
-		{
-            "url": "lineapeninsular",
+        {
+            "url": "navigation-line",
             "name": "Navigation Lines",
+            "description": "This demo for Essential JS2 Maps control illustrates the sea routes between various cities for shipping.",
             "category": "Features",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "map-location.ts", "path":"src/maps/map-data/map-location.ts" },
+                { "displayName": "navigation-line.html", "path":"src/maps/navigation-line.html" },
+                { "displayName": "navigation-line.ts", "path":"src/maps/navigation-line.ts" }
+            ]
         },
         {
             "url": "legend",
             "name": "Legend",
+            "description": "This demo for Essential JS2 Maps control visualizes grouping of countries in the legend based on its population density.",
             "category": "Features",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "titleSettings",
+                    "legendSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "legend-datasource.json", "path":"src/maps/map-data/legend-datasource.json" },
+                { "displayName": "legend.html", "path":"src/maps/legend.html" },
+                { "displayName": "legend.ts", "path":"src/maps/legend.ts" }
+            ]
         },
         {
             "url": "annotation",
             "name": "Annotations",
+            "description": "This demo for Essential JS2 Maps control depicts the facts about Africa continent and a direction compass in an annotation.",
             "category": "Features",
-            "api": {}
-        },      
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "annotations",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "africa-continent.json", "path":"src/maps/map-data/africa-continent.json" },
+                { "displayName": "annotation.html", "path":"src/maps/annotation.html" },
+                { "displayName": "annotation.ts", "path":"src/maps/annotation.ts" }
+            ]
+        },
         {
             "url": "tooltip",
             "name": "Tooltip",
+            "description": "This demo for Essential JS2 Maps control depicts the countries that were appeared in the finals of Cricket World Cup and their counts.",
             "category": "User Interaction",
-            "api": {}
-        },        
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "zoomSettings",
+                    "legendSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "tooltip-datasource.json", "path":"src/maps/map-data/tooltip-datasource.json" },
+                { "displayName": "tooltip-datasource.html", "path":"src/maps/tooltip.html" },
+                { "displayName": "tooltip-datasource.ts", "path":"src/maps/tooltip.ts" }
+            ]
+        },
         {
             "url": "selection",
             "name": "Selection & Highlight",
+            "description": "This demo for Essential JS2 Maps control visualizes USA president election results in the year 2016. Default and interactive are the two types of legend.",
             "category": "User Interaction",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "legendSettings",
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
+                { "displayName": "selection-datasource.json", "path":"src/maps/map-data/selection-datasource.json" },
+                { "displayName": "selection.html", "path":"src/maps/selection.html" },
+                { "displayName": "selection.ts", "path":"src/maps/selection.ts" }
+            ]
         },
         {
             "url": "zooming",
             "name": "Zooming & Panning",
+            "description": "This demo for Essential JS2 Maps control depicts the properties required to zoom and pan the rendered map.",
             "category": "User Interaction",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "layers"                  
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "zooming-datasource.json", "path":"src/maps/map-data/zooming-datasource.json" },
+                { "displayName": "zooming.html", "path":"src/maps/zooming.html" },
+                { "displayName": "zooming.ts", "path":"src/maps/zooming.ts" }
+            ]
         },
         {
             "url": "drilldown",
             "name": "Drill Down",
+            "description": "This demo for Essential JS2 Maps control demonstrates drill down with all the continents in the initial view and countries on drill.",
             "category": "User Interaction",
-            "api": {}
-        },
-         {
-            "url": "heatmap",
-            "name": "Heat Map",
-            "category": "Use Cases",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "africa.json", "path":"src/maps/map-data/africa.json" },
+                { "displayName": "europe.json", "path":"src/maps/map-data/europe.json" },
+                { "displayName": "asia.json", "path":"src/maps/map-data/asia.json" },
+                { "displayName": "north-america.json", "path":"src/maps/map-data/north-america.json" },
+                { "displayName": "south-america.json", "path":"src/maps/map-data/south-america.json" },
+                { "displayName": "oceania.json", "path":"src/maps/map-data/oceania.json" },
+                { "displayName": "drilldown.html", "path":"src/maps/drilldown.html" },
+                { "displayName": "drilldown.ts", "path":"src/maps/drilldown.ts" }
+
+            ]
         },
         {
-            "url": "curvedlines",
-            "name": "Flight routes",
+            "url": "print",
+            "name": "Print",
+            "description": "This demo for Essential JS2 Maps control illustrates the printing functionality in the maps control.",
+            "category": "Print and Export",
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "legendSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
+                { "displayName": "print-datasource.json", "path":"src/maps/map-data/print-datasource.json" },
+                { "displayName": "print.html", "path":"src/maps/print.html" },
+                { "displayName": "print.ts", "path":"src/maps/print.ts" }
+            ]
+        },
+        {
+            "url": "export",
+            "name": "Export",
+            "description": "This demo for Essential JS2 Maps control illustrates the exporting functionality in the maps control.",
+            "category": "Print and Export",
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "export.html", "path":"src/maps/export.html" },
+                { "displayName": "export.ts", "path":"src/maps/export.ts" }
+            ]
+        },
+        {
+            "url": "heat-map",
+            "name": "Heat Map",
+            "description": "This demo for Essential JS2 Maps control visualizes the state wise population of India in the year 2011. Color for states will be applied based on its value.",
             "category": "Use Cases",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "legendSettings",
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "india.json", "path":"src/maps/map-data/india.json" },
+                { "displayName": "heatmap-datasource.json", "path":"src/maps/map-data/heatmap-datasource.json" },
+                { "displayName": "heat-map.html", "path":"src/maps/heat-map.html" },
+                { "displayName": "heat-map.ts", "path":"src/maps/heat-map.ts" }
+            ]
+        },
+        {
+            "url": "curved-lines",
+            "name": "Flight routes",
+            "description": "This demo for Essential JS2 Maps control demonstrates the flight routes from India to China using navigation lines feature.",
+            "category": "Use Cases",
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "titleSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "map-location.ts", "path":"src/maps/map-data/map-location.ts" },
+                { "displayName": "curved-lines.html", "path":"src/maps/curved-lines.html" },
+                { "displayName": "curved-lines.ts", "path":"src/maps/curved-lines.ts" }
+            ]
         },
         {
             "url": "earthquake",
             "name": "Earthquake indication",
+            "description": "This demo for Essential JS2 Maps control demonstrates the earth quack occurred in Sumatra, Indonesia in the year 2009.",
             "category": "Use Cases",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "titleSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "asia.json", "path":"src/maps/map-data/asia.json" },
+                { "displayName": "earthquake.html", "path":"src/maps/earthquake.html" },
+                { "displayName": "earthquake.ts", "path":"src/maps/earthquake.ts" }
+            ]
         },
         {
-            "url": "highlightedregion",
+            "url": "highlighted-region",
             "name": "Highlighted region",
+            "description": "This demo for Essential JS2 Maps control depicts the ATM populated areas in Oklahoma by highlighting the regions.",
             "category": "Use Cases",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "oklahoma.json", "path":"src/maps/map-data/oklahoma.json" },
+                { "displayName": "highlighted-region.html", "path":"src/maps/highlighted-region.html" },
+                { "displayName": "highlighted-region.ts", "path":"src/maps/highlighted-region.ts" }
+            ]
         },
         {
             "url": "pie",
             "name": "Map with Pie chart",
+            "description": "This demo for Essential JS2 Maps control visualizes the placing of pie charts on the maps using marker templates.",
             "category": "Use Cases",
-            "api": {}
+            "api": {
+                "Maps": [
+                    "titleSettings",
+                    "legendSettings",
+                    "zoomSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "pie.html", "path":"src/maps/pie.html" },
+                { "displayName": "pie.ts", "path":"src/maps/pie.ts" }
+            ]
         },
         {
-            "url": "seatSelection",
+            "url": "seat-selection",
             "name": "Bus seat booking",
+            "description": "This demo for Essential JS2 Maps control demonstrates the rendering of normal geometry type shapes on the map.",
             "category": "Use Cases",
-            "api": {}
+            "api": {},
+            "sourceFiles":[
+                { "displayName": "seat.json", "path":"src/maps/map-data/seat.json" },
+                { "displayName": "seat-selection.html", "path":"src/maps/seat-selection.html" },
+                { "displayName": "seat-selection.ts", "path":"src/maps/seat-selection.ts" }
+            ]
         }
     ]
 }

@@ -1,5 +1,5 @@
 import { Grid, Page, Toolbar } from '@syncfusion/ej2-grids';
-import { orderDetails } from './datasource';
+import { orderDetails } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 
 

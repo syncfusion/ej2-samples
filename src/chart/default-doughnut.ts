@@ -1,9 +1,9 @@
 import {
     AccumulationTheme, AccumulationChart, AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip,
     IAccAnimationCompleteEventArgs, AccPoints, IAccTextRenderEventArgs, AccumulationSelection,
-    IAccLoadedEventArgs
+    IAccLoadedEventArgs, Selection
 } from '@syncfusion/ej2-charts';
-AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip, AccumulationSelection);
+AccumulationChart.Inject(AccumulationLegend, Selection, PieSeries, AccumulationDataLabel, AccumulationTooltip, AccumulationSelection);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -68,7 +68,7 @@ this.default = (): void => {
             args.accumulation.legendSettings.position = Browser.isDevice ? 'Bottom' : 'Right';
         },
         tooltip: {
-            enable: true,
+            enable: false,
             header: '<b>${point.x}</b>',
             format: 'Composition : <b>${point.y}%</b>'
         },

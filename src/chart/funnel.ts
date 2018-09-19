@@ -25,8 +25,10 @@ this.default = (): void => {
                 }
             }, explode: true,
         }],
+        legendSettings: { toggleVisibility: false },
         //Initializing tooltip
         tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
+        enableAnimation: false,
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -58,9 +60,9 @@ this.default = (): void => {
         chart.refreshChart();
     }
     document.getElementById('chartneckwidth').onpointermove = document.getElementById('chartneckwidth').ontouchmove =
-        document.getElementById('chartneckwidth').onchange = (e: Event) => {
-            neckWidth(+(document.getElementById('chartneckwidth') as HTMLInputElement).value);
-        };
+    document.getElementById('chartneckwidth').onchange = (e: Event) => {
+        neckWidth(+(document.getElementById('chartneckwidth') as HTMLInputElement).value);
+    };
     function neckHeight(value: number): void {
         chart.series[0].neckHeight = value + '%';
         document.getElementById('neckHeight').innerHTML = value + '%';
@@ -69,7 +71,7 @@ this.default = (): void => {
         chart.refreshChart();
     }
     document.getElementById('chartneckheight').onpointermove = document.getElementById('chartneckheight').ontouchmove =
-        document.getElementById('chartneckheight').onchange = (e: Event) => {
-            neckHeight(+(document.getElementById('chartneckheight') as HTMLInputElement).value);
-        };
+    document.getElementById('chartneckheight').onchange = (e: Event) => {
+        neckHeight(+(document.getElementById('chartneckheight') as HTMLInputElement).value);
+    };
 };

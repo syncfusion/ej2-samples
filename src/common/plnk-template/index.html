@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{:title}}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge"> {{:meta}}
+    <meta name="author" content="Syncfusion" />
+    <link rel="shortcut icon" href="https://ej2.syncfusion.com/home/favicon.ico" />
+    <script type="text/javascript">
+        var themeName = location.hash || 'material';
+        themeName = themeName.replace('#', '');
+        window.ripple = (themeName === "material")
+        document.write('<link href="{{:CDN_LINK}}' + themeName + '.css" rel="stylesheet">');
+    </script>
+    <script type="text/javascript">
+        if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+            document.write("<script src=\'https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js\'><\/script>");
+        }</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.38/system.js" type="text/javascript"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="index.css" rel="stylesheet">
+    <script src="systemjs.config.js"></script>
+    <style>
+        #loader {
+            color: #008cff;
+            height: 40px;
+            left: 45%;
+            position: absolute;
+            top: 45%;
+            width: 30%;
+        }
+
+        body {
+            touch-action: none;
+        }
+    </style>
+</head>
+
+<body class='e-view ej2-new' aria-busy="true">
+    <div class="sample-browser">
+        <div id='sample-header' class="sb-header" role="banner">
+            <div class='sb-header-left sb-left sb-table'>
+                <div class='sb-header-item sb-table-cell'>
+                    <div class="header-logo">
+                        <a href="#" target="" rel="noopener noreferrer">
+                                <a href="https://ej2.syncfusion.com/home" target="" rel="noopener noreferrer">
+                            <div class="footer-logo"> </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="sb-header-splitter sb-download-splitter"></div>
+                <div class='sb-header-item sb-table-cell'>
+                    <div id='sb-header-text' class='e-sb-header-text'>
+
+                        <span class='sb-header-text-left'>Essential JS 2 for JavaScript</span>
+                    </div>
+                </div>
+            </div>
+            <div class='sb-header-right sb-right sb-table'>
+                <div class='sb-header-item sb-table-cell'>
+                    <div class='product-style'>
+                        <div>
+                            <a href="https://www.syncfusion.com/products/javascript/{{:header2}}">PRODUCT TOUR</a>
+                        </div>
+                    </div>
+                </div>
+                <div class='sb-header-item sb-table-cell'>
+                    <div class="sb-header-item sb-table-cell sb-download-wrapper">
+                        <a href="https://www.syncfusion.com/downloads/essential-js2" target="_blank">
+                            <button id="download-now" class="sb-download-btn">
+                                <span class="sb-download-text">Download Now</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class='content e-view'>
+        <div class='sample-content'>
+            <div id="sample-bread-crumb" class="sb-bread-crumb">
+                <div class="sb-bread-crumb-text">
+                    <div class="category-allcontrols">
+                        <a href="https://ej2.syncfusion.com/demos">
+                            <span>All Controls</span>
+                        </a>
+                    </div>
+                    <div class="category-seperator sb-icons"> / </div>
+                    <div class="category-text bread-ctext">
+                        <a href="https://ej2.syncfusion.com/demos/#/material/{{:header2}}/default.html">
+                            <span>{{:header}}</span>
+                        </a>
+                    </div>
+                    <div class="category-seperator sb-icons"> / </div>
+                    <div class="crumb-sample">{{:header1}}</div>
+                </div>
+            </div>
+            <div class="control-content">
+            <div id="action-description">
+                    <p>
+                        <div class="layout" id="actionDes">{{:action-description}}</div>
+                            <a id="details" class="layout" onclick="desDetails()"> More Details...</a>
+                            <script>
+                                function desDetails() {
+                                    var element = document.getElementById('description-section');
+                                    if (element) {
+                                        element.scrollIntoView();
+                                    }
+                                }
+                            </script>
+                    </p>
+                </div>
+                <div class='container-fluid'>
+                <div class="control-section">
+                        {{:body}}
+                    </div>
+                    </div>
+                <div id="description-section">Description</div>    
+                <div id="description">
+                    <p>
+                       {{:description}}
+                     </p>     
+                </div>    
+            </div>             
+        </div>
+            
+        </div>
+    </div>
+</body>
+
+</html>

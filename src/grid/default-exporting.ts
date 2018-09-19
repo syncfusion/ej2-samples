@@ -1,6 +1,6 @@
 import { Grid, Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate } from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
-import { orderDetails } from './datasource';
+import { orderDetails } from './data-source';
 
 Grid.Inject(Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate);
 /**

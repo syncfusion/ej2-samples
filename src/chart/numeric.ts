@@ -34,9 +34,6 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            minimum: 0,
-            maximum: 25,
-            interval: 5,
             majorGridLines: { width: 0 },
             majorTickLines: { width: 0 },
             lineStyle: { width: 0 },

@@ -6,21 +6,21 @@ import { Button } from '@syncfusion/ej2-buttons';
  * <div class="e-tile-small-col-2">
  */
 let icontemp: string = '<button id="sendButton" class="e-control e-btn e-primary" data-ripple="true">' + 'Send</button>';
-let headerimg: string = '<img class="img2" src="src/dialog/images/1.png" alt="header image">';
+let headerimg: string = '<span class="e-avatar template-image e-avatar-xsmall e-avatar-circle"></span>';
 let message: string = 'Greetings Nancy! When will you share me the source files of the project?';
 this.default = () => {
     let sendbutton: Button = new Button();
     let proxy: any = this;
     let dialog: Dialog = new Dialog({
-        header: headerimg + '<div title="Nancy" class="e-icon-settings e-icons" style="padding: 3px;"> Nancy </div>',
+        header: headerimg + '<div id="template" title="Nancy" class="e-icon-settings"> Nancy </div>',
         footerTemplate: ' <input id="inVal" class="e-input" type="text" placeholder="Enter your message here!"/>' + icontemp,
         showCloseIcon: true,
         content: '<div class="dialogContent"><span class="dialogText">' + message + '</span></div>',
         target: document.getElementById('container'),
-        width: '42%',
+        width: '435px',
         open: dialogOpen,
         close: dialogClose,
-        height: '86%',
+        height: '76%',
     });
     dialog.appendTo('#dialog');
     sendbutton.appendTo('#sendButton');

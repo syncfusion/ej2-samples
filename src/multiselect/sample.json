@@ -2,7 +2,6 @@
     "name": "MultiSelect",
     "directory": "multiselect",
     "category": "Editors",
-    "type": "update",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "MultiSelect", "api": {"MultiSelect": ["mode", "placeholder"]} },
         { "url": "data-binding", "name": "Data Binding", "category": "MultiSelect", "api": {"MultiSelect": ["query", "dataSource", "fields", "sortOrder", "placeholder"]} },
@@ -10,9 +9,9 @@
         { "url": "template", "name": "Template", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "fields", "headerTemplate", "itemTemplate", "valueTemplate", "mode", "placeholder"]}  },
         { "url": "filtering", "name": "Filtering", "category": "MultiSelect", "api": {"MultiSelect": ["query", "dataSource", "fields", "placeholder", "allowFiltering", "filtering"]}  },
         { "url": "custom-value", "name": "Custom Value", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "fields", "placeholder", "mode", "allowCustomValue"]}  },
-        { "url": "chip-customization", "name": "Chip Customization", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "fields", "placeholder", "mode", "tagging"]}, "type": "new" },
-        { "url": "checkbox", "name": "CheckBox", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "fields", "placeholder"]}, "type": "new"  },
-        { "url": "selectionlimit", "name": "Selection Limit", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "fields", "placeholder", "maximumSelectionLength"]}, "type": "new"  },
-        { "url": "diacritics-filtering", "name": "Diacritics Filtering", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "ignoreAccent", "placeholder"]}, "type": "new" }
+        { "url": "chip-customization", "name": "Chip Customization", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "fields", "placeholder", "mode", "tagging"]}  },
+        { "url": "checkbox", "name": "CheckBox", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "fields", "placeholder"]}  },
+        { "url": "selectionlimit", "name": "Selection Limit", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "fields", "placeholder", "maximumSelectionLength"]}  },
+        { "url": "diacritics-filtering", "name": "Diacritics Filtering", "category": "MultiSelect", "api": {"MultiSelect": ["dataSource", "ignoreAccent", "placeholder"]} }
     ]
 }

@@ -1,6 +1,6 @@
 import { Grid, Selection } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
-import { orderData } from './datasource';
+import { orderData } from './data-source';
 
 Grid.Inject(Selection);
 

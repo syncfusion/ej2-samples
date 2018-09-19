@@ -10,7 +10,7 @@ this.default = (): void => {
     button = new Button({ isPrimary: true });
     button.appendTo('#primarybtn');
 
-    button = new Button({ cssClass: 'e-flat' });
+    button = new Button({ cssClass: 'e-flat e-primary' });
     button.appendTo('#flatbtn');
 
     button = new Button({ cssClass: 'e-outline', isPrimary: true });
@@ -19,10 +19,10 @@ this.default = (): void => {
     button = new Button({ iconCss: 'e-icons e-add-icon', cssClass: 'e-small e-round', isPrimary: true });
     button.appendTo('#roundbtn');
 
-    let toggleBtn: Button = new Button({ iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isToggle: true });
+    let toggleBtn: Button = new Button({ iconCss: 'e-icons e-play-icon', cssClass: 'e-flat e-primary', isToggle: true });
     toggleBtn.appendTo('#togglebtn');
 
-    button = new Button({ iconCss: 'e-icons e-open-icon', cssClass: 'e-flat', iconPosition: 'Right' });
+    button = new Button({ iconCss: 'e-icons e-open-icon', cssClass: 'e-flat e-primary', iconPosition: 'Right' });
     button.appendTo('#openiconbtn');
 
     button = new Button({ cssClass: 'e-success' });

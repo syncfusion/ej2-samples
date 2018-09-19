@@ -10,7 +10,11 @@ import { Browser } from '@syncfusion/ej2-base';
 this.default = (): void => {
     let theme: ChartTheme;
     let chart: Chart = new Chart({
-        title: 'Population of India ( 2010 - 2016 )',
+        title: 'Population of India Statistics',
+        subTitle: '(2010 - 2016)',
+        subTitleStyle: {
+            textAlignment: 'Far'
+        },
         titleStyle: {
             fontFamily: 'Roboto',
             fontStyle: 'medium', size: '14px'
@@ -32,12 +36,10 @@ this.default = (): void => {
         primaryYAxis: {
             minimum: 900, maximum: 1300,
             labelFormat: '{value}M',
-            title: Browser.isDevice ? '' : 'Population',
             labelStyle: {
                 fontFamily: 'Roboto',
                 fontStyle: 'medium', size: '14px'
             },
-            interval: 80,
             majorGridLines: {
                 color: '#eaeaea', width: 1
             },

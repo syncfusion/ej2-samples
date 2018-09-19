@@ -11,10 +11,10 @@ import { Dialog } from '@syncfusion/ej2-popups';
         target: document.getElementById('target'),
         animationSettings: { effect: 'None' },
         showCloseIcon: true,
-        width: '50%',
+        width: '500px',
         buttons: [{
             click: dlgButtonClick,
-            buttonModel: { content: 'LEARN ABOUT SYNCFUSION, INC.' }
+            buttonModel: { content: 'Learn More', isPrimary: true }
         }],
         open: dialogOpen,
         close: dialogClose
@@ -31,7 +31,7 @@ import { Dialog } from '@syncfusion/ej2-popups';
 
     // Navigate to corresponding link
     function dlgButtonClick(): void {
-        window.location.href = 'https://www.syncfusion.com/company/about-us';
+        window.open('https://www.syncfusion.com/company/about-us', '_blank');
     }
 
     // 'Open' Button will be shown, if Dialog is closed

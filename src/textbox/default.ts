@@ -1,8 +1,19 @@
-import { InputObject } from  '@syncfusion/ej2-inputs';
+import { InputObject, TextBox } from  '@syncfusion/ej2-inputs';
 /**
  *   Sample for CSS input boxes.
  */
 this.default = () => {
+    let inputobj1: TextBox = new TextBox({
+        placeholder: 'First Name',
+        floatLabelType: 'Auto'
+    });
+    inputobj1.appendTo('#firstname');
+    let inputobj2: TextBox = new TextBox({
+        placeholder: 'Last Name',
+        floatLabelType: 'Auto',
+        enableRtl: true
+    });
+    inputobj2.appendTo('#lastname');
     let inputObject : InputObject = {};
     let input: NodeList = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
     let inputIcon: NodeList  = document.querySelectorAll('.e-input-group-icon');

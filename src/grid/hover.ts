@@ -1,5 +1,5 @@
 import { Grid, Page } from '@syncfusion/ej2-grids';
-import { productData } from './datasource';
+import { productData } from './data-source';
 
 Grid.Inject(Page);
 

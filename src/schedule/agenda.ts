@@ -13,7 +13,7 @@ this.default = () => {
     // Initialize schedule component
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '500px',
+        height: '650px',
         views: [{ option: 'Agenda', allowVirtualScrolling: false }],
         selectedDate: new Date(2018, 1, 15),
         currentView: 'Agenda',

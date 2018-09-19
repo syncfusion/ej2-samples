@@ -41,7 +41,6 @@
             "url": "checklist",
             "name": "Checklist",
             "category": "ListView",
-            "type": "new",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -78,9 +77,29 @@
             }
         },
         {
+            "url": "virtualization",
+            "name": "Virtualization",
+            "category": "ListView",
+            "type": "update",
+            "api": {
+                "ListView": [
+                    "dataSource",
+                    "headerTitle",
+                    "showHeader",
+                    "enableVirtualization",
+                    "height",
+                    "template",
+                    "actionBegin",
+                    "actionComplete",
+                    "appendTo"
+                ]
+            }
+        },
+        {
             "url": "templates",
             "name": "Templates",
             "category": "Customization",
+            "type": "update",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -100,6 +119,7 @@
             "url": "group-template",
             "name": "Group Template",
             "category": "Customization",
+            "type": "update",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -119,7 +139,7 @@
             "url": "call-history",
             "name": "Call History",
             "category": "Use Case",
-            "type": "new",
+            "type": "update",
             "api": {
                 "ListView": [
                     "dataSource",

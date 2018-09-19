@@ -1,54 +1,3 @@
-<style>
-
-    @-moz-document url-prefix() {
-      .e-accordion .e-content table {
-        border-collapse: initial;
-    }
-    }
-
-    .e-accordion table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 100%;
-    }
-
-    .e-accordion table th,
-    .e-accordion table td {
-        font-weight: normal;
-        padding: 5px;
-        text-align: left;
-        border: 1px solid #ddd
-    }
-
-    .product_title {
-        text-align: center;
-        margin: 20px 0;
-        padding: 10px 0;
-        text-overflow: ellipsis;
-        font-weight: bold;
-        font-size: 16px;
-    }
-
-    .accordion-control-section {
-        margin: 0 10% 0 10%;
-        padding-bottom: 25px;
-    }
-    #source_link {
-        float: right;
-        margin-right: 10px;
-    }
-    @media screen and (max-width: 768px) {
-        .accordion-control-section {
-            margin: 0;
-            margin-bottom: 20px;
-        }
-        #source_link {
-          margin-top: -25px;
-          margin-right: 0px; 
-        }
-    }
-</style>
-
 <div class="control-section">
     <div class="control_wrapper accordion-control-section">
         <div class='product_title'> iPhone X Product Specification </div>
@@ -148,7 +97,7 @@
 </div>
 <div id="action-description">
     <p>
-        This sample demonstrates rendering <code>Accordion</code> content from external source using <code>Ajax</code> library. The content of panel “Network & Connectivity” is loaded from external element.
+        This sample demonstrates rendering <code>Accordion</code> content from external source using <code>Ajax</code> library. The content of panel “Network & Connectivity" is loaded from external element.
     </p>
 </div>
 <div id="description">
@@ -162,4 +111,51 @@
 </div>
 <style>
 
+    @-moz-document url-prefix() {
+      .e-accordion .e-content table {
+        border-collapse: initial;
+    }
+    }
+
+    .e-accordion table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+    }
+
+    .e-accordion table th,
+    .e-accordion table td {
+        font-weight: normal;
+        padding: 5px;
+        text-align: left;
+        border: 1px solid #ddd
+    }
+
+    .product_title {
+        text-align: center;
+        margin: 20px 0;
+        padding: 10px 0;
+        text-overflow: ellipsis;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .accordion-control-section {
+        margin: 0 10% 0 10%;
+        padding-bottom: 25px;
+    }
+    #source_link {
+        float: right;
+        margin-right: 10px;
+    }
+    @media screen and (max-width: 768px) {
+        .accordion-control-section {
+            margin: 0;
+            margin-bottom: 20px;
+        }
+        #source_link {
+          margin-top: -25px;
+          margin-right: 0px; 
+        }
+    }
 </style>

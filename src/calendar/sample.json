@@ -2,10 +2,12 @@
     "name": "Calendar",
     "directory": "calendar",
     "category": "Calendar",
+    "type": "update",
     "samples": [
-        { "url": "default", "name": "Default Functionalities", "category": "Calendar", "api":{"Calendar": [ "change" ]} },
-        { "url": "disabled", "name": "Disabled Dates", "category": "Calendar", "api":{"Calendar": [ "renderDayCell", "change" ]} },
-        { "url": "range", "name": "Date Range", "category": "Calendar", "api":{"Calendar": [ "min", "max", "change" ]} },
-        { "url": "special", "name": "Special Dates", "category": "Calendar", "api":{"Calendar": [ "renderDayCell", "change" ]} }
+        { "url": "default", "name": "Default Functionalities", "category": "Calendar", "api":{"Calendar": [ "change" ]}, "description": "A simple calendar component for JavaScript (TypeScript) to select dates easily by switching between month, year, and decade views with a rich user interface" },
+        { "url": "disabled", "name": "Disabled Dates", "category": "Calendar", "api":{"Calendar": [ "renderDayCell", "change" ]}, "description": "Calendar widget for JavaScript (TypeScript) with disabled dates to restrict users from selecting a defined set of dates" },
+        { "url": "date-range", "name": "Date Range", "category": "Calendar", "api":{"Calendar": [ "min", "max", "change" ]}, "description": "Calendar for JavaScript (TypeScript) with min and max dates that restrict users from selecting dates outside a defined range, like weekends, etc" },
+        { "url": "special-dates", "name": "Special Dates", "category": "Calendar", "api":{"Calendar": [ "renderDayCell", "change" ]}, "description": "Calendar for TypeScript that highlights multiple dates like weekends, holidays, events, or a range of days with options to add custom styles and descriptions" },
+        { "url": "multi-selection", "name": "Multi Selection", "category": "Calendar", "type": "new", "api":{"Calendar": [ "isMultiSelection", "values" ]}, "description": "A simple and lightweight calendar component for JavaScript (TypeScript) that features multiple date selection to allow users to select more than one date" }
     ]
 }

@@ -37,7 +37,7 @@ this.default = (): void => {
 
         //Initializing Primary Y Axis
         primaryYAxis: {
-            maximum: 250, interval: 50, minimum: 0, labelFormat: '{value}M'
+            labelFormat: '{value}M'
         },
 
         //Initializing Chart Series

@@ -2,11 +2,10 @@
     "name": "TimePicker",
     "directory": "timepicker",
     "category": "Editors",
-    "type": "update",
     "samples": [
-        { "url": "default", "name": "Default Functionalities", "category": "TimePicker", "api":{"TimePicker": [ "placeholder" ]} },
-        { "url": "range", "name": "Time Range", "category": "TimePicker", "api":{"TimePicker": [ "placeholder", "value", "readonly", "enabled", "min", "change" ]} },
-        { "url": "format", "name": "Format", "category": "TimePicker", "api":{"TimePicker": [ "value", "step", "format" ]} },
-        { "url": "list-formatting", "name": "Time Duration", "category": "TimePicker", "api":{"TimePicker": [ "value", "itemRender" ]}, "type":"new" }
+        { "url": "default", "name": "Default Functionalities", "category": "TimePicker", "api":{"TimePicker": [ "placeholder" ]}, "description": "A simple and lightweight TimePicker component for JavaScript (TypeScript) for selecting times that is customizable to fit large-scale applications" },
+        { "url": "time-range", "name": "Time Range", "category": "TimePicker", "api":{"TimePicker": [ "placeholder", "value", "readonly", "enabled", "min", "change" ]}, "description": "TimePicker widget for JavaScript (TypeScript) with min and max time options to restrict time selection within a defined duration like the next 30 minutes, the next 4 hours, etc" },
+        { "url": "time-format", "name": "Format", "category": "TimePicker", "api":{"TimePicker": [ "value", "step", "format" ]}, "description": "Customizable TimePicker widget for JavaScript (TypeScript) with options to change the time display format based on the preferred culture for improved readability" },
+        { "url": "list-formatting", "name": "Time Duration", "category": "TimePicker", "api":{"TimePicker": [ "value", "itemRender" ]}, "description": "A simple TimePicker widget for JavaScript (TypeScript) for highlighting a set of time intervals in a pop-up by adding custom styles based on you needs" }
     ]
 }

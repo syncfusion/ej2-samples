@@ -21,7 +21,6 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            minimum: 0, interval: 2, maximum: 8,
             title: 'GDP Growth Rate',
             labelFormat: '{value}%'
         },
@@ -41,7 +40,7 @@ this.default = (): void => {
                     { x: 'Cambodia', y: 7.0 },
                     { x: 'China', y: 6.9 }
                 ],
-                xName: 'x', width: 2, marker: { visible: true, height: 10, width: 10 },
+                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10 },
                 yName: 'y', name: '2015',
             },
             {
@@ -53,7 +52,7 @@ this.default = (): void => {
                     { x: 'Canada', y: 1.4 },
                     { x: 'Germany', y: 1.8 }
                 ],
-                xName: 'x', width: 2, marker: { visible: true, height: 10, width: 10 },
+                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10 },
                 yName: 'y', name: '2016',
             },
         ],
@@ -76,11 +75,15 @@ this.default = (): void => {
         if (chart.primaryXAxis.isIndexed) {
             chart.series[0].type = 'Column';
             chart.series[1].type = 'Column';
+            chart.series[0].marker.visible = false;
+            chart.series[1].marker.visible = false;
             chart.primaryXAxis.labelRotation = 0;
             chart.crosshair.line.width = 1;
         } else {
             chart.series[0].type = 'Line';
             chart.series[1].type = 'Line';
+            chart.series[0].marker.visible = true;
+            chart.series[1].marker.visible = true;
             chart.primaryXAxis.labelRotation = 90;
             chart.crosshair.line.width = 0;
         }

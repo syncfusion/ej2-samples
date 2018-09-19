@@ -1,6 +1,6 @@
 import { Grid, Page, Selection, DetailRow } from '@syncfusion/ej2-grids';
-import { DataManager, ODataV4Adaptor } from '@syncfusion/ej2-data';
-import { employeeData } from './datasource';
+import { DataManager, ODataAdaptor } from '@syncfusion/ej2-data';
+import { employeeData } from './data-source';
 
 Grid.Inject(Page, Selection, DetailRow);
 /**
@@ -8,13 +8,13 @@ Grid.Inject(Page, Selection, DetailRow);
  */
 this.default = (): void => {
     let dataManger: Object = new DataManager({
-        url: 'http://services.odata.org/V4/Northwind/Northwind.svc/Orders',
-        adaptor: new ODataV4Adaptor,
+        url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Orders',
+        adaptor: new ODataAdaptor,
         crossDomain: true
     });
     let dataManger2: Object = new DataManager({
-        url: 'http://services.odata.org/V4/Northwind/Northwind.svc/Customers',
-        adaptor: new ODataV4Adaptor,
+        url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Customers',
+        adaptor: new ODataAdaptor,
         crossDomain: true
     });
 

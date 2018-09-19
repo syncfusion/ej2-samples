@@ -1,16 +1,16 @@
 /**
  * Maps selction sample
  */
-import { Maps, MapsTooltip, ISelectionEventArgs, Selection, Highlight, Legend, ILoadEventArgs, MapsTheme} from '@syncfusion/ej2-maps';
-import { usMap } from './MapData/USA';
-import { electionData } from './MapData/ElectionData';
+import {
+    Maps, MapsTooltip, ISelectionEventArgs, Selection, Highlight, Legend, ILoadEventArgs, MapsTheme, MapAjax
+} from '@syncfusion/ej2-maps';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 Maps.Inject(MapsTooltip, Selection, Highlight, Legend);
 interface PopulationData {
     State?: string;
     Candidate?: string;
-    Trump ?: string;
-    Clinton ?: string;
+    Trump?: string;
+    Clinton?: string;
 }
 //tslint:disable:max-func-body-length
 this.default = (): void => {
@@ -49,7 +49,7 @@ this.default = (): void => {
                     winner.innerText = (args.data as PopulationData).Candidate;
                     trumpvote.innerText = (args.data as PopulationData).Trump + '%';
                     clintonvote.innerText = (args.data as PopulationData).Clinton + '%';
-                }else {
+                } else {
                     state.textContent = (args.data as PopulationData).State;
                     winner.textContent = (args.data as PopulationData).Candidate;
                     trumpvote.textContent = (args.data as PopulationData).Trump + '%';
@@ -68,20 +68,20 @@ this.default = (): void => {
             mode: 'Interactive',
             position: 'Top',
             width: '80%',
-                textStyle: {
-                    fontWeight: '400',
-                    size: '14px'
-                }
+            textStyle: {
+                fontWeight: '400',
+                size: '14px'
+            }
         },
         zoomSettings: {
             enable: false
         },
         layers: [
             {
-                shapeData: usMap,
-                shapePropertyPath:  'name',
-                shapeDataPath:  'State',
-                dataSource : electionData,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/usa.json'),
+                shapePropertyPath: 'name',
+                shapeDataPath: 'State',
+                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/selection-datasource.json'),
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'State'
@@ -96,18 +96,18 @@ this.default = (): void => {
                     opacity: 1
                 },
                 shapeSettings: {
-                colorValuePath: 'Candidate',
-                colorMapping: [
-                {
-                    value: 'Trump', color: '#D84444'
-                },
-                {
-                    value: 'Clinton', color: '#316DB5'
+                    colorValuePath: 'Candidate',
+                    colorMapping: [
+                        {
+                            value: 'Trump', color: '#D84444'
+                        },
+                        {
+                            value: 'Clinton', color: '#316DB5'
+                        }
+                    ]
                 }
-            ]
-        }
-    }
-    ]
+            }
+        ]
     });
     maps.appendTo('#container');
 };

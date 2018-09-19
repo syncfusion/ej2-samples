@@ -1,6 +1,6 @@
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Grid, Selection, Reorder, Column, ActionEventArgs } from '@syncfusion/ej2-grids';
-import { employeeData } from './datasource';
+import { employeeData } from './data-source';
 
 Grid.Inject(Selection, Reorder);
 

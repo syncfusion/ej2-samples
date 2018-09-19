@@ -21,7 +21,7 @@ this.default = (): void => {
 
     //open new tab
 
-    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'samples/sidebar/default/index.html');
+    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'sidebar/default/index.html');
 
     // Toggle(Open/Close) the Sidebar
     document.getElementById('toggle').onclick = (): void => {

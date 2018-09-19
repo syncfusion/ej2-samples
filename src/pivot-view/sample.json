@@ -1,0 +1,109 @@
+{
+    "name": "Pivot Grid",
+    "directory": "pivot-view",
+    "category": "Grids",
+    "type": "preview",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "category": "Pivot Grid",
+            "description": "This demo for Essential JS2 Pivot Table control shows the basic rendering of the pivotgrid with minimum configuration"
+        },
+        {
+            "url": "local",
+            "name": "Local Data",
+            "category": "Data Binding",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivotgrid widget with local JSON data"
+        },
+        {
+            "url": "remote",
+            "name": "Remote Data",
+            "category": "Data Binding",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivotgrid widget with remote data or service data"
+        },
+        {
+            "url": "field-list",
+            "name": "Field List",
+            "category": "User Interaction",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the field list feature of the pivotgrid widget, field list allows the user to rearrange the fields between different axes, including column, row, value, and filter along with filter and sort options",
+            "type": "update"
+        },
+        {
+            "url": "grouping-bar",
+            "name": "Grouping Bar",
+            "category": "User Interaction",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the grouping bar feature of the pivotgrid widget, grouping bar allows the user to rearrange the fields between different axes, including column, row, value, and filter along with filter and sort options"
+        },
+        {
+            "url": "conditional-formatting",
+            "name": "Conditional Formatting",
+            "category": "User Interaction",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate formatting the appearance of the pivot grid cells with values based on the applied conditions",
+            "type": "new"
+        },
+        {
+            "url": "calculated-field",
+            "name": "Calculated Field",
+            "category": "Formula",
+            "description": "This demo for Essential JS2 Pivot Table control shows calculated field, and it allows users to add calculated items either through a dialog window at run time or through code behind"
+        },
+        {
+            "url": "aggregation",
+            "name": "Aggregation",
+            "category": "Formula",
+            "description": "This demo for Essential JS2 Pivot Table control shows different types of aggregation for value fields"
+        },
+        {
+            "url": "sorting",
+            "name": "Default Sorting",
+            "category": "Sorting",
+            "description": "This demo for Essential JS2 Pivot Table control shows ordering(sorting) of fields either in ascending or descending order"
+        },
+        {
+            "url": "value-sorting",
+            "name": "Value Sorting",
+            "category": "Sorting",
+            "description": "This demo for Essential JS2 Pivot Table control shows sorting values on column or row wise"
+        },
+        {
+            "url": "filtering",
+            "name": "Default Filtering",
+            "category": "Filtering",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate member filtering of field headers either by including or excluding them"
+        },
+        {
+            "url": "label-filtering",
+            "name": "Label Filtering",
+            "category": "Filtering",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate label filtering of field headers either by including or excluding them",
+            "type": "new"
+        },
+        {
+            "url": "value-filtering",
+            "name": "Value Filtering",
+            "category": "Filtering",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the filtering of field headers based on the grand total (value based)",
+            "type": "new"
+        },
+        {
+            "url": "charts",
+            "name": "Chart",
+            "category": "Integration",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate integration of pivot table data into a simple chart widget"
+        },
+        {
+            "url": "virtual-scrolling",
+            "name": "Virtual Scrolling",
+            "category": "Scrolling",
+            "description": "This demo for Essential JS2 Pivot Table control shows virtual scrolling option available vertically and horizontally to load large records with ease",
+            "type": "new"
+        },
+        {
+            "url": "exporting",
+            "name": "Export",
+            "category": "Miscellaneous",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate client-side exporting of the pivotgrid widget to Excel, CSV and PDF formats"
+        }
+    ]
+}

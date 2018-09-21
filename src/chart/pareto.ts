@@ -1,7 +1,7 @@
-import { ChartTheme, Chart, StackingColumnSeries, LineSeries, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-import { ColumnSeries, Category } from '@syncfusion/ej2-charts';
+import { ChartTheme, Chart, ColumnSeries, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import {  ParetoSeries, Category, LineSeries } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(StackingColumnSeries, LineSeries, Category, ColumnSeries, Legend, Tooltip);
+Chart.Inject(ColumnSeries, Category, ParetoSeries, LineSeries, Legend, Tooltip);
 
 /**
  * Sample for Pareto chart
@@ -28,21 +28,7 @@ this.default = (): void => {
             majorTickLines: { width: 0 }, majorGridLines: { width: 1 },
             minorGridLines: { width: 1 }, minorTickLines: { width: 0 }
         },
-        //Initializing Axes
-        axes: [
-            {
-                title: 'Cumulative Frequency',
-                minimum: 0,
-                opposedPosition: true,
-                name: 'secondary',
-                maximum: 100,
-                interval: 20,
-                lineStyle: { width: 0 },
-                majorTickLines: { width: 0 }, majorGridLines: { width: 1 },
-                minorGridLines: { width: 1 }, minorTickLines: { width: 0 },
-                labelFormat: '{value}%',
-            }
-        ],
+
         chartArea: {
             border: {
                 width: 0
@@ -52,22 +38,13 @@ this.default = (): void => {
         //Initializing Chart Series
         series: [
             {
-                type: 'Column',
+                type: 'Pareto',
                 dataSource: [
                     { x: 'Traffic', y: 56 }, { x: 'Child Care', y: 44.8 },
                     { x: 'Transport', y: 27.2 }, { x: 'Weather', y: 19.6 },
                     { x: 'Emergency', y: 6.6 }
                 ],
-                xName: 'x', yName: 'y', name: 'Defect',
-            }, {
-                type: 'Line',
-                dataSource: [
-                    { x: 'Traffic', y: 33.8 }, { x: 'Child Care', y: 60.9 },
-                    { x: 'Transport', y: 77.3 }, { x: 'Weather', y: 89.1 },
-                    { x: 'Emergency', y: 100 }
-                ],
-                xName: 'x', yName: 'y', name: 'Cumulative', yAxisName: 'secondary',
-                width: 2,
+                xName: 'x', yName: 'y', name: 'Defect', width: 2,
                 marker: {
                     visible: true,
                     width: 10,

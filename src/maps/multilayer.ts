@@ -1,10 +1,7 @@
 /**
  * Multi-layer map sample
  */
-import { Maps, Marker, ILoadEventArgs, MapsTheme, MapsTooltip, DataLabel } from '@syncfusion/ej2-maps';
-import { usMap } from './MapData/USA';
-import { California } from './MapData/California';
-import { Texas } from './MapData/Texas';
+import { Maps, Marker, ILoadEventArgs, MapsTheme, MapsTooltip, DataLabel, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Marker, MapsTooltip, DataLabel);
 //tslint:disable:max-func-body-length
 this.default = (): void => {
@@ -26,7 +23,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: usMap,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/usa.json'),
                 shapeSettings: {
                     fill: '#E5E5E5',
                     border: {
@@ -41,7 +38,7 @@ this.default = (): void => {
                 }
             },
             {
-                shapeData: Texas,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/texas.json'),
                 type: 'SubLayer',
                 shapeSettings: {
                     fill: 'rgba(141, 206, 255, 0.6)',
@@ -82,7 +79,7 @@ this.default = (): void => {
                 ]
             },
             {
-                shapeData: California,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/california.json'),
                 type: 'SubLayer',
                 shapeSettings: {
                     fill: 'rgba(141, 206, 255, 0.6)',

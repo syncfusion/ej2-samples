@@ -87,7 +87,7 @@ this.default = () => {
     let readOnlyMb: CheckBox = new CheckBox({
         checked: false,
         change: (args: ChangeEventArgs) => {
-            slider.readOnly = args.checked;
+            slider.readonly = args.checked;
         }
     });
     readOnlyMb.appendTo('#mb-readOnly');
@@ -113,7 +113,7 @@ this.default = () => {
         checked: false,
         label: 'Readonly',
         change: (args: ChangeEventArgs) => {
-            slider.readOnly = args.checked;
+            slider.readonly = args.checked;
         }
     });
     readOnly.appendTo('#readOnly');

@@ -1,8 +1,7 @@
 /**
  * Maps Annotation
  */
-import { Maps, Annotations, Marker, MapsTheme, ILoadEventArgs } from '@syncfusion/ej2-maps';
-import { africa_continent } from './MapData/africa_continent';
+import { Maps, Annotations, Marker, MapsTheme, ILoadEventArgs, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Annotations, Marker);
 
 this.default = (): void => {
@@ -28,7 +27,7 @@ this.default = (): void => {
             {
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: africa_continent,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/africa-continent.json'),
                 shapeSettings: {
                     fill: 'url(#grad1)'
                 },

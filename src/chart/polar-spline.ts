@@ -49,13 +49,6 @@ this.default = (): void => {
             coefficient: Browser.isDevice ? 80 : 100
         },
 
-        //Initializing Primary Y Axis
-        primaryYAxis: {
-            minimum: -20,
-            interval: 5,
-            maximum: 0
-        },
-
         //Initializing Chart Series
         series: [
             {

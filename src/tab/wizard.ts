@@ -46,10 +46,6 @@ let cities: any = [
     {name: 'Florida', fare: 150}
 ];
 
-this.default = () => {
-    renderComponents();
-};
-
 function renderComponents(): void {
     /* Initialize Tab with disabled headers for the wizard */
     tabObj = new Tab({ heightAdjustMode: 'None', height: 390, showCloseButton: false,
@@ -76,7 +72,7 @@ function renderComponents(): void {
     journeyDate = new DatePicker({
         width: '100%', floatLabelType: 'Auto', placeholder: 'Journey Date', min: new Date(today.getTime()),
         max: new Date(today.getTime() + 60 * 24 * 60 * 60 * 1000),
-        focus: () => { journeyDate.show(); }
+        value: new Date(),
     });
     journeyDate.appendTo('#journey_date');
     ticketType = new DropDownList({
@@ -295,4 +291,8 @@ function finalizeDetails(args: any): void {
 function trainSelected(args: RowSelectEventArgs): void {
     selectedTrain = args.data;
 }
+
+this.default = () => {
+    renderComponents();
+};
 // tslint:enable:max-line-length

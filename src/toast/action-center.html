@@ -1,0 +1,334 @@
+﻿<div class="col-lg-12 control-section toast-action-center-section">
+    <div class="layoutWrapper">
+        <div class="speaker">
+            <div class="camera"></div>
+        </div>
+        <div class="layout">
+            <div id="list-container">
+                <div class="notification_panel">
+                    <div id='action_notify' style="display: none">
+                        <div id='action_panel'>
+                            <div id='clearAll'> Clear all
+                                <span class='e-cancel e-icons'></span>
+                            </div>
+                            <div id='collapseAll'>
+                                Collapse all
+                                <span class='e-toast-collapse e-icons'></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="toast_action_center_target"></div>
+                    <div id="toast_action_center"></div>
+                    <div class="device_notification">
+                        <div class='notify_intication'>
+                            <div class='intication'></div>
+                            <div class='intication'></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swipe_division">
+                    <div id='swipe_indicator'>
+                        <div class="swipe_dir">
+                            Swipe Down
+                        </div>
+                        <span class="e-icons e-swipe-down"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="outerButton"> </div>
+    </div>
+    <div id='toast_message_template' style="display: none">
+        <div class="horizontal-align">
+            <div class='e-icons e-laura'></div>
+            <div class='toast-content'>
+                <div class='toast-title'>
+                    Marc Durand
+                </div>
+                <div class='toast-message'>Can we move our meeting to 4 PM? </div>
+            </div>
+            <div class="toast-date">
+                <div> 1:21 PM</div>
+            </div>
+        </div>
+    </div>
+    <div id='toast_message_template2' style="display: none">
+        <div class="horizontal-align">
+            <div class='e-icons e-janat'></div>
+            <div class='toast-content'>
+                <div class='toast-title'>
+                    Brittany Kirby
+                </div>
+                <div class='toast-message'>I taught Duke how to play fetch yesterday! </div>
+            </div>
+            <div class="toast-date">
+                <div> 4:40 PM</div>
+            </div>
+        </div>
+    </div>
+    <div id='toast_message_template3' style="display: none">
+        <div class="horizontal-align">
+            <div class='e-icons e-michael'></div>
+            <div class='toast-content'>
+                <div class='toast-title'>
+                    Andrew Fuller
+                </div>
+                <div class='toast-message'>Have you watched latest hollywood movies? </div>
+            </div>
+            <div class="toast-date">
+                <div> 6:30 PM</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="action-description">
+    <p>
+        This sample demonstrates the notification panel in a mobile application using <code>Toast</code>.
+    </p>
+</div>
+<div id="description">
+    <p>
+        This samples shows the toast as mobile notification. <code>Toast</code> can be visible with animation while swipe top-bottom, and toast gets destroyed while swiping the Right, Left and Up directions.</p>
+    <p> All toasts can be hide or destroyed while clicking Collapse All or Clear All button.</p>
+</div>
+
+<style>
+    .toast-action-center-section #swipe_indicator {
+        display: inline-block;
+        padding: 7px;
+        font-size: 16px;
+    }
+
+    .toast-action-center-section .swipe_division {
+        text-align: center;
+    }
+
+    .toast-action-center-section #swipe_indicator .e-swipe-down::before {
+        content: "\e239";
+    }
+
+    .toast-action-center-section .e-laura,
+    .toast-action-center-section .e-janat,
+    .toast-action-center-section .e-michael {
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 29px !important;
+        width: 40px !important;
+        margin-right: 5px;
+        position: absolute;
+        left: 0;
+    }
+
+    .toast-action-center-section .e-laura {
+        background-image: url('./src/toast/resource/laura.png');
+    }
+
+    .toast-action-center-section .e-janat {
+        background-image: url('./src/toast/resource/janat.png');
+    }
+
+    .toast-action-center-section .e-michael {
+        background-image: url('./src/toast/resource/michael.png');
+    }
+
+    .toast-action-center-section .layoutWrapper.e-device-layout {
+        visibility: visible;
+    }
+
+    .toast-action-center-section .e-visbile-layer {
+        visibility: visible;
+    }
+
+    .toast-action-center-section .horizontal-align {
+        display: inline-block;
+        flex-direction: row;
+        padding: 0 40px;
+    }
+
+    .toast-action-center-section #toast_message_template,
+    .toast-action-center-section #toast_message_template2,
+    .toast-action-center-section #toast_message_template3 {
+        font-size: 11px;
+    }
+
+    .toast-action-center-section .e-input-arrow::before {
+        content: "\e301";
+        font-size: 15px;
+    }
+
+    .toast-action-center-section #collapseAll {
+        height: 20px;
+        cursor: pointer;
+        display: inline-block;
+        position: absolute;
+        right: 10px;
+    }
+
+    .toast-action-center-section #clearAll {
+        height: 20px;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .toast-action-center-section #action_notify {
+        height: 30px;
+    }
+
+    .toast-action-center-section #action_panel {
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+        height: inherit;
+        padding: 0 10px;
+    }
+
+    .toast-action-center-section .toast-date {
+        font-size: 11px;
+        width: 50px;
+        position: relative;
+        position: absolute;
+        min-height: 45px;
+        right: 0;
+        top: 2px;
+    }
+
+
+    .toast-action-center-section .toast-date>div {
+        margin-left: 5px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .toast-action-center-section .e-cancel::before {
+        content: '\e825';
+    }
+
+    .toast-action-center-section .e-toast-collapse::before {
+        content: "\e85e";
+    }
+
+    .toast-action-center-section #action_panel span {
+        margin-left: 5px;
+        align-items: center;
+        position: relative;
+        top: 2px;
+    }
+
+    .toast-action-center-section #toast_action_center_target .e-toast-container .e-toast {
+        padding: 5px;
+        margin: 0;
+        border-radius: 0;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .toast-action-center-section #toast_action_center_target .toast-content {
+        margin: 0 5px;
+    }
+
+    .toast-action-center-section .layoutWrapper {
+        border: 1px solid black;
+        width: 285px;
+        height: 505px;
+        margin: auto;
+        margin-bottom: 15px;
+        border-radius: 28px;
+        position: relative;
+    }
+
+    .toast-action-center-section .device_notification {
+        height: 15px;
+        background-color: blue;
+        width: 100%;
+    }
+
+    .toast-action-center-section .notification_panel {
+        position: relative;
+        overflow: hidden;
+        background-color: inherit;
+    }
+
+    .material .toast-action-center-section .notification_panel {
+      background-color: #323232;
+    }
+
+    .fabric .toast-action-center-section .notification_panel {
+      background-color: #f4f4f4;
+    }
+
+    .toast-action-center-section #action_notify {
+        color: #000;
+    }
+
+    .material .toast-action-center-section #action_notify,
+    .highcontrast .toast-action-center-section #action_notify {
+        color: #fff;
+    }
+
+    .toast-action-center-section .device_notification .notify_intication {
+        padding-top: 8px;
+    }
+
+    .toast-action-center-section .device_notification .notify_intication .intication {
+        width: 15px;
+        border-bottom: 1px solid white;
+        margin: auto;
+    }
+
+    .toast-action-center-section .device_notification .notify_intication .intication:last-child {
+        margin-top: 2px;
+    }
+
+    .toast-action-center-section .speaker {
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 33.33333333%;
+        height: 5px;
+        margin: 15px auto 0px auto;
+        position: relative;
+    }
+
+    .toast-action-center-section .outerButton {
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+        border-radius: 50%;
+        position: absolute;
+        bottom: calc(0% + 10px);
+        left: calc(50% - 15px);
+    }
+
+    .toast-action-center-section .camera {
+        position: absolute;
+        left: calc(-15% - 10px);
+        top: -100%;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+
+    .toast-action-center-section .layoutWrapper .layout {
+        border: 1px solid black;
+        margin: 20px 13px 0px 13px;
+
+    }
+
+    .toast-action-center-section #list-container {
+        height: 405px;
+        touch-action: none;
+    }
+
+    .material .toast-action-center-section .e-toast .e-input-arrow {
+        color: white;
+    }
+
+    .highcontrast .toast-action-center-section .layoutWrapper .layout,
+    .highcontrast .toast-action-center-section .layoutWrapper .camera,
+    .highcontrast .toast-action-center-section .layoutWrapper .outerButton,
+    .highcontrast .toast-action-center-section .layoutWrapper .speaker,
+    .highcontrast .toast-action-center-section .layoutWrapper {
+        border-color: white;
+    }
+</style>

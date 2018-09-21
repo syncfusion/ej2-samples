@@ -1,6 +1,6 @@
-import { Schedule, Month } from '@syncfusion/ej2-schedule';
+import { Schedule, Month, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 
-Schedule.Inject(Month);
+Schedule.Inject(Month, Resize, DragAndDrop);
 
 /**
  * Schedule cell template sample
@@ -32,7 +32,7 @@ this.default = () => {
     }
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '550px',
+        height: '650px',
         cellTemplate: '${if(type === "monthCells")}<div class="templatewrap">${getCellContent(data.date)}</div>${/if}',
         views: ['Month'],
         currentView: 'Month',

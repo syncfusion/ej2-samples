@@ -1,7 +1,7 @@
-import { DateTime, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
+import { DateTime, ILoadedEventArgs, ChartTheme, ScrollBar } from '@syncfusion/ej2-charts';
 import { Chart, AreaSeries, Legend, Zoom } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(AreaSeries, DateTime, Legend, Zoom);
+Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
 
 /**
  * Sample for Zooming in chart
@@ -60,7 +60,8 @@ this.default = (): void => {
             enableMouseWheelZooming: true,
             enablePinchZooming: true,
             enableSelectionZooming: true,
-            mode: 'X'
+            mode: 'X',
+            enableScrollbar: true
         },
         //Initializing Chart title
         title: 'Sales History of Product X',

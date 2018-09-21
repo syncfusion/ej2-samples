@@ -20,7 +20,7 @@ this.default = () => {
         tooltipChange: tooltipChangeHandler,
         // Initialize tooltip with placement
         tooltip: {
-            placement: 'Before', isVisible: true
+            placement: 'Before', isVisible: true, cssClass: 'e-tooltip-cutomization'
         },
         created: (args: any) => {
             timeObj.keyUp({ keyCode: 9, target: timeObj.secondHandle });
@@ -52,7 +52,7 @@ this.default = () => {
         tooltipChange: tooltipChangeHandler,
         // Initialize tooltip with placement
         tooltip: {
-            placement: 'Before', isVisible: true
+            placement: 'Before', isVisible: true, cssClass: 'e-tooltip-cutomization'
         },
         // Bind ticks event for custom formatting
         renderingTicks: renderingTicksHandler,

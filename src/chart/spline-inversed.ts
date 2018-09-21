@@ -26,9 +26,6 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            minimum: -5,
-            maximum: 35,
-            interval: 10,
             labelFormat: '{value}°C',
             majorGridLines: { width: 0 }
         },

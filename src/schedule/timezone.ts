@@ -1,10 +1,10 @@
 import { Browser, extend } from '@syncfusion/ej2-base';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Schedule, Day, Week, WorkWeek, Month, Agenda, Timezone, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import { Schedule, Day, Week, WorkWeek, Month, Agenda, Timezone, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import { fifaEventsData, applyCategoryColor } from './datasource';
 import { tz } from 'moment-timezone';
 
-Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
+Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
 /**
  * Schedule timezone events sample
@@ -27,8 +27,9 @@ this.default = () => {
     // Initialize schedule component
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '550px',
+        height: '650px',
         timezone: 'UTC',
+        workHours: { start: '11:00' },
         selectedDate: new Date(2018, 5, 20),
         eventSettings: { dataSource: fifaEvents },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)

@@ -1,9 +1,9 @@
 import { extend } from '@syncfusion/ej2-base';
 import { TimePicker, ChangeEventArgs } from '@syncfusion/ej2-calendars';
-import { Schedule, Day, Week, WorkWeek, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import { Schedule, Day, Week, TimelineViews, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import { scheduleData, applyCategoryColor } from './datasource';
 
-Schedule.Inject(Day, Week, WorkWeek);
+Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
 
 /**
  *  Schedule scroll to particular hour sample
@@ -13,11 +13,11 @@ this.default = () => {
     let data: Object[] = <Object[]>extend([], scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '550px',
+        height: '650px',
         selectedDate: new Date(2018, 1, 15),
-        views: ['Day', 'Week', 'WorkWeek'],
+        views: ['Day', 'Week', 'TimelineDay', 'TimelineWeek'],
         eventSettings: {
-            dataSource: data,
+            dataSource: data
         },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });

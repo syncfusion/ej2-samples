@@ -23,10 +23,10 @@ this.default = (): void => {
         primaryYAxis:
         {
             title: 'Sales',
+            lineStyle: { width: 0 },
             minimum: 0,
             maximum: 500,
             interval: 100,
-            lineStyle: { width: 0 },
             majorTickLines: { width: 0 },
             majorGridLines: { width: 1 },
             minorGridLines: { width: 1 },

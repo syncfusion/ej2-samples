@@ -1,9 +1,9 @@
 import { extend } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
-import { Schedule, Day, Week, WorkWeek, Month, Agenda, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import { Schedule, Day, Week, WorkWeek, Month, Agenda, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import { eventsData, applyCategoryColor } from './datasource';
 
-Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
+Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
 /**
  *  Schedule event tooltip sample
@@ -14,12 +14,12 @@ this.default = () => {
     let template: string = '<div class="tooltip-wrap">' +
         '<div class="image ${EventType}"></div>' +
         '<div class="content-area"><div class="name">${Subject}</></div>' +
-        '<div class="city">${City}</></div>' +
+        '${if(City !== null && City !== undefined)}<div class="city">${City}</div>${/if}' +
         '<div class="time">From&nbsp;:&nbsp;${StartTime.toLocaleString()} </div>' +
         '<div class="time">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;${EndTime.toLocaleString()} </div></div></div>';
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '550px',
+        height: '650px',
         selectedDate: new Date(2018, 1, 15),
         eventSettings: {
             dataSource: data,

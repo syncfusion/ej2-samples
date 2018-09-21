@@ -2,11 +2,10 @@
     "name": "Sidebar",
     "directory": "sidebar",
     "category": "Navigation",
-    "type": "preview",
     "samples": [
-        { "url": "default", "name": "Default Functionalites", "category": "Sidebar", "api": { "Sidebar": ["type", "position", "showBackdrop", "closeOnDocumentClick", "change", "mediaQuery"] } },
-        { "url": "dock", "name": "Dock", "category": "Sidebar", "api": { "Sidebar": ["enableDock", "dockSize", "contextTo"] } },
-        { "url": "api", "name": "API", "category": "Sidebar", "api": { "Sidebar": ["showBackdrop", "position", "types", "closeOnDocumentClick"] } },
-        { "url": "sidebar-menu", "name": "Sidebar with ListView", "category": "Sidebar", "api": { "Sidebar": ["open", "close"] } }
+        { "url": "default", "name": "Default Functionalites", "category": "Sidebar", "api": { "Sidebar": ["type", "position", "showBackdrop", "closeOnDocumentClick", "change", "mediaQuery"] },"description": "A simple and responsive sidebar for JavaScript (TypeScript) that lets you navigate between various parts of an application with ease" },
+        { "url": "docking-sidebar", "name": "Dock", "category": "Sidebar", "api": { "Sidebar": ["enableDock", "dockSize", "contextTo"] }, "description": "Sidebar for JavaScript (TypeScript) with dock support that uses minimal screen space on mobile devices, allowing more space for the main content and improving readability" },
+        { "url": "api", "name": "API", "category": "Sidebar", "api": { "Sidebar": ["showBackdrop", "position", "types", "closeOnDocumentClick"] }, "description": "Customizable sidebar for JavaScript (TypeScript) that supports changing the behavior and appearance based on your application needs through user-friendly APIs" },
+        { "url": "sidebar-list", "name": "Sidebar with ListView", "category": "Sidebar", "api": { "Sidebar": ["open", "close"] }, "description": "Responsive and customizable sidebar for JavaScript (TypeScript) integrated with a ListView to display a list of menu items. Integrate the sidebar component with any HTML element" }
     ]
 }

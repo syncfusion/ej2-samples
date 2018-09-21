@@ -1,5 +1,5 @@
 import { Grid, Toolbar, Edit, Page } from '@syncfusion/ej2-grids';
-import { orderData } from './datasource';
+import { orderData } from './data-source';
 
 /**
  * Batch Editing sample
@@ -27,7 +27,10 @@ this.default = (): void => {
                     field: 'Freight', headerText: 'Freight', textAlign: 'Right', editType: 'numericedit',
                     width: 120, format: 'C2', validationRules: { required: true }
                 },
-                { field: 'ShipCity', headerText: 'Ship City', width: 170 },
+                {
+                    field: 'OrderDate', headerText: 'Order Date', editType: 'datepickeredit', format: 'yMd',
+                    width: 170
+                },
                 {
                     field: 'ShipCountry', headerText: 'Ship Country', editType: 'dropdownedit', width: 150,
                     edit: { params: { popupHeight: '300px' } }

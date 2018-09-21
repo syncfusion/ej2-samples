@@ -46,4 +46,8 @@ export function renderActionDescription(): void {
     } else if (aDescElem) {
         aDescElem.style.display = 'none';
     }
+    let loadEle: any = document.getElementById('sb-content');
+    if (loadEle.ej2_instances[0]) {
+        loadEle.ej2_instances[0].tbObj.refreshOverflow();
+    }
 }

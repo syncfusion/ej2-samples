@@ -9,13 +9,14 @@ enableRipple(false);
 import { dataSource } from './newsData';
 
 //Define customized template
-let template: string = '<div id="postContainer" ${if(category!==null)} class = "clearfix desc"${else}'
-    + 'class = "clearfix" ${/if}> ${if(imgSrc!=="")} <div id="postImg"> <img src=${imgSrc} /> </div>'
-    + '${/if}  <div id="content"> <div id="heading">${title} </div>'
-    + '<div class="description" >${description} </div> ${if(timeStamp!=="")}  <div id="info"><div id="logo"> <div id="share">'
-    + '<span class="share"></span> </div> <div id="comments"> <span class="comments"></span> </div>'
-    + '<div id="bookmark"> <span class="bookmark"></span> </div></div> <div class="timeStamp">'
-    + '${timeStamp} </div> ${/if} </div> </div></div>';
+let template: string = '<div ${if(category!==null)} class = "clearfix desc e-list-wrapper e-list-multi-line e-list-avatar" ${else} ' +
+'class = "clearfix e-list-wrapper e-list-multi-line e-list-avatar" ${/if}> ${if(imgSrc!=="")}' +
+'<img class="e-avatar" src="src/listview/images/${imgSrc}.png" /> ' +
+'${/if} <span class="e-list-item-header">${title} </span>' +
+'<span class="e-list-content e-text-overflow" >${description} </span> ${if(timeStamp!=="")}  <div id="list-logo">' +
+'<span class="bookmark"></span> <span class="comments"></span>' +
+'<span class="share"></span></div> <div class="timeStamp">' +
+'${timeStamp} </div> ${/if} </div>';
 
 this.default = () => {
     //Initialize ListView component
@@ -25,6 +26,8 @@ this.default = () => {
 
         //Set defined customized template
         template: template,
+
+        cssClass: 'e-list-template',
 
         //Set header title
         headerTitle: 'Syncfusion Blog',
@@ -44,7 +47,7 @@ this.default = () => {
     let share: any = document.getElementsByClassName('share');
     let comments: any = document.getElementsByClassName('comments');
     let bookmark: any = document.getElementsByClassName('bookmark');
-    let description: any = document.getElementsByClassName('description');
+    let description: any = document.getElementsByClassName('e-list-content');
     let timeStamp: any = document.getElementsByClassName('timeStamp');
 
     for (let i: number = 0; i < comments.length; i++) {
@@ -90,7 +93,7 @@ this.default = () => {
             }
         } else {
             let headerEle: HTMLElement = listviewInstance.element.querySelector('.e-list-header') as HTMLElement;
-            let headerElement: HTMLElement = listviewInstance.element.querySelector('#info') as HTMLElement;
+            let headerElement: HTMLElement = listviewInstance.element.querySelector('#list-logo') as HTMLElement;
             let clone: HTMLElement = headerElement.cloneNode(true) as HTMLElement;
             headerEle.appendChild(clone);
         }

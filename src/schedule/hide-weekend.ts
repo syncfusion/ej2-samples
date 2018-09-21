@@ -1,10 +1,13 @@
 import { extend } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 import { MultiSelect, CheckBoxSelection, MultiSelectChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Schedule, Day, Week, Month, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import {
+    Schedule, Day, Week, Month, TimelineViews, TimelineMonth,
+    EventRenderedArgs, Resize, DragAndDrop
+} from '@syncfusion/ej2-schedule';
 import { employeeEventData, applyCategoryColor } from './datasource';
 
-Schedule.Inject(Day, Week, Month);
+Schedule.Inject(Day, Week, Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 MultiSelect.Inject(CheckBoxSelection);
 
 /**
@@ -15,10 +18,13 @@ this.default = () => {
     let data: Object[] = <Object[]>extend([], employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '550px',
+        height: '650px',
         showWeekend: false,
         workDays: [1, 3, 4, 5],
-        views: ['Day', 'Week', 'Month'],
+        workHours: {
+            start: '08:00'
+        },
+        views: ['Day', 'Week', 'Month', 'TimelineWeek', 'TimelineMonth'],
         selectedDate: new Date(2018, 1, 15),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)

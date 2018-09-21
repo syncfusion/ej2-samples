@@ -1,12 +1,9 @@
 /**
  * Maps Tooltip
  */
-import { Maps, MapsTooltip, Legend, ITooltipRenderEventArgs, ILoadEventArgs, MapsTheme} from '@syncfusion/ej2-maps';
-import { world_cup } from './MapData/SouthAmerica_Countries';
-import { World_Map } from './MapData/WorldMap';
-
+import { Maps, MapsTooltip, Legend, ITooltipRenderEventArgs, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(MapsTooltip, Legend);
-
+/* tslint:disable:no-string-literal */
 this.default = (): void => {
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
@@ -15,10 +12,10 @@ this.default = (): void => {
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
         tooltipRender: (args: ITooltipRenderEventArgs) => {
-            if (args.content.toString().indexOf('undefined') > -1) {
-            args.cancel = true;
+            if (!args.options['data']) {
+                args.cancel = true;
             }
-            },
+        },
         titleSettings: {
             text: 'Finalist in Cricket World Cup',
             textStyle: {
@@ -38,10 +35,10 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: World_Map,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
                 shapePropertyPath: 'name',
                 shapeDataPath: 'name',
-                dataSource: world_cup,
+                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/tooltip-datasource.json'),
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'name',

@@ -6,11 +6,11 @@
 import { Popup, Tooltip } from '@syncfusion/ej2-popups';
 import { Animation, Browser, extend, setCulture, enableRipple, Ajax, closest, createElement, detach, L10n } from '@syncfusion/ej2-base';
 import { select, setCurrencyCode, loadCldr, selectAll } from '@syncfusion/ej2-base';
-import { DataManager, Query, DataUtil } from '@syncfusion/ej2-data';
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { DataManager, Query } from '@syncfusion/ej2-data';
+import { DropDownList, AutoComplete } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 import { Tab, TreeView, Sidebar } from '@syncfusion/ej2-navigations';
-import { ListBase, ListView } from '@syncfusion/ej2-lists';
+import { ListView } from '@syncfusion/ej2-lists';
 import { Grid } from '@syncfusion/ej2-grids';
 import { addRoute, bypassed, parse } from 'crossroads';
 import { renderPropertyPane, renderDescription, renderActionDescription } from './propertypane';
@@ -27,6 +27,8 @@ import * as arCultureData from '../common/cldr-data/main/ar/all.json';
 import * as swissCultureDate from '../common/cldr-data/main/fr-CH/all.json';
 import * as enCultureData from '../common/cldr-data/main/fr-CH/all.json';
 import * as chinaCultureData from '../common/cldr-data/main/zh/all.json';
+import * as packageJson from '../common/pack.json';
+let packages: string = `{${JSON.stringify((<any>packageJson).dependencies).match(/"@syncfusion\/ej2[^"]*":"\*"/g).join(',')}}`;
 let cBlock: string[] = ['ts-src-tab', 'html-src-tab'];
 const matchedCurrency: { [key: string]: string } = {
     'en': 'USD',
@@ -80,10 +82,10 @@ let switcherPopup: Popup;
 let preventToggle: boolean;
 let themeSwitherPopup: Popup;
 let openedPopup: any;
-let searchPopup: Popup;
+let searchPopup: AutoComplete;
 let settingsPopup: Popup;
 let prevAction: string;
-export let sidebar: Sidebar;
+let sidebar: Sidebar;
 let settingsidebar: Sidebar;
 let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
@@ -95,6 +97,7 @@ let cultureDropDown: DropDownList;
 let currencyDropDown: DropDownList;
 let contentTab: Tab;
 let sourceTab: Tab;
+let sourceTabItems: object[] = [];
 let isExternalNavigation: boolean = true;
 let defaultTree: boolean = false;
 let intialLoadCompleted: boolean = false;
@@ -110,11 +113,10 @@ let resetSearch: Element = select('.sb-reset-icon');
  */
 const urlRegex: RegExp = /(npmci\.syncfusion\.com|ej2\.syncfusion\.com)(\/)(development|production)*/;
 const sampleRegex: RegExp = /#\/(([^\/]+\/)+[^\/\.]+)/;
-const sbArray: string[] = ['angular', 'react', 'javascript', 'aspnetcore', 'aspnetmvc'];
+const sbArray: string[] = ['angular', 'react', 'javascript', 'aspnetcore', 'aspnetmvc', 'vue'];
 /**
  * constant for search operations
  */
-let searchEle: any = select('#search-popup');
 let inputele: any = select('#search-input');
 let searchOverlay: Element = select('.e-search-overlay');
 let searchButton: Element = document.getElementById('sb-trigger-search');
@@ -165,7 +167,7 @@ if (Browser.isDevice || isMobile) {
 }
 settingsidebar = new Sidebar({
     position: 'Right', width: '282', zIndex: '1003', showBackdrop: true, type: 'Over', enableGestures: false,
-    closeOnDocumentClick: true
+    closeOnDocumentClick: false
 });
 settingsidebar.appendTo('#right-sidebar');
 /**
@@ -190,7 +192,7 @@ let sampleNavigation: string = `<div class="sb-custom-item sample-navigation"><b
 <span class='sb-icons sb-icon-Next'></span>
 </button>
 </div>`;
-let plnrTemplate: string = '<span class="sb-icons sb-icons-plnkr"></span><span class="sb-plnkr-text">EDIT IN PLUNKER</span>';
+let plnrTemplate: string = '<span class="sb-icons sb-icons-plnkr"></span><span class="sb-plnkr-text">Edit in StackBlitz</span>';
 // tslint:disable-next-line:no-multiple-var-decl
 let contentToolbarTemplate: string = '<div class="sb-desktop-setting"><button id="open-plnkr" class="sb-custom-item sb-plnr-section">' +
     plnrTemplate + '</button>' + hsplitter + openNewTemplate + hsplitter +
@@ -219,6 +221,30 @@ function preventTabSwipe(e: any): void {
         e.cancel = true;
     }
 }
+function dynamicTab(e: any): void {
+    let blockEle: Element = this.element.querySelector('#e-content_' + e.selectedIndex).children[0];
+    blockEle.innerHTML = this.items[e.selectedIndex].data;
+    blockEle.classList.add('sb-src-code');
+    if (blockEle) {
+        hljs.highlightBlock(blockEle);
+    }
+}
+function dynamicTabCreation(obj: any): void {
+    let tabObj: any;
+    if (obj) {
+        tabObj = obj;
+    } else { tabObj = this; }
+    let contentEle: Element = tabObj.element.querySelector('#e-content_' + tabObj.selectedItem);
+    if (!contentEle) {
+        return;
+    }
+    let  blockEle: Element = tabObj.element.querySelector('#e-content_' + tabObj.selectedItem).children[0];
+    blockEle.innerHTML = tabObj.items[tabObj.selectedItem].data;
+    blockEle.classList.add('sb-src-code');
+    if (blockEle) {
+        hljs.highlightBlock(blockEle);
+    }
+}
 // tslint:disable-next-line:max-func-body-length
 function renderSbPopups(): void {
     switcherPopup = new Popup(document.getElementById('sb-switcher-popup'), {
@@ -232,13 +258,46 @@ function renderSbPopups(): void {
         relateTo: <HTMLElement>document.querySelector('.theme-wrapper'), position: { X: 'left', Y: 'bottom' },
         collision: { X: 'flip', Y: 'flip' }
     });
-    searchPopup = new Popup(searchEle, {
-        offsetY: 5,
-        relateTo: inputele, position: { X: 'left', Y: 'bottom' }
-        , collision: { X: 'flip', Y: 'flip' }
-    });
+    searchPopup = new AutoComplete(
+        {
+            dataSource: [],
+            filtering:  function (e: any): void {
+                if (e.text && e.text.length < 3) {
+                    return;
+                }
+                let val: any = searchInstance.search(e.text, {
+                    fields: {
+                        component: { boost: 1 },
+                        name: { boost: 2 }
+                    },
+                    expand: true,
+                    boolean: 'AND'
+                });
+                let query: Query = new Query().take(10).select('doc');
+                let fields: any = this.fields;
+                e.updateData(val, query, fields);
+            },
+            placeholder: 'Search here...',
+            noRecordsTemplate: '<div class="search-no-record">We’re sorry. We cannot find any matches for your search term.</div>',
+            fields: { groupBy: 'doc.component', value: 'doc.name', text: 'doc.name' },
+            popupHeight: 'auto',
+            suggestionCount: 10,
+            highlight: true,
+            select: (e: any) => {
+                let data: any = e.itemData.doc;
+                let hashval: string = '#/' + location.hash.split('/')[1] + '/' + data.dir + '/' + data.url + '.html';
+                searchPopup.hidePopup();
+                searchOverlay.classList.add('e-search-hidden');
+                if (location.hash !== hashval) {
+                    sampleOverlay();
+                    location.hash = hashval;
+                    setSelectList();
+                }
+            }
+        },
+        inputele
+    );
     settingsPopup = new Popup(document.getElementById('settings-popup'), {
-        offsetX: -245,
         offsetY: 5,
         zIndex: 1001,
         relateTo: <any>settingElement,
@@ -251,7 +310,7 @@ function renderSbPopups(): void {
     } else {
         select('.sb-mobile-preference').appendChild(select('#settings-popup'));
     }
-    searchPopup.hide();
+    searchPopup.hidePopup();
     switcherPopup.hide();
     themeSwitherPopup.hide();
     themeDropDown = new DropDownList({
@@ -287,7 +346,12 @@ function renderSbPopups(): void {
         // tslint:disable-next-line:align
         '#sb-content');
     sourceTab = new Tab({
-        headerPlacement: 'Bottom', cssClass: 'sb-source-code-section', selecting: preventTabSwipe
+        items: [],
+        headerPlacement: 'Bottom', cssClass: 'sb-source-code-section',
+        created: dynamicTabCreation,
+        selected: dynamicTab,
+        // headerPlacement: 'Bottom', cssClass: 'sb-source-code-section', 
+        selecting: preventTabSwipe
     },
         // tslint:disable-next-line:align
         '#sb-source-tab');
@@ -334,6 +398,12 @@ function renderSbPopups(): void {
         content: 'Next Sample'
     });
 
+    select('#right-pane').addEventListener('scroll', (event: any) => {
+        next.close();
+        openNew.close();
+        previous.close();
+    });
+
     next.appendTo('#next-sample');
     let ele: HTMLElement = createElement('div', { className: 'copy-tooltip', innerHTML: '<div class="e-icons copycode"></div>' });
     document.getElementById('sb-source-tab').appendChild(ele);
@@ -367,6 +437,11 @@ function changeTab(args: any): void {
         } else {
             apiGrid.dataSource = [];
         }
+    }
+    if (args.selectedIndex === 1) {
+        sourceTab.items = sourceTabItems;
+        sourceTab.refresh();
+        dynamicTabCreation(sourceTab);
     }
 }
 function changeRtl(args: any): void {
@@ -403,7 +478,7 @@ function tagShowmore(target: HTMLElement): void {
     target.querySelector('#showtag').classList.add('e-display');
     let hideEle: Element = target.querySelector('#hidetag');
     if (!hideEle) {
-        let tag: Element = createElement('a', { id: 'hidetag', attrs: {}, innerHTML: ' hide less..' });
+        let tag: Element = createElement('a', { id: 'hidetag', attrs: {}, innerHTML: ' show less..' });
         target.appendChild(tag);
         tag.addEventListener('click', taghideless.bind(this, target));
     } else {
@@ -423,7 +498,7 @@ function setPressedAttribute(ele: HTMLElement): void {
 }
 
 // tslint:disable-next-line:max-func-body-length
-function sbHeaderClick(action: string, preventSearch?: boolean): void {
+function sbHeaderClick(action: string, preventSearch?: boolean | any): void {
     if (openedPopup) {
         openedPopup.hide(new Animation({ name: 'FadeOut', duration: 300, delay: 0 }));
     }
@@ -454,6 +529,11 @@ function sbHeaderClick(action: string, preventSearch?: boolean): void {
         settingElement.classList.remove('active');
         setPressedAttribute(headerThemeSwitch);
         setPressedAttribute(settingElement);
+        if (settingsidebar.isOpen && preventSearch && preventSearch.target && preventSearch.target.closest !== undefined &&
+            (preventSearch.target.closest('#sb-setting-theme_popup') || preventSearch.target.closest('#sb-setting-culture_popup') ||
+                preventSearch.target.closest('#sb-setting-currency_popup') || preventSearch.target.closest('.e-sidebar-overlay'))) {
+            settingsidebar.hide();
+        }
     }
     if (curPopup && curPopup !== openedPopup) {
         curPopup.show(new Animation({ name: 'FadeIn', duration: 400, delay: 0 }));
@@ -469,7 +549,7 @@ function sbHeaderClick(action: string, preventSearch?: boolean): void {
 function toggleSearchOverlay(): void {
     sbHeaderClick('closePopup', true);
     inputele.value = '';
-    searchPopup.hide();
+    searchPopup.hidePopup();
     searchButton.classList.toggle('active');
     setPressedAttribute(<HTMLElement>searchButton);
     searchOverlay.classList.toggle('sb-hide');
@@ -497,68 +577,6 @@ function switchTheme(str: string): void {
     }
 }
 
-/**
- * search input change
- */
-function onsearchInputChange(e: KeyboardEvent): void {
-    if (e.keyCode === 27) {
-        toggleSearchOverlay();
-    }
-    let searchString: string = (e.target as any).value;
-    // changeInputIcons(searchString.length > 0);
-    if (searchString.length <= 2) {
-        searchPopup.hide();
-        return;
-    }
-    let val: any = [];
-    val = searchInstance.search(searchString, {
-        fields: {
-            component: { boost: 1 },
-            name: { boost: 2 }
-        },
-        expand: true,
-        boolean: 'AND',
-    });
-    if (val.length) {
-        let data: DataManager = new DataManager(val);
-        let controls: any = data.executeLocal(new Query().take(10).select('doc'));
-        let controlsAccess: any = [];
-        for (let cont of controls) {
-            controlsAccess.push(cont.doc);
-        }
-        let ds: any = DataUtil.group(controlsAccess, 'component');
-        let dataSource: { [key: string]: Object }[] & Object[] = [];
-        for (let j: number = 0; j < ds.length; j++) {
-            let itemObj: any = ds[j].items;
-            let field: string = 'name';
-            let grpItem: { [key: string]: Object } = {};
-            let hdr: string = 'isHeader';
-            grpItem[field] = ds[j].key;
-            grpItem[hdr] = true;
-            grpItem.items = itemObj;
-            dataSource.push(grpItem);
-            for (let k: number = 0; k < itemObj.length; k++) {
-                dataSource.push(itemObj[k]);
-            }
-        }
-        let ele: any = ListBase.createList(dataSource, {
-            fields: { id: 'uid', groupBy: 'component', text: 'name' },
-            template: '<div class="e-text-content e-icon-wrapper" data="${dir}/${url}" uid="${uid}" pid="${parentId}">' +
-                '<span class="e-list-text" role="list-item">' +
-                '${name}</span></div>',
-            groupTemplate:
-                '${if(items[0]["component"])}<div class="e-text-content"><span class="e-search-group">${items[0].component}</span>' +
-                '</div>${/if}'
-        });
-        searchPopup.element.innerHTML = '';
-        highlight(searchString, ele);
-        searchPopup.element.appendChild(ele);
-        searchPopup.show();
-    } else {
-        searchPopup.element.innerHTML = '<div class="search-no-record">We’re sorry. We cannot find any matches for your search term.</div>';
-        searchPopup.show();
-    }
-}
 function highlight(searchString: string, listElement: any): void {
     let regex: RegExp = new RegExp(searchString.split(' ').join('|'), 'gi');
     let contentElements: any[] = selectAll('.e-list-item .e-text-content .e-list-text', listElement);
@@ -616,9 +634,12 @@ function onPrevButtonClick(arg: MouseEvent): void {
  */
 // tslint:disable-next-line:max-func-body-length
 function processResize(e: any): void {
-    let toggle: boolean = sidebar.isOpen();
+    let toggle: boolean = sidebar.isOpen;
     isMobile = window.matchMedia('(max-width:550px)').matches;
     isTablet = window.matchMedia('(min-width:550px) and (max-width: 850px)').matches;
+    if (isTablet) {
+        resizeManualTrigger = false;
+    }
     if (resizeManualTrigger || (isMobile && select('#right-sidebar').classList.contains('sb-hide'))) {
         return;
     }
@@ -634,11 +655,17 @@ function processResize(e: any): void {
     } else {
         contentTab.hideTab(1, false);
     }
-    if (toggle) {
+    if (toggle && !isPc) {
         toggleLeftPane();
     }
-    if (isMobile) {
+    if (isMobile || isTablet) {
+        sidebar.target = null;
+        sidebar.showBackdrop = true;
+        sidebar.closeOnDocumentClick = true;
         select('.sb-left-footer-links').appendChild(footer);
+        if (isTablet) {
+            select('.sb-footer').appendChild(footer);
+        }
         if (isVisible('.sb-mobile-overlay')) {
             removeMobileOverlay();
         }
@@ -655,8 +682,10 @@ function processResize(e: any): void {
             removeMobileOverlay();
         }
     }
-    if (isTablet || isPc) {
-        select('.sb-footer').appendChild(footer);
+    if (isPc) {
+        sidebar.target = <HTMLElement>document.querySelector('.sb-content ');
+        sidebar.showBackdrop = false;
+        sidebar.closeOnDocumentClick = false;
         if (isVisible('.sb-mobile-overlay')) {
             removeMobileOverlay();
         }
@@ -685,7 +714,7 @@ function resetInput(arg: MouseEvent): void {
     arg.stopPropagation();
     (<HTMLInputElement>document.getElementById('search-input')).value = '';
     document.getElementById('search-input-wrapper').setAttribute('data-value', '');
-    searchPopup.hide();
+    searchPopup.hidePopup();
 }
 /**
  * Binding events for sample browser operations
@@ -707,7 +736,8 @@ function bindEvents(): void {
         sbHeaderClick('changeTheme');
     });
     themeList.addEventListener('click', changeTheme);
-    document.addEventListener('click', sbHeaderClick.bind(this, 'closePopup'));
+    // tslint:disable
+    document.addEventListener((Browser.isDevice ? Browser.touchStartEvent : 'click'), sbHeaderClick.bind(this, 'closePopup'));
     settingElement.addEventListener('click', (e: MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -726,7 +756,6 @@ function bindEvents(): void {
         e.preventDefault();
         e.stopPropagation();
     });
-    inputele.addEventListener('keyup', onsearchInputChange);
     setResponsiveElement.addEventListener('click', setMouseOrTouch);
     select('#sb-left-back').addEventListener('click', showHideControlTree);
     leftToggle.addEventListener('click', toggleLeftPane);
@@ -737,7 +766,7 @@ function bindEvents(): void {
      * plnkr trigger
      */
     document.getElementById('open-plnkr').addEventListener('click', () => {
-        let plnkrForm: HTMLFormElement = select('#plnkr-form') as HTMLFormElement;
+        let plnkrForm: HTMLFormElement = select('#stack-form') as HTMLFormElement;
         if (plnkrForm) {
             plnkrForm.submit();
         }
@@ -768,21 +797,6 @@ function bindEvents(): void {
         }
     });
     select('.copycode').addEventListener('click', copyCode);
-    searchEle.addEventListener('click', (e: MouseEvent) => {
-        let curEle: HTMLElement = <HTMLElement>closest((e.target as any), 'li');
-        if (curEle && curEle.classList.contains('e-list-item')) {
-            let tcontent: any = curEle.querySelector('.e-text-content');
-            let hashval: string = '#/' + selectedTheme + '/' + tcontent.getAttribute('data') + '.html';
-            inputele.value = '';
-            searchPopup.hide();
-            searchOverlay.classList.add('e-search-hidden');
-            if (location.hash !== hashval) {
-                sampleOverlay();
-                location.hash = hashval;
-                setSelectList();
-            }
-        }
-    });
 }
 
 /**
@@ -886,7 +900,7 @@ function removeMobileOverlay(): void {
     select('.sb-mobile-overlay').classList.add('sb-hide');
 }
 function isLeftPaneOpen(): boolean {
-    return sidebar.isOpen();
+    return sidebar.isOpen;
 }
 function isVisible(elem: string): boolean {
     return !select(elem).classList.contains('sb-hide');
@@ -900,7 +914,7 @@ function setLeftPaneHeight(): void {
 }
 
 function toggleLeftPane(): void {
-    let reverse: boolean = sidebar.isOpen();
+    let reverse: boolean = sidebar.isOpen;
     select('#left-sidebar').classList.remove('sb-hide');
     if (!reverse) {
         leftToggle.classList.add('toggle-active');
@@ -908,22 +922,36 @@ function toggleLeftPane(): void {
         leftToggle.classList.remove('toggle-active');
     }
     if (sidebar) {
-        reverse = sidebar.isOpen();
+        reverse = sidebar.isOpen;
         if (reverse) {
             sidebar.hide();
-            if (!isMobile) {
+            if (!isMobile && !isTablet) {
                 resizeManualTrigger = true;
-                setTimeout(() => { window.dispatchEvent(new Event('resize')); }, 200);
+                setTimeout( cusResize(), 200);
             }
         } else {
             sidebar.show();
             resizeManualTrigger = true;
-            if (!isMobile) {
-                setTimeout(() => { window.dispatchEvent(new Event('resize')); }, 200);
+            if (!isMobile && !isTablet) {
+                setTimeout( cusResize(), 200);
+
             }
         }
     }
 }
+
+function cusResize(){
+    let event: Event;
+    if(typeof(Event) === 'function') {
+        event = new Event('resize');
+    }else{
+        event = document.createEvent('Event');
+        event.initEvent('resize', true, true);
+    }
+    window.dispatchEvent(event);
+}
+
+
 /**
  * Mobile Right pane toggle functions
  */
@@ -969,17 +997,19 @@ function renderLeftPaneComponents(): void {
                 text: 'name', hasChildren: 'hasChild', htmlAttributes: 'url'
             },
             nodeClicked: controlSelect,
-            nodeTemplate: '<div class="sb-tree-component"> <span class="e-component text" role="listitem">${name}' +
-                '${if(type)}<span class="e-samplestatus ${type}"></span>${/if}</span'
+            nodeTemplate: '<div><span class="tree-text">${name}</span>' +
+            '${if(type === "update")}<span class="e-badge sb-badge e-samplestatus ${type} tree tree-badge">Updated</span>' +
+            '${else}${if(type)}<span class="e-badge sb-badge e-samplestatus ${type} tree tree-badge">${type}</span>${/if}${/if}</div>'
         },
         '#controlTree');
     let controlList: ListView = new ListView(
         {
-            dataSource: controlSampleData[location.hash.split('/')[2]] || controlSampleData.chart,
+            dataSource: controlSampleData[location.hash.split('/')[2]] || controlSampleData.grid,
             fields: { id: 'uid', text: 'name', groupBy: 'order', htmlAttributes: 'data' },
             select: controlSelect,
             template: '<div class="e-text-content e-icon-wrapper"> <span class="e-list-text" role="listitem">${name}' +
-                '${if(type)}<span class="e-samplestatus ${type}"></span>${/if}</span>' +
+                '</span>${if(type === "update")}<span class="e-badge sb-badge e-samplestatus ${type}">Updated</span>' +
+                '${else}${if(type)}<span class="e-badge sb-badge e-samplestatus ${type}">${type}</span>${/if}${/if}' +
                 '${if(directory)}<div class="e-icons e-icon-collapsible"></div>${/if}</div>',
             groupTemplate: '${if(items[0]["category"])}<div class="e-text-content">' +
                 '<span class="e-list-text">${items[0].category}</span>' +
@@ -1090,6 +1120,7 @@ function setSelectList(): void {
         let samples: any = controlSampleData[control.getAttribute('control-name')];
         if (JSON.stringify(data) !== JSON.stringify(samples)) {
             list.dataSource = samples;
+            list.dataBind();
         }
         let selectSample: Element = select('[sample-name="' + hash.slice(-1)[0].split('.html')[0] + '"]');
         if (selectSample) {
@@ -1100,7 +1131,7 @@ function setSelectList(): void {
         }
     } else {
         showHideControlTree();
-        list.selectItem(select('[sample-name="line"]'));
+        list.selectItem(select('[sample-name="grid-overview"]'));
     }
 }
 /**
@@ -1135,13 +1166,13 @@ function setPropertySectionHeight(): void {
 
 function routeDefault(): void {
     addRoute('', () => {
-        window.location.href = '#/' + selectedTheme + '/chart/line.html';
+        window.location.href = '#/' + selectedTheme + '/grid/grid-overview.html';
         isInitRedirected = true;
     });
     bypassed.add((request: string) => {
         let hash: string[] = request.split('.html')[0].split('/');
         if (samplePath.indexOf(hash.slice(1).join('/')) === -1) {
-            location.hash = '#/' + hash[0] + '/' + (defaultSamples[hash[1]] || 'chart/line.html');
+            location.hash = '#/' + hash[0] + '/' + (defaultSamples[hash[1]] || 'grid/grid-overview.html');
             isInitRedirected = true;
         }
     });
@@ -1192,28 +1223,36 @@ function errorHandler(error: string): void {
 }
 function plunker(results: string): void {
     let plnkr: { [key: string]: Object } = JSON.parse(results);
-    let prevForm: Element = select('#plnkr-form');
+    let prevForm: Element = select('#stack-form');
     if (prevForm) {
         detach(prevForm);
     }
     let form: HTMLFormElement = <HTMLFormElement>createElement('form');
-    let res: string = ((location.href as any).includes('ej2.syncfusion.com') ? 'https:' : 'http:') + '//plnkr.co/edit/?p=preview';
+    let res: string = ((location.href as any).includes('ej2.syncfusion.com') ? 'https:' : 'http:') + '//stackblitz.com/run';
     form.setAttribute('action', res);
     form.setAttribute('method', 'post');
     form.setAttribute('target', '_blank');
-    form.id = 'plnkr-form';
+    form.id = 'stack-form';
     form.style.display = 'none';
     document.body.appendChild(form);
     let plunks: string[] = Object.keys(plnkr);
     for (let x: number = 0; x < plunks.length; x++) {
-        let ip: HTMLElement = createElement('input');
-        ip.setAttribute('type', 'hidden');
-        ip.setAttribute('value', <string>plnkr[plunks[x]]);
-        ip.setAttribute('name', 'files[' + plunks[x] + ']');
-        form.appendChild(ip);
+        createStackInput('project[files][' + plunks[x] + ']', <string>plnkr[plunks[x]], form);
     }
+    createStackInput('project[template]', 'typescript', form);
+    createStackInput('project[description]', 'Essential JS 2 Sample', form);
+    createStackInput('project[settings]', '{"compile":{"clearConsole":true}}', form);
+    createStackInput('project[dependencies]', packages, form);
 }
 
+function createStackInput(name: string, value: string, form: HTMLFormElement): void {
+    let input: HTMLElement = createElement('input');
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('name', name);
+    input.setAttribute('value', value.replace(/{{theme}}/g, selectedTheme).replace(/{{ripple}}/,
+        (selectedTheme === 'material') ? 'import { enableRipple } from \'@syncfusion/ej2-base\';\nenableRipple(true);\n' : ''));
+    form.appendChild(input);
+}
 
 // tslint:disable-next-line:max-func-body-length
 function addRoutes(samplesList: Controls[]): void {
@@ -1238,17 +1277,59 @@ function addRoutes(samplesList: Controls[]): void {
                 (document.getElementById('open-plnkr') as any).disabled = true;
                 let openNew: HTMLFormElement = (select('#openNew') as HTMLFormElement);
                 if (openNew) {
-                    openNew.href = location.href.split('#')[0] + 'samples/' + node.directory + '/' + subNode.url + '/index.html';
+                    openNew.href = location.href.split('#')[0] + node.directory + '/' + subNode.url + '/';
                 }
                 setSbLink();
                 // select('#switch').classList.remove('hidden');
                 //document.getElementById('source-panel').style.display = 'block';
                 // .href =
                 //     location.href.split('#')[0] + 'samples/' + node.directory + '/' + subNode.url + '/index.html';
+                let sourcePromise: Array<Promise<Ajax>> = [];
+                let sObj: any[] = [];
+                sourcePromise.push((new Ajax('src/' + control + '/' + sample + '.ts', 'GET', true)).send());
+                sObj.push({
+                    header: { text: sample + '.ts' },
+                    data: '',
+                    content: sample + '.ts'
+                });
+                sourcePromise.push((new Ajax('src/' + control + '/' + sample + '.html', 'GET', true)).send());
+                sObj.push({
+                    header: { text: sample + '.html' },
+                    data: '',
+                    content: sample + '.html'
+                });
+                if (subNode.sourceFiles) {
+                    sourcePromise =[];
+                    sObj =[];
+                    let sourcefiles: any = subNode.sourceFiles;
+                    for (let sfile of sourcefiles) {
+                        let spromise: Promise<Ajax> = (new Ajax(sfile.path, 'GET', true)).send();
+                        sourcePromise.push(spromise);
+                        sObj.push({
+                            header: { text: sfile.displayName },
+                            data: '',
+                            content: sfile.displayName
+                        });
+                    }
+                }
+                let content: any;
+                Promise.all(sourcePromise).then((results: Object[]): void => {
+                    results.forEach((value, index) => {
+                        let srcobj = sObj[index];
+                        if (srcobj.content.indexOf('.html') > 0) {
+                            content = getStringWithOutDescription(value.toString(), /(\'|\")description/g);
+                            content = getStringWithOutDescription(content.toString(), /(\'|\")action-description/g)
+                        }
+                        content = srcobj.content.indexOf('.html') > 0 ? content.replace(/@section (ActionDescription|Description){[^}]*}/g, '').replace(/&/g, '&amp;')
+                            .replace(/"/g, '&quot;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : value.toString().replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+                        sObj[index].data = content;
+                    });
+                    sourceTabItems = sObj;
+                });
                 let ajaxHTML: Ajax = new Ajax('src/' + control + '/' + sample + '.html', 'GET', true);
                 let p1: Promise<Ajax> = ajaxHTML.send();
                 let p2: Promise<Object> = loadScriptfile('src/' + control + '/' + sample + '.js');
-                let ajaxTs: Ajax = new Ajax('src/' + control + '/' + sample + '.ts', 'GET', true);
                 /**
                  * sample header
                  */
@@ -1269,27 +1350,8 @@ function addRoutes(samplesList: Controls[]): void {
                 }
                 breadCrumbSample.innerHTML = subNode.name;
                 let title: HTMLElement = document.querySelector('title');
-                let txt: string = title.innerHTML;
-                let num: number = txt.indexOf('-');
-                if (num !== -1) {
-                    txt = txt.slice(0, num + 1);
-                    txt += ' ' + node.name + ' > ' + subNode.name;
-                } else {
-                    txt += ' - ' + node.name + ' > ' + subNode.name;
-                }
-                title.innerHTML = txt;
-
-                for (let k: number = 0; k < 2; k++) {
-                    let header: Element = getSourceTabHeader(k);
-                    if (header) {
-                        header.innerHTML = sample + (k ? '.html' : '.ts');
-                    }
-                }
-                ajaxTs.send().then((value: Object): void => {
-                    document.querySelector('.ts-source-content').innerHTML = value.toString().replace(/\</g, '&lt;').replace(/\>/g, '&gt;');
-                    hljs.highlightBlock(document.querySelector('.ts-source-content'));
-                });
-                let plunk: Ajax = new Ajax('src/' + control + '/' + sample + '-plnkr.json', 'GET', true);
+                title.innerHTML = node.name + ' · ' + subNode.name + ' · Essential JS 2 · Syncfusion ';
+                let plunk: Ajax = new Ajax('src/' + control + '/' + sample + '-stack.json', 'GET', true);
                 let p3: Promise<Ajax> = plunk.send();
                 p3.then((result: Object) => {
                     (document.getElementById('open-plnkr') as any).disabled = false;
@@ -1335,10 +1397,6 @@ function addRoutes(samplesList: Controls[]): void {
                     if (actionDesc) {
                         detach(actionDesc);
                     }
-                    let htmlCodeSnippet: string = htmlCode.innerHTML.replace(/&/g, '&amp;')
-                        .replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    document.querySelector('.html-source-content').innerHTML = htmlCodeSnippet;
-                    hljs.highlightBlock(document.querySelector('.html-source-content'));
                     getExecFunction(control + sample)();
                     window.navigateSample();
                     //select('.sb-loading').classList.add('hidden');
@@ -1361,8 +1419,6 @@ function addRoutes(samplesList: Controls[]): void {
                             select('.sb-mobile-setting').classList.add('sb-hide');
                         }
                     }
-                }).catch((reason: any): void => {
-                    errorHandler(reason.message);
                 });
             });
         }
@@ -1422,6 +1478,7 @@ function parseHash(newHash: string, oldHash: string): void {
     if (newTheme !== selectedTheme && themeCollection.indexOf(newTheme) !== -1) {
         location.reload();
     }
+    (samplesJSON.skipCommonChunk as any) = (window as any).sampleSkip || [];
     if (newHash.length && !select('#' + control + '-common') && checkSampleLength(control) &&
         samplesJSON.skipCommonChunk.indexOf(control) === -1) {
         let scriptElement: HTMLScriptElement = document.createElement('script');
@@ -1460,6 +1517,33 @@ function checkTabHideStatus(): void {
         intialLoadCompleted = true;
     }
 }
+function getStringWithOutDescription(code: string, descRegex: RegExp): string {
+    let lines: string[] = code.split('\n');
+    let desStartLine: number = null;
+    let desEndLine: number = null;
+    let desInsideDivCnt: number = 0;
+    for (let i: number = 0; i < lines.length; i++) {
+        let curLine: string = lines[i];
+        if (desStartLine) {
+            if (/<div/g.test(curLine)) {
+                desInsideDivCnt = desInsideDivCnt + 1;
+            }
+            if (desInsideDivCnt && /<\/div>/g.test(curLine)) {
+                desInsideDivCnt = desInsideDivCnt - 1;
+            } else if (!desEndLine && /<\/div>/g.test(curLine)) {
+                desEndLine = i + 1;
+            }
+        }
+        if (descRegex.test(curLine)) {
+            desStartLine = i;
+        }
+    }
+    if (desEndLine && desStartLine) {
+        lines.splice(desStartLine, desEndLine - desStartLine);
+    }
+    return lines.join('\n');
+}
+
 /**
  * init function
  */
@@ -1467,8 +1551,7 @@ function loadJSON(): void {
     /**
      * Mouse or touch setting
      */
-    let switchText: string = localStorage.getItem('ej2-switch') ||
-        (window.screen.width > 1366 ? 'touch' : 'mouse');
+    let switchText: string = localStorage.getItem('ej2-switch') || 'mouse';
     if (Browser.isDevice || window.screen.width <= 850) {
         switchText = 'touch';
     }

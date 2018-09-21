@@ -1,5 +1,5 @@
 import { Grid, Filter, Page, Selection } from '@syncfusion/ej2-grids';
-import { categoryData } from './datasource';
+import { categoryData } from './data-source';
 
 Grid.Inject(Filter, Page, Selection);
 

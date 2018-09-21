@@ -20,10 +20,10 @@ this.default = (): void => {
         {
             labelFormat: '{value}%',
             rangePadding: 'None',
+            lineStyle: { width: 0 },
             minimum: 0,
             maximum: 40,
             interval: 10,
-            lineStyle: { width: 0 },
             majorTickLines: { width: 0 },
             minorTickLines: { width: 0 }
         },

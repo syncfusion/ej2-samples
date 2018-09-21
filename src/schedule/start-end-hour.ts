@@ -1,10 +1,10 @@
-import { Schedule, Day, Week, WorkWeek, Month, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import { Schedule, Day, Week, TimelineViews, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import { extend } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 import { TimePicker } from '@syncfusion/ej2-calendars';
 import { employeeEventData, applyCategoryColor } from './datasource';
 
-Schedule.Inject(Day, Week, WorkWeek, Month);
+Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
 
 /**
  * Schedule start and end hour sample
@@ -14,10 +14,10 @@ this.default = () => {
     let data: Object[] = <Object[]>extend([], employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '500px',
-        startHour: '06:00',
-        endHour: '18:00',
-        views: ['Day', 'Week', 'WorkWeek', 'Month'],
+        height: '650px',
+        startHour: '08:00',
+        endHour: '20:00',
+        views: ['Day', 'Week', 'TimelineDay', 'TimelineWeek'],
         workHours: { highlight: false },
         selectedDate: new Date(2018, 1, 15),
         eventSettings: { dataSource: data },
@@ -26,13 +26,13 @@ this.default = () => {
     scheduleObj.appendTo('#Schedule');
     let start: TimePicker = new TimePicker({
         width: 100,
-        value: new Date(2000, 0, 1, 6),
+        value: new Date(2000, 0, 1, 8),
         format: 'HH:mm'
     });
     start.appendTo('#startTime');
     let end: TimePicker = new TimePicker({
         width: 100,
-        value: new Date(2000, 0, 1, 18),
+        value: new Date(2000, 0, 1, 20),
         format: 'HH:mm'
     });
     end.appendTo('#endTime');

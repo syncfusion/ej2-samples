@@ -1,0 +1,66 @@
+import { TreeMap, TreeMapTooltip, TreeMapLegend, LegendMode } from '@syncfusion/ej2-treemap';
+import { electionData } from '../treemap/treemap-data/election-data';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
+import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
+import { EmitType } from '@syncfusion/ej2-base';
+export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+    let theme: string = location.hash.split('/')[1];
+    theme = theme ? theme : 'Material';
+    args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
+};
+
+/**
+ * Default sample
+ */
+
+let prevTime: Date; let curTime: Date;
+this.default = (): void => {
+    let treemap: TreeMap = new TreeMap({
+        load: treemapload,
+        titleSettings: {
+            text: 'US Presidential election result - 2016',
+            textStyle: { size: '15px' }
+        },
+        dataSource: electionData,
+        weightValuePath: 'Population',
+        tooltipSettings: {
+            visible: true,
+            format: ' <b>${Winner}<b><br>State : ${State}<br>Trump : ${Trump} %<br>Clinton : ${Clinton} %'
+        },
+        legendSettings: {
+            visible: true,
+            position: 'Top',
+            shape: 'Rectangle',
+            height: '10'
+        },
+        format: 'n',
+        useGroupingSeparator: true,
+        rangeColorValuePath: 'WinPercentage',
+        equalColorValuePath: 'Winner',
+        leafItemSettings: {
+            labelPath: 'State',
+            fill: '#6699cc',
+            border: { color: 'white', width: 0.5 },
+            colorMapping: [
+                {
+                    value: 'Trump', color: '#D84444'
+                },
+                {
+                    value: 'Clinton', color: '#316DB5'
+                }
+            ]
+        },
+    });
+    treemap.appendTo('#container');
+    let mode: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select legend type',
+        width: 100,
+        change: () => {
+            treemap.legendSettings.mode = <LegendMode>mode.value;
+            treemap.refresh();
+        }
+    });
+    mode.appendTo('#layoutMode');
+};

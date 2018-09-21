@@ -2,10 +2,10 @@ import { createElement, compile, extend } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { Popup } from '@syncfusion/ej2-popups';
 import { ItemModel } from '@syncfusion/ej2-navigations';
-import { Schedule, Month, ActionEventArgs, ToolbarActionArgs, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import { Schedule, Month, ActionEventArgs, ToolbarActionArgs, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import { employeeEventData, applyCategoryColor } from './datasource';
 
-Schedule.Inject(Month);
+Schedule.Inject(Month, Resize, DragAndDrop);
 
 /**
  *  Schedule header customization sample
@@ -15,7 +15,7 @@ this.default = () => {
     let data: Object[] = <Object[]>extend([], employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
-        height: '550px',
+        height: '650px',
         selectedDate: new Date(2018, 1, 15),
         views: ['Month'],
         currentView: 'Month',
@@ -64,7 +64,8 @@ this.default = () => {
     let userIconEle: HTMLElement = scheduleObj.element.querySelector('.e-schedule-user-icon') as HTMLElement;
     let getDOMString: (data: object) => HTMLCollection = compile('<div class="profile-container"><div class="profile-image">' +
         '</div><div class="content-wrap"><div class="name">Nancy</div>' +
-        '<div class="destination">Product Manager</div><div class="status">Available</div></div></div>');
+        '<div class="destination">Product Manager</div><div class="status">' +
+        '<div class="status-icon"></div>Online</div></div></div>');
     let output: HTMLCollection = getDOMString({});
     let profilePopup: Popup = new Popup(userContentEle, {
         content: output[0] as HTMLElement,
@@ -73,7 +74,7 @@ this.default = () => {
         collision: { X: 'flip', Y: 'flip' },
         targetType: 'relative',
         viewPortElement: scheduleObj.element,
-        width: 210,
+        width: 185,
         height: 80
     });
     profilePopup.hide();

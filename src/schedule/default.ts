@@ -1,9 +1,9 @@
 import { extend } from '@syncfusion/ej2-base';
 import { DatePicker, ChangeEventArgs } from '@syncfusion/ej2-calendars';
-import { Schedule, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-schedule';
+import { Schedule, Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import { scheduleData } from './datasource';
 
-Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
+Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
 /**
  * Schedule Default sample
@@ -12,7 +12,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
 this.default = () => {
     let data: Object[] = <Object[]>extend([], scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
-        height: '550px',
+        height: '650px',
         selectedDate: new Date(2018, 1, 15),
         eventSettings: { dataSource: data }
     });

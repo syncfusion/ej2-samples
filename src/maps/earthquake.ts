@@ -1,8 +1,7 @@
 /**
  * Earth quake map sample
  */
-import { Maps, Zoom, Marker, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
-import { Asia } from './MapData/Asia';
+import { Maps, Zoom, Marker, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Zoom, Marker);
 
 this.default = (): void => {
@@ -17,8 +16,10 @@ this.default = (): void => {
             longitude: 105.14038085937499
         },
         zoomSettings: {
-            enable: false,
+            enable: true,
             zoomFactor: 7,
+            mouseWheelZoom: false,
+            toolbars: []
         },
         mapsArea: {
             background: '#AEE2FA'
@@ -31,9 +32,10 @@ this.default = (): void => {
         },
         layers: [
             {
+                animationDuration: 1000,
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: Asia,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/asia.json'),
                 markerSettings: [{
                     visible: true,
                     height: 100,
@@ -42,7 +44,7 @@ this.default = (): void => {
                     animationDuration: 0,
                     dataSource: [{
                         latitude: 1.625758360412755, longitude: 98.5693359375
-                        }]
+                    }]
                 }],
                 shapeSettings: {
                     fill: '#FFFDCF',

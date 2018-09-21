@@ -5,6 +5,7 @@ import {
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType, Browser } from '@syncfusion/ej2-base';
 import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
+import { NumericTextBox } from '../../node_modules/@syncfusion/ej2-inputs';
 Chart.Inject(ColumnSeries, Category, DataLabel, Tooltip);
 
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
@@ -25,7 +26,6 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
  */
 this.default = (): void => {
     let chart: Chart = new Chart({
-
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'Category',
@@ -54,7 +54,7 @@ this.default = (): void => {
                 dataSource: [{ x: 'South Korea', y: 39 }, { x: 'India', y: 61 },
                 { x: 'Pakistan', y: 20 }, { x: 'Germany', y: 65 },
                 { x: 'Australia', y: 16 }, { x: 'Italy', y: 29 },
-                { x: 'France', y: 45 }, { x: 'Saudi Arabia', y: 10 },
+                { x: 'France', y: 45 }, { x: 'United Arab Emirates', y: 10 },
                 { x: 'Russia', y: 41 }, { x: 'Mexico', y: 31 },
                 { x: 'Brazil', y: 76 }, { x: 'China', y: 51 }],
                 xName: 'x', width: 2,
@@ -70,8 +70,7 @@ this.default = (): void => {
         //Initializing Chart title
         title: 'Internet Users in Millions',
         //Initializing User Interaction Tooltip
-        tooltip: { enable: true },
-        pointRender: labelRender,
+        tooltip: { enable: true }, pointRender: labelRender,
         legendSettings: { visible: false },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
@@ -80,9 +79,9 @@ this.default = (): void => {
         }
     });
     chart.appendTo('#container');
+    chart.series[0].animation.enable = false;
     let mode: DropDownList = new DropDownList({
         index: 0,
-        placeholder: 'Select Range Bar Color',
         width: 120,
         change: () => {
             chart.primaryXAxis.labelIntersectAction = <LabelIntersectAction>mode.value;
@@ -90,7 +89,6 @@ this.default = (): void => {
         }
     });
     mode.appendTo('#selmode');
-
     let edgeMode: DropDownList = new DropDownList({
         index: 0,
         width: 120,
@@ -100,14 +98,29 @@ this.default = (): void => {
         }
     });
     edgeMode.appendTo('#edgemode');
-
     let labelMode: DropDownList = new DropDownList({
-        index: 0,
-        width: 120,
+        index: 0, width: 120,
         change: () => {
             chart.primaryXAxis.labelPosition = <AxisPosition>labelMode.value;
             chart.refresh();
         }
     });
     labelMode.appendTo('#position');
+    document.getElementById('Trim').onchange = () => {
+        let trim: HTMLSelectElement = <HTMLSelectElement>document.getElementById('Trim');
+        if (trim.checked) {
+            chart.primaryXAxis.enableTrim = (trim.value === 'true');
+          } else {
+            chart.primaryXAxis.enableTrim = (trim.value === 'false');
+          }
+        chart.refresh();
+    };
+    let labelWidth: NumericTextBox = new NumericTextBox ({
+        value: 34, min: 1, width: 120,
+        change: () => {
+            chart.primaryXAxis.maximumLabelWidth = <number>labelWidth.value;
+            chart.refresh();
+        }
+    });
+    labelWidth.appendTo('#LabelWidth');
 };

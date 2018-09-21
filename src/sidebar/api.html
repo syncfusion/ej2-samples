@@ -8,8 +8,8 @@
         <a class="e-btn" id="newTab" target="_blank">Open in new tab</a>
     </div>
     <div id="wrapper">
-            <title>Essential JS 2 - Sidebar > API</title>
-        <div class="col-lg-12 col-sm-12 col-md-12">
+        <title>Essential JS 2 - Sidebar > API</title>
+        <div class="col-lg-12 col-sm-12 col-md-12" id="sidebar-section">
             <!-- sidebar element declaration -->
             <span id="hamburger" class="e-icons menu"></span>
             <aside id="default-sidebar">
@@ -36,18 +36,21 @@
                     </br>
                     <div class="inline-element responsive">
                         <!--Open or close the sidebar -->
-                        <p class=" inline-element" style="width:70%"><b>Toggle</b> - Toggles the Sidebar to be open or closed state.
+                        <p class=" inline-element" style="width:70%">
+                            <b>Toggle</b> - Toggles the Sidebar to be open or closed state.
                         </p>
                         <button id="togglesidebar" class="inline-element right">Toggle</button>
                         <br></br>
                         <!--Sidebar position -->
-                        <p class=" inline-element" style="width:70%"><b>Position</b> - Allows to place the sidebar in right or left side of the page.
+                        <p class=" inline-element" style="width:70%">
+                            <b>Position</b> - Allows to place the sidebar in right or left side of the page.
                         </p>
                         <button id="positionbutton" class="inline-element right">Right</button>
                         <br></br>
                         <!--Sidebar types -->
 
-                        <p class="inline-element" style="width:70%"><b>Types </b> - Specifies the act of expanding or collapsing the sidebar with main content.</p>
+                        <p class="inline-element" style="width:70%">
+                            <b>Types </b> - Specifies the act of expanding or collapsing the sidebar with main content.</p>
                         <div class="inline-element right" style="width:75px">
                             <select id="types" class="e-textbox right">
                                 <option value="Over">Over</option>
@@ -58,18 +61,20 @@
                         </div>
                         <br></br>
                         <!--on document click -->
-                        <p class=" inline-element" style="width:70%"><b>closing on document click</b> - Allows to collapse / close the sidebar on document click.</p>
+                        <p class=" inline-element" style="width:70%">
+                            <b>closing on document click</b> - Allows to collapse / close the sidebar on document click.</p>
                         <button id="documentclick" class="inline-element right">True</button>
                         <br></br>
                         <!--showbackdrop option -->
 
-                        <p class=" inline-element" style="width:70%"><b>Backdrop</b> - Sets the backdrop over the main content area on open / expanded state. </p>
+                        <p class=" inline-element" style="width:70%">
+                            <b>Backdrop</b> - Sets the backdrop over the main content area on open / expanded state. </p>
                         <button id="backdrop" class="inline-element right">True</button>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!--end of sample level element declaration -->
     </div>
 
@@ -80,164 +85,192 @@
     </div>
     <div id="description">
         <p>
-            In this sample allows to configure the <code>type</code>, <code>position</code>, <code>closeOnDocumentClick</code>and
+            In this sample allows to configure the
+            <code>type</code>,
+            <code>position</code>,
+            <code>closeOnDocumentClick</code>and
             <code>showBackdrop</code> property.
         </p>
     </div>
 </div>
 <style>
-   /* content area styles */
+    /* content area styles */
 
-  .responsive {
-    width: 80%;
-}
-
-@media(max-width:550px) {
     .responsive {
-        width: 100%;
+        width: 80%;
     }
-}
 
-.center-align {
-    text-align: center;
-    padding: 20px;
-}
+    @media(max-width:550px) {
+        .responsive {
+            width: 100%;
+        }
+    }
 
-.title {
-    color: #000000;
-    font-weight: 500;
-    line-height: 24px;
-    font-size: 18px;
-    margin: 0px;
-}
+    .center-align {
+        text-align: center;
+        padding: 20px;
+    }
 
-body {
-    font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
-    margin: 0px;
-    font-size: 14px;
-}
-/* End of content area styles */
-/* property content styles */
+    .title {
+        color: #000000;
+        font-weight: 500;
+        line-height: 24px;
+        font-size: 18px;
+        margin: 0px;
+    }
 
-#types {
-    background-color: #ffffff;
-    border: none;
-    border-radius: 2px;
-}
+    body {
+        font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
+        margin: 0px;
+        font-size: 14px;
+    }
 
-.inline-element.right.e-btn {
-    color: white;
-    border: none;
-    width: 75px;
-}
+    /* End of content area styles */
 
-.inline-element {
-    display: inline-block;
-}
+    /* property content styles */
 
-.right {
-    float: right;
-}
+    #types {
+        background-color: #ffffff;
+        border: none;
+        border-radius: 2px;
+    }
 
-.list-group-item {
-    border: none;
-    padding: 60px 10px 10px 45px;
-    font-size: 14px;
-}
+    .inline-element.right.e-btn {
+        color: white;
+        border: none;
+        width: 75px;
+    }
 
-.center {
-    text-align: center;
-    display: none;
-    font-size: 13px;
-    font-weight: 400;
-    margin-top: 20px;
-}
+    .inline-element {
+        display: inline-block;
+    }
 
-.sb-content-tab .center {
-    display: block;
-}
-/* end of property content styles */
-/* sidebar styles */
+    .right {
+        float: right;
+    }
 
-.sb-content-tab #wrapper {
-    display: none;
-}
+    .list-group-item {
+        border: none;
+        padding: 60px 10px 10px 45px;
+        font-size: 14px;
+    }
 
-.content {
-    margin-bottom: 20px;
-    overflow-y: auto;
-}
+    .center {
+        text-align: center;
+        display: none;
+        font-size: 13px;
+        font-weight: 400;
+        margin-top: 20px;
+    }
 
-#wrapper #close:before {
-    content: "\e945";
-}
+    .sb-content-tab .center {
+        display: block;
+    }
 
-.title-header {
-    text-align: center;
-    font-size: 18px;
-    padding: 15px;
-}
+    /* end of property content styles */
 
-.sub-title {
-    text-align: center;
-    font-size: 16px;
-    padding: 10px;
-}
+    /* sidebar styles */
 
-.e-sidebar .title-header #close {
-    color: #fafafa;
-    cursor: pointer;
-    line-height: 25px;
-}
+    .sb-content-tab #wrapper {
+        display: none;
+    }
 
-.e-sidebar.e-left .title-header #close {
-    float: right;
-}
+    .content {
+        margin-bottom: 20px;
+        overflow-y: auto;
+    }
 
-.e-sidebar.e-right .title-header #close {
-    float: left;
-}
+    #wrapper #close:before {
+        content: "\e945";
+    }
 
-#default-sidebar {
-    background: #2196f3;
-    color: #ffffff;
-}
+    .title-header {
+        text-align: center;
+        font-size: 18px;
+        padding: 15px;
+    }
 
-#hamburger.menu {
-    font-size: 25px;
-    cursor: pointer;
-    float: left;
-    line-height: 50px;
-    position: absolute;
-    z-index: 1000;
-}
+    .sub-title {
+        text-align: center;
+        font-size: 16px;
+        padding: 10px;
+    }
 
-#hamburger.menu:before {
-    content: '\e7f6';
-}
+    .e-sidebar .title-header #close {
+        color: #fafafa;
+        cursor: pointer;
+        line-height: 25px;
+    }
 
-#hamburger.menu.e-rtl{
-    position:relative;
-    float: right;
-}
+    .e-sidebar.e-left .title-header #close {
+        float: right;
+    }
 
-#wrapper #close:before {
-    content: "\e945";
-}
+    .e-sidebar.e-right .title-header #close {
+        float: left;
+    }
 
-.e-sidebar .title-header #close {
-    color: #fafafa;
-    cursor: pointer;
-    line-height: 25px;
-}
+    #default-sidebar {
+        background: #2196f3;
+        color: #ffffff;
+    }
 
-.e-sidebar.e-left .title-header #close {
-    float: right;
-}
+    #hamburger.menu {
+        font-size: 25px;
+        cursor: pointer;
+        float: left;
+        line-height: 50px;
+        position: absolute;
+        z-index: 1000;
+    }
 
-.e-sidebar.e-right .title-header #close {
-    float: left;
-}
-/* end of sidebar styles */
+    #hamburger.menu:before {
+        content: '\e7f6';
+    }
 
+    #hamburger.menu.e-rtl {
+        position: relative;
+        float: right;
+    }
+
+    #wrapper #close:before {
+        content: "\e945";
+    }
+
+    .e-sidebar .title-header #close {
+        color: #fafafa;
+        cursor: pointer;
+        line-height: 25px;
+    }
+
+    .e-sidebar.e-left .title-header #close {
+        float: right;
+    }
+
+    .e-sidebar.e-right .title-header #close {
+        float: left;
+    }
+
+
+    /* newTab support styles */
+
+    .ej2-new .sb-header,
+    .ej2-new .sb-bread-crumb,
+    .ej2-new #action-description,
+    .ej2-new #description-section,
+    .ej2-new #description {
+        display: none
+    }
+
+    .ej2-new .container-fluid,
+    .ej2-new .container-fluid .control-section,
+    #sidebar-section {
+        padding: 0px;
+    }
+
+    .ej2-new .content.e-view {
+        top: 0px;
+    }
+
+    /* end of newTab support styles */
 </style>

@@ -1,17 +1,11 @@
 /**
  * Maps drilldown sample
  */
-import { Maps, shapeSelected, IShapeSelectedEventArgs, Highlight, MapsTooltip, Marker, ILoadEventArgs,
-    MapsTheme } from '@syncfusion/ej2-maps';
-import { World_Map } from './MapData/WorldMap';
-import { Africa } from './MapData/Africa';
-import { Europe } from './MapData/Europe';
-import { NorthAmerica } from './MapData/NorthAmerica';
-import { Oceania } from './MapData/Oceania';
-import { SouthAmerica } from './MapData/SouthAmerica';
-import { Asia } from './MapData/Asia';
-import { dafaultData } from './MapData/salesCountry';
-Maps.Inject(Highlight, MapsTooltip, Marker );
+import {
+    Maps, shapeSelected, IShapeSelectedEventArgs, Highlight, MapsTooltip, Marker, ILoadEventArgs,
+    MapsTheme, MapAjax
+} from '@syncfusion/ej2-maps';
+Maps.Inject(Highlight, MapsTooltip, Marker);
 export interface ShapeData {
     continent?: string;
 }
@@ -61,8 +55,8 @@ this.default = (): void => {
                 layerType: 'Geometry',
                 shapePropertyPath: 'continent',
                 shapeDataPath: 'continent',
-                dataSource: dafaultData,
-                shapeData: World_Map,
+                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/default-datasource.json'),
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
                 shapeSettings: {
                     colorValuePath: 'drillColor'
                 },
@@ -132,7 +126,7 @@ this.default = (): void => {
             },
             {
                 layerType: 'Geometry',
-                shapeData: Africa,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/africa.json'),
                 shapeSettings: {
                     fill: '#80306A'
                 },
@@ -147,7 +141,7 @@ this.default = (): void => {
             },
             {
                 layerType: 'Geometry',
-                shapeData: Europe,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/europe.json'),
                 shapeSettings: {
                     fill: '#622D6C'
                 },
@@ -162,7 +156,7 @@ this.default = (): void => {
             },
             {
                 layerType: 'Geometry',
-                shapeData: Asia,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/asia.json'),
                 shapeSettings: {
                     fill: '#462A6D'
                 },
@@ -177,7 +171,7 @@ this.default = (): void => {
             },
             {
                 layerType: 'Geometry',
-                shapeData: NorthAmerica,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/north-america.json'),
                 shapeSettings: {
                     fill: '#C13664'
                 },
@@ -192,7 +186,7 @@ this.default = (): void => {
             },
             {
                 layerType: 'Geometry',
-                shapeData: SouthAmerica,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/south-america.json'),
                 shapeSettings: {
                     fill: '#9C3367'
                 },
@@ -207,7 +201,7 @@ this.default = (): void => {
             },
             {
                 layerType: 'Geometry',
-                shapeData: Oceania,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/oceania.json'),
                 shapeSettings: {
                     fill: '#2A2870'
                 },

@@ -1,9 +1,9 @@
 /**
  * Bubble sample
  */
-import { World_Map } from './MapData/WorldMap';
-import { population, internetUsers } from './MapData/Populationdata';
-import { Maps, Bubble, IBubbleRenderingEventArgs, MapsTooltip, MapsTheme, ILoadEventArgs, Zoom } from '@syncfusion/ej2-maps';
+
+import { internetUsers } from './map-data/population-data';
+import { Maps, Bubble, IBubbleRenderingEventArgs, MapsTooltip, MapsTheme, ILoadEventArgs, Zoom, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Bubble, MapsTooltip, Zoom);
 export interface Data {
     value?: number;
@@ -36,7 +36,7 @@ this.default = (): void => {
             {
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: World_Map,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
                 shapeSettings: {
                     fill: '#E5E5E5'
                 },

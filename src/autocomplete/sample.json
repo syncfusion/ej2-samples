@@ -2,7 +2,6 @@
     "name": "AutoComplete",
     "directory": "autocomplete",
     "category": "Editors",
-    "type": "update",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "AutoComplete", "api": {"AutoComplete": ["dataSource", "value", "placeholder"]} },
         { "url": "grouping-icon", "name": "Grouping and Icons", "category": "AutoComplete", "api": {"AutoComplete": ["fields", "placeholder"]} },
@@ -10,6 +9,6 @@
         { "url": "template", "name": "Template", "category": "AutoComplete", "api": {"AutoComplete": ["dataSource", "fields", "headerTemplate", "itemTemplate", "placeholder", "popupHeight"]} },
         { "url": "highlight", "name": "Highlight", "category": "AutoComplete", "api": {"AutoComplete": ["dataSource", "fields", "highlight", "placeholder"]} },
         { "url": "custom-filtering", "name": "Custom Filtering", "category": "AutoComplete", "api": {"AutoComplete": ["dataSource", "filtering", "fields", "placeholder"]}},
-        { "url": "diacritics-filtering", "name": "Diacritics Filtering", "category": "AutoComplete", "api": {"AutoComplete": ["dataSource", "ignoreAccent", "placeholder"]}, "type": "new" }
+        { "url": "diacritics-filtering", "name": "Diacritics Filtering", "category": "AutoComplete", "api": {"AutoComplete": ["dataSource", "ignoreAccent", "placeholder"]} }
     ]
 }

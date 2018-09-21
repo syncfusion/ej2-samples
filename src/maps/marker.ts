@@ -1,9 +1,8 @@
 /**
  * Marker sample
  */
-import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
-import { topPopulation } from './MapData/MarkerLocation';
-import { World_Map } from './MapData/WorldMap';
+import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { topPopulation } from './map-data/marker-location';
 Maps.Inject(Marker, MapsTooltip);
 
 this.default = (): void => {
@@ -26,7 +25,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: World_Map,
+                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
                 dataSource: topPopulation,
                 shapeSettings: {
                     fill: '#C3E6ED'

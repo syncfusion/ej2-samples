@@ -19,31 +19,21 @@
     </div>
 </div>
 <div id="action-description">
-    <p>This sample demonstrates the call history application using listview. Click on the checklist to filter the data in contacts
-        list.</p>
+    <p>This sample demonstrates the use-case of call history application using <code>listview</code>. Click on the navigation
+        tab to filter contacts based on call logs such as received, missed and all.
+    </p>
 </div>
 
 <div id="description">
-    <p>This sample filters out the data from listview based on the data selected from the checklist. Here, listview utilizes
-        the
-        <code>template</code>
-        <code>showIcon</code> properties to repesent the call history application. The Tab component is used in this sample for navigation purposes.
+    <p>This sample filters the data based on selection of tab and update the <a href="https://ej2.syncfusion.com/documentation/list-view/api-listView.html?lang=typescript#datasource"><code>dataSource</code></a>
+        for listview.
     </p>
 </div>
 <style>
-    .e-list-item {
-        cursor: pointer;
-    }
-
-    .layoutWrapper.e-device-layout {
-        visibility: visible;
-    }
-
-    .e-visbile-layer {
-        visibility: visible;
-    }
+    /* Layout customization */
 
     .layoutWrapper {
+        line-height: initial;
         border: 1px solid black;
         width: 285px;
         height: 505px;
@@ -54,7 +44,7 @@
         visibility: hidden;
     }
 
-    .speaker {
+    .layoutWrapper .speaker {
         border: 1px solid black;
         border-radius: 5px;
         width: 33.33333333%;
@@ -63,7 +53,7 @@
         position: relative;
     }
 
-    .outerButton {
+    .layoutWrapper .outerButton {
         width: 30px;
         height: 30px;
         border: 1px solid black;
@@ -73,7 +63,7 @@
         left: calc(50% - 15px);
     }
 
-    .camera {
+    .layoutWrapper .camera {
         position: absolute;
         left: calc(-15% - 10px);
         top: -100%;
@@ -86,16 +76,21 @@
     .layoutWrapper .layout {
         border: 1px solid black;
         margin: 20px 13px 0px 13px;
-
     }
 
-    .highcontrast .layoutWrapper .layout,
-    .highcontrast .layoutWrapper .camera,
-    .highcontrast .layoutWrapper .outerButton,
-    .highcontrast .layoutWrapper .speaker,
-    .highcontrast .layoutWrapper {
-        border-color: white;
+    .layout #list-container .e-list-item {
+        cursor: pointer;
     }
+
+    .layoutWrapper.e-device-layout {
+        visibility: visible;
+    }
+
+    .e-visbile-layer {
+        visibility: visible;
+    }
+
+    /* ListView customization */
 
     @font-face {
         font-family: 'Phone Icons';
@@ -111,96 +106,73 @@
         font-style: normal;
     }
 
-    #all {
+    .layout #list-container #all.e-listview.e-list-template .e-list-wrapper.e-list-multi-line,
+    .layout #list-container #received.e-listview.e-list-template .e-list-wrapper.e-list-multi-line,
+    .layout #list-container #missed.e-listview.e-list-template .e-list-wrapper.e-list-multi-line {
+        padding: 5px;
+    }
+
+    .layout #list-container #all.e-listview.e-list-template .e-list-wrapper.e-list-avatar,
+    .layout #list-container #received.e-listview.e-list-template .e-list-wrapper.e-list-avatar,
+    .layout #list-container #missed.e-listview.e-list-template .e-list-wrapper.e-list-avatar {
+        padding-left: 50px;
+        padding-right: 5px;
+    }
+
+    .layout #list-container #all.e-listview.e-list-template .e-list-wrapper.e-list-multi-line.e-list-avatar .e-avatar,
+    .layout #list-container #received.e-listview.e-list-template .e-list-wrapper.e-list-multi-line.e-list-avatar .e-avatar,
+    .layout #list-container #missed.e-listview.e-list-template .e-list-wrapper.e-list-multi-line.e-list-avatar .e-avatar {
+        top: 5px;
+        left: 5px;
+    }
+
+    .layout #list-container #all,
+    .layout #list-container #received,
+    .layout #list-container #missed {
         max-height: 360px;
     }
 
-    #received {
-        max-height: 360px;
-    }
-
-    #missed {
-        max-height: 360px;
-    }
-
-    #list-container {
+    .layout #list-container {
         height: 405px;
     }
 
-    #list-container .wrapper {
-        position: relative;
-    }
-
-    #list-container .content {
-        position: absolute;
-        top: -10px;
-        left: 30px;
-        font-size: 14px;
-    }
-
-    #list-container .subContent {
-        position: absolute;
-        top: 6px;
-        left: 30px;
-        font-size: 11px;
-        font-style: italic;
-
-    }
-
-    #list-container .subContent .received {
+    .layout #list-container .received {
         font-family: Call-icons;
     }
 
-    #list-container .subContent .received:before {
+    .layout #list-container .received:before {
         content: '\e700';
         font-size: 8px;
+        margin-right: 6px;
     }
 
-    #list-container .subContent .missed {
+    .layout #list-container .missed {
         font-family: Call-icons;
     }
 
-    #list-container .subContent .missed:before {
+    .layout #list-container .missed:before {
         content: '\e702';
         font-size: 8px;
+        margin-right: 6px;
     }
 
-    #list-container .subContent .subicons+span {
-        margin-left: 6px;
-    }
-
-    .e-custom {
+    .layout #list-container .e-icon {
         font-family: 'e-icons';
+        background: transparent;
+        color: black;
     }
 
-    .e-custom:before {
+    .layout #list-container .e-icon:before {
         content: '\e902';
     }
 
-    #toDoList {
-        border: 1px solid #dddddd;
-        border-radius: 3px;
-    }
+    /* ListView theme customization */
 
-    .control-section {
-        overflow: auto;
-    }
-
-    #list-container h4 {
-        padding-left: 16px;
-    }
-
-    .logs {
-        font-size: 15px;
-        padding: 25px;
-        /* border: 1px solid darkgray; */
-        margin-top: 15px;
-        font-weight: 500;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-        user-select: none;
-    }
-
-    .logs * {
-        padding-bottom: 10px;
+    .highcontrast .layoutWrapper .layout,
+    .highcontrast .layoutWrapper .camera,
+    .highcontrast .layoutWrapper .outerButton,
+    .highcontrast .layoutWrapper .speaker,
+    .highcontrast .layoutWrapper {
+        border-color: white;
     }
 </style>

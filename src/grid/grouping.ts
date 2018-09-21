@@ -1,5 +1,5 @@
 import { Grid, Sort, Page, Selection, Group } from '@syncfusion/ej2-grids';
-import { inventoryData } from './datasource';
+import { inventoryData } from './data-source';
 
 Grid.Inject(Sort, Page, Selection, Group);
 

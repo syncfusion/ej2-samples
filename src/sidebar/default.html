@@ -10,7 +10,7 @@
     <!-- sample level element  -->
     <div id="wrapper">
         <title>Essential JS 2 - Sidebar > Default functinalities</title>
-        <div class="col-lg-12 col-sm-12 col-md-12">
+        <div class="col-lg-12 col-sm-12 col-md-12" id="sidebar-section">
             <!-- sidebar element declaration -->
             <span id="hamburger" class="e-icons menu default"></span>
             <aside id="default-sidebar">
@@ -162,4 +162,26 @@
     }
 
     /* sample-level styles */
+
+     /* for newTab support */
+
+    .ej2-new .sb-header,
+    .ej2-new .sb-bread-crumb,
+    .ej2-new #action-description,
+    .ej2-new #description-section,
+    .ej2-new #description {
+        display: none
+    }
+
+    .ej2-new .container-fluid,
+    .ej2-new .container-fluid .control-section,
+    #sidebar-section {
+        padding: 0px;
+    }
+
+    .ej2-new .content.e-view {
+        top: 0px;
+    }
+
+    /* end of newTab support */
 </style>

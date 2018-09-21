@@ -20,11 +20,8 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            minimum: 0,
-            maximum: 20,
-            lineStyle: { width: 0 },
+            lineStyle: { width: 0 }, interval: 5,
             majorTickLines: { width: 0 },
-            interval: 5,
             labelFormat: '{value}%'
         },
         chartArea: {

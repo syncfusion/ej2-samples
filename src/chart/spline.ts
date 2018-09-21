@@ -33,9 +33,6 @@ this.default = (): void => {
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            minimum: 0,
-            maximum: 40,
-            interval: 10,
             labelFormat: '{value}°C',
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 },
@@ -98,7 +95,6 @@ this.default = (): void => {
         title: 'NC Weather Report - 2016',
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },
-        legendSettings: { toggleVisibility: false },
         width: Browser.isDevice ? '100%' : '60%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

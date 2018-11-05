@@ -1,6 +1,6 @@
 # Syncfusion JavaScript UI Controls samples
 
-This repository contains the demos of [Syncfusion JavaScript UI Controls](https://www.syncfusion.com/javascript-ui-controls?utm_medium=listing&utm_source=github&utm_campaign=ej2-samples). This is the best place to check our controls to get more insight about the usage of APIs. You can also check our controls by installing out click once samples, in which you can browse the demo for all the controls.
+This repository contains the demos of [Syncfusion JavaScript UI Controls](https://www.syncfusion.com/javascript-ui-controls?utm_medium=listing&utm_source=github&utm_campaign=ej2-samples). This is the best place to check our controls to get more insight about the usage of APIs.
 
 This section guides you to use the Syncfusion JavaScript UI Controls samples in your applications.
 

@@ -19,7 +19,7 @@ The samples requires the below requirements to run.
 
 ## Documentation
 
-All controls documentation for the Syncfusion UI controls can be found on [Syncfusion Help](https://ej2.syncfusion.com/documentation/?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples). All API documentation can be found at the [API Reference](https://ej2.syncfusion.com/documentation/api?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples).
+All controls documentation for the Syncfusion JavaScript UI controls can be found on [Syncfusion Help](https://ej2.syncfusion.com/documentation/?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples). All API documentation can be found at the [API Reference](https://ej2.syncfusion.com/documentation/api?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples).
 
 ## License
 

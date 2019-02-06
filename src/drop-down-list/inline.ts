@@ -1,27 +1,20 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * DropDownList Inline Sample
  */
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import * as data from './dataSource.json';
 
-this.default = () => {
-
-    let employees: { [key: string]: Object }[] = [
-        { Name: 'Andrew', Eimg: '7' },
-        { Name: 'Anne', Eimg: '1' },
-        { Name: 'Janet', Eimg: '3' },
-        { Name: 'Laura', Eimg: '2' },
-        { Name: 'Michael', Eimg: '9' },
-        { Name: 'Nancy', Eimg: '4' },
-        { Name: 'Robert', Eimg: '8' },
-        { Name: 'Steven', Eimg: '10' }
-    ];
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Initialize DropDownList component
     let dropDownListObj: DropDownList = new DropDownList({
         // set the employees data to dataSource property
-        dataSource: employees,
+        dataSource: (data as any).employees,
         // map the appropriate columns to fields property
         fields: { text: 'Name' },
+        // set the initial DropDownList value
         value: 'Michael',
         // set the placeholder to DropDownList input element
         placeholder: 'Select an employee',

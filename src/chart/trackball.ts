@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Tooltip, Crosshair, DateTime, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { Chart, LineSeries, Legend } from '@syncfusion/ej2-charts';
 import { john, andrew, thomas } from './trackball-data';
@@ -7,7 +8,8 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
 /**
  * Sample for TrackBall in chart
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
@@ -69,7 +71,8 @@ this.default = (): void => {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             args.chart.width = Browser.isDevice ? '100%' : '60%';
         }
     });

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Range sample
  */
@@ -5,7 +6,8 @@ import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncf
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 CircularGauge.Inject(Annotations);
 //tslint:disable
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let circulargauge: CircularGauge = new CircularGauge({
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

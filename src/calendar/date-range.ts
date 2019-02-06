@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Calendar, ChangedEventArgs } from '@syncfusion/ej2-calendars';
 
 /**
  * Range Calendar sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let calendar: Calendar = new Calendar({
         min: new Date('05/05/2017'),
         max: new Date('05/27/2017'), change: startDate

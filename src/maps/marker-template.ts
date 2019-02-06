@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Marker template sample
  */
 import { Maps, Marker, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Marker);
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -22,7 +24,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/australia.json'),
+                shapeData: new MapAjax('./src/maps/map-data/australia.json'),
                 shapeDataPath: 'STATE_NAME',
                 markerSettings: [
                     {

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Tab orientation sample
  */
@@ -40,7 +41,8 @@ let listObj3: ListView = new ListView({
         'alt="${id}" /></div><div class="left info"><div class="name">${name}</div> <div class="role">${role}</div></div></div>'
 });
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Tab component
     let tabObj: Tab = new Tab({
         heightAdjustMode: 'None',
@@ -73,20 +75,16 @@ this.default = () => {
     //Render initialized DropDownList component
     headerStyles.appendTo('#headerStyles');
 
-    // Change event funtion for DropDownList component
+    // Change event function for DropDownList component
     function changeHeaderPosition(e: ChangeEventArgs): void {
-        if (e.itemData.value === 'bottom') {
-            tabObj.headerPlacement = 'Bottom';
-        } else {
-            tabObj.headerPlacement = 'Top';
-        }
+        tabObj.headerPlacement = (<{ [key: string]: any; }>e.itemData).value;
         tabObj.dataBind();
     }
 
-    // Change event funtion for DropDownList component
+    // Change event function for DropDownList component
     function changeHeaderStyle(e: ChangeEventArgs): void {
         removeStyleClass();
-        let name: string = e.itemData.value;
+        let name: string = <string>(<{ [key: string]: Object; }>e.itemData).value;
         if (name === 'fill') {
             tabObj.element.classList.add('e-fill');
         } else if (name === 'accent') {

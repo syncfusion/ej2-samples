@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toast api sample
  */
@@ -8,7 +9,8 @@ import { Effect } from '@syncfusion/ej2-base';
 
 /* tslint:disable */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Toast component
     let toastObj: Toast = new Toast({
         position: {
@@ -129,8 +131,8 @@ this.default = () => {
         let toastEle: HTMLElement = e.element;
         let toasts: NodeList = e.toastObj.element.children;
         for (let i: number = 0; i < toasts.length; i++) {
-            let toastTitle: HTMLElement = (toasts[i] as HTMLElement).querySelector('.e-toast-title');
-            let toastMessage: HTMLElement = (toasts[i] as HTMLElement).querySelector('.e-toast-message');
+            let toastTitle: any = (toasts[i] as HTMLElement).querySelector('.e-toast-title');
+            let toastMessage: any = (toasts[i] as HTMLElement).querySelector('.e-toast-message');
             if (toastTitle && toastTitle.isEqualNode(toastEle.querySelector('.e-toast-title'))) {
                 return true;
             }

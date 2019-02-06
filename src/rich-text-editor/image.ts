@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor default sample
  */
 import { RichTextEditor, Toolbar, Image,  Link, HtmlEditor, QuickToolbar, NodeSelection } from '@syncfusion/ej2-richtexteditor';
 RichTextEditor.Inject(Toolbar, Image,  Link, HtmlEditor, QuickToolbar );
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         quickToolbarSettings: {

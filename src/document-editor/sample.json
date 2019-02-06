@@ -3,14 +3,14 @@
     "directory": "document-editor",
     "category": "Editors",
     "ftName": "document-editor",
-    "type": "preview",
+    "type": "update",
     "samples": [
         {
             "url": "default",
             "name": "Default Functionalities",
-            "type": "update",
             "category": "DocumentEditor",
-            "description": "The Document Editor component is used to create, edit, view, and print Word documents in web applications.",
+            "type": "update",
+            "description": "The Document Editor component in JavaScript platform is used to create, edit, view, and print Word documents in web applications.",
             "api": {
                 "DocumentEditor": [
                     "isReadOnly",
@@ -124,9 +124,8 @@
         {
             "url": "character-formatting",
             "name": "Character Formatting",
-            "type": "new",
             "category": "Editing Features",
-            "description": "The Document Editor supports character formatting such as bold, italic, underline, subscript, superscript, font color, and more.",
+            "description": "The Document Editor supports character formatting such as bold, italic, underline, subscript, superscript, font color, and more in JavaScript platform.",
             "api": {
                 "DocumentEditor": [
                     "isReadOnly",
@@ -240,9 +239,8 @@
         {
             "url": "paragraph-formatting",
             "name": "Paragraph Formatting",
-            "type": "new",
             "category": "Editing Features",
-            "description": "The Document Editor supports paragraph formatting such as indentation, paragraph spacing, line spacing, and text alignment.",
+            "description": "The Document Editor supports paragraph formatting such as indentation, paragraph spacing, line spacing, and text alignment in JavaScript platform.",
             "api": {
                 "DocumentEditor": [
                     "isReadOnly",
@@ -356,7 +354,6 @@
         {
             "url": "styles",
             "name": "Styles",
-            "type": "new",
             "category": "Editing Features",
             "description": "The Document Editor supports both built-in and custom styles for character format and paragraph format.",
             "api": {
@@ -472,7 +469,6 @@
         {
             "url": "bullets-and-numbering",
             "name": "Bullets and Numbering",
-            "type": "new",
             "category": "Editing Features",
             "description": "The Document Editor supports bullets and numbering. Both single list and multi-level lists can be added.",
             "api": {
@@ -588,7 +584,6 @@
         {
             "url": "links-and-bookmarks",
             "name": "Hyperlinks and Bookmarks",
-            "type": "new",
             "category": "Editing Features",
             "description": "The Document Editor supports hyperlinks and bookmarks. The link can be a file, mail, webpage, or bookmark.",
             "api": {
@@ -704,7 +699,6 @@
         {
             "url": "table-formatting",
             "name": "Table Formatting",
-            "type": "new",
             "category": "Editing Features",
             "description": "The Document Editor supports table formatting such as cell margins, cell spacing, horizontal merge, vertical merge, border styles, background color, and more.",
             "api": {
@@ -820,7 +814,6 @@
         {
             "url": "section-formatting",
             "name": "Section Formatting",
-            "type": "new",
             "category": "Editing Features",
             "description": "The Document Editor supports section formatting such as page size, page margins, header distance, and footer distance.",
             "api": {
@@ -936,7 +929,6 @@
         {
             "url": "headers-and-footers",
             "name": "Headers and Footers",
-            "type": "new",
             "category": "Editing Features",
             "description": "The Document Editor supports headers and footers. Different headers and footers can be added to the first page, odd pages, and even pages.",
             "api": {
@@ -1052,7 +1044,6 @@
         {
             "url": "table-of-contents",
             "name": "Table of Contents",
-            "type": "new",
             "category": "Editing Features",
             "description": "The Document Editor supports table of contents with options for including hyperlink, page number, right-aligned tabs, and styles.",
             "api": {
@@ -1169,7 +1160,7 @@
             "url": "print",
             "name": "Print",
             "category": "Print",
-            "description": "The Document Editor component is used to view and print Word documents in web applications by injecting only the modules that are necessary.",
+            "description": "The Document Editor component in JavaScript platform is used to view and print Word documents in web applications by injecting only the modules that are necessary.",
             "api": {
                 "DocumentEditor": [
                     "enablePrint",
@@ -1181,6 +1172,19 @@
                     "zoomFactorChange"
                 ]
             }
+        },
+        {
+            "url": "right-to-left",
+            "name": "Right To Left",
+            "category": "RTL",
+            "type": "new",
+            "description": "The Document Editor supports right to left for users who use right-to-left languages (Arabic, Hebrew, Urdu, etc.).",
+            "api": {
+                "DocumentEditor":[
+                    "enableRtl"
+                ]
+            }
+
         }
     ]
 }

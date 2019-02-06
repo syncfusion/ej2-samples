@@ -3,9 +3,8 @@
     "directory": "diagram",
     "category": "Data Visualization",
     "ftName": "diagram",
-    "type": "preview",
-    "samples": [
-        {
+    "type": "update",
+    "samples": [{
             "url": "default-functionalities",
             "name": "Default Functionalities",
             "description": "This sample visualizes the processing of an order placed using credit card with built-in flow shapes.",
@@ -33,7 +32,8 @@
             "url": "getting-started-annotation",
             "name": "Annotations",
             "description": "This sample illustrates the competitive environment of a business through five forces chart. The elements of the five force chart is described using nodes and annotations. Customizing the position and appearance of the annotation is illustrated in this example.",
-            "category": "Getting Started"
+            "category": "Getting Started",
+            "type": "update"
         },
         {
             "url": "port",
@@ -44,14 +44,13 @@
         {
             "url": "bpmn-editor",
             "name": "BPMN Editor",
-            "type": "new",
             "description": "This sample visualizes the hotel booking reservation system and its built with ready made BPMN shapes.",
             "category": "Getting Started"
         },
         {
             "url": "custom-shapes",
             "name": "Complex Shapes",
-            "description": "This sample demonstrates how to host a HTML element inside a node. In this example, a Gauge control is hosted inside a HTML Node.",
+            "description": "This sample demonstrates how to host a HTML elements inside a node. In this example, a Gauge control is hosted inside a HTML Node.",
             "category": "Getting Started"
         },
         {
@@ -157,6 +156,41 @@
             "category": "Data Binding"
         },
         {
+            "url": "crud",
+            "name": "CRUD",
+            "type": "new",
+            "description": "This sample demonstrates how to perform crud operation in diagram.",
+            "category": "Data Binding"
+        },
+        {
+            "url": "logic-circuit",
+            "name": "Logic Circuit Diagram",
+            "type": "new",
+            "description": "This sample visually represents a simple fishbone diagram (Ishikawa). Diagram nodes and annotations are used to define fishbone diagrams. Read-only mode is enabled here.",
+            "category": "Use Case Diagram"
+        },
+        {
+            "url": "uml-activity",
+            "name": "UML Activity Diagram",
+            "type": "new",
+            "description": "This sample visually represents the hotel booking reservation system. It is built with readymade BPMN shapes.",
+            "category": "Use Case Diagram"
+        },
+        {
+            "url": "network-diagram",
+            "name": "Network Diagram",
+            "type": "new",
+            "description": "This sample visually represents a simple fishbone diagram (Ishikawa). Diagram nodes and annotations are used to define fishbone diagrams. Read-only mode is enabled here.",
+            "category": "Use Case Diagram"
+        },
+        {
+            "url": "uml-class-diagram",
+            "name": "UML Class Diagram",
+            "type": "new",
+            "description": "This sample visualizes the class shapes in diagram.",
+            "category": "Use Case Diagram"
+        },
+        {
             "url": "venn-diagram",
             "name": "Venn Diagram",
             "description": "This sample visually represents the hotel booking reservation system. It is built with readymade BPMN shapes.",
@@ -165,7 +199,6 @@
         {
             "url": "fishbone-diagram",
             "name": "Fishbone Diagram",
-            "type": "new",
             "description": "This sample visually represents a simple fishbone diagram (Ishikawa). Diagram nodes and annotations are used to define fishbone diagrams. Read-only mode is enabled here.",
             "category": "Static Diagram"
         }

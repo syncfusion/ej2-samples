@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, SliderTickEventArgs, SliderTooltipEventArgs } from '@syncfusion/ej2-inputs';
 
 /**
@@ -7,7 +8,8 @@ let timeObj: any;
 let outObj: any;
 
 // tslint:disable-next-line:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     timeObj = new Slider({
         // Set slider minimum and maximum values
         // new Date(Year, Month, day, hours, minutes, seconds, millseconds)

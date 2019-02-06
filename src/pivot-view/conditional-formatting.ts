@@ -1,7 +1,6 @@
 
-import { PivotView, ConditionalFormatting, FieldList } from '@syncfusion/ej2-pivotview';
+import { PivotView, ConditionalFormatting, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { Button } from '@syncfusion/ej2-buttons';
-import { Pivot_Data } from './data-source';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(false);
 PivotView.Inject(ConditionalFormatting, FieldList);
@@ -10,7 +9,8 @@ PivotView.Inject(FieldList);
 /**
  * PivotView Sample with Conditional Formatting.
  */
-
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {

@@ -8,21 +8,21 @@
             "url": "default",
             "name": "Default Functionalities",
             "category": "Accordion",
-            "description":"The sample demonstrates that default functionalities of the Accordion component (also known as collapsible panel) which works by expand and collapse action.",
+            "description":"The sample demonstrates that default functionalities of the Accordion control which works by expand and collapse action in TypeScript platform.",
             "api": {"AccordionItem": ["header", "content", "expanded"], "Accordion":["items"] }
         },
         {
             "url": "ajax",
             "name": "Ajax Content",
             "category": "Accordion",
-            "description":"The sample demonstrates how to load the content to the Accordion component from external sources such as a file or website or element using Ajax library.",
+            "description":"The sample demonstrates how to load the content to the Accordion control from external sources using Ajax library in TypeScript platform.",
             "api": {"Accordion": ["expandMode","expanding"] }
         },
         {
             "url": "icon",
             "name": "Icons",
             "category": "Accordion",
-            "description":"The sample demonstrates how to represent pane headers with an icon in Accordion component which populates from items collection.",
+            "description":"The sample demonstrates how to represent pane headers with an icon in Accordion control which populates from items collection in TypeScript platform.",
             "api": {"AccordionItem": ["iconCss"] }
         }
     ]

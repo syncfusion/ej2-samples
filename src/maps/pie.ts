@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Maps, Marker, ILoadEventArgs, ILoadedEventArgs, IResizeEventArgs, MapsTheme, Legend, MapAjax } from '@syncfusion/ej2-maps';
 import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip);
@@ -7,7 +8,8 @@ Maps.Inject(Marker, Legend);
  * Dynamic Pie
  */
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -43,7 +45,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapeSettings: {
                     fill: '#E5E5E5',
                     colorMapping: [

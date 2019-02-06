@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 import { Uploader, RemovingEventArgs } from '@syncfusion/ej2-inputs';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
@@ -5,7 +6,8 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 /**
  * Uploader default functionalities sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let dropElement: HTMLElement = document.getElementsByClassName('control-fluid')[0] as HTMLElement;
     // Initialize the uploader component
@@ -32,4 +34,14 @@ this.default = () => {
         }
     });
     checkBoxObj.appendTo('#checkAutoUpload');
+
+    let checkBoxObj1: CheckBox = new CheckBox({
+        checked: false,
+        label: 'Sequential Upload',
+        change: (args: ChangeEventArgs) => {
+            uploadObj.sequentialUpload = args.checked;
+            uploadObj.clearAll();
+        }
+    });
+    checkBoxObj1.appendTo('#sequentialUpload');
 };

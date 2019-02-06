@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, Tooltip, Legend, PolarSeries, Category, StackingAreaSeries, RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme
 } from '@syncfusion/ej2-charts';
@@ -8,7 +9,8 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, StackingAreaSeries, RadarSe
 /**
  * Sample for Polar Series with DrawType StackingArea
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let data: Object[] = [
         // {x: 'China', y: 9635, y1: 10535, y2: 11226, y3: 11218},
         { x: 'JPN', text: 'Japan', y: 5156, y1: 4849, y2: 4382, y3: 4939 },
@@ -66,7 +68,8 @@ this.default = (): void => {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     chart.appendTo('#container');

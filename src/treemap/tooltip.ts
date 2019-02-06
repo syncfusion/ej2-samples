@@ -1,8 +1,12 @@
-import { TreeMap, TreeMapTooltip, TreeMapLegend } from '@syncfusion/ej2-treemap';
-import { Airport_Count } from '../treemap/treemap-data/airport-count';
+import { loadCultureFiles } from '../common/culture-loader';
+/**
+ * tooltip sample
+ */
+import { TreeMap, TreeMapTooltip, TreeMapLegend, TreeMapAjax } from '@syncfusion/ej2-treemap';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+// treemap themes changes
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
@@ -11,7 +15,8 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
 /**
  * Default sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         tooltipSettings: {
@@ -24,7 +29,7 @@ this.default = (): void => {
                 size: '15px'
             }
         },
-        dataSource: Airport_Count,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/airport-count.json'),
         weightValuePath: 'Count',
         equalColorValuePath: 'Count',
         legendSettings: {

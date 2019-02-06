@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     ChartTheme, Chart, getSaturationColor, Category, ILoadedEventArgs,
     IPointRenderEventArgs, BoxAndWhiskerSeries, Tooltip, getElement, BoxPlotMode
@@ -9,7 +10,8 @@ import { EmitType } from '@syncfusion/ej2-base';
 /**
  * Sample for Box and Whisker series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let materialColors: string[] = ['#00bdae', '#404041', '#357cd2', '#e56590', '#f8b883', '#70ad47', '#dd8abd', '#7f84e8', '#7bb4eb',
         '#ea7a57', '#404041', '#00bdae'];
     let fabricColors: string[] = ['#4472c4', '#ed7d31', '#ffc000', '#70ad47', '#5b9bd5',
@@ -77,13 +79,13 @@ this.default = (): void => {
         // Initializing the tooltip
         tooltip: {
             enable: true
-        },
-        //Initializing Chart title
+        }, //Initializing Chart title
         title: 'Employee Age Group in Various Department',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         },
         legendSettings: {
             visible: false

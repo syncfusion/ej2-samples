@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Gauge Customization sample
  */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2 } from './customization-gauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let random: CircularGauge = new CircularGauge(gauge1());
     random.appendTo('#cutomization-container');

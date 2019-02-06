@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor expand toolbar sample
  */
@@ -7,7 +8,8 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let options: Object = {
         floatingToolbarOffset: 0,
         toolbarSettings: {
@@ -63,8 +65,8 @@ this.default = (): void => {
         defaultRTE.dataBind();
     }
     function handleFullScreen(e: any): void {
-        let leftBar: HTMLElement;
-        let transformElement: HTMLElement;
+        let leftBar: any;
+        let transformElement: any;
         if (Browser.isDevice) {
             leftBar = document.querySelector('#right-sidebar');
             transformElement = document.querySelector('.sample-browser.e-view.e-content-animation');

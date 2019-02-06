@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, Month, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 
 Schedule.Inject(Month, Resize, DragAndDrop);
@@ -6,7 +7,8 @@ Schedule.Inject(Month, Resize, DragAndDrop);
  * Schedule cell template sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     (window as TemplateFunction).getCellContent = (date: Date) => {
         if (date.getMonth() === 10 && date.getDate() === 23) {
             return '<img src="src/schedule/images/thanksgiving-day.svg" /><div class="caption">Thanksgiving day</div>';

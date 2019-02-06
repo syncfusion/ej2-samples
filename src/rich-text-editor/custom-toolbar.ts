@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor default sample
  */
@@ -6,7 +7,8 @@ import { Dialog } from '@syncfusion/ej2-popups';
 RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor);
 
 /* tslint:disable */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
@@ -18,12 +20,21 @@ this.default = (): void => {
                 }, '|', 'Undo', 'Redo'
             ]
         },
-        created: onCreate
+        created: onCreate,
+        actionComplete: onActionComplete
     });
     defaultRTE.appendTo('#defaultRTE');
     let selection: NodeSelection = new NodeSelection();
     let ranges: Range;
 
+
+    function onActionComplete(args: any): void {
+        if (args.requestType === 'SourceCode') {
+            defaultRTE.getToolbar().querySelector('#custom_tbar').parentElement.classList.add('e-overlay');
+        } else if (args.requestType === 'Preview') {
+            defaultRTE.getToolbar().querySelector('#custom_tbar').parentElement.classList.remove('e-overlay');
+        }
+    }
 
     function onCreate(): void {
         let customBtn: HTMLElement = defaultRTE.element.querySelector('#custom_tbar') as HTMLElement;
@@ -51,7 +62,7 @@ this.default = (): void => {
             let dialogCtn: HTMLElement = document.getElementById('rteSpecial_char');
             dialogCtn.onclick = (e: Event) => {
                 let target: HTMLElement = e.target as HTMLElement;
-                let activeEle: HTMLElement = dialog.element.querySelector('.char_block.e-active');
+                let activeEle: any = dialog.element.querySelector('.char_block.e-active');
                 if (target.classList.contains('char_block')) {
                     target.classList.add('e-active');
                     if (activeEle) {
@@ -70,8 +81,11 @@ this.default = (): void => {
         }
 
         function onInsert(): void {
-            let activeEle: HTMLElement = dialog.element.querySelector('.char_block.e-active');
+            let activeEle: any = dialog.element.querySelector('.char_block.e-active');
             if (activeEle) {
+                if (defaultRTE.formatter.getUndoRedoStack().length === 0) {
+                    defaultRTE.formatter.saveData();
+                }
                 ranges.insertNode(document.createTextNode(activeEle.textContent));
                 defaultRTE.formatter.saveData();
                 (defaultRTE as any).formatter.enableUndo(defaultRTE);
@@ -80,7 +94,7 @@ this.default = (): void => {
         }
 
         function dialogOverlay(): void {
-            let activeEle: HTMLElement = dialog.element.querySelector('.char_block.e-active');
+            let activeEle: any = dialog.element.querySelector('.char_block.e-active');
             if (activeEle) {
                 activeEle.classList.remove('e-active');
             }

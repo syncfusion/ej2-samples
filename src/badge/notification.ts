@@ -1,6 +1,8 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Sample for CSS Notification Badge
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 //
 };

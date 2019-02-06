@@ -1,12 +1,13 @@
 /**
  * Maps Curved line
  */
+//tslint:disable
 import { Maps, Marker, MapsTooltip, NavigationLine, ILoadEventArgs, Zoom, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-import { markerLocation } from './map-data/map-location';
-import { data } from './map-data/navigation-data';
+import * as marker_location from './map-data/marker-location.json';
+
 Maps.Inject(Marker, MapsTooltip, NavigationLine, Zoom);
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+(window as any).default = (): void => {
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -18,7 +19,7 @@ this.default = (): void => {
             longitude: 90.52734374999999
         },
         zoomSettings: {
-            enable: true,
+            enable: false,
             zoomFactor: 3.5,
             mouseWheelZoom: false,
             toolbars: []
@@ -63,10 +64,10 @@ this.default = (): void => {
                         }
                     ]
                 },
-                navigationLineSettings: data,
+                navigationLineSettings: (marker_location as any).data,
                 markerSettings: [
                     {
-                        dataSource: markerLocation,
+                        dataSource: (marker_location as any).markerLocation,
                         visible: true,
                         shape: 'Circle',
                         fill: 'white',
@@ -232,7 +233,7 @@ this.default = (): void => {
                         }
                     }
                 ],
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json')
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json')
             }
         ],
     });

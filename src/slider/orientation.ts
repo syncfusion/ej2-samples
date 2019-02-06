@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, TicksDataModel, TooltipDataModel } from '@syncfusion/ej2-inputs';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 
@@ -5,7 +6,8 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
  * Orientation sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize Slider component
     let defaultObj: Slider = new Slider({
         // Set the value for slider

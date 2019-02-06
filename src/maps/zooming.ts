@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps zooming sample
  */
@@ -6,7 +7,8 @@ import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { EmitType } from '@syncfusion/ej2-base';
 Maps.Inject(Zoom);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -20,7 +22,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapePropertyPath: 'continent',
                 shapeDataPath: 'continent',
                 animationDuration: 500,
@@ -28,7 +30,7 @@ this.default = (): void => {
                     autofill: true,
                     colorValuePath: 'color'
                 },
-                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/zooming-datasource.json')
+                dataSource: new MapAjax('./src/maps/map-data/zooming-datasource.json')
             }
         ]
     });

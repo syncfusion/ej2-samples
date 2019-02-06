@@ -1,6 +1,5 @@
 
-import { PivotView, Operators } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, Operators, IDataSet } from '@syncfusion/ej2-pivotview';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -13,6 +12,7 @@ enableRipple(false);
  */
 
 /* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let fieldCollections: { [key: string]: FilterModel } = {};
     let operators: string[] = ['Equals', 'DoesNotEquals', 'GreaterThan', 'GreaterThanOrEqualTo',
@@ -61,7 +61,7 @@ this.default = (): void => {
             }
         }
     });
-    fieldsddl.appendTo('#fields');
+    fieldsddl.appendTo('#value-fields');
     let measuresddl: DropDownList = new DropDownList({
         dataSource: measures,
         fields: { value: 'value', text: 'text' },
@@ -71,7 +71,7 @@ this.default = (): void => {
             setFilters(fieldsddl.value as string, args.value as string, operatorddl.value as Operators, valueInput1.value.toString(), valueInput2.value.toString());
         }
     });
-    measuresddl.appendTo('#measures');
+    measuresddl.appendTo('#value-measures');
     let operatorddl: DropDownList = new DropDownList({
         dataSource: operators,
         value: 'DoesNotEquals',
@@ -84,7 +84,7 @@ this.default = (): void => {
             setFilters(fieldsddl.value as string, measuresddl.value as string, args.value as Operators, valueInput1.value.toString(), valueInput2.value.toString());
         }
     });
-    operatorddl.appendTo('#conditions');
+    operatorddl.appendTo('#value-conditions');
     let valueInput1: NumericTextBox = new NumericTextBox({
         value: 0,
         placeholder: "Example: 9590",
@@ -93,7 +93,7 @@ this.default = (): void => {
         },
         width: '100%'
     });
-    valueInput1.appendTo('#value1');
+    valueInput1.appendTo('#value-value1');
     let valueInput2: NumericTextBox = new NumericTextBox({
         value: 0,
         placeholder: "Example: 17500",
@@ -102,14 +102,14 @@ this.default = (): void => {
         },
         width: '100%'
     });
-    valueInput2.appendTo('#value2');
+    valueInput2.appendTo('#value-value2');
     let applyBtn: Button = new Button({
         isPrimary: true
     });
-    applyBtn.appendTo('#apply');
+    applyBtn.appendTo('#value-apply');
 
     let clearBtn: Button = new Button();
-    clearBtn.appendTo('#clear');
+    clearBtn.appendTo('#value-clear');
 
     function setFilters(fieldName: string, measureName: string, condition: Operators, operand1: string, operand2: string) {
         fieldCollections[fieldName] = {
@@ -122,7 +122,7 @@ this.default = (): void => {
         };
     }
 
-    document.getElementById('apply').onclick = () => {
+    document.getElementById('value-apply').onclick = () => {
         let filterOptions: FilterModel[] = [];
         filterOptions = [{
             name: fieldsddl.value as string,
@@ -134,7 +134,7 @@ this.default = (): void => {
         }];
         pivotGridObj.dataSource.filterSettings = filterOptions;
     };
-    document.getElementById('clear').onclick = () => {
+    document.getElementById('value-clear').onclick = () => {
         pivotGridObj.dataSource.filterSettings = [];
         valueInput1.value = 0;
         valueInput2.value = 0;

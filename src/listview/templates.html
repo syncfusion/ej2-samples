@@ -27,30 +27,10 @@
 
     /* ListView header alignment */
 
-    .e-bigger #listview_template.e-listview .e-list-header,
-    #listview_template.e-listview .e-list-header{
-    height: 64px;
-    padding: 16px;
-    line-height: 28px;
-    font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif", "-apple-system", "BlinkMacSystemFont";
-    }
-
-    .e-bigger #listview_template.e-listview .e-list-header .e-text,
-    #listview_template.e-listview .e-list-header .e-text{
-    font-size: 20px;
-    line-height: 30px;
-    }
-
-    .e-bigger #listview_template.e-listview .e-list-header .e-but-back,
-    #listview_template.e-listview .e-list-header .e-but-back{
-    padding-top: 0px;
-    margin-top: 2px;
-    }
-
-
-    .e-bigger #listview_template.e-listview .e-list-header #list-logo,
     #listview_template.e-listview .e-list-header #list-logo {
-        margin-top: -27px;
+        margin-top: 2.5px;
+        position: absolute;
+        right: 20px;
     }
 
     /* ListView template customization */
@@ -66,22 +46,12 @@
         padding-left: 122px;
     }
 
-    #listview_template.e-listview.e-list-template .e-list-wrapper.e-list-multi-line{
-        padding-top: 16px;
-        padding-bottom: 16px;
-    }
-
     #listview_template.e-listview.e-list-template .e-list-wrapper.e-list-multi-line.e-list-avatar .e-avatar {
         background: transparent;
         width: 90px;
-        height: 120px;
+        height: 90px;
         top: 50%;
         transform: translateY(-50%);
-    }
-
-    .highcontrast #listview_template.e-listview.e-list-template .e-list-item.e-active .e-list-content,
-    .highcontrast #listview_template.e-listview.e-list-template .e-list-item.e-active .e-list-item-header  {
-    color: white;
     }
 
     #listview_template.e-listview .e-list-item.e-hover {
@@ -139,7 +109,7 @@
 
     #listview_template.e-listview .bookmark::before {
         content: "\e700";
-        margin-right: 0;
+        margin-right: 12px;
         font-size: 16px;
     }
 
@@ -151,7 +121,7 @@
 
     #listview_template.e-listview .comments::before {
         content: "\e703";
-        margin-right: 6px;
+        margin-right: 12px;
         font-size: 15px;
     }
 

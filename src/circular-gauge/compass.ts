@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Compass sample
  */
 import { CircularGauge, IAxisLabelRenderEventArgs, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let value: string[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', ''];
     let pointerColor: DropDownList; let labelColor: DropDownList;
     let circulargauge: CircularGauge = new CircularGauge({

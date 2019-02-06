@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toolbar sample to demonstrate default functionalities.
  */
 import { Toolbar } from '@syncfusion/ej2-navigations';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Toolbar component
     let toolbarObj: Toolbar = new Toolbar({
         items: [

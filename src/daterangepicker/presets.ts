@@ -1,8 +1,10 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DateRangePicker } from '@syncfusion/ej2-calendars';
 /**
  * DateRangePicker Presets sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let start: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
     let daterangepicker: DateRangePicker = new DateRangePicker({
         presets: [

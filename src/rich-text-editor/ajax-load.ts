@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor Ajax content sample
  */
@@ -6,7 +7,8 @@ import { Ajax } from '@syncfusion/ej2-base';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
 
 let defaultRTE : RichTextEditor;
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let ajax: Ajax = new Ajax('./src/rich-text-editor/ajax-content.html', 'GET', false);
     ajax.send().then((data: any): void => {
         defaultRTE = new RichTextEditor({ value: data});

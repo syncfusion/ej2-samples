@@ -15,6 +15,9 @@
         In this demo, the menu is rendered with default type of <b>Horizontal</b> orientation. Using <code>orientation</code> property, you can change the orientation to <b>Vertical</b>.
     </p>
     <p>
+        In mobile, the parent menu becomes scrollable if its size exceeds the viewport size.
+    </p>
+    <p>
         More information about Menu can be found in this
         <a target="_blank" href="http://ej2.syncfusion.com/documentation/menu/getting-started.html">
         documentation</a> section.
@@ -46,31 +49,31 @@
         text-align: center;
     }
 
-    .menu-control .e-file::before {
+    .menu-control .e-menu-wrapper .e-file::before {
         content: '\e886';
     }
     
-    .menu-control .e-edit::before {
+    .menu-control .e-menu-wrapper .e-edit::before {
         content: '\e822';
     }
 
-    .menu-control .e-cut::before {
+    .e-menu-wrapper .e-cut::before {
         content: '\e5a9';
     }
 
-    .menu-control .e-copy::before {
+    .e-menu-wrapper .e-copy::before {
         content: '\e5b3';
     }
 
-    .menu-control .e-paste::before {
+    .e-menu-wrapper .e-paste::before {
         content: '\e5b2';
     }
 
-    .menu-control .e-open::before {
+    .e-menu-wrapper .e-open::before {
         content: '\e885';
     }
 
-    .menu-control .e-save::before {
+    .e-menu-wrapper .e-save::before {
         content: '\e954';
     }
 </style>

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { RecurrenceEditor } from '@syncfusion/ej2-schedule';
 
@@ -5,7 +6,8 @@ import { RecurrenceEditor } from '@syncfusion/ej2-schedule';
  * Recurrence editor populate rule
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let recObject: RecurrenceEditor = new RecurrenceEditor();
     recObject.appendTo('#RecurrenceEditor');
     recObject.setRecurrenceRule('FREQ=DAILY;INTERVAL=2;COUNT=8');

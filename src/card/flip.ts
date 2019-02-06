@@ -1,7 +1,9 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Sample for CSS Flip Cards.
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     /* On click event for flip the card*/
     document.getElementById('card_flip').onclick = (e: Event) => {
         let cardEle: HTMLElement = (<HTMLElement>e.currentTarget);

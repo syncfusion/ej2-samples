@@ -1,13 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { SampleDataSource } from './data';
 import { CheckBox } from '@syncfusion/ej2-buttons';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Population Growth Rate of the most Populous Countries',
@@ -30,7 +31,7 @@ this.default = (): void => {
                 '1990-1995', '1995-2000', '2000-2005', '2005-2010', '2010-2015'],
             isInversed: true
         },
-        dataSource: newDataSource.inveredAxisData,
+        dataSource: (data as any).inveredAxisData,
         cellSettings: {
             border: {
                 width: 0

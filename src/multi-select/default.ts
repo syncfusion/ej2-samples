@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * MultiSelect Default Sample
  */
 import { MultiSelect } from '@syncfusion/ej2-dropdowns';
 
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // initialize MultiSelect component
     let listObj: MultiSelect = new MultiSelect({

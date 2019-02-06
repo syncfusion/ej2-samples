@@ -1,7 +1,7 @@
 {
     "name": "DateTimePicker",
     "directory": "datetimepicker",
-    "category": "Editors",
+    "category": "Calendars",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "DateTimePicker", "api":{"DateTimePicker": []}, "description": "A simple, lightweight, and easily customizable DateTimePicker component for JavaScript (TypeScript) for selecting specific date and time values based on your needs" },
         { "url": "disabled", "name": "Disabled Dates", "category": "DateTimePicker", "api":{"DateTimePicker": ["renderDayCell" ]}, "description": "Customizable DateTimePicker widget for JavaScript (TypeScript) with disabled dates and times that restrict selection for specific date and time durations" },

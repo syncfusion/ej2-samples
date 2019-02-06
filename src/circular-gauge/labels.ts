@@ -1,11 +1,17 @@
+import { loadCultureFiles } from '../common/culture-loader';
+
 /**
  * Gauge Labels sample
  */
 import { CircularGauge, Annotations, Position, TickModel, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { EmitType } from '@syncfusion/ej2-base';
 CircularGauge.Inject(Annotations);
 //tslint:disable
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
+    
     let isMajorTicks: boolean = true;
     let circulargauge: CircularGauge = new CircularGauge({
         load: (args: ILoadedEventArgs) => {
@@ -18,6 +24,8 @@ this.default = (): void => {
                 content: '<div id="content" style="color:#518C03;font-size:20px;font-family:Segoe UI;font-weight:semibold;">145</div>',
                 angle: 0, radius: '0%', zIndex: '1',
             }],
+            minimum: 0,
+            maximum: 170,
             startAngle: 210, endAngle: 150,
             lineStyle: { width: 2, color: '#9E9E9E' },
             labelStyle: {
@@ -28,7 +36,7 @@ this.default = (): void => {
             }, minorTicks: {
                 position: 'Inside', color: '#757575', height: 5, width: 2, interval: 10
             },
-            radius: '75%', minimum: 0, maximum: 180,
+            radius: '75%',
             pointers: [{
                 animation: { enable: false }, value: 145,
                 type: 'RangeBar', roundedCornerRadius: 10, pointerWidth: 10,
@@ -56,6 +64,19 @@ this.default = (): void => {
         }
     });
     ticks.appendTo('#Ticks');
+
+    let showLastLabelchange: EmitType<CheckBoxChangeEvents>;
+    let showLastLabelCheckBox: CheckBox = new CheckBox(
+    {
+        change: showLastLabelchange
+    },
+    '#showLastLabel');
+    
+    showLastLabelCheckBox.change = showLastLabelchange = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        circulargauge.axes[0].showLastLabel = boolean;
+        circulargauge.refresh();
+    }
 
     tickPosition = new DropDownList({
         index: 0, width: 120,

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, Tooltip, Legend, PolarSeries, Category,
     RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme
@@ -9,7 +10,8 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries);
 /**
  * Sample for Polar Series with DrawType Column
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let data: Object[] = [
         //{text: 'China', 	  x: 'CHN', 	  	y: 1246.3, y1: 1341, y2: 448.3},
         //{text: 'India', 		x: 'IND', 		y: 893.3, y1: 1237, y2: 41.95},
@@ -71,7 +73,8 @@ this.default = (): void => {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     chart.appendTo('#container');

@@ -1,7 +1,9 @@
-import { extend } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 import { TimePicker, ChangeEventArgs } from '@syncfusion/ej2-calendars';
 import { Schedule, Day, Week, TimelineViews, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { scheduleData, applyCategoryColor } from './datasource';
+import { applyCategoryColor } from './helper';
+import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
 
@@ -9,8 +11,9 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
  *  Schedule scroll to particular hour sample
  */
 
-this.default = () => {
-    let data: Object[] = <Object[]>extend([], scheduleData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

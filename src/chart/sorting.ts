@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, StackingColumnSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme, sort } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Chart.Inject(StackingColumnSeries, Category, Legend, Tooltip);
@@ -5,7 +6,8 @@ Chart.Inject(StackingColumnSeries, Category, Legend, Tooltip);
 /**
  * Sample for StackedColumn Series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dataValues: Object[] = [
         { x: 'Asia', car: 120, trucks: 90, bike: 180, cycle: 90 },
         { x: 'Canada', car: 100, trucks: 80, bike: 90, cycle: 80 },
@@ -15,7 +17,6 @@ this.default = (): void => {
         { x: 'US', car: 140, trucks: 90, bike: 75, cycle: 70 }
     ];
     let chart: Chart = new Chart({
-
         //Initializing Primary X Axis
         primaryXAxis: {
             majorGridLines: { width: 0 }, minorGridLines: { width: 0 },
@@ -66,7 +67,8 @@ this.default = (): void => {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     chart.appendTo('#container');

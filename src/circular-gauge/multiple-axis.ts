@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Multiple Axis sample
  */
 import { CircularGauge, isCompleteAngle, GaugeDirection, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 //tslint:disable
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let axisIndex: number = 0;
     let axis: DropDownList; let direction: DropDownList;
     let circulargauge: CircularGauge = new CircularGauge({

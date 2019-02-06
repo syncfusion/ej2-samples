@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, LineSeries, Legend, ILoadedEventArgs, getElement } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, Legend);
 
@@ -46,7 +47,8 @@ for (i = 0; i < 100; i++) {
     series2[i] = { x: i, y: value1 + 10 };
 }
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis

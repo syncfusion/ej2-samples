@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ColorPicker, ColorPickerEventArgs, PaletteTileEventArgs } from '@syncfusion/ej2-inputs';
 import { Browser, createElement, addClass, select } from '@syncfusion/ej2-base';
 
 /**
  * ColorPicker Custom sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let colorPicker: ColorPicker = new ColorPicker(
         {

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 
@@ -8,7 +9,8 @@ import { Button } from '@syncfusion/ej2-buttons';
 let icontemp: string = '<button id="sendButton" class="e-control e-btn e-primary" data-ripple="true">' + 'Send</button>';
 let headerimg: string = '<span class="e-avatar template-image e-avatar-xsmall e-avatar-circle"></span>';
 let message: string = 'Greetings Nancy! When will you share me the source files of the project?';
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let sendbutton: Button = new Button();
     let proxy: any = this;
     let dialog: Dialog = new Dialog({

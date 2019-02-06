@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor client side samples
  */
@@ -7,7 +8,8 @@ import { ActionBeginEventArgs, ActionCompleteEventArgs } from '@syncfusion/ej2-r
 import { Button } from '@syncfusion/ej2-buttons';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
@@ -65,8 +67,8 @@ this.default = (): void => {
         log.insertBefore(span, log.firstChild);
     }
     function handleFullScreen(e: any): void {
-        let leftBar: HTMLElement;
-        let transformElement: HTMLElement;
+        let leftBar: any;
+        let transformElement: any;
         if (Browser.isDevice) {
             leftBar = document.querySelector('#right-sidebar');
             transformElement = document.querySelector('.sample-browser.e-view.e-content-animation');

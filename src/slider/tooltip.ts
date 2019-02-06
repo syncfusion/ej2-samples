@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Slider, TooltipPlacement, TooltipShowOn } from '@syncfusion/ej2-inputs';
 
@@ -5,7 +6,8 @@ import { Slider, TooltipPlacement, TooltipShowOn } from '@syncfusion/ej2-inputs'
  * Tooltip sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize Slider Component
     let defaultObj: Slider = new Slider({
         // set the value for slider

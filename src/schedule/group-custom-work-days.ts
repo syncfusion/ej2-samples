@@ -1,16 +1,18 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { addClass } from '@syncfusion/ej2-base';
 import {
     Schedule, ScheduleModel, WorkWeek, Month, ResourceDetails,
-    TreeViewArgs, PopupOpenEventArgs, ActionEventArgs, EventFieldsMapping, RenderCellEventArgs, ResizeEventArgs
+    TreeViewArgs, PopupOpenEventArgs, ActionEventArgs, EventFieldsMapping, RenderCellEventArgs
 } from '@syncfusion/ej2-schedule';
-import { doctorData } from './datasource';
+import * as dataSource from './datasource.json';
 
 /**
  * schedule resources group sample
  */
 Schedule.Inject(WorkWeek, Month);
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     interface TemplateFunction extends Window {
         getDoctorImage?: Function;
         getDoctorName?: Function;
@@ -38,7 +40,7 @@ this.default = () => {
         }],
         views: ['WorkWeek', 'Month'],
         eventSettings: {
-            dataSource: doctorData,
+            dataSource: (dataSource as any).doctorData,
             fields: {
                 subject: { title: 'Service Type', name: 'Subject' },
                 location: { title: 'Patient Name', name: 'Location' },
@@ -48,13 +50,18 @@ this.default = () => {
             }
         },
         actionBegin: (args: ActionEventArgs) => {
-            if (args.requestType === 'eventCreate' && (<Object[]>args.data).length > 0) {
-                let eventData: { [key: string]: Object } = args.data[0] as { [key: string]: Object };
+            let isEventChange: boolean = (args.requestType === 'eventChange');
+            if ((args.requestType === 'eventCreate' && (<Object[]>args.data).length > 0) || isEventChange) {
+                let eventData: { [key: string]: Object } = (isEventChange) ? args.data as { [key: string]: Object } :
+                    args.data[0] as { [key: string]: Object };
                 let eventField: EventFieldsMapping = scheduleObj.eventFields;
                 let startDate: Date = eventData[eventField.startTime] as Date;
                 let endDate: Date = eventData[eventField.endTime] as Date;
                 let resourceIndex: number = [1, 2, 3].indexOf(eventData.DoctorId as number);
-                args.cancel = !scheduleObj.isSlotAvailable(startDate, endDate, resourceIndex);
+                args.cancel = !isValidateTime(startDate, endDate, resourceIndex);
+                if (!args.cancel) {
+                    args.cancel = !scheduleObj.isSlotAvailable(startDate, endDate, resourceIndex);
+                }
             }
         },
         popupOpen: (args: PopupOpenEventArgs) => {
@@ -66,11 +73,15 @@ this.default = () => {
             if (args.element.classList.contains('e-work-hours') || args.element.classList.contains('e-work-cells')) {
                 addClass([args.element], ['willsmith', 'alice', 'robson'][parseInt(args.element.getAttribute('data-group-index'), 10)]);
             }
-        },
-        resizeStart: (args: ResizeEventArgs) => {
-            args.cancel = true;
         }
     };
+
+    function isValidateTime(startDate: Date, endDate: Date, resIndex: number): boolean {
+        let resource: ResourceDetails = scheduleObj.getResourcesByIndex(resIndex);
+        let startHour: number = parseInt(resource.resourceData.startHour.toString().slice(0, 2), 10);
+        let endHour: number = parseInt(resource.resourceData.endHour.toString().slice(0, 2), 10);
+        return (startHour <= startDate.getHours() && endHour >= endDate.getHours());
+    }
 
     let scheduleObj: Schedule = new Schedule(scheduleOptions, document.getElementById('Schedule'));
 

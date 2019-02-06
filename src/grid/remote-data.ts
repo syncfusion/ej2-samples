@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
 
@@ -6,7 +7,8 @@ Grid.Inject(Page, Selection);
 /**
  * RemoteData sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
     let data: Object = new DataManager({
         url: hostUrl + 'api/Orders',

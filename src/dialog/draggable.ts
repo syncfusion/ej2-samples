@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(true);
 import { Dialog } from '@syncfusion/ej2-popups';
@@ -5,7 +6,8 @@ import { Button } from '@syncfusion/ej2-buttons';
 /**
  * Draggable Dialog sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Render the confirmation Dialog
     let confirmDialogObj: Dialog = new Dialog({
         header: 'Drag Me!!!',

@@ -1,25 +1,28 @@
-import { TreeMap, LabelAlignment, TreeMapTooltip, TreeMapLegend } from '@syncfusion/ej2-treemap';
-import { Country_Population } from '../treemap/treemap-data/country-population';
+import { loadCultureFiles } from '../common/culture-loader';
+/**
+ * Label sample
+ */
+import { TreeMap, LabelAlignment, TreeMapTooltip, TreeMapLegend, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+// Treemap theme changes
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-/**
- * Default sample
- */
-this.default = (): void => {
+//tslint:disable
+(window as any).default = (): void => {
+    loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         titleSettings: {
             text: 'Countries ordered based on Population - 2017',
             textStyle: { size: '15px' }
         },
-        dataSource: Country_Population,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/country-population.json'),
         tooltipSettings: {
             visible: true,
             format: '${Country} : ${Population}'
@@ -51,6 +54,7 @@ this.default = (): void => {
         },
     });
     treemap.appendTo('#container');
+    // Treemap label position
     let labelMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Label Action',

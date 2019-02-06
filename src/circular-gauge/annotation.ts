@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Annotation sample
  */
@@ -15,7 +16,8 @@ function calcTime(offset: string): Date {
     return curretDate;
 }
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let clockInterval: Function; let intervalExecute: boolean = true;
     let indianTime: CircularGauge = new CircularGauge(gauge1());
     let subGauge1: CircularGauge; let subGauge2: CircularGauge;

@@ -1,49 +1,49 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ILoadedEventArgs, StripLineSettingsModel, StripLine, ChartTheme } from '@syncfusion/ej2-charts';
 import { Chart, LineSeries, Category, Legend, Tooltip } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, Category, Legend, Tooltip, StripLine);
-import { Browser} from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
  * Sample for Striplines
  */
-let fontSize: string =  Browser.isDevice ? '14px' : '18px';
 let xAxisStripLine: StripLineSettingsModel[] = [
     {
         start: -1, end: 1.5, text: 'Winter', color: 'url(#winter)',
-        textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' },
+        textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' },
         border: { width: 0 }, rotation: -90, visible: true
     }, {
         start: 1.5, end: 3.5, text: 'Summer', color: 'url(#summer)',
-        textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' },
+        textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' },
         border: { width: 0 }, rotation: -90, visible: true
     }, {
         start: 3.5, end: 4.5, text: 'Spring', color: 'url(#spring)',
-        textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' },
+        textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' },
         border: { width: 0 }, rotation: -90, visible: true
     }, {
         start: 4.5, end: 5.5, text: 'Autumn', color: 'url(#autumn)',
-        textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' },
+        textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' },
         border: { width: 0 }, rotation: -90, visible: true
     }, {
         start: 5.5, end: 7, text: 'Winter', color: 'url(#winter)',
-        textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' },
+        textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' },
         border: { width: 0 }, rotation: -90, visible: true
     }, {
         startFromAxis: true, size: 2, isSegmented: true, segmentStart: 22.5, text: 'Average Temperature',
         segmentEnd: 27.5, visible: false, color: '#fc902a',
-        textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' }, border: { width: 0 }, rotation: 0
+        textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' }, border: { width: 0 }, rotation: 0
     }, {
         start: 3.5, size: 3, isSegmented: true, segmentStart: 22.5, text: 'Average Temperature',
         segmentEnd: 27.5, visible: false, color: '#fc902a',
-        textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' }, border: { width: 0 }, rotation: 0
+        textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' }, border: { width: 0 }, rotation: 0
     }, {
         start: 1.5, size: 2, isSegmented: true, segmentStart: 32.5, text: 'High Temperature',
         segmentEnd: 37.5, visible: false, color: '#ff512f',
-        textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' }, border: { width: 0 }, rotation: 0
+        textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' }, border: { width: 0 }, rotation: 0
     }
 ];
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         //Initializing Primary X Axis
         primaryXAxis: {
@@ -60,13 +60,13 @@ this.default = (): void => {
             stripLines: [
                 {
                     start: 30, end: 40, text: 'High Temperature', color: '#ff512f', visible: false,
-                    textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' }, border: { width: 0 },
+                    textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' }, border: { width: 0 },
                 }, {
                     start: 20, end: 30, text: 'Average Temperature', color: '#fc902a', visible: false,
-                    textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' }, border: { width: 0 },
+                    textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' }, border: { width: 0 },
                 }, {
                     start: 10, end: 20, text: 'Low Temperature', visible: false,
-                    textStyle: { size: fontSize, color: '#ffffff', fontWeight: '600' }, border: { width: 0 }, color: '#f9d423'
+                    textStyle: { size: '18px', color: '#ffffff', fontWeight: '600' }, border: { width: 0 }, color: '#f9d423'
                 }
             ]
         },
@@ -88,7 +88,8 @@ this.default = (): void => {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     chart.appendTo('#container');

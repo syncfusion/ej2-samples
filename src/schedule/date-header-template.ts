@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Schedule, Day, Week, WorkWeek, Month,
     TimelineMonth, RenderCellEventArgs, EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
 import { Internationalization, extend } from '@syncfusion/ej2-base';
-import { scheduleData, applyCategoryColor } from './datasource';
+import * as dataSource from './datasource.json';
+import { applyCategoryColor } from './helper';
 
 Schedule.Inject(Day, Week, WorkWeek, Month, TimelineMonth, Resize, DragAndDrop);
 
@@ -11,7 +13,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineMonth, Resize, DragAndDrop);
  * Schedule date header template sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).getDateHeaderText = (value: Date) => {
         return instance.formatDate(value, { skeleton: 'Ed' });
@@ -42,7 +45,7 @@ this.default = () => {
         getWeather?: Function;
     }
 
-    let data: Object[] = <Object[]>extend([], scheduleData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as any).scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
@@ -52,7 +55,7 @@ this.default = () => {
         eventSettings: { dataSource: data },
         cssClass: 'schedule-date-header-template',
         renderCell: (args: RenderCellEventArgs) => {
-            if (args.elementType === 'monthCells' && this.currentView === 'Month') {
+            if (args.elementType === 'monthCells' && scheduleObj && scheduleObj.currentView === 'Month') {
                 let ele: Element = document.createElement('div');
                 ele.innerHTML = getWeather(args.date);
                 (args.element).appendChild(ele.firstChild);

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample allows user to apply their own mask and prompt character for MaskedTextBox.
  * User can edit the MaskedTextBox with the applied mask, prompt character and get corresponding raw and masked values.
@@ -5,7 +6,8 @@
 import { MaskedTextBox, Input, MaskChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Create input element to customize mask value
     let element: HTMLInputElement = <HTMLInputElement>document.getElementById('input1');
     Input.createInput({

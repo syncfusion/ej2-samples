@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * menu sample
  */
@@ -6,7 +7,8 @@ import { ListView } from '@syncfusion/ej2-lists';
 import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
 import { Toolbar } from '@syncfusion/ej2-navigations';
 //tslint:disable:max-func-body-length
-(window as any).default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
   //Initialize Toolbar component
   let toolbarObj: Toolbar = new Toolbar({

@@ -1,5 +1,4 @@
-import { PivotView, Operators } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, Operators, IDataSet } from '@syncfusion/ej2-pivotview';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -12,6 +11,7 @@ enableRipple(false);
  */
 
 /* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let fieldCollections: { [key: string]: FilterModel } = {};
     let operators: string[] = ['Equals', 'DoesNotEquals', 'BeginWith', 'DoesNotBeginWith', 'EndsWith',
@@ -60,7 +60,7 @@ this.default = (): void => {
             updateButtonState();
         }
     });
-    fieldsddl.appendTo('#fields');
+    fieldsddl.appendTo('#label-fields');
     let operatorddl: DropDownList = new DropDownList({
         dataSource: operators,
         value: 'DoesNotEquals',
@@ -74,7 +74,7 @@ this.default = (): void => {
             updateButtonState();
         }
     });
-    operatorddl.appendTo('#conditions');
+    operatorddl.appendTo('#label-conditions');
     let valueInput1: MaskedTextBox = new MaskedTextBox({
         value: '',
         placeholder: 'Example: "Germany"',
@@ -84,7 +84,7 @@ this.default = (): void => {
         },
         width: '100%'
     });
-    valueInput1.appendTo('#value1');
+    valueInput1.appendTo('#label-value1');
     let valueInput2: MaskedTextBox = new MaskedTextBox({
         value: '',
         placeholder: 'Example: "States"',
@@ -94,14 +94,14 @@ this.default = (): void => {
         },
         width: '100%'
     });
-    valueInput2.appendTo('#value2');
+    valueInput2.appendTo('#label-value2');
     let applyBtn: Button = new Button({
         isPrimary: true, disabled: true
     });
-    applyBtn.appendTo('#apply');
+    applyBtn.appendTo('#label-apply');
 
     let clearBtn: Button = new Button();
-    clearBtn.appendTo('#clear');
+    clearBtn.appendTo('#label-clear');
 
     function setFilters(fieldName: string, condition: Operators, operand1: string, operand2: string) {
         fieldCollections[fieldName] = {
@@ -123,7 +123,7 @@ this.default = (): void => {
         }
     }
 
-    document.getElementById('apply').onclick = () => {
+    document.getElementById('label-apply').onclick = () => {
         let filterOptions: FilterModel[] = [];
         for (let field of fields) {
             if (fieldCollections[field] && fieldCollections[field].value1 !== '') {
@@ -142,7 +142,7 @@ this.default = (): void => {
         pivotGridObj.dataSource.filterSettings = filterOptions;
     };
 
-    document.getElementById('clear').onclick = () => {
+    document.getElementById('label-clear').onclick = () => {
         pivotGridObj.dataSource.filterSettings = [];
         valueInput1.value = '';
         valueInput2.value = '';

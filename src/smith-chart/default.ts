@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Default sample for smith chart
  */
@@ -6,7 +7,8 @@ import { Smithchart, SmithchartLegend, TooltipRender, ISmithchartLoadEventArgs,
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Smithchart.Inject(SmithchartLegend, TooltipRender);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let smithchart: Smithchart = new Smithchart({
         load: (args: ISmithchartLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];

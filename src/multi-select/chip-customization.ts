@@ -1,27 +1,17 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * MultiSelect Chip Customization Sample
  */
 import { MultiSelect, TaggingEventArgs } from '@syncfusion/ej2-dropdowns';
 
+import * as data from './dataSource.json';
 
-this.default = () => {
-    let colorsData: { [key: string]: Object; }[] = [
-        { Color: 'Chocolate', Code: '#75523C' },
-        { Color: 'CadetBlue', Code: '#3B8289' },
-        { Color: 'DarkOrange', Code: '#FF843D' },
-        { Color: 'DarkRed', Code: '#CA3832' },
-        { Color: 'Fuchsia', Code: '#D44FA3' },
-        { Color: 'HotPink', Code: '#F23F82' },
-        { Color: 'Indigo', Code: '#2F5D81' },
-        { Color: 'LimeGreen', Code: '#4CD242' },
-        { Color: 'OrangeRed', Code: '#FE2A00' },
-        { Color: 'Tomato', Code: '#FF745C' }
-    ];
-
+(window as any).default = (): void => {
+    loadCultureFiles();
     // initialize MultiSelect component
     let colors: MultiSelect = new MultiSelect({
         // set the colors data to dataSource property
-        dataSource: colorsData,
+        dataSource: (data as any).colorsData,
         // map the appropriate columns to fields property
         fields: { text: 'Color', value: 'Code' },
         // set the value to MultiSelect

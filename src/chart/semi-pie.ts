@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     AccumulationChart, AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip,
     IAccLoadedEventArgs, AccumulationTheme
@@ -7,7 +8,8 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
 /**
  * Sample fro Semi Pie chart
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pie: AccumulationChart = new AccumulationChart({
         //Initializing Series
         series: [
@@ -36,7 +38,6 @@ this.default = (): void => {
         ],
         //Initializing Tooltip
         tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
-        enableAnimation: false,
         legendSettings: {
             visible: false,
         },
@@ -45,41 +46,39 @@ this.default = (): void => {
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     pie.appendTo('#container');
-
     document.getElementById('inner-radius').onpointermove = document.getElementById('inner-radius').ontouchmove =
-    document.getElementById('inner-radius').onchange = (e: Event) => {
-        let innerradius: number = +(document.getElementById('inner-radius') as HTMLInputElement).value;
-        pie.series[0].innerRadius = innerradius + '%';
-        document.getElementById('innerradius').innerHTML = (innerradius / 100).toFixed(2);
-        pie.series[0].animation.enable = false;
-        pie.removeSvg();
-        pie.refreshSeries();
-        pie.refreshChart();
-    };
-
+        document.getElementById('inner-radius').onchange = (e: Event) => {
+            let innerradius: number = +(document.getElementById('inner-radius') as HTMLInputElement).value;
+            pie.series[0].innerRadius = innerradius + '%';
+            document.getElementById('innerradius').innerHTML = (innerradius / 100).toFixed(2);
+            pie.series[0].animation.enable = false;
+            pie.removeSvg();
+            pie.refreshSeries();
+            pie.refreshChart();
+        };
     document.getElementById('range-min').onpointermove = document.getElementById('range-min').ontouchmove =
-    document.getElementById('range-min').onchange = (e: Event) => {
-        let rangeMin: HTMLSelectElement = <HTMLSelectElement>(document.getElementById('range-min'));
-        pie.series[0].startAngle = parseFloat(rangeMin.value);
-        document.getElementById('startangle').innerHTML = rangeMin.value;
-        pie.series[0].animation.enable = false;
-        pie.removeSvg();
-        pie.refreshSeries();
-        pie.refreshChart();
-    };
-
+        document.getElementById('range-min').onchange = (e: Event) => {
+            let rangeMin: HTMLSelectElement = <HTMLSelectElement>(document.getElementById('range-min'));
+            pie.series[0].startAngle = parseFloat(rangeMin.value);
+            document.getElementById('startangle').innerHTML = rangeMin.value;
+            pie.series[0].animation.enable = false;
+            pie.removeSvg();
+            pie.refreshSeries();
+            pie.refreshChart();
+        };
     document.getElementById('range-max').onpointermove = document.getElementById('range-max').ontouchmove =
-    document.getElementById('range-max').onchange = (e: Event) => {
-        let rangeMax: HTMLSelectElement = <HTMLSelectElement>(document.getElementById('range-max'));
-        pie.series[0].endAngle = parseFloat(rangeMax.value);
-        document.getElementById('endangle').innerHTML = rangeMax.value;
-        pie.series[0].animation.enable = false;
-        pie.removeSvg();
-        pie.refreshSeries();
-        pie.refreshChart();
-    };
+        document.getElementById('range-max').onchange = (e: Event) => {
+            let rangeMax: HTMLSelectElement = <HTMLSelectElement>(document.getElementById('range-max'));
+            pie.series[0].endAngle = parseFloat(rangeMax.value);
+            document.getElementById('endangle').innerHTML = rangeMax.value;
+            pie.series[0].animation.enable = false;
+            pie.removeSvg();
+            pie.refreshSeries();
+            pie.refreshChart();
+        };
 };

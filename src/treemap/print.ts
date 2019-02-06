@@ -1,20 +1,22 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Changing exporting sample.
  */
 
-import { TreeMap, ExportType, TreeMapTooltip } from '@syncfusion/ej2-treemap';
+import { TreeMap, ExportType, TreeMapTooltip, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { Button } from '@syncfusion/ej2-buttons';
-import { ProductSale } from '../treemap/treemap-data/product';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+// Treemap theme changes
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         titleSettings: {
@@ -22,7 +24,7 @@ this.default = (): void => {
             textStyle: { size: '15px'}
         },
         //enableDrillDown: true,
-        dataSource: ProductSale,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/product.json'),
         layoutType: 'SliceAndDiceVertical',
         weightValuePath: 'Percentage',
         rangeColorValuePath: 'Percentage',
@@ -50,19 +52,21 @@ this.default = (): void => {
     });
     treemap.appendTo('#container');
     let togglebtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn.appendTo('#togglebtn');
+    // Print the treemap
     document.getElementById('togglebtn').onclick = () => {
         treemap.print();
     };
+    // Treemap file format (PNG, JPEG, PDF, SVG)
     let mode: DropDownList = new DropDownList({
         index: 0,
         width: 70
     });
     mode.appendTo('#mode');
     let togglebtn1: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn1.appendTo('#togglebtn1');
     document.getElementById('togglebtn1').onclick = () => {

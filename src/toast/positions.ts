@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toast position sample
  */
@@ -8,7 +9,8 @@ import { Browser } from '@syncfusion/ej2-base';
 
 /* tslint:disable */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Toast component
     let toastObj: Toast = new Toast({
         title: 'Matt sent you a friend request',

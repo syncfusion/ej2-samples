@@ -1,6 +1,5 @@
 
-import { PivotView } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, IDataSet } from '@syncfusion/ej2-pivotview';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Button, CheckBox, ChangeEventArgs as CheckChange } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -9,7 +8,8 @@ enableRipple(false);
 /**
  * PivotView Member Sorting sample.
  */
-
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
@@ -66,7 +66,7 @@ this.default = (): void => {
             }
         }
     });
-    fieldsddl.appendTo('#fields');
+    fieldsddl.appendTo('#sort-fields');
 
     let orderddl: DropDownList = new DropDownList({
         dataSource: order,
@@ -84,11 +84,11 @@ this.default = (): void => {
     orderddl.appendTo('#order');
 
     let applyBtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+        cssClass: 'e-flat', isPrimary: true,
     });
-    applyBtn.appendTo('#apply');
+    applyBtn.appendTo('#sort-apply');
 
-    document.getElementById('apply').onclick = () => {
+    document.getElementById('sort-apply').onclick = () => {
         if (checkBoxObj.checked) {
             pivotGridObj.dataSource.enableSorting = true;
             pivotGridObj.dataSource.sortSettings = [

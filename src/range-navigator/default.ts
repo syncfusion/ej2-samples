@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, AreaSeries, ChartTheme, DateTime, RangeTooltip } from '@syncfusion/ej2-charts';
 RangeNavigator.Inject(DateTime, AreaSeries, RangeTooltip);
 import { Browser, Ajax } from '@syncfusion/ej2-base';
@@ -8,7 +9,7 @@ import { Browser, Ajax } from '@syncfusion/ej2-base';
 
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
 let themes: string[] = ['Material', 'Fabric', 'Bootstrap', 'Highcontrast'];
 let borderColor: string[] = ['#00bdae', '#4472c4', '#a16ee5', '#79ECE4'];
 let regionColor: string[] = ['rgba(0, 189, 174, 0.3)', 'rgba(68, 114, 196, 0.3)',
@@ -42,7 +43,8 @@ this.renderChart = (datasrc: Object[]): void => {
             range.appendTo('#container');
 
         };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let datasrc: Object[];
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/default-data.json', 'GET', true);
     ajax.send().then();

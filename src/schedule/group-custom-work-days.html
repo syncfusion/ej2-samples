@@ -29,7 +29,7 @@
         more appointments can be added to that cell which has been prevented by making use of the
         <code>isSlotAvailable</code> function within the
         <code>actionBegin</code> event checking for
-        <code>eventCreate</code> request type. The resource header is customized by making use of the
+        <code>eventCreate</code> and <code>eventChange</code> request type. The resource header is customized by making use of the
         <code>resourceHeaderTemplate</code> option.
     </p>
 </div>
@@ -62,6 +62,10 @@
 
     .e-schedule .e-vertical-view .e-resource-cells {
         height: 62px;
+    }
+
+    .e-bigger .e-schedule .e-vertical-view .e-resource-cells {
+        height: 64px;
     }
 
     .e-schedule .template-wrap {

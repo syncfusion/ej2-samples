@@ -80,7 +80,7 @@ this.default = (): void => {
     pivotGridObj.appendTo('#PivotView');
 
     let button: Button = new Button({ isPrimary: true, cssClass: 'e-info' });
-    button.appendTo('#apply');
+    button.appendTo('#load');
 
     function show() {
         document.getElementById('popup').style.display = 'inline-block';

@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { SplitButton, ItemModel, MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 
 /**
  * Default SplitButton sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let items: ItemModel[] = [
         {
             text: 'Paste',

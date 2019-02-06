@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     AccumulationChart, AccumulationLegend, PieSeries, AccumulationTooltip,
     IAccTextRenderEventArgs, AccumulationTheme
@@ -9,7 +10,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 /**
  * Sample for grouping in Pie chart
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pie: AccumulationChart = new AccumulationChart({
         //Initializing Series
         series: [
@@ -69,7 +71,8 @@ this.default = (): void => {
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     pie.appendTo('#container');
@@ -93,8 +96,8 @@ this.default = (): void => {
         pie.refreshSeries();
         pie.refreshChart();
     }
-
-    document.getElementById('clubpoint').onchange = (e: Event) => {
-        clubchange(+(document.getElementById('clubpoint') as HTMLInputElement).value);
-    };
+    document.getElementById('clubpoint').onpointermove = document.getElementById('clubpoint').ontouchmove =
+        document.getElementById('clubpoint').onchange = (e: Event) => {
+            clubchange(+(document.getElementById('clubpoint') as HTMLInputElement).value);
+        };
 };

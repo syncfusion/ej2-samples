@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Selection, DetailRow } from '@syncfusion/ej2-grids';
 import { DataManager, ODataAdaptor } from '@syncfusion/ej2-data';
 import { employeeData } from './data-source';
@@ -6,7 +7,8 @@ Grid.Inject(Page, Selection, DetailRow);
 /**
  * Hierarchy Grid Sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dataManger: Object = new DataManager({
         url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Orders',
         adaptor: new ODataAdaptor,

@@ -1,14 +1,14 @@
 
-import { PivotView } from '@syncfusion/ej2-pivotview';
+import { PivotView, IDataSet } from '@syncfusion/ej2-pivotview';
 import { RadioButton } from '@syncfusion/ej2-buttons';
-import { Pivot_Data } from './data-source';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(false);
 
 /**
  * PivotView Sample with Drill Options.
  */
-
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {

@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ProgressButton } from '@syncfusion/ej2-splitbuttons';
 
 /**
  * Default progress button sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let progressButton: ProgressButton = new ProgressButton({
         content: 'Spin Left', isPrimary: true
     });
@@ -26,7 +28,7 @@ this.default = (): void => {
 
     progressButton = new ProgressButton({
         animationSettings: { effect: 'ZoomOut' }, cssClass: 'e-round e-small e-success',
-        iconCss: 'e-icons e-play-icon', spinSettings: { position: 'Center' }
+        iconCss: 'e-btn-sb-icons e-play-icon', spinSettings: { position: 'Center' }
     });
     progressButton.appendTo('#roundbtn');
 
@@ -67,7 +69,7 @@ this.default = (): void => {
 
     let downloadButton: ProgressButton = new ProgressButton({
         content: 'Download', duration: 4000, enableProgress: true,
-        cssClass: 'e-hide-spinner e-progress-top', iconCss: 'e-icons e-download-icon'
+        cssClass: 'e-hide-spinner e-progress-top', iconCss: 'e-btn-sb-icons e-download-icon'
     });
     downloadButton.appendTo('#download');
 

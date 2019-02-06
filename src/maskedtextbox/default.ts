@@ -1,8 +1,10 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample demonstrates the standard mask elements of the MaskedTextBox.
  */
 import { MaskedTextBox } from '@syncfusion/ej2-inputs';
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Render Masked Textbox with default mask
     let mask: MaskedTextBox = new MaskedTextBox({
         mask: '000-000-0000'

@@ -1,7 +1,9 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Sample for CSS Reveal Cards.
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     /* On click event for Revealing hidden card elements*/
     document.getElementById('showcarddata').onclick = () => {

@@ -1,8 +1,9 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Serialization sample
  */
 
- import {
+import {
     Diagram, NodeModel, UndoRedo, ConnectorModel, Node,
     SymbolPalette, SymbolInfo, DiagramContextMenu, GridlinesModel, IDragEnterEventArgs, PaletteModel
 } from '@syncfusion/ej2-diagrams';
@@ -18,7 +19,7 @@ let nodes: NodeModel[] = [
     {
         id: 'Start', height: 50, width: 100, offsetX: 250, offsetY: 60,
         shape: { type: 'Flow', shape: 'Terminator' },
-        annotations: [{ content: 'Start'}],
+        annotations: [{ content: 'Start' }],
         style: { fill: '#d0f0f1', strokeColor: '#797979' }
     },
     {
@@ -141,7 +142,7 @@ let palettes: PaletteModel[] = [
 let items: ItemModel[] = [
     {
         id: 'palette-icon',
-        prefixIcon:  'e-ddb-icons2 e-toggle-palette',
+        prefixIcon: 'e-ddb-icons2 e-toggle-palette',
         align: 'Right',
     },
     { text: 'New', tooltipText: 'New', prefixIcon: 'e-ddb-icons e-new' },
@@ -159,50 +160,6 @@ let items: ItemModel[] = [
     },
 ];
 
-// tslint:disable-next-line:max-func-body-length
-(window as any).default = (): void => {
-
-    //Initializes diagram control
-    diagram = new Diagram({
-        width: '100%', height: '700px',
-        nodes: nodes,
-        connectors: connectors,
-        snapSettings: { horizontalGridlines: gridlines, verticalGridlines: gridlines },
-        //set default value for Connectors.
-        getConnectorDefaults: getConnectorDefaults,
-        //Sets the Node style for DragEnter element.
-        dragEnter: dragEnter
-
-    });
-    diagram.appendTo('#diagram');
-
-    //Initializes ToolBar control to invoke save and load the diagram
-    let toolbarObj: Toolbar = new Toolbar({
-        clicked: toolbarClick,
-        items: items
-    });
-    toolbarObj.appendTo('#toolbar');
-    //Initializes the symbol palette
-    let palette: SymbolPalette = new SymbolPalette({
-        expandMode: 'Multiple',
-        palettes: palettes,
-        //set default value for Node.
-        getNodeDefaults: getSymbolDefaults,
-        symbolMargin: { left: 15, right: 15, top: 15, bottom: 15 },
-        getSymbolInfo: getSymbolInfo,
-        width: '100%', height: '700px', symbolHeight: 60, symbolWidth: 60
-    });
-    palette.appendTo('#symbolpalette');
-
-    let uploadObj: Uploader = new Uploader({
-        asyncSettings: {
-            saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
-            removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove'
-        },
-        success: onUploadSuccess
-    });
-    uploadObj.appendTo('#fileupload');
-};
 
 function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
     obj.targetDecorator.height = 5;
@@ -279,3 +236,48 @@ function onUploadSuccess(args: { [key: string]: Object }): void {
 function loadDiagram(event: ProgressEvent): void {
     diagram.loadDiagram((event.target as FileReader).result.toString());
 }
+// tslint:disable-next-line:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
+
+    //Initializes diagram control
+    diagram = new Diagram({
+        width: '100%', height: '700px',
+        nodes: nodes,
+        connectors: connectors,
+        snapSettings: { horizontalGridlines: gridlines, verticalGridlines: gridlines },
+        //set default value for Connectors.
+        getConnectorDefaults: getConnectorDefaults,
+        //Sets the Node style for DragEnter element.
+        dragEnter: dragEnter
+
+    });
+    diagram.appendTo('#diagram');
+
+    //Initializes ToolBar control to invoke save and load the diagram
+    let toolbarObj: Toolbar = new Toolbar({
+        clicked: toolbarClick,
+        items: items
+    });
+    toolbarObj.appendTo('#toolbar');
+    //Initializes the symbol palette
+    let palette: SymbolPalette = new SymbolPalette({
+        expandMode: 'Multiple',
+        palettes: palettes,
+        //set default value for Node.
+        getNodeDefaults: getSymbolDefaults,
+        symbolMargin: { left: 15, right: 15, top: 15, bottom: 15 },
+        getSymbolInfo: getSymbolInfo,
+        width: '100%', height: '700px', symbolHeight: 60, symbolWidth: 60
+    });
+    palette.appendTo('#symbolpalette');
+
+    let uploadObj: Uploader = new Uploader({
+        asyncSettings: {
+            saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
+            removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove'
+        },
+        success: onUploadSuccess
+    });
+    uploadObj.appendTo('#fileupload');
+};

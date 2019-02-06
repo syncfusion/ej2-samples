@@ -1,9 +1,14 @@
-import { TreeMap, TreeMapTooltip } from '@syncfusion/ej2-treemap';
-import { Metals } from '../treemap/treemap-data/metals';
+import { loadCultureFiles } from '../common/culture-loader';
+/**
+ * Customization sample
+ */
+import { TreeMap, TreeMapTooltip, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { Browser } from '@syncfusion/ej2-base';
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+
+// Treemap theme changes
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
@@ -12,7 +17,8 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
 /**
  * Default sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         // To config Title for treemap 
@@ -21,7 +27,7 @@ this.default = (): void => {
             textStyle: {size: '15px'}
         },
         //enableDrillDown: true,
-        dataSource: Metals,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/metal.json'),
         weightValuePath: 'Gold',
         // To config tooltip for treemap 
         tooltipSettings: {

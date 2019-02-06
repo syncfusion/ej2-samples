@@ -1,11 +1,13 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { TimePicker, ChangeEventArgs } from '@syncfusion/ej2-calendars';
-import { CheckBox } from '@syncfusion/ej2-buttons';
+import { CheckBox, ChangeEventArgs as checkboxChange } from '@syncfusion/ej2-buttons';
 
 /**
  * Time Range sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let value: Date;
     let isStartTimeChange: Boolean = true;
     let startTime: TimePicker = new TimePicker({
@@ -21,11 +23,10 @@ this.default = (): void => {
     checkboxObject.appendTo('#dayRange');
 
     let endInput: HTMLInputElement = <HTMLInputElement>document.getElementById('end');
-    function changeTime(): void {
+    function changeTime(args: checkboxChange): void {
         /*To determine whether we have selected business hours or not*/
-        let element: HTMLInputElement = <HTMLInputElement>document.getElementById('dayRange');
         isStartTimeChange = false;
-        if (element.checked) {
+        if (args.checked) {
             /*Business hours*/
             startTime.value = new Date('9/6/2017 9:00');
             endTime.enabled = true;

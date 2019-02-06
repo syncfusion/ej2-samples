@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Context Menu default sample
  */
@@ -6,7 +7,8 @@ import { ContextMenu, MenuEventArgs, MenuItemModel,
 ContextMenuModel } from '@syncfusion/ej2-navigations';
 import { select, Browser } from '@syncfusion/ej2-base';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     //ContextMenu items definition 
     let menuItems: MenuItemModel[] = [

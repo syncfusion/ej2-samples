@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Adaptor, Tooltip, ILoadedEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
@@ -78,7 +79,8 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
         { 'rowid': 'Austria', 'columnid': '2016', 'value': '28.1' },
     ];
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {

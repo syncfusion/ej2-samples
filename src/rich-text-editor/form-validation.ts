@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor default sample
  */
@@ -5,7 +6,8 @@ import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar }
 import { FormValidator } from '@syncfusion/ej2-inputs';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({ showCharCount: true, maxLength: 100, placeholder: 'Type something' });
     defaultRTE.appendTo('#defaultRTE');

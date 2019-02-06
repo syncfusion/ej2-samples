@@ -1,9 +1,13 @@
 {
-    "Grids": ["Data Grid", "Pivot Grid"],
-    "Data Visualization": ["Chart", "Diagram", "Maps", "TreeMap", "HeatMap","Circular Gauge", "Linear Gauge", "Range Navigator", "Sparkline", "Smith Chart"],
-    "Calendar": ["Schedule", "Calendar"],
-    "Editors": ["AutoComplete", "Button", "ComboBox", "DocumentEditor", "DatePicker", "DateRangePicker", "DateTimePicker", "DropDownList", "Form Validator", "MultiSelect", "MaskedTextBox", "NumericTextBox", "Slider", "TextBoxes","TimePicker", "ColorPicker", "Uploader", "RichTextEditor"],
-    "Layout": ["ListView", "Dialog", "Tooltip", "Card", "Avatar"],
-    "Notifications": ["Badge", "Toast"],
-    "Navigation": ["Sidebar","TreeView","Tab","Toolbar","Menu","ContextMenu","Accordion"]
+    "Grids": ["Data Grid", "Pivot Table", "Tree Grid"],
+    "Data Visualization": ["Chart", "Stock Chart", "Circular Gauge", "Linear Gauge", "Diagram", "Heatmap Chart", "Maps", "Range Selector", "Smith Chart", "Sparkline Charts", "TreeMap"],
+    "Editors": ["Rich Text Editor", "DocumentEditor", "Chips", "Button"],
+    "Calendars": ["Scheduler", "Calendar", "DatePicker", "DateRangePicker", "DateTimePicker", "TimePicker"],
+    "Dropdowns": ["AutoComplete", "ComboBox", "Dropdown List", "MultiSelect Dropdown"],
+    "Navigation": ["Accordion", "Context Menu", "Menu Bar", "Sidebar", "Tabs", "Toolbar", "TreeView"],
+    "Notifications": ["Badge", "Toast"],   
+    "Inputs": ["Form Validation", "TextBox", "Input Mask", "Numeric Textbox", "Color Picker", "File Upload", "Range Slider"],
+    "Layout": ["Avatar", "Card", "Dialog", "ListView",  "Tooltip", "Splitter"],
+    "Forms": ["In-place Editor", "Query Builder"],
+    "Viewer": ["PDF Viewer"]
 }

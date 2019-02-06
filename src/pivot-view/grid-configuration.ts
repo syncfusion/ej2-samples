@@ -1,6 +1,5 @@
 
-import { PivotView, FieldList } from '@syncfusion/ej2-pivotview';
-import { defaultData } from './data-source';
+import { PivotView, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { CheckBox, ChangeEventArgs as checkEventArgs } from '@syncfusion/ej2-buttons';
 import { DropDownList, ChangeEventArgs as dropEventArgs } from '@syncfusion/ej2-dropdowns';
 import { GridLine } from '@syncfusion/ej2-grids';
@@ -11,7 +10,8 @@ PivotView.Inject(FieldList);
 /**
  * PivotView sample with Grid Configurations.
  */
-
+/* tslint:disable */
+let defaultData: IDataSet[] = require('./defaultData.json');
 this.default = (): void => {
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {

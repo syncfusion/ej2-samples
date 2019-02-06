@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ColorPicker, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * Inline Mode ColorPicker sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let colorPicker: ColorPicker = new ColorPicker(
         {

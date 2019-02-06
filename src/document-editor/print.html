@@ -8,7 +8,6 @@
     <div id="wrapper">
         <input type="file" id="uploadfileButton" style="position:fixed; left:-100em" />
         <div id="panel">
-            <title>Essential JS 2 - DocumentEditor &gt; Print</title>
             <div id='documenteditor_titlebar'>
             </div>
             <div id="documenteditor_container_panel" style="position:relative;">
@@ -26,6 +25,7 @@
         </div>
     </div>
 </div>
+
 <div id="action-description">
     <p>This sample demonstrates how to view and print Word documents online using document editor.</p>
 </div>
@@ -219,3 +219,9 @@
         content: "\e723";
     }
 </style>
+<script>
+    window.addEventListener("beforeunload", onbeforeunload);
+    function onbeforeunload() {
+        return 'Want to save your changes?';
+    };
+</script>

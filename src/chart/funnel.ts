@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     AccumulationChart, AccumulationLegend, FunnelSeries, AccumulationTooltip, IAccLoadedEventArgs,
     AccumulationDataLabel, IAccResizeEventArgs, AccumulationTheme
@@ -7,7 +8,8 @@ AccumulationChart.Inject(AccumulationLegend, FunnelSeries, AccumulationTooltip, 
 /**
  * Sample for Funnel chart
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let data: object[] = [{ x: 'Renewed', y: 18.20, text: '18.20%' },
     { x: 'Subscribed', y: 27.3, text: '27.3%' },
     { x: 'Support', y: 55.9, text: '55.9%' },
@@ -28,11 +30,11 @@ this.default = (): void => {
         legendSettings: { toggleVisibility: false },
         //Initializing tooltip
         tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
-        enableAnimation: false,
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             if (args.accumulation.availableSize.width < args.accumulation.availableSize.height) {
                 args.accumulation.series[0].width = '80%';
                 args.accumulation.series[0].height = '70%';
@@ -60,9 +62,9 @@ this.default = (): void => {
         chart.refreshChart();
     }
     document.getElementById('chartneckwidth').onpointermove = document.getElementById('chartneckwidth').ontouchmove =
-    document.getElementById('chartneckwidth').onchange = (e: Event) => {
-        neckWidth(+(document.getElementById('chartneckwidth') as HTMLInputElement).value);
-    };
+        document.getElementById('chartneckwidth').onchange = (e: Event) => {
+            neckWidth(+(document.getElementById('chartneckwidth') as HTMLInputElement).value);
+        };
     function neckHeight(value: number): void {
         chart.series[0].neckHeight = value + '%';
         document.getElementById('neckHeight').innerHTML = value + '%';
@@ -71,7 +73,7 @@ this.default = (): void => {
         chart.refreshChart();
     }
     document.getElementById('chartneckheight').onpointermove = document.getElementById('chartneckheight').ontouchmove =
-    document.getElementById('chartneckheight').onchange = (e: Event) => {
-        neckHeight(+(document.getElementById('chartneckheight') as HTMLInputElement).value);
-    };
+        document.getElementById('chartneckheight').onchange = (e: Event) => {
+            neckHeight(+(document.getElementById('chartneckheight') as HTMLInputElement).value);
+        };
 };

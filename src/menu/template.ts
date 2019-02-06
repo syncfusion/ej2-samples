@@ -1,12 +1,12 @@
-import { Menu, MenuModel, FieldSettingsModel } from '@syncfusion/ej2-navigations';
+import { loadCultureFiles } from '../common/culture-loader';
+import { Menu, MenuModel } from '@syncfusion/ej2-navigations';
 
 /**
  * Menu Template sample
  */
-/* tslint:disable */
-(window as any).default = () => {
-
-    //Template datasource
+(window as any).default = (): void => {
+    loadCultureFiles();
+    // Template datasource
     let data:  { [key: string]: Object }[] = [
         {
             category: 'Products',
@@ -35,7 +35,9 @@ import { Menu, MenuModel, FieldSettingsModel } from '@syncfusion/ej2-navigations
             options: [
                 {
                     about: {
-                        value: "We are on a mission to provide world-class best software solutions for web, mobile and desktop platforms. Around 900+ applications are desgined and delivered to our customers to make digital & strengthen their businesses."
+                        value: 'We are on a mission to provide world-class best software solutions for'
+                        + ' web, mobile and desktop platforms. Around 900+ applications are desgined and'
+                        + ' delivered to our customers to make digital & strengthen their businesses.'
                     }
                 }
             ]
@@ -44,20 +46,16 @@ import { Menu, MenuModel, FieldSettingsModel } from '@syncfusion/ej2-navigations
         { category: 'Sign In' }
     ];
 
-    //Menu fields definition 
-    let menuFields: FieldSettingsModel  = {
-        text: ['category', 'value'],
-        children: ['options']
-    };
-
-    //Menu model definition 
+    // Menu model definition 
     let menuOptions: MenuModel = {
         items: data,
-        fields: menuFields,
+        fields: {
+            text: ['category', 'value'],
+            children: ['options']
+        },
         template: '#menuTemplate'
     };
 
-    //Menu initialization
-    let menuObj: Menu = new Menu(menuOptions, '#menu');
+    // Menu initialization
+    new Menu(menuOptions, '#menu');
 };
-/* tslint:enable */

@@ -1,14 +1,32 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Toolbar } from '@syncfusion/ej2-grids';
 import { orderDetails } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
-
+import { Dialog } from '@syncfusion/ej2-popups';
 
 Grid.Inject(Page, Toolbar);
 
 /**
  * Grid Clipboard sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let alertDialogObj: Dialog = new Dialog({
+        header: 'Copy with Header',
+        content: 'Atleast one row should be selected to copy with header',
+        showCloseIcon: false,
+        target: '.control-section',
+        buttons: [{
+            click: alertDlgBtnClick, buttonModel: { content: 'OK', isPrimary: true }
+        }],
+        width: '300px',
+        visible: false,
+        animationSettings: { effect: 'None' }
+    });
+    alertDialogObj.appendTo('#alertDialog');
+    function alertDlgBtnClick(): void {
+        alertDialogObj.hide();
+    }
     let grid: Grid = new Grid(
         {
             dataSource: orderDetails,
@@ -26,11 +44,15 @@ this.default = (): void => {
             allowSelection: true,
             selectionSettings: { type: 'Multiple' },
             toolbarClick: (args: ClickEventArgs) => {
-                let withHeader: boolean = false;
-                if (args.item.id === 'copyHeader') {
-                    withHeader = true;
+                if ( grid.getSelectedRecords().length > 0) {
+                    let withHeader: boolean = false;
+                    if (args.item.id === 'copyHeader') {
+                        withHeader = true;
+                    }
+                    grid.copy(withHeader);
+                } else {
+                    alertDialogObj.show();
                 }
-                grid.copy(withHeader);
             }
         });
     grid.appendTo('#Grid');

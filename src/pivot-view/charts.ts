@@ -1,15 +1,16 @@
-import { PivotView, IGridValues, IAxisSet, PivotEngine } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, IGridValues, IAxisSet, PivotEngine, IDataSet } from '@syncfusion/ej2-pivotview';
 import { Chart, Category, Legend, Tooltip, ColumnSeries, LineSeries } from '@syncfusion/ej2-charts';
 import { SeriesModel, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { extend, enableRipple } from '@syncfusion/ej2-base';
+import { extend, enableRipple, Browser, addClass } from '@syncfusion/ej2-base';
 enableRipple(false);
 
 /**
  * PivotView Sample with Chart integration.
  */
 
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let onInit: boolean = true;
     let measure: string = 'In Stock';
@@ -47,6 +48,9 @@ this.default = (): void => {
 
     /* tslint:disable */
     function onChartLoad() {
+        if (Browser.isDevice) {
+            addClass([document.getElementById('ddldiv')], 'e-device');
+        }
         if (onInit) {
             onInit = false;
             engineModule = extend({}, pivotGridObj.engineModule, null, true) as PivotEngine;

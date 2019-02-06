@@ -1,24 +1,52 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Local Data Binding sample
  */
 
- import {
+import {
     Diagram, NodeModel, ConnectorModel, DataBinding, HierarchicalTree, DiagramTools
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
-import { species, DataInfo } from './diagram-data';
+import * as Data from './diagram-data.json';
+
+export interface DataInfo {
+    [key: string]: string;
+}
 
 Diagram.Inject(DataBinding, HierarchicalTree);
 
+//Sets the default values of nodes
+function getNodeDefaults(obj: NodeModel): NodeModel {
+    //Initialize shape
+    obj.shape = { type: 'Basic', shape: 'Rectangle' };
+    obj.style = { strokeWidth: 1 };
+    obj.width = 95;
+    obj.height = 30;
+    return obj;
+}
+
+//Sets the default values of connectors
+function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
+    connector.type = 'Orthogonal';
+    connector.style.strokeColor = '#4d4d4d';
+    connector.targetDecorator.shape = 'None';
+    return connector;
+}
+
+export interface EmployeeInfo {
+    Role: string;
+    color: string;
+}
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-
+    loadCultureFiles();
     //Initializes diagram control
     let diagram: Diagram = new Diagram({
         width: '100%', height: 490,
         //Configures data source
         dataSourceSettings: {
-            id: 'Name', parentId: 'Category', dataManager: new DataManager(species),
+            id: 'Name', parentId: 'Category', dataManager: new DataManager((Data as any).species),
             //binds the external data with node
             doBinding: (nodeModel: NodeModel, data: DataInfo) => {
                 nodeModel.annotations = [
@@ -47,25 +75,3 @@ Diagram.Inject(DataBinding, HierarchicalTree);
     diagram.appendTo('#diagram');
 };
 
-//Sets the default values of nodes
-function getNodeDefaults(obj: NodeModel): NodeModel {
-    //Initialize shape
-    obj.shape = { type: 'Basic', shape: 'Rectangle' };
-    obj.style = { strokeWidth: 1 };
-    obj.width = 95;
-    obj.height = 30;
-    return obj;
-}
-
-//Sets the default values of connectors
-function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
-    connector.type = 'Orthogonal';
-    connector.style.strokeColor = '#4d4d4d';
-    connector.targetDecorator.shape = 'None';
-    return connector;
-}
-
-export interface EmployeeInfo {
-    Role: string;
-    color: string;
-}

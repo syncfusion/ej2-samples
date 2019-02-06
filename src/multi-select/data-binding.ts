@@ -1,48 +1,29 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * MultiSelect Remote Data & Local Data Samples
  */
 import { MultiSelect } from '@syncfusion/ej2-dropdowns';
-import { Query, DataManager, ODataAdaptor } from '@syncfusion/ej2-data';
+import { Query, DataManager, WebApiAdaptor  } from '@syncfusion/ej2-data';
 
+import * as data from './dataSource.json';
 
-this.default = () => {
-
-    let countries: { [key: string]: Object; }[] = [
-        { Name: 'Australia', Code: 'AU' },
-        { Name: 'Bermuda', Code: 'BM' },
-        { Name: 'Canada', Code: 'CA' },
-        { Name: 'Cameroon', Code: 'CM' },
-        { Name: 'Denmark', Code: 'DK' },
-        { Name: 'France', Code: 'FR' },
-        { Name: 'Finland', Code: 'FI' },
-        { Name: 'Germany', Code: 'DE' },
-        { Name: 'Greenland', Code: 'GL' },
-        { Name: 'Hong Kong', Code: 'HK' },
-        { Name: 'India', Code: 'IN' },
-        { Name: 'Italy', Code: 'IT' },
-        { Name: 'Japan', Code: 'JP' },
-        { Name: 'Mexico', Code: 'MX' },
-        { Name: 'Norway', Code: 'NO' },
-        { Name: 'Poland', Code: 'PL' },
-        { Name: 'Switzerland', Code: 'CH' },
-        { Name: 'United Kingdom', Code: 'GB' },
-        { Name: 'United States', Code: 'US' }
-    ];
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // initialize MultiSelect component
     let listObj: MultiSelect = new MultiSelect({
         // bind the DataManager instance to dataSource property
         dataSource: new DataManager({
-            url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Customers',
-            adaptor: new ODataAdaptor,
+            url: 'https://ej2services.syncfusion.com/production/web-services/api/Employees',
+            adaptor: new WebApiAdaptor ,
             crossDomain: true
         }),
         // bind the Query instance to query property
-        query: new Query().select(['ContactName', 'CustomerID']).take(25),
+        query: new Query().select(['FirstName', 'EmployeeID']).take(10).requiresCount(),
         // map the appropriate columns to fields property
-        fields: { text: 'ContactName', value: 'CustomerID' },
+        fields: { text: 'FirstName', value: 'EmployeeID' },
         // set the placeholder to MultiSelect input element
-        placeholder: 'Select customer',
+        placeholder: 'Select name',
         // sort the resulted items
         sortOrder: 'Ascending'
     });
@@ -51,7 +32,7 @@ this.default = () => {
     // initialize MultiSelect component
     let games: MultiSelect = new MultiSelect({
         // set the local data to dataSource property
-        dataSource: countries,
+        dataSource: (data as any).countries,
         // map the appropriate columns to fields property
         fields: { text: 'Name', value: 'Code'},
         // set the placeholder to MultiSelect input element

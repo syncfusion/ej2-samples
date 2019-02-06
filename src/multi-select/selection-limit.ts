@@ -1,40 +1,21 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * MultiSelect Checkbox Samples
  */
 import { MultiSelect, CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
+import * as data from './dataSource.json';
 
 MultiSelect.Inject(CheckBoxSelection);
 
-this.default = () => {
-
-    let countries: { [key: string]: Object; }[] = [
-        { Name: 'Australia', Code: 'AU' },
-        { Name: 'Bermuda', Code: 'BM' },
-        { Name: 'Canada', Code: 'CA' },
-        { Name: 'Cameroon', Code: 'CM' },
-        { Name: 'Denmark', Code: 'DK' },
-        { Name: 'France', Code: 'FR' },
-        { Name: 'Finland', Code: 'FI' },
-        { Name: 'Germany', Code: 'DE' },
-        { Name: 'Greenland', Code: 'GL' },
-        { Name: 'Hong Kong', Code: 'HK' },
-        { Name: 'India', Code: 'IN' },
-        { Name: 'Italy', Code: 'IT' },
-        { Name: 'Japan', Code: 'JP' },
-        { Name: 'Mexico', Code: 'MX' },
-        { Name: 'Norway', Code: 'NO' },
-        { Name: 'Poland', Code: 'PL' },
-        { Name: 'Switzerland', Code: 'CH' },
-        { Name: 'United Kingdom', Code: 'GB' },
-        { Name: 'United States', Code: 'US' }
-    ];
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // initialize the MultiSelect component
     let checkList: MultiSelect = new MultiSelect({
         // set the country data to dataSource property
-        dataSource: countries,
+        dataSource: (data as any).countries,
         // map the appropriate columns to fields property
         fields: { text: 'Name', value: 'Code' },
         // set the type of mode for checkbox to visualized the checkbox added in li element.
@@ -57,7 +38,7 @@ this.default = () => {
         value: 3,
         min: 1,
         format: 'n0',
-        max: countries.length
+        max: (data as any).countries.length
     });
     numeric.appendTo('#maxsel');
     // Render Button control in properties panel

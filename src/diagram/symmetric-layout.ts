@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample for Symmentric layout.
  */
@@ -9,66 +10,13 @@ import {
 import { DataManager } from '@syncfusion/ej2-data';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
-import { data } from './diagram-data';
+import * as Data from './diagram-data.json';
 
 Diagram.Inject(DataBinding, SymmetricLayout);
 
 export interface EmployeeInfo {
     Type: string;
 }
-
-// tslint:disable-next-line:max-func-body-length
-(window as any).default = (): void => {
-
-    //Initializtion of the diagram.
-    let diagram: Diagram = new Diagram({
-        width: '100%', height: '550px',
-        layout: { type: 'SymmetricalLayout', springLength: 80, springFactor: 0.8, maxIteration: 500, margin: { left: 20, top: 20 } },
-        //Sets the parent and child relationship of DataSource.
-        dataSourceSettings: { id: 'Id', parentId: 'Source', dataManager: new DataManager(data) },
-        //Set the constraints of the SnapSettings
-        snapSettings: { constraints: SnapConstraints.None },
-        //Set the default values of Node
-        getNodeDefaults: getNodeDefaults,
-        //Set the default values of connector
-        getConnectorDefaults: getConnectorDefaults,
-        setNodeTemplate: setNodeTemplate,
-        tool: DiagramTools.ZoomPan
-    });
-    diagram.appendTo('#diagram');
-    diagram.pan(0, 0);
-
-    let springLength: NumericTextBox = new NumericTextBox({
-        format: '###.##',
-        value: 80,
-        step: 1,
-    });
-    springLength.appendTo('#springlength');
-
-    let springfactor: NumericTextBox = new NumericTextBox({
-        format: '###.##',
-        value: 0.8,
-        step: .1,
-    });
-    springfactor.appendTo('#springfactor');
-
-    let maxiteration: NumericTextBox = new NumericTextBox({
-        format: '###.##',
-        value: 500,
-        step: 1,
-    });
-    maxiteration.appendTo('#maxiteration');
-
-    //used to apply the alignment of the layout.
-    document.getElementById('refresh').onclick = () => {
-        diagram.layout.springLength = springLength.value;
-        diagram.layout.springFactor = springfactor.value;
-        diagram.layout.maxIteration = maxiteration.value;
-        diagram.doLayout();
-    };
-    let layout: Button = new Button({ cssClass: 'e-small' });
-    layout.appendTo('#refresh');
-};
 
 //Set the default values of Node
 function getNodeDefaults(obj: NodeModel): NodeModel {
@@ -113,4 +61,57 @@ function setNodeTemplate(obj: NodeModel): void {
     }
 }
 
+// tslint:disable-next-line:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
+
+    //Initializtion of the diagram.
+    let diagram: Diagram = new Diagram({
+        width: '100%', height: '550px',
+        layout: { type: 'SymmetricalLayout', springLength: 80, springFactor: 0.8, maxIteration: 500, margin: { left: 20, top: 20 } },
+        //Sets the parent and child relationship of DataSource.
+        dataSourceSettings: { id: 'Id', parentId: 'Source', dataManager: new DataManager((Data as any).data) },
+        //Set the constraints of the SnapSettings
+        snapSettings: { constraints: SnapConstraints.None },
+        //Set the default values of Node
+        getNodeDefaults: getNodeDefaults,
+        //Set the default values of connector
+        getConnectorDefaults: getConnectorDefaults,
+        setNodeTemplate: setNodeTemplate,
+        tool: DiagramTools.ZoomPan
+    });
+    diagram.appendTo('#diagram');
+    diagram.pan(0, 0);
+
+    let springLength: NumericTextBox = new NumericTextBox({
+        format: '###.##',
+        value: 80,
+        step: 1,
+    });
+    springLength.appendTo('#springlength');
+
+    let springfactor: NumericTextBox = new NumericTextBox({
+        format: '###.##',
+        value: 0.8,
+        step: .1,
+    });
+    springfactor.appendTo('#springfactor');
+
+    let maxiteration: NumericTextBox = new NumericTextBox({
+        format: '###.##',
+        value: 500,
+        step: 1,
+    });
+    maxiteration.appendTo('#maxiteration');
+
+    //used to apply the alignment of the layout.
+    document.getElementById('refresh').onclick = () => {
+        diagram.layout.springLength = springLength.value;
+        diagram.layout.springFactor = springfactor.value;
+        diagram.layout.maxIteration = maxiteration.value;
+        diagram.doLayout();
+    };
+    let layout: Button = new Button({ cssClass: 'e-small' });
+    layout.appendTo('#refresh');
+};
 

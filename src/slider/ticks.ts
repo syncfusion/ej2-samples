@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Slider, Placement } from '@syncfusion/ej2-inputs';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
@@ -6,7 +7,8 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
  * Ticks sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize Slider Component
     let defaultObj: Slider = new Slider({
         // Set slider minimum and maximum values

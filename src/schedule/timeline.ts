@@ -1,7 +1,8 @@
-import { extend } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 import { DatePicker, ChangeEventArgs } from '@syncfusion/ej2-calendars';
 import { Schedule, TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { scheduleData, timelineData } from './datasource';
+import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
 
@@ -9,7 +10,8 @@ Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
  * Schedule Timeline sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let scheduleObj: Schedule = new Schedule({
         height: '650px',
         selectedDate: new Date(2018, 1, 15),
@@ -21,12 +23,16 @@ this.default = () => {
             { option: 'TimelineMonth' },
             { option: 'Agenda' }
         ],
-        eventSettings: { dataSource: <Object[]>extend([], scheduleData.concat(timelineData), null, true) }
+        eventSettings: {
+            dataSource:
+                <Object[]>extend([], (dataSource as any).scheduleData.concat((dataSource as any).timelineData), null, true)
+        }
     });
     scheduleObj.appendTo('#Schedule');
 
     let currentDate: DatePicker = new DatePicker({
         value: new Date(2018, 1, 15),
+        showClearButton: false,
         change: (args: ChangeEventArgs) => {
             scheduleObj.selectedDate = args.value;
             scheduleObj.dataBind();

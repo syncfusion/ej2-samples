@@ -1,3 +1,4 @@
+//import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, DateTime, AreaSeries, Legend, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 Chart.Inject(AreaSeries, DateTime, Legend);
 import { Browser } from '@syncfusion/ej2-base';
@@ -5,7 +6,8 @@ import { Browser } from '@syncfusion/ej2-base';
 /**
  * Sample for Area Series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
@@ -58,7 +60,8 @@ this.default = (): void => {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     chart.appendTo('#container');

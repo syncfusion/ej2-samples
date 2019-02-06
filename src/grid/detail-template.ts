@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 import { Grid, Page, Selection, DetailRow } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
@@ -9,7 +10,18 @@ Grid.Inject(Page, Selection, DetailRow);
 /**
  * Detail row template Sample
  */
-this.default = (): void => {
+
+
+(window as DateFormat).format = (value: Date) => {
+    return instance.formatDate(value, { skeleton: 'yMd', type: 'date' });
+};
+
+interface DateFormat extends Window {
+    format?: Function;
+}
+
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid({
         dataSource: employeeData,
         detailTemplate: '#detailtemplate',
@@ -24,12 +36,3 @@ this.default = (): void => {
     grid.appendTo('#Grid');
 
 };
-
-
-(window as DateFormat).format = (value: Date) => {
-    return instance.formatDate(value, { skeleton: 'yMd', type: 'date' });
-};
-
-interface DateFormat extends Window {
-    format?: Function;
-}

@@ -1,15 +1,17 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 import { Uploader, RemovingEventArgs } from '@syncfusion/ej2-inputs';
 
 /**
  * Uploader preload functionalities sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dropElement: HTMLElement = document.getElementsByClassName('control-fluid')[0] as HTMLElement;
     // Define the set of file details in FilesInfo[] type.
     let preloadFiles: any = [
         {name: 'Nature', size: 500000, type: '.png'},
-        {name: 'TypeScript Succintly', size: 12000, type: '.pdf'},
+        {name: 'TypeScript Succinctly', size: 12000, type: '.pdf'},
         {name: 'ASP.NET Webhooks', size: 500000, type: '.docx'},
     ];
     //Initialize the control by preload files 

@@ -1,59 +1,24 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { TreeView, DragAndDropEventArgs } from '@syncfusion/ej2-navigations';
 import { ListView } from '@syncfusion/ej2-lists';
 import { closest } from '@syncfusion/ej2-base';
+import * as dataSource from './dataSource.json';
 
 /**
  * TreeView drag and drop sample
  */
-this.default = () => {
-    // Hierarchical data source for first TreeView component
-    let productTeam1: { [key: string]: Object }[] = [
-        {
-            id: 't1', name: 'ASP.NET MVC Team', expanded: true,
-            child: [
-                { id: 't2', name: 'Smith' },
-                { id: 't3', name: 'Johnson' },
-                { id: 't4', name: 'Anderson' },
-            ]
-        },
-        {
-            id: 't5', name: 'Windows Team', expanded: true,
-            child: [
-                { id: 't6', name: 'Clark' },
-                { id: 't7', name: 'Wright' },
-                { id: 't8', name: 'Lopez' },
-            ]
-        }
-    ];
-    // Hierarchical data source for second TreeView component
-    let productTeam2: { [key: string]: Object }[] = [
-        {
-            id: 't9', name: 'Web Team', expanded: true,
-            child: [
-                { id: 't10', name: 'Joshua' },
-                { id: 't11', name: 'Matthew' },
-                { id: 't12', name: 'David' },
-            ]
-        },
-        {
-            id: 't13', name: 'Build Team', expanded: true,
-            child: [
-                { id: 't14', name: 'Ryan' },
-                { id: 't15', name: 'Justin' },
-                { id: 't16', name: 'Robert' },
-            ]
-        }
-    ];
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Render the first TreeView by mapping its fields property with data source properties
     let tree1Obj: TreeView = new TreeView({
-        fields: { dataSource: productTeam1, id: 'id', text: 'name', child: 'child' },
+        fields: { dataSource: (dataSource as any).dragData1, id: 'id', text: 'name', child: 'child' },
         allowDragAndDrop: true,
         nodeDragStop: onDragStop
     });
     tree1Obj.appendTo('#tree1');
     // Render the second TreeView by mapping its fields property with data source properties
     let tree2Obj: TreeView = new TreeView({
-        fields: { dataSource: productTeam2, id: 'id', text: 'name', child: 'child' },
+        fields: { dataSource: (dataSource as any).dragData2, id: 'id', text: 'name', child: 'child' },
         allowDragAndDrop: true,
         nodeDragStop: onDragStop
     });

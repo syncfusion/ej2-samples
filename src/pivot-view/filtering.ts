@@ -1,6 +1,5 @@
 
-import { PivotView } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, IDataSet } from '@syncfusion/ej2-pivotview';
 import { DropDownList, MultiSelect, ChangeEventArgs, SelectEventArgs, RemoveEventArgs, PopupEventArgs } from '@syncfusion/ej2-dropdowns';
 import { CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
@@ -14,6 +13,7 @@ MultiSelect.Inject(CheckBoxSelection);
  */
 
 /* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let fieldCollections: { [key: string]: { [key: string]: Object }[] } = {};
     let filterCollections: { [key: string]: FilterModel } = {};
@@ -105,7 +105,7 @@ this.default = (): void => {
     typeddl.appendTo('#type');
 
     let applyBtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', isPrimary: true, disabled: true
+        isPrimary: true, disabled: true
     });
     applyBtn.appendTo('#apply');
 

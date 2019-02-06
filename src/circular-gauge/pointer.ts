@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Pointer sample
  */
@@ -5,7 +6,8 @@ import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncf
 import { gauge1, gauge2, gauge3, gauge4, gauge5 } from './pointer-gauge';
 CircularGauge.Inject(Annotations);
 //tslint:disable
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let firstgauge: CircularGauge = new CircularGauge(gauge1());
     let gauge5Interval1: number;
     let gauge6Interval1: number;

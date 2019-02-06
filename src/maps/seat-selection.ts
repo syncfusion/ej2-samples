@@ -1,8 +1,10 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Seat Selection sample
  */
 import { Maps, ISelectionEventArgs, Selection, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let seatInfo: HTMLDivElement = <HTMLDivElement>document.getElementById('selectedseats');
     Maps.Inject(Selection);
     interface SeatInfo {
@@ -51,7 +53,7 @@ this.default = (): void => {
         layers: [
             {
                 geometryType: 'Normal',
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/seat.json'),
+                shapeData: new MapAjax('./src/maps/map-data/seat.json'),
                 shapeSettings: {
                     colorValuePath: 'fill'
                 },

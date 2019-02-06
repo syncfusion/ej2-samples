@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 import { Uploader, RemovingEventArgs } from '@syncfusion/ej2-inputs';
 import { detach } from '@syncfusion/ej2-base';
@@ -5,7 +6,8 @@ import { detach } from '@syncfusion/ej2-base';
 /**
  * Uploader custom drop area functionalities sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let uploadObj: Uploader = new Uploader({
         asyncSettings: {
             saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
@@ -78,7 +80,7 @@ this.default = () => {
     }
 
     function getLiElement(args : any) : HTMLElement {
-        let liElements : NodeListOf<HTMLElement> = document.getElementsByClassName('e-upload')[0].querySelectorAll('.e-upload-files > li');
+        let liElements : any = document.getElementsByClassName('e-upload')[0].querySelectorAll('.e-upload-files > li');
         let li : HTMLElement;
         for (let i: number = 0; i < liElements.length; i++) {
             if ( liElements[i].getAttribute('data-file-name') === args.file.name ) {

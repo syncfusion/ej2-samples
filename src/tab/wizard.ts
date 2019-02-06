@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Tab Wizard sample
  */
@@ -292,7 +293,8 @@ function trainSelected(args: RowSelectEventArgs): void {
     selectedTrain = args.data;
 }
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     renderComponents();
 };
 // tslint:enable:max-line-length

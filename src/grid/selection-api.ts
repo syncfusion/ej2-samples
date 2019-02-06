@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
 import { Grid, Selection, Page } from '@syncfusion/ej2-grids';
@@ -7,7 +8,8 @@ Grid.Inject(Selection, Page);
 /**
  * Selection API sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid(
         {
             dataSource: inventoryData,

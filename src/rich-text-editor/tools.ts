@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor all tools sample
  */
@@ -11,10 +12,9 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
-let defaultRTE: RichTextEditor;
-let divPreview: HTMLElement;
 /* tslint:disable */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
@@ -70,8 +70,8 @@ this.default = (): void => {
     }
 
     function handleFullScreen(e: any): void {
-        let leftBar: HTMLElement;
-        let transformElement: HTMLElement;
+        let leftBar: any;
+        let transformElement: any;
         if (Browser.isDevice) {
             leftBar = document.querySelector('#right-sidebar');
             transformElement = document.querySelector('.sample-browser.e-view.e-content-animation');

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Aggregate, Group } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
 
@@ -5,7 +6,8 @@ Grid.Inject(Page, Group, Aggregate);
 /**
  * Aggregates
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let refresh: Boolean;
     let grid: Grid = new Grid(
         {

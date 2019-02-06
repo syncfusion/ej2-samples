@@ -1,45 +1,20 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample for RTL tree
  */
 
- import {
-    Diagram, DataBinding, HierarchicalTree,  NodeModel, ConnectorModel,
+import {
+    Diagram, DataBinding, HierarchicalTree, NodeModel, ConnectorModel,
     PointPortModel, DiagramTools, SnapConstraints, ShapeAnnotationModel
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
-import { artificialIntelligence, DataInfo } from './diagram-data';
+import * as Data from './diagram-data.json';
+
+export interface DataInfo {
+    [key: string]: string;
+}
 
 Diagram.Inject(DataBinding, HierarchicalTree);
-
-// tslint:disable-next-line:max-func-body-length
-(window as any).default = (): void => {
-    //Initializes diagram control
-    let diagram: Diagram = new Diagram({
-        width: '100%', height: '600px', snapSettings: { constraints: SnapConstraints.None },
-        //Configure the data source
-        dataSourceSettings: {
-            id: 'Name', parentId: 'Category',
-            dataManager: new DataManager(artificialIntelligence),
-            doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
-                let nameKey: string = 'Name';
-                nodeModel.annotations = [{ content: data[nameKey] }];
-            }
-        },
-        //Configures the layout
-        layout: {
-            type: 'HierarchicalTree', orientation: 'RightToLeft',
-            verticalAlignment: 'Center', horizontalAlignment: 'Center',
-            verticalSpacing: 100, horizontalSpacing: -10
-        },
-        //Enables zoom pan tool
-        tool: DiagramTools.ZoomPan,
-        //Sets the default values of a node
-        getNodeDefaults: getNodeDefaults,
-        //Sets the default values of a Connector
-        getConnectorDefaults: getConnectorDefaults,
-    });
-    diagram.appendTo('#diagram');
-};
 
 
 //Sets the default values of a node
@@ -103,3 +78,34 @@ function getPorts(root: boolean): PointPortModel[] {
     }
     return ports;
 }
+
+// tslint:disable-next-line:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
+    //Initializes diagram control
+    let diagram: Diagram = new Diagram({
+        width: '100%', height: '600px', snapSettings: { constraints: SnapConstraints.None },
+        //Configure the data source
+        dataSourceSettings: {
+            id: 'Name', parentId: 'Category',
+            dataManager: new DataManager((Data as any).artificialIntelligence),
+            doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
+                let nameKey: string = 'Name';
+                nodeModel.annotations = [{ content: data[nameKey] }];
+            }
+        },
+        //Configures the layout
+        layout: {
+            type: 'HierarchicalTree', orientation: 'RightToLeft',
+            verticalAlignment: 'Center', horizontalAlignment: 'Center',
+            verticalSpacing: 100, horizontalSpacing: -10
+        },
+        //Enables zoom pan tool
+        tool: DiagramTools.ZoomPan,
+        //Sets the default values of a node
+        getNodeDefaults: getNodeDefaults,
+        //Sets the default values of a Connector
+        getConnectorDefaults: getConnectorDefaults,
+    });
+    diagram.appendTo('#diagram');
+};

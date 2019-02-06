@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate } from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { orderDetails } from './data-source';
@@ -6,7 +7,8 @@ Grid.Inject(Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate);
 /**
  * Excel,PDF, CSV export sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let refresh: Boolean;
     let grid: Grid = new Grid(
         {

@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { TreeView } from '@syncfusion/ej2-navigations';
 import { DataManager, Query, ODataV4Adaptor } from '@syncfusion/ej2-data';
 
 /**
  * TreeView remote data sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Use data manager to get tree data from remote source
     let data: DataManager = new DataManager({
         url: 'https://services.odata.org/V4/Northwind/Northwind.svc',

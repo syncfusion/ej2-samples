@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Mind-map sample
  */
@@ -9,38 +10,14 @@ import {
     NodeModel, MindMap, HierarchicalTree, ISelectionChangeEventArgs, DiagramTools,
     NodeConstraints, Side, MarginModel, HorizontalAlignment, VerticalAlignment
 } from '@syncfusion/ej2-diagrams';
-import { mindMap } from './diagram-data';
+import * as Data from './diagram-data.json';
 import { DataManager, Query } from '@syncfusion/ej2-data';
 Diagram.Inject(DataBinding, MindMap, HierarchicalTree);
 
-let items: DataManager = new DataManager(mindMap as JSON[], new Query().take(7));
+let items: DataManager = new DataManager((Data as any).mindMap, new Query().take(7));
 
 let diagram: Diagram;
 
-(window as any).default = (): void => {
-    //initialization of the Diagram.
-    diagram = new Diagram({
-        width: '100%', height: '550px',
-        snapSettings: { constraints: SnapConstraints.None }, tool: DiagramTools.SingleSelect,
-        layout: {
-            type: 'MindMap', getBranch: (node: Node) => {
-                return ((node as Node).data as EmployeeInfo).branch;
-            }, horizontalSpacing: 50
-        },
-        //Selectionchange event for Node and connector
-        selectionChange: selectionChange,
-        selectedItems: { constraints: SelectorConstraints.UserHandle, userHandles: handle },
-        dataSourceSettings: { id: 'id', parentId: 'parentId', dataManager: items, root: String(1) },
-        //sets node default value
-        getNodeDefaults: getNodeDefaults,
-        //sets connector default value 
-        getConnectorDefaults: getConnectorDefaults,
-        getCustomTool: getTool
-    });
-    diagram.appendTo('#diagram');
-    diagram.fitToPage();
-
-};
 
 //sets node default value
 function getNodeDefaults(obj: Node): Node {
@@ -330,6 +307,28 @@ export interface EmployeeInfo {
     Root: string;
     Label: string;
 }
+(window as any).default = (): void => {
+    loadCultureFiles();
+    //initialization of the Diagram.
+    diagram = new Diagram({
+        width: '100%', height: '550px',
+        snapSettings: { constraints: SnapConstraints.None }, tool: DiagramTools.SingleSelect,
+        layout: {
+            type: 'MindMap', getBranch: (node: Node) => {
+                return ((node as Node).data as EmployeeInfo).branch;
+            }, horizontalSpacing: 50
+        },
+        //Selectionchange event for Node and connector
+        selectionChange: selectionChange,
+        selectedItems: { constraints: SelectorConstraints.UserHandle, userHandles: handle },
+        dataSourceSettings: { id: 'id', parentId: 'parentId', dataManager: items, root: String(1) },
+        //sets node default value
+        getNodeDefaults: getNodeDefaults,
+        //sets connector default value 
+        getConnectorDefaults: getConnectorDefaults,
+        getCustomTool: getTool
+    });
+    diagram.appendTo('#diagram');
+    diagram.fitToPage();
 
-
-
+};

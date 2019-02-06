@@ -1,7 +1,7 @@
 {
     "name": "DateRangePicker",
     "directory": "daterangepicker",
-    "category": "Editors",
+    "category": "Calendars",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder" ]}, "description": "A simple and lightweight DateRangePicker component for JavaScript (TypeScript) with a flexible user interface for selecting a range of dates effortlessly" },
         { "url": "date-range", "name": "Date Range", "category": "DateRangePicker", "api":{"DateRangePicker": [ "placeholder", "min", "max" ]}, "description": "DateRangePicker for JavaScript (TypeScript) with min and max date options that restrict users from selecting a range of dates, such as past dates, future dates, etc" },

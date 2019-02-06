@@ -1,13 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { SampleDataSource } from './data';
 import { RadioButton, CheckBox } from '@syncfusion/ej2-buttons';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'U.S. Government Energy Consumption by Agency (Trillion Btu)',
@@ -28,7 +29,7 @@ this.default = (): void => {
             labels: ['Agriculture', 'Energy', 'Administration', 'Health', 'Interior',
                 'Justice', 'NASA', 'Transportation']
         },
-        dataSource: newDataSource.palatteSampleData,
+        dataSource: (data as any).palatteSampleData,
         paletteSettings: {
             palette: [
                 { value: 4.3, color: '#FFFFDA' },

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Bubble sample
  */
@@ -8,7 +9,8 @@ Maps.Inject(Bubble, MapsTooltip, Zoom);
 export interface Data {
     value?: number;
 }
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -36,7 +38,7 @@ this.default = (): void => {
             {
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapeSettings: {
                     fill: '#E5E5E5'
                 },

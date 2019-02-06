@@ -1,13 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { SampleDataSource } from './data';
 import { Internationalization } from '@syncfusion/ej2-base';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Annual Summary of User Activities in GitLab',
@@ -28,6 +29,7 @@ this.default = (): void => {
             showLabelOn: 'Months',
             labelFormat: 'MMM',
             increment: 7,
+            labelIntersectAction: 'Rotate45'
         },
         yAxis: {
             labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -74,7 +76,7 @@ this.default = (): void => {
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
-        dataSource: newDataSource.calendarDataSource
+        dataSource: (data as any).calendarDataSource,
     });
     heatmap.appendTo('#container');
 };

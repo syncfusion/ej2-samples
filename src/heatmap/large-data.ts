@@ -1,13 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, ILoadedEventArgs, HeatMapTheme, ITooltipEventArgs } from '@syncfusion/ej2-heatmap';
 import { Internationalization } from '@syncfusion/ej2-base';
-import { SampleDataSource } from './data';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend);
 
 /**
  * Sample for Large data
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Annual Flight Traffic Report',
@@ -32,7 +33,7 @@ this.default = (): void => {
                 '22:00', '23:00', '24:00']
         },
         renderingMode: 'Canvas',
-        dataSource: newDataSource.largeData,
+        dataSource: (data as any).largeData,
         paletteSettings: {
             palette: [
                 { value: 150, color: '#A6DC7E' },

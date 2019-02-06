@@ -1,7 +1,9 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Browser, extend } from '@syncfusion/ej2-base';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Schedule, Day, Week, WorkWeek, Month, Agenda, Timezone, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { fifaEventsData, applyCategoryColor } from './datasource';
+import * as dataSource from './datasource.json';
+import { applyCategoryColor } from './helper';
 import { tz } from 'moment-timezone';
 
 Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
@@ -10,19 +12,20 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
  * Schedule timezone events sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     if (Browser.isIE) {
         Timezone.prototype.offset = (date: Date, timezone: string): number => {
             return tz.zone(timezone).utcOffset(date.getTime());
         };
     }
-    let fifaEvents: Object[] = <Object[]>extend([], fifaEventsData, null, true);
+    let fifaEvents: Object[] = <Object[]>extend([], ((dataSource as any).fifaEventsData), null, true);
     let timezone: Timezone = new Timezone();
     // Here remove the local offset from events
     for (let fifaEvent of fifaEvents) {
         let event: { [key: string]: Object } = fifaEvent as { [key: string]: Object };
-        event.StartTime = timezone.removeLocalOffset(<Date>event.StartTime);
-        event.EndTime = timezone.removeLocalOffset(<Date>event.EndTime);
+        event.StartTime = timezone.removeLocalOffset(new Date(<string>event.StartTime));
+        event.EndTime = timezone.removeLocalOffset(new Date(<string>event.EndTime));
     }
     // Initialize schedule component
     let scheduleObj: Schedule = new Schedule({

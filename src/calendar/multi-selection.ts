@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Calendar } from '@syncfusion/ej2-calendars';
 /**
  * Calendar MultiSelection sample
  */
 let currentYear: number = new Date().getFullYear();
 let currentMonth: number = new Date().getMonth();
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let calendar: Calendar = new Calendar({
         isMultiSelection: true,
         change: changeValue,

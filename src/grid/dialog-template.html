@@ -14,14 +14,14 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <div class="e-float-input e-control-wrapper">
-                    <input id="OrderID" name="OrderID" type="text" value=${if(OrderID == null)} '' ${else} ${OrderID} ${/if} ${if(isAdd)} ${else} disabled ${/if} />
+                    <input id="OrderID" name="OrderID" type="text" value="${OrderID}" ${if(isAdd)} ${else} disabled ${/if} />
                     <span class="e-float-line"></span>
                     <label class="e-float-text e-label-top" for="OrderID">Order ID</label>
                 </div>
             </div>
             <div class="form-group col-md-6">
                 <div class="e-float-input e-control-wrapper">
-                    <input id="CustomerID" name="CustomerID" type="text" value=${if(CustomerID == null)} '' ${else} ${CustomerID} ${/if} />
+                    <input id="CustomerID" name="CustomerID" type="text" value="${CustomerID}" />
                     <span class="e-float-line"></span>
                     <label class="e-float-text e-label-top" for="CustomerID">Customer ID</label>
                 </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <input name="Freight" id="Freight" value=${if(Freight == null)} '' ${else} ${Freight} ${/if} /> 
+                <input name="Freight" id="Freight" value="${Freight}" />
             </div>
             <div class="form-group col-md-6">
                 <input name="OrderDate" id="OrderDate" > 
@@ -37,16 +37,16 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <input type="text" name="ShipCountry" id="ShipCountry" value=${if(ShipCountry == null)} '' ${else} ${ShipCountry} ${/if} />
+                <input type="text" name="ShipCountry" id="ShipCountry" value=${if(ShipCountry === null || ShipCountry === undefined)} '' ${else} ${ShipCountry} ${/if} / />
             </div>
             <div class="form-group col-md-6">
-                <input type="text" name="ShipCity" id="ShipCity" value=${if(ShipCity == null)} '' ${else} ${ShipCity} ${/if} />
+                <input type="text" name="ShipCity" id="ShipCity" value=${if(ShipCity === null || ShipCity === undefined)} '' ${else} ${ShipCity} ${/if} />
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-12">
                 <div class="e-float-input e-control-wrapper">
-                    <textarea type="text" name="ShipAddress" id="ShipAddress" value=${if(ShipAddress == null)} '' ${else} ${ShipAddress} ${/if}>${if(ShipAddress == null)}  ${else} ${ShipAddress} ${/if}</textarea>
+                    <textarea type="text" name="ShipAddress" id="ShipAddress" value=${if(ShipAddress === null || ShipAddress === undefined)} '' ${else} ${ShipAddress} ${/if} /></textarea>
                     <span class="e-float-line"></span>
                     <label class="e-float-text e-label-top" for="ShipAddress">Ship Address</label>
                 </div>

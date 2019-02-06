@@ -1,11 +1,13 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, ILoadedEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { getDatasource } from './data';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Sales Revenue per Employee (in 1000 US$)',
@@ -22,7 +24,7 @@ this.default = (): void => {
         yAxis: {
             labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
         },
-        dataSource: getDatasource().dataSource,
+        dataSource: (data as any).defaultData,
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

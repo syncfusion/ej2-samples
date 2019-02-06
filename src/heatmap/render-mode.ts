@@ -1,13 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { SampleDataSource } from './data';
 import { RadioButton } from '@syncfusion/ej2-buttons';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Net Migration Rate of Northern Europe From 1965 to 2015',
@@ -28,7 +29,7 @@ this.default = (): void => {
             labels: ['1965-1970', '1970-1975', '1975-1980', '1980-1985', '1985-1990',
                 '1990-1995', '1995-2000', '2000-2005', '2005-2010', '2010-2015']
         },
-        dataSource: newDataSource.renderModeData,
+        dataSource: (data as any).renderModeData,
         paletteSettings: {
             palette: [{ color: '#C06C84' },
             { color: '#355C7D' }

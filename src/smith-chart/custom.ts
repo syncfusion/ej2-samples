@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Customization sample for smith chart
  */
@@ -9,7 +10,8 @@ import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents} from '@syncfusion/ej
 Smithchart.Inject(SmithchartLegend, TooltipRender);
 
 //tslint:disable
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let smithchart: Smithchart = new Smithchart({
         load: (args: ISmithchartLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];

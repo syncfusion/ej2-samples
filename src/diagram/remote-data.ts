@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Remote Data binding sample
  */
@@ -6,12 +7,35 @@ import {
     Diagram, NodeModel, ConnectorModel, DataBinding, HierarchicalTree, TreeInfo, DiagramTools
 } from '@syncfusion/ej2-diagrams';
 import { DataManager, Query } from '@syncfusion/ej2-data';
-import { DataInfo } from './diagram-data';
+
+export interface DataInfo {
+    [key: string]: string;
+}
 
 Diagram.Inject(DataBinding, HierarchicalTree);
 
+
+//Sets the default values of nodes
+function getNodeDefaults(obj: NodeModel): NodeModel {
+    obj.width = 80;
+    obj.height = 40;
+    //Initialize shape
+    obj.shape = { type: 'Basic', shape: 'Rectangle' };
+    obj.style = { fill: '#048785', strokeColor: 'Transparent' };
+    return obj;
+}
+
+//Sets the default values of connector
+function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
+    connector.type = 'Orthogonal';
+    connector.style.strokeColor = '#048785';
+    connector.targetDecorator.shape = 'None';
+    return connector;
+}
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
     //Initializes diagram control
     let diagram: Diagram = new Diagram({
         width: '100%', height: 490,
@@ -59,21 +83,3 @@ Diagram.Inject(DataBinding, HierarchicalTree);
     });
     diagram.appendTo('#diagram');
 };
-
-//Sets the default values of nodes
-function getNodeDefaults (obj: NodeModel): NodeModel {
-    obj.width = 80;
-    obj.height = 40;
-    //Initialize shape
-    obj.shape = { type: 'Basic', shape: 'Rectangle' };
-    obj.style = { fill: '#048785', strokeColor: 'Transparent' };
-    return obj;
-}
-
-//Sets the default values of connector
-function getConnectorDefaults (connector: ConnectorModel): ConnectorModel {
-    connector.type = 'Orthogonal';
-    connector.style.strokeColor = '#048785';
-    connector.targetDecorator.shape = 'None';
-    return connector;
-}

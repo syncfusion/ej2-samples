@@ -1,13 +1,15 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Print and export sample for smith chart
  */
-import { Smithchart, SmithchartLegend, TooltipRender, ExportType, ISmithchartLoadEventArgs,
+import { Smithchart, SmithchartLegend, TooltipRender, SmithchartExportType, ISmithchartLoadEventArgs,
     SmithchartTheme } from '@syncfusion/ej2-charts/index';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Smithchart.Inject(SmithchartLegend, TooltipRender);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let smithchart: Smithchart = new Smithchart({
         load: (args: ISmithchartLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -73,15 +75,15 @@ this.default = (): void => {
     });
     mode.appendTo('#mode');
     let togglebtn1: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn1.appendTo('#togglebtn1');
     document.getElementById('togglebtn1').onclick = () => {
         let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
-        smithchart.export(<ExportType>mode.value, fileName);
+        smithchart.export(<SmithchartExportType>mode.value, fileName);
     };
     let togglebtn2: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn2.appendTo('#togglebtn2');
     document.getElementById('togglebtn2').onclick = () => {

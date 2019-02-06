@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Uploader, FileInfo } from '@syncfusion/ej2-inputs';
 import { createSpinner, showSpinner, hideSpinner } from '@syncfusion/ej2-popups';
 import { createElement, isNullOrUndefined, detach, EventHandler } from '@syncfusion/ej2-base';
 /**
  * Uploader custom template sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dropElement: HTMLElement = document.getElementsByClassName('control-fluid')[0] as HTMLElement; let filesDetails : FileInfo[] = [];
     let filesList: Element[] = [];
     let uploadObj: Uploader = new Uploader({

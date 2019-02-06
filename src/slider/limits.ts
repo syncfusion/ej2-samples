@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { CheckBox, ChangeEventArgs as CheckBoxChange } from '@syncfusion/ej2-buttons';
 
@@ -5,7 +6,8 @@ import { CheckBox, ChangeEventArgs as CheckBoxChange } from '@syncfusion/ej2-but
  * Limits sample
  */
 // tslint:disable-next-line:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize Slider Component
     let minrangeObj: Slider = new Slider({
         // Set slider minimum and maximum values

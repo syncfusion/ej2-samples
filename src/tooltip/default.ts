@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Tooltip default sample
  */
@@ -5,7 +6,8 @@
 import { Tooltip } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     //Initialize Button component
     let button: Button = new Button();

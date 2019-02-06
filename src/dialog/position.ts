@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { RadioButton } from '@syncfusion/ej2-buttons';
 /**
  * Position Dialog sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dialog: Dialog = new Dialog({
         // Set Dialog position
         position: { X: 'center', Y: 'center' },

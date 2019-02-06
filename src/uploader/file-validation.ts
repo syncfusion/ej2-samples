@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 import { Uploader, FileInfo, SelectedEventArgs, RemovingEventArgs } from '@syncfusion/ej2-inputs';
 /**
  * Uploader file size and files count validation sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let dropElement: HTMLElement = document.getElementsByClassName('control-fluid')[0] as HTMLElement;
 

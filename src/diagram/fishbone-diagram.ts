@@ -1,12 +1,27 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * OverView
  */
 import { Diagram, ConnectorModel, UndoRedo, DiagramTools, NodeModel, DecoratorModel } from '@syncfusion/ej2-diagrams';
 Diagram.Inject(UndoRedo);
 
+function CreateConnector(
+    name: string, lineDashArray: string, source: string, target: string, lineColor: string, lineWidth: number): ConnectorModel {
+    let connector: ConnectorModel = {};
+    connector.id = name;
+    connector.sourceID = source;
+    connector.targetID = target;
+    connector.style = {
+        strokeColor: lineColor,
+        strokeWidth: lineWidth,
+        strokeDashArray: lineDashArray,
+    };
+    return connector;
+}
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
 
 
     //Initializes the nodes for the diagram
@@ -293,16 +308,3 @@ Diagram.Inject(UndoRedo);
 
 };
 
-function CreateConnector(
-    name: string, lineDashArray: string, source: string, target: string, lineColor: string, lineWidth: number): ConnectorModel {
-    let connector: ConnectorModel = {};
-    connector.id = name;
-    connector.sourceID = source;
-    connector.targetID = target;
-    connector.style = {
-        strokeColor: lineColor,
-        strokeWidth: lineWidth,
-        strokeDashArray: lineDashArray,
-    };
-    return connector;
-}

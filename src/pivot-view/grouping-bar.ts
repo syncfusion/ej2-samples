@@ -1,7 +1,6 @@
 
-import { PivotView, GroupingBar, FieldList } from '@syncfusion/ej2-pivotview';
+import { PivotView, GroupingBar, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { CheckBox } from '@syncfusion/ej2-buttons';
-import { Pivot_Data } from './data-source';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(false);
 
@@ -10,7 +9,8 @@ PivotView.Inject(GroupingBar, FieldList);
 /**
  * PivotView Grouping bar Sample
  */
-
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
@@ -50,6 +50,12 @@ this.default = (): void => {
         change: onChange
     });
     remove.appendTo('#remove');
+    let summary: CheckBox = new CheckBox({
+        label: 'Show Value Type Icon',
+        checked: true,
+        change: onChange
+    });
+    summary.appendTo('#summary');
 
     /* tslint:disable */
     function onChange(args: any) {
@@ -57,8 +63,10 @@ this.default = (): void => {
             pivotGridObj.groupingBarSettings.showFilterIcon = args.checked;
         } else if (args.event.target.id === 'sort') {
             pivotGridObj.groupingBarSettings.showSortIcon = args.checked;
-        } else {
+        } else if (args.event.target.id === 'remove') {
             pivotGridObj.groupingBarSettings.showRemoveIcon = args.checked;
+        } else {
+            pivotGridObj.groupingBarSettings.showValueTypeIcon = args.checked;
         }
     }
 };

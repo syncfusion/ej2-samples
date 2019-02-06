@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps Tooltip
  */
 import { Maps, MapsTooltip, Legend, ITooltipRenderEventArgs, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(MapsTooltip, Legend);
 /* tslint:disable:no-string-literal */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -35,10 +37,10 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapePropertyPath: 'name',
                 shapeDataPath: 'name',
-                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/tooltip-datasource.json'),
+                dataSource: new MapAjax('./src/maps/map-data/tooltip-datasource.json'),
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'name',

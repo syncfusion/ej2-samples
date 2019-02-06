@@ -1,12 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, ScheduleModel, Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { resourceTeamData } from './datasource';
+import * as dataSource from './datasource.json';
 
 /**
  * schedule resources group sample
  */
 Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
@@ -37,7 +39,7 @@ this.default = () => {
             }
         ],
         eventSettings: {
-            dataSource: resourceTeamData,
+            dataSource: (dataSource as any).resourceTeamData,
             fields: {
                 subject: { title: 'Summary', name: 'Subject' },
                 description: { title: 'Comments', name: 'Description' }

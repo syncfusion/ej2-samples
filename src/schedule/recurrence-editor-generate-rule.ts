@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { RecurrenceEditor, RecurrenceEditorChangeEventArgs } from '@syncfusion/ej2-schedule';
 
 /**
  * Recurrence editor generate rule
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let outputElement: HTMLElement = <HTMLElement>document.querySelector('#rule-output');
     let recObject: RecurrenceEditor = new RecurrenceEditor({
         change: (args: RecurrenceEditorChangeEventArgs) => {

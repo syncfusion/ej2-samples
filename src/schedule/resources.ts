@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { extend, Internationalization, createElement, closest, remove, addClass, removeClass } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import {
@@ -10,7 +11,8 @@ import {
 Schedule.Inject(Month);
 
 // tslint:disable-next-line:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     interface TemplateFunction extends Window {
         getAirwaysName?: Function;
         getAirwaysImage?: Function;
@@ -87,7 +89,7 @@ this.default = () => {
     new CheckBox({ cssClass: 'e-resource e-airways-3', label: 'Airways 3', checked: true, change: onChange }, '#airways-3');
 
     function onChange(args: ChangeEventArgs): void {
-        let tdElement: HTMLElement = scheduleObj.element.querySelector('.best-price:not(.e-work-cells)');
+        let tdElement: any = scheduleObj.element.querySelector('.best-price:not(.e-work-cells)');
         if (tdElement) {
             removeClass([closest(tdElement, 'td')], 'best-price');
             remove(tdElement);

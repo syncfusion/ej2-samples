@@ -1,7 +1,9 @@
-import { extend } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { Schedule, Day, Week, WorkWeek, Month, Agenda, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { eventsData, applyCategoryColor } from './datasource';
+import { applyCategoryColor } from './helper';
+import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
@@ -9,8 +11,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
  *  Schedule event tooltip sample
  */
 
-this.default = () => {
-    let data: Object[] = <Object[]>extend([], eventsData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).eventsData, null, true);
     let template: string = '<div class="tooltip-wrap">' +
         '<div class="image ${EventType}"></div>' +
         '<div class="content-area"><div class="name">${Subject}</></div>' +

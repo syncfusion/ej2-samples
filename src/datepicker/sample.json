@@ -1,7 +1,7 @@
 {
     "name": "DatePicker",
     "directory": "datepicker",
-    "category": "Editors",
+    "category": "Calendars",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "DatePicker", "api":{"DatePicker": [ "placeholder" ]}, "description": "A simple, lightweight, and responsive DatePicker component for TypeScript for selecting date values easily with a rich user interface and cross-browser compatibility" },
         { "url": "disabled", "name": "Disabled Dates", "category": "DatePicker", "api":{"DatePicker": [ "placeholder", "renderDayCell" ]}, "description": "Customizable DatePicker widget for JavaScript (TypeScript) with disabled dates that restrict date selection from a defined set of days like weekends, holidays, etc" },

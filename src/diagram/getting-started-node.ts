@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Getting started -  nodes
  */
@@ -10,76 +11,6 @@ import { CheckBox, ChangeEventArgs as CheckBoxChangeEventArgs } from '@syncfusio
 
 let diagram: Diagram;
 let element: CheckBox;
-
-// tslint:disable-next-line:max-func-body-length
-(window as any).default = (): void => {
-
-    let nodes: NodeModel[] =  [
-        {id: 'sdlc', offsetX: 300, offsetY: 288, annotations: [{content: 'SDLC'}]},
-        {id: 'support', offsetX: 150, offsetY: 250, annotations: [{content: 'Support'}]},
-        {id: 'analysis', offsetX: 300, offsetY: 150, annotations: [{content: 'Analysis'}]},
-        {id: 'design', offsetX: 450, offsetY: 250, annotations: [{content: 'Design'}]},
-        {id: 'implement', offsetX: 400, offsetY: 400, annotations: [{content: 'implement'}]},
-        {id: 'deploy', offsetX: 200, offsetY: 400, annotations: [{content: 'Deploy'}]}
-    ];
-
-    let connections: ConnectorModel[] = [
-        {id: 'connector1', sourceID: 'analysis', targetID: 'design'},
-        {id: 'connector2', sourceID: 'design', targetID: 'implement'},
-        {id: 'connector3', sourceID: 'implement', targetID: 'deploy'},
-        {id: 'connector4', sourceID: 'deploy', targetID: 'support'},
-        {id: 'connector5', sourceID: 'support', targetID: 'analysis'}
-    ];
-
-    //Initializes diagram control
-    diagram = new Diagram({
-        width: '100%', height: '645px', nodes: nodes, connectors: connections,
-        //Sets the default values of a node
-        getNodeDefaults: getNodeDefaults,
-        //Sets the default values of a Connector
-        getConnectorDefaults: getConnectorDefaults,
-        snapSettings: { constraints: SnapConstraints.None }
-    });
-    diagram.appendTo('#diagram');
-
-    //Click event for Appearance of the Property Panel
-    document.getElementById('appearance').onclick = (args: MouseEvent) => {
-        let target: HTMLElement = args.target as HTMLElement;
-        let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
-        if (selectedElement.length) {
-            selectedElement[0].classList.remove('e-selected-style');
-        }
-        if (target.className === 'image-pattern-style') {
-            for (let i: number = 0; i < diagram.nodes.length; i++) {
-                let node: NodeModel = diagram.nodes[i];
-                switch (target.id) {
-                    case 'preview0':
-                        applyNodeStyle(node, 0, '', ~NodeConstraints.Shadow, 'None');
-                        break;
-                    case 'preview1':
-                        applyNodeStyle(node, 2, '', ~NodeConstraints.Shadow, 'None');
-                        break;
-                    case 'preview2':
-                        applyNodeStyle(node, 2, '5 5', ~NodeConstraints.Shadow, 'None');
-                        break;
-                    case 'preview3':
-                        applyNodeStyle(node, 2, '5 5', ~NodeConstraints.Shadow, 'Radial');
-                        break;
-                    case 'preview4':
-                        applyNodeStyle(node, 2, '5 5', NodeConstraints.Shadow, 'None');
-                        break;
-                }
-                target.classList.add('e-selected-style');
-            }
-        }
-    };
-    //Enable or disable the AspectRatio for Node.
-    element = new CheckBox({ checked: false, label: 'Aspect ratio', change: setNodeConstraints });
-    element.appendTo('#aspectRatio');
-    //Enable or disable the Interaction for Node.
-    let lockElement: CheckBox = new CheckBox({ checked: false, label: 'Lock', change: setNodeConstraints });
-    lockElement.appendTo('#lock');
-};
 
 function getNodeDefaults(obj: NodeModel): NodeModel {
     obj.width = 100;
@@ -145,3 +76,74 @@ function applyNodeStyle(
     }
     diagram.dataBind();
 }
+
+// tslint:disable-next-line:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
+
+    let nodes: NodeModel[] = [
+        { id: 'sdlc', offsetX: 300, offsetY: 288, annotations: [{ content: 'SDLC' }] },
+        { id: 'support', offsetX: 150, offsetY: 250, annotations: [{ content: 'Support' }] },
+        { id: 'analysis', offsetX: 300, offsetY: 150, annotations: [{ content: 'Analysis' }] },
+        { id: 'design', offsetX: 450, offsetY: 250, annotations: [{ content: 'Design' }] },
+        { id: 'implement', offsetX: 400, offsetY: 400, annotations: [{ content: 'implement' }] },
+        { id: 'deploy', offsetX: 200, offsetY: 400, annotations: [{ content: 'Deploy' }] }
+    ];
+
+    let connections: ConnectorModel[] = [
+        { id: 'connector1', sourceID: 'analysis', targetID: 'design' },
+        { id: 'connector2', sourceID: 'design', targetID: 'implement' },
+        { id: 'connector3', sourceID: 'implement', targetID: 'deploy' },
+        { id: 'connector4', sourceID: 'deploy', targetID: 'support' },
+        { id: 'connector5', sourceID: 'support', targetID: 'analysis' }
+    ];
+
+    //Initializes diagram control
+    diagram = new Diagram({
+        width: '100%', height: '645px', nodes: nodes, connectors: connections,
+        //Sets the default values of a node
+        getNodeDefaults: getNodeDefaults,
+        //Sets the default values of a Connector
+        getConnectorDefaults: getConnectorDefaults,
+        snapSettings: { constraints: SnapConstraints.None }
+    });
+    diagram.appendTo('#diagram');
+
+    //Click event for Appearance of the Property Panel
+    document.getElementById('appearance').onclick = (args: MouseEvent) => {
+        let target: HTMLElement = args.target as HTMLElement;
+        let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
+        if (selectedElement.length) {
+            selectedElement[0].classList.remove('e-selected-style');
+        }
+        if (target.className === 'image-pattern-style') {
+            for (let i: number = 0; i < diagram.nodes.length; i++) {
+                let node: NodeModel = diagram.nodes[i];
+                switch (target.id) {
+                    case 'preview0':
+                        applyNodeStyle(node, 0, '', ~NodeConstraints.Shadow, 'None');
+                        break;
+                    case 'preview1':
+                        applyNodeStyle(node, 2, '', ~NodeConstraints.Shadow, 'None');
+                        break;
+                    case 'preview2':
+                        applyNodeStyle(node, 2, '5 5', ~NodeConstraints.Shadow, 'None');
+                        break;
+                    case 'preview3':
+                        applyNodeStyle(node, 2, '5 5', ~NodeConstraints.Shadow, 'Radial');
+                        break;
+                    case 'preview4':
+                        applyNodeStyle(node, 2, '5 5', NodeConstraints.Shadow, 'None');
+                        break;
+                }
+                target.classList.add('e-selected-style');
+            }
+        }
+    };
+    //Enable or disable the AspectRatio for Node.
+    element = new CheckBox({ checked: false, label: 'Aspect ratio', change: setNodeConstraints });
+    element.appendTo('#aspectRatio');
+    //Enable or disable the Interaction for Node.
+    let lockElement: CheckBox = new CheckBox({ checked: false, label: 'Lock', change: setNodeConstraints });
+    lockElement.appendTo('#lock');
+};

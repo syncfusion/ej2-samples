@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toast default sample
  */
 import { Toast, ToastCloseArgs} from '@syncfusion/ej2-notifications';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Toast component
     let toastObj: Toast = new Toast({
         position: {

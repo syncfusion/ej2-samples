@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Dynamic sample
  */
@@ -6,7 +7,8 @@ import { Annotations } from '@syncfusion/ej2-circulargauge';
 import { gauge, gauge1, gauge2, gauge3 } from './dynamic-gauge';
 CircularGauge.Inject(Annotations);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let toolTipInterval: Function;
     let toolTipInterval1: Function;
     let GEARS: number[] = [0.14, 0.06, 0.035, 0.027, 0.019];

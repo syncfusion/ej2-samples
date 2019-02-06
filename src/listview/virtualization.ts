@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ListView Virtualization Sample
  */
@@ -13,7 +14,8 @@ let endTime: Date;
 let listObj: ListView;
 let liElement: HTMLElement;
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     ListView.Inject(Virtualization);
     commonData = [

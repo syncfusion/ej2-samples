@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, Chart, IChangedEventArgs, LineSeries, AreaSeries, DateTime, Crosshair } from '@syncfusion/ej2-charts';
 import { ChartTheme, ChartAnnotation, PeriodSelector, CandleSeries, MomentumIndicator, Tooltip } from '@syncfusion/ej2-charts';
 import { IAxisLabelRenderEventArgs, withInBounds, IAxisRangeCalculatedEventArgs, ILoadedEventArgs } from '@syncfusion/ej2-charts';
@@ -13,7 +14,7 @@ import { Browser, remove, Ajax } from '@syncfusion/ej2-base';
 
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
 
 // tslint:disable-next-line:max-func-body-length
 let removeSecondaryElement: Function;
@@ -113,7 +114,8 @@ this.renderChart = (data1: Object[]): void => {
         chart.series[0].dataSource = filterData; chart.refresh(); chart.setAnnotationValue(0, '<div id="annotation"></div>');
     };
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let datasrc: object[];
     let data1: object[] = [];
     let value: object;

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { rippleEffect } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 
@@ -5,14 +6,15 @@ import { Button } from '@syncfusion/ej2-buttons';
  *  Sample for basic ButtonGroup.
  */
 
-this.default = () => {
-    let buttonElement: Button = new Button({iconCss: 'e-icons e-btngrp-watch'});
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let buttonElement: Button = new Button({iconCss: 'bg-icons e-btngrp-watch'});
     buttonElement.appendTo('#watch');
 
-    buttonElement = new Button({iconCss: 'e-icons e-btngrp-star'});
+    buttonElement = new Button({iconCss: 'bg-icons e-btngrp-star'});
     buttonElement.appendTo('#star');
 
-    buttonElement = new Button({iconCss: 'e-icons e-btngrp-download'});
+    buttonElement = new Button({iconCss: 'bg-icons e-btngrp-download'});
     buttonElement.appendTo('#download');
 
     // To enable ripple in checkbox/radio type ButtonGroup.

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 
@@ -5,7 +6,8 @@ import { Button } from '@syncfusion/ej2-buttons';
  * Default Dialog sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Render the alert Dialog 
     let alertDialogObj: Dialog = new Dialog({
         header: 'Low Battery',

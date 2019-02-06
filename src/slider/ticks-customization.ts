@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, SliderTickRenderedEventArgs, SliderTickEventArgs } from '@syncfusion/ej2-inputs';
 
 /**
  * Ticks Customization sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize Slider component
     let ticksSlider: Slider = new Slider({
         // Set slider minimum and maximum values

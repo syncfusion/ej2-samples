@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Adaptor, Tooltip, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let arrayCellData: Object = [
         [0, 0, 10.75], [0, 1, 14.5], [0, 2, 25.5], [0, 3, 39.5], [0, 4, 59.75], [0, 5, 35.50], [0, 6, 75.5],
         [1, 0, 20.75], [1, 1, 35.5], [1, 2, 29.5], [1, 3, 75.5], [1, 4, 80], [1, 5, 65], [1, 6, 85],

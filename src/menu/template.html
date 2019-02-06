@@ -2,7 +2,7 @@
     <div class="menu-control">
         <ul id="menu"></ul>
     </div>
-    <!-- Template to render Menu -->
+    <!-- Template to render Menu items -->
     <script id="menuTemplate" type="text/x-template">
         ${if(category)}
             ${category}
@@ -71,24 +71,16 @@
         text-align: center;
     }
 
-    /**
-    * Common customization 
-    */
-    .e-bigger .e-menu-wrapper.e-control ul.e-ul .e-menu-item,
-    .e-menu-wrapper.e-control ul.e-ul .e-menu-item {
+    /* menu item List styles */
+    .e-bigger .e-menu-wrapper ul.e-ul .e-menu-item,
+    .e-menu-wrapper ul.e-ul .e-menu-item {
         display: flex;
         height: auto;
         padding: 0;
+        outline-color: transparent;
     }
 
-    /**
-    * Avatar customization
-    */
-    .e-bigger .e-menu-wrapper ul .e-menu-item .e-avatar {
-        background-size: auto;
-        text-indent: 40px;
-    }
-
+    /** Avatar customization */
     .e-menu-wrapper ul .e-menu-item .e-avatar {
         background-color: inherit;
         background-position: 0;
@@ -101,16 +93,15 @@
         width: 100%;
         text-indent: 35px;
     }
-
-    /**
-    * Badge customization
-    */
-    .e-menu-wrapper ul .e-menu-item ul li {
-        padding: 0 10px;
+    
+    .e-bigger .e-menu-wrapper ul .e-menu-item .e-avatar {
+        background-size: auto;
+        text-indent: 40px;
     }
 
-    .e-bigger .e-menu-wrapper ul .e-menu-item ul li .e-badge {        
-        margin: 18px 0px 0px 10px;
+    /** Badge customization */
+    .e-menu-wrapper ul .e-menu-item ul li {
+        padding: 0 10px;
     }
 
     .e-menu-wrapper ul .e-menu-item ul li .e-badge {
@@ -118,6 +109,11 @@
         margin: 13px 0px 0px 10px;
     }
 
+    .e-bigger .e-menu-wrapper ul .e-menu-item ul li .e-badge {        
+        margin: 18px 0px 0px 10px;
+    }
+
+    /** Services menu item sub menu list customization */
     .e-menu-wrapper ul .e-menu-item ul li:hover {
         background-color: #eee;
     }
@@ -134,13 +130,11 @@
         background-color: #685708;
     }
 
-    /**
-    * Card customization
-    */
-    .e-bigger .e-menu-wrapper ul.e-ul .e-menu-item .e-card {        
-        width: 320px;
+    .highcontrast .e-menu-popup ul .e-menu-item ul {
+        background-color: #000; 
     }
 
+    /** Card customization */
     .e-menu-wrapper ul.e-ul .e-menu-item .e-card {        
         width: 290px;
         font-size: inherit;
@@ -149,27 +143,15 @@
         border-color: transparent;
     }
 
+    .e-bigger .e-menu-wrapper ul.e-ul .e-menu-item .e-card {        
+        width: 320px;
+    }
+
     .e-menu-wrapper ul.e-ul .e-menu-item .e-card .e-card-content {
         white-space: normal;
         color: inherit;
         padding-top: 0;
         text-align: justify;
         font-size: inherit;
-    }
-
-    .e-bigger .e-menu-wrapper ul.e-ul .e-menu-item .e-card .cb-icons {
-        width: 40px;
-        font-size: 40px;
-        height: 40px;
-    }
-
-    .e-menu-wrapper ul.e-ul .e-menu-item .e-card .cb-icons {
-        width: 30px;
-        font-size: 30px;
-        height: 30px;
-    }
-
-    .e-menu-wrapper ul.e-ul .e-menu-item .e-card .e-card-btn {
-        background-color: inherit;
     }
 </style>

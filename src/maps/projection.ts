@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Changing projection sample
  */
@@ -7,7 +8,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 Maps.Inject(Zoom, Legend, MapsTooltip);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -32,10 +34,10 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapeDataPath: 'Country',
                 shapePropertyPath: 'name',
-                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/projection-datasource.json'),
+                dataSource: new MapAjax('./src/maps/map-data/projection-datasource.json'),
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'Country',

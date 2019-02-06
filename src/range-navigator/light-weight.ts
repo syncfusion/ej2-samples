@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, IChangedEventArgs, Logarithmic, DateTime } from '@syncfusion/ej2-charts';
 import { ChartTheme } from '@syncfusion/ej2-charts';
 RangeNavigator.Inject(Logarithmic, DateTime);
@@ -8,11 +9,12 @@ import { Browser } from '@syncfusion/ej2-base';
  * Sample for range navigator without series
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let selectedTheme: string = location.hash.split('/')[1];
     selectedTheme = selectedTheme ? selectedTheme : 'Material';
-    let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+    let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
     let range: RangeNavigator = new RangeNavigator(
         {
             valueType: 'DateTime',

@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Button } from '@syncfusion/ej2-buttons';
 
 /**
  * Default button sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let button: Button = new Button();
     button.appendTo('#normalbtn');
 
@@ -16,13 +18,13 @@ this.default = (): void => {
     button = new Button({ cssClass: 'e-outline', isPrimary: true });
     button.appendTo('#outlinebtn');
 
-    button = new Button({ iconCss: 'e-icons e-add-icon', cssClass: 'e-small e-round', isPrimary: true });
+    button = new Button({ iconCss: 'e-btn-sb-icons e-add-icon', cssClass: 'e-small e-round', isPrimary: true });
     button.appendTo('#roundbtn');
 
-    let toggleBtn: Button = new Button({ iconCss: 'e-icons e-play-icon', cssClass: 'e-flat e-primary', isToggle: true });
+    let toggleBtn: Button = new Button({ iconCss: 'e-btn-sb-icons e-play-icon', cssClass: 'e-flat e-primary', isToggle: true });
     toggleBtn.appendTo('#togglebtn');
 
-    button = new Button({ iconCss: 'e-icons e-open-icon', cssClass: 'e-flat e-primary', iconPosition: 'Right' });
+    button = new Button({ iconCss: 'e-btn-sb-icons e-open-icon', cssClass: 'e-flat e-primary', iconPosition: 'Right' });
     button.appendTo('#openiconbtn');
 
     button = new Button({ cssClass: 'e-success' });
@@ -44,10 +46,10 @@ this.default = (): void => {
     toggleBtn.element.onclick = (): void => {
         if (toggleBtn.element.classList.contains('e-active')) {
             toggleBtn.content = 'Pause';
-            toggleBtn.iconCss = 'e-icons e-pause-icon';
+            toggleBtn.iconCss = 'e-btn-sb-icons e-pause-icon';
         } else {
             toggleBtn.content = 'Play';
-            toggleBtn.iconCss = 'e-icons e-play-icon';
+            toggleBtn.iconCss = 'e-btn-sb-icons e-play-icon';
         }
     };
 };

@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { TimePicker, ItemEventArgs } from '@syncfusion/ej2-calendars';
 
 /**
  * List Formatting sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let timeObj: TimePicker = new TimePicker({
         value: new Date(), itemRender: itemRanderHandler,
@@ -68,7 +70,6 @@ this.default = (): void => {
 
         //disable the specific time from the selection
         if ((minutes / 60) % 3 === 0) {
-            span.classList.add('e-icons');
             //disable the time values by addeding the e-disabled class.
             args.element.classList.add('e-disabled');
         }

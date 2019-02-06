@@ -1,15 +1,18 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Schedule, ScheduleModel, TimelineViews, TimelineMonth, CellTemplateArgs,
     getWeekNumber, EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
-import { headerRowData, applyCategoryColor } from './datasource';
+import * as dataSource from './datasource.json';
+import { applyCategoryColor } from './helper';
 import { Internationalization, extend } from '@syncfusion/ej2-base';
 /**
  * schedule header rows sample
  */
 Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     interface TemplateFunction extends Window {
         getMonthDetails?: Function;
         getWeekDetails?: Function;
@@ -34,7 +37,7 @@ this.default = () => {
             { option: 'TimelineMonth', interval: 12 }
         ],
         eventSettings: {
-            dataSource: <Object[]>extend([], headerRowData, null, true)
+            dataSource: <Object[]>extend([], (dataSource as any).headerRowData, null, true)
         },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     };

@@ -1,7 +1,7 @@
 {
     "name": "TimePicker",
     "directory": "timepicker",
-    "category": "Editors",
+    "category": "Calendars",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "TimePicker", "api":{"TimePicker": [ "placeholder" ]}, "description": "A simple and lightweight TimePicker component for JavaScript (TypeScript) for selecting times that is customizable to fit large-scale applications" },
         { "url": "time-range", "name": "Time Range", "category": "TimePicker", "api":{"TimePicker": [ "placeholder", "value", "readonly", "enabled", "min", "change" ]}, "description": "TimePicker widget for JavaScript (TypeScript) with min and max time options to restrict time selection within a defined duration like the next 30 minutes, the next 4 hours, etc" },

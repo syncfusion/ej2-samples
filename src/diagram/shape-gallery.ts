@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample for Shape gallery.
  */
@@ -260,16 +261,6 @@ let bpmnShapeModel: object[] = [
     }
 ];
 
-(window as any).default = (): void => {
-    let objects: NodeModel[] = getNodes();
-    //Initialize diagram control
-    let diagram: Diagram = new Diagram({
-        width: '100%', height: '499px', snapSettings: { constraints: SnapConstraints.None },
-        nodes: objects,
-    });
-    diagram.appendTo('#diagram');
-    diagram.fitToPage({ mode: 'Width' });
-};
 
 //create and return the Nodes collection.
 function getNodes(): NodeModel[] {
@@ -322,3 +313,15 @@ function getNodes(): NodeModel[] {
     }
     return nodes1;
 }
+
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let objects: NodeModel[] = getNodes();
+    //Initialize diagram control
+    let diagram: Diagram = new Diagram({
+        width: '100%', height: '499px', snapSettings: { constraints: SnapConstraints.None },
+        nodes: objects,
+    });
+    diagram.appendTo('#diagram');
+    diagram.fitToPage({ mode: 'Width' });
+};

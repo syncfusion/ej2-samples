@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Calendar, RenderDayCellEventArgs, ChangedEventArgs } from '@syncfusion/ej2-calendars';
 /**
  * Disabled Calendar sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let calendar: Calendar = new Calendar({
         renderDayCell: disableDate, change: valueChange
     });

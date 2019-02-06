@@ -1,10 +1,12 @@
-import { TreeMap, ILoadedEventArgs, IResizeEventArgs, TreeMapTooltip } from '@syncfusion/ej2-treemap';
-import { Continent_Data } from '../treemap/treemap-data/pie-chart';
+import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable
+import { TreeMap, ILoadedEventArgs, IResizeEventArgs, TreeMapTooltip, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip);
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs, ITreeMapTooltipRenderEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+// Treemap theme changes
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
@@ -13,9 +15,11 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
 /**
  * Pie sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
+        // AccumulationChart rendering
         loaded: (args: ILoadedEventArgs) => {
             let template: Element = document.getElementById(args.treemap.element.id + '_Label_Template_Group');
             if (template) {
@@ -25,11 +29,13 @@ this.default = (): void => {
                 count = 0;
             }
         },
+        // chart size changes
         resize: (args: IResizeEventArgs) => {
             for (let i: number = 0; i < chartCollection.length; i++) {
                 chartCollection[i].destroy();
             }
         },
+        //show the tooltip in Level one
         tooltipRendering: (args: ITreeMapTooltipRenderEventArgs) => {
             //tslint:disable-next-line
             if (args.item['groupIndex'] !== 1 ) {
@@ -46,7 +52,7 @@ this.default = (): void => {
         },
         format: 'n', useGroupingSeparator: true,
         //enableDrillDown: true,
-        dataSource: Continent_Data,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/continent_data.json'),
         weightValuePath: 'Population',
         leafItemSettings: {
             labelPath: 'Gender',
@@ -186,4 +192,3 @@ export function getData(): object {
     count++;
     return new Object({ name: dataName, data: dataSource });
 }
-

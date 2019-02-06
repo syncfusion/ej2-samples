@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, Category, Tooltip, ILoadedEventArgs, ChartTheme,
     Trendlines, ScatterSeries, SplineSeries, LineSeries, TrendlineTypes
@@ -22,7 +23,8 @@ let powerData: object[] = [
     { x: 1, y: 10 }, { x: 2, y: 50 }, { x: 3, y: 80 }, { x: 4, y: 110 },
     { x: 5, y: 180 }, { x: 6, y: 220 }, { x: 7, y: 300 }, { x: 8, y: 370 }, { x: 9, y: 490 }, { x: 10, y: 500 }
 ];
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         //Initializing Primary X and Y Axis
         primaryXAxis: { majorGridLines: { width: 0 }, edgeLabelPlacement: 'Shift' },
@@ -39,15 +41,15 @@ this.default = (): void => {
             trendlines: [{ type: 'Linear', width: 3, name: 'Linear',  fill:  '#C64A75' }]
         }],
         //Initializing User Interaction Tooltip
-        tooltip: { enable: true },
-        //Initializing Chart Title
+        tooltip: { enable: true },  //Initializing Chart Title
         title: 'Historical Indian Rupee Rate (INR USD)',
         legendSettings: { visible: false }, chartArea: { border: { width: 0 } },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
-        },
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+        }
     });
     chart.appendTo('#container');
     let forward: NumericTextBox = new NumericTextBox({

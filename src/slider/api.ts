@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, NumericTextBox } from '@syncfusion/ej2-inputs';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 
@@ -5,7 +6,8 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
  * slider property customization
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // tslint:disable-next-line:max-func-body-length
     let slider: Slider = new Slider({
         value: 30,

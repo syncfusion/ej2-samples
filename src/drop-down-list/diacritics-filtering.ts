@@ -1,37 +1,25 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 
 /**
  * DropDownList Diacritics functionality Sample
  */
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import * as data from './dataSource.json';
 
-this.default = () => {
-    // create local data
-    let data: string[] = [
-        'Águilas',
-        'Ajedrez',
-        'Ala Delta',
-        'Álbumes de Música',
-        'Alusivos',
-        'Análisis de Escritura a Mano',
-        'Dyarbakır',
-        'Derepazarı ',
-        'Gülümsemek ',
-        'Teşekkürler',
-        'Güle güle.',
-        'Gülhatmi',
-        'Gülünç'
-    ];
+(window as any).default = (): void => {
+    loadCultureFiles();
     // initialize DropDownList component
     let ddlObj: DropDownList = new DropDownList({
         //set the local data to dataSource property
-        dataSource: data,
+        dataSource: (data as any).data,
         // set the placeholder to DropDownList input element
         placeholder: 'Select a value',
         // enabled the ignoreAccent property for ignore the diacritics
         ignoreAccent: true,
         // set true for enable the filtering support.
         allowFiltering: true,
+         // set the placeholder to filter search box input element
         filterBarPlaceholder: 'e.g: gul'
     });
     ddlObj.appendTo('#list');

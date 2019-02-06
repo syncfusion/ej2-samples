@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 
 /**
  * Default CheckBox sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let checkBoxObj: CheckBox = new CheckBox({ label: 'CheckBox: true', checked: true, change: onChange });
     checkBoxObj.appendTo('#checked');
 

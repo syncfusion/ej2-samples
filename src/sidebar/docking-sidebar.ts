@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Sidebar } from '@syncfusion/ej2-navigations';
 import { RadioButton } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -6,7 +7,8 @@ enableRipple(false);
 /**
  * Sidebar Dock sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Sidebar initialization
     let dockBar: Sidebar = new Sidebar({

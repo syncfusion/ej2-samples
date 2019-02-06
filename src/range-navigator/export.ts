@@ -1,8 +1,9 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     ChartTheme, RangeNavigator, Chart, SplineAreaSeries, Crosshair,
-    ExportType, DateTime, StepLineSeries, IChangedEventArgs, Tooltip
+    ExportType, DateTime, StepLineSeries, IChangedEventArgs, Tooltip, Export
 } from '@syncfusion/ej2-charts';
-Chart.Inject(SplineAreaSeries, DateTime, Crosshair, Tooltip);
+Chart.Inject(SplineAreaSeries, DateTime, Crosshair, Tooltip, Export);
 RangeNavigator.Inject(DateTime, StepLineSeries);
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -13,7 +14,7 @@ import { Ajax } from '@syncfusion/ej2-base';
  */
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
 let themes: string[] = ['Material', 'Fabric', 'Bootstrap', 'Highcontrast'];
 let borderColor: string[] = ['#FF4081', '#007897', '#428BCA', '#FFD939'];
 let regionColor: string[] = ['rgba(255, 64, 129, 0.3)', ' rgba(0, 120, 151, 0.3)',
@@ -74,7 +75,7 @@ this.renderChart = (datasrc: Object[]): void => {
     togglebtn.appendTo('#exportBtn');
     document.getElementById('exportBtn').onclick = () => {
         let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
-        dateTimeControl.export(<ExportType>mode.value, fileName, null, [dateTimeControl, chart]);
+        chart.exportModule.export(<ExportType>mode.value, fileName, null, [dateTimeControl, chart]);
     };
 
     let printBtn: Button = new Button({
@@ -85,7 +86,8 @@ this.renderChart = (datasrc: Object[]): void => {
         dateTimeControl.print(['container', 'chart']);
     };
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let datasrc: Object[];
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/export-data.json', 'GET', true);
     ajax.send().then();

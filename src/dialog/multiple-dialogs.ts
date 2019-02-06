@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(true);
 import { Dialog } from '@syncfusion/ej2-popups';
@@ -5,7 +6,8 @@ import { Button } from '@syncfusion/ej2-buttons';
 /**
  * Multiple Dialogs sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dialogObj: Dialog = new Dialog({
         header: 'First Dialog',
         target: document.getElementById('target'),

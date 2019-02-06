@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Highlighted region map sample
  */
 import { Maps, Marker, Zoom, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Marker, Zoom, MapsTooltip);
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -15,7 +17,7 @@ this.default = (): void => {
             latitude: 35.65, longitude: -97.3
         },
         zoomSettings: {
-            enable: true,
+            enable: false,
             toolbars: [],
             mouseWheelZoom: false,
             zoomFactor: 1.75
@@ -23,7 +25,7 @@ this.default = (): void => {
         layers: [
             {
                 animationDuration: 1000,
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/oklahoma.json'),
+                shapeData: new MapAjax('./src/maps/map-data/oklahoma.json'),
                 shapeSettings: {
                     fill: '#F5F5F5',
                     border: { color: '#EEDA97', width: 1 }

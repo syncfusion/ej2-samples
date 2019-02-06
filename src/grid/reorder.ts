@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Grid, Selection, Reorder, Column, ActionEventArgs } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
@@ -7,7 +8,8 @@ Grid.Inject(Selection, Reorder);
 /**
  * Reorder Grid sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let columnNames: { [key: string]: Object }[] = [
         { id: 'EmployeeID', name: 'Employee ID' },
         { id: 'FirstName', name: 'Name' },

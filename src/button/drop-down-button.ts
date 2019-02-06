@@ -3,7 +3,7 @@ import { DropDownButton, ItemModel } from '@syncfusion/ej2-splitbuttons';
 /**
  * Default DropDownButton sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
     let items: ItemModel[] = [
         {
             text: 'Dashboard',

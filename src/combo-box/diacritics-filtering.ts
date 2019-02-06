@@ -1,31 +1,18 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 
 /**
  * ComboBox Diacritics functionality Sample
  */
 import { ComboBox } from '@syncfusion/ej2-dropdowns';
+import * as data from './dataSource.json';
 
-this.default = () => {
-    // create local data
-    let data: string[] = [
-        'Águilas',
-        'Ajedrez',
-        'Ala Delta',
-        'Álbumes de Música',
-        'Alusivos',
-        'Análisis de Escritura a Mano',
-        'Dyarbakır',
-        'Derepazarı ',
-        'Gülümsemek ',
-        'Teşekkürler',
-        'Güle güle.',
-        'Gülhatmi',
-        'Gülünç'
-    ];
+(window as any).default = (): void => {
+    loadCultureFiles();
     // initialize ComboBox component
     let comboObj: ComboBox = new ComboBox({
         //set the local data to dataSource property
-        dataSource: data,
+        dataSource: (data as any).data,
         // set the placeholder to ComboBox input element
         placeholder: 'e.g: gul',
         // enabled the ignoreAccent property for ignore the diacritics

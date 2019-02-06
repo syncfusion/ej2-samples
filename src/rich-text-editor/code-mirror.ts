@@ -50,7 +50,7 @@ this.default = (): void => {
     });
     function mirrorConversion(): void {
         let id: string = defaultRTE.getID() + 'mirror-view';
-        let mirrorView: HTMLElement = defaultRTE.element.querySelector('#' + id);
+        let mirrorView: any = defaultRTE.element.querySelector('#' + id);
         let iconEle: HTMLElement = divPreview.querySelector('span');
         if (divPreview.classList.contains('e-active')) {
             divPreview.classList.remove('e-active');

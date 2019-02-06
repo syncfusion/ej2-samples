@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, QueryCellInfoEventArgs } from '@syncfusion/ej2-grids';
 import { columnSpanData, ColumnSpanDataType } from './data-source';
 
 /**
  * Grid Column spanning sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid(
         {
             dataSource: columnSpanData,

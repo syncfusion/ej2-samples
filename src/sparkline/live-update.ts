@@ -1,6 +1,7 @@
 /**
  * sparkline sample for live update
  */
+ //tslint:disable
 import { Sparkline, ISparklineLoadEventArgs, SparklineTheme } from '@syncfusion/ej2-charts/index';
 import { EmitType } from '@syncfusion/ej2-base';
 export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadEventArgs) => {
@@ -63,7 +64,9 @@ this.default = (): void => {
             spark.dataSource.shift();
             spark.refresh();
             let cpu: Element = document.getElementById('cpu');
+            if (cpu) {
             cpu.innerHTML = ((value / 150) * 100).toFixed(0) + '% ' + ((value * 3) / 100).toFixed(2) + 'GHz';
+            }
         }
     }
     let time: number = setInterval(update, 500);
@@ -127,7 +130,9 @@ this.default = (): void => {
             spark1.refresh();
             let memory: Element = document.getElementById('memory');
             let gb: string = parseFloat(value.toString().replace('0', '')).toFixed(1);
+            if (memory) {
             memory.innerHTML = gb + '/15.8 GB (' + ((value / 15.8) * 100).toFixed(0) + '%)';
+            }
         }
     }
     let time1: number = setInterval(update1, 500);
@@ -185,7 +190,9 @@ this.default = (): void => {
             spark2.dataSource.shift();
             spark2.refresh();
             let disk: Element = document.getElementById('disk');
+            if (disk) {
             disk.innerHTML = value.toFixed(0) + '%';
+            }
         }
     }
     let time2: number = setInterval(update2, 500);
@@ -243,7 +250,9 @@ this.default = (): void => {
             spark3.dataSource.shift();
             spark3.refresh();
             let net: Element = document.getElementById('net');
+            if (net) {
             net.innerHTML = 'R: ' + value.toFixed(0) + 'Kbps';
+            }
         }
     }
     let time4: number = setInterval(update4, 500);

@@ -1,13 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, ITooltipEventArgs, Tooltip, Adaptor, ILoadedEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { SampleDataSource } from './data';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Female Participation Rate in Labor Force for the Countries',
@@ -26,7 +27,7 @@ this.default = (): void => {
         yAxis: {
             labels: ['1995', '2000', '2005', '2010', '2015']
         },
-        dataSource: newDataSource.tableBubbleData,
+        dataSource: (data as any).tableBubbleData,
         cellSettings: {
             border: {
                 width: 1

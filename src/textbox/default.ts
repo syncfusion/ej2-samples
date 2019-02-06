@@ -1,8 +1,10 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { InputObject, TextBox } from  '@syncfusion/ej2-inputs';
 /**
  *   Sample for CSS input boxes.
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let inputobj1: TextBox = new TextBox({
         placeholder: 'First Name',
         floatLabelType: 'Auto'

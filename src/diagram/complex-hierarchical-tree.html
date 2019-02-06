@@ -1,51 +1,51 @@
-<style>
-    .image-pattern-style {
-        background-color: white;
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 75px;
-        width: calc((100% - 18px) / 3);
-        cursor: pointer;
-        border: 1px solid #D5D5D5;
-        background-position: center;
-        float: left;
-    }
-
-    .image-pattern-style:hover {
-        border-color: gray;
-        border-width: 2px;
-    }
-
-    .row {
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-
-    .row-header {
-        font-size: 15px;
-        font-weight: 500;
-    }
-
-    .e-selected-style {
-        border-color: #006CE6;
-        border-width: 2px;
-    }
-
-    /* .property-panel-header {
-        padding-top: 2px;
-        padding-bottom: 5px;
-    } */
-
-    .e-checkbox-wrapper .e-label {
-        font-size: 12px;
-    }
-
-    .col-xs-6 {
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-</style>
 <div class="col-lg-8 control-section">
+    <style>
+        .image-pattern-style {
+                    background-color: white;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    height: 75px;
+                    width: calc((100% - 18px) / 3);
+                    cursor: pointer;
+                    border: 1px solid #D5D5D5;
+                    background-position: center;
+                    float: left;
+                }
+            
+                .image-pattern-style:hover {
+                    border-color: gray;
+                    border-width: 2px;
+                }
+            
+                .row {
+                    margin-left: 0px;
+                    margin-right: 0px;
+                }
+            
+                .row-header {
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+            
+                .e-selected-style {
+                    border-color: #006CE6;
+                    border-width: 2px;
+                }
+            
+                /* .property-panel-header {
+                    padding-top: 2px;
+                    padding-bottom: 5px;
+                } */
+            
+                .e-checkbox-wrapper .e-label {
+                    font-size: 12px;
+                }
+            
+                .col-xs-6 {
+                    padding-left: 0px;
+                    padding-right: 0px;
+                }
+            </style>
     <div class="content-wrapper" style="width: 100%">
         <div id="diagram"></div>
     </div>
@@ -112,13 +112,15 @@
 
 <div id="action-description">
     <p>
-        This sample demonstrates a complex hierarchical template that is built from an external data source using complex hierarchical
+        This sample demonstrates a complex hierarchical template that is built from an external data source using
+        complex hierarchical
         tree algorithm.
     </p>
 </div>
 <div id="description">
     <p>
-        In this example, you can see how to generate a complex hierarchical tree from external data sources. You can also customize
+        In this example, you can see how to generate a complex hierarchical tree from external data sources. You can
+        also customize
         spacing between the objects in the tree. You can use the
         <code>horizontalSpacing</code> and
         <code>verticalSpacing</code> properties of
@@ -132,10 +134,12 @@
 
     <p style="font-weight: 500">Injecting Module</p>
     <p>
-        Diagram component's features are segregated into individual feature-wise modules. To generate diagrams from an external data
+        Diagram component's features are segregated into individual feature-wise modules. To generate diagrams from an
+        external data
         source, we need to Inject
         <code>DataBinding</code> module using
-        <code>Diagram.Inject(DataBinding)</code> method. To automatically arrange the objects in a hierarchical structure, we need to Inject
+        <code>Diagram.Inject(DataBinding)</code> method. To automatically arrange the objects in a hierarchical
+        structure, we need to Inject
         <code>ComplexHierarchicalTree</code> module using
         <code>Diagram.Inject(ComplexHierarchicalTree)</code> method.
     </p>

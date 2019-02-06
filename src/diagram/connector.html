@@ -1,46 +1,46 @@
-<style>
-    .image-pattern-style {
-        background-color: white;
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 45px;
-        width: calc((100% - 13px) / 3);
-        cursor: pointer;
-        border: 1px solid #D5D5D5;
-        background-position: center;
-        float: left;
-    }
-
-    .image-pattern-style:hover {
-        border-color: gray;
-        border-width: 2px;
-    }
-
-    .row {
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-
-    .row-header {
-        font-size: 13px;
-        font-weight: 500;
-    }
-
-    .e-checkbox-wrapper .e-label {
-        font-size: 12px;
-    }
-
-    .col-xs-6 {
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-
-    .e-selected-style {
-        border-color: #006CE6;
-        border-width: 2px;
-    }
-</style>
 <div class="col-lg-9 control-section">
+    <style>
+        .image-pattern-style {
+                    background-color: white;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    height: 45px;
+                    width: calc((100% - 13px) / 3);
+                    cursor: pointer;
+                    border: 1px solid #D5D5D5;
+                    background-position: center;
+                    float: left;
+                }
+            
+                .image-pattern-style:hover {
+                    border-color: gray;
+                    border-width: 2px;
+                }
+            
+                .row {
+                    margin-left: 0px;
+                    margin-right: 0px;
+                }
+            
+                .row-header {
+                    font-size: 13px;
+                    font-weight: 500;
+                }
+            
+                .e-checkbox-wrapper .e-label {
+                    font-size: 12px;
+                }
+            
+                .col-xs-6 {
+                    padding-left: 0px;
+                    padding-right: 0px;
+                }
+            
+                .e-selected-style {
+                    border-color: #006CE6;
+                    border-width: 2px;
+                }
+            </style>
     <div class="content-wrapper" style="width:100%;background: white">
         <div id="diagram"></div>
     </div>
@@ -94,12 +94,14 @@
 </div>
 <div id="action-description">
     <p>
-        This sample visualizes the data flow in a marketing process using predefined shapes and connectors. Different types of connectors and decorators are used to customize the appearance, path, and direction of the data flow.
+        This sample visualizes the data flow in a marketing process using predefined shapes and connectors. Different
+        types of connectors and decorators are used to customize the appearance, path, and direction of the data flow.
     </p>
 </div>
 <div id="description">
     <p>
-        In this example, you can see how to add connectors to connect the shapes and how to customize the appearance of the connectors.
+        In this example, you can see how to add connectors to connect the shapes and how to customize the appearance of
+        the connectors.
         You can use the <code>style</code> property of the connector to customize its stroke style. You can use the
         <code>cornerRadius</code> property to add connectors with rounded corners.
     </p>
@@ -110,14 +112,16 @@
 
     <p>
         Additionally, you can see how to lock the connectors to disable editing. The
-        <code>constraints</code> property of connector enables/disables editing. 
+        <code>constraints</code> property of connector enables/disables editing.
         In this example, the shapes are automatically arranged using hierarchical tree layout.
     </p>
 
     <p style="font-weight: 500">Injecting Module</p>
 
     <p>
-        Diagram component's features are segregated into individual feature-wise modules. To automatically arrange the shapes, we need to Inject <code>HierarchicalTree</code> module using <code>Diagram.Inject(HierarchicalTree)</code> method.
+        Diagram component's features are segregated into individual feature-wise modules. To automatically arrange the
+        shapes, we need to Inject <code>HierarchicalTree</code> module using <code>Diagram.Inject(HierarchicalTree)</code>
+        method.
     </p>
     <br>
 </div>

@@ -1,42 +1,22 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample for PERT Chart
  */
 
-import { Diagram, NodeModel, DataBinding, DiagramElement, StackPanel, VerticalAlignment,
+import {
+    Diagram, NodeModel, DataBinding, DiagramElement, StackPanel, VerticalAlignment, randomId,
     SnapConstraints, TextStyleModel, TextElement, HorizontalAlignment, DiagramTools,
     HierarchicalTree, ComplexHierarchicalTree, ConnectorModel
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
-import { pertChartData, DataInfo } from './diagram-data';
+import * as Data from './diagram-data.json';
+
+export interface DataInfo {
+    [key: string]: string;
+}
 
 Diagram.Inject(DataBinding, HierarchicalTree, ComplexHierarchicalTree);
 
-(window as any).default = (): void => {
-    //Initializes diagram control
-    let diagram: Diagram = new Diagram({
-        width: '100%', height: '499px', snapSettings: { constraints: SnapConstraints.None },
-        dataSourceSettings: {
-            id: 'id', parentId: 'Category',
-            dataManager: new DataManager(pertChartData as JSON[]),
-            //binds the external data with node
-            doBinding: (nodeModel: NodeModel) => {
-                /* tslint:disable:no-string-literal */
-                nodeModel['shape'] = { type: 'Text' };
-            }
-        },
-        layout: {
-            type: 'ComplexHierarchicalTree', orientation: 'LeftToRight',
-            verticalSpacing: 100, horizontalSpacing: 70
-        },
-        //Sets the default values of connector
-        getConnectorDefaults: getConnectorDefaults,
-        //used to customize template of the node.
-        setNodeTemplate: setNodeTemplate,
-        tool: DiagramTools.ZoomPan
-    });
-    diagram.appendTo('#diagram');
-    diagram.fitToPage();
-};
 
 function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     connector.type = 'Straight';
@@ -50,10 +30,12 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
 //customization of the node template.
 function setNodeTemplate(node: NodeModel): StackPanel {
     let table: StackPanel = new StackPanel();
+    table.id = randomId();
     table.style.fill = '#0069d9';
     table.orientation = 'Vertical';
     let nameKey: string = 'id';
     let stack: StackPanel = new StackPanel();
+    stack.id = randomId();
     stack.children = [];
     stack.height = 25;
     stack.orientation = 'Horizontal';
@@ -71,6 +53,7 @@ function getTextElement(
     width?: number, valignment?: VerticalAlignment
 ): DiagramElement {
     let textElement: TextElement = new TextElement();
+    textElement.id = randomId();
     textElement.content = text;
     textElement.width = width;
     textElement.height = 25;
@@ -90,3 +73,31 @@ function addRows(column: StackPanel, node: NodeModel): void {
     column.children.push(getTextElement(nodeInfo.duration, 'Center', 30));
     column.children.push(getTextElement(nodeInfo.endDate, 'Right', 70));
 }
+
+(window as any).default = (): void => {
+    loadCultureFiles();
+    //Initializes diagram control
+    let diagram: Diagram = new Diagram({
+        width: '100%', height: '499px', snapSettings: { constraints: SnapConstraints.None },
+        dataSourceSettings: {
+            id: 'id', parentId: 'Category',
+            dataManager: new DataManager((Data as any).pertChartData),
+            //binds the external data with node
+            doBinding: (nodeModel: NodeModel) => {
+                /* tslint:disable:no-string-literal */
+                nodeModel['shape'] = { type: 'Text' };
+            }
+        },
+        layout: {
+            type: 'ComplexHierarchicalTree', orientation: 'LeftToRight',
+            verticalSpacing: 100, horizontalSpacing: 70
+        },
+        //Sets the default values of connector
+        getConnectorDefaults: getConnectorDefaults,
+        //used to customize template of the node.
+        setNodeTemplate: setNodeTemplate,
+        tool: DiagramTools.ZoomPan
+    });
+    diagram.appendTo('#diagram');
+    diagram.fitToPage();
+};

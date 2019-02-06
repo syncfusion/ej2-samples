@@ -1,13 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { SampleDataSource } from './data';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Hourly Weather Forecast (in Celsius)',
@@ -29,15 +30,17 @@ this.default = (): void => {
             showLabel: false,
             format: '{value} C'
         },
-        dataSource: newDataSource.legentSampleData,
+        dataSource: (data as any).legendSampleData,
         paletteSettings: {
             palette: [{ value: 0, color: '#6EB5D0' },
             { value: 10, color: '#7EDCA2' },
-            { value: 20, color: '#DCD57E' },
+            { value: 19, color: '#DCD57E' },
+            { value: 22, color: '#DCD57E' }
             ]
         },
         legendSettings: {
             position: 'Left',
+            labelFormat: '{value}\xB0 C',
         },
         tooltipRender: (args: ITooltipEventArgs) => {
             args.content = [args.xLabel + ' | ' + args.yLabel + ' : ' + args.value + '\xB0 C'];

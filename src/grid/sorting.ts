@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { Grid, Sort, Page, Selection, SortEventArgs } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
@@ -6,7 +7,8 @@ Grid.Inject(Sort, Page, Selection);
 /**
  * Sorting sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid(
         {
             dataSource: orderData,
@@ -15,8 +17,8 @@ this.default = (): void => {
             allowSorting: true,
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },
-                { field: 'CustomerName', headerText: 'Customer Name', width: 170 },
-                { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'Right' },
+                { field: 'CustomerName', headerText: 'Customer Name', width: 150 },
+                { field: 'OrderDate', headerText: 'Order Date', width: 140, format: 'yMd', textAlign: 'Right' },
                 { field: 'Freight', width: 120, format: 'C2', textAlign: 'Right' },
                 { field: 'ShipCountry', headerText: 'Ship Country', width: 150 }
             ],

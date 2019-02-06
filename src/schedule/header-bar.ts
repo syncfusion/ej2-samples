@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { createElement, compile, extend } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { Popup } from '@syncfusion/ej2-popups';
 import { ItemModel } from '@syncfusion/ej2-navigations';
 import { Schedule, Month, ActionEventArgs, ToolbarActionArgs, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { employeeEventData, applyCategoryColor } from './datasource';
+import * as dataSource from './datasource.json';
+import { applyCategoryColor } from './helper';
 
 Schedule.Inject(Month, Resize, DragAndDrop);
 
@@ -11,8 +13,9 @@ Schedule.Inject(Month, Resize, DragAndDrop);
  *  Schedule header customization sample
  */
 
-this.default = () => {
-    let data: Object[] = <Object[]>extend([], employeeEventData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
@@ -62,11 +65,11 @@ this.default = () => {
     scheduleObj.element.parentElement.appendChild(userContentEle);
 
     let userIconEle: HTMLElement = scheduleObj.element.querySelector('.e-schedule-user-icon') as HTMLElement;
-    let getDOMString: (data: object) => HTMLCollection = compile('<div class="profile-container"><div class="profile-image">' +
+    let getDOMString: (data: object) => NodeList = compile('<div class="profile-container"><div class="profile-image">' +
         '</div><div class="content-wrap"><div class="name">Nancy</div>' +
         '<div class="destination">Product Manager</div><div class="status">' +
         '<div class="status-icon"></div>Online</div></div></div>');
-    let output: HTMLCollection = getDOMString({});
+    let output: NodeList = getDOMString({});
     let profilePopup: Popup = new Popup(userContentEle, {
         content: output[0] as HTMLElement,
         relateTo: userIconEle,

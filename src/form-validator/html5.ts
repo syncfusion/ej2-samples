@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { FormValidator, FormValidatorModel } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
 
 /**
  * FormValidator Sample
  */
-export default () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Initialize Submit button
     let buttonFormValidate: Button = new Button({ isPrimary: true });

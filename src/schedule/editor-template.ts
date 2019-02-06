@@ -1,11 +1,12 @@
-import { extend } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 import { DateTimePicker } from '@syncfusion/ej2-calendars';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import {
     Schedule, Day, Week, WorkWeek, Month, PopupOpenEventArgs,
     ActionEventArgs, EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
-import { doctorsEventData } from './datasource';
+import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
 
@@ -13,8 +14,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
  * Schedule editor template sample
  */
 
-this.default = () => {
-    let data: Object[] = <Object[]>extend([], doctorsEventData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).doctorsEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

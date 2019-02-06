@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Changing exporting sample.
  */
@@ -7,7 +8,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 
 Maps.Inject(Marker, MapsTooltip);
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -22,7 +24,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapeSettings: { fill: 'lightgrey', border: { color: 'black', width: 0.1 } },
                 markerSettings: [
                     {
@@ -57,7 +59,7 @@ this.default = (): void => {
     });
     mode.appendTo('#mode');
     let togglebtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn.appendTo('#togglebtn');
     document.getElementById('togglebtn').onclick = () => {

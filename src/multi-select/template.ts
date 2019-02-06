@@ -1,26 +1,17 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * MultiSelect Template Sample
  */
 import { MultiSelect } from '@syncfusion/ej2-dropdowns';
+import * as data from './dataSource.json';
 
-this.default = () => {
-
-    let employees: { [key: string]: Object }[] = [
-        { Name: 'Andrew', Eimg: '7', Job: 'Team Lead', Country: 'England' },
-        { Name: 'Anne Dodsworth', Eimg: '1', Job: 'Developer', Country: 'USA' },
-        { Name: 'Janet Leverling', Eimg: '3', Job: 'HR', Country: 'USA' },
-        { Name: 'Laura Callahan', Eimg: '2', Job: 'Product Manager', Country: 'USA' },
-        { Name: 'Margaret', Eimg: '6', Job: 'Developer', Country: 'USA' },
-        { Name: 'Michael Suyama', Eimg: '9', Job: 'Team Lead', Country: 'USA' },
-        { Name: 'Nancy Davolio', Eimg: '4', Job: 'Product Manager', Country: 'USA' },
-        { Name: 'Robert King', Eimg: '8', Job: 'Developer ', Country: 'England' },
-        { Name: 'Steven', Eimg: '10', Job: 'CEO', Country: 'England' }
-    ];
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // initialize MultiSelect component
     let listObj: MultiSelect = new MultiSelect({
         // set the employees data to dataSource property
-        dataSource: employees,
+        dataSource: (data as any).empList,
         // map the appropriate columns to fields property
         fields: { text: 'Name', value: 'Eimg' },
         // set the template content for popup header element

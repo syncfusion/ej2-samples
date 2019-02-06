@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     AccumulationTheme, AccumulationChart, AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip,
     IAccAnimationCompleteEventArgs, AccPoints, IAccTextRenderEventArgs, AccumulationSelection,
@@ -13,7 +14,8 @@ let centerTitle: HTMLDivElement = document.createElement('div') as HTMLDivElemen
 centerTitle.innerHTML = 'Expenses <br> Year  &nbsp 2013';
 centerTitle.style.position = 'absolute';
 centerTitle.style.visibility = 'hidden';
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pie: AccumulationChart = new AccumulationChart({
         enableSmartLabels: true,
         selectionMode: 'Point',
@@ -46,8 +48,8 @@ this.default = (): void => {
         animationComplete: (args: IAccAnimationCompleteEventArgs) => {
             centerTitle.style.fontSize = getFontSize(args.accumulation.initialClipRect.width);
             let rect: ClientRect = centerTitle.getBoundingClientRect();
-            centerTitle.style.top = (args.accumulation.center.y - rect.height / 2) + 'px';
-            centerTitle.style.left = (args.accumulation.center.x - rect.width / 2) + 'px';
+            centerTitle.style.top = (args.accumulation.origin.y - rect.height / 2) + 'px';
+            centerTitle.style.left = (args.accumulation.origin.x - rect.width / 2) + 'px';
             centerTitle.style.visibility = 'visible';
             let points: AccPoints[] = args.accumulation.visibleSeries[0].points;
             for (let point of points) {
@@ -64,11 +66,12 @@ this.default = (): void => {
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             args.accumulation.legendSettings.position = Browser.isDevice ? 'Bottom' : 'Right';
         },
         tooltip: {
-            enable: false,
+            enable: true,
             header: '<b>${point.x}</b>',
             format: 'Composition : <b>${point.y}%</b>'
         },

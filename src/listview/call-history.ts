@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ListView Call history Sample
  */
@@ -6,7 +7,8 @@ import { Tab, SelectEventArgs } from '@syncfusion/ej2-navigations';
 import { Browser } from '@syncfusion/ej2-base';
 
 // tslint:disable-next-line:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     if (!Browser.isDevice) {
         document.getElementsByClassName('layoutWrapper')[0].classList.add('e-device-layout');
     } else {

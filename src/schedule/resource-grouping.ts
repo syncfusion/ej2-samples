@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, ScheduleModel, Week, Month, ResourceDetails, TreeViewArgs, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 
 /**
@@ -5,7 +6,8 @@ import { Schedule, ScheduleModel, Week, Month, ResourceDetails, TreeViewArgs, Ag
  */
 Schedule.Inject(Week, Month, Agenda, Resize, DragAndDrop);
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     interface TemplateFunction extends Window {
         getAirlineImage?: Function;
         getAirlineName?: Function;

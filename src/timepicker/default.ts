@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { TimePicker } from '@syncfusion/ej2-calendars';
 
 /**
  * Default sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let timeObj: TimePicker = new TimePicker({
     });

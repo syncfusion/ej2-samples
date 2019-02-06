@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Heat Map sample
  */
 import { Maps, Marker, MapsTooltip, Legend, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Marker, MapsTooltip, Legend);
 //tslint:disable
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -33,10 +35,10 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/india.json'),
+                shapeData: new MapAjax('./src/maps/map-data/india.json'),
                 shapePropertyPath: 'NAME_1',
                 shapeDataPath: 'Name',
-                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/heatmap-datasource.json'),
+                dataSource: new MapAjax('./src/maps/map-data/heatmap-datasource.json'),
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'population',

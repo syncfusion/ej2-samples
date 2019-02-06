@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * User Interaction sample
  */
@@ -5,7 +6,8 @@ import { CircularGauge, IPointerDragEventArgs, Annotations, getRangeColor, Range
 import { ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let content: string = '<div style="font-size: 14px;color:#E5C31C;font-weight: lighter;font-style: oblique;"><span>';
     let pointerValue: number;
     let circulargauge: CircularGauge = new CircularGauge({

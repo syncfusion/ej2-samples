@@ -1,4 +1,4 @@
-<div class="col-lg-8 control-section">
+<div class="col-lg-8 control-section" style="overflow:auto;">
     <div class="content-wrapper">
         <div id="PivotView" style="width: 100%;height:100%;">
         </div>
@@ -15,7 +15,7 @@
                 </td>
                 <td style="padding-bottom: 16px">
                     <div>
-                        <input type="text" tabindex="1" id='fields' />
+                        <input type="text" tabindex="1" id='value-fields' />
                     </div>
                 </td>
             </tr>
@@ -26,7 +26,7 @@
                 </td>
                 <td style="padding-bottom: 16px">
                     <div>
-                        <input type="text" tabindex="1" id='measures' />
+                        <input type="text" tabindex="1" id='value-measures' />
                     </div>
                 </td>
             </tr>
@@ -37,7 +37,7 @@
                 </td>
                 <td style="padding-bottom: 16px">
                     <div class="conditionscls">
-                        <input type="text" tabindex="1" id='conditions' />
+                        <input type="text" tabindex="1" id='value-conditions' />
                     </div>
                 </td>
             </tr>
@@ -48,7 +48,7 @@
                 </td>
                 <td style="padding-bottom: 16px">
                     <div class="value1cls">
-                        <input type="text" tabindex="1" id='value1' />
+                        <input type="text" tabindex="1" id='value-value1' />
                     </div>
                 </td>
             </tr>
@@ -59,17 +59,17 @@
                 </td>
                 <td style="padding-bottom: 16px">
                     <div class="value2cls">
-                        <input type="text" tabindex="1" id='value2' />
+                        <input type="text" tabindex="1" id='value-value2' />
                     </div>
                 </td>
             </tr>
             <tr style="height: 50px">
                 <td colspan="2">
                     <div style="float:right;margin-right: 4px">
-                        <button id="clear">Clear</button>
+                        <button id="value-clear">Clear</button>
                     </div>
                     <div style="float:right;margin-right: 4px">
-                        <button id="apply">Apply</button>
+                        <button id="value-apply">Apply</button>
                     </div>
                 </td>
             </tr>

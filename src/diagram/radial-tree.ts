@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample for Radial tree
  */
@@ -7,15 +8,38 @@ import {
     NodeConstraints, ZoomOptions, DataBinding, RadialTree, SnapConstraints
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
-import { radialTree, DataInfo } from './diagram-data';
 import { Toolbar, ClickEventArgs } from '@syncfusion/ej2-navigations';
+import * as Data from './diagram-data.json';
+
+export interface DataInfo {
+    [key: string]: string;
+}
+
 Diagram.Inject(DataBinding, RadialTree);
 
 let diagram: Diagram;
 
+
+//based on the option, Click event to perform ZoomIn,ZoomOut and Reset.
+function onItemClick(args: ClickEventArgs): void {
+    switch (args.item.text) {
+        case 'Zoom In':
+            let zoomin: ZoomOptions = { type: 'ZoomIn', zoomFactor: 0.2 };
+            diagram.zoomTo(zoomin);
+            break;
+        case 'Zoom Out':
+            let zoomout: ZoomOptions = { type: 'ZoomOut', zoomFactor: 0.2 };
+            diagram.zoomTo(zoomout);
+            break;
+        case 'Reset':
+            diagram.reset();
+            diagram.fitToPage();
+            break;
+    }
+}
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-
+    loadCultureFiles();
     //Initialize diagram control
     diagram = new Diagram({
         width: '100%', height: '600px', snapSettings: { constraints: SnapConstraints.None },
@@ -23,7 +47,7 @@ let diagram: Diagram;
         dataSourceSettings: {
             //sets the fields to bind
             id: 'Id', parentId: 'ReportingPerson',
-            dataManager: new DataManager(radialTree as JSON[]),
+            dataManager: new DataManager((Data as any).radialTree),
             //binds the data with the nodes
             doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
                 nodeModel.annotations = [{
@@ -87,22 +111,3 @@ let diagram: Diagram;
 
     toolbarObj.appendTo('#toolbar');
 };
-
-
-//based on the option, Click event to perform ZoomIn,ZoomOut and Reset.
-function onItemClick(args: ClickEventArgs): void {
-    switch (args.item.text) {
-        case 'Zoom In':
-            let zoomin: ZoomOptions = { type: 'ZoomIn', zoomFactor: 0.2 };
-            diagram.zoomTo(zoomin);
-            break;
-        case 'Zoom Out':
-            let zoomout: ZoomOptions = { type: 'ZoomOut', zoomFactor: 0.2 };
-            diagram.zoomTo(zoomout);
-            break;
-        case 'Reset':
-            diagram.reset();
-            diagram.fitToPage();
-            break;
-    }
-}

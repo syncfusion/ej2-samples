@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps datalabel sample
  */
 import { Maps, MapsTooltip, DataLabel, ILoadEventArgs, MapsTheme, SmartLabelMode, IntersectAction, MapAjax } from '@syncfusion/ej2-maps';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Maps.Inject(MapsTooltip, DataLabel);
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -21,7 +23,7 @@ this.default = (): void => {
                     labelPath: 'name',
                     smartLabelMode: 'Trim'
                 },
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/usa.json'),
+                shapeData: new MapAjax('./src/maps/map-data/usa.json'),
                 shapeSettings: {
                     autofill: true
                 },

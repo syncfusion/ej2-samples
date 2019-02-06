@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {NumericTextBox} from '@syncfusion/ej2-inputs';
 /**
  * Restrict NumericTextBox sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Render the Numeric Textbox with decimal places as 3
     let numeric: NumericTextBox = new NumericTextBox({

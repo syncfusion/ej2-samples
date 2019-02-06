@@ -1,36 +1,26 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ComboBox Remote-Data & Local-Data Samples
  */
 import { ComboBox } from '@syncfusion/ej2-dropdowns';
-import { Query, DataManager, ODataAdaptor } from '@syncfusion/ej2-data';
+import { Query, DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
+import * as data from './dataSource.json';
 
-this.default = () => {
-    let sportsData: { [key: string]: Object }[] = [
-        { Id: 'Game1', Game: 'American Football' },
-        { Id: 'Game2', Game: 'Badminton' },
-        { Id: 'Game3', Game: 'Basketball' },
-        { Id: 'Game4', Game: 'Cricket' },
-        { Id: 'Game5', Game: 'Football' },
-        { Id: 'Game6', Game: 'Golf' },
-        { Id: 'Game7', Game: 'Hockey' },
-        { Id: 'Game8', Game: 'Rugby' },
-        { Id: 'Game9', Game: 'Snooker' },
-        { Id: 'Game10', Game: 'Tennis' },
-    ];
-
+(window as any).default = (): void => {
+    loadCultureFiles();
     // initialize ComboBox component
     let comboBoxObj1: ComboBox = new ComboBox({
         // bind the DataManager instance to dataSource property
         dataSource: new DataManager({
-            url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Customers',
-            adaptor: new ODataAdaptor,
+            url: 'https://ej2services.syncfusion.com/production/web-services/api/Employees',
+            adaptor: new WebApiAdaptor,
             crossDomain: true
         }),
         // bind the Query instance to query property
-        query: new Query().select(['ContactName', 'CustomerID']).take(25),
+        query: new Query().select(['FirstName', 'EmployeeID']).take(10).requiresCount(),
         // map the appropriate columns to fields property
-        fields: { text: 'ContactName', value: 'CustomerID' },
+        fields: { text: 'FirstName', value: 'EmployeeID' },
         // set the placeholder to ComboBox input element
         placeholder: 'Select a name',
         // set the height of the popup element
@@ -45,11 +35,12 @@ this.default = () => {
     // initialize ComboBox component
     let comboBoxObj2: ComboBox = new ComboBox({
         //set the local data to dataSource property
-        dataSource: sportsData,
+        dataSource: (data as any).sportsData,
         // map the appropriate columns to fields property
         fields: { text: 'Game', value: 'Id' },
         // set the placeholder to ComboBox input element
         placeholder: 'Select a game',
+        // sort the resulted items
         sortOrder: 'Ascending',
         // set the height of the popup element
         popupHeight: '230px',

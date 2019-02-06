@@ -1,12 +1,13 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { SampleDataSource } from './data';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Crude Oil Production of Non-OPEC Countries (in Million barrels per day)',
@@ -25,7 +26,7 @@ this.default = (): void => {
         yAxis: {
             labels: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010'],
         },
-        dataSource: newDataSource.defaultTableDataSource,
+        dataSource: (data as any).defaultTableDataSource,
         cellSettings: {
             border: {
                 width: 0
@@ -34,6 +35,17 @@ this.default = (): void => {
         },
         legendSettings: {
             visible: false,
+        },
+        tooltipSettings: {
+            fill: '#265259',
+            textStyle: {
+                color: '#FFFFFF',
+                size: '12px'
+            },
+            border: {
+                width: 1,
+                color: '#98BABF'
+            }
         },
         paletteSettings: {
             palette: [{ value: 0, color: '#C2E7EC' },

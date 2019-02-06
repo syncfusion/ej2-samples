@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toolbar sample to demonstrate RTL feature.
  */
 import { Toolbar } from '@syncfusion/ej2-navigations';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Toolbar component
     let toolbarObj: Toolbar = new Toolbar({
         items: [

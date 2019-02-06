@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 import { FormValidator } from '@syncfusion/ej2-inputs';
 import { Uploader } from '@syncfusion/ej2-inputs';
@@ -6,7 +7,8 @@ import { Dialog } from '@syncfusion/ej2-popups';
 /**
  * Uploader form support sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize the uploader component
     let uploadObj: Uploader = new Uploader({
         autoUpload: false,

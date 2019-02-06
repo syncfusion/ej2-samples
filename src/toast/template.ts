@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toast template sample
  */
@@ -7,7 +8,8 @@ import { compile, Browser, closest } from '@syncfusion/ej2-base';
 
 /* tslint:disable */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Toast component with HTML template
     let toastObj: Toast = new Toast({
         template: document.getElementById('template_toast_ele').innerHTML,
@@ -47,11 +49,11 @@ this.default = () => {
     let toastFlag: number = 0;
 
     // Toast Dynamic template with TemplateEngine compiler
-    let cardTemplateFn: (data: object) => HTMLCollection = compile(document.getElementById('toastEmail_template').innerHTML.trim());
+    let cardTemplateFn: (data: object) => NodeList = compile(document.getElementById('toastEmail_template').innerHTML.trim());
 
     setTimeout(
         () => {
-            toastObjEmail.show({ template: cardTemplateFn(toastData[toastFlag])[0].outerHTML });
+            toastObjEmail.show({ template: (cardTemplateFn(toastData[toastFlag])[0] as Element).outerHTML });
             ++toastFlag;
         }, 200);
 
@@ -69,7 +71,7 @@ this.default = () => {
     };
 
     btnEle.onclick = () => {
-        toastObjEmail.show({ template: cardTemplateFn(toastData[toastFlag])[0].outerHTML , cssClass : toastFlag == 2 ? "camden" : toastFlag == 3 ? "chase": null });
+        toastObjEmail.show({ template: (cardTemplateFn(toastData[toastFlag])[0] as Element).outerHTML , cssClass : toastFlag == 2 ? "camden" : toastFlag == 3 ? "chase": null });
         ++toastFlag;
         if (toastFlag === (toastData.length)) {
             toastFlag = 0;

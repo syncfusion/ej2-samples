@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DatePicker } from '@syncfusion/ej2-calendars';
 
 /**
  * Range DatePicker sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let today: Date = new Date();
     let currentYear: number = today.getFullYear();
     let currentMonth: number = today.getMonth();

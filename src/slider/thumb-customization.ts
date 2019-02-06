@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider } from '@syncfusion/ej2-inputs';
 
 /**
  * Thumb Customization sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize Slider component
     let squareSlider: Slider = new Slider({
         // Set the value for slider

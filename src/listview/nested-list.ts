@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ListView Nested Sample
  */
 import {ListView} from '@syncfusion/ej2-lists';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     //Define an array of JSON data
     let dataSource: { [key: string]: Object }[] = [

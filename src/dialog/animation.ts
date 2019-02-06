@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Dialog, DialogEffect } from '@syncfusion/ej2-popups';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 /**
  * Animation Dialog sample
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
   //Render Button components
   let zoom: Button = new Button({ cssClass: 'e-outline', isPrimary: true });
   zoom.appendTo('#Zoom');

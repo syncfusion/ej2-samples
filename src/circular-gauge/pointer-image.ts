@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Point Image Customization Sample
  */
@@ -5,7 +6,8 @@ import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-cir
 import { Annotations } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let circulargauge: CircularGauge = new CircularGauge({
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

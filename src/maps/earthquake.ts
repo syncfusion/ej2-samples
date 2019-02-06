@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Earth quake map sample
  */
 import { Maps, Zoom, Marker, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Zoom, Marker);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -16,7 +18,7 @@ this.default = (): void => {
             longitude: 105.14038085937499
         },
         zoomSettings: {
-            enable: true,
+            enable: false,
             zoomFactor: 7,
             mouseWheelZoom: false,
             toolbars: []
@@ -35,7 +37,7 @@ this.default = (): void => {
                 animationDuration: 1000,
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/asia.json'),
+                shapeData: new MapAjax('./src/maps/map-data/asia.json'),
                 markerSettings: [{
                     visible: true,
                     height: 100,

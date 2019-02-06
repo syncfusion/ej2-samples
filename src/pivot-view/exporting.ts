@@ -1,6 +1,5 @@
 
-import { PivotView, FieldList } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -10,7 +9,8 @@ PivotView.Inject(FieldList);
 /**
  * PivotView Exporting Sample.
  */
-
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = (): void => {
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
@@ -39,7 +39,7 @@ this.default = (): void => {
     });
     exportType.appendTo('#mode');
     let exportBtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+        cssClass: 'e-flat', isPrimary: true,
     });
     exportBtn.appendTo('#export-btn');
     document.getElementById('export-btn').onclick = () => {

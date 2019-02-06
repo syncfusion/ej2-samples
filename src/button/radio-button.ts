@@ -3,7 +3,7 @@ import { RadioButton } from '@syncfusion/ej2-buttons';
 /**
  * Default RadioButton sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
     //Checked State
     let radioButton: RadioButton = new RadioButton({label: 'Credit/Debit Card', name: 'payment', value: 'credit/debit', checked: true});
     radioButton.appendTo('#radio1');

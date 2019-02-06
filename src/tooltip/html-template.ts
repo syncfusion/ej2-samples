@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Loading html template sample
  */
@@ -5,7 +6,8 @@
 import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 /* tslint:disable */
-(window as any).default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
   //Initialize Button component
   let button: Button = new Button({ cssClass: 'e-outline', isPrimary: true });
@@ -18,20 +20,28 @@ import { Button } from '@syncfusion/ej2-buttons';
     //Set tooltip open mode
     opensOn: 'Click',
     //Set tooltip content
-    content: '<div id="democontent" class="democontent">' +
-      '<h3 style="margin-top:10px">Eastern Bluebird</h3>' +
-      '<img id="bird" src="./src/tooltip/images/bird.png"/>' +
-      '<p>The <a href="https://en.wikipedia.org/wiki/Eastern_bluebird" target="_blank"> Eastern Bluebird</a> ' +
-      'is easily found in open fields and sparse woodland areas, including along woodland edges. These' +
-      'are cavity-nesting birds and a pair of eastern bluebirds will raise 2-3 broods annually, with 2-8 light blue' +
-      'or whitish eggs per brood.</p>' +
-      '<hr style="margin:10px 0" />' +
-      '<p>Eastern bluebirds can be very vocal in flocks.' +
-      'Their calls include a rapid, mid-tone chatter and several long dropping pitch calls.</p>' +
-      '<p>Source:<br/>' +
-      '<a href="https://en.wikipedia.org/wiki/Eastern_bluebird" target="_blank">https://en.wikipedia.org/wiki/Eastern_bluebird</a>' +
-      '</p>' +
-      '</div>',
+    content: `<div id="democontent" class="democontent">
+			<div class="info">
+				<h3 style="margin-top:10px">Eastern Bluebird
+				</h3>
+        <div id="bird" style="float:right"><img src="./src/tooltip/images/bird.png"
+						 alt="" width="125" height="125"/></div>
+				</div>
+					<div>The
+            <a href="https://en.wikipedia.org/wiki/Eastern_bluebird" target="_blank"> Eastern Bluebird</a>
+            is easily found in open fields and sparse woodland areas, including along woodland edges. These
+						are <i>cavity-nesting birds</i> and a pair of eastern bluebirds will raise 2-3 broods annually, with 2-8 light blue
+						or whitish eggs per brood.</div>
+				<div>
+				<hr style="margin: 9px 0px"/>
+        <p>Eastern bluebirds can be very vocal in flocks.
+        Their calls include a rapid, mid-tone chatter and several long dropping
+					pitch calls.</p>
+				<p>Source:&nbsp;
+					<a href="https://en.wikipedia.org/wiki/Eastern_bluebird" target="_blank">https://en.wikipedia.org/wiki/Eastern_bluebird</a>
+				</p>
+			</div>
+		</div>`,
     //Raise beforeRender event
     beforeOpen: onBeforeRender
   });

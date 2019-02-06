@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ChartTheme, MultiColoredLineSeries } from '@syncfusion/ej2-charts';
 import { Chart, DateTime, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
@@ -7,7 +8,8 @@ Chart.Inject(DateTime, Tooltip, MultiColoredLineSeries);
 /**
  * Sample for Line series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dataValues: Object[] = [];
     let colors: string[] = ['red', 'green', '#ff0097', 'crimson', 'blue', 'darkorange', 'deepskyblue',
         'mediumvioletred', 'violet', 'peru', 'gray', 'deeppink', 'navy'];
@@ -65,7 +67,8 @@ this.default = (): void => {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     chart.appendTo('#container');

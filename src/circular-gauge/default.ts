@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Default sample
  */
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let circulargauge: CircularGauge = new CircularGauge({
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

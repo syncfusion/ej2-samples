@@ -1,5 +1,8 @@
-import { TreeMap, TreeMapTooltip, TreeMapLegend, LegendMode } from '@syncfusion/ej2-treemap';
-import { electionData } from '../treemap/treemap-data/election-data';
+import { loadCultureFiles } from '../common/culture-loader';
+/**
+ * Treemap legend sample
+ */
+import { TreeMap, TreeMapTooltip, TreeMapLegend, LegendMode, LegendPosition, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
@@ -15,14 +18,15 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
  */
 
 let prevTime: Date; let curTime: Date;
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         titleSettings: {
             text: 'US Presidential election result - 2016',
             textStyle: { size: '15px' }
         },
-        dataSource: electionData,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/election-data.json'),
         weightValuePath: 'Population',
         tooltipSettings: {
             visible: true,
@@ -31,8 +35,7 @@ this.default = (): void => {
         legendSettings: {
             visible: true,
             position: 'Top',
-            shape: 'Rectangle',
-            height: '10'
+            shape: 'Rectangle'
         },
         format: 'n',
         useGroupingSeparator: true,
@@ -59,8 +62,46 @@ this.default = (): void => {
         width: 100,
         change: () => {
             treemap.legendSettings.mode = <LegendMode>mode.value;
+            if (mode.value === 'Interactive') {
+                if (treemap.legendSettings.orientation === 'Horizontal' || treemap.legendSettings.orientation === 'None') {
+                    treemap.legendSettings.height = '10';
+                    treemap.legendSettings.width = '';
+                } else {
+                    treemap.legendSettings.height = '70%';
+                    treemap.legendSettings.width = '10';
+                }
+            } else {
+                treemap.legendSettings.height = '';
+                treemap.legendSettings.width = '';
+            }
             treemap.refresh();
         }
     });
     mode.appendTo('#layoutMode');
+    let legendPosition: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Legend Position',
+        width: '100%',
+        change: () => {
+            treemap.legendSettings.position = <LegendPosition>legendPosition.value;
+            if (legendPosition.value === 'Left' || legendPosition.value === 'Right') {
+                treemap.legendSettings.orientation = 'Vertical';
+                if (treemap.legendSettings.mode === 'Interactive') {
+                    treemap.legendSettings.height = '70%';
+                    treemap.legendSettings.width = '10';
+                } else {
+                    treemap.legendSettings.height = '';
+                    treemap.legendSettings.width = '';
+                }
+            } else {
+                treemap.legendSettings.orientation = 'Horizontal';
+                if (treemap.legendSettings.mode === 'Interactive') {
+                    treemap.legendSettings.height = '10';
+                    treemap.legendSettings.width = '';
+                }
+            }
+            treemap.refresh();
+        }
+    });
+    legendPosition.appendTo('#legendPosition');
 };

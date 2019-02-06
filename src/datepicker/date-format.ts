@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DatePicker } from '@syncfusion/ej2-calendars';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 /**
  * Date format DatePicker sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let datepicker: DatePicker = new DatePicker({
         value: new Date(),
         format: 'dd-MMM-yy',

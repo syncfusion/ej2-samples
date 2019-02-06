@@ -1,26 +1,16 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * DropDownList Template Sample
  */
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import * as data from './dataSource.json';
 
-this.default = () => {
-
-    let employees: { [key: string]: Object }[] = [
-        { Name: 'Andrew Fuller', Eimg: '7', Designation: 'Team Lead', Country: 'England' },
-        { Name: 'Anne Dodsworth', Eimg: '1', Designation: 'Developer', Country: 'USA' },
-        { Name: 'Janet Leverling', Eimg: '3', Designation: 'HR', Country: 'USA' },
-        { Name: 'Laura Callahan', Eimg: '2', Designation: 'Product Manager', Country: 'USA' },
-        { Name: 'Margaret Peacock', Eimg: '6', Designation: 'Developer', Country: 'USA' },
-        { Name: 'Michael Suyama', Eimg: '9', Designation: 'Team Lead', Country: 'USA' },
-        { Name: 'Nancy Davolio', Eimg: '4', Designation: 'Product Manager', Country: 'USA' },
-        { Name: 'Robert King', Eimg: '8', Designation: 'Developer ', Country: 'England' },
-        { Name: 'Steven Buchanan', Eimg: '10', Designation: 'CEO', Country: 'England' }
-    ];
-
+(window as any).default = (): void => {
+    loadCultureFiles();
     // initialize DropDownList component
     let dropDownListObj: DropDownList = new DropDownList({
         // set the employees data to dataSource property
-        dataSource: employees,
+        dataSource: (data as any).empList,
         // map the appropriate columns to fields property
         fields: { text: 'Name' },
         // set the template content for popup header element

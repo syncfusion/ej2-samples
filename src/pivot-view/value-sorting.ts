@@ -1,6 +1,5 @@
 
-import { PivotView, FieldList } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(false);
 
@@ -9,7 +8,8 @@ PivotView.Inject(FieldList);
 /**
  * PivotView Value Sorting sample.
  */
-
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = require('./Pivot_Data.json');
 this.default = () => {
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {

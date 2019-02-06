@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor default sample
  */
@@ -6,7 +7,8 @@ import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultAPI: RichTextEditor = new RichTextEditor({
         showCharCount: true,

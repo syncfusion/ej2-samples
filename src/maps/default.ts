@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps default sample
  */
 import { Maps, Legend, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Legend, Marker, MapsTooltip);
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         titleSettings: {
             text: 'YouTube office locations',
@@ -20,10 +22,10 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapePropertyPath: 'continent',
                 shapeDataPath: 'continent',
-                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/default-datasource.json'),
+                dataSource: new MapAjax('./src/maps/map-data/default-datasource.json'),
                 shapeSettings: {
                     colorValuePath: 'color',
                 },

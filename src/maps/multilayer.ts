@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Multi-layer map sample
  */
 import { Maps, Marker, ILoadEventArgs, MapsTheme, MapsTooltip, DataLabel, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Marker, MapsTooltip, DataLabel);
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -23,7 +25,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/usa.json'),
+                shapeData: new MapAjax('./src/maps/map-data/usa.json'),
                 shapeSettings: {
                     fill: '#E5E5E5',
                     border: {
@@ -38,7 +40,7 @@ this.default = (): void => {
                 }
             },
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/texas.json'),
+                shapeData: new MapAjax('./src/maps/map-data/texas.json'),
                 type: 'SubLayer',
                 shapeSettings: {
                     fill: 'rgba(141, 206, 255, 0.6)',
@@ -79,7 +81,7 @@ this.default = (): void => {
                 ]
             },
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/california.json'),
+                shapeData: new MapAjax('./src/maps/map-data/california.json'),
                 type: 'SubLayer',
                 shapeSettings: {
                     fill: 'rgba(141, 206, 255, 0.6)',

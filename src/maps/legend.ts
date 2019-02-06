@@ -1,10 +1,17 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Legend Sample
  */
-import { Maps, Legend, MapsTooltip, ITooltipRenderEventArgs, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Legend, LegendMode, MapsTooltip, ITooltipRenderEventArgs,
+    ILoadEventArgs, MapsTheme, MapAjax, LegendPosition } from '@syncfusion/ej2-maps';
+import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { EmitType } from '@syncfusion/ej2-base';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Maps.Inject(Legend, MapsTooltip);
 /* tslint:disable:no-string-literal */
-this.default = (): void => {
+//tslint:disable:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
     let maps: Maps = new Maps({
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
@@ -27,14 +34,14 @@ this.default = (): void => {
         },
         legendSettings: {
             visible: true,
-            position: 'Top'
+            position: 'Top',
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/legend-datasource.json'),
+                dataSource: new MapAjax('./src/maps/map-data/legend-datasource.json'),
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'name',
@@ -58,6 +65,9 @@ this.default = (): void => {
                         },
                         {
                             from: 500, to: 19000, color: 'rgb(0,51,153)', label: '>500'
+                        },
+                        {
+                            color: null, label: null
                         }
                     ]
                 }
@@ -65,4 +75,68 @@ this.default = (): void => {
         ]
     });
     maps.appendTo('#container');
+    let legendPosition: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Legend Position',
+        width: 100,
+        change: () => {
+            maps.legendSettings.position = <LegendPosition>legendPosition.value;
+            if (legendPosition.value === 'Left' || legendPosition.value === 'Right') {
+                maps.legendSettings.orientation = 'Vertical';
+                if (maps.legendSettings.mode === 'Interactive') {
+                    maps.legendSettings.height = '70%';
+                    maps.legendSettings.width = '10';
+                } else {
+                    maps.legendSettings.height = '';
+                    maps.legendSettings.width = '';
+                }
+            } else {
+                maps.legendSettings.orientation = 'Horizontal';
+                if (maps.legendSettings.mode === 'Interactive') {
+                    maps.legendSettings.height = '10';
+                    maps.legendSettings.width = '';
+                }
+            }
+            maps.refresh();
+        }
+    });
+    legendPosition.appendTo('#legendPosition');
+    let mode: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select layoutMode type',
+        width: 100,
+        change: () => {
+            maps.legendSettings.mode = <LegendMode>mode.value;
+            if (mode.value === 'Interactive') {
+                if (maps.legendSettings.orientation === 'Horizontal' || maps.legendSettings.orientation === 'None') {
+                    maps.legendSettings.height = '10';
+                    maps.legendSettings.width = '';
+                } else {
+                    maps.legendSettings.height = '70%';
+                    maps.legendSettings.width = '10';
+                }
+            } else {
+                maps.legendSettings.height = '';
+                maps.legendSettings.width = '';
+            }
+            maps.refresh();
+        }
+    });
+    mode.appendTo('#legendMode');
+    let opacity: EmitType<CheckBoxChangeEvents>;
+    let highlightCheckBox: CheckBox = new CheckBox(
+    {
+        change: opacity, checked: false
+    },
+    '#opacity');
+    highlightCheckBox.change = opacity = (e: CheckBoxChangeEvents) => {
+        if (e.checked) {
+            maps.layers[0].shapeSettings.colorMapping[5].color = 'lightgrey';
+            maps.layers[0].shapeSettings.colorMapping[5].label = 'No Data';
+        } else {
+            maps.layers[0].shapeSettings.colorMapping[5].color = null;
+            maps.layers[0].shapeSettings.colorMapping[5].label = null;
+        }
+        maps.refresh();
+    };
 };

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     HeatMap, Legend, Tooltip, Adaptor, BubbleTooltipData, ITooltipEventArgs,
     ILoadedEventArgs, HeatMapTheme
@@ -7,7 +8,8 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let jsonCellBubbleData: Object = [
             { Year: '2017', Months: 'Jan-Feb', Accidents: 4, Fatalities: 39 },
             { Year: '2017', Months: 'Mar-Apr', Accidents: 3, Fatalities: 8 },

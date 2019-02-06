@@ -1,6 +1,8 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Sample for CSS Vertical Layout Cards.
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
  //
 };

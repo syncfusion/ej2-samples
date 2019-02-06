@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, Chart, IChangedEventArgs, ILabelRenderEventsArgs, IRangeTooltipRenderEventArgs } from '@syncfusion/ej2-charts';
 import { Logarithmic, StepAreaSeries, StepLineSeries, RangeTooltip } from '@syncfusion/ej2-charts';
 import { Crosshair, ChartTheme } from '@syncfusion/ej2-charts';
@@ -19,12 +20,13 @@ for (let i: number = 0; i < 100; i++) {
 }
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
 let themes: string[] = ['Material', 'Fabric', 'Bootstrap', 'Highcontrast'];
 let borderColor: string[] = ['#00bdae', '#4472c4', '#a16ee5', '#79ECE4'];
 let regionColor: string[] = ['rgba(0, 189, 174, 0.3)', 'rgba(68, 114, 196, 0.3)',
     'rgba(161, 110, 229, 0.3)', 'rgba(121, 236, 228, 0.3)'];
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart(
         {
             primaryXAxis: {

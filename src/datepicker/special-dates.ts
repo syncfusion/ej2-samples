@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 ﻿import { DatePicker, RenderDayCellEventArgs } from '@syncfusion/ej2-calendars';
 import { addClass } from '@syncfusion/ej2-base';
 /**
  * Special DatePicker sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let datepicker: DatePicker = new DatePicker({
         renderDayCell: customDates, value: new Date('1/13/2017'),
         cssClass: 'e-customStyle'

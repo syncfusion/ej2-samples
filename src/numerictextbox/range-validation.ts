@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {NumericTextBox} from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
 /**
  * Min-Max Range NumericTextBox sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Render numeric textbox with specific range
     let numeric: NumericTextBox = new NumericTextBox({

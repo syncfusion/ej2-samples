@@ -1,9 +1,14 @@
-
-import { TreeMap, TreeMapTooltip, IDrillStartEventArgs, ITreeMapTooltipRenderEventArgs } from '@syncfusion/ej2-treemap';
-import { DrillDown } from '../treemap/treemap-data/drilldown-sample';
+import { loadCultureFiles } from '../common/culture-loader';
+/**
+ * Drilldown sample
+ */
+import { TreeMap, TreeMapTooltip, IDrillStartEventArgs, ITreeMapTooltipRenderEventArgs, TreeMapAjax } from '@syncfusion/ej2-treemap';
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+
+// Treemap theme changes
+
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
@@ -15,8 +20,10 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
  */
 
 let prevTime: Date; let curTime: Date;
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
+        // show the header in level two
         drillStart: (args: IDrillStartEventArgs) => {
             if (args.item[Object.keys(args.item)[0]].length === 1) {
                 args.treemap.levels[2].showHeader = true;
@@ -24,6 +31,7 @@ this.default = (): void => {
                 args.treemap.levels[2].showHeader = false;
             }
         },
+        // show the tooltip level two
         tooltipRendering: (args: ITreeMapTooltipRenderEventArgs) => {
             //tslint:disable-next-line
             if (args.item['groupIndex'] !== 2 ) {
@@ -39,7 +47,7 @@ this.default = (): void => {
         enableDrillDown: true,
         format: 'n',
         useGroupingSeparator: true,
-        dataSource: DrillDown,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/drilldown-sample.json'),
         weightValuePath: 'Population',
         tooltipSettings: {
             visible: true,

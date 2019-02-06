@@ -3,6 +3,100 @@
  * Grid datasource
  */
 
+export function getTradeData(dataCount?: number): object {
+    let employees: string[] = [
+        'Michael', 'Kathryn', 'Tamer', 'Martin', 'Davolio', 'Nancy', 'Fuller', 'Leverling', 'Peacock',
+        'Margaret', 'Buchanan', 'Janet', 'Andrew', 'Callahan', 'Laura', 'Dodsworth', 'Anne',
+        'Bergs', 'Vinet', 'Anton', 'Fleet', 'Zachery', 'Van', 'King', 'Jack', 'Rose'];
+    let designation: string[] = ['Manager', 'CFO', 'Designer', 'Developer', 'Program Directory', 'System Analyst', 'Project Lead'];
+    let mail: string[] = ['sample.com', 'arpy.com', 'rpy.com', 'mail.com', 'jourrapide.com'];
+    let location: string[] = ['UK', 'USA', 'Sweden', 'France', 'Canada', 'Argentina', 'Austria', 'Germany', 'Mexico'];
+    let status: string[] = ['Active', 'Inactive'];
+    let trustworthiness: string[] = ['Perfect', 'Sufficient', 'Insufficient'];
+    let tradeData: Object[] = [];
+    let address: string[] = ['59 rue de lAbbaye', 'Luisenstr. 48', 'Rua do Paço, 67', '2, rue du Commerce', 'Boulevard Tirou, 255',
+        'Rua do mailPaço, 67', 'Hauptstr. 31', 'Starenweg 5', 'Rua do Mercado, 12',
+        'Carrera 22 con Ave. Carlos Soublette #8-35', 'Kirchgasse 6',
+        'Sierras de Granada 9993', 'Mehrheimerstr. 369', 'Rua da Panificadora, 12', '2817 Milton Dr.', 'Kirchgasse 6',
+        'Åkergatan 24', '24, place Kléber', 'Torikatu 38', 'Berliner Platz 43', '5ª Ave. Los Palos Grandes', '1029 - 12th Ave. S.',
+        'Torikatu 38', 'P.O. Box 555', '2817 Milton Dr.', 'Taucherstraße 10', '59 rue de lAbbaye', 'Via Ludovico il Moro 22',
+        'Avda. Azteca 123', 'Heerstr. 22', 'Berguvsvägen  8', 'Magazinweg 7', 'Berguvsvägen  8', 'Gran Vía, 1', 'Gran Vía, 1',
+        'Carrera 52 con Ave. Bolívar #65-98 Llano Largo', 'Magazinweg 7', 'Taucherstraße 10', 'Taucherstraße 10',
+        'Av. Copacabana, 267', 'Strada Provinciale 124', 'Fauntleroy Circus', 'Av. dos Lusíadas, 23',
+        'Rua da Panificadora, 12', 'Av. Inês de Castro, 414', 'Avda. Azteca 123', '2817 Milton Dr.'];
+    let employeeimg: string[] = ['usermale', 'userfemale'];
+    if (typeof dataCount === 'string') {
+        dataCount = parseInt(dataCount, 10);
+    }
+    for (let i: number = 1; i <= dataCount; i++) {
+        let code: any = 10000;
+        tradeData.push({
+            'EmployeeID': code + i,
+            'Employees':
+            employees[Math.floor(Math.random() * employees.length)] + ' ' + employees[Math.floor(Math.random() * employees.length)],
+            'Designation': designation[Math.floor(Math.random() * designation.length)],
+            'Location': location[Math.floor(Math.random() * location.length)],
+            'Status': status[Math.floor(Math.random() * status.length)],
+            'Trustworthiness': trustworthiness[Math.floor(Math.random() * trustworthiness.length)],
+            'Rating': Math.floor(Math.random() * 5),
+            'Software': Math.floor(Math.random() * 100),
+            'EmployeeImg': employeeimg[Math.floor(Math.random() * employeeimg.length)],
+            'CurrentSalary': Math.floor((Math.random() * 100000)),
+            'Address': address[Math.floor(Math.random() * address.length)],
+        });
+        let employee: string = 'Employees';
+        let emp: string = tradeData[i - 1][employee];
+        let sName: string = emp.substr(0, emp.indexOf(' ')).toLowerCase();
+        let empmail: string = 'Mail';
+        tradeData[i - 1][empmail] = sName + (Math.floor(Math.random() * 100) + 10) + '@' + mail[Math.floor(Math.random() * mail.length)];
+
+    }
+    return tradeData;
+}
+export let virtualData: Object[] = [];
+export function dataSource(): void {
+    let names: string[] = ['VINET', 'TOMSP', 'HANAR', 'VICTE', 'SUPRD', 'HANAR', 'CHOPS', 'RICSU', 'WELLI', 'HILAA', 'ERNSH', 'CENTC',
+    'OTTIK', 'QUEDE', 'RATTC', 'ERNSH', 'FOLKO', 'BLONP', 'WARTH', 'FRANK', 'GROSR', 'WHITC', 'WARTH', 'SPLIR', 'RATTC', 'QUICK', 'VINET',
+    'MAGAA', 'TORTU', 'MORGK', 'BERGS', 'LEHMS', 'BERGS', 'ROMEY', 'ROMEY', 'LILAS', 'LEHMS', 'QUICK', 'QUICK', 'RICAR', 'REGGC', 'BSBEV',
+    'COMMI', 'QUEDE', 'TRADH', 'TORTU', 'RATTC', 'VINET', 'LILAS', 'BLONP', 'HUNGO', 'RICAR', 'MAGAA', 'WANDK', 'SUPRD', 'GODOS', 'TORTU',
+    'OLDWO', 'ROMEY', 'LONEP', 'ANATR', 'HUNGO', 'THEBI', 'DUMON', 'WANDK', 'QUICK', 'RATTC', 'ISLAT', 'RATTC', 'LONEP', 'ISLAT', 'TORTU',
+    'WARTH', 'ISLAT', 'PERIC', 'KOENE', 'SAVEA', 'KOENE', 'BOLID', 'FOLKO', 'FURIB', 'SPLIR', 'LILAS', 'BONAP', 'MEREP', 'WARTH', 'VICTE',
+    'HUNGO', 'PRINI', 'FRANK', 'OLDWO', 'MEREP', 'BONAP', 'SIMOB', 'FRANK', 'LEHMS', 'WHITC', 'QUICK', 'RATTC', 'FAMIA'];
+    for (let i: number = 0; i < 100000; i++) {
+        virtualData.push({
+            'FIELD1': names[Math.floor(Math.random() * names.length)],
+            'FIELD2': 1967 + (i % 10),
+            'FIELD3': Math.floor(Math.random() * 200),
+            'FIELD4': Math.floor(Math.random() * 100),
+            'FIELD5': Math.floor(Math.random() * 2000),
+            'FIELD6': Math.floor(Math.random() * 1000),
+            'FIELD7': Math.floor(Math.random() * 100),
+            'FIELD8': Math.floor(Math.random() * 10),
+            'FIELD9': Math.floor(Math.random() * 10),
+            'FIELD10': Math.floor(Math.random() * 100),
+            'FIELD11': Math.floor(Math.random() * 100),
+            'FIELD12': Math.floor(Math.random() * 1000),
+            'FIELD13': Math.floor(Math.random() * 10),
+            'FIELD14': Math.floor(Math.random() * 10),
+            'FIELD15': Math.floor(Math.random() * 1000),
+            'FIELD16': Math.floor(Math.random() * 200),
+            'FIELD17': Math.floor(Math.random() * 300),
+            'FIELD18': Math.floor(Math.random() * 400),
+            'FIELD19': Math.floor(Math.random() * 500),
+            'FIELD20': Math.floor(Math.random() * 700),
+            'FIELD21': Math.floor(Math.random() * 800),
+            'FIELD22': Math.floor(Math.random() * 1000),
+            'FIELD23': Math.floor(Math.random() * 2000),
+            'FIELD24': Math.floor(Math.random() * 150),
+            'FIELD25': Math.floor(Math.random() * 1000),
+            'FIELD26': Math.floor(Math.random() * 100),
+            'FIELD27': Math.floor(Math.random() * 400),
+            'FIELD28': Math.floor(Math.random() * 600),
+            'FIELD29': Math.floor(Math.random() * 500),
+            'FIELD30': Math.floor(Math.random() * 300),
+        });
+    }
+}
 export let productData: Object[] = [
     {
         'ProductID': 1,
@@ -25468,3 +25562,83 @@ export const orderDetails: Object[] = JSON.parse(order, (field: string, value: a
     }
     return value;
 });
+
+/**
+ * Hierarchy Order data source
+ */
+export let hierarchyOrderdata: Object[] = [
+    {
+        OrderID: 10248, CustomerID: 'VINET', EmployeeID: 5, OrderDate: new Date(8364186e5),
+        ShipName: 'Vins et alcools Chevalier', ShipCity: 'Reims', ShipAddress: '59 rue de l Abbaye',
+        ShipRegion: 'CJ', ShipPostalCode: '51100', ShipCountry: 'France', Freight: 32.38, Verified: !0
+    },
+    {
+        OrderID: 10249, CustomerID: 'TOMSP', EmployeeID: 6, OrderDate: new Date(836505e6),
+        ShipName: 'Toms Spezialitäten', ShipCity: 'Münster', ShipAddress: 'Luisenstr. 48',
+        ShipRegion: 'CJ', ShipPostalCode: '44087', ShipCountry: 'Germany', Freight: 11.61, Verified: !1
+    },
+    {
+        OrderID: 10250, CustomerID: 'HANAR', EmployeeID: 2, OrderDate: new Date(8367642e5),
+        ShipName: 'Hanari Carnes', ShipCity: 'Rio de Janeiro', ShipAddress: 'Rua do Paço, 67',
+        ShipRegion: 'RJ', ShipPostalCode: '05454-876', ShipCountry: 'Brazil', Freight: 65.83, Verified: !0
+    },
+    {
+        OrderID: 10251, CustomerID: 'VICTE', EmployeeID: 3, OrderDate: new Date(8367642e5),
+        ShipName: 'Victuailles en stock', ShipCity: 'Lyon', ShipAddress: '2, rue du Commerce',
+        ShipRegion: 'CJ', ShipPostalCode: '69004', ShipCountry: 'France', Freight: 41.34, Verified: !0
+    },
+    {
+        OrderID: 10252, CustomerID: 'SUPRD', EmployeeID: 4, OrderDate: new Date(8368506e5),
+        ShipName: 'Suprêmes délices', ShipCity: 'Charleroi', ShipAddress: 'Boulevard Tirou, 255',
+        ShipRegion: 'CJ', ShipPostalCode: 'B-6000', ShipCountry: 'Belgium', Freight: 51.3, Verified: !0
+    },
+    {
+        OrderID: 10253, CustomerID: 'HANAR', EmployeeID: 3, OrderDate: new Date(836937e6),
+        ShipName: 'Hanari Carnes', ShipCity: 'Rio de Janeiro', ShipAddress: 'Rua do Paço, 67',
+        ShipRegion: 'RJ', ShipPostalCode: '05454-876', ShipCountry: 'Brazil', Freight: 58.17, Verified: !0
+    },
+    {
+        OrderID: 10254, CustomerID: 'CHOPS', EmployeeID: 5, OrderDate: new Date(8370234e5),
+        ShipName: 'Chop-suey Chinese', ShipCity: 'Bern', ShipAddress: 'Hauptstr. 31',
+        ShipRegion: 'CJ', ShipPostalCode: '3012', ShipCountry: 'Switzerland', Freight: 22.98, Verified: !1
+    },
+    {
+        OrderID: 10255, CustomerID: 'RICSU', EmployeeID: 9, OrderDate: new Date(8371098e5),
+        ShipName: 'Richter Supermarkt', ShipCity: 'Genève', ShipAddress: 'Starenweg 5',
+        ShipRegion: 'CJ', ShipPostalCode: '1204', ShipCountry: 'Switzerland', Freight: 148.33, Verified: !0
+    },
+    {
+        OrderID: 10256, CustomerID: 'WELLI', EmployeeID: 3, OrderDate: new Date(837369e6),
+        ShipName: 'Wellington Importadora', ShipCity: 'Resende', ShipAddress: 'Rua do Mercado, 12',
+        ShipRegion: 'SP', ShipPostalCode: '08737-363', ShipCountry: 'Brazil', Freight: 13.97, Verified: !1
+    },
+    {
+        OrderID: 10257, CustomerID: 'HILAA', EmployeeID: 4, OrderDate: new Date(8374554e5),
+        ShipName: 'HILARION-Abastos', ShipCity: 'San Cristóbal', ShipAddress: 'Carrera 22 con Ave. Carlos Soublette #8-35',
+        ShipRegion: 'Táchira', ShipPostalCode: '5022', ShipCountry: 'Venezuela', Freight: 81.91, Verified: !0
+    },
+    {
+        OrderID: 10258, CustomerID: 'ERNSH', EmployeeID: 1, OrderDate: new Date(8375418e5),
+        ShipName: 'Ernst Handel', ShipCity: 'Graz', ShipAddress: 'Kirchgasse 6',
+        ShipRegion: 'CJ', ShipPostalCode: '8010', ShipCountry: 'Austria', Freight: 140.51, Verified: !0
+    },
+    {
+        OrderID: 10259, CustomerID: 'CENTC', EmployeeID: 7, OrderDate: new Date(8376282e5),
+        ShipName: 'Centro comercial Moctezuma', ShipCity: 'México D.F.', ShipAddress: 'Sierras de Granada 9993',
+        ShipRegion: 'CJ', ShipPostalCode: '05022', ShipCountry: 'Mexico', Freight: 3.25, Verified: !1
+    },
+    {
+        OrderID: 10260, CustomerID: 'OTTIK', EmployeeID: 4, OrderDate: new Date(8377146e5),
+        ShipName: 'Ottilies Käseladen', ShipCity: 'Köln', ShipAddress: 'Mehrheimerstr. 369',
+        ShipRegion: 'CJ', ShipPostalCode: '50739', ShipCountry: 'Germany', Freight: 55.09, Verified: !0
+    },
+    {
+        OrderID: 10261, CustomerID: 'QUEDE', EmployeeID: 2, OrderDate: new Date(8377146e5),
+        ShipName: 'Que Delícia', ShipCity: 'Rio de Janeiro', ShipAddress: 'Rua da Panificadora, 12',
+        ShipRegion: 'RJ', ShipPostalCode: '02389-673', ShipCountry: 'Brazil', Freight: 3.05, Verified: !1
+    },
+    {
+        OrderID: 10262, CustomerID: 'RATTC', EmployeeID: 8, OrderDate: new Date(8379738e5),
+        ShipName: 'Rattlesnake Canyon Grocery', ShipCity: 'Albuquerque', ShipAddress: '2817 Milton Dr.',
+        ShipRegion: 'NM', ShipPostalCode: '87110', ShipCountry: 'USA', Freight: 48.29, Verified: !0
+    }];

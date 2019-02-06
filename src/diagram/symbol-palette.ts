@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Default symbol palette sample
  */
@@ -64,8 +65,66 @@ let connectorSymbols: ConnectorModel[] = [
     },
 ];
 
+//set Node default value
+function getNodeDefaults(symbol: NodeModel): NodeModel {
+    if (symbol.id === 'Terminator' || symbol.id === 'Process') {
+        symbol.width = 80;
+        symbol.height = 40;
+    } else if (symbol.id === 'Document' || symbol.id === 'PreDefinedProcess' ||
+        symbol.id === 'PaperTap' || symbol.id === 'DirectData') {
+        symbol.width = 50;
+        symbol.height = 40;
+    }
+    symbol.style = { strokeWidth: 2 };
+    return symbol;
+}
+
+function getSymbolInfo(symbol: Symbol): SymbolInfo {
+    return { fit: true };
+}
+
+function onAnimationChange(args: ChangeEventArgs): void {
+    palette.enableAnimation = args.checked;
+}
+
+//Add or Remove the Text for Symbol palette item.
+function onItemTextChange(args: ChangeEventArgs): void {
+    if (args.checked) {
+        palette.getSymbolInfo = (symbol: Symbol): SymbolInfo => {
+            if (symbol.text !== undefined) {
+                return { description: { text: symbol.text, overflow: 'Wrap' } };
+            }
+            return { description: { text: symbol.id } };
+        };
+    } else {
+        palette.getSymbolInfo = (symbol: NodeModel | ConnectorModel): SymbolInfo => {
+            return { description: { text: '' } };
+        };
+    }
+    palette.dataBind();
+}
+
+//enable or disable the header icon for Symbol palette.
+function onHeaderIconChange(args: ChangeEventArgs): void {
+    for (let i: number = 0; i < palette.palettes.length; i++) {
+        if (args.checked) {
+            if (i === 0) {
+                palette.palettes[i].iconCss = 'e-ddb-icons e-basic';
+            } else if (i === 1) {
+                palette.palettes[i].iconCss = 'e-ddb-icons e-flow';
+            } else if (i === 2) {
+                palette.palettes[i].iconCss = 'e-ddb-icons e-connector';
+            }
+        } else {
+            palette.palettes[i].iconCss = '';
+        }
+    }
+}
+
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
     //Initializes the symbol palette
     palette = new SymbolPalette({
         expandMode: 'Multiple', allowDrag: false,
@@ -124,59 +183,3 @@ let connectorSymbols: ConnectorModel[] = [
     palette.dataBind();
     headericon.appendTo('#headericon');
 };
-
-//set Node default value
-function getNodeDefaults(symbol: NodeModel): NodeModel {
-    if (symbol.id === 'Terminator' || symbol.id === 'Process') {
-        symbol.width = 80;
-        symbol.height = 40;
-    } else if (symbol.id === 'Document' || symbol.id === 'PreDefinedProcess' ||
-        symbol.id === 'PaperTap' || symbol.id === 'DirectData') {
-        symbol.width = 50;
-        symbol.height = 40;
-    }
-    symbol.style = { strokeWidth: 2 };
-    return symbol;
-}
-
-function getSymbolInfo(symbol: Symbol): SymbolInfo {
-    return { fit: true };
-}
-
-function onAnimationChange(args: ChangeEventArgs): void {
-    palette.enableAnimation = args.checked;
-}
-
-//Add or Remove the Text for Symbol palette item.
-function onItemTextChange(args: ChangeEventArgs): void {
-    if (args.checked) {
-        palette.getSymbolInfo = (symbol: Symbol): SymbolInfo => {
-            if (symbol.text !== undefined) {
-                return { description: { text: symbol.text, overflow: 'Wrap' } };
-            }
-            return { description: { text: symbol.id } };
-        };
-    } else {
-        palette.getSymbolInfo = (symbol: NodeModel | ConnectorModel): SymbolInfo => {
-            return { description: { text: '' } };
-        };
-    }
-    palette.dataBind();
-}
-
-//enable or disable the header icon for Symbol palette.
-function onHeaderIconChange(args: ChangeEventArgs): void {
-    for (let i: number = 0; i < palette.palettes.length; i++) {
-        if (args.checked) {
-            if (i === 0) {
-                palette.palettes[i].iconCss = 'e-ddb-icons e-basic';
-            } else if (i === 1) {
-                palette.palettes[i].iconCss = 'e-ddb-icons e-flow';
-            } else if (i === 2) {
-                palette.palettes[i].iconCss = 'e-ddb-icons e-connector';
-            }
-        } else {
-            palette.palettes[i].iconCss = '';
-        }
-    }
-}

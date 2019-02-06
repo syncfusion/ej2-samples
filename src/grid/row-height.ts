@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Selection, Toolbar } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { data } from './data-source';
@@ -8,7 +9,8 @@ Grid.Inject(Selection, Toolbar);
 /**
  * Row height sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let gridData: Object = new DataManager(data as JSON[]).executeLocal(new Query().take(30));
     let grid: Grid = new Grid(
         {

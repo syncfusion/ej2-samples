@@ -1,6 +1,8 @@
-import { extend } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, Day, Week, WorkWeek, Month, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { fifaEventsData, applyCategoryColor } from './datasource';
+import * as dataSource from './datasource.json';
+import { applyCategoryColor } from './helper';
+import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
 
@@ -8,8 +10,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
  * Schedule views sample
  */
 
-this.default = () => {
-    let data: Object[] = <Object[]>extend([], fifaEventsData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).fifaEventsData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

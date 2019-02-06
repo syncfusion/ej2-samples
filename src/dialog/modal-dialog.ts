@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
@@ -6,7 +7,8 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
  * Modal Dialog sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Rendering modal Dialog by enabling 'isModal' as true
     let dialogObj: Dialog = new Dialog({
         width: '335px',

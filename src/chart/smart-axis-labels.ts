@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, LabelIntersectAction, DataLabel, ColumnSeries, Category, ILoadedEventArgs,
     EdgeLabelPlacement, IPointRenderEventArgs, ChartTheme, Tooltip, AxisPosition
@@ -5,7 +6,7 @@ import {
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType, Browser } from '@syncfusion/ej2-base';
 import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
-import { NumericTextBox } from '../../node_modules/@syncfusion/ej2-inputs';
+import { NumericTextBox } from '@syncfusion/ej2-inputs';
 Chart.Inject(ColumnSeries, Category, DataLabel, Tooltip);
 
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
@@ -24,7 +25,8 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
 /**
  * Sample for Smart Axis Labels
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         //Initializing Primary X Axis
         primaryXAxis: {
@@ -46,7 +48,6 @@ this.default = (): void => {
                 majorGridLines: { width: 0 },
                 lineStyle: { width: 0 },
             },
-
         //Initializing Chart Series
         series: [
             {
@@ -75,7 +76,8 @@ this.default = (): void => {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     });
     chart.appendTo('#container');

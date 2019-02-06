@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toast types sample
  */
@@ -5,7 +6,8 @@ import { Toast, ToastModel, ToastCloseArgs } from '@syncfusion/ej2-notifications
 
 /* tslint:disable:max-line-length  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Toast component
     let toastObj: Toast = new Toast({
         position: {

@@ -1,16 +1,18 @@
-import { extend, isNullOrUndefined } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
+import { isNullOrUndefined, extend } from '@syncfusion/ej2-base';
 import {
     Schedule, TimelineViews, TimelineMonth, ResourceDetails,
     PopupOpenEventArgs, RenderCellEventArgs, EventRenderedArgs, ActionEventArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
-import { roomData } from './datasource';
+import * as dataSource from './datasource.json';
 
 /**
  * schedule resource header columns sample
  */
 Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 // tslint:disable-next-line:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     interface TemplateFunction extends Window {
         getRoomName?: Function;
         getRoomType?: Function;
@@ -68,7 +70,7 @@ this.default = () => {
             textField: 'text', idField: 'id', colorField: 'color'
         }],
         eventSettings: {
-            dataSource: <Object[]>extend([], roomData, null, true),
+            dataSource: <Object[]>extend([], (dataSource as any).roomData, null, true),
             fields: {
                 id: 'Id',
                 subject: { title: 'Summary', name: 'Subject' },
@@ -96,11 +98,6 @@ this.default = () => {
         },
         renderCell: (args: RenderCellEventArgs) => {
             if (args.element.classList.contains('e-work-cells')) {
-                if (args.date.getHours() === 13) {
-                    args.element.classList.add('e-read-only-cells');
-                    args.element.classList.add('e-lunch-break');
-                    args.element.innerHTML = '<span>Lunch Break </span>';
-                }
                 if (args.date < new Date(2018, 6, 31, 0, 0)) {
                     args.element.setAttribute('aria-readonly', 'true');
                     args.element.classList.add('e-read-only-cells');

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { PivotView, IDataSet } from '@syncfusion/ej2-pivotview';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(false);
@@ -8,7 +9,8 @@ enableRipple(false);
  * PivotView Default Sample.
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
             enableSorting: true,

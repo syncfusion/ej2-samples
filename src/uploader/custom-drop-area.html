@@ -20,7 +20,7 @@
 <script id="uploaderTemplate" type="text/x-template">
     <span class='wrapper'>
         <span class='icon template-icons sf-icon-${type}'></span>
-        <span class='name file-name'>${name} ( ${size} bytes )</span>
+        <span class='name file-name'>${name} (${size} bytes)</span>
         <span class='upload-status'>${status}</span>
     </span>
     <span class='e-icons e-file-remove-btn' title='Remove'></span>    
@@ -110,6 +110,16 @@
     }
     .highcontrast .dropArea_wrap {
         background-color: #000;
+    }
+    .bootstrap4 .dropArea_wrap {
+        background-color: #e9ecef;
+        border: 1px dashed rgba(0, 0, 0, 0.15);
+    }
+    .bootstrap4 .font-icons {
+        color: #495057;
+    }
+    .bootstrap4 .dropText {
+        color: #212529;
     }
    .font-icons {
         position: relative;
@@ -230,11 +240,11 @@
 </style>
 
 <div id="action-description">
-    <p>This sample demonstrates how to configure custom drop area of the Uploader. You can drop the files into specified custom drop area location to upload. </p>
+    <p>This example demonstrates how to configure custom drop area of the Uploader. You can drop the files into specified custom drop area location to upload. </p>
 </div>
 
 <div id="description">
-    <p>The Uploader component allows to set any external element as drop area using the <a href="https://ej2.syncfusion.com/documentation/uploader/api-uploader.html?lang=typescript#droparea" target="_blank">dropArea</a> property.  </p>   
+    <p>The Uploader control allows to set any external element as drop area using the <a href="https://ej2.syncfusion.com/documentation/api/uploader/#droparea" target="_blank">dropArea</a> property.  </p>   
 
-    <p>For more information, you can refer this <a href="https://ej2.syncfusion.com/documentation/uploader/file-source.html?lang=typescript#drag-and-drop" target="_blank">dropArea</a> API from this <a target="_blank" href="https://ej2.syncfusion.com/documentation/uploader/file-source.html?lang=typescript#custom-drop-area">documentation section</a>.</p>   
+    <p>For more information, you can refer this <a href="https://ej2.syncfusion.com/documentation/uploader/file-source/#drag-and-drop" target="_blank">dropArea</a> API from this <a target="_blank" href="https://ej2.syncfusion.com/documentation/uploader/file-source/#custom-drop-area">documentation section</a>.</p>   
 </div>

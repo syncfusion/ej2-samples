@@ -29,36 +29,45 @@
     <ul>
         <li>Color picker/palette is rendered inline by using the inline
             <code>
-                <a target="_blank" href="http://ej2.syncfusion.com/documentation/colorpicker/api-colorpicker.html?lang=es6#inline-boolean">inline</a>
+                <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/color-picker/#inline">inline</a>
             </code> property set to
             <i>true</i>.</li>
         <li>Using the
             <code>
-                <a target="_blank" href="http://ej2.syncfusion.com/documentation/colorpicker/api-colorpicker.html?lang=es6#mode-ColorPickerType">mode</a>
+                <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/color-picker/#mode">mode</a>
             </code> property, you can specify the mode
             <i>(Picker/ Palette)</i> of the ColorPicker.</li>
         <li>Using the
             <code>
-                <a target="_blank" href="http://ej2.syncfusion.com/documentation/colorpicker/api-colorpicker.html?lang=es6#showButtons-boolean">showButtons</a>
+                <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/color-picker/#showbuttons">showButtons</a>
             </code> property, you can enable or disable the control
             <i>(apply/cancel)</i> buttons.</li>
     </ul>
     <p>
         More information about ColorPicker can be found in this
-        <a target="_blank" href="http://ej2.syncfusion.com/documentation/colorpicker/getting-started.html">
+        <a target="_blank" href="https://ej2.syncfusion.com/documentation/color-picker/getting-started/">
             documentation section</a>.
     </p>
 </div>
+<!-- custom code start -->
 <style>
+    /* Common sample level styles */
     #colorpicker-control {
         width: 100%;
         text-align: center;
     }
-
     #colorpicker-control .col-xs-12 {
         margin: 10px 0;
     }
+    #colorpicker-control h4 {
+        margin-bottom: 20px;
+    }
 
+    .e-bigger #colorpicker-control h4 {
+        font-size: 20px;
+    }
+
+    /* Preview area styles */
     #colorpicker-control #preview {
         background: transparent url('./src/color-picker/images/pen.png') no-repeat;
         display: inline-block;
@@ -67,49 +76,33 @@
         width: 600px;
         background-color: #008000;
     }
-
     #colorpicker-control.e-mobile-control #preview {
         background: transparent url('./src/color-picker/images/pen_mobile.png') no-repeat;
         background-color: #008000;
         height: 35px;
         width: 300px;
     }
-
     .highcontrast #colorpicker-control #preview {
         background: transparent url('./src/color-picker/images/pen_highcontrast.png') no-repeat;
         background-color: #008000;
     }
-
     .highcontrast #colorpicker-control.e-mobile-control #preview {
         background: transparent url('./src/color-picker/images/pen_mobile_highcontrast.png') no-repeat;
         background-color: #008000;
     }
 
-    #colorpicker-control h4 {
-        margin-bottom: 20px;
-        color: rgba(0, 0, 0, 0.64);
-    }
-
-    .highcontrast #colorpicker-control h4 {
-        color: #fff;
-    }
-
-    .e-bigger #colorpicker-control h4 {
-        font-size: 20px;
-    }
-
+    /* Common sample level styles for mobile */
     #colorpicker-control.e-mobile-control h4 {
         margin-bottom: 15px;
     }
-
     #colorpicker-control.e-mobile-control #colorpicker-content {
         display: flex;
         flex-wrap: nowrap;
         overflow-x: auto;
     }
-
     #colorpicker-control.e-mobile-control #colorpicker-content .col-xs-12 {
         flex: 0 0 auto;
         margin-top: 5px;
     }
 </style>
+<!-- custom code end -->

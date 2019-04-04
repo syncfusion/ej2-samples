@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * UserHandle
  */
@@ -16,9 +17,123 @@ export interface EmployeeInfo {
 
 let diagram: Diagram;
 
+//set Node default value 
+function getNodeDefaults(node: NodeModel): NodeModel {
+    let node1: NodeModel = {
+        style: { fill: '#578CA9', strokeColor: 'none' },
+        annotations: [{ style: { color: 'white' } }]
+    };
+    return node1;
+}
+
+//set Node default value
+function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
+    obj.type = 'Straight';
+    return obj;
+}
+
+//Enable the clone Tool for UserHandle.
+function getTool(action: string): ToolBase {
+    let tool: ToolBase;
+    if (action === 'clone') {
+        tool = new CloneTool(diagram.commandHandler);
+    }
+    return tool;
+}
+
+//set the position of the userhandle.
+function setUserHandlePosition(offset: number, side: Side, target: HTMLElement): void {
+    diagram.selectedItems.userHandles[0].offset = offset;
+    diagram.selectedItems.userHandles[0].side = side;
+    // custom code start
+    target.classList.add('e-selected-style');
+    // custom code end
+}
+
+//set the style of the userhandle.
+function applyUserHandleStyle(bgcolor: string, target: HTMLElement): void {
+    diagram.selectedItems.userHandles[0].backgroundColor = bgcolor;
+    diagram.selectedItems.userHandles[0].pathColor = 'White';
+    // custom code start
+    target.classList.add('e-selected-style');
+    // custom code end
+}
+
+//Change the postion of the UserHandle
+function setHandleAppearance(args: MouseEvent): void {
+    let target: HTMLElement = args.target as HTMLElement;
+    let appearanceBlock: HTMLElement = document.getElementById('appearance');
+    // custom code start
+    let selectedElement: HTMLCollectionOf<Element> =
+        appearanceBlock.getElementsByClassName('e-selected-style') as HTMLCollectionOf<Element>;
+    if (selectedElement.length) {
+        selectedElement[0].classList.remove('e-selected-style');
+    }
+    // custom code end
+    if (target.className === 'image-pattern-style') {
+        switch (target.id) {
+            case 'left':
+                setUserHandlePosition(0, 'Bottom', target);
+                break;
+            case 'right':
+                setUserHandlePosition(1, 'Bottom', target);
+                break;
+            case 'topr':
+                setUserHandlePosition(0, 'Right', target);
+                break;
+        }
+    }
+    diagram.dataBind();
+}
+
+//Change the Appearence of the UserHandle
+function setHandlePattern(args: MouseEvent): void {
+    let target: HTMLElement = args.target as HTMLElement;
+    let patternBlock: HTMLElement = document.getElementById('pattern');
+    // custom code start
+    let selectedElement: HTMLCollectionOf<Element> = patternBlock.getElementsByClassName('e-selected-style') as HTMLCollectionOf<Element>;
+    if (selectedElement.length) {
+        selectedElement[0].classList.remove('e-selected-style');
+    }
+    // custom code end
+    if (target.className === 'image-pattern-style') {
+        switch (target.id) {
+            case 'pattern1':
+                applyUserHandleStyle('#1E90FF', target);
+                break;
+            case 'pattern2':
+                applyUserHandleStyle('#3CB371', target);
+                break;
+            case 'pattern3':
+                applyUserHandleStyle('#FF6347', target);
+                break;
+        }
+    }
+    diagram.dataBind();
+}
+
+//Defines the clone tool used to copy Node/Connector
+class CloneTool extends MoveTool {
+    public mouseDown(args: MouseEventArgs): void {
+        let newObject: any;
+        if (diagram.selectedItems.nodes.length > 0) {
+            newObject = cloneObject(diagram.selectedItems.nodes[0]) as NodeModel;
+        } else {
+            newObject = cloneObject(diagram.selectedItems.connectors[0]) as ConnectorModel;
+        }
+        newObject.id += randomId();
+        diagram.paste([newObject]);
+        args.source = diagram.nodes[diagram.nodes.length - 1] as IElement;
+        args.sourceWrapper = args.source.wrapper;
+        super.mouseDown(args);
+        this.inAction = true;
+    }
+}
+
 //Defines the diagram content
 // tslint:disable-next-line:max-func-body-length 
 (window as any).default = (): void => {
+    loadCultureFiles();
 
     //Defines the nodes collection in diagram
     let nodes: NodeModel[] = [
@@ -85,107 +200,3 @@ let diagram: Diagram;
     document.getElementById('pattern').onclick = setHandlePattern;
 };
 
-//set Node default value 
-function getNodeDefaults(node: NodeModel): NodeModel {
-    let node1: NodeModel = {
-        style: { fill: '#578CA9', strokeColor: 'none' },
-        annotations : [{ style: { color: 'white' } }]
-    };
-    return node1;
-}
-
-//set Node default value
-function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
-    obj.type = 'Straight';
-    return obj;
-}
-
-//Enable the clone Tool for UserHandle.
-function getTool(action: string): ToolBase {
-    let tool: ToolBase;
-    if (action === 'clone') {
-        tool = new CloneTool(diagram.commandHandler);
-    }
-    return tool;
-}
-
-//set the position of the userhandle.
-function setUserHandlePosition(offset: number, side: Side, target: HTMLElement): void {
-    diagram.selectedItems.userHandles[0].offset = offset;
-    diagram.selectedItems.userHandles[0].side = side;
-    target.classList.add('e-selected-style');
-}
-
-//set the style of the userhandle.
-function applyUserHandleStyle(bgcolor: string, target: HTMLElement): void {
-    diagram.selectedItems.userHandles[0].backgroundColor = bgcolor;
-    diagram.selectedItems.userHandles[0].pathColor = 'White';
-    target.classList.add('e-selected-style');
-}
-
-//Change the postion of the UserHandle
-function setHandleAppearance(args: MouseEvent): void {
-    let target: HTMLElement = args.target as HTMLElement;
-    let appearanceBlock: HTMLElement = document.getElementById('appearance');
-    let selectedElement: HTMLCollectionOf<Element> =
-        appearanceBlock.getElementsByClassName('e-selected-style') as HTMLCollectionOf<Element>;
-    if (selectedElement.length) {
-        selectedElement[0].classList.remove('e-selected-style');
-    }
-    if (target.className === 'image-pattern-style') {
-        switch (target.id) {
-            case 'left':
-                setUserHandlePosition(0, 'Bottom', target);
-                break;
-            case 'right':
-                setUserHandlePosition(1, 'Bottom', target);
-                break;
-            case 'topr':
-                setUserHandlePosition(0, 'Right', target);
-                break;
-        }
-    }
-    diagram.dataBind();
-}
-
-//Change the Appearence of the UserHandle
-function setHandlePattern(args: MouseEvent): void {
-    let target: HTMLElement = args.target as HTMLElement;
-    let patternBlock: HTMLElement = document.getElementById('pattern');
-    let selectedElement: HTMLCollectionOf<Element> = patternBlock.getElementsByClassName('e-selected-style') as HTMLCollectionOf<Element>;
-    if (selectedElement.length) {
-        selectedElement[0].classList.remove('e-selected-style');
-    }
-    if (target.className === 'image-pattern-style') {
-        switch (target.id) {
-            case 'pattern1':
-                applyUserHandleStyle('#1E90FF', target);
-                break;
-            case 'pattern2':
-                applyUserHandleStyle('#3CB371', target);
-                break;
-            case 'pattern3':
-                applyUserHandleStyle('#FF6347', target);
-                break;
-        }
-    }
-    diagram.dataBind();
-}
-
-//Defines the clone tool used to copy Node/Connector
-class CloneTool extends MoveTool {
-    public mouseDown(args: MouseEventArgs): void {
-        let newObject: any;
-        if (diagram.selectedItems.nodes.length > 0) {
-            newObject = cloneObject(diagram.selectedItems.nodes[0]) as NodeModel;
-        } else {
-            newObject = cloneObject(diagram.selectedItems.connectors[0]) as ConnectorModel;
-        }
-        newObject.id += randomId();
-        diagram.paste([newObject]);
-        args.source = diagram.nodes[diagram.nodes.length - 1] as IElement;
-        args.sourceWrapper = args.source.wrapper;
-        super.mouseDown(args);
-        this.inAction = true;
-    }
-}

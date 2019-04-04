@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor inline toolbar sample
  */
@@ -5,7 +6,8 @@ import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar } from '
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let defaultRTE: RichTextEditor = new RichTextEditor({
         inlineMode: {
             enable: true,
@@ -26,7 +28,7 @@ this.default = (): void => {
     defaultRTE.appendTo('#defaultRTE');
 
     let select: CheckBox = new CheckBox({
-        // set false for enable the checked state at initial rendering
+        // set true for disable the checked state at initial rendering
         checked: true,
         label: 'Show on Selection',
         // bind change event

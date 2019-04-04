@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { Chart, LineSeries, ScatterSeries, SplineSeries, Tooltip, Legend, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
@@ -7,7 +8,8 @@ Chart.Inject(LineSeries, ScatterSeries, SplineSeries, Tooltip, Legend);
  * Axes Crossing Sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         primaryXAxis: {
             minimum: -8, maximum: 8, interval: 2,
@@ -57,11 +59,14 @@ this.default = (): void => {
                 yName: 'y', marker: { visible: false, width: 12, height: 12 }
             }
         ],
+         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         },
+         // custom code end
         tooltip: { enable: true },
         title: 'Spline Interpolation',
     });

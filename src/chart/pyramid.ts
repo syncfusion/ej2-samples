@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     AccumulationChart, AccumulationLegend, PyramidSeries, AccumulationTooltip, AccumulationTheme, IAccLoadedEventArgs,
     AccumulationDataLabel, IAccTextRenderEventArgs, IAccResizeEventArgs
@@ -7,7 +8,8 @@ AccumulationChart.Inject(AccumulationLegend, PyramidSeries, AccumulationTooltip,
 /**
  * Sample for Pyramid Chart
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let data: object[] = [{ x: 'Sweet Treats', y: 120, text: '120 cal' },
     { x: 'Milk, Youghnut, Cheese', y: 435, text: '435 cal' },
     { x: 'Vegetables', y: 470, text: '470 cal' },
@@ -34,15 +36,18 @@ this.default = (): void => {
         textRender: (args: IAccTextRenderEventArgs) => {
             args.text = args.text;
         },
+        // custom code start
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             if (args.accumulation.availableSize.width < args.accumulation.availableSize.height) {
                 args.accumulation.series[0].width = '80%';
                 args.accumulation.series[0].height = '60%';
             }
         },
+        // custom code end
         resized: (args: IAccResizeEventArgs) => {
             let bounds: ClientRect = document.getElementById('container').getBoundingClientRect();
             if (bounds.width < bounds.height) {

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { CheckBox, ChangeEventArgs as CheckBoxChange } from '@syncfusion/ej2-buttons';
 
@@ -5,7 +6,8 @@ import { CheckBox, ChangeEventArgs as CheckBoxChange } from '@syncfusion/ej2-but
  * Limits sample
  */
 // tslint:disable-next-line:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize Slider Component
     let minrangeObj: Slider = new Slider({
         // Set slider minimum and maximum values
@@ -115,5 +117,17 @@ this.default = () => {
     function maxEndChange(args: ChangeEventArgs): void {
         minrangeObj.limits.maxEnd = args.value;
         rangeObj.limits.maxEnd = args.value;
+    }
+
+    if (document.getElementById('right-pane')) {
+        document.getElementById('right-pane').addEventListener('scroll', onScroll);
+    }
+
+    // Handler used to reposition the tooltip on page scroll
+    function onScroll(): void {
+        let slider: Slider[] = [minrangeObj, rangeObj];
+        slider.forEach((slider: any) => {
+            slider.refreshTooltip(slider.tooltipTarget);
+        });
     }
 };

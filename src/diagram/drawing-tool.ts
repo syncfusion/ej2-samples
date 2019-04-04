@@ -1,5 +1,6 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
- * Drawing tool sample
+ * Drawing tools sample
  */
 
 import {
@@ -13,38 +14,7 @@ Diagram.Inject(UndoRedo, Snapping);
 let diagram: Diagram;
 let checkBoxObj: CheckBox;
 
-(window as any).default = (): void => {
-    let interval: number[] = [
-        1, 9, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75
-    ];
-    let gridlines: GridlinesModel = { lineColor: '#e0e0e0', lineIntervals: interval };
-    let snapSettings: SnapSettingsModel = {
-        snapObjectDistance: 5,
-        constraints: (SnapConstraints.SnapToObject | SnapConstraints.SnapToLines) | SnapConstraints.ShowLines,
-        horizontalGridlines: gridlines,
-        verticalGridlines: gridlines
-    };
-
-    //Initializes diagram control
-    diagram = new Diagram({
-        width: '100%', height: '540px', snapSettings: snapSettings,
-        rulerSettings: {
-            showRulers: true, dynamicGrid: true
-        },
-        //Sets the default values of a node
-        //getNodeDefaults: getNodeDefaults,
-        created: diagramCreate
-    });
-    diagram.appendTo('#diagram');
-
-    //Initializes the check box inorder to enable Continuous draw
-    checkBoxObj = new CheckBox({ label: 'Continuous Draw', checked: true, change: toolTypeChange });
-    checkBoxObj.appendTo('#checked');
-
-    //Click Event used to decide the drawing object.
-    document.getElementById('appearance').onclick = documentClick;
-};
-
+// custom code start
 function getNativeContent(): string {
     let str: string = '<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="350.000000pt" ' +
         'height="229.000000pt" viewBox="0 0 350.000000 229.000000" ' +
@@ -68,7 +38,7 @@ function getNativeContent(): string {
         '</g> </svg>';
     return str;
 }
-
+// custom code end
 function documentClick(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
     let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
@@ -112,7 +82,7 @@ function documentClick(args: MouseEvent): void {
                 };
                 break;
             case 'image':
-                drawingObject = { shape: { type: 'Image', source: 'src/diagram/employees/Clayton.png' } };
+                drawingObject = { shape: { type: 'Image', source: 'src/diagram/employees/image16.png' } };
                 break;
             case 'svg':
                 drawingObject = { shape: { type: 'Native', content: getNativeContent() } };
@@ -138,3 +108,36 @@ function diagramCreate(args: Object): void {
 function toolTypeChange(args: ChangeEventArgs): void {
     diagram.tool = args.checked ? DiagramTools.ContinuousDraw : DiagramTools.DrawOnce;
 }
+
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let interval: number[] = [
+        1, 9, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75
+    ];
+    let gridlines: GridlinesModel = { lineColor: '#e0e0e0', lineIntervals: interval };
+    let snapSettings: SnapSettingsModel = {
+        snapObjectDistance: 5,
+        constraints: (SnapConstraints.SnapToObject | SnapConstraints.SnapToLines) | SnapConstraints.ShowLines,
+        horizontalGridlines: gridlines,
+        verticalGridlines: gridlines
+    };
+
+    //Initializes diagram control
+    diagram = new Diagram({
+        width: '100%', height: '540px', snapSettings: snapSettings,
+        rulerSettings: {
+            showRulers: true, dynamicGrid: true
+        },
+        //Sets the default values of a node
+        //getNodeDefaults: getNodeDefaults,
+        created: diagramCreate
+    });
+    diagram.appendTo('#diagram');
+
+    //Initializes the check box inorder to enable Continuous draw
+    checkBoxObj = new CheckBox({ label: 'Continuous Draw', checked: true, change: toolTypeChange });
+    checkBoxObj.appendTo('#checked');
+
+    //Click Event used to decide the drawing object.
+    document.getElementById('appearance').onclick = documentClick;
+};

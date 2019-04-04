@@ -1,22 +1,24 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor Markdown Preview Sample
  */
-import { RichTextEditor, Link, Image, MarkdownEditor, Toolbar, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Link, Image, MarkdownEditor, Toolbar, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs, isNullOrUndefined, addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import * as Marked from 'marked';
 
-RichTextEditor.Inject(Link, Image, MarkdownEditor, Toolbar, QuickToolbar);
+RichTextEditor.Inject(Link, Image, MarkdownEditor, Toolbar, QuickToolbar, Table);
 
 let textArea: HTMLTextAreaElement;
 let mdsource: HTMLElement;
 let mdSplit: HTMLElement;
 let htmlPreview: HTMLElement;
 /* tslint:disable */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let defaultRTE: RichTextEditor = new RichTextEditor({
         height: '300px', editorMode: 'Markdown', actionBegin: handleFullScreen,
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'OrderedList', 'UnorderedList', '|', 'CreateLink', 'Image', '|',
+            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'OrderedList', 'UnorderedList', '|', 'CreateLink', 'Image', 'CreateTable', '|',
                 { tooltipText: 'Preview', template: '<button id="preview-code" class="e-tbar-btn e-control e-btn e-icon-btn">' +
                     '<span class="e-btn-icon e-md-preview e-icons"></span></button>' },
                 { tooltipText: 'Split Editor', template: '<button id="MD_Preview" class="e-tbar-btn e-control e-btn e-icon-btn">' +
@@ -32,12 +34,12 @@ this.default = (): void => {
                 if ((e.currentTarget as HTMLElement).classList.contains('e-active')) {
                     defaultRTE.disableToolbarItem(['Bold', 'Italic', 'StrikeThrough', '|',
                         'Formats', 'OrderedList', 'UnorderedList', '|',
-                        'CreateLink', 'Image', 'Undo', 'Redo']);
+                        'CreateLink', 'Image', 'CreateTable', 'Undo', 'Redo']);
                     (e.currentTarget as HTMLElement).parentElement.nextElementSibling.classList.add('e-overlay');
                 } else {
                     defaultRTE.enableToolbarItem(['Bold', 'Italic', 'StrikeThrough', '|',
                         'Formats', 'OrderedList', 'UnorderedList', '|',
-                        'CreateLink', 'Image', 'Undo', 'Redo']);
+                        'CreateLink', 'Image', 'CreateTable', 'Undo', 'Redo']);
                     (e.currentTarget as HTMLElement).parentElement.nextElementSibling.classList.remove('e-overlay');
                 }
             });

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Default FlowShape sample
  */
@@ -10,8 +11,86 @@ import { addEvents } from './script/diagram-common';
 //import { openPalette, closePalette, getClassList } from './styles/html-class';
 Diagram.Inject(UndoRedo);
 
+
+
+//Create and add ports for node.
+function getPorts(): PointPortModel[] {
+    let ports: PointPortModel[] = [
+        { id: 'port1', shape: 'Circle', offset: { x: 0, y: 0.5 } },
+        { id: 'port2', shape: 'Circle', offset: { x: 0.5, y: 1 } },
+        { id: 'port3', shape: 'Circle', offset: { x: 1, y: .5 } },
+        { id: 'port4', shape: 'Circle', offset: { x: .5, y: 0 } }
+    ];
+    return ports;
+}
+
+//Sets the default values of a node
+function getNodeDefaults(node: NodeModel): NodeModel {
+    let obj: NodeModel = {};
+    if (obj.width === undefined) {
+        obj.width = 145;
+    } else {
+        let ratio: number = 100 / obj.width;
+        obj.width = 100; obj.height *= ratio;
+    }
+    obj.style = { fill: '#357BD2', strokeColor: 'white' };
+    obj.annotations = [{ style: { color: 'white', fill: 'transparent' } }];
+    //Set ports
+    obj.ports = getPorts();
+    return obj;
+}
+
+//Sets the default values of a connector
+function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
+    if (obj.id.indexOf('connector') !== -1) {
+        obj.type = 'Orthogonal';
+        obj.targetDecorator = { shape: 'Arrow', width: 10, height: 10 };
+    }
+    return obj;
+}
+
+//Sets the Node style for DragEnter element.
+function dragEnter(args: IDragEnterEventArgs): void {
+    let obj: NodeModel = args.element as NodeModel;
+    if (obj instanceof Node) {
+        let oWidth: number = obj.width;
+        let oHeight: number = obj.height;
+        let ratio: number = 100 / obj.width;
+        obj.width = 100;
+        obj.height *= ratio;
+        obj.offsetX += (obj.width - oWidth) / 2;
+        obj.offsetY += (obj.height - oHeight) / 2;
+        obj.style = { fill: '#357BD2', strokeColor: 'white' };
+    }
+}
+
+function getFlowShape(id: string, shapeType: FlowShapes): NodeModel {
+    let flowshape: NodeModel = { id: id, shape: { type: 'Flow', shape: shapeType } };
+    return flowshape;
+}
+
+function getSymbolDefaults(symbol: NodeModel): void {
+    if (symbol.id === 'Terminator' || symbol.id === 'Process' || symbol.id === 'Delay') {
+        symbol.width = 80;
+        symbol.height = 40;
+    } else if (symbol.id === 'Decision' || symbol.id === 'Document' || symbol.id === 'PreDefinedProcess' ||
+        symbol.id === 'PaperTap' || symbol.id === 'DirectData' || symbol.id === 'MultiDocument' || symbol.id === 'Data') {
+        symbol.width = 50;
+        symbol.height = 40;
+    } else {
+        symbol.width = 50;
+        symbol.height = 50;
+    }
+}
+
+function getSymbolInfo(symbol: NodeModel): SymbolInfo {
+    return { fit: true };
+}
+
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
     let bounds: ClientRect = document.getElementById('diagram-space').getBoundingClientRect();
     let centerX: number = bounds.width / 2;
     let interval: number[] = [
@@ -75,7 +154,7 @@ Diagram.Inject(UndoRedo);
             id: 'connector10', sourceID: 'End', annotations: [{ content: 'No', style: { fill: 'white' } }],
             targetID: 'node11', segments: [{ direction: 'Right', type: 'Orthogonal', length: 100 }]
         },
-        { id: 'connector11', sourceID: 'Project', annotations: [{ content: 'No', style: { fill: 'white' } }],  targetID: 'node11'  },
+        { id: 'connector11', sourceID: 'Project', annotations: [{ content: 'No', style: { fill: 'white' } }], targetID: 'node11' },
         { id: 'connector12', style: { strokeDashArray: '2,2' }, sourceID: 'transaction_entered', targetID: 'node12' }
     ];
 
@@ -157,76 +236,3 @@ Diagram.Inject(UndoRedo);
 
     addEvents();
 };
-//Sets the default values of a node
-function getNodeDefaults(node: NodeModel): NodeModel {
-    let obj: NodeModel = {};
-    if (obj.width === undefined) {
-        obj.width = 145;
-    } else {
-        let ratio: number = 100 / obj.width;
-        obj.width = 100; obj.height *= ratio;
-    }
-    obj.style = { fill: '#357BD2', strokeColor: 'white' };
-    obj.annotations = [{ style: { color: 'white', fill: 'transparent' } }];
-    //Set ports
-    obj.ports = getPorts();
-    return obj;
-}
-
-//Sets the default values of a connector
-function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
-    if (obj.id.indexOf('connector') !== -1) {
-        obj.type = 'Orthogonal';
-        obj.targetDecorator = { shape: 'Arrow', width: 10, height: 10 };
-    }
-    return obj;
-}
-
-//Sets the Node style for DragEnter element.
-function dragEnter(args: IDragEnterEventArgs): void {
-    let obj: NodeModel = args.element as NodeModel;
-    if (obj instanceof Node) {
-        let oWidth: number = obj.width;
-        let oHeight: number = obj.height;
-        let ratio: number = 100 / obj.width;
-        obj.width = 100;
-        obj.height *= ratio;
-        obj.offsetX += (obj.width - oWidth) / 2;
-        obj.offsetY += (obj.height - oHeight) / 2;
-        obj.style = { fill: '#357BD2', strokeColor: 'white' };
-    }
-}
-
-function getFlowShape(id: string, shapeType: FlowShapes): NodeModel {
-    let flowshape: NodeModel = { id: id, shape: { type: 'Flow', shape: shapeType } };
-    return flowshape;
-}
-
-function getSymbolDefaults(symbol: NodeModel): void {
-    if (symbol.id === 'Terminator' || symbol.id === 'Process' || symbol.id === 'Delay') {
-        symbol.width = 80;
-        symbol.height = 40;
-    } else if (symbol.id === 'Decision' || symbol.id === 'Document' || symbol.id === 'PreDefinedProcess' ||
-        symbol.id === 'PaperTap' || symbol.id === 'DirectData' || symbol.id === 'MultiDocument' || symbol.id === 'Data') {
-        symbol.width = 50;
-        symbol.height = 40;
-    } else {
-        symbol.width = 50;
-        symbol.height = 50;
-    }
-}
-
-function getSymbolInfo(symbol: NodeModel): SymbolInfo {
-    return { fit: true };
-}
-
-//Create and add ports for node.
-function getPorts(): PointPortModel[] {
-    let ports: PointPortModel[] = [
-        { id: 'port1', shape: 'Circle', offset: { x: 0, y: 0.5 } },
-        { id: 'port2', shape: 'Circle', offset: { x: 0.5, y: 1 } },
-        { id: 'port3', shape: 'Circle', offset: { x: 1, y: .5 } },
-        { id: 'port4', shape: 'Circle', offset: { x: .5, y: 0 } }
-    ];
-    return ports;
-}

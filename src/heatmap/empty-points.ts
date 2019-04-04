@@ -1,12 +1,13 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
-import { SampleDataSource } from './data';
+import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
-    let newDataSource: SampleDataSource = new SampleDataSource();
+(window as any).default = (): void => {
+    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Deffective Count per 1000 Products from a Manufacturing Unit',
@@ -53,7 +54,7 @@ this.default = (): void => {
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
-        dataSource: newDataSource.emptyPointDataSource
+        dataSource: (data as any).emptyPointDataSource,
     });
     heatmap.appendTo('#container');
 };

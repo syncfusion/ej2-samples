@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(true);
 import { Grid, Toolbar, ExcelExport, PdfExport, Page } from '@syncfusion/ej2-grids';
@@ -9,32 +10,6 @@ Grid.Inject(Toolbar, ExcelExport, PdfExport, Page);
  * Advanced Grid Exporting to Excel, PDF sample
  */
 
-this.default = (): void => {
-    let grid: Grid = new Grid({
-        dataSource: productData,
-        allowExcelExport: true,
-        allowPdfExport: true,
-        allowPaging: true,
-        pageSettings: { pageCount: 2, pageSize: 10 },
-        toolbar: ['ExcelExport', 'PdfExport'],
-        columns: [
-            { field: 'ProductID', headerText: 'Product ID', textAlign: 'Right', width: 120 },
-            { field: 'ProductName', headerText: 'Product Name', width: 200 },
-            { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 145 },
-            { field: 'UnitsInStock', headerText: 'Units In Stock', textAlign: 'Right', width: 140 },
-            { field: 'UnitPrice', headerText: 'Unit Price', textAlign: 'Right', width: 140, format: 'C2' },
-        ]
-    });
-    grid.appendTo('#Grid');
-    grid.toolbarClick = (args: ClickEventArgs) => {
-        if (args.item.id === 'Grid_excelexport') {
-            grid.excelExport(getExcelExportProperties());
-        }
-        if (args.item.id === 'Grid_pdfexport') {
-            grid.pdfExport(getPdfExportProperties());
-        }
-    };
-};
 /* tslint:disable-next-line:no-any */
 function getExcelExportProperties(): any {
     return {
@@ -196,3 +171,30 @@ function getPdfExportProperties(): any {
 let date : string = '';
 date += ((new Date()).getMonth().toString()) + '/' + ((new Date()).getDate().toString());
 date += '/' + ((new Date()).getFullYear().toString());
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let grid: Grid = new Grid({
+        dataSource: productData,
+        allowExcelExport: true,
+        allowPdfExport: true,
+        allowPaging: true,
+        pageSettings: { pageCount: 2, pageSize: 10 },
+        toolbar: ['ExcelExport', 'PdfExport'],
+        columns: [
+            { field: 'ProductID', headerText: 'Product ID', textAlign: 'Right', width: 120 },
+            { field: 'ProductName', headerText: 'Product Name', width: 200 },
+            { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 145 },
+            { field: 'UnitsInStock', headerText: 'Units In Stock', textAlign: 'Right', width: 140 },
+            { field: 'UnitPrice', headerText: 'Unit Price', textAlign: 'Right', width: 140, format: 'C2' },
+        ]
+    });
+    grid.appendTo('#Grid');
+    grid.toolbarClick = (args: ClickEventArgs) => {
+        if (args.item.id === 'Grid_excelexport') {
+            grid.excelExport(getExcelExportProperties());
+        }
+        if (args.item.id === 'Grid_pdfexport') {
+            grid.pdfExport(getPdfExportProperties());
+        }
+    };
+};

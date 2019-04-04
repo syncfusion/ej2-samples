@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, ColumnSeries, IAxisLabelRenderEventArgs, DataLabel,
     ILoadedEventArgs, Tooltip, Legend, ChartTheme
@@ -14,7 +15,8 @@ let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEv
         args.cancel = args.value === 15 || args.value === 21;
     }
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
@@ -85,15 +87,18 @@ this.default = (): void => {
         ],
         axisLabelRender: labelRender,
         width: Browser.isDevice ? '100%' : '60%',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             if (selectedTheme === 'highcontrast') {
                args.chart.series[0].fill = '#57BCFF';
                args.chart.series[1].fill = '#E58184';
             }
         },
+        // custom code end
         //Initializing Chart title
         title: 'England vs West Indies',
         //Initializing User Interaction Tooltip

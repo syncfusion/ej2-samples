@@ -1,11 +1,10 @@
 {
-    "name": "Uploader",
+    "name": "File Upload",
     "directory": "uploader",	
-    "category":"Editors",
-    "type": "update",
+    "category":"Inputs",
 	"ftName": "file-upload",	
     "samples" : [
-        {"url":"default", "name": "Default Functionalities", "description":"This sample demonstrates default functionalities of the file uploader component, including automatic upload and asynchronous mode options.", "category": "Uploader", "api": { "Uploader": ["autoUpload", "asyncSettings", "success", "dropArea"] }, 
+        {"url":"default", "name": "Default Functionalities", "description":"This example demonstrates default functionalities of the JavaScript file uploader control, including automatic upload and asynchronous mode options.", "category": "File Upload", "api": { "Uploader": ["autoUpload", "asyncSettings", "success", "dropArea"] }, 
         "sourceFiles":[
             { "displayName": "default.ts", "path":"src/uploader/default.ts" },
             { "displayName":"default.html", "path":"src/uploader/default.html" },
@@ -13,7 +12,7 @@
             { "displayName":"remove file", "path":"src/uploader/upload-remove-file.cs" }
         ]
         },
-        {"url":"chunk-upload", "name": "Chunk Upload", "description":"This sample demonstrates how to upload files as chunks in the file upload component, which helps when uploading a large file to a server.", "category": "Uploader", "type": "update", "api": { "Uploader": ["autoUpload", "asyncSettings", "dropArea"] },
+        {"url":"chunk-upload", "name": "Chunk Upload", "description":"This example demonstrates how to upload files as chunks in the JavaScript file upload control, which helps when uploading a large file to a server.", "category": "File Upload", "api": { "Uploader": ["autoUpload", "asyncSettings", "dropArea"] },
         "sourceFiles":[
             { "displayName": "chunk-upload.ts", "path":"src/uploader/chunk-upload.ts" },
             { "displayName":"chunk-upload.html", "path":"src/uploader/chunk-upload.html" },
@@ -21,42 +20,42 @@
             { "displayName":"remove file", "path":"src/uploader/chunk-upload-remove-file.cs" }
         ]
         },
-        {"url":"custom-file-list", "name": "Template", "description":"This sample demonstrates how to customize the file list with buttons using a template, and how to upload a file programmatically in the file upload component.", "category": "Uploader", "api": { "Uploader": ["asyncSettings", "dropArea", "selected", "progress", "success", "failure"] },
+        {"url":"custom-file-list", "name": "Template", "description":"This example demonstrates how to customize the file list with buttons using a template and upload a file programmatically using the JavaScript file upload.", "category": "File Upload", "api": { "Uploader": ["asyncSettings", "dropArea", "selected", "progress", "success", "failure"] },
         "sourceFiles":[
             { "displayName": "custom-file-list.ts", "path":"src/uploader/custom-file-list.ts" },
             { "displayName":"custom-file-list.html", "path":"src/uploader/custom-file-list.html" },
             { "displayName":"save file", "path":"src/uploader/upload-save-file.cs" },
             { "displayName":"remove file", "path":"src/uploader/upload-remove-file.cs" }
         ]},
-        {"url":"preload-files", "name": "Preload Files", "description":"This sample demonstrates how to preload files in the file upload component, which helps users view and manipulate server files.", "category": "Uploader", "api": { "Uploader": ["asyncSettings", "files", "removing", "failure", "success", "dropArea"] },
+        {"url":"preload-files", "name": "Preload Files", "description":"This example demonstrates how to preload files in the JavaScript file upload control, which helps users view and manipulate server files.", "category": "File Upload", "api": { "Uploader": ["asyncSettings", "files", "removing", "failure", "success", "dropArea"] },
         "sourceFiles":[
             { "displayName": "preload-files.ts", "path":"src/uploader/preload-files.ts" },
             { "displayName":"preload-files.html", "path":"src/uploader/preload-files.html" },
             { "displayName":"save file", "path":"src/uploader/upload-save-file.cs" },
             { "displayName":"remove file", "path":"src/uploader/upload-remove-file.cs" }
         ]},
-        {"url":"file-validation", "name": "File Validation", "description":"This sample shows how to validate files before uploading them to a server by allowing or denying certain file extensions, setting minimum and maximum file sizes, and alerting users about duplicate files.", "category": "Uploader", "api": { "Uploader": ["autoUpload", "minFileSize", "maxFileSize", "allowedExtensions", "asyncSettings", "selected", "success", "dropArea"] },
+        {"url":"file-validation", "name": "File Validation", "description":"The example covers validations in JavaScript file upload such as allowing/denying file extensions, set min/max file size, duplicate file, and more.", "category": "File Upload", "api": { "Uploader": ["autoUpload", "minFileSize", "maxFileSize", "allowedExtensions", "asyncSettings", "selected", "success", "dropArea"] },
         "sourceFiles":[
             { "displayName": "file-validation.ts", "path":"src/uploader/file-validation.ts" },
             { "displayName":"file-validation.html", "path":"src/uploader/file-validation.html" },
             { "displayName":"save file", "path":"src/uploader/upload-save-file.cs" },
             { "displayName":"remove file", "path":"src/uploader/upload-remove-file.cs" }
         ]},
-        {"url":"image-preview", "name": "Image Preview", "description":"This sample demonstrates how to display a preview of an image file before and after uploading it to a server.", "category": "Uploader", "api": { "Uploader": ["asyncSettings", "template", "success", "progress", "allowedExtensions"] },
+        {"url":"image-preview", "name": "Image Preview", "description":"This example demonstrates how to display a preview of an image file before and after uploading it to a server in JavaScript file upload.", "category": "File Upload", "api": { "Uploader": ["asyncSettings", "template", "success", "progress", "allowedExtensions"] },
         "sourceFiles":[
             { "displayName": "image-preview.ts", "path":"src/uploader/image-preview.ts" },
             { "displayName":"image-preview.html", "path":"src/uploader/image-preview.html" },
             { "displayName":"save file", "path":"src/uploader/upload-save-file.cs" },
             { "displayName":"remove file", "path":"src/uploader/upload-remove-file.cs" }
         ]},
-        {"url":"file-upload-with-forms", "name": "Form Support", "description":"This sample demonstrates how to integrate the file upload component in an HTML form (synchronous mode) and submit a form with selected files.", "category": "Uploader", "api": { "Uploader": ["asyncSettings", "template", "success", "progress", "allowedExtensions"] },
+        {"url":"file-upload-with-forms", "name": "Form Support", "description":"This example demonstrates how to integrate the JavaScript file upload control in an HTML form (synchronous mode) and submit a form with selected files.", "category": "File Upload", "api": { "Uploader": ["asyncSettings", "template", "success", "progress", "allowedExtensions"] },
         "sourceFiles":[
             { "displayName": "file-upload-with-forms.ts", "path":"src/uploader/file-upload-with-forms.ts" },
             { "displayName":"file-upload-with-forms.html", "path":"src/uploader/file-upload-with-forms.html" },
             { "displayName":"save file", "path":"src/uploader/upload-save-file.cs" },
             { "displayName":"remove file", "path":"src/uploader/upload-remove-file.cs" }
         ]},
-        {"url":"custom-drop-area", "name": "Custom Drop Area", "description":"This sample demonstrates how to upload a file using drag and drop and how to configure a custom drop area for the file upload component.", "category": "Uploader", "api": { "Uploader": ["asyncSettings", "template", "success", "progress", "allowedExtensions"] },
+        {"url":"custom-drop-area", "name": "Custom Drop Area", "description":"This example demonstrates how to upload a file using drag and drop and how to configure a custom drop area for the JavaScript file upload control.", "hideOnDevice": true, "category": "File Upload", "api": { "Uploader": ["asyncSettings", "template", "success", "progress", "allowedExtensions"] },
         "sourceFiles":[
             { "displayName": "custom-drop-area.ts", "path":"src/uploader/custom-drop-area.ts" },
             { "displayName":"custom-drop-area.html", "path":"src/uploader/custom-drop-area.html" },

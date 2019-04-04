@@ -104,6 +104,36 @@
             }
         },
         {
+            "url": "stacked-line",
+            "name": "Stacked Line",
+            "description": "This demo for Essential JS2 Chart control shows how to render the stacked line series.",
+            "category": "Line Charts",
+            "type": "new" ,
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "tooltip"
+                ]
+            }
+        },
+        {
+            "url": "stacked-line-100",
+            "name": "100% Stacked Line",
+            "description": "This demo for Essential JS2 Chart control shows how to render the 100% stacked line series.",
+            "category": "Line Charts",
+            "type": "new",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "tooltip"
+                ]
+            }
+        },
+        {
             "url": "area",
             "name": "Area",
             "description": "This demo for Essential JS2 Chart control shows how to render the area series.",
@@ -230,6 +260,7 @@
             "name": "Rounded Column",
             "description": "This demo for Essential JS2 Chart control shows how to render the rounded column series.",
             "category": "Bar Charts",
+            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -376,8 +407,8 @@
             }
         },
         {
-            "url": "scatter-plot",
-            "name": "Scatter Plot",
+            "url": "scatter",
+            "name": "Scatter",
             "description": "This demo for Essential JS2 Chart control shows how to render the scatter series.",
             "category": "Scatter and Bubble",
             "api": {
@@ -477,7 +508,7 @@
             "url": "hilo",
             "name": "Hilo",
             "description": "This demo for Essential JS2 Chart control shows how to render the hilo series.",
-            "category": "Stock Charts",
+            "category": "Financial Charts",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -492,7 +523,7 @@
             "url": "hilo-open-close",
             "name": "Hilo Open Close",
             "description": "This demo for Essential JS2 Chart control shows how to render the hilo open close series.",
-            "category": "Stock Charts",
+            "category": "Financial Charts",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -504,10 +535,10 @@
             }
         },
         {
-            "url": "candle-stick",
-            "name": "Candle Stick",
+            "url": "candle",
+            "name": "Candle",
             "description": "This demo for Essential JS2 Chart control shows how to render the candle series.",
-            "category": "Stock Charts",
+            "category": "Financial Charts",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -669,8 +700,8 @@
             }
         },
         {
-            "url": "multi-series-chart",
-            "name": "Multi-Series Chart",
+            "url": "combination-series",
+            "name": "Combination Series",
             "description": "This demo for Essential JS2 Chart control shows how to combine different types of charts.",
             "category": "Other Types",
             "api": {
@@ -682,10 +713,9 @@
             }
         },
         {
-            "url": "pareto",
+            "url": "pare-to",
             "name": "Pareto Chart",
             "description": "This demo for Essential JS2 Chart control shows how to render pareto charts.",
-            "type": "new",
             "category": "Other Types",
             "api": {
                 "Chart": [
@@ -696,10 +726,10 @@
             }
         },
         {
-            "url": "chart-performance",
-            "name": "Chart Performance",
+            "url": "performance",
+            "name": "Benchmark",
             "description": "This demo for Essential JS2 Chart control shows the performance when plotting large volumes of data and handling high frequency real-time data.",
-            "category": "Benchmark",
+            "category": "Performance",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -711,7 +741,6 @@
         {
             "url": "default-pie",
             "name": "Pie",
-            "description": "This demo for Essential JS2 Chart control shows how to render and configure the pie charts.",
             "category": "Accumulation Charts",
             "api": {
                 "AccumulationChart": [
@@ -722,10 +751,21 @@
             }
         },
         {
-            "url": "donut",
-            "name": "Donut",
+            "url": "pie-radius",
+            "name": "Pie with Various Radius",
+            "category": "Accumulation Charts",
+            "api": {
+                "AccumulationChart": [
+                    "series",
+                    "legendSettings",
+                    "tooltip"
+                ]
+            }
+        },
+        {
+            "url": "doughnut",
+            "name": "Doughnut",
             "description": "This demo for Essential JS2 Chart control shows how to render and configure the doughnut charts.",
-            "type": "update",
             "category": "Accumulation Charts",
             "api": {
                 "AccumulationChart": [
@@ -766,6 +806,7 @@
             "name": "Pie with Legend",
             "description": "This demo for Essential JS2 Chart control shows how to render and configure the legends in pie charts.",
             "category": "Accumulation Charts",
+            "type": "update",
             "api": {
                 "AccumulationChart": [
                     "series",
@@ -817,7 +858,6 @@
             "url": "grouping",
             "name": "Grouping",
             "description": "This demo for Essential JS2 Chart control shows how to group points in pie charts.",
-            "type": "update",
             "category": "Accumulation Charts",
             "api": {
                 "AccumulationChart": [
@@ -974,6 +1014,19 @@
             }
         },
         {
+            "url": "lazy-loading",
+            "name": "Lazy Loading",
+            "category": "Data Binding",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "zoomSettings"
+                ]
+            }
+        },
+        {
             "url": "numeric",
             "name": "Numeric Axis",
             "description": "This demo for Essential JS2 Chart control shows how to plot numeric data with the help of numeric axis in charts.",
@@ -1011,8 +1064,8 @@
             "url": "category",
             "name": "Category Axis",
             "description": "This demo for Essential JS2 Chart control shows how to render the category axis in charts.",
-            "type": "update",
             "category": "Chart Axes",
+            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1037,8 +1090,8 @@
             }
         },
         {
-            "url": "logarithmic-scale",
-            "name": "Logarithmic Scale",
+            "url": "logarithmic",
+            "name": "Log Axis",
             "description": "This demo for Essential JS2 Chart control shows how to render the logarithmic axis in charts.",
             "category": "Chart Axes",
             "api": {
@@ -1051,8 +1104,8 @@
             }
         },
         {
-            "url": "multiple-axis",
-            "name": "Multiple Axis",
+            "url": "multiple-axes",
+            "name": "Multiple Axes",
             "description": "This demo for Essential JS2 Chart control shows how to render and configure the mulitple axis in charts.",
             "category": "Chart Axes",
             "api": {
@@ -1083,7 +1136,6 @@
             "name": "Strip Line",
             "description": "This demo for Essential JS2 Chart control shows how to render and configure the strip lines in charts.",
             "category": "Chart Axes",
-            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1099,7 +1151,6 @@
             "name": "Stripline Recurrence",
             "description": "This demo for Essential JS2 Chart control shows how to render the strip line recurrence in charts.",
             "category": "Chart Axes",
-            "type": "new",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1114,7 +1165,6 @@
             "url": "smart-axis-labels",
             "name": "Smart Labels",
             "description": "This demo for Essential JS2 Chart control shows how to arrange the labels smartly without overlapping with each other.",
-            "type": "update",
             "category": "Chart Axes",
             "api": {
                 "Chart": [
@@ -1166,8 +1216,8 @@
             }
         },
         {
-            "url": "marker-chart",
-            "name": "Marker Chart",
+            "url": "symbols",
+            "name": "Symbols",
             "description": "This demo for Essential JS2 Chart control shows how to render the marker symbols for data points.",
             "category": "Chart Customization",
             "api": {
@@ -1198,7 +1248,6 @@
             "url": "data-label-template",
             "name": "DataLabel Template",
             "description": "This demo for Essential JS2 Chart control shows how to render and configure the data label template.",
-            "type": "update",
             "category": "Chart Customization",
             "api": {
                 "Chart": [
@@ -1343,5 +1392,6 @@
                 ]
             }
         }
+        
     ]
 }

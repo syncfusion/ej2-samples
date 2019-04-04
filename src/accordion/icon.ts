@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Accordion Icon Sample
  */
 import { Accordion } from '@syncfusion/ej2-navigations';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Accordion component
     let acrdnObj: Accordion = new Accordion({
         items: [

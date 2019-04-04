@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Grid, Sort, Page, Selection, SortDirection } from '@syncfusion/ej2-grids';
@@ -7,7 +8,8 @@ Grid.Inject(Sort, Page, Selection);
 /**
  * Sorting sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let columnsName: { [key: string]: Object }[] = [
         { id: 'OrderID', name: 'Order ID' },
         { id: 'CustomerName', name: 'Customer Name' },

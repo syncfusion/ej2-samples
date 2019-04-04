@@ -1,19 +1,27 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Print and export sample for smith chart
  */
-import { Smithchart, SmithchartLegend, TooltipRender, ExportType, ISmithchartLoadEventArgs,
+import { Smithchart, SmithchartLegend, TooltipRender, SmithchartExportType, ISmithchartLoadEventArgs,
     SmithchartTheme } from '@syncfusion/ej2-charts/index';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Smithchart.Inject(SmithchartLegend, TooltipRender);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let smithchart: Smithchart = new Smithchart({
+        // custom code start
         load: (args: ISmithchartLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         horizontalAxis: {
             minorGridLines: {
                 visible: true
@@ -69,19 +77,19 @@ this.default = (): void => {
     smithchart.appendTo('#container');
     let mode: DropDownList = new DropDownList({
         index: 0,
-        width: 85
+        width: 100
     });
     mode.appendTo('#mode');
     let togglebtn1: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn1.appendTo('#togglebtn1');
     document.getElementById('togglebtn1').onclick = () => {
         let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
-        smithchart.export(<ExportType>mode.value, fileName);
+        smithchart.export(<SmithchartExportType>mode.value, fileName);
     };
     let togglebtn2: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn2.appendTo('#togglebtn2');
     document.getElementById('togglebtn2').onclick = () => {

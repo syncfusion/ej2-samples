@@ -30,14 +30,14 @@
 
 <div id="action-description">
     <p>
-        This demo illustrates how to dynamically add or remove resources to and from the Schedule layout.
+        This demo illustrates how to dynamically add or remove resources to and from the Scheduler layout.
     </p>
 </div>
 
 <div id="description">
     <p>
-        In this demo, Schedule is initially displayed with single resource with its related set of appointments. When the additional
-        checkboxes given are checked and unchecked, the respective resources gets added up or removed from the schedule layout.
+        In this demo, Scheduler is initially displayed with single resource with its related set of appointments. When the additional
+        checkboxes given are checked and unchecked, the respective resources gets added up or removed from the scheduler layout.
         To add new resources dynamically,
         <code>addResource</code> method is used which accepts the arguments such as resource object, resource name (within which level, the resource
         object to be added) and index (position where the resource needs to be added). To remove the resources dynamically,
@@ -47,6 +47,7 @@
 </div>
 
 <style>
+    /* custom code start*/
     .property-panel-content .e-checkbox-wrapper.personal .e-label {
         color: #808080;
     }
@@ -71,13 +72,14 @@
         border-color: transparent;
     }
 
-    .e-schedule .e-month-view .e-appointment {
-        border-color: transparent;
-    }
-
     .highcontrast .property-panel-content .e-checkbox-wrapper .e-frame.e-check,
     .bootstrap .property-panel-content .e-checkbox-wrapper .e-frame.e-check {
         color: #fff;
+    }
+    /* custom code end*/
+    
+    .e-schedule .e-month-view .e-appointment {
+        border-color: transparent;
     }
 
     .e-schedule .e-timeline-view .e-resource-left-td,

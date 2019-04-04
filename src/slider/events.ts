@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 
 /**
  * Default sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Initialize Slider component
     let minRangeObj: Slider = new Slider({
@@ -57,7 +59,7 @@ this.default = () => {
         let slider: Slider[] = [minRangeObj];
         slider.forEach((slider: any) => {
             // Refreshing each slider tooltip object position
-            slider.refreshTooltip();
+            slider.refreshTooltip(slider.tooltipTarget);
         });
     }
 };

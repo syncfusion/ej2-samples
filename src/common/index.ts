@@ -4,6 +4,7 @@
  */
 
 import { Popup, Tooltip } from '@syncfusion/ej2-popups';
+import { Toast } from '@syncfusion/ej2-notifications';
 import { Animation, Browser, extend, setCulture, enableRipple, Ajax, closest, createElement, detach, L10n } from '@syncfusion/ej2-base';
 import { select, setCurrencyCode, loadCldr, selectAll } from '@syncfusion/ej2-base';
 import { DataManager, Query } from '@syncfusion/ej2-data';
@@ -28,7 +29,7 @@ import * as swissCultureDate from '../common/cldr-data/main/fr-CH/all.json';
 import * as enCultureData from '../common/cldr-data/main/fr-CH/all.json';
 import * as chinaCultureData from '../common/cldr-data/main/zh/all.json';
 import * as packageJson from '../common/pack.json';
-let packages: string = `{${JSON.stringify((<any>packageJson).dependencies).match(/"@syncfusion\/ej2[^"]*":"\*"/g).join(',')}}`;
+let packages: string = `{${JSON.stringify((<any>packageJson).dependencies).match(/"@syncfusion\/ej2[^"]*":".*"/g).join(',')}}`;
 let cBlock: string[] = ['ts-src-tab', 'html-src-tab'];
 const matchedCurrency: { [key: string]: string } = {
     'en': 'USD',
@@ -47,6 +48,7 @@ interface Controls {
     name: string;
     uid: string;
     type: string;
+    hideOnDevice: boolean;
     samples: Samples[];
 }
 
@@ -62,6 +64,7 @@ interface DestroyMethod extends HTMLElement {
     destroy: Function;
     ej2_instances: Object[];
     enableRtl: Boolean;
+    setProperties: Function;
 }
 
 interface HighlightJS {
@@ -72,6 +75,7 @@ interface HighlightJS {
 interface MyWindow extends Window {
     default: () => void;
     navigateSample: () => void;
+    loadCultureFiles: () => void;
     apiList: any;
     hashString: string;
 }
@@ -91,7 +95,7 @@ let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
 let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
 let themeList: HTMLElement = document.getElementById('themelist');
-const themeCollection: string[] = ['material', 'fabric', 'bootstrap', 'highcontrast'];
+const themeCollection: string[] = ['material', 'fabric', 'bootstrap', 'bootstrap4', 'highcontrast'];
 let themeDropDown: DropDownList;
 let cultureDropDown: DropDownList;
 let currencyDropDown: DropDownList;
@@ -113,6 +117,8 @@ let resetSearch: Element = select('.sb-reset-icon');
  */
 const urlRegex: RegExp = /(npmci\.syncfusion\.com|ej2\.syncfusion\.com)(\/)(development|production)*/;
 const sampleRegex: RegExp = /#\/(([^\/]+\/)+[^\/\.]+)/;
+// Regex for removal of hidden codes 
+const reg: RegExp = /.*custom code start([\S\s]*?)custom code end.*/g;
 const sbArray: string[] = ['angular', 'react', 'javascript', 'aspnetcore', 'aspnetmvc', 'vue'];
 /**
  * constant for search operations
@@ -224,6 +230,7 @@ function preventTabSwipe(e: any): void {
 function dynamicTab(e: any): void {
     let blockEle: Element = this.element.querySelector('#e-content_' + e.selectedIndex).children[0];
     blockEle.innerHTML = this.items[e.selectedIndex].data;
+    blockEle.innerHTML = blockEle.innerHTML.replace(reg,'');
     blockEle.classList.add('sb-src-code');
     if (blockEle) {
         hljs.highlightBlock(blockEle);
@@ -238,8 +245,9 @@ function dynamicTabCreation(obj: any): void {
     if (!contentEle) {
         return;
     }
-    let  blockEle: Element = tabObj.element.querySelector('#e-content_' + tabObj.selectedItem).children[0];
+    let blockEle: Element = tabObj.element.querySelector('#e-content_' + tabObj.selectedItem).children[0];
     blockEle.innerHTML = tabObj.items[tabObj.selectedItem].data;
+    blockEle.innerHTML = blockEle.innerHTML.replace(reg,'');
     blockEle.classList.add('sb-src-code');
     if (blockEle) {
         hljs.highlightBlock(blockEle);
@@ -261,7 +269,7 @@ function renderSbPopups(): void {
     searchPopup = new AutoComplete(
         {
             dataSource: [],
-            filtering:  function (e: any): void {
+            filtering: function (e: any): void {
                 if (e.text && e.text.length < 3) {
                     return;
                 }
@@ -273,9 +281,19 @@ function renderSbPopups(): void {
                     expand: true,
                     boolean: 'AND'
                 });
+                let value: any = [];
+                if (Browser.isDevice) {
+                    for (let file of val) {
+                        if (file.doc.hideOnDevice !== true) {
+                            value = value.concat(file);
+                        }
+                    }
+                }
                 let query: Query = new Query().take(10).select('doc');
                 let fields: any = this.fields;
-                e.updateData(val, query, fields);
+                let searchValue: any = Browser.isDevice ? value : val;
+                e.updateData(searchValue, query, fields)
+
             },
             placeholder: 'Search here...',
             noRecordsTemplate: '<div class="search-no-record">We’re sorry. We cannot find any matches for your search term.</div>',
@@ -321,18 +339,20 @@ function renderSbPopups(): void {
         index: 0,
         change: (e: any) => {
             let value: string = e.value;
-            if (value === 'ar') {
-                changeRtl(true);
-            } else {
-                changeRtl(false);
-            }
+            changeRtl({
+                locale: value, currencyCode: matchedCurrency[value],
+                enableRtl: value === 'ar'
+            });
             currencyDropDown.value = matchedCurrency[value];
             setCulture(e.value);
         }
     });
     currencyDropDown = new DropDownList({
         index: 0,
-        change: (e: any) => { setCurrencyCode(e.value); }
+        change: (e: any) => {
+            changeRtl({ currencyCode: e.value });
+            //  setCurrencyCode(e.value);
+        }
     });
     cultureDropDown.appendTo('#sb-setting-culture');
     currencyDropDown.appendTo('#sb-setting-currency');
@@ -345,6 +365,7 @@ function renderSbPopups(): void {
     },
         // tslint:disable-next-line:align
         '#sb-content');
+    enableRipple(false);    
     sourceTab = new Tab({
         items: [],
         headerPlacement: 'Bottom', cssClass: 'sb-source-code-section',
@@ -355,6 +376,7 @@ function renderSbPopups(): void {
     },
         // tslint:disable-next-line:align
         '#sb-source-tab');
+    enableRipple(selectedTheme === 'material' || !selectedTheme);
     sourceTab.selectedItem = 1;
     /**
      * api grid
@@ -405,15 +427,6 @@ function renderSbPopups(): void {
     });
 
     next.appendTo('#next-sample');
-    let ele: HTMLElement = createElement('div', { className: 'copy-tooltip', innerHTML: '<div class="e-icons copycode"></div>' });
-    document.getElementById('sb-source-tab').appendChild(ele);
-    let copiedTooltip: Tooltip = new Tooltip({
-        content: 'Copied to clipboard ',
-        position: 'BottomCenter',
-        opensOn: 'Click',
-        closeDelay: 500
-    });
-    copiedTooltip.appendTo(ele);
 }
 
 /**
@@ -429,6 +442,7 @@ function checkApiTableDataSource(): void {
     }
 }
 function changeTab(args: any): void {
+    enableRipple(false);  
     if (args.selectedIndex === 2) {
         let hash: string[] = location.hash.split('/');
         let data: Object[] = window.apiList[hash[2] + '/' + hash[3].replace('.html', '')] || [];
@@ -441,6 +455,7 @@ function changeTab(args: any): void {
     if (args.selectedIndex === 1) {
         sourceTab.items = sourceTabItems;
         sourceTab.refresh();
+        renderCopyCode();
         dynamicTabCreation(sourceTab);
     }
 }
@@ -450,7 +465,7 @@ function changeRtl(args: any): void {
         let eleinstance: Object[] = (<DestroyMethod>control).ej2_instances;
         if (eleinstance) {
             for (let instance of eleinstance) {
-                (<DestroyMethod>instance).enableRtl = args;
+                (<DestroyMethod>instance).setProperties(args);
             }
         }
     }
@@ -478,7 +493,7 @@ function tagShowmore(target: HTMLElement): void {
     target.querySelector('#showtag').classList.add('e-display');
     let hideEle: Element = target.querySelector('#hidetag');
     if (!hideEle) {
-        let tag: Element = createElement('a', { id: 'hidetag', attrs: {}, innerHTML: ' show less..' });
+        let tag: Element = createElement('a', { id: 'hidetag', attrs: {}, innerHTML: ' hide less..' });
         target.appendChild(tag);
         tag.addEventListener('click', taghideless.bind(this, target));
     } else {
@@ -796,7 +811,7 @@ function bindEvents(): void {
             toggleLeftPane();
         }
     });
-    select('.copycode').addEventListener('click', copyCode);
+    // select('.copycode').addEventListener('click', copyCode);
 }
 
 /**
@@ -807,7 +822,7 @@ function bindEvents(): void {
  * 
  */
 function copyCode(): void {
-    let copyElem: HTMLElement = select('#' + cBlock[sourceTab.selectedItem]) as HTMLElement;
+    let copyElem: HTMLElement = selectAll('.sb-src-code')[sourceTab.selectedItem] as HTMLElement;
     let textArea: HTMLTextAreaElement = createElement('textArea') as HTMLTextAreaElement;
     textArea.textContent = copyElem.textContent.trim();
     document.body.appendChild(textArea);
@@ -816,6 +831,20 @@ function copyCode(): void {
     detach(textArea);
     (select('.copy-tooltip') as any).ej2_instances[0].close();
 }
+function renderCopyCode() {
+    let ele: HTMLElement = createElement('div', { className: 'copy-tooltip', innerHTML: '<div class="e-icons copycode"></div>' });
+    document.getElementById('sb-source-tab').appendChild(ele);
+    select('.copycode').addEventListener('click', copyCode);
+    let copiedTooltip: Tooltip = new Tooltip({
+        content: 'Copied to clipboard ',
+        position: 'BottomCenter',
+        opensOn: 'Click',
+        closeDelay: 500
+    });
+    copiedTooltip.appendTo(ele);
+    select('.copycode').addEventListener('click', copyCode);
+}
+
 function setSbLink(): void {
     let href: string = location.href;
     let link: string[] = href.match(urlRegex);
@@ -823,7 +852,7 @@ function setSbLink(): void {
     for (let sb of sbArray) {
         let ele: HTMLFormElement = <HTMLFormElement>select('#' + sb);
         if (sb === 'aspnetcore' || sb === 'aspnetmvc') {
-            ele.href = sb === 'aspnetcore' ? 'https://aspdotnetcore.syncfusion.com' : 'https://aspnetmvc.syncfusion.com';
+            ele.href = sb === 'aspnetcore' ? 'https://ej2.syncfusion.com/aspnetcore/' : 'https://ej2.syncfusion.com/aspnetmvc/';
         } else {
             ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('https://ej2.syncfusion.com/')) +
                 sb + '/' + 'demos/#/' + sample + (sb === 'javascript' ? '.html' : '');
@@ -927,24 +956,24 @@ function toggleLeftPane(): void {
             sidebar.hide();
             if (!isMobile && !isTablet) {
                 resizeManualTrigger = true;
-                setTimeout( cusResize(), 200);
+                setTimeout(cusResize(), 200);
             }
         } else {
             sidebar.show();
             resizeManualTrigger = true;
             if (!isMobile && !isTablet) {
-                setTimeout( cusResize(), 200);
+                setTimeout(cusResize(), 200);
 
             }
         }
     }
 }
 
-function cusResize(){
+function cusResize() {
     let event: Event;
-    if(typeof(Event) === 'function') {
+    if (typeof (Event) === 'function') {
         event = new Event('resize');
-    }else{
+    } else {
         event = document.createEvent('Event');
         event.initEvent('resize', true, true);
     }
@@ -979,11 +1008,16 @@ function getSampleList(): Controls[] | { [key: string]: Object }[] {
     if (Browser.isDevice) {
         //  (select('.copy-tooltip') as HTMLElement).style.display = 'none';
         let tempList: Controls[] = <Controls[]>extend([], samplesJSON.samplesList);
+        let sampleList: any = [];
         for (let temp of tempList) {
+            if (temp.hideOnDevice == true) {
+                continue;
+            }
             let data: DataManager = new DataManager((temp as any).samples);
             temp.samples = <Samples[]>data.executeLocal(new Query().where('hideOnDevice', 'notEqual', true));
+            sampleList = sampleList.concat(temp);
         }
-        return tempList;
+        return sampleList;
     }
     return samplesJSON.samplesList;
 }
@@ -998,8 +1032,8 @@ function renderLeftPaneComponents(): void {
             },
             nodeClicked: controlSelect,
             nodeTemplate: '<div><span class="tree-text">${name}</span>' +
-            '${if(type === "update")}<span class="e-badge sb-badge e-samplestatus ${type} tree tree-badge">Updated</span>' +
-            '${else}${if(type)}<span class="e-badge sb-badge e-samplestatus ${type} tree tree-badge">${type}</span>${/if}${/if}</div>'
+                '${if(type === "update")}<span class="e-badge sb-badge e-samplestatus ${type} tree tree-badge">Updated</span>' +
+                '${else}${if(type)}<span class="e-badge sb-badge e-samplestatus ${type} tree tree-badge">${type}</span>${/if}${/if}</div>'
         },
         '#controlTree');
     let controlList: ListView = new ListView(
@@ -1007,7 +1041,7 @@ function renderLeftPaneComponents(): void {
             dataSource: controlSampleData[location.hash.split('/')[2]] || controlSampleData.grid,
             fields: { id: 'uid', text: 'name', groupBy: 'order', htmlAttributes: 'data' },
             select: controlSelect,
-            template: '<div class="e-text-content e-icon-wrapper"> <span class="e-list-text" role="listitem">${name}' +
+            template: '<div class="e-text-content ${if(type)}e-icon-wrapper${/if}"> <span class="e-list-text" role="listitem">${name}' +
                 '</span>${if(type === "update")}<span class="e-badge sb-badge e-samplestatus ${type}">Updated</span>' +
                 '${else}${if(type)}<span class="e-badge sb-badge e-samplestatus ${type}">${type}</span>${/if}${/if}' +
                 '${if(directory)}<div class="e-icons e-icon-collapsible"></div>${/if}</div>',
@@ -1228,7 +1262,7 @@ function plunker(results: string): void {
         detach(prevForm);
     }
     let form: HTMLFormElement = <HTMLFormElement>createElement('form');
-    let res: string = ((location.href as any).includes('ej2.syncfusion.com') ? 'https:' : 'http:') + '//stackblitz.com/run';
+    let res: string = ((location.href as any).indexOf('ej2.syncfusion.com') !== -1 ? 'https:' : 'http:') + '//stackblitz.com/run';
     form.setAttribute('action', res);
     form.setAttribute('method', 'post');
     form.setAttribute('target', '_blank');
@@ -1277,7 +1311,7 @@ function addRoutes(samplesList: Controls[]): void {
                 (document.getElementById('open-plnkr') as any).disabled = true;
                 let openNew: HTMLFormElement = (select('#openNew') as HTMLFormElement);
                 if (openNew) {
-                    openNew.href = location.href.split('#')[0] + node.directory + '/' + subNode.url + '/';
+                    openNew.href = location.href.split('#')[0] + node.directory + '/' + subNode.url + '/index.html';
                 }
                 setSbLink();
                 // select('#switch').classList.remove('hidden');
@@ -1299,8 +1333,8 @@ function addRoutes(samplesList: Controls[]): void {
                     content: sample + '.html'
                 });
                 if (subNode.sourceFiles) {
-                    sourcePromise =[];
-                    sObj =[];
+                    sourcePromise = [];
+                    sObj = [];
                     let sourcefiles: any = subNode.sourceFiles;
                     for (let sfile of sourcefiles) {
                         let spromise: Promise<Ajax> = (new Ajax(sfile.path, 'GET', true)).send();
@@ -1320,8 +1354,13 @@ function addRoutes(samplesList: Controls[]): void {
                             content = getStringWithOutDescription(value.toString(), /(\'|\")description/g);
                             content = getStringWithOutDescription(content.toString(), /(\'|\")action-description/g)
                         }
+                        let defRegex: RegExp = /(this.|export |\(window as any\).)default (= |)\(\)(: void|) => {/g;
+                        let resValue: string = value.toString().replace(defRegex, '');
+                        resValue = resValue.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        var lInd = resValue.lastIndexOf('};');
+                        resValue = resValue.substring(0, lInd) + resValue.substring(lInd + 2);
                         content = srcobj.content.indexOf('.html') > 0 ? content.replace(/@section (ActionDescription|Description){[^}]*}/g, '').replace(/&/g, '&amp;')
-                            .replace(/"/g, '&quot;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : value.toString().replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                            .replace(/"/g, '&quot;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : resValue;
 
                         sObj[index].data = content;
                     });
@@ -1423,6 +1462,24 @@ function addRoutes(samplesList: Controls[]): void {
             });
         }
     }
+    if(Browser.isDevice)
+    {
+       if(location.hash && samplesAr.indexOf(location.hash) == -1)
+       {
+        let toastObj: Toast = new Toast({
+            position: {
+                X: 'Right'
+            }
+        });
+        toastObj.appendTo('#sb-home');
+        setTimeout(
+            () => {
+                toastObj.show({
+                    content: `${location.hash.split('/')[2]} component not supported in mobile device`
+                });
+        },  200);
+       }
+    }
 }
 function removeOverlay(): void {
     document.body.setAttribute('aria-busy', 'false');
@@ -1438,9 +1495,14 @@ function removeOverlay(): void {
     } else {
         sbRightPane.scrollTop = 74;
     }
-    if (cultureDropDown.value === 'ar') {
-        changeRtl(true);
+    if(cultureDropDown.value !== 'en'){
+        changeRtl({
+            locale: cultureDropDown.value,
+            enableRtl: cultureDropDown.value === 'ar',
+            currencyCode: currencyDropDown.value
+        });
     }
+   
 }
 
 function sampleOverlay(): void {
@@ -1577,9 +1639,12 @@ function loadJSON(): void {
     overlay();
     changeMouseOrTouch(switchText);
     localStorage.removeItem('ej2-switch');
-    enableRipple(selectedTheme === 'material' || !selectedTheme);
     loadTheme(selectedTheme);
 }
 
 
 loadJSON();
+
+if ('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/src/service-worker.js');
+    }

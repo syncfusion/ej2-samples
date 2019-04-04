@@ -3,14 +3,22 @@
  */
 import { Maps, Marker, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Marker);
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+// custom code end
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         zoomSettings: {
             enable: false
         },
@@ -22,7 +30,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/australia.json'),
+                shapeData: new MapAjax('./src/maps/map-data/australia.json'),
                 shapeDataPath: 'STATE_NAME',
                 markerSettings: [
                     {

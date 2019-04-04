@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, DateTime, Tooltip, ChartAnnotation } from '@syncfusion/ej2-charts';
 import { ILoadedEventArgs, ChartTheme, MultiColoredLineSeries } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
@@ -6,7 +7,8 @@ Chart.Inject(DateTime, Tooltip, ChartAnnotation, MultiColoredLineSeries);
 /**
  * Sample for Line series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dataValues: Object[] = [];
     [
         380, 410, 310, 540, 510, 330, 490, 470, 472, 460, 550, 420, 380, 430, 385, 520, 580, 420, 350, 505,
@@ -80,10 +82,12 @@ this.default = (): void => {
             enable: true, shared: true
         },
         width: Browser.isDevice ? '100%' : '60%',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             if (selectedTheme === 'highcontrast') {
                args.chart.series[0].segments[0].color = '#FF4741';
                args.chart.series[0].segments[1].color = '#00B400';
@@ -91,6 +95,7 @@ this.default = (): void => {
             }
 
         }
+        // custom code end
     });
     chart.appendTo('#container');
 };

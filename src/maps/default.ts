@@ -3,8 +3,17 @@
  */
 import { Maps, Legend, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Legend, Marker, MapsTooltip);
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+// custom code end
+/**
+ * Code for Maps
+ */
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
         titleSettings: {
             text: 'YouTube office locations',
@@ -20,10 +29,10 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapePropertyPath: 'continent',
                 shapeDataPath: 'continent',
-                dataSource: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/default-datasource.json'),
+                dataSource: new MapAjax('./src/maps/map-data/default-datasource.json'),
                 shapeSettings: {
                     colorValuePath: 'color',
                 },
@@ -116,11 +125,13 @@ this.default = (): void => {
                 ]
             },
         ],
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         }
+        // custom code end
     });
     maps.appendTo('#container');
 };

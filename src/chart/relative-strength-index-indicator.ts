@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, CandleSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic,
     Crosshair, LineSeries, RsiIndicator, StripLine, ChartTheme
@@ -66,7 +67,8 @@ this.renderChart = (chartData: Object[]): void => {
                     {
 
                         enableSelectionZooming: true,
-                        mode: 'X',
+                        enablePinchZooming: true,
+                        mode: 'XY',
                         enablePan: true
                     },
                 tooltip: {
@@ -80,13 +82,15 @@ this.renderChart = (chartData: Object[]): void => {
                 load: (args: ILoadedEventArgs) => {
                     let selectedTheme: string = location.hash.split('/')[1];
                     selectedTheme = selectedTheme ? selectedTheme : 'Material';
-                    args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+                    args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
                 },
                 legendSettings: { visible: false }
             });
             chart.appendTo('#container');
         };
-    this.default = (): void => {
+    (window as any).default = (): void => {
+    loadCultureFiles();
     let chartData: Object[];
     let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
     ajax.send().then();

@@ -1,14 +1,16 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DateRangePicker } from '@syncfusion/ej2-calendars';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { FloatLabelType } from '@syncfusion/ej2-inputs';
 /**
  * DateRangePicker Format sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let formats: { [key: string]: Object; }[] = [
         { Id: '1', value: 'dd\'\/\'MMM\'\/\'yy hh:mm a', text: 'dd/MMM/yy hh:mm a' },
         { Id: '2', value: 'yyyy\'\/\'MM\'\/\'dd HH:mm', text: 'yyyy/MM/dd HH:mm' },
-        { Id: '3', value: 'dd\'\/\'MMMM HH:mm', text: 'dd/MMMM hh:mm a' },
+        { Id: '3', value: 'dd\'\/\'MMMM\'\/\'yyyy', text: 'dd/MMMM/yyyy' },
     ];
 
     let daterangepicker: DateRangePicker = new DateRangePicker({

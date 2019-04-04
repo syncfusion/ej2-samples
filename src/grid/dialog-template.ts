@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Edit, Toolbar, Page, DialogEditEventArgs } from '@syncfusion/ej2-grids';
 import { DataUtil } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
@@ -11,7 +12,8 @@ import { Dialog } from '@syncfusion/ej2-popups';
  * Dialog Template Editing sample
  */
 Grid.Inject(Edit, Toolbar, Page);
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let countryData: {}[] = DataUtil.distinct(orderData, 'ShipCountry', true);
     let shipCityData: {}[] = DataUtil.distinct(orderData, 'ShipCity', true);
 
@@ -25,11 +27,11 @@ this.default = (): void => {
             columns: [
                 {
                     field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right',
-                    validationRules: { required: true }, width: 120
+                    validationRules: { required: true, number: true }, width: 120, defaultValue: ''
                 },
                 {
                     field: 'CustomerID', headerText: 'Customer ID',
-                    validationRules: { required: true }, width: 140
+                    validationRules: { required: true }, width: 140, defaultValue: ''
                 },
                 {
                     field: 'Freight', headerText: 'Freight', textAlign: 'Right',
@@ -40,7 +42,7 @@ this.default = (): void => {
                     format: 'yMd', width: 170, validationRules: { date:  [true, 'Enter valid date'] }
                 },
                 {
-                    field: 'ShipCountry', headerText: 'Ship Country', width: 150
+                    field: 'ShipCountry', headerText: 'Ship Country', width: 150, defaultValue: ''
                 }],
                 actionComplete: actionComplete
         });

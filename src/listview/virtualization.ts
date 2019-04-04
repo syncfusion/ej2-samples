@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ListView Virtualization Sample
  */
@@ -5,7 +6,7 @@ import { ListView, Virtualization } from '@syncfusion/ej2-lists';
 import { createSpinner, hideSpinner, showSpinner } from '@syncfusion/ej2-popups';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
-
+import { virtualizationData } from './datasource';
 let commonData: { [key: string]: string | object }[] = [];
 let dataSource: { [key: string]: { [key: string]: string | object }[] } = {};
 let startTime: Date;
@@ -13,22 +14,10 @@ let endTime: Date;
 let listObj: ListView;
 let liElement: HTMLElement;
 
-this.default = () => {
-
+(window as any).default = (): void => {
+    loadCultureFiles();
     ListView.Inject(Virtualization);
-    commonData = [
-        { name: 'Nancy', icon: 'N', id: '0', },
-        { name: 'Andrew', icon: 'A', id: '1' },
-        { name: 'Janet', icon: 'J', id: '2' },
-        { name: 'Margaret', imgUrl: './src/listview/images/margaret.png', id: '3' },
-        { name: 'Steven', icon: 'S', id: '4' },
-        { name: 'Laura', imgUrl: './src/listview/images/laura.png', id: '5' },
-        { name: 'Robert', icon: 'R', id: '6' },
-        { name: 'Michael', icon: 'M', id: '7' },
-        { name: 'Albert', imgUrl: './src/listview/images/albert.png', id: '8' },
-        { name: 'Nolan', icon: 'N', id: '9' }
-    ];
-
+    commonData = virtualizationData;
     liElement = document.getElementById('ui-list');
 
     if (Browser.isDevice) {

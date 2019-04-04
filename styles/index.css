@@ -128,6 +128,10 @@
     content: '\e911';
 }
 
+.sb-icon-Back:before {
+    content: '\e962';
+    font-size: 17px;
+}
 .sb-icon-Popout:before {
     content: '\e91d';
 }
@@ -138,6 +142,12 @@
 
 .sb-icon-Localization:before {
     content: '\e918';
+}
+
+.sb-icons.sb-icon-Back {
+    vertical-align: middle;
+    display: table-cell;
+    width: 17px;
 }
 
 .sb-icon-Currency:before {
@@ -842,6 +852,7 @@
     position: absolute;
     padding-left: 5px;
     -webkit-overflow-scrolling: touch;
+    border: none;
 }
 
 .sb-control-list-top {
@@ -852,6 +863,10 @@
  {
     background: #0278d7;
     display: block;
+}
+
+.bootstrap #sb-content-header.e-tab-header::before{
+    border: none;
 }
 
 .highcontrast .sb-content-tab > .e-tab > .e-tab-header > .e-items.e-toolbar-items > .e-indicator
@@ -1043,9 +1058,7 @@
 .sb-content-section {
     background: #FFFFFF;
     border: 1px solid #D7D7D7;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.24);
     opacity: 100;
-    border-radius: 5px;
     height: 100%;
 }
 
@@ -1390,7 +1403,19 @@ propertye pane
 /*Tab view*/
 
 @media (max-width: 900px) {
+    .e-sb-header-text>.sb-header-text-left {
+        display: none;
+    }
     .sb-desktop-setting {
+        display: inline-flex;
+    }
+    .sb-desktop-setting.sb-hide {
+        display: block;
+    }
+    .sb-toolbar-splitter {
+        display: none;
+    }
+    .sb-plnr-section {
         display: none;
     }
     .copy-tooltip {
@@ -1398,9 +1423,6 @@ propertye pane
     }
     .control-section {
         min-height: auto;
-    }
-    .e-sb-header-text>.sb-header-text-left {
-        display: none;
     }
 }
 
@@ -1595,6 +1617,15 @@ propertye pane
     }
     /*source tab header*/
     .sb-desktop-setting {
+        display: inline-flex;
+    }
+    .sb-desktop-setting.sb-hide {
+        display: block;
+    }
+    .sb-toolbar-splitter {
+        display: none;
+    }
+    .sb-plnr-section {
         display: none;
     }
     .sb-right-pane {
@@ -1641,6 +1672,9 @@ propertye pane
     }
     .sb-mobile-setting {
         display: block;
+        padding-top: 5px;
+    }
+    .sb-open-new-wrapper {  
         padding-top: 3px;
     }
     .sb-icon-Demo,
@@ -1686,9 +1720,9 @@ propertye pane
     .sb-mobile-header-buttons {
         display: table;
     }
-    .sb-mobile-header-button {
+    .sb-mobile-header-price {
         width: 114px;
-        background-color: #939393;
+        background-color: #3C78EF;
         font-weight: 500;
         line-height: 24px;
         text-align: center;
@@ -1698,6 +1732,21 @@ propertye pane
         margin-left: 16px;
         padding: 6px 12px;
         color: #ffffff;
+        border-radius: 2px;
+    }
+    .sb-mobile-header-about {
+        width: 114px;
+        background-color: #ffffff;
+        font-weight: 500;
+        line-height: 24px;
+        text-align: center;
+        border: 1px solid;
+        cursor: pointer;
+        display: inline-table;
+        margin-left: 16px;
+        padding: 6px 12px;
+        color: #3C78EF;
+        border-radius: 2px;
     }
     .sb-mobile-header-button:active {
         background-color: #1783FF;
@@ -2011,11 +2060,12 @@ body.highcontrast,
 }
 
 .highcontrast #controlList li.e-list-item {
-    line-height: 45px;
+    line-height: 36px;
 }
 
 .sb-left-pane .e-treeview .e-list-text {
     width: 100%;
+    font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
 }
 
 .sb-left-pane .e-treeview .e-text-content {
@@ -2037,4 +2087,7 @@ body.highcontrast,
 .highcontrast .sb-src-code {
     background: #000000;
     color: #ffffff;
+}
+.sb-left-pane .e-listview .e-list-item.e-active {
+    color: #000000;
 }

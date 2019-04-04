@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ColorPicker, Input, ColorPickerMode, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -5,7 +6,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 /**
  * ColorPicker API sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize the ColorPicker component
     let colorPicker: ColorPicker = new ColorPicker({ value: '#0db1e7ba', change: onChange }, '#color-picker');
 
@@ -30,7 +32,7 @@ this.default = (): void => {
         },
         '#ddl');
 
-    let disabled: CheckBox = new CheckBox(
+    new CheckBox(
         {
             checked: false,
             change: (args: ChangeEventArgs) => {
@@ -39,7 +41,7 @@ this.default = (): void => {
         },
         '#disabled');
 
-    let showBtn: CheckBox = new CheckBox(
+    new CheckBox(
         {
             checked: true,
             change: (args: ChangeEventArgs) => {
@@ -48,7 +50,7 @@ this.default = (): void => {
         },
         '#show-btn');
 
-    let modeSwitch: CheckBox = new CheckBox(
+    new CheckBox(
         {
             checked: true,
             change: (args: ChangeEventArgs) => {
@@ -57,7 +59,9 @@ this.default = (): void => {
         },
         '#mode-switch');
 
-    element.onchange = () => {
-        colorPicker.value = element.value;
+    element.oninput = () => {
+        const val: string = element.value;
+        // Sets to color picker default color value if user types the invalid hex code.
+        colorPicker.value = val && val.length > 2 ? (val[0] !== '#' ? `#${val}` : val) : '#008000';
     };
 };

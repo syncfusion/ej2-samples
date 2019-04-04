@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Switch, rippleMouseHandler } from '@syncfusion/ej2-buttons';
 
 /**
  * Default Switch sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let switchObj: Switch = new Switch({ name: 'hotspot', value: 'USB tethering', checked: true});
     switchObj.appendTo('#checked');

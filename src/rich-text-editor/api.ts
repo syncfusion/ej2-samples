@@ -1,12 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor default sample
+ * RichTextEditor API sample
  */
 import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultAPI: RichTextEditor = new RichTextEditor({
         showCharCount: true,
@@ -25,7 +27,7 @@ this.default = (): void => {
     });
     maxLength.appendTo('#maxlength');
     let readonly: CheckBox = new CheckBox({
-        // set false for enable the checked state at initial rendering
+        // set false for disable the checked state at initial rendering
         checked: false,
         // bind change event
         change: (args: ChangeEventArgs) => {
@@ -34,7 +36,7 @@ this.default = (): void => {
     });
     readonly.appendTo('#readonly');
     let enable: CheckBox = new CheckBox({
-        // set false for enable the checked state at initial rendering
+        // set true for enable the checked state at initial rendering
         checked: true,
         // bind change event
         change: (args: ChangeEventArgs) => {
@@ -43,7 +45,7 @@ this.default = (): void => {
     });
     enable.appendTo('#enable');
     let enablehtml: CheckBox = new CheckBox({
-        // set false for enable the checked state at initial rendering
+        // set false for disable the checked state at initial rendering
         checked: false,
         // bind change event
         change: (args: ChangeEventArgs) => {

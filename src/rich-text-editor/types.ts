@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor expand toolbar sample
  */
@@ -7,7 +8,8 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let options: Object = {
         floatingToolbarOffset: 0,
         toolbarSettings: {

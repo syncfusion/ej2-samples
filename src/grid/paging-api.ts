@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { Grid, Page, Selection, PageEventArgs } from '@syncfusion/ej2-grids';
@@ -8,7 +9,8 @@ Grid.Inject(Page, Selection);
 /**
  * PagingApi sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid(
         {
             dataSource: productData,

@@ -1,19 +1,27 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable:max-func-body-length
+// custom code end
 /**
  * User Interaction sample
  */
 import { CircularGauge, IPointerDragEventArgs, Annotations, getRangeColor, Range } from '@syncfusion/ej2-circulargauge';
 import { ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
-
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let content: string = '<div style="font-size: 14px;color:#E5C31C;font-weight: lighter;font-style: oblique;"><span>';
     let pointerValue: number;
     let circulargauge: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         enablePointerDrag: true,
         dragMove: (args: IPointerDragEventArgs) => {
             pointerValue = Math.round(args.currentValue);
@@ -75,7 +83,7 @@ this.default = (): void => {
         }]
     });
     circulargauge.appendTo('#user-container');
-
+    // code for property panel
     function setPointersValue(circulargauge: CircularGauge, pointerValue: number): void {
         let color: string = getRangeColor(pointerValue, <Range[]>(circulargauge.axes[0].ranges), circulargauge.axes[0].pointers[0].color);
         circulargauge.axes[0].pointers[0].color = color;

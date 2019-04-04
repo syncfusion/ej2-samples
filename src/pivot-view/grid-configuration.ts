@@ -1,18 +1,21 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
-import { PivotView, FieldList } from '@syncfusion/ej2-pivotview';
-import { defaultData } from './data-source';
+import { PivotView, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { CheckBox, ChangeEventArgs as checkEventArgs } from '@syncfusion/ej2-buttons';
 import { DropDownList, ChangeEventArgs as dropEventArgs } from '@syncfusion/ej2-dropdowns';
 import { GridLine } from '@syncfusion/ej2-grids';
 import { enableRipple } from '@syncfusion/ej2-base';
+import * as pData from './pivot-data/defaultData.json';
 enableRipple(false);
 PivotView.Inject(FieldList);
 
 /**
  * PivotView sample with Grid Configurations.
  */
-
-this.default = (): void => {
+/* tslint:disable */
+let defaultData: IDataSet[] = (pData as any).data;
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
             rows: [{ name: 'Country' }, { name: 'Products' }],

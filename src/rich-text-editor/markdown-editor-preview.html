@@ -45,6 +45,13 @@ The third-party library <b>Marked</b> is used in this sample to convert markdown
     .e-richtexteditor .e-rte-content {
         overflow: hidden;
     }
+    .bootstrap4 .e-icon-btn.e-active .e-md-preview::before {
+        content: '\e790';
+    }
+
+    .bootstrap4 .e-icon-btn .e-md-preview::before {
+        content: '\e787';
+    }
 
     .e-icon-btn.e-active .e-md-preview::before {
         content: '\e350';
@@ -70,8 +77,12 @@ The third-party library <b>Marked</b> is used in this sample to convert markdown
     .highcontrast .e-richtexteditor textarea.e-content {
         border-right: 1px solid #fff;
     }
+</style>
 
+<!-- custom code start -->
+<style> 
     .sb-header {
         z-index: 100;
     }
 </style>
+<!-- custom code end -->

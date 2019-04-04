@@ -1,61 +1,61 @@
-<style>
-    .image-pattern-style {
-        background-color: white;
-        background-size: contain;
-        background-repeat: no-repeat;
-        height: 45px;
-        width: calc((100% - 12px) / 3);
-        cursor: pointer;
-        border: 1px solid #D5D5D5;
-        background-position: center;
-        float: left;
-    }
-
-    .image-pattern-style:hover {
-        border-color: gray;
-        border-width: 2px;
-    }
-
-    .row {
-        margin-left: 0px;
-        margin-right: 0px;
-    }
-
-    .row-header {
-        font-size: 12px;
-        font-weight: 500;
-    }
-
-    .e-checkbox-wrapper .e-label {
-        font-size: 12px;
-    }
-
-    .property-panel-header {
-        padding-top: 15px;
-        padding-bottom: 5px
-    }
-
-    .e-selected-style {
-        border-color: #006CE6;
-        border-width: 2px;
-    }
-
-    .control-section {
-        padding-top: 0px;
-        padding-bottom: 0px;
-        padding-right: 0px;
-    }
-
-    .container-fluid {
-        padding-left: 0px;
-    }
-
-    .col-xs-6 {
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-</style>
 <div class="col-lg-9 control-section">
+    <style>
+        .image-pattern-style {
+                    background-color: white;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    height: 45px;
+                    width: calc((100% - 12px) / 3);
+                    cursor: pointer;
+                    border: 1px solid #D5D5D5;
+                    background-position: center;
+                    float: left;
+                }
+            
+                .image-pattern-style:hover {
+                    border-color: gray;
+                    border-width: 2px;
+                }
+            
+                .row {
+                    margin-left: 0px;
+                    margin-right: 0px;
+                }
+            
+                .row-header {
+                    font-size: 12px;
+                    font-weight: 500;
+                }
+            
+                .e-checkbox-wrapper .e-label {
+                    font-size: 12px;
+                }
+            
+                .property-panel-header {
+                    padding-top: 15px;
+                    padding-bottom: 5px
+                }
+            
+                .e-selected-style {
+                    border-color: #006CE6;
+                    border-width: 2px;
+                }
+            
+                .control-section {
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    padding-right: 0px;
+                }
+            
+                .container-fluid {
+                    padding-left: 0px;
+                }
+            
+                .col-xs-6 {
+                    padding-left: 0px;
+                    padding-right: 0px;
+                }
+            </style>
     <div class="content-wrapper" style="width: 100%">
         <div id="diagram"></div>
     </div>
@@ -111,26 +111,32 @@
 
 <div id="action-description">
     <p>
-        This sample visualizes how to build a diagram interactively using drawing tools. Continuous draw option, snapping, and undo/redo support are enabled to easily draw diagrams.
-        Rulers, gridlines, and snapping options are enabled to easily align objects.
+        This sample visualizes how to build a diagram interactively using drawing tools. Continuous draw option,
+        snapping, and undo/redo support are enabled to easily draw diagrams. Rulers, gridlines, and snapping options are enabled to easily align objects.
     </p>
 </div>
 <div id="description">
     <p>
-        This example shows how to draw shapes and connections interactively. In addition to that, rulers, gridlines, and snapping options are enabled to assist drawing. 
-        
-        The <code>tool</code> property can be used to enable drawing. Add <code>DrawOnce</code> or <code>ContinousDraw</code> option to the
-        <code>tool</code> property of the diagram. The <code>drawingObject</code> property can be used to define a shape/connector to be drawn.
+        This example shows how to draw shapes and connections interactively. In addition to that, rulers, gridlines,
+        and snapping options are enabled to assist drawing.
+
+        The <code>tool</code> property can be used to enable drawing. Add <code>DrawOnce</code> or <code>ContinousDraw</code>
+        option to the
+        <code>tool</code> property of the diagram. The <code>drawingObject</code> property can be used to define a
+        shape/connector to be drawn.
     </p>
 
     <p>
-        Few shape and connector templates are added in the palette. To draw basic shapes and connectors, click the templates in the palette.
-        For polygon shapes, a corner/point will be added to the polygon for each mouse left button click. Drawing will be completed either on mouse right button click or double click.
+        Few shape and connector templates are added in the palette. To draw basic shapes and connectors, click the
+        templates in the palette.
+        For polygon shapes, a corner/point will be added to the polygon for each mouse left button click. Drawing will
+        be completed either on mouse right button click or double click.
     </p>
 
     <p style="font-weight: 500">Injecting Module</p>
     <p>
-        The diagram component’s features are segregated into individual feature-wise modules. To enable undo and redo support, inject <code>UndoRedo</code> module using <code>Diagram.Inject(UndoRedo)</code> method.
+        The diagram component’s features are segregated into individual feature-wise modules. To enable undo and redo
+        support, inject <code>UndoRedo</code> module using <code>Diagram.Inject(UndoRedo)</code> method.
     </p>
     <br>
 </div>

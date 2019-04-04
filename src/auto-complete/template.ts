@@ -1,26 +1,16 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * AutoComplete Template Sample
  */
 import { AutoComplete } from '@syncfusion/ej2-dropdowns';
+import * as data from './dataSource.json';
 
-this.default = () => {
-
-    let empList: { [key: string]: Object }[] = [
-        { Name: 'Andrew Fuller', Eimg: '7', Designation: 'Team Lead', Country: 'England' },
-        { Name: 'Anne Dodsworth', Eimg: '1', Designation: 'Developer', Country: 'USA' },
-        { Name: 'Janet Leverling', Eimg: '3', Designation: 'HR', Country: 'USA' },
-        { Name: 'Laura Callahan', Eimg: '2', Designation: 'Product Manager', Country: 'USA' },
-        { Name: 'Margaret Peacock', Eimg: '6', Designation: 'Developer', Country: 'USA' },
-        { Name: 'Michael Suyama', Eimg: '9', Designation: 'Team Lead', Country: 'USA' },
-        { Name: 'Nancy Davolio', Eimg: '4', Designation: 'Product Manager', Country: 'USA' },
-        { Name: 'Robert King', Eimg: '8', Designation: 'Developer ', Country: 'England' },
-        { Name: 'Steven Buchanan', Eimg: '10', Designation: 'CEO', Country: 'England' }
-    ];
-
+(window as any).default = (): void => {
+    loadCultureFiles();
     // initialize AutoComplete component
     let atcObj: AutoComplete = new AutoComplete({
         // set the local data to dataSource property
-        dataSource: empList,
+        dataSource: (data as any).empList,
         // map the appropriate columns to fields property
         fields: { value: 'Name' },
         // set the template content for popup header element

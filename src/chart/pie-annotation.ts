@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, StackingColumnSeries, Category, Legend, ILoadedEventArgs, Selection, IMouseEventArgs, IAccLoadedEventArgs,
     ChartAnnotation, AccumulationChart, AccumulationDataLabel, IAnimationCompleteEventArgs, AccumulationTheme, ChartTheme,
@@ -17,7 +18,9 @@ export function getValue(series: Series[], pointIndex: number, y: number): strin
     }
     return (Math.round((y / totalValue) * 100)) + '%';
 }
-this.default = (): void => {
+//tslint:disable:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pie: AccumulationChart; let isRender: boolean = false;
     let dataSource: Object = [
         { x: '2014', y0: 51, y1: 77, y2: 66, y3: 34 }, { x: '2015', y0: 67, y1: 49, y2: 19, y3: 38 },
@@ -53,11 +56,14 @@ this.default = (): void => {
         //Initializing Selection
         selectionMode: 'Cluster', selectedDataIndexes: [{ series: 0, point: 0 }],
         width: Browser.isDevice ? '100%' : '80%',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         },
+        // custom code end
         legendSettings: { visible: true, toggleVisibility: false },
         //Initializing Annotation
         annotations: [{
@@ -86,13 +92,14 @@ this.default = (): void => {
                     background: 'transparent',
                     series: [{
                         radius: '65%', animation: { enable: false },
-                        dataSource: pieDataSource,
+                        dataSource: pieDataSource, border: { color: 'transparent'},
                         xName: 'x', yName: 'y', dataLabel: { visible: true, position: 'Inside', font: { color: 'white' }, name: 'text' },
                     }],
                     load: (args: IAccLoadedEventArgs) => {
                         let selectedTheme: string = location.hash.split('/')[1];
                         selectedTheme = selectedTheme ? selectedTheme : 'Material';
-                        args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+                        args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+                        selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
                     },
                     legendSettings: { visible: false }
                 });
@@ -106,7 +113,7 @@ this.default = (): void => {
                 background: 'transparent',
                 series: [{
                     radius: '65%', animation: { enable: false },
-                    dataSource: pieDataSource,
+                    dataSource: pieDataSource, border: { color: 'transparent'},
                     xName: 'x', yName: 'y', dataLabel: { visible: true, position: 'Inside', name: 'text' },
                 }],
                 theme: <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)),

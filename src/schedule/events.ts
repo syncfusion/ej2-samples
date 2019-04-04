@@ -1,7 +1,9 @@
-import { extend } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 import { Button } from '@syncfusion/ej2-buttons';
 import { Schedule, Day, Week, WorkWeek, Month, Agenda, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { scheduleData, applyCategoryColor } from './datasource';
+import * as dataSource from './datasource.json';
+import { applyCategoryColor } from './helper';
+import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
@@ -9,12 +11,13 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
  * Schedule events sample
  */
 
-this.default = (): void => {
-    let data: Object[] = <Object[]>extend([], scheduleData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2019, 0, 10),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView),
         created: OnCreate,

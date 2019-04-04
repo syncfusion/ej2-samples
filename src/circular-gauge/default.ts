@@ -1,15 +1,22 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Default sample
  */
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
-
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let circulargauge: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [{
             radius: '80%',
             startAngle: 230,
@@ -17,7 +24,7 @@ this.default = (): void => {
             majorTicks: {
                 width: 0
             },
-            lineStyle: { width: 8, color: '#E0E0E0' },
+            lineStyle: { width: 8 },
             minorTicks: {
                 width: 0
             },
@@ -32,15 +39,12 @@ this.default = (): void => {
             pointers: [{
                 value: 60,
                 radius: '60%',
-                color: '#757575',
                 pointerWidth: 7,
                 cap: {
                     radius: 8,
-                    color: '#757575',
                     border: { width: 0 }
                 },
                 needleTail: {
-                    color: '#757575',
                     length: '25%'
                 }
             }]

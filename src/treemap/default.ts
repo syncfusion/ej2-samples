@@ -1,20 +1,28 @@
-
-import { TreeMap, TreeMapTooltip, TreeMapLegend, IItemMoveEventArgs } from '@syncfusion/ej2-treemap';
-import { CarSales } from '../treemap/treemap-data/car-sale';
+/**
+ * Default sample
+ */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+/* tslint:disable:no-string-literal */
+// custom code end
+import { TreeMap, TreeMapTooltip, TreeMapLegend, IItemMoveEventArgs, TreeMapAjax } from '@syncfusion/ej2-treemap';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+// custom code start
+// Treemap theme changes in load Event
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-/**
- * Default sample
- */
-/* tslint:disable:no-string-literal */
+// custom code end
 let prevTime: Date; let curTime: Date;
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
+    //Treemap tooltip changes in levels and leaf Items
     let tooltipRender: EmitType<IItemMoveEventArgs> = (args: IItemMoveEventArgs) => {
         args.item['data'].Sales = args.item['weight'];
         args.treemap.tooltipSettings.format = args.item['groupIndex'] === 0 ? 'Country: ${Continent}<br>Sales: ${Sales}' :
@@ -31,7 +39,7 @@ this.default = (): void => {
         rangeColorValuePath: 'Sales',
         format: 'n',
         useGroupingSeparator: true,
-        dataSource: CarSales,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/car-sales.json'),
         legendSettings: {
             visible: true,
             position: 'Top',

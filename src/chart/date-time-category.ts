@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, ColumnSeries, DateTimeCategory, Tooltip, ILoadedEventArgs, ChartTheme,
     StripLine, ChartAnnotation
@@ -8,7 +9,8 @@ Chart.Inject(ColumnSeries, DateTimeCategory, Tooltip, StripLine, ChartAnnotation
 /**
  * Sample for Date time category axis
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
@@ -68,15 +70,18 @@ this.default = (): void => {
                 content: '<div style="color:#FF0000;font-family: bold; font-weight: 800">New Year Offer<br> Jan 2018</div>',
             }
         ],
+         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             if (selectedTheme === 'highcontrast') {
 args.chart.annotations[0].content = '<div style="color:#ffffff;font-family: bold; font-weight: 600">Christmas Offer<br> Dec 2017</div>';
 args.chart.annotations[1].content = '<div style="color:#ffffff;font-family: bold; font-weight: 600">Christmas Offer<br> Dec 2017</div>';
             }
         }
+         // custom code end
     });
     chart.appendTo('#container');
 };

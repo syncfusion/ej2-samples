@@ -1,11 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
-import { PivotView } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, IDataSet } from '@syncfusion/ej2-pivotview';
 import { DropDownList, MultiSelect, ChangeEventArgs, SelectEventArgs, RemoveEventArgs, PopupEventArgs } from '@syncfusion/ej2-dropdowns';
 import { CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { FilterModel } from '@syncfusion/ej2-pivotview/src/pivotview/model/dataSource-model';
+import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 MultiSelect.Inject(CheckBoxSelection);
 
@@ -14,7 +15,9 @@ MultiSelect.Inject(CheckBoxSelection);
  */
 
 /* tslint:disable */
-this.default = (): void => {
+let Pivot_Data: IDataSet[] = (pivotData as any).data;
+(window as any).default = (): void => {
+    loadCultureFiles();
     let fieldCollections: { [key: string]: { [key: string]: Object }[] } = {};
     let filterCollections: { [key: string]: FilterModel } = {};
     let isInitial: boolean = true;
@@ -105,7 +108,7 @@ this.default = (): void => {
     typeddl.appendTo('#type');
 
     let applyBtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', isPrimary: true, disabled: true
+        isPrimary: true, disabled: true
     });
     applyBtn.appendTo('#apply');
 

@@ -1,7 +1,8 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
-import { PivotView, GroupingBar, FieldList } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, GroupingBar, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { enableRipple } from '@syncfusion/ej2-base';
+import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 
 
@@ -10,8 +11,10 @@ PivotView.Inject(GroupingBar, FieldList);
 /**
  * PivotView RTL Sample.
  */
-
-this.default = (): void => {
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = (pivotData as any).data;
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
             data: Pivot_Data,

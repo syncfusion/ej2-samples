@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor inline toolbar sample
  */
 import { RichTextEditor, Toolbar, Link, Image, HtmlEditor} from '@syncfusion/ej2-richtexteditor';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 let defaultRTE: RichTextEditor = new RichTextEditor({
     //inlineMode: true,
     /* tslint:disable */

@@ -1,28 +1,17 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ComboBox Filtering Samples
  */
 import { ComboBox, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Query } from '@syncfusion/ej2-data';
+import * as data from './dataSource.json';
 
-this.default = () => {
-    let countries: { [key: string]: Object; }[] = [
-        { Name: 'Australia', Code: 'AU' },
-        { Name: 'Bermuda', Code: 'BM' },
-        { Name: 'Canada', Code: 'CA' },
-        { Name: 'Cameroon', Code: 'CM' },
-        { Name: 'Denmark', Code: 'DK' },
-        { Name: 'France', Code: 'FR' },
-        { Name: 'Finland', Code: 'FI' },
-        { Name: 'Germany', Code: 'DE' },
-        { Name: 'Greenland', Code: 'GL' },
-        { Name: 'Hong Kong', Code: 'HK' },
-        { Name: 'India', Code: 'IN' },
-        { Name: 'Italy', Code: 'IT' }
-    ];
+(window as any).default = (): void => {
+    loadCultureFiles();
     // initialize ComboBox component
     let comboBoxObj: ComboBox = new ComboBox({
         //set the local data to dataSource property
-        dataSource: countries,
+        dataSource: (data as any).countries,
         // map the appropriate columns to fields property
         fields: { text: 'Name', value: 'Code' },
         // set the placeholder to ComboBox input element
@@ -43,7 +32,7 @@ this.default = () => {
             // frame the query based on search string with filter type.
             query = (e.text !== '') ? query.where('Name', 'startswith', e.text, true) : query;
             // pass the filter data source, filter query to updateData method.
-            e.updateData(countries, query);
+            e.updateData((data as any).countries, query);
             if (document.getElementById('nodata')) {
               // bind click event to button which is shown in popup element when the typed character(s) is not present in the list
               document.getElementById('btn').onclick = () => {

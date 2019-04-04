@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, ColumnSeries, IPointRenderEventArgs, DataLabel,
     Category, Legend, Tooltip, IAxisLabelRenderEventArgs, ILoadedEventArgs, ChartTheme
@@ -42,7 +43,8 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = bootstrapColors[args.point.index % 10];
     }
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
@@ -91,6 +93,7 @@ this.default = (): void => {
         axisLabelRender: labelRender,
         loaded: loadedChart,
         width: Browser.isDevice ? '100%' : '60%',
+        // custom code start
         load: (args: ILoadedEventArgs): void => {
             let div: HTMLElement = document.getElementById('waitingpopup');
             div.style.display = 'block';
@@ -101,8 +104,10 @@ this.default = (): void => {
             div.style.display = '';
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         },
+        // custom code end
         //Initializing Chart title
         title: 'Sprint Task Analysis', legendSettings: { visible: false },
         //Initializing User Interaction Tooltip

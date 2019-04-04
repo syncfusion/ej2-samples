@@ -4,17 +4,17 @@
 </div>
 <div id="action-description">
         <p>
-            This sample demonstrates the template functionalities of the dialog component. The dialog's header and footer is configured with HTML template. 
+            This example demonstrates the template functionalities of the dialog control. The dialog's header and footer is configured with HTML template. 
             The typed content will be replaced every time when clicking the "send" button.
         </p>
 </div>
 <div id="description">
         <p>
-            The dialog component displays HTML template content on the header and footer.
+            The dialog control displays HTML template content on the header and footer.
             The user can set any HTML element as header and footer with the usage of content and footer template properties.
         </p>
         <p>More information on the modal behavior of Dialog can be found in the
-            <a target="_blank" href="http://ej2.syncfusion.com/documentation/dialog/template.html?lang=typescript">
+            <a target="_blank" href="https://ej2.syncfusion.com/documentation/dialog/template/">
             documentation section</a>.</p>
 </div>
 
@@ -45,6 +45,9 @@
     .bootstrap .e-dialog .e-dlg-header-content {
         background-color: #428bca;
     }
+    .bootstrap4 .e-dialog .e-dlg-header-content {
+        background-color: #007bff;
+    }
     .highcontrast .e-dialog .e-dlg-header-content {
         background-color: #ffd939;
     }
@@ -60,6 +63,11 @@
         top: 3px;
         left: -11px;
     }
+    .bootstrap4 .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn,
+    .bootstrap4.e-bigger .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
+        top: 8px;
+    }
+
     .e-dialog .e-dlg-header {
         position: relative;
     }
@@ -154,6 +162,9 @@
     .highcontrast .e-dialog .e-footer-content {
         border-top: 0.5px solid #fff;
     }
+    .bootstrap4 .e-dialog .e-footer-content {
+        border-top: 1px solid #e9ecef;
+    }
 	.highcontrast .dialogContent .dialogText { 
 	    background-color :  rgba(255,255,255,0.20);
 	}
@@ -191,6 +202,10 @@
     .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn:focus,
     .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn:hover {
         background-color: rgba(255,255,255, 0.10);
+    }
+    .bootstrap4 .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn:hover,
+    .bootstrap4 .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn:focus {
+        background-color : transparent;
     }
     .material .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn:active .e-icon-dlg-close ,
     .material .e-dialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn:focus .e-icon-dlg-close,

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ChartTheme, Chart, LineSeries, DateTime, Legend, DataLabel, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, DateTime, Legend, DataLabel);
 import { Browser } from '@syncfusion/ej2-base';
@@ -5,7 +6,8 @@ import { Browser } from '@syncfusion/ej2-base';
 /**
  * Sample for DateTime Axis
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         //Initializing Primary X and Y Axis
         primaryXAxis: {
@@ -67,11 +69,14 @@ this.default = (): void => {
         width: Browser.isDevice ? '100%' : '60%',
         //Initializing Chart title
         title: 'Alaska Weather Statistics - 2016',
+         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
+         // custom code end
     });
     chart.appendTo('#container');
 };

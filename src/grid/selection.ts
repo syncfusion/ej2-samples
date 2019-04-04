@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Grid, SelectionType, Selection, SelectionMode } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
@@ -6,7 +7,8 @@ Grid.Inject(Selection);
 /**
  * Selection sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let type: { [key: string]: Object }[] = [
         { id: 'Single', type: 'Single' },
         { id: 'Multiple', type: 'Multiple' }

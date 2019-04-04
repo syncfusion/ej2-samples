@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Selection, Resize } from '@syncfusion/ej2-grids';
 import { orderDetails } from './data-source';
 
@@ -6,7 +7,8 @@ Grid.Inject(Selection, Resize);
 /**
  * Column resize Grid sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid(
         {
             dataSource: orderDetails,

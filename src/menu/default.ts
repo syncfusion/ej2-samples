@@ -1,17 +1,19 @@
-import { Menu, MenuItemModel, MenuModel } from '@syncfusion/ej2-navigations';
+import { loadCultureFiles } from '../common/culture-loader';
+import { Menu, MenuItemModel } from '@syncfusion/ej2-navigations';
+
 /**
  * Menu default sample
  */
-(window as any).default = () => {
-
-    //Menu items definition 
+(window as any).default = (): void => {
+    loadCultureFiles();
+    // Menu items definition 
     let menuItems: MenuItemModel[] = [
         {
             text: 'File',
             iconCss: 'em-icons e-file',
             items: [
                 { text: 'Open', iconCss: 'em-icons e-open' },
-                { text: 'Save', iconCss: 'e-icons e-save' },
+                { text: 'Save', iconCss: 'em-icons e-save' },
                 { separator: true },
                 { text: 'Exit' }
             ]
@@ -61,12 +63,6 @@ import { Menu, MenuItemModel, MenuModel } from '@syncfusion/ej2-navigations';
         }
     ];
 
-    //Menu model definition 
-    let menuOptions: MenuModel = {
-        items: menuItems
-    };
-
-    //Menu initialization
-    let menuObj: Menu = new Menu(menuOptions, '#menu');
-
+    // Menu initialization
+    new Menu({ items: menuItems }, '#menu');
 };

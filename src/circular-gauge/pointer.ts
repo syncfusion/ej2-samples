@@ -1,11 +1,17 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable
+// custom code end
 /**
  * Pointer sample
  */
 import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2, gauge3, gauge4, gauge5 } from './pointer-gauge';
 CircularGauge.Inject(Annotations);
-//tslint:disable
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let firstgauge: CircularGauge = new CircularGauge(gauge1());
     let gauge5Interval1: number;
     let gauge6Interval1: number;
@@ -15,11 +21,13 @@ this.default = (): void => {
     let thirdgauge: CircularGauge = new CircularGauge(gauge3());
     thirdgauge.appendTo('#container3');
     let fourthgauge: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         centerY: '40%',
         axes: [{
             startAngle: 270,

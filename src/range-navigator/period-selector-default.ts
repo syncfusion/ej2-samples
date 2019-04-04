@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, Chart, IChangedEventArgs, LineSeries, AreaSeries, DateTime, Crosshair } from '@syncfusion/ej2-charts';
 import { ChartTheme, ChartAnnotation, PeriodSelector, CandleSeries, MomentumIndicator, Tooltip } from '@syncfusion/ej2-charts';
 import { RangeTooltip, IRangeLoadedEventArgs } from '@syncfusion/ej2-charts';
@@ -12,9 +13,10 @@ import { Browser } from '@syncfusion/ej2-base';
 
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis

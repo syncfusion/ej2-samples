@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * OverView
  */
@@ -8,48 +9,9 @@ import {
     TreeInfo, DiagramTools
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
-import { data } from './overview-data';
+import * as Data from './overview-data.json';
 
 Diagram.Inject(DataBinding, HierarchicalTree);
-
-// tslint:disable-next-line:max-func-body-length
-(window as any).default = (): void => {
-    // Initializtion of the diagram.
-    let diagram: Diagram = new Diagram({
-        width: '100%', height: '590px', scrollSettings: { scrollLimit: 'Infinity' },
-        // Sets the constraints of the SnapSettings
-        snapSettings: { constraints: SnapConstraints.None },
-        // Configrues organizational chart layout
-        layout: {
-            type: 'OrganizationalChart', margin: { top: 20 },
-            getLayoutInfo: (tree: TreeInfo) => {
-                if (!tree.hasSubTree) {
-                    tree.orientation = 'Vertical';
-                    tree.type = 'Right';
-                }
-            }
-        },
-        // Sets the parent and child relationship of DataSource.
-        dataSourceSettings: {
-            id: 'Id', parentId: 'ReportingPerson', dataManager: new DataManager(data)
-        },
-        // Sets the default values of Nodes.
-        getNodeDefaults: getNodeDefaults,
-        // Sets the default values of connectors.
-        getConnectorDefaults: getConnectorDefaults,
-        // Customization of the node.
-        setNodeTemplate: setNodeTemplate,
-        tool: DiagramTools.ZoomPan,
-    });
-    diagram.appendTo('#diagram');
-
-    // Initializtion of the Overview.
-    let overview: Overview = new Overview({
-        width: '100%', height: '150ppx',
-        sourceID: 'diagram'
-    });
-    overview.appendTo('#overview');
-};
 
 // Sets the default values of Nodes.
 function getNodeDefaults(obj: NodeModel): NodeModel {
@@ -116,3 +78,42 @@ export interface EmployeeInfo {
     Designation: string;
     ImageUrl: string;
 }
+// tslint:disable-next-line:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
+    // Initializtion of the diagram.
+    let diagram: Diagram = new Diagram({
+        width: '100%', height: '590px', scrollSettings: { scrollLimit: 'Infinity' },
+        // Sets the constraints of the SnapSettings
+        snapSettings: { constraints: SnapConstraints.None },
+        // Configrues organizational chart layout
+        layout: {
+            type: 'OrganizationalChart', margin: { top: 20 },
+            getLayoutInfo: (tree: TreeInfo) => {
+                if (!tree.hasSubTree) {
+                    tree.orientation = 'Vertical';
+                    tree.type = 'Right';
+                }
+            }
+        },
+        // Sets the parent and child relationship of DataSource.
+        dataSourceSettings: {
+            id: 'Id', parentId: 'ReportingPerson', dataManager: new DataManager((Data as any).data)
+        },
+        // Sets the default values of Nodes.
+        getNodeDefaults: getNodeDefaults,
+        // Sets the default values of connectors.
+        getConnectorDefaults: getConnectorDefaults,
+        // Customization of the node.
+        setNodeTemplate: setNodeTemplate,
+        tool: DiagramTools.ZoomPan,
+    });
+    diagram.appendTo('#diagram');
+
+    // Initializtion of the Overview.
+    let overview: Overview = new Overview({
+        width: '100%', height: '150ppx',
+        sourceID: 'diagram'
+    });
+    overview.appendTo('#overview');
+};

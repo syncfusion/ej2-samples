@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor Markdown Sample
  */
@@ -10,7 +11,8 @@ let textArea: HTMLTextAreaElement;
 let mdPreview: HTMLElement;
 let mdsource: HTMLElement;
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         height: '260px',
@@ -36,7 +38,7 @@ this.default = (): void => {
             mdPreview = document.getElementById('MD_Preview');
             textArea = defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement;
             textArea.addEventListener('keyup', (e: KeyboardEventArgs) => {
-                markDownConversion();
+                MarkDownConversion();
             });
             mdsource = document.getElementById('preview-code');
             mdsource.addEventListener('click', (e: MouseEvent) => {
@@ -45,8 +47,8 @@ this.default = (): void => {
         }
     });
     defaultRTE.appendTo('#defaultRTE');
-    function markDownConversion(): void {
-        if (mdPreview.classList.contains('e-active')) {
+    function MarkDownConversion(): void {
+        if (mdsource.classList.contains('e-active')) {
             let id: string = defaultRTE.getID() + 'html-view';
             let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
             htmlPreview.innerHTML = Marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);

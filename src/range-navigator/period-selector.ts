@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, Chart, IChangedEventArgs, LineSeries, AreaSeries, DateTime, Crosshair } from '@syncfusion/ej2-charts';
 import { ChartTheme, ChartAnnotation, PeriodSelector, CandleSeries, MomentumIndicator, Tooltip } from '@syncfusion/ej2-charts';
 import { IAxisLabelRenderEventArgs, withInBounds, IAxisRangeCalculatedEventArgs, ILoadedEventArgs } from '@syncfusion/ej2-charts';
@@ -13,13 +14,12 @@ import { Browser, remove, Ajax } from '@syncfusion/ej2-base';
 
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
 
 // tslint:disable-next-line:max-func-body-length
 let removeSecondaryElement: Function;
 let datasrc: object[];
 let data1: object[] = [];
-let value: object;
 this.renderChart = (data1: Object[]): void => {
     let chart: Chart = new Chart({
         series: [{
@@ -60,6 +60,7 @@ this.renderChart = (data1: Object[]): void => {
                 '${point.x}<br/>High : <b>${point.high}</b><br/>Low : <b>${point.low}</b><br/>' +
                 'Open : <b>${point.open}</b><br/>Close : <b>${point.close}</b>' :
                 '${point.x}<br/>Close : <b>${point.close}</b>';
+                document.getElementById('switch').style.display = "block";
         }, axisRangeCalculated: (args: IAxisRangeCalculatedEventArgs) => { chart.setAnnotationValue(0, '<div></div>'); },
     });
     chart.appendTo('#chart');
@@ -113,9 +114,8 @@ this.renderChart = (data1: Object[]): void => {
         chart.series[0].dataSource = filterData; chart.refresh(); chart.setAnnotationValue(0, '<div id="annotation"></div>');
     };
 };
-this.default = (): void => {
-    let datasrc: object[];
-    let data1: object[] = [];
+(window as any).default = (): void => {
+    loadCultureFiles();
     let value: object;
     let j: number = 2100;
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/period-data.json', 'GET', true);

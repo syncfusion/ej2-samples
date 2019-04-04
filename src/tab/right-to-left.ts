@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Tab rtl sample
  */
 import { Tab } from '@syncfusion/ej2-navigations';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Tab component
     let tabObj: Tab = new Tab({
         enableRtl: true,

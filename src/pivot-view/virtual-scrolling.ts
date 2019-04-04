@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { PivotView, IDataSet, VirtualScroll } from '@syncfusion/ej2-pivotview';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
@@ -52,7 +53,8 @@ let data: Function = (count: number) => {
     return result;
 };
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
             data: [],
@@ -80,7 +82,7 @@ this.default = (): void => {
     pivotGridObj.appendTo('#PivotView');
 
     let button: Button = new Button({ isPrimary: true, cssClass: 'e-info' });
-    button.appendTo('#apply');
+    button.appendTo('#load');
 
     function show() {
         document.getElementById('popup').style.display = 'inline-block';

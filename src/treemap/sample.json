@@ -2,127 +2,146 @@
     "name": "TreeMap",
     "directory": "treemap",
     "category": "Data Visualization",
-    "ftName": "treemap",
+    "type": "update",
     "samples": [
         {
             "url": "default",
             "name": "Default Functionalities",
-            "description": "This demo for Essential JS2 TreeMap control visualizes the sales of cars across various countries in 2017.",
             "category": "TreeMap",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "car-sale.ts", "path":"src/treemap/treemap-data/car-sale.ts" },
+            "sourceFiles":[                
                 { "displayName": "default.html", "path":"src/treemap/default.html" },
-                { "displayName": "default.ts", "path":"src/treemap/default.ts" }
+                { "displayName": "default.ts", "path":"src/treemap/default.ts" },
+                { "displayName": "car-sales.json", "path":"src/treemap/treemap-data/car-sales.json" }
             ]
         },
         {
             "url": "layout",
             "name": "Layout",
-            "description": "This demo for Essential JS2 TreeMap control illustrates the GDP nominal of top 10 countries in the year 2015. The layout of the TreeMap can also be changed.",
             "category": "TreeMap",
+            "type": "update",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "economics.ts", "path":"src/treemap/treemap-data/economics.ts" },
+            "sourceFiles":[                
                 { "displayName": "layout.html", "path":"src/treemap/layout.html" },
-                { "displayName": "layout.ts", "path":"src/treemap/layout.ts" }
+                { "displayName": "layout.ts", "path":"src/treemap/layout.ts" },
+                { "displayName": "econmics.json", "path":"src/treemap/treemap-data/econmics.json" }
             ]
         },
         {
             "url": "drilldown",
             "name": "Drilldown",
-            "description": "This demo for Essential JS2 TreeMap control demonstrates drill-down with the continents at the top level followed by regions and countries.",
             "category": "TreeMap",
+            "type": "update",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "drilldown-sample.ts", "path":"src/treemap/treemap-data/drilldown-sample.ts" },
+            "sourceFiles":[                
                 { "displayName": "drilldown.html", "path":"src/treemap/drilldown.html" },
-                { "displayName": "drilldown.ts", "path":"src/treemap/drilldown.ts" }
+                { "displayName": "drilldown.ts", "path":"src/treemap/drilldown.ts" },
+                { "displayName": "drilldown-sample.json", "path":"src/treemap/treemap-data/drilldown-sample.json" }
             ]
         },
         {
             "url": "customization",
             "name": "Customization",
-            "description": "This demo for Essential JS2 TreeMap control depicts the gold medal categories of the 2016 US Summer Olympics. Each category is denoted with label template.",
             "category": "TreeMap",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "medals.ts", "path":"src/treemap/treemap-data/metals.ts" },
+            "sourceFiles":[                
                 { "displayName": "customization.html", "path":"src/treemap/customization.html" },
-                { "displayName": "customization.ts", "path":"src/treemap/customization.ts" }
+                { "displayName": "customization.ts", "path":"src/treemap/customization.ts" },
+                { "displayName": "metal.json", "path":"src/treemap/treemap-data/metal.json" }
             ]
         },
         {
             "url": "label",
             "name": "Data Label",
-            "description": "This demo for Essential JS2 TreeMap control depicts the population level of various countries in 2017 along with data labels.",
             "category": "TreeMap",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "country-population.ts", "path":"src/treemap/treemap-data/country-population.ts" },
+            "sourceFiles":[                
                 { "displayName": "label.html", "path":"src/treemap/label.html" },
-                { "displayName": "label.ts", "path":"src/treemap/label.ts" }                
+                { "displayName": "label.ts", "path":"src/treemap/label.ts" },
+                { "displayName": "country-population.json", "path":"src/treemap/treemap-data/country-population.json" }
             ]
         },
         {
             "url": "tooltip",
             "name": "Tooltip",
-            "description": "This demo for Essential JS2 TreeMap control depicts the number of international airports available in various countries in South America along with tooltip.",
             "category": "TreeMap",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "airport-count.ts", "path":"src/treemap/treemap-data/airport-count.ts" },
+            "sourceFiles":[                
                 { "displayName": "tooltip.html", "path":"src/treemap/tooltip.html" },
-                { "displayName": "tooltip.ts", "path":"src/treemap/tooltip.ts" }
+                { "displayName": "tooltip.ts", "path":"src/treemap/tooltip.ts" },
+                { "displayName": "airport-count.json", "path":"src/treemap/treemap-data/airport-count.json" }
             ]
         },
         {
             "url": "election",
             "name": "Legend",
-            "description": "This demo for Essential JS2 TreeMap control visualizes the 2016 U.S.A. presidential election results. Default and interactive are the two types of legend.",
+            "category": "TreeMap",
+            "type": "update",
+            "api": {},
+            "sourceFiles":[                
+                { "displayName": "election.html", "path":"src/treemap/election.html" },
+                { "displayName": "election.ts", "path":"src/treemap/election.ts" },
+                { "displayName": "election-data.json", "path":"src/treemap/treemap-data/election-data.json" }
+            ]
+        },
+		{
+            "url": "color-mapping",
+            "name": "Color Mapping",
+            "description": "This demo for Essential JS2 TreeMap control visualizes the population level of various continents in 2011 based on the gender and age group.",
             "category": "TreeMap",
             "api": {},
             "sourceFiles":[
-                { "displayName": "election-data.ts", "path":"src/treemap/treemap-data/election-data.ts" },
-                { "displayName": "election.html", "path":"src/treemap/election.html" },
-                { "displayName": "election.ts", "path":"src/treemap/election.ts" }
+                { "displayName": "color-mapping.html", "path":"src/treemap/color-mapping.html" },
+                { "displayName": "color-mapping.ts", "path":"src/treemap/color-mapping.ts" },
+                { "displayName": "largest-population-city.ts", "path":"src/treemap/treemap-data/color.json" }
+                
             ]
         },
         {
             "url": "selection",
             "name": "Selection & Highlight",
-            "description": "This demo for Essential JS2 TreeMap control depicts the details of goods imported by Japan. Selection and highlight options have been enabled.",
             "category": "TreeMap",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "import.ts", "path":"src/treemap/treemap-data/import.ts" },
+            "sourceFiles":[                
                 { "displayName": "selection.html", "path":"src/treemap/selection.html" },
-                { "displayName": "selection.ts", "path":"src/treemap/selection.ts" }
+                { "displayName": "selection.ts", "path":"src/treemap/selection.ts" },
+                { "displayName": "import.json", "path":"src/treemap/treemap-data/import.json" }
             ]
         },
         {
             "url": "print",
             "name": "Print & Export",
-            "description": "This demo for Essential JS2 TreeMap control depicts the top 10 best-selling smartphone brands. Print and export options have been enabled.",
             "category": "TreeMap",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "product.ts", "path":"src/treemap/treemap-data/product.ts" },
+            "sourceFiles":[                
                 { "displayName": "print.html", "path":"src/treemap/print.html" },
-                { "displayName": "print.ts", "path":"src/treemap/print.ts" }
+                { "displayName": "print.ts", "path":"src/treemap/print.ts" },
+                { "displayName": "product.json", "path":"src/treemap/treemap-data/product.json" }
             ]
         },
         {
             "url": "pie",
             "name": "TreeMap with Pie",
-            "description": "This demo for Essential JS2 TreeMap control visualizes the population level of various continents in 2011 based on the gender and age group.",
             "category": "TreeMap",
             "api": {},
-            "sourceFiles":[
-                { "displayName": "pie-chart.ts", "path":"src/treemap/treemap-data/pie-chart.ts" },
+            "sourceFiles":[                
                 { "displayName": "pie.html", "path":"src/treemap/pie.html" },
-                { "displayName": "pie.ts", "path":"src/treemap/pie.ts" }
+                { "displayName": "pie.ts", "path":"src/treemap/pie.ts" },
+                { "displayName": "continent_data.json", "path":"src/treemap/treemap-data/continent_data.json" }
             ]
+        },
+        {
+            "url": "rtl",
+            "name": "RTL",
+            "category": "TreeMap",
+            "type": "new",
+            "api": {},
+			"sourceFiles":[                
+                { "displayName": "rtl.html", "path":"src/treemap/rtl.html" },
+                { "displayName": "rtl.ts", "path":"src/treemap/rtl.ts" },
+                { "displayName": "rtl-data.json", "path":"src/treemap/treemap-data/rtl-data.json" }
+            ]
+           
         }
         
         

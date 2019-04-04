@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, Chart, IChangedEventArgs, } from '@syncfusion/ej2-charts';
 import {
     ChartTheme, Crosshair, StepLineSeries, RangeTooltip, Tooltip, IRangeTooltipRenderEventArgs,
@@ -14,10 +15,10 @@ import { Browser, Ajax } from '@syncfusion/ej2-base';
 
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
 let chartAnnotation: ChartAnnotationSettingsModel[] = [];
 chartAnnotation.push({ content: '<div id="exchangeRate"></div>', coordinateUnits: 'Pixel', region: 'Chart', x: '85%', y: '15%' });
-let backgroundColor: string = theme === 'Highcontrast' ? 'black' : 'white';
+let backgroundColor: string = 'white';
 
 let datasrc: object[];
 let sl: object[]; let aus: object[] = [];
@@ -84,8 +85,8 @@ this.renderChart = (chartData: Object[]): void => {
     );
     range.appendTo('#container');
 };
-this.default = (): void => {
-    let datasrc: Object[];
+(window as any).default = (): void => {
+    loadCultureFiles();
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/double.json', 'GET', true);
     ajax.send().then();
     // Rendering Dialog on AJAX success

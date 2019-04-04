@@ -3,7 +3,7 @@
  */
 import { MaskedTextBox } from '@syncfusion/ej2-inputs';
 
-this.default = (): void => {
+(window as any).default = (): void => {
     // Render the Masked Textbox
     let mask1: MaskedTextBox = new MaskedTextBox({
         mask: '00:00 >PM',

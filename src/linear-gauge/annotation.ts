@@ -1,11 +1,13 @@
-import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
-LinearGauge.Inject(Annotations);
-
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Linear Gauge Annotation Sample
  */
+import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
+LinearGauge.Inject(Annotations);
+// code for linear gauge
 let gauge: LinearGauge;
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let count: number = 0;
     gauge = new LinearGauge({
         rangePalettes: ['#30b32d', '#ffdd00', '#f03e3e'],
@@ -61,11 +63,12 @@ this.default = (): void => {
     });
     gauge.appendTo('#annotationContainer');
 };
-
 function gaugeLoad(args: ILoadEventArgs): void {
+    // custom code start
     let selectedTheme: string = location.hash.split('/')[1];
     selectedTheme = selectedTheme ? selectedTheme : 'Material';
     args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+    // custom code end
     if (this.count === undefined) {
         gauge.annotations = [
             {

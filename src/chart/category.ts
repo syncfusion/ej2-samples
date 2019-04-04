@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, BarSeries, DataLabel, Category,
     Tooltip, IPointRenderEventArgs, ILoadedEventArgs, ChartTheme
@@ -23,14 +24,15 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = bootstrapColors[args.point.index % 10];
     }
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         //Initializing Primary X and YAxis
         primaryXAxis: {
             title: 'Country',
             valueType: 'Category',
             majorGridLines: { width: 0 },
-            enableTrim: true,
+            enableTrim: false,
         },
 
         //Initializing Primary Y Axis
@@ -63,7 +65,7 @@ this.default = (): void => {
                     { x: 'Brazil', y: 139.1, country: 'BRZ: 139.1'},
                     { x: 'India', y: 462.1, country: 'IND: 462.1'},
                     { x: 'China', y: 721.4, country: 'CHN: 721.4'},
-                    { x: 'United States Of America', y: 286.9, country: 'USA: 286.9'},
+                    { x: 'United States<br>Of America', y: 286.9, country: 'USA: 286.9'},
                     { x: 'Great Britain', y: 115.1, country: 'GBR: 115.1'},
                     { x: 'Nigeria', y: 97.2, country: 'NGR: 97.2'},
 
@@ -82,11 +84,14 @@ this.default = (): void => {
             }
         ],
         pointRender: labelRender,
+         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         },
+         // custom code end
         //Initializing Chart title
         title: Browser.isDevice ? 'Internet Users in Million – 2016' : 'Internet Users – 2016',
         tooltip: { enable: true, format: '${point.tooltip}' },

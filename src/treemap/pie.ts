@@ -1,21 +1,28 @@
-import { TreeMap, ILoadedEventArgs, IResizeEventArgs, TreeMapTooltip } from '@syncfusion/ej2-treemap';
-import { Continent_Data } from '../treemap/treemap-data/pie-chart';
+/**
+ * Pie sample
+ */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable
+// custom code end
+import { TreeMap, ILoadedEventArgs, IResizeEventArgs, TreeMapTooltip, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip);
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs, ITreeMapTooltipRenderEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+// custom code start
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-/**
- * Pie sample
- */
-this.default = (): void => {
+// custom code end
+(window as any).default = (): void => {
+    loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
+        // AccumulationChart rendering
         loaded: (args: ILoadedEventArgs) => {
             let template: Element = document.getElementById(args.treemap.element.id + '_Label_Template_Group');
             if (template) {
@@ -25,11 +32,13 @@ this.default = (): void => {
                 count = 0;
             }
         },
+        // chart size changes
         resize: (args: IResizeEventArgs) => {
             for (let i: number = 0; i < chartCollection.length; i++) {
                 chartCollection[i].destroy();
             }
         },
+        //show the tooltip in Level one
         tooltipRendering: (args: ITreeMapTooltipRenderEventArgs) => {
             //tslint:disable-next-line
             if (args.item['groupIndex'] !== 1 ) {
@@ -46,7 +55,7 @@ this.default = (): void => {
         },
         format: 'n', useGroupingSeparator: true,
         //enableDrillDown: true,
-        dataSource: Continent_Data,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/continent_data.json'),
         weightValuePath: 'Population',
         leafItemSettings: {
             labelPath: 'Gender',
@@ -68,8 +77,9 @@ this.default = (): void => {
 };
 let chartCollection: AccumulationChart[] = [];
 let count: number = 0;
-
+// custom code start
 /* tslint:disable:no-string-literal */
+// custom code end
 export function AccumulationChartRender(id: string): void {
     let chartData: object = getData();
     let dataSource: object[] = chartData['data'];
@@ -186,4 +196,3 @@ export function getData(): object {
     count++;
     return new Object({ name: dataName, data: dataSource });
 }
-

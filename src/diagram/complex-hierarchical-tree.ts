@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Multiple Parent sample
  */
@@ -7,13 +8,35 @@ import {
     ComplexHierarchicalTree, LayoutOrientation, ConnectorModel
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
-import { multiParentData, DataInfo } from './diagram-data';
 import { NumericTextBox, ChangeEventArgs as NumericChangeEventArgs } from '@syncfusion/ej2-inputs';
+import * as Data from './diagram-data.json';
 
 Diagram.Inject(DataBinding, ComplexHierarchicalTree);
 
+export interface DataInfo {
+    [key: string]: string;
+}
+
+//Sets the default values of nodes
+function getNodeDefaults(obj: NodeModel): NodeModel {
+    obj.width = 40; obj.height = 40;
+    //Initialize shape
+    obj.shape = { type: 'Basic', shape: 'Rectangle', cornerRadius: 7 };
+    return obj;
+}
+//Sets the default values of connectors
+function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
+    connector.type = 'Orthogonal';
+    connector.cornerRadius = 7;
+    connector.targetDecorator.height = 7;
+    connector.targetDecorator.width = 7;
+    connector.style.strokeColor = '#6d6d6d';
+    return connector;
+}
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
     //Initializes diagram control
     let diagram: Diagram = new Diagram({
         width: '100%', height: 580,
@@ -30,7 +53,7 @@ Diagram.Inject(DataBinding, ComplexHierarchicalTree);
         //Configures data source
         dataSourceSettings: {
             id: 'Name', parentId: 'ReportingPerson',
-            dataManager: new DataManager(multiParentData as JSON[]),
+            dataManager: new DataManager((Data as any).multiParentData),
             //binds the external data with node
             doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
                 /* tslint:disable:no-string-literal */
@@ -45,17 +68,21 @@ Diagram.Inject(DataBinding, ComplexHierarchicalTree);
     //Click Event for Appearance of the layout.
     document.getElementById('appearance').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
+        // custom code start
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
         if (selectedElement.length) {
             selectedElement[0].classList.remove('e-selected-style');
         }
+        // custom code end
         if (target.className === 'image-pattern-style') {
             let id: string = target.id;
             let orientation1: string = id.substring(0, 1).toUpperCase() + id.substring(1, id.length);
             diagram.layout.orientation = orientation1 as LayoutOrientation;
             diagram.dataBind();
             diagram.doLayout();
+            // custom code start
             target.classList.add('e-selected-style');
+            // custom code end
         }
     };
     //used NumericTextBox for left margin of the layout.
@@ -85,7 +112,7 @@ Diagram.Inject(DataBinding, ComplexHierarchicalTree);
         }
     });
     horizontalSpacingObj.appendTo('#horiontal');
-    //used NumericTextBox for verticalspacing of the layout.    
+    //used NumericTextBox for verticalspacing of the layout.
     let verticalSpacingObj: NumericTextBox = new NumericTextBox({
         value: diagram.layout.verticalSpacing, step: 1, format: '##.##',
         change: (args: NumericChangeEventArgs) => {
@@ -96,20 +123,3 @@ Diagram.Inject(DataBinding, ComplexHierarchicalTree);
     verticalSpacingObj.appendTo('#vertical');
 };
 
-
-//Sets the default values of nodes
-function getNodeDefaults(obj: NodeModel): NodeModel {
-    obj.width = 40; obj.height = 40;
-    //Initialize shape
-    obj.shape = { type: 'Basic', shape: 'Rectangle', cornerRadius: 7 };
-    return obj;
-}
-//Sets the default values of connectors
-function  getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
-    connector.type = 'Orthogonal';
-    connector.cornerRadius = 7;
-    connector.targetDecorator.height = 7;
-    connector.targetDecorator.width = 7;
-    connector.style.strokeColor = '#6d6d6d';
-    return connector;
-}

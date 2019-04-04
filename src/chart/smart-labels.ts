@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     AccumulationChart, AccumulationLegend, PieSeries,
     AccumulationDataLabel, IAccLoadedEventArgs, AccumulationTheme, AccumulationTooltip
@@ -7,7 +8,8 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
 /**
  * Smart labels for Pie sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pie: AccumulationChart = new AccumulationChart({
          //Initializing Sereis
         series: [
@@ -51,11 +53,14 @@ this.default = (): void => {
         tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
         //Initializing Title
         title: 'RIO Olympics Gold',
+        // custom code start
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
+        // custom code end
     });
     pie.appendTo('#container');
 };

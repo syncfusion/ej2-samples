@@ -2,16 +2,27 @@
  * Marker sample
  */
 import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-import { topPopulation } from './map-data/marker-location';
+import * as dataSource from './map-data/top-location.json';
+let data: any  = dataSource as any;
 Maps.Inject(Marker, MapsTooltip);
-
-this.default = (): void => {
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
+/**
+ * Code for Maps
+ */
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         useGroupingSeparator: true,
         format: 'n',
         zoomSettings: {
@@ -25,14 +36,13 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
-                dataSource: topPopulation,
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapeSettings: {
                     fill: '#C3E6ED'
                 },
                 markerSettings: [
                     {
-                        dataSource: topPopulation,
+                        dataSource: data.topPopulation,
                         visible: true,
                         animationDuration: 0,
                         shape: 'Circle',

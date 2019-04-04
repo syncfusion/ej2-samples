@@ -1,21 +1,24 @@
-import { extend } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 import { Button } from '@syncfusion/ej2-buttons';
 import { MultiSelect, CheckBoxSelection, MultiSelectChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import {
     Schedule, Day, Week, Month, TimelineViews, TimelineMonth,
     EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
-import { employeeEventData, applyCategoryColor } from './datasource';
+import * as dataSource from './datasource.json';
+import { applyCategoryColor } from './helper';
+import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 MultiSelect.Inject(CheckBoxSelection);
 
 /**
- *  Schedule hide weekend sample
+ *  Schedule hide non-working days sample
  */
 
-this.default = () => {
-    let data: Object[] = <Object[]>extend([], employeeEventData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

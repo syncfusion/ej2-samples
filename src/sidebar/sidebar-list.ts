@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Sidebar } from '@syncfusion/ej2-navigations';
 import { ListView, SelectEventArgs } from '@syncfusion/ej2-lists';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -5,7 +6,8 @@ enableRipple(true);
 /**
  * Sidebar-Menu sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Sidebar Initialization
     let sidebarInstance: Sidebar = new Sidebar({

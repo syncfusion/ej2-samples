@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     AccumulationTheme, getElement, AccumulationChart, AccumulationLegend, PieSeries,
     AccumulationTooltip, IAccLoadedEventArgs, IAccTextRenderEventArgs,
@@ -9,7 +10,9 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
 /**
  * Sample fro Drill Down in Pie chart
  */
-this.default = (): void => {
+//tslint:disable:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
     let suvs: Object = [{ x: 'Toyota', y: 8 }, { x: 'Ford', y: 12 }, { x: 'GM', y: 17 }, { x: 'Renault', y: 6 }, { x: 'Fiat', y: 3 },
     { x: 'Hyundai', y: 16 }, { x: 'Honda', y: 8 }, { x: 'Maruthi', y: 10 }, { x: 'BMW', y: 20 }];
     let cars: Object = [{ x: 'Toyota', y: 7 }, { x: 'Chrysler', y: 12 }, { x: 'Nissan', y: 9 }, { x: 'Ford', y: 15 }, { x: 'Tata', y: 10 },
@@ -41,14 +44,17 @@ this.default = (): void => {
         },
         legendSettings: { visible: false }, enableSmartLabels: true,
         tooltip: { enable: false, format: '${point.x} <br> ${point.y} %' },
+         // custom code start
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             if (selectedTheme === 'highcontrast') {
                 args.accumulation.annotations[0].content = '#white' ;
             }
         }
+         // custom code end
     };
     let pointClick: EmitType<IMouseEventArgs> = (args: IMouseEventArgs) => {
         let index: Index = indexFinder(args.target);
@@ -96,7 +102,8 @@ this.default = (): void => {
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
     };
     let pie: AccumulationChart = new AccumulationChart(instance); pie.appendTo('#container');

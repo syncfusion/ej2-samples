@@ -1,25 +1,32 @@
-import { TreeMap, TreeMapHighlight, TreeMapSelection, HighLightMode, SelectionMode } from '@syncfusion/ej2-treemap';
-import { importData } from '../treemap/treemap-data/import';
+/**
+ * Selection sample
+ */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
+import { TreeMap, TreeMapHighlight, TreeMapSelection, HighLightMode, SelectionMode, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 TreeMap.Inject(TreeMapHighlight, TreeMapSelection);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+// custom code start
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-/**
- * Selection and highglight sample
- */
-this.default = (): void => {
+// custom code end
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         titleSettings: {
             text: 'Import and Export details of US'
         },
-        dataSource: importData,
+        dataSource: new TreeMapAjax('./src/treemap/treemap-data/import.json'),
         weightValuePath: 'sales',
         levels: [
             { groupPath: 'dataType', fill: '#c5e2f7', headerStyle: { size: '16px' }, headerAlignment: 'Center', groupGap: 5 },
@@ -45,12 +52,14 @@ this.default = (): void => {
         }
     });
     treemap.appendTo('#import-container');
+    // Visiblity for highlight mode
     let highlightChange: EmitType<CheckBoxChangeEvents>;
     let highlightCheckBox: CheckBox = new CheckBox(
     {
         change: highlightChange, checked: true
     },
     '#highlightEnable');
+    // Visiblity for Selection mode
     let selectionChange: EmitType<CheckBoxChangeEvents>;
     let selectionCheckBox: CheckBox = new CheckBox(
     {
@@ -65,6 +74,7 @@ this.default = (): void => {
         treemap.selectionSettings.enable = e.checked;
         treemap.refresh();
     };
+    // highlight type (Item, child, parent, All)
     let highlightMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select highlight type',
@@ -75,6 +85,7 @@ this.default = (): void => {
         }
     });
     highlightMode.appendTo('#highlightMode');
+    // Selection type (Item, child, parent, All)
     let selectionMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Selection selection type',

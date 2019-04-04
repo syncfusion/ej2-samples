@@ -1,13 +1,15 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { Schedule, ScheduleModel, Month, TimelineViews, TimelineMonth, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { holidayData, birthdayData, companyData, personalData } from './datasource';
+import * as dataSource from './datasource.json';
 
 /**
  * schedule resources group sample
  */
 Schedule.Inject(Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let calendarCollections: Object[] = [
         { CalendarText: 'My Calendar', CalendarId: 1, CalendarColor: '#c43081' },
         { CalendarText: 'Company', CalendarId: 2, CalendarColor: '#ff7f50' },
@@ -48,12 +50,16 @@ this.default = () => {
     new CheckBox({ cssClass: 'birthday', value: '3', label: 'Birthday', checked: false, change: onChange }, '#birthdays');
     new CheckBox({ cssClass: 'holiday', value: '4', label: 'Holiday', checked: false, change: onChange }, '#holidays');
 
+    //custom code start
     function generateCalendarData(): Object[] {
         let collections: Object[] = [];
-        let dataCollections: Object[][] = [personalData, companyData, birthdayData, holidayData];
+        let dataCollections: Object[][] =
+            [(dataSource as any).personalData, (dataSource as any).companyData,
+            (dataSource as any).birthdayData, (dataSource as any).holidayData];
         for (let data of dataCollections) {
             collections = collections.concat(data);
         }
         return collections;
     }
+    //custom code end
 };

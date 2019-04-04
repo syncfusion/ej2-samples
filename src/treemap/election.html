@@ -1,22 +1,37 @@
 <div class="col-lg-9 control-section">
     <div id="container"></div>
+    <!-- source link-->
     <div style="float: right; margin-right: 10px;">Source:
         <a href=" https://en.wikipedia.org/wiki/United_States_presidential_election,_2016" target="_blank">en.wikipedia.org</a>
     </div>
 
 </div>
-
+<!-- property panel-->
 <div class="col-lg-3 property-section">
     <table id="property" title="Properties" style="width: 100%">
         <tbody>
             <tr style="height: 50px">
-                <td style="width: 40%">
-                    <div class="property-text" style="padding: 0px;">Legend Type</div>
+                <td style="width: 10%">
+                    <div class="property-text" style="padding: 0px;">Type</div>
                 </td>
-                <td style="width: 80%; height:30%">
+                <td style="width: 30%">
                     <select name="selectIndex" autocomplete="off" id="layoutMode" style="width:60%;">
                         <option value="Default" selected>Default</option>
                         <option value="Interactive">Interactive</option>
+                    </select>
+                </td>
+            </tr>
+            <tr style="height: 50px">
+                <td style="width: 40%">
+                    <div class="property-text" style="padding: 0px;">Position</div>
+                </td>
+                <td style="width: 30%">
+                    <select name="selectIndex" autocomplete="off" id="legendPosition" style="width:60%;">
+                        <option value="Top" selected>Top</option>
+                        <option value="Bottom">Bottom</option>
+                        <option value="Left">Left</option>
+                        <option value="Right">Right</option>
+                        <option value="Auto">Auto</option>
                     </select>
                 </td>
             </tr>
@@ -27,29 +42,24 @@
 
 <div id="action-description">
     <p>
-        This sample visualizes the 2016 U.S.A. presidential election results. The type of the legend can be changed by using the
-        <code>Legend Type</code> in properties panel.
+        This sample visualizes the 2016 United States presidential election results. The type and position of the legends can be changed using the Type and Position options in the properties panel.
     </p>
 </div>
 <div id="description">
     <p>
-        In this example, you can see the type of legend available in TreeMap. Equal color mapping has been applied based on certain
-        value in this example.
+        In this example, you can see the type of legend available in TreeMap. The equal color mapping is applied based on certain value.
     </p>
     <p>
-        Tooltip is enabled in this example. To see the tooltip in action, hover the mouse over an item or tap an item in touch enabled
-        devices
+        The tooltip is enabled in this example. To see the tooltip in action, hover the mouse over an item or tap an item in touch enabled devices
     </p>
     <br/>
     <p style="font-weight: 500">Injecting Module</p>
     <p>
-
-        TreeMap component features are segregated into individual feature-wise modules. To use a legend, inject the
-        <code>Legend</code> module using the
-        <code>TreeMap.Inject(TreeMapLegend)</code> method.
+        The TreeMap component features are segregated into individual  modules by feature. To use a legend, inject the <code>Legend</code> module using the <code>TreeMap.Inject(TreeMapLegend)</code> method.
     </p>
 
 </div>
+<!-- custom code start -->
 <style>
     .property-text {
         font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif" !important;
@@ -57,3 +67,4 @@
         font-weight: 400 !important;
     }
 </style>
+<!-- custom code end -->

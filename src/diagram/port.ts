@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Ports sample
  */
@@ -121,8 +122,12 @@ let node7Port: CustomPort[] = [
     }
 ];
 
+export interface CustomPort extends PointPortModel {
+    text: string;
+}
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
     let bounds: ClientRect = document.getElementsByClassName('control-section')[0].getBoundingClientRect();
     let centerX: number = bounds.width / 2;
 
@@ -330,9 +335,11 @@ let node7Port: CustomPort[] = [
             let appearance: HTMLElement = document.getElementById('propertypanel');
             let selectedElement: HTMLCollection = document.getElementsByClassName('e-remove-selection');
             if (args.newValue) {
+                 // custom code start
                 if (!appearance.classList.contains('e-remove-selection')) {
                     appearance.classList.add('e-remove-selection');
                 }
+                // custom code end
                 if (args.newValue[0] instanceof Node && selectedElement.length) {
                     selectedElement[0].classList.remove('e-remove-selection');
                     let port: PointPortModel = getPort()[0];
@@ -418,6 +425,3 @@ let node7Port: CustomPort[] = [
     }
 };
 
-export interface CustomPort extends PointPortModel {
-    text: string;
-}

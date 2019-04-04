@@ -1,52 +1,21 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Key Board Interaction sample
  */
 
- import {
+import {
     Diagram, NodeModel, UndoRedo, Node, DataBinding, Keys, KeyModifiers, DiagramContextMenu,
     HierarchicalTree, CommandManagerModel, ConnectorModel, SnapConstraints
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
-import { keyBoardData, DataInfo } from './diagram-data';
 Diagram.Inject(UndoRedo, DiagramContextMenu, HierarchicalTree, DataBinding);
+import * as Data from './diagram-data.json';
+
+export interface DataInfo {
+    [key: string]: string;
+}
 
 let diagram: Diagram;
-
-// tslint:disable-next-line:max-func-body-length
-(window as any).default = (): void => {
-    diagram = new Diagram({
-        //Initializes diagram control
-        width: '100%', height: 645,
-        snapSettings: { constraints: SnapConstraints.None },
-        contextMenuSettings: { show: true },
-        //Sets the default values of nodes
-        getNodeDefaults: getNodeDefaults,
-        //Configrues hierarchical tree layout
-        layout: { type: 'HierarchicalTree' },
-        //Configures data source
-        dataSourceSettings: {
-            id: 'id', parentId: 'ancestor', dataManager: new DataManager(keyBoardData as JSON[]),
-            //binds the external data with node
-            doBinding: (nodeModel: NodeModel, data: DataInfo) => {
-                nodeModel.annotations = [
-                    {
-                        /* tslint:disable:no-string-literal */
-                        content: data['id'],
-                        style: { color: 'white' }
-                    }
-                ];
-                nodeModel.style = {
-                    strokeColor: 'transparent',
-                    /* tslint:disable:no-string-literal */
-                    fill: data['fill']
-                };
-
-            }
-        },
-        commandManager: getCommandManagerSettings()
-    });
-    diagram.appendTo('#diagram');
-};
 
 //Sets the default values of nodes
 function getNodeDefaults(obj: NodeModel): NodeModel {
@@ -180,3 +149,40 @@ function selectNode(node: NodeModel[]): void {
         diagram.select(node);
     }
 }
+
+// tslint:disable-next-line:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
+    diagram = new Diagram({
+        //Initializes diagram control
+        width: '100%', height: 645,
+        snapSettings: { constraints: SnapConstraints.None },
+        contextMenuSettings: { show: true },
+        //Sets the default values of nodes
+        getNodeDefaults: getNodeDefaults,
+        //Configrues hierarchical tree layout
+        layout: { type: 'HierarchicalTree' },
+        //Configures data source
+        dataSourceSettings: {
+            id: 'id', parentId: 'ancestor', dataManager: new DataManager((Data as any).keyBoardData),
+            //binds the external data with node
+            doBinding: (nodeModel: NodeModel, data: DataInfo) => {
+                nodeModel.annotations = [
+                    {
+                        /* tslint:disable:no-string-literal */
+                        content: data['id'],
+                        style: { color: 'white' }
+                    }
+                ];
+                nodeModel.style = {
+                    strokeColor: 'transparent',
+                    /* tslint:disable:no-string-literal */
+                    fill: data['fill']
+                };
+
+            }
+        },
+        commandManager: getCommandManagerSettings()
+    });
+    diagram.appendTo('#diagram');
+};

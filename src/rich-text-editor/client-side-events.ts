@@ -1,5 +1,6 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor client side samples
+ * RichTextEditor client side events samples
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
@@ -7,7 +8,8 @@ import { ActionBeginEventArgs, ActionCompleteEventArgs } from '@syncfusion/ej2-r
 import { Button } from '@syncfusion/ej2-buttons';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {

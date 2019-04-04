@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, DataLabel, Category, Legend, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
@@ -5,7 +6,8 @@ import { Browser } from '@syncfusion/ej2-base';
 /**
  * Sample for Column Series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         //Initializing Primary X and Y Axis
         primaryXAxis: {
@@ -38,16 +40,19 @@ this.default = (): void => {
         //Initializing Chart title
         width: Browser.isDevice ? '100%' : '60%',
         title: 'Olympic Medal Counts - RIO', tooltip: { enable: true },
+         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             if (selectedTheme === 'highcontrast') {
             args.chart.series[0].marker.dataLabel.font.color = '#000000';
             args.chart.series[1].marker.dataLabel.font.color = '#000000';
             args.chart.series[2].marker.dataLabel.font.color = '#000000';
             }
         }
+         // custom code end
     });
     chart.appendTo('#container');
 };

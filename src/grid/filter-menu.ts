@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Grid, Filter, Page, Selection, FilterType } from '@syncfusion/ej2-grids';
 import { orderDataSource } from './data-source';
@@ -7,7 +8,8 @@ Grid.Inject(Filter, Page, Selection);
 /**
  * Filtering sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let filtertype: { [key: string]: Object }[] = [
         { id: 'Menu', type: 'Menu' },
         { id: 'CheckBox', type: 'CheckBox' },

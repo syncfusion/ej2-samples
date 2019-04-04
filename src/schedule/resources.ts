@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { extend, Internationalization, createElement, closest, remove, addClass, removeClass } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import {
@@ -10,7 +11,8 @@ import {
 Schedule.Inject(Month);
 
 // tslint:disable-next-line:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     interface TemplateFunction extends Window {
         getAirwaysName?: Function;
         getAirwaysImage?: Function;
@@ -137,6 +139,7 @@ this.default = () => {
         return finalData;
     }
 
+    //custom code start 
     function generateEvents(scheduleObj: Schedule): Object[] {
         let collections: Object[] = [];
         let dataCollections: { [key: string]: Object }[] = [
@@ -183,4 +186,5 @@ this.default = () => {
         let filteredCollection: Object[] = filterByFare(collections, scheduleObj);
         return filteredCollection;
     }
+    //custom code end 
 };

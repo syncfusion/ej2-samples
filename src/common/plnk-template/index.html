@@ -7,21 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge"> {{:meta}}
     <meta name="author" content="Syncfusion" />
+    <link rel="canonical" href="https://ej2.syncfusion.com/demos/{{:canonical}}" />
     <link rel="shortcut icon" href="https://ej2.syncfusion.com/home/favicon.ico" />
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WLQL39J');</script>
+    <!-- End Google Tag Manager -->
     <script type="text/javascript">
         var themeName = location.hash || 'material';
         themeName = themeName.replace('#', '');
         window.ripple = (themeName === "material")
-        document.write('<link href="{{:CDN_LINK}}' + themeName + '.css" rel="stylesheet">');
+        document.write('<link href="../../styles/' + themeName + '.css" rel="stylesheet">');
     </script>
     <script type="text/javascript">
         if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
             document.write("<script src=\'https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js\'><\/script>");
         }</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.38/system.js" type="text/javascript"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <link href="index.css" rel="stylesheet">
-    <script src="systemjs.config.js"></script>
     <style>
         #loader {
             color: #008cff;
@@ -39,15 +45,19 @@
 </head>
 
 <body class='e-view ej2-new' aria-busy="true">
+     <!-- Google Tag Manager (noscript) -->
+     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLQL39J"height="0"width="0"style="display:none;visibility:hidden"></iframe></noscript>
+     <!-- End Google Tag Manager (noscript) -->
+     <div hidden id="sync-analytics" data-queue="EJ2 - JavaScript - Demos"></div>
     <div class="sample-browser">
         <div id='sample-header' class="sb-header" role="banner">
             <div class='sb-header-left sb-left sb-table'>
                 <div class='sb-header-item sb-table-cell'>
                     <div class="header-logo">
                         <a href="#" target="" rel="noopener noreferrer">
-                                <a href="https://ej2.syncfusion.com/home" target="" rel="noopener noreferrer">
-                            <div class="footer-logo"> </div>
-                        </a>
+                            <a href="https://ej2.syncfusion.com/home/" target="" rel="noopener noreferrer">
+                                <div class="footer-logo"> </div>
+                            </a>
                     </div>
 
                 </div>
@@ -63,7 +73,7 @@
                 <div class='sb-header-item sb-table-cell'>
                     <div class='product-style'>
                         <div>
-                            <a href="https://www.syncfusion.com/products/javascript/{{:header2}}">PRODUCT TOUR</a>
+                            <a href="https://www.syncfusion.com/javascript-ui-controls/{{:header2}}">PRODUCT DETAILS</a>
                         </div>
                     </div>
                 </div>
@@ -80,28 +90,42 @@
 
         </div>
         <div class='content e-view'>
-        <div class='sample-content'>
-            <div id="sample-bread-crumb" class="sb-bread-crumb">
-                <div class="sb-bread-crumb-text">
-                    <div class="category-allcontrols">
-                        <a href="https://ej2.syncfusion.com/demos">
-                            <span>All Controls</span>
-                        </a>
+            <div class='sample-content'>
+                <div id="sample-bread-crumb" class="sb-bread-crumb">
+                    <div class="sb-custom-item sb-sample-navigation sb-right sb-header-right sb-table-cell">
+                        <div id="prev-sample" class="sb-navigation-prev e-control e-tooltip "
+                            aria-label="previous sample" title="Previous Sample">
+                            <a {{:anchor-prev}} class='{{:disabled-prev}}'><span
+                                    class="sb-icons sb-icon-Previous"></span></a>
+
+                        </div>
+                        <div id="next-sample" class="sb-navigation-next e-control e-tooltip" aria-label="next sample"
+                            title="Next Sample">
+                            <a {{:anchor-next}} class='{{:disabled-next}}'><span
+                                    class="sb-icons sb-icon-Next"></span></a>
+
+                        </div>
                     </div>
-                    <div class="category-seperator sb-icons"> / </div>
-                    <div class="category-text bread-ctext">
-                        <a href="https://ej2.syncfusion.com/demos/#/material/{{:header2}}/default.html">
-                            <span>{{:header}}</span>
-                        </a>
-                    </div>
-                    <div class="category-seperator sb-icons"> / </div>
-                    <div class="crumb-sample">{{:header1}}</div>
+                    <h1 class="sb-bread-crumb-text">
+                        <div class="category-allcontrols">
+                            <a href="https://ej2.syncfusion.com/demos/">
+                                <span>All Controls</span>
+                            </a>
+                        </div>
+                        <div class="category-seperator sb-icons"> / </div>
+                        <div class="category-text bread-ctext">
+                            <a href="https://ej2.syncfusion.com/demos/#/material/{{:header2}}/default.html">
+                                <span>{{:header}}</span>
+                            </a>
+                        </div>
+                        <div class="category-seperator sb-icons"> / </div>
+                        <div class="crumb-sample">{{:header1}}</div>
+                    </h1>
                 </div>
-            </div>
-            <div class="control-content">
-            <div id="action-description">
-                    <p>
-                        <div class="layout" id="actionDes">{{:action-description}}</div>
+                <div class="control-content">
+                    <div id="action-description">
+                        <p>
+                            <div class="layout" id="actionDes">{{:action-description}}</div>
                             <a id="details" class="layout" onclick="desDetails()"> More Details...</a>
                             <script>
                                 function desDetails() {
@@ -111,24 +135,26 @@
                                     }
                                 }
                             </script>
-                    </p>
+                        </p>
+                    </div>
+                    <div class='container-fluid'>
+                        <div class="control-section">
+                            {{:body}}
+                        </div>
+                    </div>
+                    <div id="description-section">Description</div>
+                    <div id="description">
+                        <p>
+                            {{:description}}
+                        </p>
+                    </div>
                 </div>
-                <div class='container-fluid'>
-                <div class="control-section">
-                        {{:body}}
-                    </div>
-                    </div>
-                <div id="description-section">Description</div>    
-                <div id="description">
-                    <p>
-                       {{:description}}
-                     </p>     
-                </div>    
-            </div>             
-        </div>
-            
+            </div>
+
         </div>
     </div>
+    <script src="index.min.js"></script>
+    <script src="../../{{:repoName}}"></script>
 </body>
 
 </html>

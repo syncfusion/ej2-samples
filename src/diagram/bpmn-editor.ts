@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * BPMNShapes_Events
  */
@@ -6,11 +7,12 @@ import {
     Diagram, NodeModel, Node, BpmnDiagrams, UndoRedo, DiagramBeforeMenuOpenEventArgs, BpmnGateways,
     SymbolPalette, BpmnShapeModel, DiagramContextMenu, ConnectorModel, NodeConstraints,
     BpmnDataObjects, BpmnTriggers, BpmnTasks, BpmnBoundary, BpmnLoops, BpmnGatewayModel,
-    ContextMenuSettingsModel, IDragEnterEventArgs, BpmnEvents
+    ContextMenuSettingsModel, IDragEnterEventArgs, BpmnEvents, BpmnFlowModel
 } from '@syncfusion/ej2-diagrams';
 import { MenuEventArgs } from '@syncfusion/ej2-navigations';
 import { addEvents } from './script/diagram-common';
 
+// tslint:disable 
 Diagram.Inject(BpmnDiagrams, UndoRedo, DiagramContextMenu);
 SymbolPalette.Inject(BpmnDiagrams);
 
@@ -133,6 +135,11 @@ let nodes: NodeModel[] = [
         }, margin: { left: 440, top: 210 }
     },
 ];
+let shape: BpmnFlowModel = {
+    type: 'Bpmn',
+    flow: 'Association',
+    association: 'Directional'
+};
 let connectors: ConnectorModel[] = [
     { id: 'connector1', sourceID: 'start', targetID: 'subProcess' },
     { id: 'connector2', sourceID: 'subProcess', sourcePortID: 'success', targetID: 'end' },
@@ -153,11 +160,8 @@ let connectors: ConnectorModel[] = [
     { id: 'connector7', sourceID: 'processesTask', targetID: 'processesEnd', type: 'Orthogonal', },
     {
         id: 'connector8', sourceID: 'compensation', targetID: 'user', type: 'Orthogonal',
-        shape: {
-            type: 'Bpmn',
-            flow: 'association',
-            association: 'Directional'
-        }, style: {
+        shape: shape,
+        style: {
             strokeDashArray: '2,2'
         },
         segments: [{ type: 'Orthogonal', length: 30, direction: 'Bottom' },
@@ -339,55 +343,6 @@ let contextMenu: ContextMenuSettingsModel = {
     showCustomMenuOnly: true,
 };
 
-(window as any).default = (): void => {
-    diagram = new Diagram({
-        width: '100%', height: '469px', nodes: nodes, connectors: connectors,
-        contextMenuSettings: contextMenu,
-        contextMenuOpen: contextMenuOpen,
-        contextMenuClick: contextMenuClick,
-        snapSettings: { constraints: 0 },
-        dragEnter: dragEnter
-    });
-    diagram.appendTo('#diagram');
-    diagram.fitToPage({ mode: 'Width' });
-
-
-    let connectorSymbols: ConnectorModel[] = [
-        {
-            id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
-        },
-        {
-            id: 'Link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2, strokeDashArray: '4 4' }
-        },
-        {
-            id: 'Link3', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
-        },
-        {
-            id: 'link4', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 }, type: 'Orthogonal',
-            shape: {
-                type: 'Bpmn',
-                flow: 'Association',
-                association: 'Directional'
-            }, style: {
-                strokeDashArray: '2,2'
-            },
-        }
-    ];
-
-    let palette: SymbolPalette = new SymbolPalette({
-        expandMode: 'Multiple', symbolMargin: { left: 15, right: 15, top: 15, bottom: 15 }, symbolHeight: 60, symbolWidth: 60,
-        palettes: [
-            { id: 'Bpmn', expanded: true, symbols: bpmnShapes, iconCss: 'shapes', title: 'BPMN Shapes' },
-            { id: 'Connector', expanded: true, symbols: connectorSymbols, iconCss: 'shapes', title: 'Connectors' },
-        ],
-        width: '100%', height: '471px'
-    });
-    palette.appendTo('#symbolpalette');
-    addEvents();
-};
 
 function dragEnter(args: IDragEnterEventArgs): void {
     let obj: NodeModel = args.element as NodeModel;
@@ -485,7 +440,7 @@ function contextMenuClick(args: MenuEventArgs): void {
     }
 
 }
-// tslint:disable-next-line:max-func-body-length
+
 function contextMenuOpen(args: DiagramBeforeMenuOpenEventArgs): void {
     let hiddenId: string[] = [];
     if (args.element.className !== 'e-menu-parent e-ul ') {
@@ -596,3 +551,54 @@ function contextMenuOpen(args: DiagramBeforeMenuOpenEventArgs): void {
     }
     args.hiddenItems = hiddenId;
 }
+
+(window as any).default = (): void => {
+    loadCultureFiles();
+    diagram = new Diagram({
+        width: '100%', height: '469px', nodes: nodes, connectors: connectors,
+        contextMenuSettings: contextMenu,
+        contextMenuOpen: contextMenuOpen,
+        contextMenuClick: contextMenuClick,
+        snapSettings: { constraints: 0 },
+        dragEnter: dragEnter
+    });
+    diagram.appendTo('#diagram');
+    diagram.fitToPage({ mode: 'Width' });
+
+
+    let connectorSymbols: ConnectorModel[] = [
+        {
+            id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
+        },
+        {
+            id: 'Link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2, strokeDashArray: '4 4' }
+        },
+        {
+            id: 'Link3', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
+        },
+        {
+            id: 'link4', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 }, type: 'Orthogonal',
+            shape: {
+                type: 'Bpmn',
+                flow: 'Association',
+                association: 'Directional'
+            }, style: {
+                strokeDashArray: '2,2'
+            },
+        }
+    ];
+
+    let palette: SymbolPalette = new SymbolPalette({
+        expandMode: 'Multiple', symbolMargin: { left: 15, right: 15, top: 15, bottom: 15 }, symbolHeight: 60, symbolWidth: 60,
+        palettes: [
+            { id: 'Bpmn', expanded: true, symbols: bpmnShapes, iconCss: 'shapes', title: 'BPMN Shapes' },
+            { id: 'Connector', expanded: true, symbols: connectorSymbols, iconCss: 'shapes', title: 'Connectors' },
+        ],
+        width: '100%', height: '471px'
+    });
+    palette.appendTo('#symbolpalette');
+    addEvents();
+};

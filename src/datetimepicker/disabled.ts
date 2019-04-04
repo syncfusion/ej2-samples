@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DateTimePicker, RenderDayCellEventArgs } from '@syncfusion/ej2-calendars';
 /**
  * Disabled DateTimePicker sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dateTimeInstance: DateTimePicker = new DateTimePicker({
         renderDayCell: disableDate
     });

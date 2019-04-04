@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
 
 /**
  * Sample for Line serie
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let jsonTableData: Object = [
         { 'Region': 'USA', '2000': 93, '2004': 101, '2008': 112, '2012': 103, '2016': 121 },
         { 'Region': 'GBR', '2000': 28, '2004': 30, '2008': 49, '2012': 65, '2016': 67 },

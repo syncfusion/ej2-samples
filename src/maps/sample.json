@@ -2,7 +2,8 @@
     "name": "Maps",
     "directory": "maps",
     "category": "Data Visualization",
-    "ftName": "maps", 
+    "ftName": "maps",
+    "type": "update",
     "samples": [{
             "url": "default",
             "name": "Default Functionalities",
@@ -17,10 +18,11 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "default-datasource.json", "path":"src/maps/map-data/default-datasource.json" },
                 { "displayName": "default.html", "path":"src/maps/default.html" },
-                { "displayName": "default.ts", "path":"src/maps/default.ts" }
+                { "displayName": "default.ts", "path":"src/maps/default.ts" },
+                { "displayName": "default-datasource.json", "path":"src/maps/map-data/default-datasource.json" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                
             ]
         },
         {
@@ -36,11 +38,11 @@
                     "layers"
                 ]
             },
-            "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+            "sourceFiles":[{ "displayName": "projection.html", "path":"src/maps/projection.html" },
+                { "displayName": "projection.ts", "path":"src/maps/projection.ts" },
                 { "displayName": "projection-datasource.json", "path":"src/maps/map-data/projection-datasource.json" },
-                { "displayName": "projection.html", "path":"src/maps/projection.html" },
-                { "displayName": "projection.ts", "path":"src/maps/projection.ts" }
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                
             ]
         },
         {
@@ -55,12 +57,11 @@
                     "layers"
                 ]
             },
-            "sourceFiles":[
+            "sourceFiles":[{ "displayName": "multilayer.html", "path":"src/maps/multilayer.html" },
+                { "displayName": "multilayer.ts", "path":"src/maps/multilayer.ts" },
                 { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
                 { "displayName": "texas.json", "path":"src/maps/map-data/texas.json" },
-                { "displayName": "california.json", "path":"src/maps/map-data/california.json" },
-                { "displayName": "multilayer.html", "path":"src/maps/multilayer.html" },
-                { "displayName": "multilayer.ts", "path":"src/maps/multilayer.ts" }
+                { "displayName": "california.json", "path":"src/maps/map-data/california.json" }                
             ]
         },
         {
@@ -76,10 +77,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "marker-location.ts", "path":"src/maps/map-data/marker-location.ts" },
                 { "displayName": "marker.html", "path":"src/maps/marker.html" },
-                { "displayName": "marker.ts", "path":"src/maps/marker.ts" }
+                { "displayName": "marker.ts", "path":"src/maps/marker.ts" },
+                { "displayName": "marker-location.json", "path":"src/maps/map-data/top-location.json" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
             ]
         },
         {
@@ -95,9 +96,9 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "australia.json", "path":"src/maps/map-data/australia.json" },
                 { "displayName": "marker-template.html", "path":"src/maps/marker-template.html" },
-                { "displayName": "marker-template.ts", "path":"src/maps/marker-template.ts" }
+                { "displayName": "marker-template.ts", "path":"src/maps/marker-template.ts" },
+                { "displayName": "australia.json", "path":"src/maps/map-data/australia.json" }
             ]
         },
         {
@@ -112,9 +113,9 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
                 { "displayName": "data-label.html", "path":"src/maps/data-label.html" },
-                { "displayName": "data-label.ts", "path":"src/maps/data-label.ts" }
+                { "displayName": "data-label.ts", "path":"src/maps/data-label.ts" },
+                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" }
             ]
         },
         {
@@ -130,10 +131,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "population-data.ts", "path":"src/maps/map-data/population-data.ts" },
                 { "displayName": "bubble.html", "path":"src/maps/bubble.html" },
-                { "displayName": "bubble.ts", "path":"src/maps/bubble.ts" }
+                { "displayName": "bubble.ts", "path":"src/maps/bubble.ts" },
+                { "displayName": "population-data.ts", "path":"src/maps/map-data/population-data.ts" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
             ]
         },
         {
@@ -149,10 +150,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "map-location.ts", "path":"src/maps/map-data/map-location.ts" },
                 { "displayName": "navigation-line.html", "path":"src/maps/navigation-line.html" },
-                { "displayName": "navigation-line.ts", "path":"src/maps/navigation-line.ts" }
+                { "displayName": "navigation-line.ts", "path":"src/maps/navigation-line.ts" },
+                { "displayName": "map-location.json", "path":"src/maps/map-data/map-location.json" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
             ]
         },
         {
@@ -169,10 +170,21 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "legend-datasource.json", "path":"src/maps/map-data/legend-datasource.json" },
                 { "displayName": "legend.html", "path":"src/maps/legend.html" },
-                { "displayName": "legend.ts", "path":"src/maps/legend.ts" }
+                { "displayName": "legend.ts", "path":"src/maps/legend.ts" },
+                { "displayName": "legend-datasource.json", "path":"src/maps/map-data/legend-datasource.json" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+            ]
+        },
+        {
+            "url": "color-mapping",
+            "name": "Color Mapping",
+            "description": "This sample shows the average amount of rainfall and snowfall in spring season of all the states in US. Color mapping is applied to the shapes.",
+            "category": "Features",
+            "api": {},
+            "sourceFiles":[ { "displayName": "color-mapping.html", "path":"src/maps/color-mapping.html" },
+                { "displayName": "color-mapping.ts", "path":"src/maps/color-mapping.ts" },
+                { "displayName": "color-mapping.json", "path":"src/maps/map-data/color-mapping.json" }
             ]
         },
         {
@@ -188,9 +200,37 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "africa-continent.json", "path":"src/maps/map-data/africa-continent.json" },
                 { "displayName": "annotation.html", "path":"src/maps/annotation.html" },
-                { "displayName": "annotation.ts", "path":"src/maps/annotation.ts" }
+                { "displayName": "annotation.ts", "path":"src/maps/annotation.ts" },
+                { "displayName": "africa-continent.json", "path":"src/maps/map-data/africa-continent.json" }
+            ]
+        },
+        {
+            "url": "osm",
+            "name": "OpenStreetMap",
+            "category": "Map Providers",
+            "sourceFiles":[
+                { "displayName": "osm.html", "path":"src/maps/osm.html" },
+                { "displayName": "osm.ts", "path":"src/maps/osm.ts" }
+            ]
+        },		
+		{
+            "url": "osm-with-navigation-lines",
+            "name": "OSM with Navigation Lines",
+            "category": "Map Providers",
+            "sourceFiles":[
+                { "displayName": "osm-navigationlines.html", "path":"src/maps/osm-with-navigation-lines.html" },
+                { "displayName": "osm-navigationlines.ts", "path":"src/maps/osm-with-navigation-lines.ts" }
+            ]
+        },
+		{
+            "url": "osm-with-sublayers",
+            "name": "OSM with Sublayer",
+            "category": "Map Providers",
+            "sourceFiles":[
+                { "displayName": "osm-sublayers.html", "path":"src/maps/osm-with-sublayers.html" },
+                { "displayName": "osm-sublayers.ts", "path":"src/maps/osm-with-sublayers.ts" },
+                { "displayName": "africa.json", "path":"src/maps/map-data/africa.json" }
             ]
         },
         {
@@ -207,10 +247,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "tooltip-datasource.json", "path":"src/maps/map-data/tooltip-datasource.json" },
                 { "displayName": "tooltip-datasource.html", "path":"src/maps/tooltip.html" },
-                { "displayName": "tooltip-datasource.ts", "path":"src/maps/tooltip.ts" }
+                { "displayName": "tooltip-datasource.ts", "path":"src/maps/tooltip.ts" },
+                { "displayName": "tooltip-datasource.json", "path":"src/maps/map-data/tooltip-datasource.json" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
             ]
         },
         {
@@ -227,10 +267,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
-                { "displayName": "selection-datasource.json", "path":"src/maps/map-data/selection-datasource.json" },
                 { "displayName": "selection.html", "path":"src/maps/selection.html" },
-                { "displayName": "selection.ts", "path":"src/maps/selection.ts" }
+                { "displayName": "selection.ts", "path":"src/maps/selection.ts" },
+                { "displayName": "selection-datasource.json", "path":"src/maps/map-data/selection-datasource.json" },
+                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" }
             ]
         },
         {
@@ -245,10 +285,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "zooming-datasource.json", "path":"src/maps/map-data/zooming-datasource.json" },
                 { "displayName": "zooming.html", "path":"src/maps/zooming.html" },
-                { "displayName": "zooming.ts", "path":"src/maps/zooming.ts" }
+                { "displayName": "zooming.ts", "path":"src/maps/zooming.ts" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
+                { "displayName": "zooming-datasource.json", "path":"src/maps/map-data/zooming-datasource.json" }
             ]
         },
         {
@@ -263,16 +303,15 @@
                 ]
             },
             "sourceFiles":[
+                { "displayName": "drilldown.html", "path":"src/maps/drilldown.html" },
+                { "displayName": "drilldown.ts", "path":"src/maps/drilldown.ts" },
                 { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
                 { "displayName": "africa.json", "path":"src/maps/map-data/africa.json" },
                 { "displayName": "europe.json", "path":"src/maps/map-data/europe.json" },
                 { "displayName": "asia.json", "path":"src/maps/map-data/asia.json" },
                 { "displayName": "north-america.json", "path":"src/maps/map-data/north-america.json" },
                 { "displayName": "south-america.json", "path":"src/maps/map-data/south-america.json" },
-                { "displayName": "oceania.json", "path":"src/maps/map-data/oceania.json" },
-                { "displayName": "drilldown.html", "path":"src/maps/drilldown.html" },
-                { "displayName": "drilldown.ts", "path":"src/maps/drilldown.ts" }
-
+                { "displayName": "oceania.json", "path":"src/maps/map-data/oceania.json" }
             ]
         },
         {
@@ -288,10 +327,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
-                { "displayName": "print-datasource.json", "path":"src/maps/map-data/print-datasource.json" },
                 { "displayName": "print.html", "path":"src/maps/print.html" },
-                { "displayName": "print.ts", "path":"src/maps/print.ts" }
+                { "displayName": "print.ts", "path":"src/maps/print.ts" },
+                { "displayName": "print-datasource.json", "path":"src/maps/map-data/print-datasource.json" },
+                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" }
             ]
         },
         {
@@ -306,9 +345,9 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
                 { "displayName": "export.html", "path":"src/maps/export.html" },
-                { "displayName": "export.ts", "path":"src/maps/export.ts" }
+                { "displayName": "export.ts", "path":"src/maps/export.ts" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
             ]
         },
         {
@@ -325,10 +364,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "india.json", "path":"src/maps/map-data/india.json" },
-                { "displayName": "heatmap-datasource.json", "path":"src/maps/map-data/heatmap-datasource.json" },
                 { "displayName": "heat-map.html", "path":"src/maps/heat-map.html" },
-                { "displayName": "heat-map.ts", "path":"src/maps/heat-map.ts" }
+                { "displayName": "heat-map.ts", "path":"src/maps/heat-map.ts" },
+                { "displayName": "heatmap-datasource.json", "path":"src/maps/map-data/heatmap-datasource.json" },
+                { "displayName": "india.json", "path":"src/maps/map-data/india.json" }
             ]
         },
         {
@@ -344,10 +383,10 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "map-location.ts", "path":"src/maps/map-data/map-location.ts" },
                 { "displayName": "curved-lines.html", "path":"src/maps/curved-lines.html" },
-                { "displayName": "curved-lines.ts", "path":"src/maps/curved-lines.ts" }
+                { "displayName": "curved-lines.ts", "path":"src/maps/curved-lines.ts" },
+                { "displayName": "marker-location.json", "path":"src/maps/map-data/marker-location.json" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
             ]
         },
         {
@@ -363,9 +402,9 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "asia.json", "path":"src/maps/map-data/asia.json" },
                 { "displayName": "earthquake.html", "path":"src/maps/earthquake.html" },
-                { "displayName": "earthquake.ts", "path":"src/maps/earthquake.ts" }
+                { "displayName": "earthquake.ts", "path":"src/maps/earthquake.ts" },
+                { "displayName": "asia.json", "path":"src/maps/map-data/asia.json" }
             ]
         },
         {
@@ -380,10 +419,27 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "oklahoma.json", "path":"src/maps/map-data/oklahoma.json" },
                 { "displayName": "highlighted-region.html", "path":"src/maps/highlighted-region.html" },
-                { "displayName": "highlighted-region.ts", "path":"src/maps/highlighted-region.ts" }
+                { "displayName": "highlighted-region.ts", "path":"src/maps/highlighted-region.ts" },
+                { "displayName": "oklahoma.json", "path":"src/maps/map-data/oklahoma.json" }
             ]
+        },
+        {
+            "url": "cyber-attack-map",
+            "name": "Cyber Attack Map",
+            "description": "This demo for Essential JS2 Maps control visualizes the cyber attack map, which displays the cyber attacks and threats from various countries to USA.",
+            "category": "Use Cases",
+            "api": {
+                "Maps": [
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "cyber-attack-map.html", "path":"src/maps/cyber-attack-map.html" },
+                { "displayName": "cyber-attack-map.ts", "path":"src/maps/cyber-attack-map.ts" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+            ],
+            "type": "new"
         },
         {
             "url": "pie",
@@ -399,21 +455,34 @@
                 ]
             },
             "sourceFiles":[
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
                 { "displayName": "pie.html", "path":"src/maps/pie.html" },
-                { "displayName": "pie.ts", "path":"src/maps/pie.ts" }
+                { "displayName": "pie.ts", "path":"src/maps/pie.ts" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
             ]
         },
         {
+            "url": "map-with-slider",
+            "name": "Map with Slider",
+            "description": "This demo for Essential JS2 Maps control demonstrates the rendering of normal geometry type shapes on the map.",
+            "category": "Use Cases",
+            "api": {},
+            "sourceFiles":[
+                { "displayName": "map-with-slider.html", "path":"src/maps/map-with-slider.html" },
+                { "displayName": "map-with-slider.ts", "path":"src/maps/map-with-slider.ts" },
+                { "displayName": "population-growth.json", "path":"src/maps/map-data/population-growth.json" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+            ]
+        },
+		{
             "url": "seat-selection",
             "name": "Bus seat booking",
             "description": "This demo for Essential JS2 Maps control demonstrates the rendering of normal geometry type shapes on the map.",
             "category": "Use Cases",
             "api": {},
             "sourceFiles":[
-                { "displayName": "seat.json", "path":"src/maps/map-data/seat.json" },
                 { "displayName": "seat-selection.html", "path":"src/maps/seat-selection.html" },
-                { "displayName": "seat-selection.ts", "path":"src/maps/seat-selection.ts" }
+                { "displayName": "seat-selection.ts", "path":"src/maps/seat-selection.ts" },
+                { "displayName": "seat.json", "path":"src/maps/map-data/seat.json" }
             ]
         }
     ]

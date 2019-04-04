@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, DateTime, Tooltip, ChartAnnotation } from '@syncfusion/ej2-charts';
 import { ILoadedEventArgs, ChartTheme, MultiColoredAreaSeries } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
@@ -6,7 +7,8 @@ Chart.Inject(DateTime, Tooltip, ChartAnnotation, MultiColoredAreaSeries);
 /**
  * Sample for Line series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dataValues: Object[] = [];
     [150, 71.5, 106.4, 100.25, 70.0, 106.0, 85.6, 78.5, 76.4, 86.1, 155.6, 160.4].map((value: number, index: number) => {
         dataValues.push({ XValue: new Date(2016, index, 1), YValue: value });
@@ -72,11 +74,14 @@ this.default = (): void => {
             enable: true
         },
         width: Browser.isDevice ? '100%' : '60%',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/dark/i, 'Dark').replace(/light/i, 'Light');
         }
+        // custom code end
     });
     chart.appendTo('#container');
 };

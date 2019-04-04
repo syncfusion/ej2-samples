@@ -1,13 +1,16 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Tab adaptive sample
  */
 import { Tab } from '@syncfusion/ej2-navigations';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Tab component
     let tabObj: Tab = new Tab({
-        heightAdjustMode: 'Auto',
+        heightAdjustMode: 'None',
+        height: 250,
         items: [
             {
                 header: { 'text': 'HTML' },
@@ -78,12 +81,23 @@ this.default = () => {
     });
     overflowModes.appendTo('#adaptive');
 
+    let headerPositions: DropDownList = new DropDownList({
+        width: '90%',
+        change: changeHeaderPosition
+    });
+    headerPositions.appendTo('#orientation');
+
     function changeOverFlowMode(e: ChangeEventArgs): void {
-        if (e.itemData.value === 'scrollable') {
+        if ((<{ [key: string]: Object; }>e.itemData).value === 'scrollable') {
             tabObj.overflowMode = 'Scrollable';
         } else {
             tabObj.overflowMode = 'Popup';
         }
+        tabObj.dataBind();
+    }
+
+    function changeHeaderPosition(e: ChangeEventArgs): void {
+        tabObj.headerPlacement = (<{ [key: string]: any; }>e.itemData).value;
         tabObj.dataBind();
     }
 };

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, StackingBarSeries, Category, Tooltip, Legend, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingBarSeries, Category, Tooltip, Legend);
 import { Browser } from '@syncfusion/ej2-base';
@@ -10,7 +11,8 @@ let chartData: any[] = [
 /**
  * Sample for StackingBar100 series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         //Initializing Primary X Axis
         primaryXAxis: {
@@ -43,11 +45,14 @@ this.default = (): void => {
             }
         ],
         width : Browser.isDevice ? '100%' : '60%',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         },
+        // custom code end
         //Initializing Chart Title
         title: 'Sales Comparison',
         //Initializing User Interaction Tootlip

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 import { Ajax } from '@syncfusion/ej2-base';
@@ -9,7 +10,8 @@ let innerContent: string = 'On October 17, Microsoft will release its Fall Creat
     + ' for both developers and users with particular emphasis this time around on app modernization, mixed reality'
     + 'and game development and software updates. App modernization is the term Microsoft used in its press event to encompass the'
     + 'features that will affect most Windows 10 users and developers. The updates primarily serve to make using Windows 10';
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Rendering Dialog on AJAX success
         let dialogObj: Dialog = new Dialog({
             header: '<img class="img1" src="src/dialog/images/2.png">' + 'What’s Coming from Microsoft this Fall',

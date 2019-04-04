@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, DataLabel, ITooltipRenderEventArgs,
     StackingBarSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme
@@ -8,7 +9,8 @@ Chart.Inject(StackingBarSeries, DataLabel, Category, Legend, Tooltip);
 /**
  * Sample for Tornado sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
@@ -90,11 +92,14 @@ this.default = (): void => {
         width: Browser.isDevice ? '100%' : '80%',
         //Initializing Chart title
         title: 'Height vs Weight',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
+        // custom code end
     });
     chart.appendTo('#container');
 };

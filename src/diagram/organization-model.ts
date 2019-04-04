@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * organization-model
  */
@@ -9,19 +10,57 @@ import {
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { DataManager } from '@syncfusion/ej2-data';
-import { localBindData } from './diagram-data';
+import * as Data from './diagram-data.json';
 
 Diagram.Inject(DataBinding, HierarchicalTree, LayoutAnimation);
 
+//sets default value for Node.
+function nodeDefaults(obj: NodeModel): NodeModel {
+    obj.backgroundColor = (obj.data as EmployeeInfo).color;
+    obj.style = { fill: 'none', strokeColor: 'none', color: 'white' };
+    obj.expandIcon = { height: 10, width: 10, shape: 'None', fill: 'lightgray', offset: { x: .5, y: 1 } };
+    obj.expandIcon.verticalAlignment = 'Center';
+    obj.expandIcon.margin = { left: 0, right: 0, top: 0, bottom: 0 };
+    obj.collapseIcon.offset = { x: .5, y: 1 };
+    obj.collapseIcon.verticalAlignment = 'Center';
+    obj.collapseIcon.margin = { left: 0, right: 0, top: 0, bottom: 0 };
+    obj.collapseIcon.height = 10;
+    obj.collapseIcon.width = 10;
+    obj.collapseIcon.shape = 'None';
+    obj.collapseIcon.fill = 'lightgray';
+    obj.width = 120;
+    obj.height = 30;
+    return obj;
+}
+
+//sets default value for Connector.
+function connectorDefaults(connector: ConnectorModel): ConnectorModel {
+    connector.targetDecorator.shape = 'None';
+    connector.type = 'Orthogonal';
+    connector.constraints = 0;
+    connector.cornerRadius = 0;
+    return connector;
+}
+
+export interface DataInfo {
+    [key: string]: string;
+}
+
+export interface EmployeeInfo {
+    Role: string;
+    color: string;
+}
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
     //Initializes the nodes for the diagram
     let diagram: Diagram = new Diagram({
         width: '100%', height: '700px', snapSettings: { constraints: SnapConstraints.None },
         //configures data source settings
         dataSourceSettings: {
             id: 'Id', parentId: 'Manager',
-            dataManager: new DataManager(localBindData as JSON[]),
+            dataManager: new DataManager((Data as any).localBindData as JSON[]),
             doBinding: (nodeModel: NodeModel, data: object) => {
                 nodeModel.shape = {
                     type: 'Text', content: (data as EmployeeInfo).Role,
@@ -75,12 +114,14 @@ Diagram.Inject(DataBinding, HierarchicalTree, LayoutAnimation);
     document.getElementById('orientation').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-orientation-style');
+        // custom code start
         if (selectedElement.length) {
             selectedElement[0].classList.remove('e-selected-orientation-style');
         }
         if (!target.classList.contains('e-selected-orientation-style')) {
             target.classList.add('e-selected-orientation-style');
         }
+        // custom code end
         if (target.className === 'image-pattern-style e-selected-orientation-style') {
             let id: string = target.id;
             let orientation1: string = id.substring(0, 1).toUpperCase() + id.substring(1, id.length);
@@ -92,6 +133,7 @@ Diagram.Inject(DataBinding, HierarchicalTree, LayoutAnimation);
     //Click Event for pattern of the PropertyPanel.
     document.getElementById('pattern').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
+        // custom code start
         let selectedpatternElement: HTMLCollection = document.getElementsByClassName('e-selected-pattern-style');
         if (selectedpatternElement.length) {
             selectedpatternElement[0].classList.remove('e-selected-pattern-style');
@@ -99,6 +141,7 @@ Diagram.Inject(DataBinding, HierarchicalTree, LayoutAnimation);
         if (!target.classList.contains('e-selected-pattern-style')) {
             target.classList.add('e-selected-pattern-style');
         }
+        // custom code end
         if (target.className === 'image-pattern-style e-selected-pattern-style') {
             let subTreeOrientation: SubTreeOrientation;
             let subTreeAlignment: SubTreeAlignments;
@@ -174,41 +217,3 @@ Diagram.Inject(DataBinding, HierarchicalTree, LayoutAnimation);
     });
     checkBoxObj.appendTo('#checked');
 };
-
-//sets default value for Node.
-function nodeDefaults(obj: NodeModel): NodeModel {
-    obj.backgroundColor = (obj.data as EmployeeInfo).color;
-    obj.style = { fill: 'none', strokeColor: 'none', color: 'white' };
-    obj.expandIcon = { height: 10, width: 10, shape: 'None', fill: 'lightgray', offset: { x: .5, y: 1 } };
-    obj.expandIcon.verticalAlignment = 'Center';
-    obj.expandIcon.margin = { left: 0, right: 0, top: 0, bottom: 0 };
-    obj.collapseIcon.offset = { x: .5, y: 1 };
-    obj.collapseIcon.verticalAlignment = 'Center';
-    obj.collapseIcon.margin = { left: 0, right: 0, top: 0, bottom: 0 };
-    obj.collapseIcon.height = 10;
-    obj.collapseIcon.width = 10;
-    obj.collapseIcon.shape = 'None';
-    obj.collapseIcon.fill = 'lightgray';
-    obj.width = 120;
-    obj.height = 30;
-    return obj;
-}
-
-//sets default value for Connector.
-function connectorDefaults(connector: ConnectorModel): ConnectorModel {
-    connector.targetDecorator.shape = 'None';
-    connector.type = 'Orthogonal';
-    connector.constraints = 0;
-    connector.cornerRadius = 0;
-    return connector;
-}
-
-export interface DataInfo {
-    [key: string]: string;
-}
-
-export interface EmployeeInfo {
-    Role: string;
-    color: string;
-}
-

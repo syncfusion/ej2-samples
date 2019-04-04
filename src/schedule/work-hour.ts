@@ -1,11 +1,13 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Schedule, Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth,
     EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
-import { extend } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 import { TimePicker } from '@syncfusion/ej2-calendars';
-import { employeeEventData, applyCategoryColor } from './datasource';
+import { applyCategoryColor } from './helper';
+import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
@@ -13,8 +15,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize
  * Schedule Work Hour sample
  */
 
-this.default = () => {
-    let data: Object[] = <Object[]>extend([], employeeEventData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

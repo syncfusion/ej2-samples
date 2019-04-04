@@ -1,9 +1,10 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, ColumnSeries, IPointRenderEventArgs,
     Category, Legend, ILoadedEventArgs, ChartTheme,
-    ExportType
+    ExportType, Export
 } from '@syncfusion/ej2-charts';
-Chart.Inject(ColumnSeries, Category, Legend);
+Chart.Inject(ColumnSeries, Category, Legend, Export);
 import { Button } from '@syncfusion/ej2-buttons';
 import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -25,7 +26,8 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = bootstrapColors[args.point.index % 10];
     }
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
@@ -66,11 +68,13 @@ this.default = (): void => {
         ],
         //Initializing Chart title
         title: 'Top 10 Countries Using Solar Power',
+         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
+         // custom code end
     });
     chart.appendTo('#container');
     let mode: DropDownList = new DropDownList({
@@ -84,6 +88,6 @@ this.default = (): void => {
     togglebtn.appendTo('#togglebtn');
     document.getElementById('togglebtn').onclick = () => {
         let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
-        chart.export(<ExportType>mode.value, fileName);
+        chart.exportModule.export(<ExportType>mode.value, fileName);
     };
 };

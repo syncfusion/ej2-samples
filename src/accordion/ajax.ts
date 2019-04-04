@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Accordion Ajax Sample
  */
@@ -6,7 +7,8 @@ import { Ajax } from '@syncfusion/ej2-base';
 
 let acrdnObj: Accordion;
 let nestAcrdn: Accordion;
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let ajax: Ajax = new Ajax('./src/accordion/ajax-content.html', 'GET', true);
     ajax.send().then();

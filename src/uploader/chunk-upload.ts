@@ -4,7 +4,7 @@ import { isNullOrUndefined } from '@syncfusion/ej2-base';
 /**
  * Chunk upload sample
  */
-this.default = () => {
+(window as any).default = () => {
 
     let dropElement: HTMLElement = document.getElementsByClassName('control-fluid')[0] as HTMLElement;
     // initialize the uploader component

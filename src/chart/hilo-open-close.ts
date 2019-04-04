@@ -1,9 +1,9 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, HiloOpenCloseSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic, ChartTheme,
-    Crosshair, RangeNavigator, PeriodSelector, IRangeLoadedEventArgs, IChangedEventArgs, IAxisLabelRenderEventArgs
+    Crosshair, IAxisLabelRenderEventArgs
 } from '@syncfusion/ej2-charts';
 Chart.Inject(HiloOpenCloseSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair);
-RangeNavigator.Inject(PeriodSelector);
 import { Browser, Ajax } from '@syncfusion/ej2-base';
 
 /**
@@ -47,50 +47,19 @@ this.renderChart = (chartData: Object[]): void => {
                         args.text = '$' + args.text;
                     }
                 },
+                 // custom code start
                 load: (args: ILoadedEventArgs) => {
                     let selectedTheme: string = location.hash.split('/')[1];
                     selectedTheme = selectedTheme ? selectedTheme : 'Material';
-                    args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+                    args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
                 }
+                 // custom code end
             });
             chart.appendTo('#container');
-            let range: RangeNavigator = new RangeNavigator({
-                dataSource: chartData, xName: 'x', yName: 'close',
-                disableRangeSelector: true,
-                width: Browser.isDevice ? '100%' : '80%',
-                load: (args: IRangeLoadedEventArgs) => {
-                    let selectedTheme: string = location.hash.split('/')[1];
-                    selectedTheme = selectedTheme ? selectedTheme : 'Material';
-                    args.rangeNavigator.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
-                },
-                loaded: (args: IRangeLoadedEventArgs) => {
-                    if (!Browser.isDevice) {
-                        document.getElementById('selector_Secondary_Element').style.transform = 'translate(14%)';
-                    }
-                },
-                changed: (args: IChangedEventArgs) => {
-                    let filterData: Object[] = chartData.filter((data: object) => {
-                        /* tslint:disable:no-string-literal */
-                        return (data['x'].getTime() >= (args.start) && data['x'].getTime() <= (args.end));
-                    });
-                    chart.series[0].animation.enable = false; chart.series[0].dataSource = filterData; chart.refresh();
-                },
-                periodSelectorSettings: {
-                    position: 'Top',
-                    periods: [
-                        { text: '1M', interval: 1, intervalType: 'Months' },
-                        { text: '3M', interval: 2, intervalType: 'Months' },
-                        { text: '2Q', interval: 2, intervalType: 'Quarter' },
-                        { text: '1Y', interval: 1, intervalType: 'Years' },
-                        { text: '2Y', interval: 2, intervalType: 'Years', selected: true },
-                        { text: 'YTD' },
-                        { text: 'All' }
-                    ]
-                }
-            });
-            range.appendTo('#selector');
         };
-  this.default = (): void => {
+  (window as any).default = (): void => {
+    loadCultureFiles();
     let chartData: Object[];
     let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
     ajax.send().then();

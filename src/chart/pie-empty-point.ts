@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     PieSeries, AccumulationChart, AccumulationDataLabel, AccumulationTooltip, EmptyPointMode, IAccLoadedEventArgs,
     AccumulationTheme
@@ -8,7 +9,8 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
 /**
  * Sample for Empty Points in Pie chart
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: AccumulationChart = new AccumulationChart({
 
         //Initializing Series
@@ -37,11 +39,14 @@ this.default = (): void => {
         legendSettings: { visible: false },
         tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>' },
         //Initializing User Interaction Tooltip
+        // custom code start
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
+        // custom code end
     });
     chart.appendTo('#container');
     let mode: DropDownList = new DropDownList({

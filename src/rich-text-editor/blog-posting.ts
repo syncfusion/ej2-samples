@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor Blog-post sample
  */
@@ -5,7 +6,8 @@ import { RichTextEditor, Link, Image, HtmlEditor, Toolbar, QuickToolbar } from '
 import { Button } from '@syncfusion/ej2-buttons';
 RichTextEditor.Inject(Link, Image, HtmlEditor, Toolbar, QuickToolbar);
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let button1: Button = new Button({ isPrimary: true });
     button1.appendTo('#rteSubmit');
 

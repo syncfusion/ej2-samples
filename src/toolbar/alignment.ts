@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toolbar sample to demonstrate alignment functionalities.
  */
 import { Toolbar } from '@syncfusion/ej2-navigations';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let ele: string = '<div class= "e-folder"><div class = "e-folder-name">Inbox(33)</div>';
     ele = ele +  '<div class ="e-mail-id">user@example.com</div></div> ';
     //Initialize Toolbar component

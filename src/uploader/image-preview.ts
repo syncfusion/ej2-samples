@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Uploader, FileInfo, SelectedEventArgs, RemovingEventArgs } from '@syncfusion/ej2-inputs';
 import { createSpinner, showSpinner, hideSpinner } from '@syncfusion/ej2-popups';
 import { detach, Browser, createElement, isNullOrUndefined, EventHandler } from '@syncfusion/ej2-base';
@@ -5,7 +6,8 @@ import { detach, Browser, createElement, isNullOrUndefined, EventHandler } from 
  * Uploader Image Preview sample
  */
 // tslint:disable-next-line
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let dropElement: HTMLElement = document.getElementById('dropArea');
     let filesName: string[] = [];
     let uploadObj: Uploader = new Uploader({

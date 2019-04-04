@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Tooltip api sample
  */
@@ -6,7 +7,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, Button } from '@syncfusion/ej2-buttons';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 //tslint:disable:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
   //Initialize Button component
   let button: Button = new Button();
   //Render initialized Button component

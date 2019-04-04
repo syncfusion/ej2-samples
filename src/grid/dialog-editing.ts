@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Edit, Toolbar, Page } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
 
@@ -5,7 +6,8 @@ import { orderData } from './data-source';
  * Dialog Editing sample
  */
 Grid.Inject(Edit, Toolbar, Page);
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid(
         {
             dataSource: orderData,
@@ -16,7 +18,7 @@ this.default = (): void => {
             columns: [
                 {
                     field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right',
-                    validationRules: { required: true }, width: 120
+                    validationRules: { required: true, number: true }, width: 120
                 },
                 {
                     field: 'CustomerID', headerText: 'Customer ID',

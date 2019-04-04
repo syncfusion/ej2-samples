@@ -1,9 +1,7 @@
-<!DOCTYPE html><html><head>
-    
-
-    <div class="col-lg-9 control-section">
+<div class="col-lg-9 control-section">
         <div class="content-wrapper">
             <div id="container"></div>
+            <!--source link-->
             <div style="float: right; margin-right: 10px;">Source:
                 <a href="https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_population" target="_blank">en.wikipedia.org</a>
              </div>
@@ -14,7 +12,7 @@
             <tbody><tr id="button-control" style="height: 50px">
                 <td align="center">
                     <div>
-                        <button id="togglebtn">Print</button>
+                        <button id="togglebtn" style="text-transform:none !important;width: 80px;">Print</button>
                     </div>
                 </td>
             </tr>
@@ -38,7 +36,7 @@
             Maps component features are segregated into individual feature-wise modules. To use a legend, inject the <code>Legend</code> module using the <code>Maps.Inject(Legend)</code> method.
             </p>
     </div>
-        
+<!--custom code start-->    
 <style>
     #button-control {
         width: 100%;
@@ -53,5 +51,5 @@
         content: '\e813';
     }
 </style>
-
+<!-- custom code end-->
 </body></html>

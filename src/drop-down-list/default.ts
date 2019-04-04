@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * DropDownList Default Sample
  */
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Initialize DropDownList component
     let listObj: DropDownList = new DropDownList({

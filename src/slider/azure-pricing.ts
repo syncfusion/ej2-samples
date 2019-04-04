@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { Button, CheckBox } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -13,7 +14,8 @@ let elemValue: HTMLElement;
 let finalValue: number;
 let discountValue: number;
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // tslint:disable-next-line:max-func-body-length
     let objElements: string[] = ['#xSmallBtn', '#smallBtn', '#mediumBtn', '#largeBtn', '#xLargeBtn'];
     let buttonObj: any = { obj: Button, prop: { cssClass: 'e-info', isPrimary: true } };
@@ -175,7 +177,7 @@ this.default = () => {
         let processorPrice: HTMLElement = document.getElementById('processorPrice');
         onChange(processorPrice, <number>processorSlider.value, 'CORE');
         let memoryPrice: HTMLElement = document.getElementById('memoryPrice');
-        onChange(memoryPrice, <number>processorSlider.value, 'GB');
+        onChange(memoryPrice, <number>memorySlider.value, 'GB');
         let storgePrice: HTMLElement = document.getElementById('storgePrice');
         onChange(storgePrice, <number>storageSlider.value, 'GB');
         let cloudPrice: HTMLElement = document.getElementById('cloudPrice');

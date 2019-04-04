@@ -1,8 +1,10 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { InputObject, TextBox } from  '@syncfusion/ej2-inputs';
 /**
  *   Sample for CSS input boxes.
  */
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let inputobj1: TextBox = new TextBox({
         placeholder: 'First Name',
         floatLabelType: 'Auto'
@@ -14,6 +16,7 @@ this.default = () => {
         enableRtl: true
     });
     inputobj2.appendTo('#lastname');
+    // custom code start
     let inputObject : InputObject = {};
     let input: NodeList = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
     let inputIcon: NodeList  = document.querySelectorAll('.e-input-group-icon');
@@ -45,4 +48,5 @@ this.default = () => {
         }
         return parentNode;
     }
+    // custom code end
 };

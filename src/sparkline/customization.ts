@@ -1,3 +1,6 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * sparkline sample for customization
  */
@@ -7,13 +10,18 @@ import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents} from '@syncfusion/ej
 import { EmitType } from '@syncfusion/ej2-base';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 Sparkline.Inject(SparklineTooltip);
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let percentage: Sparkline = new Sparkline({
+        // custom code start
         load: (args: ISparklineLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         height: '200px',
         width: '180px',
         lineWidth: 1,
@@ -64,11 +72,13 @@ this.default = (): void => {
     });
     percentage.appendTo('#percentage');
     let sales: Sparkline = new Sparkline({
+        // custom code start
         load: (args: ISparklineLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         height: '200px',
         width: '180px',
         lineWidth: 1,
@@ -118,6 +128,7 @@ this.default = (): void => {
         }
     });
     sales.appendTo('#sales');
+    // code for property panel
     let sampleChange: EmitType<ChangeEventArgs>;
     let sampleValue: DropDownList = new DropDownList({
         index: 0,
@@ -177,6 +188,12 @@ this.default = (): void => {
         change: datalabelchange
     },
     '#datalabel');
+    let enableRTLchange: EmitType<CheckBoxChangeEvents>;
+    let enableRTLCheckBox: CheckBox = new CheckBox(
+    {
+        change: enableRTLchange
+    },
+    '#enableRTL');
     let tooltipchange: EmitType<CheckBoxChangeEvents>;
     let tooltipCheckBox: CheckBox = new CheckBox(
     {
@@ -279,6 +296,22 @@ this.default = (): void => {
                 spark.tooltipSettings.visible = true;
             } else {
                 spark.tooltipSettings.visible = false;
+            }
+            spark.refresh();
+        };
+        if ((drop.value === 'salespercentage' && percentage.enableRtl === true) ||
+            (drop.value === 'salescount' && sales.enableRtl === true)) {
+            enableRTLCheckBox.checked = true;
+        } else {
+            enableRTLCheckBox.checked = false;
+        }
+        enableRTLCheckBox.change = enableRTLchange = (e: CheckBoxChangeEvents) => {
+            let boolean: boolean = e.checked;
+            let spark: Sparkline = drop.value === 'salespercentage' ? percentage : sales;
+            if (boolean === true) {
+                spark.enableRtl = true;
+            } else {
+                spark.enableRtl = false;
             }
             spark.refresh();
         };
@@ -404,6 +437,17 @@ this.default = (): void => {
         }
         spark.refresh();
     };
+    enableRTLCheckBox.change = enableRTLchange = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        let spark: Sparkline = sampleValue.value === 'salespercentage' ? percentage : sales;
+        if (boolean === true) {
+            spark.enableRtl =  true;
+        } else {
+            spark.enableRtl =  false;
+        }
+        spark.refresh();
+    };
+
     tooltipCheckBox.change = tooltipchange = (e: CheckBoxChangeEvents) => {
         let boolean: boolean = e.checked;
         let spark: Sparkline = sampleValue.value === 'salespercentage' ? percentage : sales;

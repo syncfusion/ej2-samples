@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, SliderTooltipEventArgs, SliderTickEventArgs } from '@syncfusion/ej2-inputs';
 
 /**
@@ -7,7 +8,8 @@ let currencyObj: Slider;
 let kilometerObj: Slider;
 let timeObj: Slider;
 // tslint:disable-next-line:max-func-body-length
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize Slider component
     currencyObj = new Slider({
         // Set the initial range values for slider
@@ -131,7 +133,7 @@ this.default = () => {
         let slider: Slider[] = [currencyObj, kilometerObj, timeObj];
         slider.forEach((slider: any) => {
             // Refreshing each slider tooltip object position
-            slider.refreshTooltip();
+            slider.refreshTooltip(slider.tooltipTarget);
         });
     }
 

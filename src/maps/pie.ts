@@ -1,19 +1,28 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 import { Maps, Marker, ILoadEventArgs, ILoadedEventArgs, IResizeEventArgs, MapsTheme, Legend, MapAjax } from '@syncfusion/ej2-maps';
 import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip);
 Maps.Inject(Marker, Legend);
-
 /**
  * Dynamic Pie
  */
+// custom code start
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+// custom code end
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         loaded: (args: ILoadedEventArgs) => {
             let markers: Element = document.getElementById(args.maps.element.id + '_LayerIndex_0_Markers_Template_Group');
             if (markers) {
@@ -43,7 +52,7 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapeSettings: {
                     fill: '#E5E5E5',
                     colorMapping: [
@@ -118,8 +127,9 @@ this.default = (): void => {
 };
 let chartCollection: AccumulationChart[] = [];
 let count: number = 0;
-
+// custom code start
 /* tslint:disable:no-string-literal */
+// custom code end
 export function AccumulationChartRender(id: string): void {
     let chartData: any = getData();
     let dataSource: object[] = chartData['data'];

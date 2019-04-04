@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { FormValidator, FormValidatorModel } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
 
 /**
  * FormValidator Sample
  */
-export default () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Initialize Submit button
     let buttonFormValidate: Button = new Button({ isPrimary: true });
@@ -30,6 +32,18 @@ export default () => {
         if (formObj.validate()) {
             alert('Your form has been submitted.');
             formObj.reset();
+        }
+    });
+
+    document.getElementById('minlen').addEventListener('change', (e: Event) => {
+        let floatElementInput: HTMLInputElement = e.currentTarget as HTMLInputElement;
+        let floatElement: Element = floatElementInput.parentElement.getElementsByClassName('e-float-text')[0];
+        if (floatElementInput.value.length > 0) {
+            floatElement.classList.remove('e-label-bottom');
+            floatElement.classList.add('e-label-top');
+        } else {
+            floatElement.classList.remove('e-label-top');
+            floatElement.classList.add('e-label-bottom');
         }
     });
 };

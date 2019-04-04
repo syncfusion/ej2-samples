@@ -1,11 +1,13 @@
 /**
- * Annotations
+ * Annotations sample
  */
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
 import { Browser } from '@syncfusion/ej2-base';
 CircularGauge.Inject(Annotations);
+// custom code start
 //tslint:disable
+// custom code end
 export function gauge1(): CircularGauge {
     let gauge1: CircularGauge = new CircularGauge({
         centerY: '45%',
@@ -13,11 +15,13 @@ export function gauge1(): CircularGauge {
             location.reload();
         },
         titleStyle: { color: 'black', size: '16px' },
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [
             {
                 startAngle: 0, endAngle: 0,
@@ -25,10 +29,10 @@ export function gauge1(): CircularGauge {
                 ranges: [
                     {
                         start: 0, end: 3,
-                        color: 'rgba(29,29,29,0.6)'
+                        color: 'rgb(128,128,128)'
                     }, {
                         start: 3, end: 12,
-                        color: 'rgba(226, 226, 226, 0.6)'
+                        color: 'rgb(192,192,192)'
                     }
                 ],
                 annotations: [{
@@ -40,38 +44,34 @@ export function gauge1(): CircularGauge {
                 }, {
                     angle: 90, zIndex: '1',
                     radius: '40%',
-                    content: '<div id="hr" style="background-color:rgba(29,29,29,0.6); color:white;font-size:12px;">11:11 AM</div>'
+                    content: '<div id="hr" style="background-color:rgb(128,128,128); color:white;font-size:12px;">11:11 AM</div>'
                 }, {
                     angle: 360, radius: '50%', zIndex: '1',
                     content: '<div id="tm" style="font-size:10px;">21-06-17</div>'
                 }],
                 labelStyle: {
-                    hiddenLabel: 'First', font: { color: 'rgb(29,29,29)' }, autoAngle: false
+                    hiddenLabel: 'First', autoAngle: false
                 }, majorTicks: {
-                    width: 2, height: 14, interval: 1, color: 'rgb(29,29,29)'
+                    width: 2, height: 14, interval: 1
                 }, minorTicks: {
-                    height: 4, width: 1, interval: 0.2, color: 'rgb(29,29,29)'
+                    height: 4, width: 1, interval: 0.2
                 },
                 minimum: 0, maximum: 12,
                 pointers: [{
-                    pointerWidth: 5, radius: '40%', color: 'rgba(29,29,29,0.8)',
-                    border: { width: 0, color: '#679EEF' },
-                    cap: { radius: 0, border: { width: 0, color: 'red' } },
+                    pointerWidth: 5, radius: '40%',
+                    border: { width: 0 },
+                    cap: { radius: 0, border: { width: 0 } },
                     needleTail: { length: '0%' }, animation: { enable: false }
                 }, {
-                    radius: '60%', pointerWidth: 5, color: 'rgba(29,29,29,0.8)',
+                    radius: '60%', pointerWidth: 5,
                     border: {
-                        width: 0,
-                        color: 'rgba(29,29,29,0.8)'
+                        width: 0
                     },
                     cap: {
-                        color: 'rgba(29,29,29,0.8)',
                         radius: 0,
                         border: {
-                            width: 0,
-                            color: 'red'
+                            width: 0
                         }
-
                     },
                     needleTail: {
                         length: '0%'
@@ -81,25 +81,19 @@ export function gauge1(): CircularGauge {
                 }, {
                     radius: '70%',
                     pointerWidth: 1,
-                    color: 'rgba(29,29,29,0.8)',
                     cap: {
-                        color: 'white',
                         radius: 4,
                         border: {
                             width: 2,
-                            color: 'rgba(29,29,29,0.8)'
                         }
                     },
                     border: {
                         width: 2,
-                        color: 'rgba(29,29,29,0.8)'
                     },
                     needleTail: {
-                        color: 'rgba(29,29,29,0.8)',
                         length: '20%',
                         border: {
                             width: 2,
-                            color: 'rgba(29,29,29,0.8)'
                         },
                     }, animation: {
                         enable: false,
@@ -113,12 +107,15 @@ export function gauge1(): CircularGauge {
 }
 export function gauge2(): CircularGauge {
     let gauge2: CircularGauge = new CircularGauge({
+        background: 'transparent',
         titleStyle: { color: 'black' },
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [
             {
                 startAngle: 0, endAngle: 0,
@@ -127,11 +124,11 @@ export function gauge2(): CircularGauge {
                     {
                         start: 0, end: 3,
                         startWidth: 4, endWidth: 4,
-                        color: 'rgba(29,29,29,0.4)'
+                        color: 'rgb(128,128,128)'
                     }, {
                         start: 3, end: 12,
                         startWidth: 4, endWidth: 4,
-                        color: 'rgba(168,145,102,0.1)'
+                        color: 'rgb(192,192,192)'
                     }
                 ],
                 annotations: [{
@@ -154,7 +151,6 @@ export function gauge2(): CircularGauge {
                 labelStyle: {
                     hiddenLabel: 'First',
                     font: {
-                        color: '#8c8c8c',
                         size: '0px'
                     },
                     autoAngle: false
@@ -172,17 +168,13 @@ export function gauge2(): CircularGauge {
                 pointers: [{
                     radius: '70%',
                     pointerWidth: 2,
-                    color: 'rgba(29,29,29,1)',
                     cap: {
-                        color: 'rgba(29,29,29,1)',
                         radius: 2,
                         border: {
                             width: 0.2,
-                            color: 'rgba(168,145,102,1)'
                         }
                     },
                     needleTail: {
-                        color: 'rgba(168,145,102,1)',
                         length: '10%'
                     }, animation: {
                         enable: false,

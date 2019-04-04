@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 
 /**
  * Bar Customization sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     // Initialize Slider component
     let heightSlider: Slider = new Slider({

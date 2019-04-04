@@ -1,22 +1,25 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Sample for CSS Cards Tile View.
  */
 import { compile, detach} from '@syncfusion/ej2-base';
 import { MultiSelect, SelectEventArgs, RemoveEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Query, DataManager, Predicate } from '@syncfusion/ej2-data';
-import { cardBook } from './data-source';
+//import { cardBook } from './data-source';
+import * as book from './data-source.json';
 
 /* tslint:disable:max-line-length
    tslint:disable:max-func-body-length
    tslint:disable:no-string-literal */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     interface FilterKey {
         Code : string;
     }
-    let cardTemplateFn: (data: object) => HTMLCollection = compile(document.getElementById('card_template').innerHTML.trim());
-    let card: HTMLCollection; let cardEle: HTMLElement; let cardObj: JSON[] = cardBook as JSON[]; let data: Object[] = []; let multiSelectData: Object[] = []; let searchData: Object[] = [];
+    let cardTemplateFn: (data: object) => NodeList = compile(document.getElementById('card_template').innerHTML.trim());
+    let card: NodeList; let cardEle: HTMLElement; let cardObj: JSON[] = book as any; let data: Object[] = []; let multiSelectData: Object[] = []; let searchData: Object[] = [];
     let searchValCount: number = 0; let filterCategory: { [key: string]: Object; }[] = [{ Name: 'Client-Side', Code: 'client' }, { Name: 'Server-Side', Code: 'server' }, { Name: 'Front-End', Code: 'ui' }];
     let emptyData: boolean = true;
     cardRendering(cardObj);

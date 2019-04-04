@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, ScheduleModel, Week, Month, ResourceDetails, TreeViewArgs, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 
 /**
@@ -5,7 +6,8 @@ import { Schedule, ScheduleModel, Week, Month, ResourceDetails, TreeViewArgs, Ag
  */
 Schedule.Inject(Week, Month, Agenda, Resize, DragAndDrop);
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     interface TemplateFunction extends Window {
         getAirlineImage?: Function;
         getAirlineName?: Function;
@@ -63,6 +65,7 @@ this.default = () => {
         return (airlineName === 'Airways 1') ? 50 : (airlineName === 'Airways 2') ? 75 : 100;
     };
 
+    // custom code start
     function generateEvents(): Object[] {
         let subjectCollection: string[] = ['Barcelona to Los Angeles', 'Los Angeles to Barcelona'];
         let collections: Object[] = [];
@@ -87,4 +90,5 @@ this.default = () => {
         }
         return collections;
     }
+    // custom code end
 };

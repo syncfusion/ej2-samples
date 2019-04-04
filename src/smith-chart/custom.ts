@@ -1,3 +1,7 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable
+// custom code end
 /**
  * Customization sample for smith chart
  */
@@ -7,15 +11,18 @@ import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { EmitType } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents} from '@syncfusion/ej2-buttons';
 Smithchart.Inject(SmithchartLegend, TooltipRender);
-
-//tslint:disable
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let smithchart: Smithchart = new Smithchart({
+        // custom code start
         load: (args: ISmithchartLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         horizontalAxis: {
             minorGridLines: {
                 visible: true
@@ -88,6 +95,7 @@ this.default = (): void => {
         }
     });
     smithchart.appendTo('#container');
+    // code for property panel
     let sliderChange: EmitType<SliderChangeEventArgs>;
     let slider: Slider = new Slider({
         value: 0, type: 'MinRange',

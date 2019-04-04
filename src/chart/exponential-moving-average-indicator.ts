@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, CandleSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic, ChartTheme,
     Crosshair, LineSeries, EmaIndicator
@@ -52,21 +53,26 @@ this.renderChart = (chartData: Object[]): void => {
                 crosshair: { enable: true, lineType: 'Vertical' },
                 zoomSettings: {
                     enableSelectionZooming: true,
-                    mode: 'X',
+                    enablePinchZooming: true,
+                    mode: 'XY',
                     enablePan: true
                 },
                 title: 'AAPL - 2012-2017',
                 width: Browser.isDevice ? '100%' : '80%',
+                 // custom code start
                 load: (args: ILoadedEventArgs) => {
                     let selectedTheme: string = location.hash.split('/')[1];
                     selectedTheme = selectedTheme ? selectedTheme : 'Material';
-                    args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+                    args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
                 },
+                 // custom code end
                 legendSettings: { visible: false }
             });
             chart.appendTo('#container');
         };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chartData: Object[];
     let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
     ajax.send().then();

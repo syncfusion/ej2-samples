@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Sample for CSS Accordion Integration
  */
 import { Accordion } from '@syncfusion/ej2-navigations';
 import { createElement } from '@syncfusion/ej2-base';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Assigning badge data
     let badgeContent: string[] = ['7 New', '27 New', '2 New', '14 New'];
 

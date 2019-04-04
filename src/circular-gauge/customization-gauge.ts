@@ -4,15 +4,16 @@
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
-
 export function gauge1(): CircularGauge {
     let gauge1: CircularGauge = new CircularGauge({
         centerY: '70%',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [{
             annotations: [{
                 content: '<div style="color:#666666;font-size:35px;">1800</div>',
@@ -52,11 +53,13 @@ export function gauge1(): CircularGauge {
 
 export function gauge2(): CircularGauge {
     let gauge2: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [{
             annotations: [{
                 content: '<div style="color:#666666;font-size:35px;">50.5GB</div>',

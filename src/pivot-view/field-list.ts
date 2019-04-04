@@ -1,22 +1,24 @@
 
-import { PivotView, PivotFieldList } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
-import { Browser, prepend, setStyleAttribute, enableRipple } from '@syncfusion/ej2-base';
+import { PivotView, PivotFieldList, IDataSet, CalculatedField, FieldList } from '@syncfusion/ej2-pivotview';
+import { Browser, setStyleAttribute, enableRipple } from '@syncfusion/ej2-base';
+import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 
+PivotView.Inject(CalculatedField, FieldList);
 /**
  * Pivot Field List default sample
  */
-
-this.default = (): void => {
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = (pivotData as any).data;
+(window as any).default = (): void => {
     let pivotGridObj: PivotView = new PivotView({
         enginePopulated: () => {
-            if (fieldlistObj) {
+            if (!Browser.isDevice && fieldlistObj && pivotGridObj) {
                 fieldlistObj.update(pivotGridObj);
             }
         },
         width: '99%',
-        height: 530,
+        height: 600,
         gridSettings: { columnWidth: 140 }
     });
     pivotGridObj.appendTo('#PivotView');
@@ -40,19 +42,22 @@ this.default = (): void => {
             if (Browser.isDevice) {
                 fieldlistObj.renderMode = 'Popup';
                 fieldlistObj.target = '.control-section';
-                document.getElementById('PivotFieldList').removeAttribute('style');
                 setStyleAttribute(document.getElementById('PivotFieldList'), {
-                    'height': 0,
-                    'float': 'left'
+                    width: '0',
+                    height: '0',
+                    float: 'left',
+                    'display': 'none'
                 });
             }
         },
         dataBound: (): void => {
-            pivotGridObj.toolTip.destroy();
-            pivotGridObj.refresh();
             if (Browser.isDevice) {
-                prepend([document.getElementById('PivotFieldList')], document.getElementById('PivotView'));
+                pivotGridObj.element.style.width = '100%';
+                pivotGridObj.allowCalculatedField = true;
+                pivotGridObj.showFieldList = true;
             }
+            pivotGridObj.tooltip.destroy();
+            pivotGridObj.refresh();
         },
         enginePopulated: (): void => {
             fieldlistObj.updateView(pivotGridObj);

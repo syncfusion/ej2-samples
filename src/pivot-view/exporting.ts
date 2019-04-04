@@ -1,17 +1,20 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
-import { PivotView, FieldList } from '@syncfusion/ej2-pivotview';
-import { Pivot_Data } from './data-source';
+import { PivotView, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
+import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 PivotView.Inject(FieldList);
 
 /**
  * PivotView Exporting Sample.
  */
-
-this.default = (): void => {
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = (pivotData as any).data;
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
             values: [{ name: 'In_Stock', caption: 'In Stock' }, { name: 'Sold', caption: 'Units Sold' },
@@ -39,7 +42,7 @@ this.default = (): void => {
     });
     exportType.appendTo('#mode');
     let exportBtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+        cssClass: 'e-flat', isPrimary: true,
     });
     exportBtn.appendTo('#export-btn');
     document.getElementById('export-btn').onclick = () => {

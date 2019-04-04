@@ -1,13 +1,15 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, Day, Week, TimelineViews, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { scheduleData } from './datasource';
 import { DropDownList, ChangeEventArgs as DropDownChangeArgs } from '@syncfusion/ej2-dropdowns';
 import { Internationalization, extend } from '@syncfusion/ej2-base';
+import * as dataSource from './datasource.json';
 
 /**
  * schedule sample
  */
 Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).majorSlotTemplate = (date: Date) => {
         return instance.formatDate(date, { skeleton: 'hm' });
@@ -19,11 +21,11 @@ this.default = () => {
         majorSlotTemplate?: Function;
         minorSlotTemplate?: Function;
     }
-    let data: Object[] = <Object[]>extend([], scheduleData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as any).scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2019, 0, 10),
         currentView: 'TimelineWeek',
         views: ['Day', 'Week', 'TimelineDay', 'TimelineWeek'],
         timeScale: {

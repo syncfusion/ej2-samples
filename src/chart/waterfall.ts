@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, WaterfallSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic,
     Crosshair, Legend, DataLabel, IAxisLabelRenderEventArgs, ITextRenderEventArgs, ChartTheme
@@ -8,7 +9,8 @@ Chart.Inject(WaterfallSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Cr
 /**
  * Sample for Waterfall series
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let chartData: object[] = [
         { x: 'Income', y: 4711 }, { x: 'Sales', y: -1015 },
@@ -59,12 +61,14 @@ this.default = (): void => {
             value = Math.round((value * 100)) / 100;
             args.text = value.toString();
         },
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
-
+        // custom code end
     });
     chart.appendTo('#container');
 };

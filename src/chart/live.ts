@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, LineSeries, Legend, ILoadedEventArgs, getElement } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, Legend);
 
@@ -46,7 +47,8 @@ for (i = 0; i < 100; i++) {
     series2[i] = { x: i, y: value1 + 10 };
 }
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
@@ -80,10 +82,12 @@ this.default = (): void => {
 
         width: '800',
         height: '350',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
         }
+        // custom code end
     });
     chart.appendTo('#container-live');
 

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Sort, Page, Selection, Column } from '@syncfusion/ej2-grids';
 
 Grid.Inject(Sort, Page, Selection);
@@ -5,7 +6,8 @@ Grid.Inject(Sort, Page, Selection);
 /**
  * Cell Formatting sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let details: Object[] = [];
 
     for (let i: number = 1; i < 10; i++) {

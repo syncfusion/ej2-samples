@@ -1,17 +1,19 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Venn Diagram
  */
 
- import { Diagram, BasicShapeModel, NodeModel, SnapConstraints, DiagramTools  } from '@syncfusion/ej2-diagrams';
+import { Diagram, BasicShapeModel, NodeModel, SnapConstraints, DiagramTools } from '@syncfusion/ej2-diagrams';
 
 (window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize shape
     let shape: BasicShapeModel = { type: 'Basic', shape: 'Ellipse' };
     //Initialize Diagram Nodes
     let nodes: NodeModel[] = [
         {
             id: 'datascience', offsetX: 450, offsetY: 232, width: 400, height: 400,
-            annotations: [{ content: 'Data Science', offset: { x: 0.5, y: 0.10 }}],
+            annotations: [{ content: 'Data Science', offset: { x: 0.5, y: 0.10 } }],
             shape: shape, style: { fill: '#f2f2f2', strokeColor: '#acacac', strokeWidth: 1 }
         },
         {
@@ -28,7 +30,7 @@
             style: { fill: '#6acbd4', opacity: 0.2, strokeColor: '#6acbd4' }
         },
         {
-            id: 'programming', offsetX: 388, offsetY: 205, width: 200, height: 200,  shape: shape,
+            id: 'programming', offsetX: 388, offsetY: 205, width: 200, height: 200, shape: shape,
             annotations: [
                 { content: 'Programming ', offset: { x: 0.5, y: 0.4 }, horizontalAlignment: 'Right' },
                 { content: 'Assembly', offset: { x: 0.7, y: 0.35 }, horizontalAlignment: 'Left' },

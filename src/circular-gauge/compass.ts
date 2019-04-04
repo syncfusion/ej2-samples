@@ -1,38 +1,43 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Compass sample
  */
 import { CircularGauge, IAxisLabelRenderEventArgs, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let value: string[] = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', ''];
     let pointerColor: DropDownList; let labelColor: DropDownList;
     let circulargauge: CircularGauge = new CircularGauge({
         axisLabelRender: (args: IAxisLabelRenderEventArgs) => {
             args.text = value[args.value];
         },
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [{
             radius: '70%',
-            lineStyle: { width: 10, color: '#E0E0E0' },
+            lineStyle: { width: 10 },
             labelStyle: {
                 font: {
                     size: '12px', fontFamily: 'Roboto'
                 },
-                useRangeColor: true,
                 autoAngle: true,
                 hiddenLabel: 'Last'
             }, majorTicks: {
                 height: 15,
-                interval: 1,
-                color: '#9E9E9E'
+                interval: 1
             }, minorTicks: {
                 height: 10,
-                interval: 0.5,
-                color: '#9E9E9E'
+                interval: 0.5
             },
             startAngle: 0,
             endAngle: 360,
@@ -40,8 +45,7 @@ this.default = (): void => {
             maximum: 8,
             ranges: [{
                 start: 7,
-                end: 7,
-                color: '#f03e3e'
+                end: 7
             }],
             pointers: [{
                 value: 7,
@@ -65,7 +69,7 @@ this.default = (): void => {
         }]
     });
     circulargauge.appendTo('#direction-container');
-
+    // code for property panel
     pointerColor = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',

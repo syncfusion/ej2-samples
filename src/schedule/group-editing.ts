@@ -1,15 +1,17 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Schedule, ScheduleModel, Day, WorkWeek, Month, TimelineViews,
     ResourceDetails, TreeViewArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
-import { resourceConferenceData } from './datasource';
+import * as dataSource from './datasource.json';
 
 /**
- * schedule resources group sample
+ * schedule shared events sample
  */
 Schedule.Inject(Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop);
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     interface TemplateFunction extends Window {
         getEmployeeImage?: Function;
         getEmployeeName?: Function;
@@ -43,7 +45,7 @@ this.default = () => {
             textField: 'Text', idField: 'Id', colorField: 'Color'
         }],
         eventSettings: {
-            dataSource: resourceConferenceData,
+            dataSource: (dataSource as any).resourceConferenceData,
             fields: {
                 subject: { title: 'Conference Name', name: 'Subject' },
                 description: { title: 'Summary', name: 'Description' },

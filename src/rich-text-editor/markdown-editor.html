@@ -30,6 +30,7 @@ The third-party library <b>Marked</b> is used in this sample to convert markdown
             <li><code>Alignment</code> - Aligns the content with left, center, and right margins.</li>
             <li><code>Format</code> – Formats the sentence in different ways such as heading level, quotation, and code snippet</li>
             <li><code>Styles</code> – Allows you to apply inline styles to the selected content like bold, italic, and more.</li>
+            <li><code>Tables</code> – Allows you to insert a table with header.</li>
         </ul>
         <p><b>Injecting Module</b></p>
         <p>The above features built as modules have to be included in your application. For example, to use image and link, inject the specific module using <code>RichTextEditor.Inject (Toolbar, Link, Image, MarkdownEditor)</code>.</p>
@@ -48,5 +49,13 @@ The third-party library <b>Marked</b> is used in this sample to convert markdown
         }
         .e-icon-btn .e-md-preview::before {
             content: '\e345';
+        }
+        
+        .bootstrap4 .e-icon-btn.e-active .e-md-preview::before {
+            content: '\e790';
+        }
+
+        .bootstrap4 .e-icon-btn .e-md-preview::before {
+            content: '\e787';
         }
     </style>

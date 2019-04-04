@@ -2,6 +2,7 @@
     <div id="container">
     </div>
 </div>
+<!-- property panel -->
 <div class="col-lg-3 property-section">
     <table id="property" title="Properties" style="width: 100%">
         <tbody>
@@ -10,7 +11,7 @@
                     <div class="property-text">Export Type</div>
                 </td>
                 <td style="width: 60%;">
-                    <div style="margin-left: -30px">
+                    <div style="margin-left: -10px">
                         <select id="mode">
                             <option value="JPEG">JPEG</option>
                             <option value="PNG">PNG</option>
@@ -26,21 +27,21 @@
                 </td>
                 <td style="width: 60%;">
                     <div class="e-float-input" style="margin-top: 0px;">
-                        <input type="text" value="Smith chart" id="fileName" style="margin-left: -30px;width: 85px">
+                        <input type="text" value="Smith chart" id="fileName" style="margin-left: -10px;width: 100px">
                     </div>
                 </td>
             </tr>
             <tr id="button-control1">
                 <td>
-                    <div style="height: 45px; margin-left: 40%;">
-                        <button id="togglebtn1" style="width: 100px">Export</button>
+                    <div style="height: 45px; margin-left: 50%;">
+                        <button id="togglebtn1" style="text-transform:none !important;widows: 80px;">Export</button>
                     </div>
                 </td>
             </tr>
             <tr id="button-control2">
                 <td>
-                    <div style="height: 45px; margin-left: 40%;">
-                        <button id="togglebtn2" style="width: 100px">Print</button>
+                    <div style="height: 45px; margin-left: 50%;">
+                        <button id="togglebtn2" style="text-transform:none !important;width: 80px;">Print</button>
                     </div>
                 </td>
             </tr>
@@ -60,6 +61,7 @@
         In this example, you can see how to export and print the rendered Smith chart. Smith chart can be exported to JPEG, PNG, SVG, and PDF formats.
     </p>
 </div>
+<!-- custom code start -->
 <style>    
     .e-play-icon::before {
         content: '\e728';
@@ -70,3 +72,4 @@
         font-weight: 400 !important;
     }
 </style>
+<!-- custom code end -->

@@ -1,9 +1,10 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Connector sample
  */
 
 import {
-    Diagram, NodeModel, TextElement, HierarchicalTree, ConnectorConstraints, Segments, StackPanel,
+    Diagram, NodeModel, TextElement, HierarchicalTree, ConnectorConstraints, Segments, StackPanel, randomId,
     SelectorConstraints, PointPortModel, ConnectorModel, PortVisibility
 } from '@syncfusion/ej2-diagrams';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEventArgs } from '@syncfusion/ej2-buttons';
@@ -11,66 +12,6 @@ import { CheckBox, ChangeEventArgs as CheckBoxChangeEventArgs } from '@syncfusio
 Diagram.Inject(HierarchicalTree);
 
 let diagram: Diagram;
-
-// tslint:disable-next-line:max-func-body-length
-(window as any).default = (): void => {
-    let bounds: ClientRect = document.getElementsByClassName('content-wrapper')[0].getBoundingClientRect();
-    let marginLeft: number = (bounds.width - 560) / 2;
-
-    //Initialize Diagram Nodes
-    let nodes: NodeModel[] = [
-        { id: 'node1', annotations: [{ content: 'Promotion' }] },
-        { id: 'node2', annotations: [{ content: 'Lead' }] },
-        { id: 'node3', annotations: [{ content: 'Account' }] },
-        { id: 'node4', annotations: [{ content: 'Information' }] },
-        { id: 'node5', annotations: [{ content: 'Opportunity' }] },
-        { id: 'node6', offsetX: marginLeft + 530, offsetY: 290, excludeFromLayout: true }
-    ];
-
-    //Initialize Diagram connectors
-    let connectors: ConnectorModel[] = [
-        { id: 'connectr', sourceID: 'node1', targetID: 'node2' },
-        { id: 'connectr1', sourceID: 'node2', sourcePortID: 'port1', targetID: 'node3', targetPortID: 'portIn' },
-        { id: 'connectr2', sourceID: 'node2', sourcePortID: 'port2', targetID: 'node4', targetPortID: 'portIn' },
-        { id: 'connectr3', sourceID: 'node2', sourcePortID: 'port3', targetID: 'node5', targetPortID: 'portIn' },
-        { id: 'connectr4', sourceID: 'node6', sourcePortID: 'port4', targetID: 'node3', targetPortID: 'portOut' },
-        { id: 'connectr5', sourceID: 'node6', sourcePortID: 'port5', targetID: 'node4', targetPortID: 'portOut' },
-        { id: 'connectr7', sourceID: 'node6', sourcePortID: 'port6', targetID: 'node5', targetPortID: 'portOut' }
-    ];
-
-    //Initializes diagram control
-    diagram = new Diagram({
-        width: '100%', height: 580, nodes: nodes,
-        connectors: connectors, selectedItems: {
-            constraints: (SelectorConstraints.ConnectorSourceThumb | SelectorConstraints.ConnectorTargetThumb)
-        },
-        //Configrues hierarchical tree layout
-        layout: {
-            type: 'HierarchicalTree', orientation: 'LeftToRight',
-            verticalSpacing: 75, margin: { left: marginLeft, right: 0, top: 0, bottom: 0 }
-        },
-        created: created,
-        snapSettings: { constraints: 0 },
-        //Sets the default values of nodes
-        getNodeDefaults: getNodeDefaults,
-        //Sets the default values of connectors
-        getConnectorDefaults: getConnectorDefaults,
-        //Customize the content of the node
-        setNodeTemplate: setNodeTemplate,
-    });
-    diagram.appendTo('#diagram');
-
-    //checkbox is used to enable or disable the connector interaction.
-    let checkBoxObj: CheckBox = new CheckBox({
-        checked: false,
-        label: 'Lock',
-        change: constraintsChange
-    });
-    checkBoxObj.appendTo('#checked');
-
-    //Click Event for Appearance of the layout.
-    document.getElementById('appearance').onclick = changeConnectorPattern;
-};
 
 function created(): void {
     diagram.updateViewPort();
@@ -109,6 +50,7 @@ function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
 function setNodeTemplate(obj: NodeModel): StackPanel {
     if (obj.id === 'node6') {
         let canvas: StackPanel = new StackPanel();
+        canvas.id = randomId();
         canvas.children = [];
         canvas.style.strokeWidth = 0;
         canvas.style.fill = '#e6e0eb';
@@ -124,6 +66,7 @@ function setNodeTemplate(obj: NodeModel): StackPanel {
 //creation of the TextElement.
 function getTextElement(text: string, color: string): TextElement {
     let textElement: TextElement = new TextElement();
+    textElement.id = randomId();
     textElement.width = 80;
     textElement.height = 35;
     textElement.content = text;
@@ -179,10 +122,12 @@ function constraintsChange(args: CheckBoxChangeEventArgs): void {
 
 function changeConnectorPattern(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
+    // custom code start
     let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
     if (selectedElement.length) {
         selectedElement[0].classList.remove('e-selected-style');
     }
+    // custom code end
     if (target.className === 'image-pattern-style') {
         switch (target.id) {
             case 'straightConnector':
@@ -255,5 +200,69 @@ function applyConnectorStyle(
         };
         diagram.dataBind();
     }
+    // custom code start
     target.classList.add('e-selected-style');
+    // custom code end
 }
+
+// tslint:disable-next-line:max-func-body-length
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let bounds: ClientRect = document.getElementsByClassName('content-wrapper')[0].getBoundingClientRect();
+    let marginLeft: number = (bounds.width - 560) / 2;
+
+    //Initialize Diagram Nodes
+    let nodes: NodeModel[] = [
+        { id: 'node1', annotations: [{ content: 'Promotion' }] },
+        { id: 'node2', annotations: [{ content: 'Lead' }] },
+        { id: 'node3', annotations: [{ content: 'Account' }] },
+        { id: 'node4', annotations: [{ content: 'Information' }] },
+        { id: 'node5', annotations: [{ content: 'Opportunity' }] },
+        { id: 'node6', offsetX: marginLeft + 530, offsetY: 290, excludeFromLayout: true }
+    ];
+
+    //Initialize Diagram connectors
+    let connectors: ConnectorModel[] = [
+        { id: 'connectr', sourceID: 'node1', targetID: 'node2' },
+        { id: 'connectr1', sourceID: 'node2', sourcePortID: 'port1', targetID: 'node3', targetPortID: 'portIn' },
+        { id: 'connectr2', sourceID: 'node2', sourcePortID: 'port2', targetID: 'node4', targetPortID: 'portIn' },
+        { id: 'connectr3', sourceID: 'node2', sourcePortID: 'port3', targetID: 'node5', targetPortID: 'portIn' },
+        { id: 'connectr4', sourceID: 'node6', sourcePortID: 'port4', targetID: 'node3', targetPortID: 'portOut' },
+        { id: 'connectr5', sourceID: 'node6', sourcePortID: 'port5', targetID: 'node4', targetPortID: 'portOut' },
+        { id: 'connectr7', sourceID: 'node6', sourcePortID: 'port6', targetID: 'node5', targetPortID: 'portOut' }
+    ];
+
+    //Initializes diagram control
+    diagram = new Diagram({
+        width: '100%', height: 580, nodes: nodes,
+        connectors: connectors, selectedItems: {
+            constraints: (SelectorConstraints.ConnectorSourceThumb | SelectorConstraints.ConnectorTargetThumb)
+        },
+        //Configrues hierarchical tree layout
+        layout: {
+            type: 'HierarchicalTree', orientation: 'LeftToRight',
+            verticalSpacing: 75, margin: { left: marginLeft, right: 0, top: 0, bottom: 0 }
+        },
+        created: created,
+        snapSettings: { constraints: 0 },
+        //Sets the default values of nodes
+        getNodeDefaults: getNodeDefaults,
+        //Sets the default values of connectors
+        getConnectorDefaults: getConnectorDefaults,
+        //Customize the content of the node
+        setNodeTemplate: setNodeTemplate,
+    });
+    diagram.appendTo('#diagram');
+
+    //checkbox is used to enable or disable the connector interaction.
+    let checkBoxObj: CheckBox = new CheckBox({
+        checked: false,
+        label: 'Lock',
+        change: constraintsChange
+    });
+    checkBoxObj.appendTo('#checked');
+
+    //Click Event for Appearance of the layout.
+    document.getElementById('appearance').onclick = changeConnectorPattern;
+};
+

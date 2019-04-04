@@ -2,12 +2,13 @@
     "name": "ListView",
     "directory": "listview",
     "category": "Layout",
-    "type": "update",
+    "ftName" :"listview",
     "samples": [
         {
             "url": "default",
             "name": "Default Functionalities",
             "category": "ListView",
+            "description":"Demo of Essential JS 2 ListView control default renderings of flat and group list views. Click any list item to select and highlight it.",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -23,6 +24,7 @@
             "url": "remote-data",
             "name": "Remote Data",
             "category": "ListView",
+            "description":"Demo of Essential JS 2 ListView control rendering the list view with remote data, which uses DataManager and query properties to fetch data.",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -41,6 +43,7 @@
             "url": "checklist",
             "name": "Checklist",
             "category": "ListView",
+            "description":"Essential JS 2 ListView control demo of the checked list view, which supports selecting more than one list item.",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -57,6 +60,7 @@
             "url": "nested-list",
             "name": "Nested List",
             "category": "ListView",
+            "description":"Demo of Essential JS 2 ListView control showing the visual representation of nested data using the child property.",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -80,7 +84,7 @@
             "url": "virtualization",
             "name": "Virtualization",
             "category": "ListView",
-            "type": "update",
+            "description":"Demo of Essential JS 2 ListView control loading items in the view port with virtualization, which improves performance when loading large amounts of data.",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -99,7 +103,7 @@
             "url": "templates",
             "name": "Templates",
             "category": "Customization",
-            "type": "update",
+            "description":"Demo of Essential JS 2 ListView control rendering customized elements inside list items. This sample is a news feed application built using a list view.",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -119,7 +123,7 @@
             "url": "group-template",
             "name": "Group Template",
             "category": "Customization",
-            "type": "update",
+            "description":"Essential JS 2 ListView control demo of list item and header customization using a template. The mobile settings showcase built-in CSS.",
             "api": {
                 "ListView": [
                     "dataSource",
@@ -139,7 +143,7 @@
             "url": "call-history",
             "name": "Call History",
             "category": "Use Case",
-            "type": "update",
+            "description":"Demo of Essential JS 2 ListView control in a real-world use case as a call history app, featuring mobile contacts, mail inbox, and more.",
             "api": {
                 "ListView": [
                     "dataSource",

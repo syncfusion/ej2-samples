@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DocumentEditor, ViewChangeEventArgs, Print } from '@syncfusion/ej2-documenteditor';
 import { DocumentLoader } from './document-loader';
 import { TitleBar } from './title-bar';
@@ -6,8 +7,8 @@ DocumentEditor.Inject(Print);
 /**
  * Print document editor sample
  */
-this.default = (): void => {
-    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'document-editor/print/index.html#fabric');
+(window as any).default = (): void => {
+    loadCultureFiles();
     let containerPanel: HTMLElement = document.getElementById('documenteditor_container_panel');
     updateContainerSize();
     let documenteditor: DocumentEditor = new DocumentEditor({ enablePrint: true });

@@ -1,16 +1,17 @@
 
-import { PivotView, CalculatedField, FieldList } from '@syncfusion/ej2-pivotview';
+import { PivotView, CalculatedField, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { Button } from '@syncfusion/ej2-buttons';
-import { Pivot_Data } from './data-source';
 import { enableRipple } from '@syncfusion/ej2-base';
+import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 PivotView.Inject(CalculatedField, FieldList);
 
 /**
  * PivotView Sample with Calculated Fields.
  */
-
-this.default = (): void => {
+/* tslint:disable */
+let Pivot_Data: IDataSet[] = (pivotData as any).data;
+(window as any).default = (): void => {
     let pivotGridObj: PivotView = new PivotView({
         dataSource: {
             data: Pivot_Data,

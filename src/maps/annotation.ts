@@ -1,16 +1,24 @@
+// custom code start
+//tslint:disable
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Maps Annotation
  */
 import { Maps, Annotations, Marker, MapsTheme, ILoadEventArgs, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Annotations, Marker);
-
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         zoomSettings: {
             enable: false
         },
@@ -27,7 +35,7 @@ this.default = (): void => {
             {
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/africa-continent.json'),
+                shapeData: new MapAjax('./src/maps/map-data/africa-continent.json'),
                 shapeSettings: {
                     fill: 'url(#grad1)'
                 },

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Sample for CSS Swipeable Cards.
  */
@@ -5,7 +6,8 @@
 import { Touch, SwipeEventArgs, closest } from '@syncfusion/ej2-base';
 
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let ele: HTMLElement = document.getElementById('horizontal_product');
     let dir: String;

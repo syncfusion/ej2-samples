@@ -1,0 +1,60 @@
+
+<div id="target" class="control-section" >
+        <div id="splitter">
+            <div>
+                <div id='Accordion_default'></div>
+            </div>
+            <div>
+                <div id="accordion-splitter-content"></div>
+            </div>
+        </div>
+    </div>
+    <div id="action-description">
+        <p>
+            This example demonstrates the Accordion control that can be integrated within the split pane.
+            Select the product from the left pane to display the corresponding product details on the right pane.
+        </p>
+    </div>
+    <div id="description">
+        <p>
+            The Splitter is the layout user interface (UI) control and allows integrating other JavaScript UI controls within its pane.
+            In this sample, the Splitter control is used to design navigation menu-like application using JavaScript Accordion control.
+            The Accordion control is integrated within left pane to display the product menu and selected product details on right pane.               
+        </p>
+    </div>
+    <style>
+        #accordion-splitter-content {
+            padding: 18px;
+        }
+
+        #splitter .e-accordion .e-acrdn-item .e-acrdn-panel .e-acrdn-content {
+            padding: 0px;
+        }
+        #splitter .e-accordion, #splitter .e-accordion .e-acrdn-item.e-select, #splitter .e-accordion .e-acrdn-item.e-selected.e-select > .e-acrdn-header {
+            border: none;
+        }
+        #splitter .e-acrdn-header-content {
+            display: block;
+            text-decoration: none;
+      }
+	  .bootstrap #splitter .e-list-parent.e-ul li:nth-child(3),
+	  .bootstrap4 #splitter .e-list-parent.e-ul li:nth-child(3) {
+			border-bottom: none;
+	  }
+
+	  .bootstrap4 #splitter .e-listview {
+		border: none;
+	  }
+    </style>
+
+<!-- custom code start -->
+    <style>
+        #target {
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .control-section {
+            min-height: 370px;   
+        }
+    </style>
+<!-- custom code end -->

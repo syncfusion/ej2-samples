@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toast default sample
  */
 import { Toast, ToastOpenArgs, ToastCloseArgs } from '@syncfusion/ej2-notifications';
 import { Browser, Touch, SwipeEventArgs, closest, isNullOrUndefined, Animation, AnimationModel } from '@syncfusion/ej2-base';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     //Initialize Toast component
     let toastObj: Toast = new Toast({
         title: 'device demo Toast', width: '100%', target: '#toast_action_center_target', timeOut: 0, open: toastOpen, close: toastClose,

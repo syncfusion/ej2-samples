@@ -1,12 +1,14 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor default sample
+ * RichTextEditor custom toolbar sample
  */
 import { RichTextEditor, Toolbar, Link, NodeSelection, Image, QuickToolbar, HtmlEditor } from '@syncfusion/ej2-richtexteditor';
 import { Dialog } from '@syncfusion/ej2-popups';
 RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor);
 
 /* tslint:disable */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
@@ -18,12 +20,21 @@ this.default = (): void => {
                 }, '|', 'Undo', 'Redo'
             ]
         },
-        created: onCreate
+        created: onCreate,
+        actionComplete: onActionComplete
     });
     defaultRTE.appendTo('#defaultRTE');
     let selection: NodeSelection = new NodeSelection();
     let ranges: Range;
 
+
+    function onActionComplete(args: any): void {
+        if (args.requestType === 'SourceCode') {
+            defaultRTE.getToolbar().querySelector('#custom_tbar').parentElement.classList.add('e-overlay');
+        } else if (args.requestType === 'Preview') {
+            defaultRTE.getToolbar().querySelector('#custom_tbar').parentElement.classList.remove('e-overlay');
+        }
+    }
 
     function onCreate(): void {
         let customBtn: HTMLElement = defaultRTE.element.querySelector('#custom_tbar') as HTMLElement;
@@ -72,7 +83,10 @@ this.default = (): void => {
         function onInsert(): void {
             let activeEle: HTMLElement = dialog.element.querySelector('.char_block.e-active');
             if (activeEle) {
-                ranges.insertNode(document.createTextNode(activeEle.textContent));
+                if (defaultRTE.formatter.getUndoRedoStack().length === 0) {
+                    defaultRTE.formatter.saveData();
+                }
+                defaultRTE.executeCommand('insertText', activeEle.textContent);
                 defaultRTE.formatter.saveData();
                 (defaultRTE as any).formatter.enableUndo(defaultRTE);
             }

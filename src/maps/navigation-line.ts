@@ -1,17 +1,28 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Linea penusular sample
  */
 import { Maps, Marker, Zoom, NavigationLine, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-import { penisular_location, penisular_marker } from './map-data/map-location';
+import * as mapLocation from './map-data/map-location.json';
+let data: any  = mapLocation as any;
 Maps.Inject(Marker, Zoom, NavigationLine);
+// custom code start
 //tslint:disable:max-func-body-length
-this.default = (): void => {
+// custom code end
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         titleSettings: {
             text: 'Shipping sea route between various cities',
             textStyle: {
@@ -19,7 +30,7 @@ this.default = (): void => {
             }
         },
         zoomSettings: {
-            enable: true,
+            enable: false,
             mouseWheelZoom: false,
             toolbars: [],
             zoomFactor: 13
@@ -33,11 +44,11 @@ this.default = (): void => {
         },
         layers: [
             {
-                shapeData: new MapAjax(location.origin + location.pathname + 'src/maps/map-data/world-map.json'),
+                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
                 shapeSettings: {
                     fill: '#789071',
                 },
-                navigationLineSettings: penisular_location,
+                navigationLineSettings: data.penisular_location,
                 markerSettings: [
                     {
                         visible: true,
@@ -46,7 +57,7 @@ this.default = (): void => {
                         width: 10,
                         height: 10,
                         animationDuration: 0,
-                        dataSource: penisular_marker
+                        dataSource: data.penisular_marker
                     },
                     {
                         visible: true,

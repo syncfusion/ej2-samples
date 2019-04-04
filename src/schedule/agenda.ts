@@ -1,7 +1,8 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, Agenda } from '@syncfusion/ej2-schedule';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { DropDownList, ChangeEventArgs as DropDownChangeArgs } from '@syncfusion/ej2-dropdowns';
-import { generateObject } from './datasource';
+import { generateObject } from './helper';
 
 Schedule.Inject(Agenda);
 
@@ -9,7 +10,8 @@ Schedule.Inject(Agenda);
  * Schedule agenda sample
  */
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     // Initialize schedule component
     let scheduleObj: Schedule = new Schedule({
         width: '100%',

@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Selection } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 import { Query, DataManager } from '@syncfusion/ej2-data';
@@ -6,7 +7,8 @@ Grid.Inject(Selection);
 /**
  * column template sample
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid({
         dataSource: new DataManager(employeeData as JSON[]).executeLocal(new Query().take(8)),
         columns: [

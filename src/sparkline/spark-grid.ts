@@ -1,21 +1,25 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Default Spark with Grid sample
  */
-
 import { Grid, Selection } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { EmitType } from '@syncfusion/ej2-base';
-import { orderdata } from './datasource';
+import { orderdata } from './data-source';
 import { Sparkline } from '@syncfusion/ej2-charts';
 Grid.Inject(Selection);
 
 import { ISparklineLoadEventArgs, SparklineTheme } from '@syncfusion/ej2-charts/index';
+// custom code start
 export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-// tslint:disable-next-line:no-any
+// tslint:disable:no-any
+// custom code end
 export let winloss: EmitType<Object> = () => {
     let windata: number[] = [];
     let r: number;
@@ -82,7 +86,8 @@ export let getSparkData: Function = (type: string, count: number) => {
         return columnData[count];
     }
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let grid: Grid = new Grid({
         dataSource: new DataManager(orderdata as JSON[]).executeLocal(new Query().take(20)),
         allowSelection: false,

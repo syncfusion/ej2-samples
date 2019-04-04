@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DateTime, Zoom, IAxisLabelRenderEventArgs, IAxisRangeCalculatedEventArgs } from '@syncfusion/ej2-charts';
 import { RangeNavigator, Chart, IChangedEventArgs, LineSeries, IMouseEventArgs, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import { ChartTheme, ChartAnnotation, PeriodSelector, CandleSeries, Tooltip, ColumnSeries } from '@syncfusion/ej2-charts';
@@ -24,7 +25,7 @@ import { chartData } from './stock-chart-data';
 let index: number = 0;
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
 let removeSecondaryElement: Function;
 let periodsValue: PeriodSelectorSettingsModel = {
     position: 'Top',
@@ -76,7 +77,8 @@ let getContent: Function = (value: string): string => {
     }
     return html;
 };
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 }, crosshairTooltip: { enable: true } },
         annotations: [
@@ -140,7 +142,7 @@ this.default = (): void => {
                 removeSecondaryElement();
             }
         }, margin: { top: 0 }, chartArea: { border: { width: 1, color: 'whitesmoke' } },
-        zoomSettings: { enableMouseWheelZooming: true, mode: 'X', toolbarItems: [] }, crosshair: { enable: true, lineType: 'Both' },
+        zoomSettings: { enableMouseWheelZooming: true, enablePinchZooming: true, mode: 'XY', toolbarItems: [] }, crosshair: { enable: true, lineType: 'Both' },
         width: Browser.isDevice ? '100%' : '80%', theme: theme, legendSettings: { visible: false }
     });
     chart.appendTo('#chart');

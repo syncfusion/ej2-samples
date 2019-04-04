@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ListView Remote Sample
  */
@@ -6,7 +7,8 @@ import {ListView} from '@syncfusion/ej2-lists';
 //Import DataManager related classes
 import {DataManager, Query } from '@syncfusion/ej2-data';
 
-this.default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     //Initialize ListView component
     let remoteListObj: ListView = new ListView({

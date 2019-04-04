@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Print and Export
  */
@@ -14,8 +15,39 @@ Diagram.Inject(PrintAndExport);
 let diagram: Diagram;
 let checkBoxObj: CheckBox;
 
+
+function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
+    connector.style.strokeColor = '#6d6d6d';
+    return connector;
+}
+
+//Export the diagraming object based on the format.
+function exportDiagram(args: MenuEventArgs): void {
+    let exportOptions: IExportOptions = {};
+    exportOptions.format = args.item.text as FileFormats;
+    exportOptions.mode = 'Download';
+    exportOptions.region = 'PageSettings';
+    exportOptions.multiplePage = checkBoxObj.checked;
+    exportOptions.fileName = 'Export';
+    exportOptions.margin = { left: 0, top: 0, bottom: 0, right: 0 };
+    diagram.exportDiagram(exportOptions);
+}
+
+//click event to perform printing the diagraming objects.
+function toolbarClick(args: ClickEventArgs): void {
+    if (args.item.text === 'Print') {
+        let printOptions: IExportOptions = {};
+        printOptions.mode = 'Data';
+        printOptions.region = 'PageSettings';
+        printOptions.multiplePage = checkBoxObj.checked;
+        printOptions.margin = { left: 0, top: 0, bottom: 0, right: 0 };
+        diagram.print(printOptions);
+    }
+}
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
 
     let nodes: NodeModel[] = [
         {
@@ -158,32 +190,3 @@ let checkBoxObj: CheckBox;
     diagram.appendTo('#diagram');
     diagram.fitToPage({ mode: 'Width' });
 };
-
-function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
-    connector.style.strokeColor = '#6d6d6d';
-    return connector;
-}
-
-//Export the diagraming object based on the format.
-function exportDiagram(args: MenuEventArgs): void {
-    let exportOptions: IExportOptions = {};
-    exportOptions.format = args.item.text as FileFormats;
-    exportOptions.mode = 'Download';
-    exportOptions.region = 'PageSettings';
-    exportOptions.multiplePage = checkBoxObj.checked;
-    exportOptions.fileName = 'Export';
-    exportOptions.margin = { left: 0, top: 0, bottom: 0, right: 0 };
-    diagram.exportDiagram(exportOptions);
-}
-
-//click event to perform printing the diagraming objects.
-function toolbarClick(args: ClickEventArgs): void {
-    if (args.item.text === 'Print') {
-        let printOptions: IExportOptions = {};
-        printOptions.mode = 'Data';
-        printOptions.region = 'PageSettings';
-        printOptions.multiplePage = checkBoxObj.checked;
-        printOptions.margin = { left: 0, top: 0, bottom: 0, right: 0 };
-        diagram.print(printOptions);
-    }
-}

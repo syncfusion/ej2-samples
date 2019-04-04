@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Calendar, ChangedEventArgs } from '@syncfusion/ej2-calendars';
 /**
  * Default Calendar sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let calendar: Calendar = new Calendar({
         change: valueChange
     });

@@ -1,6 +1,8 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Internationalization, extend } from '@syncfusion/ej2-base';
 import { Schedule, Day, Week, Month, Agenda, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-import { fifaEventsData, applyCategoryColor } from './datasource';
+import { applyCategoryColor } from './helper';
+import * as dataSource from './datasource.json';
 
 Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
 
@@ -8,8 +10,9 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
  *  Schedule view based configuration sample
  */
 
-this.default = () => {
-    let data: Object[] = <Object[]>extend([], fifaEventsData, null, true);
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as any).fifaEventsData, null, true);
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).getTimeString = (value: Date) => {
         return instance.formatDate(value, { skeleton: 'Hm' });

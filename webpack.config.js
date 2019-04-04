@@ -16,7 +16,7 @@ for (var inx = 0; inx < files.length; inx++) {
     samplesList.push(require(files[inx]));
 }
 function getControlWiseBundle() {
-    var bundleList = JSON.parse(fs.readFileSync('./src/common/sampleList.json'));
+    var bundleList = JSON.parse(fs.readFileSync('./sampleList.json'));
     var controlWiseBundleList = [];
     for (var i = 0; i < bundleList.length; i++) {
         controlWiseBundleList.push('./src/' + bundleList[i] + '/sample.json');

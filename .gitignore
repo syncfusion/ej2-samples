@@ -1,1 +1,12 @@
 node_modules/
+styles/**/*.css
+**/*.js
+!samples/**/*.js
+!src/common/lib/**
+units.html
+src/**/*-stack.json
+!src/sys.js
+src/common/api-table
+src/common/api-table.json
+!src/common/api-table-generator.js
+npm-debug.log

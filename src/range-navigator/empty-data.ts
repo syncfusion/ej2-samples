@@ -8,8 +8,9 @@ import { Browser, Ajax } from '@syncfusion/ej2-base';
 /**
  * Sample for empty points
  */
-let stockData: Object[] = [];
+
 let startDate: Date = new Date(2012, 4, 2);
+
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
 let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
@@ -75,6 +76,7 @@ this.renderChart = (stockData: Object[]): void => {
 (window as any).default = (): void => {
     loadCultureFiles();
     let dataSrc: Object[];
+    let stockData: Object[] = [];
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/empty-data.json', 'GET', true);
     ajax.send().then();
     // Rendering Dialog on AJAX success
@@ -84,7 +86,6 @@ this.renderChart = (stockData: Object[]): void => {
             // tslint:disable-next-line:no-string-literal
             data['x'] = new Date(data['x']);
         });
-        let stockData: Object[] = [];
         for (let i: number = 0; i <= 250; i++) {
             stockData.push(dataSrc[i]);
             if (i > 45 && 50 > i) {

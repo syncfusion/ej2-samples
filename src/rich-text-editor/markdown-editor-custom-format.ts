@@ -38,7 +38,7 @@ let mdsource: HTMLElement;
             mdPreview = document.getElementById('MD_Preview');
             textArea = defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement;
             textArea.addEventListener('keyup', (e: KeyboardEventArgs) => {
-                markDownConversion();
+                MarkDownConversion();
             });
             mdsource = document.getElementById('preview-code');
             mdsource.addEventListener('click', (e: MouseEvent) => {
@@ -47,16 +47,16 @@ let mdsource: HTMLElement;
         }
     });
     defaultRTE.appendTo('#defaultRTE');
-    function markDownConversion(): void {
+    function MarkDownConversion(): void {
         if (mdsource.classList.contains('e-active')) {
             let id: string = defaultRTE.getID() + 'html-view';
-            let htmlPreview: any = defaultRTE.element.querySelector('#' + id);
+            let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
             htmlPreview.innerHTML = Marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
         }
     }
     function fullPreview(): void {
         let id: string = defaultRTE.getID() + 'html-preview';
-        let htmlPreview: any = defaultRTE.element.querySelector('#' + id);
+        let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
         if (mdsource.classList.contains('e-active')) {
             mdsource.classList.remove('e-active');
             mdsource.parentElement.title = 'Preview';

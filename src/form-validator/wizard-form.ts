@@ -10,16 +10,12 @@ import { RadioButton } from '@syncfusion/ej2-buttons';
 //ts-lint: disable
 (window as any).default = (): void => {
     loadCultureFiles();
-
     let prevButton: Button = new Button({ isPrimary: true });
     prevButton.appendTo('#prevBtn');
-
     let nextButton: Button = new Button({ isPrimary: true });
     nextButton.appendTo('#nextBtn');
-
     let datepicker: DatePicker = new DatePicker({ placeholder: 'Choose Your DOB' });
     datepicker.appendTo('#datepicker');
-
 
     let options: FormValidatorModel = {
         customPlacement: (inputElement: HTMLElement, errorElement: HTMLElement) => {
@@ -33,6 +29,10 @@ import { RadioButton } from '@syncfusion/ej2-buttons';
 
     let displayTab: any = (n: any): any => {
         let x: any = document.getElementsByClassName('tab');
+        if (n === 3) {
+            n = 0;
+            currentTab = 0;
+        }
         x[n].style.display = 'block';
         if (n === 0) {
             document.getElementById('prevBtn').style.display = 'none';
@@ -58,7 +58,6 @@ import { RadioButton } from '@syncfusion/ej2-buttons';
         }
         return valid;
     };
-
     let tabNav: any = (n: number): any => {
         let x: any = document.getElementsByClassName('tab');
         if (n === 1 && !validateForm()) {
@@ -76,7 +75,6 @@ import { RadioButton } from '@syncfusion/ej2-buttons';
         }
         displayTab(currentTab);
     };
-
     let nextBtn: HTMLElement = document.getElementById('nextBtn');
     nextBtn.addEventListener('click', () => {
         tabNav(1);

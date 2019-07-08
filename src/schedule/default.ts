@@ -15,7 +15,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     let data: Object[] = <Object[]>extend([], (dataSource as any).scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2019, 0, 10),
         eventSettings: { dataSource: data },
         dragStart: (args: DragEventArgs) => {
             args.navigation.enable = true;
@@ -23,8 +23,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     let currentDate: DatePicker = new DatePicker({
-        value: new Date(2018, 1, 15),
+        value: new Date(2019, 0, 10),
         showClearButton: false,
         change: (args: ChangeEventArgs) => {
             scheduleObj.selectedDate = args.value;
@@ -32,4 +33,5 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         }
     });
     currentDate.appendTo('#scheduledate');
+    // custom code end
 };

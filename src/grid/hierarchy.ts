@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Selection, DetailRow } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, DetailRow, Sort } from '@syncfusion/ej2-grids';
 import { DataManager, ODataAdaptor } from '@syncfusion/ej2-data';
 import { employeeData } from './data-source';
 
-Grid.Inject(Page, Selection, DetailRow);
+Grid.Inject(Page, Selection, DetailRow, Sort);
 /**
  * Hierarchy Grid Sample
  */

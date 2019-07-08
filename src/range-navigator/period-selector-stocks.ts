@@ -81,9 +81,7 @@ let getContent: Function = (value: string): string => {
     loadCultureFiles();
     let chart: Chart = new Chart({
         primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 }, crosshairTooltip: { enable: true } },
-        annotations: [
-            { content: '<div id="annotation"></div>', coordinateUnits: 'Pixel', region: 'Chart', x: '15%', y: '20%' }
-        ],
+        annotations: [{ content: '<div id="annotation"></div>', coordinateUnits: 'Pixel', region: 'Chart', x: '15%', y: '20%' }],
         primaryYAxis: {
             crosshairTooltip: { enable: true }, labelFormat: 'n0', plotOffset: 25,
             rowIndex: 1, opposedPosition: true, lineStyle: { width: 0 }, rangePadding: 'None', majorGridLines: { width: 0 }
@@ -142,7 +140,8 @@ let getContent: Function = (value: string): string => {
                 removeSecondaryElement();
             }
         }, margin: { top: 0 }, chartArea: { border: { width: 1, color: 'whitesmoke' } },
-        zoomSettings: { enableMouseWheelZooming: true, mode: 'X', toolbarItems: [] }, crosshair: { enable: true, lineType: 'Both' },
+        // tslint:disable-next-line:max-line-length
+        zoomSettings: { enableMouseWheelZooming: true, enablePinchZooming: true, mode: 'XY', toolbarItems: [] }, crosshair: { enable: true, lineType: 'Both' },
         width: Browser.isDevice ? '100%' : '80%', theme: theme, legendSettings: { visible: false }
     });
     chart.appendTo('#chart');

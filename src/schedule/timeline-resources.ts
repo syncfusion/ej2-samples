@@ -13,6 +13,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
+    // custom code start
     interface TemplateFunction extends Window {
         getRoomName?: Function;
         getRoomType?: Function;
@@ -30,6 +31,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     (window as TemplateFunction).getRoomCapacity = (value: ResourceDetails) => {
         return (value as ResourceDetails).resourceData.capacity;
     };
+    // custom code end
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
@@ -86,12 +88,11 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
                 let target: HTMLElement = (args.type === 'RecurrenceAlert' ||
                     args.type === 'DeleteAlert') ? data.element[0] : args.target;
                 if (!isNullOrUndefined(target) && target.classList.contains('e-work-cells')) {
-                    if ((target.classList.contains('e-read-only-cells')) ||
-                        (!scheduleObj.isSlotAvailable(data.endTime as Date, data.endTime as Date, data.groupIndex as number))) {
+                    if ((target.classList.contains('e-read-only-cells')) || (!scheduleObj.isSlotAvailable(data))) {
                         args.cancel = true;
                     }
                 } else if (!isNullOrUndefined(target) && target.classList.contains('e-appointment') &&
-                    (isReadOnly(data.EndTime))) {
+                    (isReadOnly(data.EndTime as Date))) {
                     args.cancel = true;
                 }
             }
@@ -123,8 +124,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
                 } else if (args.requestType === 'eventChange') {
                     data = <{ [key: string]: Object }>args.data;
                 }
-                let groupIndex: number = scheduleObj.eventBase.getGroupIndexFromEvent(data);
-                if (!scheduleObj.isSlotAvailable(data.StartTime as Date, data.EndTime as Date, groupIndex as number)) {
+                if (!scheduleObj.isSlotAvailable(data)) {
                     args.cancel = true;
                 }
             }

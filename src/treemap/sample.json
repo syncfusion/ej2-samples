@@ -2,7 +2,6 @@
     "name": "TreeMap",
     "directory": "treemap",
     "category": "Data Visualization",
-	"type": "update",
     "samples": [
         {
             "url": "default",
@@ -75,7 +74,6 @@
             "name": "Legend",
             "category": "TreeMap",
             "api": {},
-			"type": "update",
             "sourceFiles":[                
                 { "displayName": "election.html", "path":"src/treemap/election.html" },
                 { "displayName": "election.ts", "path":"src/treemap/election.ts" },
@@ -87,7 +85,6 @@
             "name": "Color Mapping",
             "description": "This demo for Essential JS2 TreeMap control visualizes the population level of various continents in 2011 based on the gender and age group.",
             "category": "TreeMap",
-			"type": "new",
             "api": {},
             "sourceFiles":[
                 { "displayName": "color-mapping.html", "path":"src/treemap/color-mapping.html" },
@@ -128,6 +125,18 @@
                 { "displayName": "pie.ts", "path":"src/treemap/pie.ts" },
                 { "displayName": "continent_data.json", "path":"src/treemap/treemap-data/continent_data.json" }
             ]
+        },
+        {
+            "url": "rtl",
+            "name": "RTL",
+            "category": "TreeMap",
+            "api": {},
+			"sourceFiles":[                
+                { "displayName": "rtl.html", "path":"src/treemap/rtl.html" },
+                { "displayName": "rtl.ts", "path":"src/treemap/rtl.ts" },
+                { "displayName": "rtl-data.json", "path":"src/treemap/treemap-data/rtl-data.json" }
+            ]
+           
         }
         
         

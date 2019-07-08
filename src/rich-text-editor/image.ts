@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor default sample
+ * RichTextEditor Image sample
  */
 import { RichTextEditor, Toolbar, Image,  Link, HtmlEditor, QuickToolbar, NodeSelection } from '@syncfusion/ej2-richtexteditor';
 RichTextEditor.Inject(Toolbar, Image,  Link, HtmlEditor, QuickToolbar );

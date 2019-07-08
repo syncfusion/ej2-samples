@@ -11,14 +11,15 @@ RichTextEditor.Inject(Link, Image, MarkdownEditor, Toolbar, QuickToolbar, Table)
 let textArea: HTMLTextAreaElement;
 let mdsource: HTMLElement;
 let mdSplit: HTMLElement;
-let htmlPreview: any;
-/* tslint:disable */
+let htmlPreview: HTMLElement;
+//tslint:disable:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
     let defaultRTE: RichTextEditor = new RichTextEditor({
         height: '300px', editorMode: 'Markdown', actionBegin: handleFullScreen,
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'OrderedList', 'UnorderedList', '|', 'CreateLink', 'Image', 'CreateTable', '|',
+            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'OrderedList',
+                 'UnorderedList', '|', 'CreateLink', 'Image', 'CreateTable', '|',
                 { tooltipText: 'Preview', template: '<button id="preview-code" class="e-tbar-btn e-control e-btn e-icon-btn">' +
                     '<span class="e-btn-icon e-md-preview e-icons"></span></button>' },
                 { tooltipText: 'Split Editor', template: '<button id="MD_Preview" class="e-tbar-btn e-control e-btn e-icon-btn">' +
@@ -71,7 +72,7 @@ let htmlPreview: any;
     function markDownConversion(): void {
         if (mdSplit.classList.contains('e-active')) {
             let id: string = defaultRTE.getID() + 'html-preview';
-            let htmlPreview: any = defaultRTE.element.querySelector('#' + id);
+            let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
             htmlPreview.innerHTML = Marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
         }
     }
@@ -106,8 +107,10 @@ let htmlPreview: any;
     }
     defaultRTE.appendTo('#defaultRTE');
     function handleFullScreen(e: any): void {
-        let leftBar: any;
-        let transformElement: any;
+        let sbCntEle: HTMLElement = document.querySelector('.sb-content.e-view');
+        let sbHdrEle: HTMLElement = document.querySelector('.sb-header.e-view');
+        let leftBar: HTMLElement;
+        let transformElement: HTMLElement;
         if (Browser.isDevice) {
             leftBar = document.querySelector('#right-sidebar');
             transformElement = document.querySelector('.sample-browser.e-view.e-content-animation');
@@ -116,16 +119,21 @@ let htmlPreview: any;
             transformElement = document.querySelector('#right-pane');
         }
         if (e.targetItem === 'Maximize') {
+            if (Browser.isDevice && Browser.isIos) {
+                addClass([sbCntEle, sbHdrEle], ['hide-header']);
+            }
             addClass([leftBar], ['e-close']); removeClass([leftBar], ['e-open']);
             if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
             transformElement.style.transform = 'inherit';
         } else if (e.targetItem === 'Minimize') {
+            if (Browser.isDevice && Browser.isIos) {
+                removeClass([sbCntEle, sbHdrEle], ['hide-header']);
+            }
             removeClass([leftBar], ['e-close']);
-            if (!Browser.isDevice) { 
+            if (!Browser.isDevice) {
             addClass([leftBar], ['e-open']);
             transformElement.style.marginLeft = leftBar.offsetWidth + 'px'; }
             transformElement.style.transform = 'translateX(0px)';
         }
     }
 };
-/* tslint:enable */

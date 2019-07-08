@@ -1,20 +1,26 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable
+// custom code end
 /**
  * Multiple Axis sample
  */
 import { CircularGauge, isCompleteAngle, GaugeDirection, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-//tslint:disable
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let axisIndex: number = 0;
     let axis: DropDownList; let direction: DropDownList;
     let circulargauge: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         title: 'Gauge with Multiple Axes',
         titleStyle: { color: 'gray', size: '16px' },
         axes: [{
@@ -57,7 +63,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         }]
     });
     circulargauge.appendTo('#axis-container');
-
+    // code for property panel
     axis = new DropDownList({
         index: 0, width: 120,
         change: () => {

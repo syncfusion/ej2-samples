@@ -1,6 +1,7 @@
 <div class="col-lg-9 control-section">
     <div id="Schedule"></div>
 </div>
+<!-- custom code start -->
 <div class="col-lg-3 property-section">
     <table id="property" title="Show / Hide Resource" style="width: 100%">
         <tbody>
@@ -26,24 +27,6 @@
             </tr>
         </tbody>
     </table>
-</div>
-
-<div id="action-description">
-    <p>
-        This demo illustrates how to dynamically add or remove resources to and from the Scheduler layout.
-    </p>
-</div>
-
-<div id="description">
-    <p>
-        In this demo, Scheduler is initially displayed with single resource with its related set of appointments. When the additional
-        checkboxes given are checked and unchecked, the respective resources gets added up or removed from the scheduler layout.
-        To add new resources dynamically,
-        <code>addResource</code> method is used which accepts the arguments such as resource object, resource name (within which level, the resource
-        object to be added) and index (position where the resource needs to be added). To remove the resources dynamically,
-        <code>removeResource</code> method is used which accepts the index (position from where the resource to be removed) and resource name (within
-        which level, the resource object presents) as parameters.
-    </p>
 </div>
 
 <style>
@@ -90,3 +73,27 @@
         padding: 0;
     }
 </style>
+<!-- custom code end-->
+
+<div id="action-description">
+    <p>
+        This demo illustrates how to dynamically add or remove resources to and from the Scheduler layout.
+    </p>
+</div>
+
+<div id="description">
+    <p>
+        In this demo, Scheduler is initially displayed with single resource with its related set of appointments. When
+        the additional
+        checkboxes given are checked and unchecked, the respective resources gets added up or removed from the scheduler
+        layout.
+        To add new resources dynamically,
+        <code>addResource</code> method is used which accepts the arguments such as resource object, resource name
+        (within which level, the resource
+        object to be added) and index (position where the resource needs to be added). To remove the resources
+        dynamically,
+        <code>removeResource</code> method is used which accepts the index (position from where the resource to be
+        removed) and resource name (within
+        which level, the resource object presents) as parameters.
+    </p>
+</div>

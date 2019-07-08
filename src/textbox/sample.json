@@ -4,6 +4,7 @@
    "category":"Inputs",
    "ftName": "textbox",
    "samples" : [
-    {"url":"default", "name": "Default Functionalities", "category":"TextBox", "description":"This sample covers the major features of the text box component, such as floating labels and placeholders, integrated icons, validation states, sizing, types, and more.", "api": { "TextBox": ["placeholder", "floatLabelType", "enableRtl"]}}
+    {"url":"default", "name": "Default Functionalities", "category":"TextBox", "description":"This example describes key features of JavaScript textbox such as a floating label, input group, placeholder, validation states, sizing, types, and more.", "api": { "TextBox": ["placeholder", "floatLabelType", "enableRtl"]}},
+    {"url":"multiline-textbox", "name": "Multiline TextBox", "category":"TextBox", "description":"The example exposes a JavaScript Multiline TextBox (textarea). It helps to render address, feedback, and more in HTML5 form with customizable rows and columns.", "api": { "TextBox": ["multiline", "value", "placeholder", "floatLabelType", "enabled", "enableRtl", "readonly"]}}
    ]
 }

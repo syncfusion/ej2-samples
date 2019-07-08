@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { DocumentEditorContainer, Toolbar } from '@syncfusion/ej2-documenteditor';
 import { TitleBar } from './title-bar';
 import * as data from './data-headers-and-footers.json';
@@ -8,13 +7,12 @@ import * as data from './data-headers-and-footers.json';
  * Default document editor sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
 
     let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
 
     let container: DocumentEditorContainer = new DocumentEditorContainer({ enableToolbar: true });
     DocumentEditorContainer.Inject(Toolbar);
-    container.serviceUrl = hostUrl + 'api/documenteditor/Import';
+    container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
 
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);

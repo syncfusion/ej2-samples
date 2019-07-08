@@ -7,7 +7,7 @@
         {
             "url": "default",
             "name": "Default Functionalities",
-            "description": "This demo for Essential JS2 Linear Gauge control illustrates the default rendering of linear gauge.",
+            "description": "This demo for Essential JS2 Linear Gauge control illustrates the default rendering of linear gauge that measures the values of scales.",
             "category": "Linear Gauge",
             "api":{"LinearGauge": ["orientation", "annotations", "axes"]}
         },

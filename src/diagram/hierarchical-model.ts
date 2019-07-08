@@ -56,7 +56,7 @@ function connectorDefaults(connector: ConnectorModel, diagram: Diagram): Connect
         dataSourceSettings: {
             //sets the fields to bind
             id: 'Name', parentId: 'Category',
-            dataManager: new DataManager((Data as any).hierarchicalTree),
+            dataSource: new DataManager((Data as any).hierarchicalTree),
             //binds the data with the nodes
             doBinding: (nodeModel: NodeModel, data: object, diagram: Diagram) => {
                 nodeModel.shape = { type: 'Text', content: (data as EmployeeInfo).Name };
@@ -78,10 +78,12 @@ function connectorDefaults(connector: ConnectorModel, diagram: Diagram): Connect
     //Click event for Appearance of the Property Panel.
     document.getElementById('appearance').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
+        // custom code start
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
         if (selectedElement.length) {
             selectedElement[0].classList.remove('e-selected-style');
         }
+        // custom code end
         if (target.className === 'image-pattern-style') {
             let id: string = target.id;
             let orientation1: string = id.substring(0, 1).toUpperCase() + id.substring(1, id.length);

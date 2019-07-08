@@ -2,8 +2,8 @@
     "name": "Maps",
     "directory": "maps",
     "category": "Data Visualization",
-	"type": "update",
     "ftName": "maps",
+    "type": "update",
     "samples": [{
             "url": "default",
             "name": "Default Functionalities",
@@ -102,6 +102,38 @@
             ]
         },
         {
+            "url": "marker-cluster",
+            "name": "Marker clustering",
+            "description": "This demo for Essential JS2 Maps control indicates the create the marker cluster in more than one marker intersect",
+            "category": "Features",
+            "api": {
+                "Maps": [
+                    "zoomSettings",
+                    "titleSettings",
+                    "layers"
+                ]
+            },
+            "sourceFiles": [
+                {
+                    "displayName": "marker-cluster.html",
+                    "path": "src/maps/marker-cluster.html"
+                },
+                {
+                    "displayName": "marker-cluster.ts",
+                    "path": "src/maps/marker-cluster.ts"
+                },
+                {
+                    "displayName": "marker-cluster.json",
+                    "path": "src/maps/map-data/marker-cluster.json"
+                },
+                {
+                    "displayName": "world-map.json",
+                    "path": "src/maps/map-data/world-map.json"
+                }
+            ],
+            "type": "new"
+        },
+        {
             "url": "data-label",
             "name": "Labels",
             "description": "This demo for Essential JS2 Maps control shows the names of all the states in USA in data label. Intersect action and smart labels mode can be changed.",
@@ -161,7 +193,6 @@
             "name": "Legend",
             "description": "This demo for Essential JS2 Maps control visualizes grouping of countries in the legend based on its population density.",
             "category": "Features",
-			"type": "update",
             "api": {
                 "Maps": [
                     "zoomSettings",
@@ -180,10 +211,9 @@
         {
             "url": "color-mapping",
             "name": "Color Mapping",
-            "description": "This sample shows the average amount of rainfall and snowfall in spring season of all the states in US. Also color mapping is applied to the shapes to differentiate it from other shapes.",
+            "description": "This sample shows the average amount of rainfall and snowfall in spring season of all the states in US. Color mapping is applied to the shapes.",
             "category": "Features",
             "api": {},
-			"type": "new",
             "sourceFiles":[ { "displayName": "color-mapping.html", "path":"src/maps/color-mapping.html" },
                 { "displayName": "color-mapping.ts", "path":"src/maps/color-mapping.ts" },
                 { "displayName": "color-mapping.json", "path":"src/maps/map-data/color-mapping.json" }
@@ -211,7 +241,6 @@
             "url": "osm",
             "name": "OpenStreetMap",
             "category": "Map Providers",
-			"type": "new",
             "sourceFiles":[
                 { "displayName": "osm.html", "path":"src/maps/osm.html" },
                 { "displayName": "osm.ts", "path":"src/maps/osm.ts" }
@@ -221,7 +250,6 @@
             "url": "osm-with-navigation-lines",
             "name": "OSM with Navigation Lines",
             "category": "Map Providers",
-			"type": "new",
             "sourceFiles":[
                 { "displayName": "osm-navigationlines.html", "path":"src/maps/osm-with-navigation-lines.html" },
                 { "displayName": "osm-navigationlines.ts", "path":"src/maps/osm-with-navigation-lines.ts" }
@@ -231,7 +259,6 @@
             "url": "osm-with-sublayers",
             "name": "OSM with Sublayer",
             "category": "Map Providers",
-			"type": "new",
             "sourceFiles":[
                 { "displayName": "osm-sublayers.html", "path":"src/maps/osm-with-sublayers.html" },
                 { "displayName": "osm-sublayers.ts", "path":"src/maps/osm-with-sublayers.ts" },
@@ -430,6 +457,51 @@
             ]
         },
         {
+            "url": "cyber-attack-map",
+            "name": "Cyber Attack Map",
+            "description": "This demo for Essential JS2 Maps control visualizes the cyber attack map, which displays the cyber attacks and threats from various countries to USA.",
+            "category": "Use Cases",
+            "api": {
+                "Maps": [
+                    "layers"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "cyber-attack-map.html", "path":"src/maps/cyber-attack-map.html" },
+                { "displayName": "cyber-attack-map.ts", "path":"src/maps/cyber-attack-map.ts" },
+                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+            ]
+        },
+		{
+            "url": "dynamic-marker",
+            "name": "Dynamic markers",
+            "description": "This demo for Essential JS2 Maps control visualizes the dynamically added the marker and navigation line.",
+            "category": "Use Cases",
+            "api": {
+                "Maps": [
+                    "layers",
+                    "markerSetting",
+                    "navigationLineSettings",
+                    "click"
+                ]
+            },
+            "sourceFiles": [
+                {
+                    "displayName": "dynamic-marker.html",
+                    "path": "src/maps/dynamic-marker.html"
+                },
+                {
+                    "displayName": "dynamic-marker.ts",
+                    "path": "src/maps/dynamic-marker.ts"
+                },
+                {
+                    "displayName": "world-map.json",
+                    "path": "src/maps/map-data/world-map.json"
+                }
+            ],
+            "type": "new"
+        },
+        {
             "url": "pie",
             "name": "Map with Pie chart",
             "description": "This demo for Essential JS2 Maps control visualizes the placing of pie charts on the maps using marker templates.",
@@ -453,7 +525,6 @@
             "name": "Map with Slider",
             "description": "This demo for Essential JS2 Maps control demonstrates the rendering of normal geometry type shapes on the map.",
             "category": "Use Cases",
-			"type": "new",
             "api": {},
             "sourceFiles":[
                 { "displayName": "map-with-slider.html", "path":"src/maps/map-with-slider.html" },

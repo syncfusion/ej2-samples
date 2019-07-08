@@ -10,6 +10,7 @@ import * as dataSource from './datasource.json';
 Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
 (window as any).default = (): void => {
     loadCultureFiles();
+    // custom code start
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).majorSlotTemplate = (date: Date) => {
         return instance.formatDate(date, { skeleton: 'hm' });
@@ -21,11 +22,12 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
         majorSlotTemplate?: Function;
         minorSlotTemplate?: Function;
     }
+    // custom code end
     let data: Object[] = <Object[]>extend([], (dataSource as any).scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2019, 0, 10),
         currentView: 'TimelineWeek',
         views: ['Day', 'Week', 'TimelineDay', 'TimelineWeek'],
         timeScale: {
@@ -36,6 +38,8 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
         eventSettings: { dataSource: data }
     });
 
+    scheduleObj.appendTo('#Schedule');
+    // custom code start
     let minorSlot: DropDownList = new DropDownList({
         change: (args: DropDownChangeArgs) => {
             scheduleObj.timeScale.slotCount = parseInt(args.value as string, 10);
@@ -68,5 +72,5 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
         }
     });
     timescaleTemplate.appendTo('#template');
-    scheduleObj.appendTo('#Schedule');
+    // custom code end
 };

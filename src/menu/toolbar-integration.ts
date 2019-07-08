@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Toolbar, Menu } from '@syncfusion/ej2-navigations';
 import { DropDownButton } from '@syncfusion/ej2-splitbuttons';
 import * as dataSource from './menu-data.json';
+import { removeClass } from '@syncfusion/ej2-base';
 
 /**
  * Menu - toolbar integration sample
@@ -21,7 +22,7 @@ import * as dataSource from './menu-data.json';
                 { template: menuTemplate },
                 { template: searchTemplate, align: 'Right' },
                 { template: ddbTemplate, align: 'Right' },
-                { prefixIcon: 'e-shopping-cart', align: 'Right' }
+                { prefixIcon: 'em-icons e-shopping-cart', align: 'Right' }
             ]
         },
         '#shoppingtoolbar');
@@ -35,5 +36,6 @@ import * as dataSource from './menu-data.json';
         new DropDownButton({ items: (dataSource as any).userData }, '#userDBtn');
 
         this.refreshOverflow();
+        removeClass([this.element.querySelector('.e-shopping-cart')], 'e-icons');
     }
 };

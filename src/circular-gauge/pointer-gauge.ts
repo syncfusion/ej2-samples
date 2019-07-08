@@ -5,11 +5,13 @@ import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncf
 CircularGauge.Inject(Annotations);
 export function gauge1(): CircularGauge {
     let gauge1: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [{
             startAngle: 270,
             endAngle: 90,
@@ -50,11 +52,13 @@ export function gauge1(): CircularGauge {
 
 export function gauge2(): CircularGauge {
     let gauge2: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [{
             startAngle: 270,
             endAngle: 90,
@@ -96,11 +100,13 @@ export function gauge2(): CircularGauge {
 
 export function gauge3(): CircularGauge {
     let gauge3: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [{
             startAngle: 270,
             endAngle: 90,
@@ -147,11 +153,13 @@ export function gauge3(): CircularGauge {
 
 export function gauge4(): CircularGauge {
     let gauge4: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         centerY: '40%',
         axes: [{
             startAngle: 270,
@@ -194,11 +202,13 @@ export function gauge4(): CircularGauge {
 
 export function gauge6(): CircularGauge {
     let gauge6: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         title: 'Speedometer',
         titleStyle: { size: '18px' },
         centerY: '75%',
@@ -285,11 +295,13 @@ export function gauge6(): CircularGauge {
 
 export function gauge5(): CircularGauge {
     let gauge5: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         centerY: '40%',
         axes: [{
             startAngle: 270,

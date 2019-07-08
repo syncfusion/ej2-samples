@@ -1,24 +1,26 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Selection sample
  */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 import { TreeMap, TreeMapHighlight, TreeMapSelection, HighLightMode, SelectionMode, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 TreeMap.Inject(TreeMapHighlight, TreeMapSelection);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
-// Treemap theme changes
+// custom code start
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-/**
- * Selection and highglight sample
- */
+// custom code end
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         titleSettings: {

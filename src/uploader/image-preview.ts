@@ -125,7 +125,7 @@ import { detach, Browser, createElement, isNullOrUndefined, EventHandler } from 
     }
     function onUploadSuccess(args : any) : void {
         let spinnerElement: HTMLElement = document.getElementById('dropArea');
-        let li : any = document.getElementById('dropArea').querySelector('[data-file-name="' + args.file.name + '"]');
+        let li : HTMLElement = document.getElementById('dropArea').querySelector('[data-file-name="' + args.file.name + '"]');
         if (li && !isNullOrUndefined(li.querySelector('.progressbar'))) {
             (li.querySelector('.progressbar') as HTMLElement).style.visibility = 'hidden';
         }
@@ -150,7 +150,7 @@ import { detach, Browser, createElement, isNullOrUndefined, EventHandler } from 
         }
     }
     function readURL(li: HTMLElement, args: any): void {
-        let preview: any = li.querySelector('.upload-image');
+        let preview: HTMLImageElement = li.querySelector('.upload-image');
         let file: File = args.rawFile; let reader: FileReader = new FileReader();
         reader.addEventListener('load', () => { preview.src = reader.result; }, false);
         if (file) { reader.readAsDataURL(file); }

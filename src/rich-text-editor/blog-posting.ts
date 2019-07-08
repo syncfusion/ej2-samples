@@ -32,10 +32,10 @@ RichTextEditor.Inject(Link, Image, HtmlEditor, Toolbar, QuickToolbar);
         let empList: string[] = ['emp1', 'emp2', 'emp3'];
         let nameListList: string[] = ['Anne Dodsworth', 'Janet Leverling', 'Laura Callahan'];
         if (comment !== null && comment.trim() !== '' && answerElement.innerText.trim() !== '') {
-            let answer: any = document.querySelector('.answer');
+            let answer: HTMLElement = document.querySelector('.answer');
             let cloneAnswer: HTMLElement = answer.cloneNode(true) as HTMLElement;
-            let authorName: any = cloneAnswer.querySelector('.authorname');
-            let logo: any = cloneAnswer.querySelector('.logos');
+            let authorName: HTMLElement = cloneAnswer.querySelector('.authorname');
+            let logo: HTMLElement = cloneAnswer.querySelector('.logos');
             logo.classList.remove('logos');
             if (empCount < 3) {
                 logo.classList.add(empList[empCount]);
@@ -45,7 +45,7 @@ RichTextEditor.Inject(Link, Image, HtmlEditor, Toolbar, QuickToolbar);
                 logo.classList.add('logo');
                 authorName.innerHTML = 'User';
             }
-            let timeZone: any = cloneAnswer.querySelector('.detailsAnswer');
+            let timeZone: HTMLElement = cloneAnswer.querySelector('.detailsAnswer');
             let day: string = getMonthName(new Date().getMonth()) + ' ' + new Date().getDate();
             let hr: string = new Date().getHours() + ':' + new Date().getMinutes();
             if (new Date().getHours() > 12) {
@@ -54,11 +54,11 @@ RichTextEditor.Inject(Link, Image, HtmlEditor, Toolbar, QuickToolbar);
                 hr = hr + ' AM';
             }
             timeZone.innerHTML = 'Answered on ' + day + ', ' + new Date().getFullYear() + ' ' + hr;
-            let postContent: any = cloneAnswer.querySelector('.posting');
+            let postContent: HTMLElement = cloneAnswer.querySelector('.posting');
             postContent.innerHTML = comment;
-            let postElement: any = document.querySelector('.answerSection');
+            let postElement: HTMLElement = document.querySelector('.answerSection');
             postElement.appendChild(cloneAnswer);
-            let countEle: any = document.querySelector('.answerCount');
+            let countEle: HTMLElement = document.querySelector('.answerCount');
             let count: number = parseInt(countEle.innerHTML, null);
             count = count + 1;
             countEle.innerHTML = count.toString() + ' Answers';

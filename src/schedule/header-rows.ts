@@ -13,6 +13,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
+    // custom code start
     interface TemplateFunction extends Window {
         getMonthDetails?: Function;
         getWeekDetails?: Function;
@@ -24,6 +25,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     (window as TemplateFunction).getWeekDetails = (value: CellTemplateArgs) => {
         return 'Week ' + getWeekNumber((value as CellTemplateArgs).date);
     };
+    // custom code end
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',

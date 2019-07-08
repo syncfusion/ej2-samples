@@ -1,19 +1,22 @@
 /**
  * Maps Curved line
  */
-//tslint:disable
 import { Maps, Marker, MapsTooltip, NavigationLine, ILoadEventArgs, Zoom, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 import * as marker_location from './map-data/marker-location.json';
-
 Maps.Inject(Marker, MapsTooltip, NavigationLine, Zoom);
+// custom code start
+//tslint:disable
 //tslint:disable:max-func-body-length
+// custom code end
 (window as any).default = (): void => {
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         centerPosition: {
             latitude: 30.41078179084589,
             longitude: 90.52734374999999

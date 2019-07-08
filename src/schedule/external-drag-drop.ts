@@ -13,6 +13,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
+    // custom code start
     // tslint:disable-next-line:max-func-body-length
     interface TemplateFunction extends Window {
         getConsultantName?: Function;
@@ -43,6 +44,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             return (value as ResourceDetails).resourceData.Designation;
         }
     };
+    // custom code end
 
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
@@ -116,7 +118,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
     function onItemDrag(event: any): void {
         if (scheduleObj.isAdaptive) {
-            let classElement: any = scheduleObj.element.querySelector('.e-device-hover');
+            let classElement: HTMLElement = scheduleObj.element.querySelector('.e-device-hover');
             if (classElement) {
                 classElement.classList.remove('e-device-hover');
             }
@@ -128,7 +130,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             document.body.style.cursor = '';
         }
         if (event.name === 'nodeDragging') {
-            let dragElementIcon: any =
+            let dragElementIcon: NodeListOf<HTMLElement> =
                 document.querySelectorAll('.e-drag-item.treeview-external-drag .e-icon-expandable');
             for (let i: number = 0; i < dragElementIcon.length; i++) {
                 dragElementIcon[i].style.display = 'none';
@@ -142,7 +144,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             const filteredPeople: { [key: string]: Object }[] =
                 treeViewdata.filter((item: any) => item.Id !== parseInt(draggedItemId, 10));
             treeObj.fields.dataSource = filteredPeople;
-            let elements: any = document.querySelectorAll('.e-drag-item.treeview-external-drag');
+            let elements: NodeListOf<HTMLElement> = document.querySelectorAll('.e-drag-item.treeview-external-drag');
             for (let i: number = 0; i < elements.length; i++) {
                 remove(elements[i]);
             }
@@ -151,7 +153,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
     function onTreeDragStop(event: DragAndDropEventArgs): void {
         let treeElement: Element = <Element>closest(event.target, '.e-treeview');
-        let classElement: any = scheduleObj.element.querySelector('.e-device-hover');
+        let classElement: HTMLElement = scheduleObj.element.querySelector('.e-device-hover');
         if (classElement) {
             classElement.classList.remove('e-device-hover');
         }

@@ -1,12 +1,10 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Uploader, RemovingEventArgs } from '@syncfusion/ej2-inputs';
 import {  DropDownList, ChangeEventArgs  } from '@syncfusion/ej2-dropdowns';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 /**
  * Chunk upload sample
  */
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
 
     let dropElement: HTMLElement = document.getElementsByClassName('control-fluid')[0] as HTMLElement;
     // initialize the uploader component

@@ -39,6 +39,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     // Initialize DropDownList component for timezone list
     let dropDownListObject: DropDownList = new DropDownList({
         popupWidth: 250,
@@ -48,4 +49,5 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         }
     });
     dropDownListObject.appendTo('#scheduletimezone');
+    // custom code end
 };

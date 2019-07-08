@@ -33,6 +33,7 @@ Schedule.Inject(Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, Dra
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     // Initialize DropDownList component for work days
     let workDaysDropDown: DropDownList = new DropDownList({
         popupWidth: 180,
@@ -51,4 +52,5 @@ Schedule.Inject(Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, Dra
         }
     });
     dayOfWeekDropDown.appendTo('#scheduledayofweek');
+    // custom code end
 };

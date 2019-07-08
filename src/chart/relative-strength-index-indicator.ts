@@ -67,7 +67,8 @@ this.renderChart = (chartData: Object[]): void => {
                     {
 
                         enableSelectionZooming: true,
-                        mode: 'X',
+                        enablePinchZooming: true,
+                        mode: 'XY',
                         enablePan: true
                     },
                 tooltip: {

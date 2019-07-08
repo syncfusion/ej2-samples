@@ -1,14 +1,16 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(false);
 import { Calendar, ChangedEventArgs, RenderDayCellEventArgs, Islamic } from '@syncfusion/ej2-calendars';
-import { addClass, L10n } from '@syncfusion/ej2-base';
+import { addClass } from '@syncfusion/ej2-base';
 Calendar.Inject(Islamic);
 
 /**
  * Islamic Calendar sample
  */
 
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let hijriCalendar: Calendar = new Calendar({
         change: valueChange,

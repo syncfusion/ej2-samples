@@ -14,7 +14,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
     loadCultureFiles();
     let scheduleObj: Schedule = new Schedule({
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2019, 0, 10),
         currentView: 'TimelineWeek',
         views: [
             { option: 'TimelineDay' },
@@ -30,8 +30,9 @@ Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     let currentDate: DatePicker = new DatePicker({
-        value: new Date(2018, 1, 15),
+        value: new Date(2019, 0, 10),
         showClearButton: false,
         change: (args: ChangeEventArgs) => {
             scheduleObj.selectedDate = args.value;
@@ -39,4 +40,5 @@ Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
         }
     });
     currentDate.appendTo('#scheduledate');
+    // custom code end
 };

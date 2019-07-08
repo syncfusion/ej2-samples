@@ -4,6 +4,7 @@
         </div>
     </div>
 </div>
+<!-- custom code start -->
 <style>
     .schedule-cell-dimension.e-schedule .e-vertical-view .e-date-header-wrap table col,
     .schedule-cell-dimension.e-schedule .e-vertical-view .e-content-wrap table col {
@@ -23,7 +24,18 @@
     .schedule-cell-dimension.e-schedule .e-month-view .e-work-cells {
         height: 200px;
     }
+
+    .schedule-cell-dimension.e-schedule .e-timeline-month-view .e-content-wrap table col,
+    .schedule-cell-dimension.e-schedule .e-timeline-view .e-content-wrap table col {
+        width: 100px;
+    }
+
+    .schedule-cell-dimension.e-schedule .e-timeline-view .e-work-cells,
+    .schedule-cell-dimension.e-schedule .e-timeline-month-view .e-work-cells {
+        height: 600px;
+    }
 </style>
+<!-- custom code end -->
 <div id="action-description">
     <p>
         This demo shows how to set the width and height of the cells by overriding the default CSS classes, so that the Scheduler

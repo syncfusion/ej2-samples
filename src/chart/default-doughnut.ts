@@ -11,11 +11,13 @@ import { Browser } from '@syncfusion/ej2-base';
  * Sample for Doughnut
  */
 let centerTitle: HTMLDivElement = document.createElement('div') as HTMLDivElement;
-centerTitle.innerHTML = 'Expenses <br> Year  &nbsp 2013';
+centerTitle.innerHTML = 'Expenses in Year';
 centerTitle.style.position = 'absolute';
 centerTitle.style.visibility = 'hidden';
+// tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
+    let count: number = 0;
     let pie: AccumulationChart = new AccumulationChart({
         enableSmartLabels: true,
         selectionMode: 'Point',
@@ -35,7 +37,6 @@ centerTitle.style.visibility = 'hidden';
                 endAngle: 360, innerRadius: '40%',
                 dataLabel: {
                     visible: true, position: 'Inside',
-                    name: 'text',
                     font: { color: 'white', fontWeight: '600', size: '14px' }
                 }, name: 'Revenue'
             }
@@ -61,7 +62,7 @@ centerTitle.style.visibility = 'hidden';
         },
         textRender: (args: IAccTextRenderEventArgs) => {
             args.series.dataLabel.font.size = getFontSize(pie.initialClipRect.width);
-            pie.animateSeries = true;
+            args.text = args.text + '%';
         },
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
@@ -70,15 +71,68 @@ centerTitle.style.visibility = 'hidden';
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
             args.accumulation.legendSettings.position = Browser.isDevice ? 'Bottom' : 'Right';
         },
-        tooltip: {
-            enable: true,
-            header: '<b>${point.x}</b>',
-            format: 'Composition : <b>${point.y}%</b>'
+        loaded: (args: IAccLoadedEventArgs) => {
+            pie.loaded = null;
+            let pieinterval: number = setInterval(
+                () => {
+                    if (document.getElementById('donut-container')) {
+                        if (count === 0) {
+                            pie.series[0].dataSource = [{ 'x': 'Net-tution and Fees', y: 13, text: '13%' },
+                            { 'x': 'Self-supporting Operations', y: 13, text: '13%' },
+                            { 'x': 'Private Gifts', y: 17, text: '17%' }, { 'x': 'All Other', y: 18, text: '18%' },
+                            { 'x': 'Local Revenue', y: 12, text: '12%' }, { 'x': 'State Revenue', y: 17, text: '17%' },
+                            { 'x': 'Federal Revenue', y: 10, text: '10%' }
+                            ];
+                            pie.animate();
+                            count++;
+                        } else if (count === 1) {
+                            pie.series[0].dataSource = [
+                                { 'x': 'Net-tution and Fees', y: 55, text: '55%' },
+                                { 'x': 'Self-supporting Operations', y: 14, text: '14%' },
+                                { 'x': 'Private Gifts', y: 4, text: '4%' }, { 'x': 'All Other', y: 6, text: '6%' },
+                                { 'x': 'Local Revenue', y: 11, text: '11%' }, { 'x': 'State Revenue', y: 5, text: '5%' },
+                                { 'x': 'Federal Revenue', y: 6, text: '6%' }
+                            ];
+                            pie.animate();
+                            count++;
+                        } else if (count === 2) {
+                            pie.series[0].dataSource = [
+                                { 'x': 'Net-tution and Fees', y: 8, text: '8%' }, { 'x': 'Self-supporting Operations', y: 26, text: '26%' },
+                                { 'x': 'Private Gifts', y: 12, text: '12%' }, { 'x': 'All Other', y: 18, text: '18%' },
+                                { 'x': 'Local Revenue', y: 15, text: '15%' }, { 'x': 'State Revenue', y: 11, text: '11%' },
+                                { 'x': 'Federal Revenue', y: 9, text: '9%' }
+                            ];
+                            pie.animate();
+                            count++;
+                        } else if (count === 3) {
+                            pie.series[0].dataSource = [
+                                { 'x': 'Net-tution and Fees', y: 10, text: '10%' }, { 'x': 'Self-supporting Operations', y: 7, text: '7%' },
+                                { 'x': 'Private Gifts', y: 17, text: '17%' }, { 'x': 'All Other', y: 14, text: '14%' },
+                                { 'x': 'Local Revenue', y: 21, text: '21%' }, { 'x': 'State Revenue', y: 14, text: '14%' },
+                                { 'x': 'Federal Revenue', y: 17, text: '17%' }
+                            ];
+                            pie.animate();
+                            count++;
+                        } else if (count === 4) {
+                            pie.series[0].dataSource = [
+                                { 'x': 'Net-tution and Fees', y: 13, text: '13%' }, { 'x': 'Self-supporting Operations', y: 6, text: '6%' },
+                                { 'x': 'Private Gifts', y: 9, text: '9%' }, { 'x': 'All Other', y: 9, text: '9%' },
+                                { 'x': 'Local Revenue', y: 7, text: '7%' }, { 'x': 'State Revenue', y: 13, text: '13%' },
+                                { 'x': 'Federal Revenue', y: 39, text: '39%' }
+                            ];
+                            pie.animate();
+                            count = 0;
+                        }
+                    } else {
+                        clearInterval(pieinterval);
+                    }
+                },
+                3000);
         },
-        title: 'Education Institutional Revenue',
+        tooltip: { enable: false, header: '<b>${point.x}</b>', format: 'Composition : <b>${point.y}%</b>' },
     });
-    pie.appendTo('#container');
-    document.getElementById('container').appendChild(centerTitle);
+    pie.appendTo('#donut-container');
+    document.getElementById('donut-container').appendChild(centerTitle);
     function getFontSize(width: number): string {
         if (width > 300) {
             return '13px';

@@ -98,7 +98,7 @@ export interface EmployeeInfo {
         },
         // Sets the parent and child relationship of DataSource.
         dataSourceSettings: {
-            id: 'Id', parentId: 'ReportingPerson', dataManager: new DataManager((Data as any).data)
+            id: 'Id', parentId: 'ReportingPerson', dataSource: new DataManager((Data as any).data)
         },
         // Sets the default values of Nodes.
         getNodeDefaults: getNodeDefaults,

@@ -1,4 +1,7 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable:max-func-body-length
+// custom code end
 /**
  * Range sample changes
  */
@@ -8,13 +11,17 @@ CircularGauge.Inject(Annotations);
 let sliderValue: number = 60;
 
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let circulargauge: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         loaded: (args: ILoadedEventArgs) => {
             let annotation: Element = document.getElementById(args.gauge.element.id + '_Annotations_0');
             if (annotation) {
@@ -71,7 +78,9 @@ let sliderValue: number = 60;
             }]
     });
     circulargauge.appendTo('#range-container');
+    // custom code start
     /* tslint:disable:no-string-literal */
+    // custom code end
     function annotationRender(id: string, sliderValue: number): void {
         let first: Slider = new Slider({
             // Set the value for slider

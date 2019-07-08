@@ -1,3 +1,4 @@
+<!-- custom code start -->
 <style>
     .form-group.col-md-6 {
         width: 250px;
@@ -9,6 +10,7 @@
         max-width: 552px;
     }
 </style>
+<!-- custom code end -->
 <script id='dialogtemplate' type="text/x-template">
     <div>
         <div class="form-row">
@@ -46,7 +48,7 @@
         <div class="form-row">
             <div class="form-group col-md-12">
                 <div class="e-float-input e-control-wrapper">
-                    <textarea type="text" name="ShipAddress" id="ShipAddress" value=${if(ShipAddress === null || ShipAddress === undefined)} '' ${else} ${ShipAddress} ${/if} /></textarea>
+                    <textarea type="text" name="ShipAddress" id="ShipAddress" value=${if(ShipAddress === null || ShipAddress === undefined)} '' ${else} ${ShipAddress} ${/if}>${if(ShipAddress === null || ShipAddress === undefined)}${else}${ShipAddress}${/if}</textarea>
                     <span class="e-float-line"></span>
                     <label class="e-float-text e-label-top" for="ShipAddress">Ship Address</label>
                 </div>

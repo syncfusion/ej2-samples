@@ -2,14 +2,14 @@
     "name": "DocumentEditor",
     "directory": "document-editor",
     "category": "Editors",
-    "ftName": "document-editor",
     "type": "update",
+    "hideOnDevice": true,
+    "ftName": "document-editor",
     "samples": [
         {
             "url": "default",
             "name": "Default Functionalities",
             "category": "DocumentEditor",
-            "type": "update",
             "description": "The Document Editor component in JavaScript platform is used to create, edit, view, and print Word documents in web applications.",
             "api": {
                 "DocumentEditor": [
@@ -1160,7 +1160,7 @@
             "url": "print",
             "name": "Print",
             "category": "Print",
-            "description": "The Document Editor component in JavaScript platform is used to view and print Word documents in web applications by injecting only the modules that are necessary.",
+            "description": "The Document Editor component in JavaScript is used to view and print Word documents in web applications by injecting only the modules that are necessary.",
             "api": {
                 "DocumentEditor": [
                     "enablePrint",
@@ -1177,14 +1177,46 @@
             "url": "right-to-left",
             "name": "Right To Left",
             "category": "RTL",
-            "type": "new",
             "description": "The Document Editor supports right to left for users who use right-to-left languages (Arabic, Hebrew, Urdu, etc.).",
             "api": {
-                "DocumentEditor":[
+                "DocumentEditor": [
                     "enableRtl"
                 ]
             }
-
+        },
+        {
+            "url": "custom-context-menu",
+            "name": "Custom Context Menu",
+            "category": "Customization",
+            "description": "The Document Editor supports custom options for users who use to add custom options in context menu.",
+            "api": {
+                "ContextMenu": [
+                    "addCustomMenu",
+                    "customContextMenuSelect",
+                    "customContextMenuBeforeOpen"
+                ]
+            }
+        },
+        {
+            "url": "auto-save",
+            "name": "Auto Save",
+            "category": "Customization",
+            "type": "new",
+            "description": "The Document Editor supports auto save functionality to let the users for saving the documents automatically at customized time interval."
+        },
+        {
+            "url": "chart",
+            "name": "Chart Preservation",
+            "category": "Charts",
+            "type": "new",
+            "description": "The Document Editor supports chart preservation for users who use to view their business reports with intuitive graphical data visualization."
+        },
+        {
+            "url": "document-protection",
+            "name": "Document Protection",
+            "category": "Security",
+            "type": "new",
+            "description": "The Document Editor provides document protection supports to restrict the types of changes can be made to the document by a user/user group."
         }
     ]
 }

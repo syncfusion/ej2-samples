@@ -133,7 +133,7 @@ let timeObj: Slider;
         let slider: Slider[] = [currencyObj, kilometerObj, timeObj];
         slider.forEach((slider: any) => {
             // Refreshing each slider tooltip object position
-            slider.refreshTooltip();
+            slider.refreshTooltip(slider.tooltipTarget);
         });
     }
 

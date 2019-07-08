@@ -36,7 +36,8 @@ enableRipple(true);
     listviewInstance.appendTo('#menulist');
 
     // open new tab
-    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'sidebar/sidebar-list/index.html');
+    let URL: any = location.href.replace(location.search, '');
+    document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/sidebar-list/index.html');
 
     // Expand the Sidebar
     document.getElementById('hamburger').onclick = (): void => {

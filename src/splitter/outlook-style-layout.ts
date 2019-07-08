@@ -12,6 +12,7 @@ enableRipple(true);
  *  Sample for outlook style using splitter
  */
 (window as any).default = (): void => {
+    let rteObj: RichTextEditor;
     loadCultureFiles();
     let splitObj1: Splitter = new Splitter({
         height: '493px',
@@ -20,6 +21,7 @@ enableRipple(true);
             { size: '33%', min: '23%' },
             { size: '37%', min: '30%' }
         ],
+        resizeStop: onSplitterResize,
         width: '100%'
     });
     splitObj1.appendTo('#splitter1');
@@ -92,6 +94,14 @@ enableRipple(true);
     let button2: Button = new Button();
     button2.appendTo('#rteCancel');
 
-    let defaultRTE: RichTextEditor = new RichTextEditor({ height: '262px'});
+    let defaultRTE: RichTextEditor = new RichTextEditor({ height: '262px', created: onRteCreated});
     defaultRTE.appendTo('#defaultRTE');
+
+    function onRteCreated(): void {
+        rteObj = this;
+    }
+
+    function onSplitterResize(): void {
+        rteObj.refresh();
+    }
 };

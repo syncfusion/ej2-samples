@@ -25,6 +25,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     // Initialize DropDownList component for views
     let dropDownListObject: DropDownList = new DropDownList({
         change: (args: ChangeEventArgs) => {
@@ -33,4 +34,5 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
         }
     });
     dropDownListObject.appendTo('#scheduleview');
+    // custom code end
 };

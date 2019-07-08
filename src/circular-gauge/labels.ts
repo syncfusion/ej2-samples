@@ -1,5 +1,7 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
-
+//tslint:disable
+// custom code end
 /**
  * Gauge Labels sample
  */
@@ -8,17 +10,19 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 import { EmitType } from '@syncfusion/ej2-base';
 CircularGauge.Inject(Annotations);
-//tslint:disable
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
-    
+    // custom code end
     let isMajorTicks: boolean = true;
     let circulargauge: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         axes: [{
             annotations: [{
                 content: '<div id="content" style="color:#518C03;font-size:20px;font-family:Segoe UI;font-weight:semibold;">145</div>',
@@ -45,6 +49,7 @@ CircularGauge.Inject(Annotations);
         }]
     });
     circulargauge.appendTo('#labels-container');
+    // code for property panel
     let ticks: DropDownList; let tickPosition: DropDownList; let labelPosition: DropDownList;
     ticks = new DropDownList({
         index: 0, width: 120,
@@ -64,7 +69,6 @@ CircularGauge.Inject(Annotations);
         }
     });
     ticks.appendTo('#Ticks');
-
     let showLastLabelchange: EmitType<CheckBoxChangeEvents>;
     let showLastLabelCheckBox: CheckBox = new CheckBox(
     {

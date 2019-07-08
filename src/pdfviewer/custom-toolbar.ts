@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print,
-    IPageChangeEventArgs, ILoadEventArgs, TextSearch, TextSelection
+    PageChangeEventArgs, LoadEventArgs, TextSearch, TextSelection
 } from '@syncfusion/ej2-pdfviewer';
 import { Toolbar as Tool, TreeView, NodeSelectEventArgs } from '@syncfusion/ej2-navigations';
 import { ClickEventArgs, Button, CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
@@ -17,6 +17,7 @@ let inputTemplate: string = '<div class=""><input type="text" class="e-input-gro
 let ele: string = '<div class=""><span class="e-pv-total-page-number" id="totalPage">of 0</span></div>';
 let isBookmarkOpen: boolean = false;
 let isBookmarkClick: boolean = false;
+let isBookmarkView: boolean = false;
 let isTextSearchBoxOpen: boolean = false;
 let bookmarkPopup: Dialog;
 let textSearchPopup: Dialog;
@@ -26,6 +27,7 @@ let currentPageBox: HTMLElement;
 let searchInput: HTMLElement;
 let searchButton: HTMLElement;
 let matchCase: boolean = false;
+let treeObj: TreeView;
 
 function previousClicked(args: ClickEventArgs): void {
     hidePopups();
@@ -44,18 +46,24 @@ function bookmarkClicked(): void {
     if (!isBookmarkOpen) {
         let bookmarkDetails: any = viewer.bookmark.getBookmarks();
         if (bookmarkDetails.bookmarks) {
-            let bookmarks: any = bookmarkDetails.bookmarks.bookMark;
-            let treeObj: TreeView = new TreeView({
-                fields:
-                {
-                    dataSource: bookmarks,
-                    id: 'Id',
-                    parentID: 'Pid',
-                    text: 'Title',
-                    hasChildren: 'HasChild',
-                }, nodeSelected: nodeClick
-            });
-            treeObj.appendTo('#bookmarkview');
+            if (!isBookmarkView) {
+                let bookmarks: any = bookmarkDetails.bookmarks.bookMark;
+                treeObj = new TreeView({
+                    fields:
+                    {
+                        dataSource: bookmarks,
+                        id: 'Id',
+                        child: 'Child',
+                        text: 'Title',
+                        hasChildren: 'HasChild',
+                    }, nodeSelected: nodeClick
+                });
+                isBookmarkView = true;
+                treeObj.appendTo('#bookmarkview');
+                // tslint:disable-next-line:max-line-length
+                ['mouseover', 'keydown'].forEach( (evt: string) => document.getElementById('bookmarkview').addEventListener(evt, (event: Event) => {
+                    setHeight(event.target); }));
+            }
             bookmarkPopup.show();
             isBookmarkOpen = true;
             isBookmarkClick = true;
@@ -160,6 +168,7 @@ function  readFile(args:  any):  void  {
                 document.getElementById('totalPage').textContent = 'of ' + viewer.pageCount;
                 document.getElementById('bookmarkview').innerHTML = '';
                 isBookmarkOpen = false;
+                isBookmarkView = false;
             };
         }
     }
@@ -200,12 +209,29 @@ function updateZoomButtons(): void {
 
 function nodeClick(args: NodeSelectEventArgs): boolean {
     let bookmarksDetails: any = viewer.bookmark.getBookmarks();
+    setHeight(args.node);
     let bookmarksDestination: any = bookmarksDetails.bookmarksDestination;
     let bookid: number = Number(args.nodeData.id);
     let pageIndex: number = bookmarksDestination.bookMarkDestination[bookid].PageIndex;
     let Y: number = bookmarksDestination.bookMarkDestination[bookid].Y;
     viewer.bookmark.goToBookmark(pageIndex, Y);
     return false;
+}
+
+// tslint:disable-next-line
+function setHeight(element:any): void {
+    if (treeObj.fullRowSelect) {
+        if (element.classList.contains('e-treeview')) {
+          element = element.querySelector('.e-node-focus').querySelector('.e-fullrow');
+        } else if (element.classList.contains('e-list-parent')) {
+          element = element.querySelector('.e-fullrow');
+        } else if (element.classList.value !== ('e-fullrow') && element.closest('.e-list-item')) {
+          element = element.closest('.e-list-item').querySelector('.e-fullrow');
+        }
+        if (element.nextElementSibling) {
+          element.style.height = element.nextElementSibling.offsetHeight + 'px';
+        }
+    }
 }
 
 function searchInputKeypressed(event: KeyboardEvent): void {
@@ -312,11 +338,13 @@ function updateSearchInputIcon(isEnable: boolean): void {
     magnificationToolbar.appendTo('#magnificationToolbar');
     viewer = new PdfViewer({
         enableToolbar: false,
+        enableNavigationToolbar: false,
         enableThumbnail: false,
         documentPath: 'Hive_Succinctly.pdf',
         serviceUrl: 'https://ej2services.syncfusion.com/production/web-services/api/pdfviewer'
     });
     viewer.appendTo('#pdfViewer');
+    isBookmarkView = false;
     document.getElementById('fileUpload').addEventListener('change', readFile, false);
     currentPageBox = document.getElementById('currentPage');
     (currentPageBox as HTMLInputElement).value = '1';
@@ -349,12 +377,12 @@ function updateSearchInputIcon(isEnable: boolean): void {
     let matchCaseCheck: CheckBox = new CheckBox({ label: 'Match case', change: checkBoxChanged });
     matchCaseCheck.appendTo('#matchCase');
 
-    viewer.pageChange = (args: IPageChangeEventArgs): void => {
+    viewer.pageChange = (args: PageChangeEventArgs): void => {
         (currentPageBox as HTMLInputElement).value = viewer.currentPageNumber.toString();
         updatePageNavigation();
     };
 
-    viewer.documentLoad = (args: ILoadEventArgs): void => {
+    viewer.documentLoad = (args: LoadEventArgs): void => {
         document.getElementById('totalPage').textContent = 'of ' + viewer.pageCount;
         updatePageNavigation();
     };

@@ -64,8 +64,8 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         //Configures data source
         dataSourceSettings: {
             id: 'EmployeeID', parentId: 'ReportsTo',
-            dataManager: new DataManager(
-                { url: 'http://mvc.syncfusion.com/Services/Northwnd.svc/', crossDomain: true },
+            dataSource: new DataManager(
+                { url: 'https://mvc.syncfusion.com/Services/Northwnd.svc/', crossDomain: true },
                 new Query().from('Employees').select('EmployeeID,ReportsTo,FirstName').take(9),
             ),
             //binds the external data with node

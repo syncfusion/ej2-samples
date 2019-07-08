@@ -1,12 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { QueryBuilder, ColumnsModel, RuleModel } from '@syncfusion/ej2-querybuilder';
+import { QueryBuilder, ColumnsModel, RuleModel, RuleChangeEventArgs } from '@syncfusion/ej2-querybuilder';
 import { getComponent } from '@syncfusion/ej2-base';
 import { CheckBox, RadioButton } from '@syncfusion/ej2-buttons';
-import { TextBox } from '@syncfusion/ej2-inputs';
-import { DropDownList, MultiSelect, CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Slider } from '@syncfusion/ej2-inputs';
 import { expenseData } from './data-source';
-MultiSelect.Inject(CheckBoxSelection);
 
 /**
  * Template sample
@@ -16,64 +14,16 @@ MultiSelect.Inject(CheckBoxSelection);
     loadCultureFiles();
     let elem: HTMLElement;
     let boxObj: CheckBox;
-    let inOperators: string [] = ['in', 'notin'];
     let slider: Slider;
     let filter: ColumnsModel[] = [
-        {
-            field: 'Category', label: 'Category', type: 'string', template: {
+        { field: 'Category', label: 'Category', type: 'string' },
+        { field: 'PaymentMode', label: 'Payment Mode', type: 'string', template: {
                 create: () => {
                     elem = document.createElement('input');
                     elem.setAttribute('type', 'text');
                     return elem;
                 },
                 destroy: (args: { elementId: string }) => {
-                    let multiSelect: MultiSelect = (getComponent(document.getElementById(args.elementId), 'multiselect') as MultiSelect);
-                    if (multiSelect) {
-                        multiSelect.destroy();
-                    }
-                    let textBox: TextBox = (getComponent(document.getElementById(args.elementId), 'textbox') as TextBox);
-                    if (textBox) {
-                        textBox.destroy();
-                    }
-                },
-                write: (args: { elements: Element, values: string[] | string, operator: string }) => {
-                    if (inOperators.indexOf(args.operator) > -1) {
-                        let multiSelectObj: MultiSelect = new MultiSelect({
-                            dataSource: ['Food', 'Transportation', 'Shopping', 'Mortgage', 'Salary', 'Clothing', 'Bills', 'Miscellaneous'],
-                            value: args.values as string [],
-                            mode: 'CheckBox',
-                            placeholder: 'Select category',
-                            change: (e: any) => {
-                                qryBldrObj.notifyChange(e.value, e.element);
-                            }
-                        });
-                        multiSelectObj.appendTo('#' + args.elements.id);
-                    } else {
-                        let inputobj: TextBox = new TextBox({
-                            placeholder: 'Value',
-                            input: (e: any) => {
-                                qryBldrObj.notifyChange(e.value, e.event.target);
-                            }
-                        });
-                        inputobj.appendTo('#' + args.elements.id);
-                        inputobj.value = args.values as string;
-                        inputobj.dataBind();
-                    }
-                }
-            }
-        },
-        {
-            field: 'PaymentMode', label: 'Payment Mode', type: 'string', template: {
-                create: () => {
-                    elem = document.createElement('input');
-                    elem.setAttribute('type', 'text');
-                    return elem;
-                },
-                destroy: (args: { elementId: string }) => {
-                    let multiSelect: MultiSelect = (getComponent(document.getElementById(args.elementId), 'multiselect') as MultiSelect);
-                    if (multiSelect) {
-                        multiSelect.destroy();
-                    }
                     let dropdown: DropDownList = (getComponent(document.getElementById(args.elementId), 'dropdownlist') as DropDownList);
                     if (dropdown) {
                         dropdown.destroy();
@@ -81,34 +31,19 @@ MultiSelect.Inject(CheckBoxSelection);
                 },
                 write: (args: { elements: Element, values: string[] | string, operator: string }) => {
                     let ds: string[] = ['Cash', 'Debit Card', 'Credit Card', 'Net Banking', 'Wallet'];
-                    if (inOperators.indexOf(args.operator) > -1) {
-                        let multiSelectObj: MultiSelect = new MultiSelect({
-                            dataSource: ds,
-                            value: args.values as string [],
-                            mode: 'CheckBox',
-                            placeholder: 'Select Transaction',
-                            change: (e: any) => {
-                                qryBldrObj.notifyChange(e.value, e.element);
-                            }
-                        });
-                        multiSelectObj.appendTo('#' + args.elements.id);
-                    } else {
-                        let dropDownObj: DropDownList = new DropDownList({
+                    let dropDownObj: DropDownList = new DropDownList({
                             dataSource: ds,
                             value: args.values as string,
                             change: (e: any) => {
                                 qryBldrObj.notifyChange(e.itemData.value, e.element);
                             }
                         });
-                        dropDownObj.appendTo('#' + args.elements.id);
-                    }
+                    dropDownObj.appendTo('#' + args.elements.id);
                 }
             },
             operators: [
                 { value: 'equal', key: 'Equal' },
-                { value: 'notequal', key: 'Not Equal' },
-                { value: 'in', key: 'In' },
-                { value: 'notin', key: 'Not In' }
+                { value: 'notequal', key: 'Not Equal' }
             ],
         },
         {
@@ -213,14 +148,7 @@ MultiSelect.Inject(CheckBoxSelection);
         columns: filter,
         width: '100%',
         rule: importRules,
-        conditionChanged: updateRule,
-        fieldChanged: updateRule,
-        valueChanged: updateRule,
-        operatorChanged: updateRule,
-        ruleDelete: updateRule,
-        groupDelete: updateRule,
-        ruleInsert: updateRule,
-        groupInsert: updateRule
+        ruleChange: updateRule
     });
     qryBldrObj.appendTo('#querybuilder');
     let radioButton: RadioButton = new RadioButton({
@@ -240,20 +168,21 @@ MultiSelect.Inject(CheckBoxSelection);
     });
     radioButton.appendTo('#radio2');
     let element: Element = document.getElementById('ruleContent');
-    function updateRule(): void {
+    function updateRule(args: RuleChangeEventArgs): void {
         if ((getComponent(radioButton.element as HTMLElement, 'radio') as RadioButton).checked) {
-            element.textContent = qryBldrObj.getSqlFromRules(qryBldrObj.rule);
+            element.textContent = qryBldrObj.getSqlFromRules(args.rule);
         } else {
-            element.textContent = JSON.stringify({ condition: qryBldrObj.rule.condition, rules: qryBldrObj.rule.rules }, null, 4);
+            element.textContent = JSON.stringify(args.rule, null, 4);
         }
     }
-    element.textContent = JSON.stringify({ condition: qryBldrObj.rule.condition, rule: qryBldrObj.rule.rules }, null, 4);
+    element.textContent = JSON.stringify(qryBldrObj.getValidRules(qryBldrObj.rule), null, 4);
     function changeValue(): void {
         element = document.getElementById('ruleContent');
+        let validRule: RuleModel = qryBldrObj.getValidRules(qryBldrObj.rule);
         if ((getComponent(radioButton.element as HTMLElement, 'radio') as RadioButton).checked) {
-            element.textContent = qryBldrObj.getSqlFromRules(qryBldrObj.rule);
+            element.textContent = qryBldrObj.getSqlFromRules(validRule);
         } else {
-            element.textContent = JSON.stringify({ condition: qryBldrObj.rule.condition, rules: qryBldrObj.rule.rules }, null, 4);
+            element.textContent = JSON.stringify(validRule, null, 4);
 
         }
     }

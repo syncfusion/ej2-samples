@@ -13,11 +13,13 @@ Schedule.Inject(WorkWeek, Month);
 
 (window as any).default = (): void => {
     loadCultureFiles();
+    // custom code start
     interface TemplateFunction extends Window {
         getDoctorImage?: Function;
         getDoctorName?: Function;
         getDoctorLevel?: Function;
     }
+    // custom code end
 
     let scheduleOptions: ScheduleModel = {
         width: '100%',
@@ -76,15 +78,15 @@ Schedule.Inject(WorkWeek, Month);
         }
     };
 
+    let scheduleObj: Schedule = new Schedule(scheduleOptions, document.getElementById('Schedule'));
+
+    // custom code start
     function isValidateTime(startDate: Date, endDate: Date, resIndex: number): boolean {
         let resource: ResourceDetails = scheduleObj.getResourcesByIndex(resIndex);
         let startHour: number = parseInt(resource.resourceData.startHour.toString().slice(0, 2), 10);
         let endHour: number = parseInt(resource.resourceData.endHour.toString().slice(0, 2), 10);
         return (startHour <= startDate.getHours() && endHour >= endDate.getHours());
     }
-
-    let scheduleObj: Schedule = new Schedule(scheduleOptions, document.getElementById('Schedule'));
-
     (window as TemplateFunction).getDoctorName = (value: ResourceDetails | TreeViewArgs) => {
         return ((value as ResourceDetails).resourceData) ?
             (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] : (value as TreeViewArgs).resourceName;
@@ -99,4 +101,5 @@ Schedule.Inject(WorkWeek, Month);
         let resourceName: string = (window as TemplateFunction).getDoctorName(value);
         return (resourceName === 'Will Smith') ? 'Cardiologist' : (resourceName === 'Alice') ? 'Neurologist' : 'Orthopedic Surgeon';
     };
+    // custom code end
 };

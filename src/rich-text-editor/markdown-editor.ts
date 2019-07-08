@@ -1,8 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor Markdown Preview Sample
+ * RichTextEditor Markdown Overview Sample
  */
 import { RichTextEditor, Toolbar, Link, Image, MarkdownEditor, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
+import { MarkdownFormatter } from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs } from '@syncfusion/ej2-base';
 import * as Marked from 'marked';
 
@@ -16,6 +17,7 @@ let mdsource: HTMLElement;
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         height: '250px',
+        formatter: new MarkdownFormatter({ listTags: { 'OL': '1., 2., 3.'} }),
         toolbarSettings: {
             items: ['Bold', 'Italic', 'StrikeThrough', '|',
                 'Formats', 'OrderedList', 'UnorderedList', '|',
@@ -48,14 +50,14 @@ let mdsource: HTMLElement;
     function markDownConversion(): void {
         if (mdsource.classList.contains('e-active')) {
             let id: string = defaultRTE.getID() + 'html-view';
-            let htmlPreview: any = defaultRTE.element.querySelector('#' + id);
+            let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
             htmlPreview.innerHTML = Marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
         }
     }
     function fullPreview(): void {
         let id: string = defaultRTE.getID() + 'html-preview';
-        let htmlPreview: any = defaultRTE.element.querySelector('#' + id);
-        let previewTextArea: HTMLElement = this.rteObj.element.querySelector('.e-rte-content') as HTMLElement;
+        let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
+        let previewTextArea: HTMLElement = defaultRTE.element.querySelector('.e-rte-content') as HTMLElement;
         if (mdsource.classList.contains('e-active')) {
             mdsource.classList.remove('e-active');
             mdsource.parentElement.title = 'Preview';

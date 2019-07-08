@@ -13,11 +13,13 @@ Schedule.Inject(Month);
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
+    // custom code start
     interface TemplateFunction extends Window {
         getAirwaysName?: Function;
         getAirwaysImage?: Function;
         getFormattedTime?: Function;
     }
+    // custom code end
     let dManager: Object[] = [];
     let initialLoad: Boolean = true;
     let scheduleObj: Schedule = new Schedule({
@@ -73,6 +75,7 @@ Schedule.Inject(Month);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     (window as TemplateFunction).getAirwaysName = (value: number) => {
         return (value === 1) ? 'Airways 1' : (value === 2) ? 'Airways 2' : 'Airways 3';
     };
@@ -89,7 +92,7 @@ Schedule.Inject(Month);
     new CheckBox({ cssClass: 'e-resource e-airways-3', label: 'Airways 3', checked: true, change: onChange }, '#airways-3');
 
     function onChange(args: ChangeEventArgs): void {
-        let tdElement: any = scheduleObj.element.querySelector('.best-price:not(.e-work-cells)');
+        let tdElement: HTMLElement = scheduleObj.element.querySelector('.best-price:not(.e-work-cells)');
         if (tdElement) {
             removeClass([closest(tdElement, 'td')], 'best-price');
             remove(tdElement);
@@ -185,4 +188,5 @@ Schedule.Inject(Month);
         let filteredCollection: Object[] = filterByFare(collections, scheduleObj);
         return filteredCollection;
     }
+    // custom code end
 };

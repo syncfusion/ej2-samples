@@ -40,6 +40,7 @@ Grid.Inject(Selection);
         value: 'Default',
         change: (e: ChangeEventArgs) => {
             grid.gridLines = <GridLine>e.value;
+            grid.dataBind();
             grid.refresh();
         },
     });

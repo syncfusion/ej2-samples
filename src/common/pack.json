@@ -27,6 +27,7 @@
     "@syncfusion/ej2-documenteditor": "*",
     "@syncfusion/ej2-richtexteditor": "*",
     "@syncfusion/ej2-notifications": "*",
+	"@syncfusion/ej2-pdfviewer": "*",
     "@types/crossroads": "0.0.28",
     "@types/signals": "0.0.16",
     "@types/moment-timezone": "^0.5.3",

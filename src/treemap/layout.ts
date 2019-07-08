@@ -1,13 +1,16 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * layout sample.
  */
-
-import { TreeMap, TreeMapTooltip, LayoutMode, TreeMapAjax } from '@syncfusion/ej2-treemap';
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable
+// custom code end
+import { TreeMap, TreeMapTooltip, LayoutMode, TreeMapAjax, RenderingMode } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+// custom code start
 // Treemap theme changes
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
@@ -15,8 +18,11 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
 //tslint:disable
+// custom code end
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         // To config title for treemap 
@@ -67,4 +73,16 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         }
     });
     layoutMode.appendTo('#layoutMode');
+    // Selection type (TopLeftBottomRight, TopRightBottomLeft, BottomLeftTopRight, BottomRightTopLeft)
+    let highlightMode: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select Rendering Direction',
+        width: 115,
+        change: () => {
+            treemap.renderDirection = <RenderingMode>highlightMode.value;
+            treemap.refresh();
+        }
+    });
+    highlightMode.appendTo('#highlightMode');
+
 };

@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { QueryBuilder, ColumnsModel, RuleModel } from '@syncfusion/ej2-querybuilder';
+import { QueryBuilder, ColumnsModel, RuleModel, RuleChangeEventArgs } from '@syncfusion/ej2-querybuilder';
 import { DataManager, Query, Predicate } from '@syncfusion/ej2-data';
 import { hardwareData } from './data-source';
 import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
@@ -35,21 +35,14 @@ Grid.Inject(Page, Selection);
         dataSource: hardwareData,
         columns: columnData,
         rule: importRules,
-        conditionChanged: updateRule,
-        fieldChanged: updateRule,
-        valueChanged: updateRule,
-        operatorChanged: updateRule,
-        ruleDelete: updateRule,
-        groupDelete: updateRule,
-        ruleInsert: updateRule,
-        groupInsert: updateRule
+        ruleChange: updateRule
     });
     qryBldrObj.appendTo('#querybuilder');
     let grid: Grid;
     createGrid(new Query().select(['TaskID', 'Name', 'Category', 'SerialNo', 'InvoiceNo', 'Status']));
-    updateRule();
-    function updateRule(): void {
-        let predicate: Predicate = qryBldrObj.getPredicate(qryBldrObj.rule);
+    updateRule({rule: qryBldrObj.getValidRules(qryBldrObj.rule) });
+    function updateRule(args: RuleChangeEventArgs): void {
+        let predicate: Predicate = qryBldrObj.getPredicate(args.rule);
         let query: Query;
         if (isNullOrUndefined(predicate)) {
             query = new Query().select(['TaskID', 'Name', 'Category', 'SerialNo', 'InvoiceNo', 'Status']);

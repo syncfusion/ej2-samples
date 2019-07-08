@@ -1,16 +1,17 @@
-import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
-LinearGauge.Inject(Annotations);
-
 /**
  * Linear Gauge Range Sample
  */
+import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
+LinearGauge.Inject(Annotations);
 export function linear(): LinearGauge {
     let gauge: LinearGauge = new LinearGauge({
         load: (args: ILoadEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         orientation: 'Horizontal',
         axes: [{
             labelStyle: {

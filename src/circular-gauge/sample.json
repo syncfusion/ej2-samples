@@ -2,7 +2,6 @@
     "name": "Circular Gauge",
     "directory": "circular-gauge",
     "category": "Data Visualization",
-    "type": "update", 
     "ftName": "circulargauge",  
     "samples": [
         {
@@ -24,7 +23,6 @@
             "name": "Tick and Labels",
             "description": "This demo for Essential JS2 Circular Gauge control shows various properties available to customize the ticks and labels of an axis.",
             "category": "Circular Gauge",
-			"type": "update",
             "api":{"CircularGauge": [ "axes"]}
         },
         {
@@ -44,14 +42,12 @@
         {
             "url": "semi-circular-gauge",
             "name": "Semi-circular Gauge",
-            "category": "Circular Gauge",
-			"type": "new"
+            "category": "Circular Gauge"
         },
         {
             "url": "arc-gauge",
             "name": "Arc Gauge",
-            "category": "Circular Gauge",
-			"type": "new"
+            "category": "Circular Gauge"
         },
         {
             "url": "compass",
@@ -107,15 +103,13 @@
             "name": "Apple Watch Rings",
             "description": "This demo for Essential JS2 Circular Gauge control illustrates how to highlight specific regions in an axis by using ranges.",
             "category": "Use Cases",
-            "api":{"CircularGauge": ["axes"]},
-            "type": "new"
-            },
+            "api":{"CircularGauge": ["axes"]}
+        },
         {
             "url": "speedometer",
             "name": "Speedometer",
             "category": "Use Cases",
-            "api":{"CircularGauge": ["axes"]},
-			"type": "new"
+            "api":{"CircularGauge": ["axes"]}
         }
     ]
 }

@@ -9,7 +9,6 @@ DocumentEditor.Inject(Print);
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'document-editor/print/index.html#fabric');
     let containerPanel: HTMLElement = document.getElementById('documenteditor_container_panel');
     updateContainerSize();
     let documenteditor: DocumentEditor = new DocumentEditor({ enablePrint: true });

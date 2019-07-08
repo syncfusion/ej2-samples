@@ -13,6 +13,7 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
 (window as any).default = (): void => {
     loadCultureFiles();
     let data: Object[] = <Object[]>extend([], (dataSource as any).fifaEventsData, null, true);
+    // custom code start
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).getTimeString = (value: Date) => {
         return instance.formatDate(value, { skeleton: 'Hm' });
@@ -20,6 +21,7 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
     interface TemplateFunction extends Window {
         getTimeString?: Function;
     }
+    // custom code end
     let agendaTemplate: string = '<div class="subject">${Subject}</div> ${if(Description !== null && Description !== undefined)}' +
         '<div class="group" > ${ Description } </div>${/if}<div class="location">${getTimeString(data.StartTime)} ${if(City !== null &&' +
         'City !== undefined)}, ${ City } ${/if}</div > ';

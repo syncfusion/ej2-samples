@@ -1,17 +1,26 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
- * sparkline sample for temperature of USA 
+ * sparkline axis type sample
  */
 import { Sparkline, SparklineTooltip, SparklineTheme, ISparklineLoadEventArgs } from '@syncfusion/ej2-charts/index';
 Sparkline.Inject(SparklineTooltip);
-
-// tslint:disable-next-line:max-func-body-length
-this.default = (): void => {
+// custom code start
+// tslint:disable:max-func-body-length
+// custom code end
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let datetime: Sparkline = new Sparkline({
+        // custom code start
         load: (args: ISparklineLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         height: '100px',
         width: '170px',
         lineWidth: 1,

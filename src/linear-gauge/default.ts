@@ -1,16 +1,19 @@
+/**
+ * Default sample
+ */
+import { loadCultureFiles } from '../common/culture-loader';
 import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme} from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations);
-
-/**
- * Default linear gauge
- */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let gauge: LinearGauge = new LinearGauge({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         orientation: 'Horizontal',
         axes: [{
             pointers: [{
@@ -22,11 +25,9 @@ this.default = (): void => {
                 markerType: 'Triangle'
             }],
             majorTicks: {
-                color: '#9E9E9E',
                 interval: 10
             },
             minorTicks: {
-                color: '#9E9E9E',
                 interval: 2
             },
             labelStyle: {

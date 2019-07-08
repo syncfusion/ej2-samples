@@ -93,16 +93,16 @@ HeatMap.Inject(Tooltip);
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
             selectedTheme = selectedTheme.toLowerCase();
-            if (selectedTheme === 'material' || selectedTheme === 'fabric' || selectedTheme === 'bootstrap') {
-                args.heatmap.xAxis.textStyle.color = 'Black';
-                args.heatmap.yAxis.textStyle.color = 'Black';
-                args.heatmap.xAxis.multiLevelLabels[0].textStyle.color = 'Black';
-                args.heatmap.yAxis.multiLevelLabels[0].textStyle.color = 'Black';
-            } else {
+            if (selectedTheme === 'highcontrast') {
                 args.heatmap.xAxis.textStyle.color = 'White';
                 args.heatmap.yAxis.textStyle.color = 'White';
                 args.heatmap.xAxis.multiLevelLabels[0].textStyle.color = 'White';
                 args.heatmap.yAxis.multiLevelLabels[0].textStyle.color = 'White';
+            } else {
+                args.heatmap.xAxis.textStyle.color = 'Black';
+                args.heatmap.yAxis.textStyle.color = 'Black';
+                args.heatmap.xAxis.multiLevelLabels[0].textStyle.color = 'Black';
+                args.heatmap.yAxis.multiLevelLabels[0].textStyle.color = 'Black';
             }
         },
     });

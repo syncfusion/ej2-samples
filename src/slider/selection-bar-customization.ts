@@ -26,8 +26,8 @@ import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
     });
     gradientSlider.appendTo('#gradient_slider');
 
-    let sliderTrack: any;
-    let sliderHandle: any;
+    let sliderTrack: HTMLElement;
+    let sliderHandle: HTMLElement;
 
     // Initialize Slider component
     let dynamicColorSlider: Slider = new Slider({

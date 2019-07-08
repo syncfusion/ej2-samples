@@ -70,7 +70,7 @@ function setNodeTemplate(obj: NodeModel): void {
         width: '100%', height: '550px',
         layout: { type: 'SymmetricalLayout', springLength: 80, springFactor: 0.8, maxIteration: 500, margin: { left: 20, top: 20 } },
         //Sets the parent and child relationship of DataSource.
-        dataSourceSettings: { id: 'Id', parentId: 'Source', dataManager: new DataManager((Data as any).data) },
+        dataSourceSettings: { id: 'Id', parentId: 'Source', dataSource: new DataManager((Data as any).data) },
         //Set the constraints of the SnapSettings
         snapSettings: { constraints: SnapConstraints.None },
         //Set the default values of Node

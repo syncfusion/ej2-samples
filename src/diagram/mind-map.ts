@@ -321,7 +321,7 @@ export interface EmployeeInfo {
         //Selectionchange event for Node and connector
         selectionChange: selectionChange,
         selectedItems: { constraints: SelectorConstraints.UserHandle, userHandles: handle },
-        dataSourceSettings: { id: 'id', parentId: 'parentId', dataManager: items, root: String(1) },
+        dataSourceSettings: { id: 'id', parentId: 'parentId', dataSource: items, root: String(1) },
         //sets node default value
         getNodeDefaults: getNodeDefaults,
         //sets connector default value 

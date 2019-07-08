@@ -1,4 +1,6 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Map with slider sample
  */
@@ -6,10 +8,14 @@ import { Maps, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax, ILoadedEventArgs
 import { Slider, SliderChangeEventArgs  } from '@syncfusion/ej2-inputs';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 Maps.Inject(MapsTooltip, Annotations);
+// custom code start
 //tslint:disable:max-func-body-length
+// custom code end
 let sliderVal: number | number[] = [-2 , 4];
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let colorCodes: string[] = ['#7E9CDC', '#DCD57E', '#7EDCA2', '#6EB5D0', '#A6DC7E', '#DCA87E', '#d075c6'];
     let maps: Maps = new Maps({
         margin: {
@@ -81,6 +87,7 @@ let sliderVal: number | number[] = [-2 , 4];
         }
     });
     maps.appendTo('#mapslider');
+    // code for annotation
     function annotationRender(val: number | number[]): void {
         let slider: Slider = new Slider({
             min: -1.5, max: 3.75,

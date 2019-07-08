@@ -14,7 +14,7 @@ Diagram.Inject(UndoRedo, Snapping);
 let diagram: Diagram;
 let checkBoxObj: CheckBox;
 
-
+// custom code start
 function getNativeContent(): string {
     let str: string = '<svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="350.000000pt" ' +
         'height="229.000000pt" viewBox="0 0 350.000000 229.000000" ' +
@@ -38,7 +38,7 @@ function getNativeContent(): string {
         '</g> </svg>';
     return str;
 }
-
+// custom code end
 function documentClick(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
     let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');

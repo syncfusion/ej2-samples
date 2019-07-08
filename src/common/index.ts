@@ -4,6 +4,7 @@
  */
 
 import { Popup, Tooltip } from '@syncfusion/ej2-popups';
+import { Toast } from '@syncfusion/ej2-notifications';
 import { Animation, Browser, extend, setCulture, enableRipple, Ajax, closest, createElement, detach, L10n } from '@syncfusion/ej2-base';
 import { select, setCurrencyCode, loadCldr, selectAll } from '@syncfusion/ej2-base';
 import { DataManager, Query } from '@syncfusion/ej2-data';
@@ -47,6 +48,7 @@ interface Controls {
     name: string;
     uid: string;
     type: string;
+    hideOnDevice: boolean;
     samples: Samples[];
 }
 
@@ -93,7 +95,7 @@ let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
 let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
 let themeList: HTMLElement = document.getElementById('themelist');
-const themeCollection: string[] = ['material', 'fabric', 'bootstrap', 'highcontrast'];
+const themeCollection: string[] = ['material', 'fabric', 'bootstrap', 'bootstrap4', 'highcontrast'];
 let themeDropDown: DropDownList;
 let cultureDropDown: DropDownList;
 let currencyDropDown: DropDownList;
@@ -115,6 +117,8 @@ let resetSearch: Element = select('.sb-reset-icon');
  */
 const urlRegex: RegExp = /(npmci\.syncfusion\.com|ej2\.syncfusion\.com)(\/)(development|production)*/;
 const sampleRegex: RegExp = /#\/(([^\/]+\/)+[^\/\.]+)/;
+// Regex for removal of hidden codes 
+const reg: RegExp = /.*custom code start([\S\s]*?)custom code end.*/g;
 const sbArray: string[] = ['angular', 'react', 'javascript', 'aspnetcore', 'aspnetmvc', 'vue'];
 /**
  * constant for search operations
@@ -226,6 +230,7 @@ function preventTabSwipe(e: any): void {
 function dynamicTab(e: any): void {
     let blockEle: Element = this.element.querySelector('#e-content_' + e.selectedIndex).children[0];
     blockEle.innerHTML = this.items[e.selectedIndex].data;
+    blockEle.innerHTML = blockEle.innerHTML.replace(reg,'');
     blockEle.classList.add('sb-src-code');
     if (blockEle) {
         hljs.highlightBlock(blockEle);
@@ -242,6 +247,7 @@ function dynamicTabCreation(obj: any): void {
     }
     let blockEle: Element = tabObj.element.querySelector('#e-content_' + tabObj.selectedItem).children[0];
     blockEle.innerHTML = tabObj.items[tabObj.selectedItem].data;
+    blockEle.innerHTML = blockEle.innerHTML.replace(reg,'');
     blockEle.classList.add('sb-src-code');
     if (blockEle) {
         hljs.highlightBlock(blockEle);
@@ -275,9 +281,19 @@ function renderSbPopups(): void {
                     expand: true,
                     boolean: 'AND'
                 });
+                let value: any = [];
+                if (Browser.isDevice) {
+                    for (let file of val) {
+                        if (file.doc.hideOnDevice !== true) {
+                            value = value.concat(file);
+                        }
+                    }
+                }
                 let query: Query = new Query().take(10).select('doc');
                 let fields: any = this.fields;
-                e.updateData(val, query, fields);
+                let searchValue: any = Browser.isDevice ? value : val;
+                e.updateData(searchValue, query, fields)
+
             },
             placeholder: 'Search here...',
             noRecordsTemplate: '<div class="search-no-record">We’re sorry. We cannot find any matches for your search term.</div>',
@@ -349,6 +365,7 @@ function renderSbPopups(): void {
     },
         // tslint:disable-next-line:align
         '#sb-content');
+    enableRipple(false);
     sourceTab = new Tab({
         items: [],
         headerPlacement: 'Bottom', cssClass: 'sb-source-code-section',
@@ -359,6 +376,7 @@ function renderSbPopups(): void {
     },
         // tslint:disable-next-line:align
         '#sb-source-tab');
+    enableRipple(selectedTheme === 'material' || !selectedTheme);
     sourceTab.selectedItem = 1;
     /**
      * api grid
@@ -989,11 +1007,16 @@ function getSampleList(): Controls[] | { [key: string]: Object }[] {
     if (Browser.isDevice) {
         //  (select('.copy-tooltip') as HTMLElement).style.display = 'none';
         let tempList: Controls[] = <Controls[]>extend([], samplesJSON.samplesList);
+        let sampleList: any = [];
         for (let temp of tempList) {
+            if (temp.hideOnDevice == true) {
+                continue;
+            }
             let data: DataManager = new DataManager((temp as any).samples);
             temp.samples = <Samples[]>data.executeLocal(new Query().where('hideOnDevice', 'notEqual', true));
+            sampleList = sampleList.concat(temp);
         }
-        return tempList;
+        return sampleList;
     }
     return samplesJSON.samplesList;
 }
@@ -1017,7 +1040,7 @@ function renderLeftPaneComponents(): void {
             dataSource: controlSampleData[location.hash.split('/')[2]] || controlSampleData.grid,
             fields: { id: 'uid', text: 'name', groupBy: 'order', htmlAttributes: 'data' },
             select: controlSelect,
-            template: '<div class="e-text-content e-icon-wrapper"> <span class="e-list-text" role="listitem">${name}' +
+            template: '<div class="e-text-content ${if(type)}e-icon-wrapper${/if}"> <span class="e-list-text" role="listitem">${name}' +
                 '</span>${if(type === "update")}<span class="e-badge sb-badge e-samplestatus ${type}">Updated</span>' +
                 '${else}${if(type)}<span class="e-badge sb-badge e-samplestatus ${type}">${type}</span>${/if}${/if}' +
                 '${if(directory)}<div class="e-icons e-icon-collapsible"></div>${/if}</div>',
@@ -1438,6 +1461,24 @@ function addRoutes(samplesList: Controls[]): void {
             });
         }
     }
+    if(Browser.isDevice)
+    {
+       if(location.hash && samplesAr.indexOf(location.hash) == -1)
+       {
+        let toastObj: Toast = new Toast({
+            position: {
+                X: 'Right'
+            }
+        });
+        toastObj.appendTo('#sb-home');
+        setTimeout(
+            () => {
+                toastObj.show({
+                    content: `${location.hash.split('/')[2]} component not supported in mobile device`
+                });
+        },  200);
+       }
+    }
 }
 function removeOverlay(): void {
     document.body.setAttribute('aria-busy', 'false');
@@ -1597,9 +1638,12 @@ function loadJSON(): void {
     overlay();
     changeMouseOrTouch(switchText);
     localStorage.removeItem('ej2-switch');
-    enableRipple(selectedTheme === 'material' || !selectedTheme);
     loadTheme(selectedTheme);
 }
 
 
 loadJSON();
+
+if ('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/src/service-worker.js');
+    }

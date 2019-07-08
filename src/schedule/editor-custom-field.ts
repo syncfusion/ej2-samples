@@ -30,7 +30,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
                 // Create required custom elements in initial time
                 if (!args.element.querySelector('.custom-field-row')) {
                     let row: HTMLElement = createElement('div', { className: 'custom-field-row' });
-                    let formElement: any = args.element.querySelector('.e-schedule-form');
+                    let formElement: HTMLElement = args.element.querySelector('.e-schedule-form');
                     formElement.firstChild.insertBefore(row, args.element.querySelector('.e-title-location-row'));
                     let container: HTMLElement = createElement('div', { className: 'custom-field-container' });
                     let inputEle: HTMLInputElement = createElement('input', {

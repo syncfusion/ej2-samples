@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     AccumulationTheme, AccumulationChart, AccumulationLegend, PieSeries, IAccLoadedEventArgs,
     AccumulationDataLabel
@@ -6,7 +7,8 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel);
 /**
  * Sample for Doughnut chart
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let pie: AccumulationChart = new AccumulationChart({
         // Initialize the chart series
         series: [
@@ -37,11 +39,14 @@ this.default = (): void => {
         // Initialize the tooltip
         tooltip: { enable: false },
         title: 'Project Cost Breakdown',
+         // custom code start
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
+         // custom code end
     });
     pie.appendTo('#container');
 };

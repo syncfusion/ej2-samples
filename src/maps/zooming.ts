@@ -1,4 +1,6 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Maps zooming sample
  */
@@ -6,15 +8,18 @@ import { Maps, Zoom, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { EmitType } from '@syncfusion/ej2-base';
 Maps.Inject(Zoom);
-
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         zoomSettings: {
             enable: true,
             toolbars: ['Zoom', 'ZoomIn', 'ZoomOut', 'Pan', 'Reset'],
@@ -35,6 +40,7 @@ Maps.Inject(Zoom);
         ]
     });
     maps.appendTo('#mapszooming');
+    // code for property panel
     let sliderChange: EmitType<SliderChangeEventArgs>;
     let slider: Slider = new Slider(
         {

@@ -94,11 +94,11 @@ import { Browser, createElement, addClass, select } from '@syncfusion/ej2-base';
             change: change
         },
         '#scroll-palette');
-
+// custom code start 
     if (Browser.isDevice) {
         document.getElementById('colorpicker-control').classList.add('e-mobile-control');
     }
-
+// custom code end
     /**
      * Triggers while changing colors.
      */

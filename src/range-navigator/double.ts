@@ -87,7 +87,6 @@ this.renderChart = (chartData: Object[]): void => {
 };
 (window as any).default = (): void => {
     loadCultureFiles();
-    let datasrc: Object[];
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/double.json', 'GET', true);
     ajax.send().then();
     // Rendering Dialog on AJAX success

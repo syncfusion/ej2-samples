@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
+import { Browser } from '@syncfusion/ej2-base';
 import { QueryBuilder, ColumnsModel, RuleModel } from '@syncfusion/ej2-querybuilder';
 import { employeeData } from './data-source';
-import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * Default querybuilder sample

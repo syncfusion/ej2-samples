@@ -18,10 +18,12 @@ let diagram: Diagram;
 
 function selectionChange(arg: ISelectionChangeEventArgs): void {
     if (arg.state === 'Changed') {
+        // custom code start
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
         if (selectedElement.length) {
             selectedElement[0].classList.remove('e-selected-style');
         }
+        // custom code end
         if (arg.newValue[0]) {
             let node: NodeModel = arg.newValue[0] as NodeModel;
             let annotations: ShapeAnnotationModel[] = node.annotations;

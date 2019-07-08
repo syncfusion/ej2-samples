@@ -1,4 +1,6 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Maps datalabel sample
  */
@@ -6,17 +8,22 @@ import { Maps, MapsTooltip, Legend, ILoadEventArgs, MapsTheme, MapAjax } from '@
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 import { EmitType } from '@syncfusion/ej2-base';
-
 Maps.Inject(MapsTooltip, Legend);
+// custom code start
 //tslint:disable:max-func-body-length
+// custom code end
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         titleSettings: {
             text: 'Spring Precipitation Averages of US States',
             textStyle: {
@@ -33,11 +40,7 @@ Maps.Inject(MapsTooltip, Legend);
             width: '80%',
             mode: 'Interactive',
             titleStyle: {
-                size: '18px',
-                fontStyle: 'Medium',
-                fontFamily: 'Roboto, Noto, Sans-serif',
-                fontWeight: 'Medium',
-                opacity: 0.5
+                size: '18px'
             },
             title: {
                 text: 'Inches'
@@ -86,10 +89,11 @@ Maps.Inject(MapsTooltip, Legend);
         ]
     });
     maps.appendTo('#default-container');
+    // code for property panel
     let opacity: EmitType<CheckBoxChangeEvents>;
     let highlightCheckBox: CheckBox = new CheckBox(
     {
-        change: opacity, checked: false, disabled: true
+        change: opacity, checked: false
     },
     '#opacity');
     document.getElementById('minopacity').onpointermove = document.getElementById('minopacity').ontouchmove =
@@ -116,6 +120,10 @@ Maps.Inject(MapsTooltip, Legend);
         let minOpacity: HTMLInputElement = document.getElementById('minopacity') as HTMLInputElement;
         let maxOpacity: HTMLInputElement = document.getElementById('maxopacity') as HTMLInputElement;
         if (e.checked) {
+            document.getElementById('text2').style.display = 'block';
+            document.getElementById('input2').style.display = 'block';
+            document.getElementById('text3').style.display = 'block';
+            document.getElementById('input3').style.display = 'block';
             maps.layers[0].shapeSettings.colorMapping[0].minOpacity = parseFloat(minOpacity.value);
             maps.layers[0].shapeSettings.colorMapping[0].maxOpacity = parseFloat(maxOpacity.value);
             maps.layers[0].shapeSettings.colorMapping[1].minOpacity = parseFloat(minOpacity.value);
@@ -123,6 +131,10 @@ Maps.Inject(MapsTooltip, Legend);
             minOpacity.disabled = false;
             maxOpacity.disabled = false;
         } else {
+            document.getElementById('text2').style.display = 'none';
+            document.getElementById('input2').style.display = 'none';
+            document.getElementById('text3').style.display = 'none';
+            document.getElementById('input3').style.display = 'none';
             maps.layers[0].shapeSettings.colorMapping[0].minOpacity = null;
             maps.layers[0].shapeSettings.colorMapping[0].maxOpacity = null;
             maps.layers[0].shapeSettings.colorMapping[1].minOpacity = null;
@@ -139,7 +151,12 @@ Maps.Inject(MapsTooltip, Legend);
         change: () => {
             let element: string = sampleValue.value.toString();
             if (element === 'RangeColorMapping') {
-                highlightCheckBox.disabled = true;
+                document.getElementById('text1').style.display = 'none';
+                document.getElementById('input1').style.display = 'none';
+                document.getElementById('text2').style.display = 'none';
+                document.getElementById('input2').style.display = 'none';
+                document.getElementById('text3').style.display = 'none';
+                document.getElementById('input3').style.display = 'none';
                 maps.layers[0].shapeSettings.colorValuePath = 'inches';
                 maps.layers[0].shapeSettings.colorMapping[0].from = 0.1;
                 maps.layers[0].shapeSettings.colorMapping[0].to = 1;
@@ -174,7 +191,12 @@ Maps.Inject(MapsTooltip, Legend);
                 maps.legendSettings.title.text = 'Inches';
                 maps.refresh();
             } else if (element === 'EqualColorMapping') {
-                highlightCheckBox.disabled = true;
+                document.getElementById('text1').style.display = 'none';
+                document.getElementById('input1').style.display = 'none';
+                document.getElementById('text2').style.display = 'none';
+                document.getElementById('input2').style.display = 'none';
+                document.getElementById('text3').style.display = 'none';
+                document.getElementById('input3').style.display = 'none';
                 maps.layers[0].shapeSettings.colorValuePath = 'value';
                 maps.layers[0].shapeSettings.colorMapping[0].from = null;
                 maps.layers[0].shapeSettings.colorMapping[0].to = null;
@@ -210,9 +232,15 @@ Maps.Inject(MapsTooltip, Legend);
                 maps.refresh();
             }
             if (element === 'DesaturationColorMapping') {
+                document.getElementById('text1').style.display = 'block';
+                document.getElementById('input1').style.display = 'block';
                 let minOpacity: HTMLInputElement = document.getElementById('minopacity') as HTMLInputElement;
                 let maxOpacity: HTMLInputElement = document.getElementById('maxopacity') as HTMLInputElement;
                 if (highlightCheckBox.checked) {
+                    document.getElementById('text2').style.display = 'block';
+                    document.getElementById('input2').style.display = 'block';
+                    document.getElementById('text3').style.display = 'block';
+                    document.getElementById('input3').style.display = 'block';
                     maps.layers[0].shapeSettings.colorMapping[0].minOpacity = parseFloat(minOpacity.value);
                     maps.layers[0].shapeSettings.colorMapping[0].maxOpacity = parseFloat(maxOpacity.value);
                 } else {
@@ -252,7 +280,6 @@ Maps.Inject(MapsTooltip, Legend);
                 maps.layers[0].shapeSettings.colorMapping[5].value = null;
                 maps.legendSettings.title.text = 'Inches';
                 maps.refresh();
-                highlightCheckBox.disabled = false;
             }
         }
     });

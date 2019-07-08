@@ -28,7 +28,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
     defaultRTE.appendTo('#defaultRTE');
 
     let select: CheckBox = new CheckBox({
-        // set false for enable the checked state at initial rendering
+        // set true for disable the checked state at initial rendering
         checked: true,
         label: 'Show on Selection',
         // bind change event

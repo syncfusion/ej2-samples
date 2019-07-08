@@ -177,7 +177,7 @@ let discountValue: number;
         let processorPrice: HTMLElement = document.getElementById('processorPrice');
         onChange(processorPrice, <number>processorSlider.value, 'CORE');
         let memoryPrice: HTMLElement = document.getElementById('memoryPrice');
-        onChange(memoryPrice, <number>processorSlider.value, 'GB');
+        onChange(memoryPrice, <number>memorySlider.value, 'GB');
         let storgePrice: HTMLElement = document.getElementById('storgePrice');
         onChange(storgePrice, <number>storageSlider.value, 'GB');
         let cloudPrice: HTMLElement = document.getElementById('cloudPrice');

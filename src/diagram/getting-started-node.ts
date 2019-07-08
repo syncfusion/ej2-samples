@@ -112,10 +112,12 @@ function applyNodeStyle(
     //Click event for Appearance of the Property Panel
     document.getElementById('appearance').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
+        // custom code start
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
         if (selectedElement.length) {
             selectedElement[0].classList.remove('e-selected-style');
         }
+        // custom code end
         if (target.className === 'image-pattern-style') {
             for (let i: number = 0; i < diagram.nodes.length; i++) {
                 let node: NodeModel = diagram.nodes[i];
@@ -136,7 +138,9 @@ function applyNodeStyle(
                         applyNodeStyle(node, 2, '5 5', NodeConstraints.Shadow, 'None');
                         break;
                 }
+                // custom code start
                 target.classList.add('e-selected-style');
+                // custom code end
             }
         }
     };

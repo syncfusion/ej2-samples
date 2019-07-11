@@ -1,4 +1,6 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Data sample
  */
@@ -8,7 +10,9 @@ import { Grid } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let orderData: Object[] = [
         {
             'Country': 'Germany',

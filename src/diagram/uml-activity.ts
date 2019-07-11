@@ -115,7 +115,7 @@ function addEvents(): void {
         }
     }
 }
-
+// custom code start
 function openPalette(): void {
     let paletteSpace: HTMLElement = document.getElementById('palette-space') as HTMLElement;
     isMobile = window.matchMedia('(max-width:550px)').matches;
@@ -127,7 +127,7 @@ function openPalette(): void {
         }
     }
 }
-
+// custom code end
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();

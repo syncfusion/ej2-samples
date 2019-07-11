@@ -1,21 +1,26 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Changing exporting sample.
  */
-
 import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, ExportType, MapAjax } from '@syncfusion/ej2-maps';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 
 Maps.Inject(Marker, MapsTooltip);
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         titleSettings: {
             text: 'Location of the Wonders in the World',
             textStyle: {
@@ -53,6 +58,7 @@ Maps.Inject(Marker, MapsTooltip);
         ]
     });
     maps.appendTo('#container');
+    // code for property panel
     let mode: DropDownList = new DropDownList({
         index: 0,
         width: '100px'

@@ -1,4 +1,7 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// tslint:disable
+// custom code end
 /**
  * Gauge Customization sample
  */
@@ -6,8 +9,9 @@ import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2 } from './customization-gauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
-
+    // custom code end
     let random: CircularGauge = new CircularGauge(gauge1());
     random.appendTo('#cutomization-container');
     let usage: CircularGauge = new CircularGauge(gauge2());
@@ -62,7 +66,6 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         currentLine.style.display = 'block';
         exisLine.style.display = 'none';
     };
-    // tslint:disable-next-line
     document.getElementById('random').onclick = () => {
         if (usage.element) {
             usage.destroy();
@@ -98,6 +101,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             gauge.setAnnotationValue(0, 0, '<div style="color:#666666;font-size:35px;">' + value + (isUsage ? 'GB' : '') + '</div>');
             document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;' + value + '</span>';
         };
+        // custom code start
     let selectedTheme: string = location.hash.split('/')[1]; let color: string;
     if (selectedTheme === 'bootstrap') {
         color = '#a16ee5';
@@ -106,6 +110,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     } else {
         color = '#ff4081';
     }
+    // custom code end
     let exisLine: HTMLSelectElement = <HTMLSelectElement>document.getElementById('usage_line');
     let currentLine: HTMLSelectElement = <HTMLSelectElement>document.getElementById('random_line');
     exisLine.style.background = color; currentLine.style.background = color;

@@ -5,6 +5,7 @@
         <ul id="ContextMenu"></ul>
     </div>
 </div>
+<!-- custom code start -->
 <style>
     .schedule-context-menu .e-menu-item .new::before {
         content: '\e7f9';
@@ -35,7 +36,32 @@
         font-size: 12px;
     }
 
+    .highcontrast .schedule-context-menu .e-menu-item .today::before,
+    .fabric .schedule-context-menu .e-menu-item .today::before {
+        content: '\e321';
+    }
+
+    .bootstrap .schedule-context-menu .e-menu-item .today::before {
+        content: '\e312';
+    }
+
+    .highcontrast .schedule-context-menu .e-menu-item .delete::before,
+    .fabric .schedule-context-menu .e-menu-item .delete::before {
+        content: '\eb00';
+    }
+
+    .highcontrast .schedule-context-menu .e-menu-item .new::before,
+    .fabric .schedule-context-menu .e-menu-item .new::before {
+        content: '\e823';
+    }
+
+    .highcontrast .schedule-context-menu .e-menu-item .recurrence::before,
+    .fabric .schedule-context-menu .e-menu-item .recurrence::before {
+        content: '\e309';
+        font-weight: bold;
+    }
 </style>
+<!-- custom code end -->
 <div id="action-description">
     <p>This example illustrates how to enable the context menu on Scheduler and perform its related actions based on
         the selected menu options.</p>

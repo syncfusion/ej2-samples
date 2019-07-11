@@ -88,7 +88,7 @@ function getPorts(root: boolean): PointPortModel[] {
         //Configure the data source
         dataSourceSettings: {
             id: 'Name', parentId: 'Category',
-            dataManager: new DataManager((Data as any).artificialIntelligence),
+            dataSource: new DataManager((Data as any).artificialIntelligence),
             doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
                 let nameKey: string = 'Name';
                 nodeModel.annotations = [{ content: data[nameKey] }];

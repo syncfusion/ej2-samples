@@ -3,7 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  *  Sample for CSS Swipeable Cards.
  */
 // tslint:disable:max-line-length
-import { Touch, SwipeEventArgs, closest } from '@syncfusion/ej2-base';
+import { Touch, SwipeEventArgs, closest, isNullOrUndefined } from '@syncfusion/ej2-base';
 
 
 (window as any).default = (): void => {
@@ -41,7 +41,7 @@ import { Touch, SwipeEventArgs, closest } from '@syncfusion/ej2-base';
     }
     function touchSwipeHandler(e: SwipeEventArgs): void {
         let ele: HTMLElement = <HTMLElement>closest(<Element>e.originalEvent.target, '.e-card');
-        if (!ele.classList.contains('e-card')) {
+        if (isNullOrUndefined(ele)) {
             return;
         }
         if (ele.parentElement.querySelector('.card-out')) {

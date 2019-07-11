@@ -45,6 +45,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
     function anglechange(value: number): void {
         pie.series[0].startAngle = +value;
         pie.series[0].endAngle = +value;
+        pie.series[0].animation.enable = false;
         document.getElementById('anglevalue').innerHTML = value.toString();
         pie.removeSvg(); pie.refreshSeries(); pie.refreshChart();
     }
@@ -54,6 +55,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         };
     function radiuschange(value: number): void {
         pie.series[0].radius = value + '%';
+        pie.series[0].animation.enable = false;
         document.getElementById('radius').innerHTML = (value / 100).toFixed(2);
         pie.removeSvg(); pie.refreshSeries(); pie.refreshChart();
     }
@@ -63,6 +65,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         };
     function exploderadius(value: number): void {
         pie.visibleSeries[0].explodeOffset = value + '%';
+        pie.series[0].animation.enable = false;
         document.getElementById('exploderadius').innerHTML = (value / 100).toFixed(2);
         pie.removeSvg();
         pie.refreshSeries();
@@ -74,6 +77,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         };
     function explodeIndex(value: number): void {
         pie.visibleSeries[0].explodeIndex = +value;
+        pie.series[0].animation.enable = false;
         document.getElementById('explodeindex').innerHTML = value.toString();
         pie.removeSvg();
         pie.refreshSeries();
@@ -85,6 +89,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         };
     function xchange(value: number): void {
         pie.center.x = value + '%';
+        pie.series[0].animation.enable = false;
         document.getElementById('xvalue').innerHTML = value + '%';
         pie.removeSvg(); pie.refreshSeries(); pie.refreshChart();
     }
@@ -94,6 +99,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         };
     function ychange(value: number): void {
         pie.center.y = value + '%';
+        pie.series[0].animation.enable = false;
         document.getElementById('yvalue').innerHTML = value + '%';
         pie.removeSvg(); pie.refreshSeries(); pie.refreshChart();
     }

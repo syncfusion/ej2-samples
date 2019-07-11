@@ -11,6 +11,7 @@ Schedule.Inject(Day, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
+    // custom code start
     interface TemplateFunction extends Window {
         getEmployeeName?: Function;
         getEmployeeImage?: Function;
@@ -30,6 +31,7 @@ Schedule.Inject(Day, TimelineViews, TimelineMonth, Resize, DragAndDrop);
     (window as TemplateFunction).getEmployeeDesignation = (value: ResourceDetails) => {
         return (value as ResourceDetails).resourceData.Designation;
     };
+    // custom code end    
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

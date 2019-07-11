@@ -118,4 +118,16 @@ import { CheckBox, ChangeEventArgs as CheckBoxChange } from '@syncfusion/ej2-but
         minrangeObj.limits.maxEnd = args.value;
         rangeObj.limits.maxEnd = args.value;
     }
+
+    if (document.getElementById('right-pane')) {
+        document.getElementById('right-pane').addEventListener('scroll', onScroll);
+    }
+
+    // Handler used to reposition the tooltip on page scroll
+    function onScroll(): void {
+        let slider: Slider[] = [minrangeObj, rangeObj];
+        slider.forEach((slider: any) => {
+            slider.refreshTooltip(slider.tooltipTarget);
+        });
+    }
 };

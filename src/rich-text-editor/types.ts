@@ -65,8 +65,10 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
         defaultRTE.dataBind();
     }
     function handleFullScreen(e: any): void {
-        let leftBar: any;
-        let transformElement: any;
+        let sbCntEle: HTMLElement = document.querySelector('.sb-content.e-view');
+        let sbHdrEle: HTMLElement = document.querySelector('.sb-header.e-view');
+        let leftBar: HTMLElement;
+        let transformElement: HTMLElement;
         if (Browser.isDevice) {
             leftBar = document.querySelector('#right-sidebar');
             transformElement = document.querySelector('.sample-browser.e-view.e-content-animation');
@@ -75,11 +77,17 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
             transformElement = document.querySelector('#right-pane');
         }
         if (e.targetItem === 'Maximize') {
+            if (Browser.isDevice && Browser.isIos) {
+                addClass([sbCntEle, sbHdrEle], ['hide-header']);
+            }
             addClass([leftBar], ['e-close']);
             removeClass([leftBar], ['e-open']);
             if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
             transformElement.style.transform = 'inherit';
         } else if (e.targetItem === 'Minimize') {
+            if (Browser.isDevice && Browser.isIos) {
+                removeClass([sbCntEle, sbHdrEle], ['hide-header']);
+            }
             removeClass([leftBar], ['e-close']);
             if (!Browser.isDevice) {
             addClass([leftBar], ['e-open']);
@@ -89,6 +97,6 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
     }
 
     function actionCompleteHandler(): void {
-        setTimeout(() => { defaultRTE.toolbarModule.refreshToolbarOverflow(); }, 400);
+    setTimeout(() => {  this.toolbarModule.refreshToolbarOverflow();       }, 400);
     }
 };

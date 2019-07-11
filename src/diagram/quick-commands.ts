@@ -45,25 +45,31 @@ function getTool(action: string): ToolBase {
 function setUserHandlePosition(offset: number, side: Side, target: HTMLElement): void {
     diagram.selectedItems.userHandles[0].offset = offset;
     diagram.selectedItems.userHandles[0].side = side;
+    // custom code start
     target.classList.add('e-selected-style');
+    // custom code end
 }
 
 //set the style of the userhandle.
 function applyUserHandleStyle(bgcolor: string, target: HTMLElement): void {
     diagram.selectedItems.userHandles[0].backgroundColor = bgcolor;
     diagram.selectedItems.userHandles[0].pathColor = 'White';
+    // custom code start
     target.classList.add('e-selected-style');
+    // custom code end
 }
 
 //Change the postion of the UserHandle
 function setHandleAppearance(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
     let appearanceBlock: HTMLElement = document.getElementById('appearance');
+    // custom code start
     let selectedElement: HTMLCollectionOf<Element> =
         appearanceBlock.getElementsByClassName('e-selected-style') as HTMLCollectionOf<Element>;
     if (selectedElement.length) {
         selectedElement[0].classList.remove('e-selected-style');
     }
+    // custom code end
     if (target.className === 'image-pattern-style') {
         switch (target.id) {
             case 'left':
@@ -84,10 +90,12 @@ function setHandleAppearance(args: MouseEvent): void {
 function setHandlePattern(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
     let patternBlock: HTMLElement = document.getElementById('pattern');
+    // custom code start
     let selectedElement: HTMLCollectionOf<Element> = patternBlock.getElementsByClassName('e-selected-style') as HTMLCollectionOf<Element>;
     if (selectedElement.length) {
         selectedElement[0].classList.remove('e-selected-style');
     }
+    // custom code end
     if (target.className === 'image-pattern-style') {
         switch (target.id) {
             case 'pattern1':

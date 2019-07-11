@@ -131,8 +131,8 @@ import { Effect } from '@syncfusion/ej2-base';
         let toastEle: HTMLElement = e.element;
         let toasts: NodeList = e.toastObj.element.children;
         for (let i: number = 0; i < toasts.length; i++) {
-            let toastTitle: any = (toasts[i] as HTMLElement).querySelector('.e-toast-title');
-            let toastMessage: any = (toasts[i] as HTMLElement).querySelector('.e-toast-message');
+            let toastTitle: HTMLElement = (toasts[i] as HTMLElement).querySelector('.e-toast-title');
+            let toastMessage: HTMLElement = (toasts[i] as HTMLElement).querySelector('.e-toast-message');
             if (toastTitle && toastTitle.isEqualNode(toastEle.querySelector('.e-toast-title'))) {
                 return true;
             }

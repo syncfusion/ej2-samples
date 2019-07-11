@@ -1,27 +1,54 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Treemap legend sample
  */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 import { TreeMap, TreeMapTooltip, TreeMapLegend, LegendMode, LegendPosition, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
-import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
+import { TreeMapTheme, ILoadEventArgs, IResizeEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+// custom code start
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-
+// custom code end
 /**
  * Default sample
  */
 
 let prevTime: Date; let curTime: Date;
+/* tslint:disable-next-line:max-func-body-length */
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
+        resize: (args: IResizeEventArgs) => {
+            if (args.currentSize.width > args.currentSize.height && args.treemap.legendSettings.position === 'Auto') {
+                treemap.legendSettings.orientation = 'Vertical';
+                if (treemap.legendSettings.mode === 'Interactive') {
+                    treemap.legendSettings.height = '70%';
+                    treemap.legendSettings.width = '10';
+                } else {
+                    treemap.legendSettings.height = '';
+                    treemap.legendSettings.width = '';
+                }
+            } else {
+                treemap.legendSettings.orientation = 'Horizontal';
+                if (treemap.legendSettings.mode === 'Interactive') {
+                    treemap.legendSettings.height = '10';
+                    treemap.legendSettings.width = '';
+                } else {
+                    treemap.legendSettings.height = '';
+                    treemap.legendSettings.width = '';
+                }
+            }
+        },
         titleSettings: {
             text: 'US Presidential election result - 2016',
             textStyle: { size: '15px' }
@@ -30,7 +57,7 @@ let prevTime: Date; let curTime: Date;
         weightValuePath: 'Population',
         tooltipSettings: {
             visible: true,
-            format: ' <b>${Winner}<b><br>State : ${State}<br>Trump : ${Trump} %<br>Clinton : ${Clinton} %'
+            format: '<b>${Winner}</b><br>State : ${State}<br>Trump : ${Trump} %<br>Clinton : ${Clinton} %'
         },
         legendSettings: {
             visible: true,
@@ -78,6 +105,7 @@ let prevTime: Date; let curTime: Date;
         }
     });
     mode.appendTo('#layoutMode');
+    // code for property panel
     let legendPosition: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Legend Position',
@@ -92,6 +120,26 @@ let prevTime: Date; let curTime: Date;
                 } else {
                     treemap.legendSettings.height = '';
                     treemap.legendSettings.width = '';
+                }
+            } else if (legendPosition.value === 'Auto') {
+                if (treemap.availableSize.width > treemap.availableSize.height) {
+                    treemap.legendSettings.orientation = 'Vertical';
+                    if (treemap.legendSettings.mode === 'Interactive') {
+                        treemap.legendSettings.height = '70%';
+                        treemap.legendSettings.width = '10';
+                    } else {
+                        treemap.legendSettings.height = '';
+                        treemap.legendSettings.width = '';
+                    }
+                } else {
+                    treemap.legendSettings.orientation = 'Horizontal';
+                    if (treemap.legendSettings.mode === 'Interactive') {
+                        treemap.legendSettings.height = '10';
+                        treemap.legendSettings.width = '';
+                    } else {
+                        treemap.legendSettings.height = '';
+                        treemap.legendSettings.width = '';
+                    }
                 }
             } else {
                 treemap.legendSettings.orientation = 'Horizontal';

@@ -44,6 +44,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         },
         legendSettings: { visible: false }, enableSmartLabels: true,
         tooltip: { enable: false, format: '${point.x} <br> ${point.y} %' },
+         // custom code start
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -53,6 +54,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
                 args.accumulation.annotations[0].content = '#white' ;
             }
         }
+         // custom code end
     };
     let pointClick: EmitType<IMouseEventArgs> = (args: IMouseEventArgs) => {
         let index: Index = indexFinder(args.target);

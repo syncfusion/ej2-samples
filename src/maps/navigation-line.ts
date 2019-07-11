@@ -1,21 +1,28 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Linea penusular sample
  */
 import { Maps, Marker, Zoom, NavigationLine, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 import * as mapLocation from './map-data/map-location.json';
-
 let data: any  = mapLocation as any;
 Maps.Inject(Marker, Zoom, NavigationLine);
+// custom code start
 //tslint:disable:max-func-body-length
+// custom code end
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         titleSettings: {
             text: 'Shipping sea route between various cities',
             textStyle: {

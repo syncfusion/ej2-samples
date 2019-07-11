@@ -1,10 +1,13 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Schedule, Day, Week, WorkWeek, Month, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
+import {
+    Schedule, Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth,
+    EventRenderedArgs, Resize, DragAndDrop
+} from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 import { applyCategoryColor } from './helper';
 import { extend } from '@syncfusion/ej2-base';
 
-Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
+Schedule.Inject(Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
 /**
  * Schedule cell dimension sample
@@ -16,7 +19,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        views: ['Day', 'Week', 'WorkWeek', 'Month'],
+        views: ['Day', 'Week', 'WorkWeek', 'Month', 'TimelineWeek', 'TimelineMonth'],
         selectedDate: new Date(2018, 1, 15),
         cssClass: 'schedule-cell-dimension',
         showTimeIndicator: false,

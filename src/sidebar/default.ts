@@ -23,7 +23,8 @@ enableRipple(true);
 
     //open new tab
 
-    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'sidebar/default/index.html');
+    let URL: any = location.href.replace(location.search, '');
+    document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/default/index.html');
 
     // Toggle(Open/Close) the Sidebar
     document.getElementById('toggle').onclick = (): void => {

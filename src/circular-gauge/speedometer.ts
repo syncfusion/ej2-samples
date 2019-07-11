@@ -1,4 +1,7 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable
+// custom code end
 /**
  * Pointer sample
  */
@@ -7,12 +10,12 @@ import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/e
 import { EmitType, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { gauge6 } from './pointer-gauge';
 CircularGauge.Inject(Annotations);
-//tslint:disable
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let circulargauge: CircularGauge = new CircularGauge(gauge6());
     circulargauge.appendTo('#container');
-
     this.gauge5Interval1 = setInterval(
         (): void => {
             let newVal: number = circulargauge.axes[0].pointers[0].value + (Math.floor(Math.random() * (10 - (-10))) - 10);
@@ -31,6 +34,7 @@ CircularGauge.Inject(Annotations);
         },
         1000
     );
+    // code for property panel
     let showText: EmitType<CheckBoxChangeEvents>;
     let interval: CheckBox = new CheckBox(
         {

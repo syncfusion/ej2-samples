@@ -13,7 +13,7 @@
     </p>
     <p>
         More information about Menu can be found in this
-        <a target="_blank" href="http://ej2.syncfusion.com/documentation/menu/getting-started.html">
+        <a target="_blank" href="https://ej2.syncfusion.com/documentation/menu/use-case-scenarios/">
         documentation</a> section.
     </p>
 </div>
@@ -21,6 +21,12 @@
     /**
     * ej2 Menu - toolbar integration styles
     */
+    .toolbar-menu-control {
+        margin: 45px auto 0;
+        max-width: 950px;
+    }
+    
+    /* Search and Shopping cart icons */
     @font-face {
         font-family: 'e-menu';
         src:
@@ -28,26 +34,18 @@
         font-weight: normal;
         font-style: normal;
     }
-
     .em-icons {
         font-family: 'e-menu';
         font-style: normal;
         font-variant: normal;
         font-weight: normal;
         text-transform: none;
-        line-height: 2;
+        line-height: 1;
     }
 
-    .toolbar-menu-control {
-        margin: 45px auto 0;
-        max-width: 950px;
-    }
-
-    /* Search and Shopping cart icons */
     .toolbar-menu-control .e-search::before {
         content: '\e5b9';
     }
-
     .toolbar-menu-control .e-shopping-cart::before {
         content: '\e7e8';
     }
@@ -55,43 +53,55 @@
     /* Shopping cart icon size */
     .toolbar-menu-control .e-toolbar-items .e-toolbar-item .e-tbar-btn .e-btn-icon.e-shopping-cart {
         font-size: 20px;
+        margin: 4px 1px 0 0;
     }
-
     .e-bigger .toolbar-menu-control .e-toolbar-items .e-toolbar-item .e-tbar-btn .e-btn-icon.e-shopping-cart {
         font-size: 30px;
+        margin-top: 7px; 
+    }
+    .e-bigger.material .toolbar-menu-control .e-toolbar-items .e-toolbar-item .e-tbar-btn.e-btn {
+        margin-top: 3.5px;
     }
 
+    /* custom code start */
     /* Overall UI customization */
     .control-wrapper .toolbar-menu-control .e-menu-wrapper {
         margin-right: 160px;
-        border-color: transparent;
+        border: none;
+        vertical-align: middle;
     }
-
     .toolbar-menu-control .e-toolbar .e-toolbar-left .e-toolbar-item.e-template {
         padding: 0;
     }
-
-
     .material .toolbar-menu-control .e-toolbar .e-input-group .e-input {
         padding-bottom: 4px;
     }
-
     .material .toolbar-menu-control .e-toolbar .e-input-group .e-search {
         margin-bottom: 0;
     }
-
     .toolbar-menu-control .e-toolbar .e-hscroll-bar {
         overflow-y: hidden;
     }
-
+    .toolbar-menu-control .e-toolbar .e-toolbar-items .e-toolbar-item #userDBtn {
+        text-overflow: initial;
+    }
     .fabric .toolbar-menu-control .e-toolbar-items .e-toolbar-left .e-menu-wrapper,
     .fabric .toolbar-menu-control .e-toolbar-items .e-dropdown-btn {
         background-color: transparent;
     }
-
+	.bootstrap4 .toolbar-menu-control .e-toolbar-items .e-dropdown-btn,
+	.bootstrap4 .toolbar-menu-control .e-toolbar-items .e-dropdown-btn:hover,
+	.bootstrap4 .toolbar-menu-control .e-toolbar-items .e-dropdown-btn:focus, 
+	.bootstrap4 .toolbar-menu-control .e-toolbar-items .e-dropdown-btn:active {
+		background-color: transparent;
+		border-color: transparent;
+		color: #6c757d;
+		box-shadow: none;
+	}
     @media only screen and (max-width: 1300px) {
         .toolbar-menu-control {
             width: auto;
         }
     }
+    /* custom code end */
 </style>

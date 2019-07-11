@@ -262,7 +262,7 @@ top: 50px;
     border: 0.5px solid#E5E5E5;
     background: #FFFFFF;
     display: inline-table;
-    padding-top: 2px;
+    padding: 2px 5px 0px 5px;
 }
 
 .sb-navigation-next a, .sb-navigation-prev a{
@@ -285,17 +285,7 @@ background-color: #D8D8D8;
 text-decoration: none; 
 }
 
-.sample-navigation>button {
-    background: transparent;
-    border-radius: 1px;
-}
-
-.sample-navigation button:disabled {
-    cursor: not-allowed;
-    color: #5a5a5a;
-}
-
-.sample-navigation {
+.sb-sample-navigation {
     font-size: 18px;
     color: #5a5a5a;
     cursor: pointer;
@@ -307,6 +297,7 @@ text-decoration: none;
     display: inline-table;
 }
 
-button.e-disabled {
+a.e-disabled {
     cursor: not-allowed;
+    opacity: 0.35;
 }

@@ -1,11 +1,13 @@
-import { LinearGauge, Point, Annotations, Placement, Pointer, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
-LinearGauge.Inject(Annotations);
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
-
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Axes Sample
  */
-this.default = (): void => {
+import { LinearGauge, Point, Annotations, Placement, Pointer, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
+LinearGauge.Inject(Annotations);
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+// code for property panel
+(window as any).default = (): void => {
+    loadCultureFiles();
     let gauge: LinearGauge = new LinearGauge(linearAxes());
     gauge.appendTo('#axisContainer');
 
@@ -94,14 +96,16 @@ this.default = (): void => {
 export function getRandomArbitrary(min: number, max: number): number {
     return Math.random() * (max - min) + min;
 }
-
+// code for linear gauge
 export function linearAxes(): LinearGauge {
     let gauge: LinearGauge = new LinearGauge({
-        load: (args: ILoadEventArgs) => {
+        // custom code start
+        load: (arg: ILoadEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            arg.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         orientation: 'Horizontal',
         axes: [{
             line: {

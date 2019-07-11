@@ -1,4 +1,6 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Maps drilldown sample
  */
@@ -10,22 +12,29 @@ Maps.Inject(Highlight, MapsTooltip, Marker);
 export interface ShapeData {
     continent?: string;
 }
+// custom code start
 //tslint:disable:max-func-body-length
+// custom code end
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let touchmove: boolean = false;
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         loaded: (args: ILoadEventArgs) => {
             let mapsSVG: HTMLElement = document.getElementById('mapdrilldown_svg') as HTMLElement;
             if (mapsSVG) {
                 mapsSVG.addEventListener('touchmove', (e: MouseEvent) => { touchmove = true; }, false);
             }
         },
+        // code for shape selection 
         shapeSelected: (args: IShapeSelectedEventArgs): void => {
             let shape: string = (args.shapeData as ShapeData).continent;
             if (maps.baseLayerIndex === 0 && !touchmove) {
@@ -227,6 +236,7 @@ export interface ShapeData {
         ]
     });
     maps.appendTo('#mapdrilldown');
+    // code for onclick event
     document.getElementById('category').onclick = () => {
         maps.baseLayerIndex = 0;
         maps.refresh();

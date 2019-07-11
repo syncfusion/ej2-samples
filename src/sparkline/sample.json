@@ -2,7 +2,6 @@
     "name": "Sparkline Charts",
     "directory": "sparkline",
     "category": "Data Visualization",
-	"type": "update",
     "ftName": "sparkline",
     "samples": [
         {
@@ -38,8 +37,7 @@
             "name": "Customization",
             "description": "This demo for Essential JS2 Sparkline control depicts the properties required to customize the sparkline.",
             "category": "Sparkline Charts",
-            "api": {},
-			"type": "update"
+            "api": {}
         },
         {
             "url": "live-update",

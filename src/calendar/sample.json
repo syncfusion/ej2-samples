@@ -2,13 +2,13 @@
     "name": "Calendar",
     "directory": "calendar",
     "category": "Calendars",
-    "type": "update",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "Calendar", "api":{"Calendar": [ "change" ]}, "description": "This example demonstrates a simple, mobile-friendly and responsive JavaScript (TypeScript) Calendar to select a date" },
-        { "url": "disabled", "name": "Disabled Dates", "category": "Calendar", "api":{"Calendar": [ "renderDayCell", "change" ]}, "description": "This example demonstrates how to disable the dates like weekends, weekdays and specific dates (past dates, future dates and current dates) in a JavaScript (TypeScript) Calendar" },
+        { "url": "disabled", "name": "Disabled Dates", "category": "Calendar", "api":{"Calendar": [ "renderDayCell", "change" ]}, "description": "This example demonstrates how to disable the dates like weekends, weekdays and specific dates (past , future and current) in a JavaScript (TypeScript) Calendar" },
         { "url": "date-range", "name": "Date Range", "category": "Calendar", "api":{"Calendar": [ "min", "max", "change" ]}, "description": "This example demonstrates how to disables the specific range of dates (min and max) in a JavaScript (TypeScript) Calendar" },
         { "url": "special-dates", "name": "Special Dates", "category": "Calendar", "api":{"Calendar": [ "renderDayCell", "change" ]},  "description": "This example demonstrates how to highlight the specific dates like weekends, holidays and special dates in a JavaScript (TypeScript) Calendar"  },
         { "url": "multi-selection", "name": "Multi Selection", "category": "Calendar", "api":{"Calendar": [ "isMultiSelection", "values" ]},  "description": "This example demonstrates how to select the multiple dates (more than one date) in a JavaScript (TypeScript) Calendar" },
-        { "url": "islamic-calendar", "name": "Islamic Calendar", "category": "Calendar", "type": "new", "api":{"Calendar": [ "isMultiSelection", "values" ]}}
+        { "url": "month-picker", "name": "Month Picker", "category": "Calendar", "api":{"Calendar": [ "start", "depth" ]}, "description": "The JavaScript Calendar control can act as a month and year picker. It helps you to select a month or year quickly with all month related properties."},
+        { "url": "islamic-calendar", "name": "Islamic Calendar", "category": "Calendar", "api":{"Calendar": [ "isMultiSelection", "values" ]}}
     ]
 }

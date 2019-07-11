@@ -55,7 +55,8 @@ this.renderChart = (chartData: Object[]): void => {
                 crosshair: { enable: true, lineType: 'Vertical' },
                 zoomSettings: {
                     enableSelectionZooming: true,
-                    mode: 'X',
+                    enablePinchZooming: true,
+                    mode: 'XY',
                     enablePan: true
                 },
                 width: Browser.isDevice ? '100%' : '80%',

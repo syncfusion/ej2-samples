@@ -1,3 +1,4 @@
+<!-- tooltip template-->
 <div id="template" style="display:none">
     <div class="toolback">
                 <div class="listing2">
@@ -12,17 +13,27 @@
                 <div>
                     <center>  <span class="listing1">Category : </span><span class="listing2">${value}</span> </center>
                 </div>
-    </div>
-    
+    </div>    
 </div>
+<!-- custom code start-->
+<style>
+.property-text {
+            font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif" !important;
+            font-size: 13px !important;
+            font-weight: 400 !important;
+        }
+</style>
+<!-- custom code end-->
 <div class="col-lg-9 control-section">
     <div class="content-wrapper">
         <div id="default-container"></div>
+        <!-- source link -->
         <div style="float: right; margin-right: 10px;">Source:
             <a href="https://www.currentresults.com/Weather/US/average-state-precipitation-in-spring.php" target="_blank">www.currentresults.com</a>
         </div>
     </div>
 </div>
+<!-- property panel-->
 <div class="col-lg-3 property-section">
     <table id="property" title="Properties" style="width: 100%">
         <tbody>
@@ -40,28 +51,32 @@
             </tr>
             <tr >
                     <td style="width: 40%">
-                        <div class="property-text"> Change Opacity</div>
+                        <div class="property-text" id="text1" style="display: none;"> Change Opacity</div>
                     </td>
                     <td style="width: 40%;">
-                        <div>
+                        <div id="input1" style="display: none">
                             <input type="checkbox" id="opacity"/>
                         </div>
                     </td>
             </tr>
             <tr>
                 <td style="width: 50%">
-                    <div class="property-text" style="margin-top:12%">Min Opacity</div>
+                    <div class="property-text" id="text2" style="margin-top:12%; display: none">Min Opacity</div>
                 </td>
                 <td style="width: 50%;">
-                    <input type="range" id="minopacity" step="0.1" value="0.5" min="0" max="1" style="width:100%;margin-top: 20%" disabled />
+                    <div id="input2" style="display: none">
+                        <input type="range" id="minopacity" step="0.1" value="0.5" min="0" max="1" style="width:100%;margin-top: 20%" />
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td style="width: 50%">
-                    <div class="property-text" style="margin-top:12%">Max Opacity</div>
+                    <div class="property-text" id="text3" style="margin-top:12%; display: none">Max Opacity</div>
                 </td>
                 <td style="width: 50%;">
-                    <input type="range" id="maxopacity" step="0.1" value="1" min="0" max="1" style="width:100%;margin-top: 20%" disabled />
+                    <div id="input3" style="display: none">
+                        <input type="range" id="maxopacity" step="0.1" value="1" min="0" max="1" style="width:100%;margin-top: 20%" />
+                    </div>
                 </td>
             </tr>            
         </tbody>
@@ -86,6 +101,7 @@
     </p>
    
 </div>
+<!-- style for tooltip -->
 <style>
     .toolback {
         border-radius: 4px;
@@ -107,10 +123,5 @@
          font-size:13px;
          color:#ffffff;
          font-weight: 500;
-    }
-    .property-text {
-            font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif" !important;
-            font-size: 13px !important;
-            font-weight: 400 !important;
-        }
+    }    
  </style>

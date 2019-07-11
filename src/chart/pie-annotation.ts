@@ -90,7 +90,7 @@ export function getValue(series: Series[], pointIndex: number, y: number): strin
                     background: 'transparent',
                     series: [{
                         radius: '65%', animation: { enable: false },
-                        dataSource: pieDataSource,
+                        dataSource: pieDataSource, border: { color: 'transparent'},
                         xName: 'x', yName: 'y', dataLabel: { visible: true, position: 'Inside', font: { color: 'white' }, name: 'text' },
                     }],
                     load: (args: IAccLoadedEventArgs) => {
@@ -111,7 +111,7 @@ export function getValue(series: Series[], pointIndex: number, y: number): strin
                 background: 'transparent',
                 series: [{
                     radius: '65%', animation: { enable: false },
-                    dataSource: pieDataSource,
+                    dataSource: pieDataSource, border: { color: 'transparent'},
                     xName: 'x', yName: 'y', dataLabel: { visible: true, position: 'Inside', name: 'text' },
                 }],
                 theme: <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)),

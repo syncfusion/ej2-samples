@@ -23,6 +23,7 @@ Schedule.Inject(Agenda);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     // Initialize NumericTextBox component for agenda days count
     let numericText: NumericTextBox = new NumericTextBox({
         value: 7,
@@ -54,4 +55,5 @@ Schedule.Inject(Agenda);
         }
     });
     hideEmptyDaysDropDown.appendTo('#hideemptydays');
+    // custom code end
 };

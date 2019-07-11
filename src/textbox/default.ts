@@ -16,6 +16,7 @@ import { InputObject, TextBox } from  '@syncfusion/ej2-inputs';
         enableRtl: true
     });
     inputobj2.appendTo('#lastname');
+    // custom code start
     let inputObject : InputObject = {};
     let input: NodeList = document.querySelectorAll('.e-input-group .e-input,.e-float-input.e-input-group input');
     let inputIcon: NodeList  = document.querySelectorAll('.e-input-group-icon');
@@ -47,4 +48,5 @@ import { InputObject, TextBox } from  '@syncfusion/ej2-inputs';
         }
         return parentNode;
     }
+    // custom code end
 };

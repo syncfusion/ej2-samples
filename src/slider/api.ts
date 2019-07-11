@@ -138,7 +138,7 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         let sliderScroll: Slider[] = [slider];
         sliderScroll.forEach((slider: any) => {
             // Refreshing each slider tooltip object position
-            slider.refreshTooltip();
+            slider.refreshTooltip(slider.tooltipTarget);
         });
     }
 

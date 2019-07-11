@@ -1,16 +1,24 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+ //tslint:disable
+// custom code end
 /**
  * sparkline sample for live update
  */
- //tslint:disable
 import { Sparkline, ISparklineLoadEventArgs, SparklineTheme } from '@syncfusion/ej2-charts/index';
 import { EmitType } from '@syncfusion/ej2-base';
+// custom code start
 export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-// tslint:disable-next-line:max-func-body-length
-this.default = (): void => {
+// tslint:disable:max-func-body-length
+// custom code end
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let spark: Sparkline = new Sparkline({
         height: '130px',
         width: '90%', load: sparkload,
@@ -56,12 +64,13 @@ this.default = (): void => {
         xName: 'x', yName: 'yval'
     });
     spark.appendTo('#spark-container1');
+	spark.dataSource = spark.dataSource as Object[];
     let temp1: number = spark.dataSource.length - 1;
     function update(): void {
         if (spark.element.className.indexOf('e-sparkline') > -1) {
             let value: number = ((Math.random() * 100) + 5) % 50;
-            spark.dataSource.push({ x: ++temp1, yval: value });
-            spark.dataSource.shift();
+			(spark.dataSource as any[]).push({ x: ++temp1, yval: value });
+			(spark.dataSource as any[]).shift();
             spark.refresh();
             let cpu: Element = document.getElementById('cpu');
             if (cpu) {
@@ -116,6 +125,7 @@ this.default = (): void => {
         xName: 'x', yName: 'yval'
     });
     spark1.appendTo('#spark-container2');
+	spark1.dataSource = spark1.dataSource as Object[];
     let temp2: number = spark1.dataSource.length - 1;
     function update1(): void {
         if (spark1.element.className.indexOf('e-sparkline') > -1) {
@@ -125,8 +135,8 @@ this.default = (): void => {
             } else {
                 value = 6 - (value / 10);
             }
-            spark1.dataSource.push({ x: ++temp2, yval: value });
-            spark1.dataSource.shift();
+			(spark1.dataSource as any[]).push({ x: ++temp2, yval: value });
+			(spark1.dataSource as any[]).shift();
             spark1.refresh();
             let memory: Element = document.getElementById('memory');
             let gb: string = parseFloat(value.toString().replace('0', '')).toFixed(1);
@@ -182,12 +192,13 @@ this.default = (): void => {
         xName: 'x', yName: 'yval'
     });
     spark2.appendTo('#spark-container3');
+	spark2.dataSource = spark2.dataSource as Object[];
     let temp3: number = spark2.dataSource.length - 1;
     function update2(): void {
         if (spark2.element.className.indexOf('e-sparkline') > -1) {
             let value: number = ((Math.random() * 100) + 5) % 80;
-            spark2.dataSource.push({ x: ++temp3, yval: value });
-            spark2.dataSource.shift();
+			(spark2.dataSource as any[]).push({ x: ++temp3, yval: value });
+			(spark2.dataSource as any[]).shift();
             spark2.refresh();
             let disk: Element = document.getElementById('disk');
             if (disk) {
@@ -242,12 +253,13 @@ this.default = (): void => {
         xName: 'x', yName: 'yval'
     });
     spark3.appendTo('#spark-container4');
+	spark3.dataSource = spark3.dataSource as Object[];
     let temp4: number = spark3.dataSource.length - 1;
     function update4(): void {
         if (spark3.element.className.indexOf('e-sparkline') > -1) {
             let value: number = ((Math.random() * 100) + 5) % 80;
-            spark3.dataSource.push({ x: ++temp3, yval: value });
-            spark3.dataSource.shift();
+			(spark3.dataSource as any[]).push({ x: ++temp3, yval: value });
+			(spark3.dataSource as any[]).shift();
             spark3.refresh();
             let net: Element = document.getElementById('net');
             if (net) {

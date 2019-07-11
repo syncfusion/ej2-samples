@@ -1,3 +1,6 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * sparkline sample for series types
  */
@@ -5,13 +8,18 @@ import { Sparkline, SparklineTooltip } from '@syncfusion/ej2-charts';
 Sparkline.Inject(SparklineTooltip);
 import { ISparklineLoadEventArgs, SparklineTheme } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
+// custom code start
 export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-// tslint:disable-next-line:max-func-body-length
-this.default = (): void => {
+// tslint:disable:max-func-body-length
+// custom code end
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let line: Sparkline = new Sparkline({
         height: '80px',
         width: '90%', load: sparkload,

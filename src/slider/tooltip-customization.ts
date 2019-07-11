@@ -24,10 +24,6 @@ let outObj: any;
         tooltip: {
             placement: 'Before', isVisible: true, cssClass: 'e-tooltip-cutomization'
         },
-        created: (args: any) => {
-            timeObj.keyUp({ keyCode: 9, target: timeObj.secondHandle });
-            timeObj.secondHandle.focus();
-        },
         // Bind ticks event for custom formatting
         renderingTicks: renderingTicksHandler,
         // Initialize ticks with placement, largestep, smallstep
@@ -55,6 +51,10 @@ let outObj: any;
         // Initialize tooltip with placement
         tooltip: {
             placement: 'Before', isVisible: true, cssClass: 'e-tooltip-cutomization'
+        },
+        created: (args: any) => {
+            outObj.keyUp({ keyCode: 9, target: outObj.firstHandle });
+            outObj.firstHandle.focus();
         },
         // Bind ticks event for custom formatting
         renderingTicks: renderingTicksHandler,
@@ -109,7 +109,7 @@ let outObj: any;
     }
     // Handler used to reposition the tooltip on page scroll
     function onScroll(): void {
-        timeObj.refreshTooltip();
-        outObj.refreshTooltip();
+        timeObj.refreshTooltip(timeObj.tooltipTarget);
+        outObj.refreshTooltip(outObj.tooltipTarget);
     }
 };

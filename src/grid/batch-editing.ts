@@ -19,7 +19,7 @@ Grid.Inject(Edit, Toolbar, Page);
             columns: [
                 {
                     field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right',
-                    validationRules: { required: true }, width: 120
+                    validationRules: { required: true, number: true }, width: 120
                 },
                 {
                     field: 'CustomerID', headerText: 'Customer ID',

@@ -46,7 +46,7 @@ export interface EmployeeInfo {
         width: '100%', height: 490,
         //Configures data source
         dataSourceSettings: {
-            id: 'Name', parentId: 'Category', dataManager: new DataManager((Data as any).species),
+            id: 'Name', parentId: 'Category', dataSource: new DataManager((Data as any).species),
             //binds the external data with node
             doBinding: (nodeModel: NodeModel, data: DataInfo) => {
                 nodeModel.annotations = [

@@ -29,6 +29,7 @@ let template: string = '<div ${if(category!==null)} class = "clearfix desc e-lis
         //Set defined customized template
         template: template,
 
+        //Set built-in cssClass for templates
         cssClass: 'e-list-template',
 
         //Set header title

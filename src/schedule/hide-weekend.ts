@@ -34,6 +34,7 @@ MultiSelect.Inject(CheckBoxSelection);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     let weekDays: { [key: string]: Object; }[] = [
         { Name: 'Sunday', Value: '0' },
         { Name: 'Monday', Value: '1' },
@@ -70,4 +71,5 @@ MultiSelect.Inject(CheckBoxSelection);
             scheduleObj.showWeekend = false;
         }
     };
+    // custom code end
 };

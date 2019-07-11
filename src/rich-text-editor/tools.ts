@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor all tools sample
+ * RichTextEditor overview sample
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
@@ -12,7 +12,6 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
-/* tslint:disable */
 (window as any).default = (): void => {
     loadCultureFiles();
 
@@ -70,8 +69,10 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
     }
 
     function handleFullScreen(e: any): void {
-        let leftBar: any;
-        let transformElement: any;
+        let sbCntEle: HTMLElement = document.querySelector('.sb-content.e-view');
+        let sbHdrEle: HTMLElement = document.querySelector('.sb-header.e-view');
+        let leftBar: HTMLElement;
+        let transformElement: HTMLElement;
         if (Browser.isDevice) {
             leftBar = document.querySelector('#right-sidebar');
             transformElement = document.querySelector('.sample-browser.e-view.e-content-animation');
@@ -80,13 +81,19 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
             transformElement = document.querySelector('#right-pane');
         }
         if (e.targetItem === 'Maximize') {
+            if (Browser.isDevice && Browser.isIos) {
+                addClass([sbCntEle, sbHdrEle], ['hide-header']);
+            }
             addClass([leftBar], ['e-close']);
             removeClass([leftBar], ['e-open']);
             if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
             transformElement.style.transform = 'inherit';
         } else if (e.targetItem === 'Minimize') {
+            if (Browser.isDevice && Browser.isIos) {
+                removeClass([sbCntEle, sbHdrEle], ['hide-header']);
+            }
             removeClass([leftBar], ['e-close']);
-            if (!Browser.isDevice) { 
+            if (!Browser.isDevice) {
             addClass([leftBar], ['e-open']);
             transformElement.style.marginLeft = leftBar.offsetWidth + 'px'; }
             transformElement.style.transform = 'translateX(0px)';
@@ -102,4 +109,3 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
         }
     }
 };
-/* tslint:enable */

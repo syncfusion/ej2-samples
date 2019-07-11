@@ -1,20 +1,23 @@
+/**
+ * Pie sample
+ */
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 //tslint:disable
+// custom code end
 import { TreeMap, ILoadedEventArgs, IResizeEventArgs, TreeMapTooltip, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip);
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs, ITreeMapTooltipRenderEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
-// Treemap theme changes
+// custom code start
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-/**
- * Pie sample
- */
+// custom code end
 (window as any).default = (): void => {
     loadCultureFiles();
     let treemap: TreeMap = new TreeMap({
@@ -74,8 +77,9 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
 };
 let chartCollection: AccumulationChart[] = [];
 let count: number = 0;
-
+// custom code start
 /* tslint:disable:no-string-literal */
+// custom code end
 export function AccumulationChartRender(id: string): void {
     let chartData: object = getData();
     let dataSource: object[] = chartData['data'];

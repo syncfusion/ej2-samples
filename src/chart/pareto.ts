@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { ChartTheme, Chart, ColumnSeries, Legend, Tooltip, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import {  ParetoSeries, Category, LineSeries } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
@@ -6,7 +7,8 @@ Chart.Inject(ColumnSeries, Category, ParetoSeries, LineSeries, Legend, Tooltip);
 /**
  * Sample for Pareto chart
  */
-this.default = (): void => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let chart: Chart = new Chart({
         //Initializing Primary X Axis
         primaryXAxis: {
@@ -61,11 +63,14 @@ this.default = (): void => {
             enable: true,
             shared: true
         },
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
+        // custom code end
     });
     chart.appendTo('#container');
 };

@@ -1,26 +1,29 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Color Mapping sample
  */
+// custom code start
+//tslint:disable:max-func-body-length
+/* tslint:disable:no-string-literal */
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 import { TreeMap, TreeMapTooltip, TreeMapLegend, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
-//tslint:disable:max-func-body-length
+// custom code start
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.treemap.theme = <TreeMapTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
-/**
- * Default sample
- */
-/* tslint:disable:no-string-literal */
+// custom code end
 let prevTime: Date; let curTime: Date;
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         titleSettings: {
@@ -63,7 +66,7 @@ let prevTime: Date; let curTime: Date;
     let opacity: EmitType<CheckBoxChangeEvents>;
     let highlightCheckBox: CheckBox = new CheckBox(
     {
-        change: opacity, checked: false, disabled: true
+        change: opacity, checked: false
     },
     '#opacity');
     document.getElementById('minopacity').onpointermove = document.getElementById('minopacity').ontouchmove =
@@ -90,6 +93,10 @@ let prevTime: Date; let curTime: Date;
         let minOpacity: HTMLInputElement = document.getElementById('minopacity') as HTMLInputElement;
         let maxOpacity: HTMLInputElement = document.getElementById('maxopacity') as HTMLInputElement;
         if (e.checked) {
+            document.getElementById('text2').style.display = 'block';
+            document.getElementById('input2').style.display = 'block';
+            document.getElementById('text3').style.display = 'block';
+            document.getElementById('input3').style.display = 'block';
             treemap.leafItemSettings.colorMapping[0].minOpacity = parseFloat(minOpacity.value);
             treemap.leafItemSettings.colorMapping[0].maxOpacity = parseFloat(maxOpacity.value);
             treemap.leafItemSettings.colorMapping[1].minOpacity = parseFloat(minOpacity.value);
@@ -97,6 +104,10 @@ let prevTime: Date; let curTime: Date;
             minOpacity.disabled = false;
             maxOpacity.disabled = false;
         } else {
+            document.getElementById('text2').style.display = 'none';
+            document.getElementById('input2').style.display = 'none';
+            document.getElementById('text3').style.display = 'none';
+            document.getElementById('input3').style.display = 'none';
             treemap.leafItemSettings.colorMapping[0].minOpacity = null;
             treemap.leafItemSettings.colorMapping[0].maxOpacity = null;
             treemap.leafItemSettings.colorMapping[1].minOpacity = null;
@@ -113,7 +124,12 @@ let prevTime: Date; let curTime: Date;
         change: () => {
             let element: string = sampleValue.value.toString();
             if (element === 'RangeColorMapping') {
-                highlightCheckBox.disabled = true;
+                document.getElementById('text1').style.display = 'none';
+                document.getElementById('input1').style.display = 'none';
+                document.getElementById('text2').style.display = 'none';
+                document.getElementById('input2').style.display = 'none';
+                document.getElementById('text3').style.display = 'none';
+                document.getElementById('input3').style.display = 'none';
                 treemap.rangeColorValuePath = 'Area';
                 treemap.leafItemSettings.colorMapping[2].minOpacity = null;
                 treemap.leafItemSettings.colorMapping[2].maxOpacity = null;
@@ -161,7 +177,12 @@ let prevTime: Date; let curTime: Date;
                 treemap.legendSettings.title.text = 'Area';
                 treemap.refresh();
             } else if (element === 'EqualColorMapping') {
-                highlightCheckBox.disabled = true;
+                document.getElementById('text1').style.display = 'none';
+                document.getElementById('input1').style.display = 'none';
+                document.getElementById('text2').style.display = 'none';
+                document.getElementById('input2').style.display = 'none';
+                document.getElementById('text3').style.display = 'none';
+                document.getElementById('input3').style.display = 'none';
                 treemap.rangeColorValuePath = null;
                 treemap.leafItemSettings.colorMapping[0].from = null;
                 treemap.leafItemSettings.colorMapping[0].to = null;
@@ -202,7 +223,8 @@ let prevTime: Date; let curTime: Date;
                 treemap.legendSettings.title.text = 'Continent';
                 treemap.refresh();
             }else if (element === 'DesaturationColorMapping') {
-                highlightCheckBox.disabled = false;
+                document.getElementById('text1').style.display = 'block';
+                document.getElementById('input1').style.display = 'block';
                 treemap.rangeColorValuePath = 'Area';
                 treemap.equalColorValuePath = null;
                 let minOpacity: HTMLInputElement = document.getElementById('minopacity') as HTMLInputElement;
@@ -226,6 +248,10 @@ let prevTime: Date; let curTime: Date;
                 treemap.leafItemSettings.colorMapping[3].color = null;
                 treemap.leafItemSettings.colorMapping[0].color = ['#F0D6AD', '#19547B'];
                 if (highlightCheckBox.checked) {
+                    document.getElementById('text2').style.display = 'block';
+                    document.getElementById('input2').style.display = 'block';
+                    document.getElementById('text3').style.display = 'block';
+                    document.getElementById('input3').style.display = 'block';
                     treemap.leafItemSettings.colorMapping[0].minOpacity = parseFloat(minOpacity.value);
                     treemap.leafItemSettings.colorMapping[0].maxOpacity = parseFloat(maxOpacity.value);
                 } else {

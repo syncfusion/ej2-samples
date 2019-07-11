@@ -2,7 +2,6 @@
     "name": "Stock Chart",
     "directory": "stock-chart",
     "category": "Data Visualization",
-    "type": "preview",
     "ftName": "stock-chart",
     "samples": [
         {
@@ -171,6 +170,17 @@
                     "valueType",
                     "series",
                     "intervalType"
+                ]
+            }
+        },
+        {
+            "url": "stock-events",
+            "name": "Stock Events",
+            "description":"This demo for Essential JS2 Stock Chart control with stock events to highlight the special events in stock market.",
+            "category": "Stock Chart",
+            "api": {
+                "StockChart": [
+                    "stockEvents"
                 ]
             }
         }

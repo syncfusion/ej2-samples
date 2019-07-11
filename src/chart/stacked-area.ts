@@ -9,7 +9,6 @@ import { Browser } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
     loadCultureFiles();
     let chart: Chart = new Chart({
-
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'DateTime',
@@ -20,7 +19,6 @@ import { Browser } from '@syncfusion/ej2-base';
             lineStyle: { width: 0},
             majorTickLines: { width: 0}
         },
-
         //Initializing Primary Y Axis
         primaryYAxis:
         {

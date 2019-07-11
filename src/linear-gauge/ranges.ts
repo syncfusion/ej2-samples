@@ -1,14 +1,20 @@
+/**
+ * Linear Gauge Range Sample
+ */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 import { LinearGauge, Annotations } from '@syncfusion/ej2-lineargauge';
 import { linear } from './linear-range';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 LinearGauge.Inject(Annotations);
-
-/**
- * Linear Gauge Range Sample
- */
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let gauge: LinearGauge = new LinearGauge(linear());
     gauge.appendTo('#rangeContainer');
+    // code for property panel
     let rangeIndex: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
@@ -58,8 +64,8 @@ this.default = (): void => {
 
     document.getElementById('start').ontouchmove = document.getElementById('start').onpointermove =
         document.getElementById('start').onchange = (): void => {
-            let start: HTMLInputElement = <HTMLInputElement>document.getElementById('start');
             let end: HTMLInputElement = <HTMLInputElement>document.getElementById('end');
+            let start: HTMLInputElement = <HTMLInputElement>document.getElementById('start');
             gauge.axes[0].ranges[+rangeIndex.value].start = parseInt(start.value, 10);
             gauge.axes[0].ranges[+rangeIndex.value].end = parseInt(end.value, 10);
             document.getElementById('startRangeValue').innerHTML = 'Range Start <span>&nbsp;&nbsp;&nbsp;' + start.value;

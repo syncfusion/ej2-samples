@@ -1,13 +1,18 @@
+/**
+ * Linear Gauge Tooltip Sample
+ */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 import { LinearGauge, GaugeTooltip, Annotations } from '@syncfusion/ej2-lineargauge';
 import { IAxisLabelRenderEventArgs, ILoadedEventArgs, ILoadEventArgs } from '@syncfusion/ej2-lineargauge';
 import { ITooltipRenderEventArgs, IResizeEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations, GaugeTooltip);
-
-/**
- * Linear Gauge Tooltip Sample
- */
 let gauge: LinearGauge;
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     gauge = new LinearGauge({
         container: {
             width: 140,
@@ -17,11 +22,7 @@ this.default = (): void => {
             }
         },
         tooltip: {
-            enable: true,
-            fill: '#fffff',
-            textStyle: {
-                color: '#fffff'
-            }
+            enable: true
         },
         orientation: 'Horizontal',
         axes: [
@@ -51,11 +52,6 @@ this.default = (): void => {
                 line: {
                     offset: -140,
                 },
-                labelStyle: {
-                    font: {
-                        color: '#000000'
-                    }
-                },
                 majorTicks: {
                     interval: 1
                 },
@@ -72,7 +68,7 @@ this.default = (): void => {
         ],
         annotations: [
             {
-                content: '<div id="first"><h1 style="font-size:15px">Inches</h1></div>',
+                content: '<div id="first"><h1 style="font-size:15px; color: #686868">Inches</h1></div>',
                 axisIndex: 0,
                 axisValue: 5.4,
                 x: 35,
@@ -80,7 +76,7 @@ this.default = (): void => {
                 zIndex: '1'
             },
             {
-                content: '<div id="second"><h1 style="font-size:15px">Centimeters</h1></div>',
+                content: '<div id="second"><h1 style="font-size:15px; color: #686868">Centimeters</h1></div>',
                 axisIndex: 1,
                 axisValue: 16.5,
                 x: 50,
@@ -112,25 +108,31 @@ function gaugeResized(args: IResizeEventArgs): void {
         gauge.axes[1].majorTicks.interval = 2;
         gauge.axes[1].minorTicks.interval = 1;
         gauge.orientation = 'Vertical';
-        gauge.annotations[0].x = -57;
-        gauge.annotations[0].y = -30;
         gauge.annotations[1].x = 50;
         gauge.annotations[1].y = -45;
+        gauge.annotations[0].x = -57;
+        gauge.annotations[0].y = -30;
     } else {
         gauge.axes[1].majorTicks.interval = 1;
         gauge.axes[1].minorTicks.interval = 0.5;
         gauge.orientation = 'Horizontal';
-        gauge.annotations[0].x = 35;
-        gauge.annotations[0].y = -58;
         gauge.annotations[1].x = 50;
         gauge.annotations[1].y = 52;
+        gauge.annotations[0].x = 35;
+        gauge.annotations[0].y = -58;
     }
 }
 
 function gaugeLoad(args: ILoadEventArgs): void {
+    // custom code start
     let selectedTheme: string = location.hash.split('/')[1];
     selectedTheme = selectedTheme ? selectedTheme : 'Material';
     args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+    if (args.gauge.theme.toLowerCase().indexOf('dark') > 1 || args.gauge.theme.toLowerCase() === 'highcontrast') {
+        args.gauge.annotations[0].content = '<div id="second"><h1 style="font-size:15px; color: #DADADA">Inches</h1></div>';
+        args.gauge.annotations[1].content = '<div id="second"><h1 style="font-size:15px; color: #DADADA">Centimeters</h1></div>';
+    }
+    // custom code end
     let width: number = parseInt(((this.width, this.element.offsetWidth) || this.element.offsetWidth || 600), 10);
     if (width < 500) {
         gauge.axes[1].majorTicks.interval = 2;

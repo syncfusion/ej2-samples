@@ -1,16 +1,19 @@
-import { LinearGauge, ContainerType, Orientation, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
-
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Container Sample
  */
-this.default = (): void => {
+import { LinearGauge, ContainerType, Orientation, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+(window as any).default = (): void => {
+    loadCultureFiles();
     let gauge: LinearGauge = new LinearGauge({
+        // custom code start
         load: (args: ILoadEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            let theme: string = location.hash.split('/')[1];
+            theme = theme ? theme : 'Material';
+            args.gauge.theme = <LinearGaugeTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code start
         title: 'Temperature Measure',
         container: {
             width: 13,
@@ -59,7 +62,7 @@ this.default = (): void => {
         }]
     });
     gauge.appendTo('#boxContainer');
-
+    // code for property panel
     let containerMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',

@@ -62,16 +62,28 @@
     </div>
 </div>
 
+<!-- custom code start -->
+<style> 
+    #EventLog b{
+        color: #388e3c;
+    }
+    hr {
+        margin: 1px 10px 1px 0px;
+        border-top: 1px solid #eee;
+    }
+    .sb-header {
+        z-index: 100;
+    }
 
-<style>
-        #EventLog b{
-            color: #388e3c;
-        }
-        hr {
-            margin: 1px 10px 1px 0px;
-            border-top: 1px solid #eee;
-        }
-        </style>
+    .sb-content.e-view.hide-header {
+        top: 0 !important;
+    }
+
+    .sb-header.e-view.hide-header {
+        display: none;
+    }
+</style>
+<!-- custom code end -->
         
 
 <div id="action-description">
@@ -106,9 +118,5 @@
     .property-section .left-side {
         padding: 5px;
         width: 25%
-    }
-
-    .sb-header {
-        z-index: 100;
     }
 </style>

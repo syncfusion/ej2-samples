@@ -335,9 +335,11 @@ export interface CustomPort extends PointPortModel {
             let appearance: HTMLElement = document.getElementById('propertypanel');
             let selectedElement: HTMLCollection = document.getElementsByClassName('e-remove-selection');
             if (args.newValue) {
+                 // custom code start
                 if (!appearance.classList.contains('e-remove-selection')) {
                     appearance.classList.add('e-remove-selection');
                 }
+                // custom code end
                 if (args.newValue[0] instanceof Node && selectedElement.length) {
                     selectedElement[0].classList.remove('e-remove-selection');
                     let port: PointPortModel = getPort()[0];

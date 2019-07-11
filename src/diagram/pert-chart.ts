@@ -81,7 +81,7 @@ function addRows(column: StackPanel, node: NodeModel): void {
         width: '100%', height: '499px', snapSettings: { constraints: SnapConstraints.None },
         dataSourceSettings: {
             id: 'id', parentId: 'Category',
-            dataManager: new DataManager((Data as any).pertChartData),
+            dataSource: new DataManager((Data as any).pertChartData),
             //binds the external data with node
             doBinding: (nodeModel: NodeModel) => {
                 /* tslint:disable:no-string-literal */

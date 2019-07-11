@@ -122,10 +122,12 @@ function constraintsChange(args: CheckBoxChangeEventArgs): void {
 
 function changeConnectorPattern(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
+    // custom code start
     let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
     if (selectedElement.length) {
         selectedElement[0].classList.remove('e-selected-style');
     }
+    // custom code end
     if (target.className === 'image-pattern-style') {
         switch (target.id) {
             case 'straightConnector':
@@ -198,7 +200,9 @@ function applyConnectorStyle(
         };
         diagram.dataBind();
     }
+    // custom code start
     target.classList.add('e-selected-style');
+    // custom code end
 }
 
 // tslint:disable-next-line:max-func-body-length

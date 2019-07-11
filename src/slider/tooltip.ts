@@ -72,7 +72,7 @@ import { Slider, TooltipPlacement, TooltipShowOn } from '@syncfusion/ej2-inputs'
     function onScroll(): void {
         let slider: Slider[] = [defaultObj, rangeObj];
         slider.forEach((slider: any) => {
-            slider.refreshTooltip();
+            slider.refreshTooltip(slider.tooltipTarget);
         });
     }
 

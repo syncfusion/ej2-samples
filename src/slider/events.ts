@@ -59,7 +59,7 @@ import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
         let slider: Slider[] = [minRangeObj];
         slider.forEach((slider: any) => {
             // Refreshing each slider tooltip object position
-            slider.refreshTooltip();
+            slider.refreshTooltip(slider.tooltipTarget);
         });
     }
 };

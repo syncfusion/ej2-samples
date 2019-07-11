@@ -1,10 +1,14 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Seat Selection sample
  */
 import { Maps, ISelectionEventArgs, Selection, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let seatInfo: HTMLDivElement = <HTMLDivElement>document.getElementById('selectedseats');
     Maps.Inject(Selection);
     interface SeatInfo {
@@ -12,11 +16,13 @@ import { Maps, ISelectionEventArgs, Selection, ILoadEventArgs, MapsTheme, MapAja
         fill?: string;
     }
     let maps: Maps = new Maps({
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
+        // custom code end
         projectionType: 'Equirectangular',
         itemSelection: (args: ISelectionEventArgs) => {
             if ((args.shapeData as SeatInfo).fill === 'Orange') {

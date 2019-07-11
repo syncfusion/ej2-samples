@@ -33,6 +33,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     let enableTooltipCheckObj: CheckBox = new CheckBox({
         label: 'Enable Tooltip', checked: true,
         change: (args: ChangeEventArgs) => {
@@ -58,4 +59,5 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         }
     });
     enableTooltipTemplateCheckObj.appendTo('#enableTooltipTemplate');
+    // custom code end
 };

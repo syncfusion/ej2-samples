@@ -3,6 +3,7 @@ import { Schedule, Day, Week, Month, EventRenderedArgs, Resize, DragAndDrop } fr
 import * as dataSource from './datasource.json';
 import { applyCategoryColor } from './helper';
 import { extend } from '@syncfusion/ej2-base';
+import { ChangeEventArgs, CheckBox } from '@syncfusion/ej2-buttons';
 
 Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
 
@@ -22,4 +23,10 @@ Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
     scheduleObj.appendTo('#Schedule');
+    // custom code start
+    function onChange(args: ChangeEventArgs): void {
+        scheduleObj.eventSettings.editFollowingEvents = args.checked;
+    }
+    new CheckBox({ label: 'Enable Following Events', checked: false, change: onChange }, '#editFollowingEvents');
+    // custom code end
 };

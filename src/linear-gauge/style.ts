@@ -1,10 +1,13 @@
-import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
-LinearGauge.Inject(Annotations);
-
 /**
  * Linear Gauge Style Sample
  */
-this.default = (): void => {
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
+import { LinearGauge, Annotations, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
+LinearGauge.Inject(Annotations);
+(window as any).default = (): void => {
+    loadCultureFiles();
     let gauge1: LinearGauge = new LinearGauge(firstGauge());
     gauge1.appendTo('#container1');
     let gauge2: LinearGauge = new LinearGauge(secondGauge());
@@ -14,14 +17,16 @@ this.default = (): void => {
     let gauge4: LinearGauge = new LinearGauge(fourthGauge());
     gauge4.appendTo('#container4');
 };
-
+// code for first-Gauge
 export function firstGauge(): LinearGauge {
     let gauge1: LinearGauge = new LinearGauge({
-        load: (args: ILoadEventArgs) => {
+        // custom code start
+        load: (arguments1: ILoadEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            arguments1.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         orientation: 'Horizontal',
         axes: [{
             line: {
@@ -44,14 +49,16 @@ export function firstGauge(): LinearGauge {
     });
     return gauge1;
 }
-
+// code for second-Gauge
 export function secondGauge(): LinearGauge {
     let gauge2: LinearGauge = new LinearGauge({
-        load: (args: ILoadEventArgs) => {
+        // custom code start
+        load: (arguments2: ILoadEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            arguments2.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         orientation: 'Horizontal',
         container: {
             width: 30,
@@ -92,14 +99,16 @@ export function secondGauge(): LinearGauge {
     });
     return gauge2;
 }
-
+// code for third-Gauge
 export function thirdGauge(): LinearGauge {
     let gauge3: LinearGauge = new LinearGauge({
-        load: (args: ILoadEventArgs) => {
+        // custom code start
+        load: (arguments3: ILoadEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            arguments3.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         orientation: 'Horizontal',
         axes: [{
             line: {
@@ -131,14 +140,16 @@ export function thirdGauge(): LinearGauge {
     });
     return gauge3;
 }
-
+// code for fourth-Gauge
 export function fourthGauge(): LinearGauge {
     let gauge4: LinearGauge = new LinearGauge({
-        load: (args: ILoadEventArgs) => {
+        // custom code start
+        load: (arguments4: ILoadEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            arguments4.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         orientation: 'Horizontal',
         container: {
             width: 30,

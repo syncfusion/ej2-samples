@@ -164,7 +164,7 @@ function selectNode(node: NodeModel[]): void {
         layout: { type: 'HierarchicalTree' },
         //Configures data source
         dataSourceSettings: {
-            id: 'id', parentId: 'ancestor', dataManager: new DataManager((Data as any).keyBoardData),
+            id: 'id', parentId: 'ancestor', dataSource: new DataManager((Data as any).keyBoardData),
             //binds the external data with node
             doBinding: (nodeModel: NodeModel, data: DataInfo) => {
                 nodeModel.annotations = [

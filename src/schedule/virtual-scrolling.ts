@@ -34,6 +34,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     function generateStaticEvents(start: Date, resCount: number, overlapCount: number): Object[] {
         let data: Object[] = [];
         let id: number = 1;
@@ -84,5 +85,5 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         }
         return data;
     }
-
+    // custom code end
 };

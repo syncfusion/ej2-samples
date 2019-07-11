@@ -441,7 +441,7 @@ L10n.load({
 
     let container: DocumentEditorContainer = new DocumentEditorContainer({ enableToolbar: true, enableRtl: true, locale: 'ar-AE' });
     DocumentEditorContainer.Inject(Toolbar);
-    container.serviceUrl = hostUrl + 'api/documenteditor/Import';
+    container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
 
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true, true);

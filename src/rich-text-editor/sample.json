@@ -1,8 +1,8 @@
 {
     "name": "Rich Text Editor",
+    "type": "update",
     "directory": "rich-text-editor",
     "category": "Editors",
-    "type": "update",
     "ftName": "wysiwyg-rich-text-editor",
     "samples": [{
             "url": "tools",
@@ -33,6 +33,14 @@
             "api": { "RichTextEditor": ["Inject", "inlineMode", "toolbarSettings", "format", "fontFamily", "appendTo", "dataBind"], "InlineMode": ["enable", "onSelection"], "ToolbarSettings": ["items"], "Format": ["width"], "FontFamily": ["width"] }
         },
         {
+            "url": "paste-cleanup",
+            "name": "Paste from MS Word",
+            "type": "update",
+            "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates on paste cleanup feature while pasting the content.",
+            "category": "Rich Text Editor",
+            "api": { "RichTextEditor": ["Inject", "pasteCleanupSettings", "appendTo"], "PasteCleanupSettings": [ "prompt", "plainText", "keepFormat", "deniedTags", "deniedAttrs", "allowedStyleProps"] }
+        },
+        {
             "url": "iframe",
             "name": "IFrame",
             "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates the default rendering of the rich text editor in iframe mode.",
@@ -56,14 +64,14 @@
         {
             "url": "form-validation",
             "name": "Form Validation",
-            "description": "This demo explains the HTML forms support of the Syncfusion JavaScript rich text editor control.",
+            "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates the HTML forms support on the rich text editor control.",
             "category": "Rich Text Editor",
             "api": { "RichTextEditor": ["Inject", "showCharCount", "maxLength", "placeholder", "appendTo"] }
         },
         {
             "url": "api",
             "name": "API",
-            "description": "This demo demonstrate the usage of API in Syncfusion JavaScript rich text editor control.",
+            "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates the usage of API in rich text editor control.",
             "category": "Rich Text Editor",
             "api": { "RichTextEditor": ["Inject", "showCharCount", "maxLength", "appendTo", "readonly", "enabled", "enableHtmlEncode", "value", "getSelection", "selectAll"] }
         },
@@ -89,10 +97,18 @@
             "api": { "RichTextEditor": ["Inject", "floatingToolbarOffset", "toolbarSettings", "actionBegin", "actionComplete", "dataBind", "appendTo"], "ToolbarSettings": ["items", "type", "enableFloating"] }
         },
         {
-            "url": "custom-toolbar",
-            "name": "Custom Tool",
+            "url": "insert-emoticons",
+            "name": "Insert  Emoticons",
+            "type": "new",
+            "description": "This demo for Syncfusion JavaScript rich text editor control shows the users to add their emoticons to the toolbar along with the built-in commands.",
+            "category": "Custom Tool",
+            "api": { "RichTextEditor": ["Inject", "toolbarSettings", "value", "created", "appendTo"], "ToolbarSettings": ["items"] }
+        },
+        {
+            "url": "insert-special-characters",
+            "name": "Insert Special Characters",
             "description": "This demo for Syncfusion JavaScript rich text editor control shows the users to add their commands to the toolbar along with the built-in commands.",
-            "category": "Toolbar",
+            "category": "Custom Tool",
             "api": { "RichTextEditor": ["Inject", "toolbarSettings", "value", "created", "appendTo"], "ToolbarSettings": ["items"] }
         },
         {

@@ -1,19 +1,25 @@
+// custom code start
 import { loadCultureFiles } from '../common/culture-loader';
+//tslint:disable:max-func-body-length
+// custom code end
 /**
  * Default sample
  */
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 import { EmitType } from '@syncfusion/ej2-base';
-//tslint:disable:max-func-body-length
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let circulargauge: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         moveToCenter: false,
         axes: [{
             startAngle: 270, endAngle: 90,
@@ -39,6 +45,7 @@ import { EmitType } from '@syncfusion/ej2-base';
         }]
     });
     circulargauge.appendTo('#gauge');
+    // code for property panel
     let opacity: EmitType<CheckBoxChangeEvents>;
     let highlightCheckBox: CheckBox = new CheckBox(
     {

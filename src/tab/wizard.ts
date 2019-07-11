@@ -50,7 +50,7 @@ let cities: any = [
 function renderComponents(): void {
     /* Initialize Tab with disabled headers for the wizard */
     tabObj = new Tab({ heightAdjustMode: 'None', height: 390, showCloseButton: false,
-        selecting: tabSelected,
+        selecting: tabSelecting,
         items: [
             { header: { 'text': 'New Booking' }, content: '#booking' },
             { header: { 'text': 'Train List' }, content: '#selectTrain', disabled: true },
@@ -146,7 +146,7 @@ function renderComponents(): void {
     document.getElementById('goBackToBook').onclick = (e: any) => { tabNavigations(e); };
     document.getElementById('goBackDetails').onclick = (e: any) => { tabNavigations(e); };
 }
-function tabSelected(e: SelectEventArgs): void {
+function tabSelecting(e: SelectEventArgs): void {
     if (e.isSwiped) {
         e.cancel = true;
     }
@@ -173,10 +173,9 @@ function tabNavigations(args: any): void {
                 if (!isNOU(startPoint.value) && startPoint.value === endPoint.value) {
                     document.getElementById('err1').innerText = '* Arrival point can\'t be same as Departure';
                 } else {
-                    tabObj.enableTab(0, false);
                     tabObj.enableTab(1, true);
+                    tabObj.enableTab(0, false);
                     filterTrains(args);
-                    tabObj.select(1);
                     document.getElementById('err1').innerText = '';
                     document.getElementById('err2').innerText = '';
                 }
@@ -190,7 +189,6 @@ function tabNavigations(args: any): void {
                 document.getElementById('err2').innerText = '* Select your convenient train';
             } else {
                 tabObj.enableTab(2, true);
-                tabObj.select(2);
                 tabObj.enableTab(1, false);
                 document.getElementById('err2').innerText = '';
             }
@@ -204,7 +202,6 @@ function tabNavigations(args: any): void {
                 document.getElementById('err3').innerText = '* Please enter passenger details';
             } else {
                 tabObj.enableTab(3, true);
-                tabObj.select(3);
                 tabObj.enableTab(2, false);
                 document.getElementById('err3').innerText = '';
                 finalizeDetails(args);

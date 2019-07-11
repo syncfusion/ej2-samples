@@ -139,27 +139,12 @@
         visibility: hidden;
     }
 
-    .inplace-control-section .control_wrapper {
-        width: 100%;
-    }
-
-    .inplace-control-section .control-wrapper {
-        width: 100%;
-        max-width: 400px;
-        margin: auto;
-    }
-
     .inplace-control-section .control_wrapper .control-center {
         text-align: center;
     }
 
     .inplace-control-section .e-inplaceeditor {
         height: auto;
-    }
-
-    .inplace-control-section .control_wrapper table td {
-        width: 200px;
-        height: 100px;
     }
 
     .inplace-control-section.input-layout .control_wrapper table td .control-label {
@@ -175,11 +160,32 @@
             width: 100%;
         }
     }
+</style>
+
+<!-- custom code start -->
+<style>
+    .inplace-control-section .control_wrapper {
+        width: 100%;
+    }
+
+    .inplace-control-section .control-wrapper {
+        width: 100%;
+        max-width: 400px;
+        margin: auto;
+    }
+    .inplace-control-section .control_wrapper table td {
+        width: 200px;
+        height: 100px;
+    }
 
     @media (max-width: 768px) {
-        .inplace-control-section .control_wrapper table td {
-            width: 50%;
-            padding-right: 30px;
+        .inplace-control-section .control_wrapper table tr td:nth-child(1) {
+            width: 130px;
+        }
+
+        .inplace-control-section .control_wrapper table tr td:nth-child(2) {
+            width: 200px;
         }
     }
 </style>
+<!-- custom code end -->

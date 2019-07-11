@@ -1,12 +1,19 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps default sample
  */
 import { Maps, Legend, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 Maps.Inject(Legend, Marker, MapsTooltip);
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
 //tslint:disable:max-func-body-length
+// custom code end
+/**
+ * Code for Maps
+ */
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
+    // custom code end
     let maps: Maps = new Maps({
         titleSettings: {
             text: 'YouTube office locations',
@@ -118,11 +125,13 @@ Maps.Inject(Legend, Marker, MapsTooltip);
                 ]
             },
         ],
+        // custom code start
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         }
+        // custom code end
     });
     maps.appendTo('#container');
 };

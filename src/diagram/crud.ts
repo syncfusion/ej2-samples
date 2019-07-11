@@ -61,9 +61,9 @@ let items: ItemModel[] = [
     }
 ];
 
-
+// custom code start
 function dlgButtonClick(evt: Event): void {
-    let dialogHeader: string = dialog.header;
+    let dialogHeader: string | HTMLElement = dialog.header;
     let description: string = (document.getElementById('Description') as HTMLInputElement).value;
     let color: string = (document.getElementById('Color') as HTMLInputElement).value;
     let selectedItem: NodeModel | ConnectorModel;
@@ -139,7 +139,7 @@ function sourceDropdownChange(args: ChangeEventArgs): void {
 function targetDropdownChange(args: ChangeEventArgs): void {
     targetID = args.value as string;
 }
-
+// custom code end
 //Disable or Enable the toolbar items based on element selection.
 function selectionChange(args: ISelectionChangeEventArgs): void {
     if (args.state === 'Changing') {
@@ -156,14 +156,14 @@ function selectionChange(args: ISelectionChangeEventArgs): void {
         }
     }
 }
-
+// custom code start
 //Enable or disable the toolbar items.
 function enableToolbarItems(isEnableItem: boolean): void {
     toolbarObj.enableItems(document.getElementById(items[0].id).parentElement, isEnableItem);
     toolbarObj.enableItems(document.getElementById(items[2].id).parentElement, isEnableItem);
     toolbarObj.enableItems(document.getElementById(items[4].id).parentElement, isEnableItem);
 }
-
+// custom code end
 function connectionChange(args: IEndChangeEventArgs): void {
     if (args.state === 'Completed') {
         if (!args.connector.targetID || !args.connector.sourceID) {
@@ -182,7 +182,7 @@ function setNodeTemplate(obj: NodeModel): void {
         obj.constraints = NodeConstraints.Default & ~NodeConstraints.Delete;
     }
 }
-
+// custom code start
 //Opens a dialog with textbox and dropdown control based on toolbar clicked items.
 function toolbarClick(args: ClickEventArgs): void {
     let selectedItem: NodeModel | ConnectorModel;
@@ -221,7 +221,7 @@ function toolbarClick(args: ClickEventArgs): void {
 //Show or Hide the Textbox and Dropdown in dialog control
 function hideClassElement(className: string, display: string): void {
     let i: number;
-    let showDropdown: any = document.querySelectorAll(className);
+    let showDropdown: NodeListOf<HTMLElement> = document.querySelectorAll(className);
     for (i = 0; i < showDropdown.length; i++) {
         showDropdown[i].style.display = display;
     }
@@ -243,7 +243,7 @@ function openDialog(title: string, description: string, color: string, isNode: b
     //Open a dialog
     dialog.show();
 }
-
+// custom code end
 //Returns an node text collection in diagram.
 function getDataSource(): { [key: string]: Object }[] {
     let i: number;

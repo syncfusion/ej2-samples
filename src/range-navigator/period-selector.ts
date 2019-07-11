@@ -20,7 +20,6 @@ let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + sel
 let removeSecondaryElement: Function;
 let datasrc: object[];
 let data1: object[] = [];
-let value: object;
 this.renderChart = (data1: Object[]): void => {
     let chart: Chart = new Chart({
         series: [{
@@ -61,6 +60,7 @@ this.renderChart = (data1: Object[]): void => {
                 '${point.x}<br/>High : <b>${point.high}</b><br/>Low : <b>${point.low}</b><br/>' +
                 'Open : <b>${point.open}</b><br/>Close : <b>${point.close}</b>' :
                 '${point.x}<br/>Close : <b>${point.close}</b>';
+            document.getElementById('switch').style.display = 'block';
         }, axisRangeCalculated: (args: IAxisRangeCalculatedEventArgs) => { chart.setAnnotationValue(0, '<div></div>'); },
     });
     chart.appendTo('#chart');
@@ -116,8 +116,6 @@ this.renderChart = (data1: Object[]): void => {
 };
 (window as any).default = (): void => {
     loadCultureFiles();
-    let datasrc: object[];
-    let data1: object[] = [];
     let value: object;
     let j: number = 2100;
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/period-data.json', 'GET', true);

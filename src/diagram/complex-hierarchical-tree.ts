@@ -53,7 +53,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         //Configures data source
         dataSourceSettings: {
             id: 'Name', parentId: 'ReportingPerson',
-            dataManager: new DataManager((Data as any).multiParentData),
+            dataSource: new DataManager((Data as any).multiParentData),
             //binds the external data with node
             doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
                 /* tslint:disable:no-string-literal */
@@ -68,17 +68,21 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     //Click Event for Appearance of the layout.
     document.getElementById('appearance').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
+        // custom code start
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
         if (selectedElement.length) {
             selectedElement[0].classList.remove('e-selected-style');
         }
+        // custom code end
         if (target.className === 'image-pattern-style') {
             let id: string = target.id;
             let orientation1: string = id.substring(0, 1).toUpperCase() + id.substring(1, id.length);
             diagram.layout.orientation = orientation1 as LayoutOrientation;
             diagram.dataBind();
             diagram.doLayout();
+            // custom code start
             target.classList.add('e-selected-style');
+            // custom code end
         }
     };
     //used NumericTextBox for left margin of the layout.

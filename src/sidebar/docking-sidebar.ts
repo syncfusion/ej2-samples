@@ -26,7 +26,8 @@ enableRipple(false);
     rightbutton.appendTo('#right');
 
     //open new tab
-    document.getElementById('newTab').setAttribute('href', location.href.split('#')[0] + 'sidebar/docking-sidebar/index.html');
+    let URL: any = location.href.replace(location.search, '');
+    document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/docking-sidebar/index.html');
 
     function positionChange(args: any): void {
         dockBar.position = (args.event.target.id === 'left') ? 'Left' : 'Right';

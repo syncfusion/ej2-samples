@@ -1,21 +1,25 @@
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+// custom code end
 /**
  * Default Spark with Grid sample
  */
-
 import { Grid, Selection } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { getInstance } from '@syncfusion/ej2-base';
-import { products } from './datasource';
+import { products } from './data-source';
 import { Sparkline, SparklineModel } from '@syncfusion/ej2-charts';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 Grid.Inject(Selection);
 import { ISparklineLoadEventArgs, SparklineTheme } from '@syncfusion/ej2-charts/index';
 import { EmitType } from '@syncfusion/ej2-base';
+// custom code start
 export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
     args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
 };
+// custom code end
 export let lineData: Object[] = [
     [0, 6, 4, 1, 3, 2, 5],
     [5, 4, 6, 3, 1, 2, 0],
@@ -39,7 +43,10 @@ export let lineData: Object[] = [
     [3, 5, 6, 4, 0, 1, 2],
     [1, 3, 4, 2, 5, 0, 6]
 ];
-this.default = (): void => {
+(window as any).default = (): void => {
+    // custom code start
+    loadCultureFiles();
+    // custom code end
     let grid: Grid = new Grid({
         dataSource: new DataManager(products as JSON[]).executeLocal(new Query()),
         allowSelection: false,
@@ -74,8 +81,11 @@ this.default = (): void => {
             second.dataSource = lineData[i + 5] as number[];
             second.appendTo('#sparkline2011' + i);
         }
-        // tslint:disable-next-line:align
+        // custom code start
+        // tslint:disable:align
+        // custom code start
     }, 500);
+    // code for property panel
     let sliderChange1: EmitType<SliderChangeEventArgs>;
     let sliderChange2: EmitType<SliderChangeEventArgs>;
     let slider1: Slider = new Slider(

@@ -47,7 +47,7 @@ function onItemClick(args: ClickEventArgs): void {
         dataSourceSettings: {
             //sets the fields to bind
             id: 'Id', parentId: 'ReportingPerson',
-            dataManager: new DataManager((Data as any).radialTree),
+            dataSource: new DataManager((Data as any).radialTree),
             //binds the data with the nodes
             doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
                 nodeModel.annotations = [{

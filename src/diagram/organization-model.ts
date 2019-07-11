@@ -60,7 +60,7 @@ export interface EmployeeInfo {
         //configures data source settings
         dataSourceSettings: {
             id: 'Id', parentId: 'Manager',
-            dataManager: new DataManager((Data as any).localBindData as JSON[]),
+            dataSource: new DataManager((Data as any).localBindData as JSON[]),
             doBinding: (nodeModel: NodeModel, data: object) => {
                 nodeModel.shape = {
                     type: 'Text', content: (data as EmployeeInfo).Role,
@@ -114,12 +114,14 @@ export interface EmployeeInfo {
     document.getElementById('orientation').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-orientation-style');
+        // custom code start
         if (selectedElement.length) {
             selectedElement[0].classList.remove('e-selected-orientation-style');
         }
         if (!target.classList.contains('e-selected-orientation-style')) {
             target.classList.add('e-selected-orientation-style');
         }
+        // custom code end
         if (target.className === 'image-pattern-style e-selected-orientation-style') {
             let id: string = target.id;
             let orientation1: string = id.substring(0, 1).toUpperCase() + id.substring(1, id.length);
@@ -131,6 +133,7 @@ export interface EmployeeInfo {
     //Click Event for pattern of the PropertyPanel.
     document.getElementById('pattern').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
+        // custom code start
         let selectedpatternElement: HTMLCollection = document.getElementsByClassName('e-selected-pattern-style');
         if (selectedpatternElement.length) {
             selectedpatternElement[0].classList.remove('e-selected-pattern-style');
@@ -138,6 +141,7 @@ export interface EmployeeInfo {
         if (!target.classList.contains('e-selected-pattern-style')) {
             target.classList.add('e-selected-pattern-style');
         }
+        // custom code end
         if (target.className === 'image-pattern-style e-selected-pattern-style') {
             let subTreeOrientation: SubTreeOrientation;
             let subTreeAlignment: SubTreeAlignments;

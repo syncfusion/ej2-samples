@@ -22,7 +22,7 @@ import { Browser, Touch, SwipeEventArgs, closest, isNullOrUndefined, Animation, 
         let toastTarget: HTMLElement = (<HTMLElement>e.toastObj.element.parentElement);
         let height: number = parseFloat((window.getComputedStyle(e.element)).marginBottom);
         toastTarget.style.height = (height + toastTarget.offsetHeight + e.element.offsetHeight) + 'px';
-        let expandIcon: any = e.element.querySelector('.toast-date .expand'); }
+        let expandIcon: HTMLElement = e.element.querySelector('.toast-date .expand'); }
     document.getElementById('collapseAll').onclick = (e: Event) => {
         let toastTarget: HTMLElement = document.getElementById('toast_action_center_target');
         let actionNotify: HTMLElement = document.getElementById('action_notify');
@@ -65,8 +65,8 @@ import { Browser, Touch, SwipeEventArgs, closest, isNullOrUndefined, Animation, 
         toastShow(); downSwipe = true;
     }
     function toastShow(): void {
-        let notificationPanel: any = document.querySelector('.notification_panel');
-        let deviceNotification: any = document.querySelector('.device_notification');
+        let notificationPanel: HTMLElement = document.querySelector('.notification_panel');
+        let deviceNotification: HTMLElement = document.querySelector('.device_notification');
         let toastTarget: HTMLElement = document.getElementById('toast_action_center_target');
         let actionNotify: HTMLElement = document.getElementById('action_notify');
         actionNotify.style.display = 'block';

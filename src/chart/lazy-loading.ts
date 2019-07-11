@@ -52,12 +52,14 @@ Chart.Inject(DateTime, ScrollBar, Zoom, LineSeries, Tooltip);
             chart.dataBind();
         },
         width: '100%',
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         }
+        // custom code end
     });
     chart.appendTo('#container');
     function GetDateTimeData(start: Date, end: Date): {x: Date, y: number}[] {

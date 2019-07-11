@@ -32,6 +32,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
     scheduleObj.appendTo('#Schedule');
+    // custom code start
     let start: TimePicker = new TimePicker({
         width: 100,
         value: new Date(2000, 0, 1, 8),
@@ -52,4 +53,5 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize
         scheduleObj.workHours.start = start.value;
         scheduleObj.workHours.end = end.value;
     };
+    // custom code end
 };

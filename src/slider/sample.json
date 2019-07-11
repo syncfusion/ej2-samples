@@ -213,7 +213,7 @@
             "url": "selection-bar-customization",
             "name": "Bar",
             "category": "Customization",
-            "description": "Demo of Essential JS 2 slider control slider bar customization with colors and height.",
+            "description": "This example demonstrates how to highly customize Syncfusion React slider bar with colors and height.",
             "api": {
                 "Slider": [
                     "value",
@@ -230,7 +230,7 @@
             "url": "ticks-customization",
             "name": "Ticks",
             "category": "Customization",
-            "description": "Demo of Essential JS 2 slider control's highly customizable slider values using ticks and a legend.",
+            "description": "Essential JS 2 slider control demo showing the highly customizable slider values using ticks and a legend.",
             "api": {
                 "Slider": [
                     "value",
@@ -283,7 +283,7 @@
             "url": "azure-pricing",
             "name": "Cloud Pricing",
             "category": "Use Case",
-            "description": "Essential JS 2 slider control demo of real-world scenario using sample Azure cloud pricing.",
+            "description": "This example demonstrates the usage of Syncfusion React slider control in real world use case sample azure cloud pricing.",
             "api": {
                 "Slider": [
                     "value",

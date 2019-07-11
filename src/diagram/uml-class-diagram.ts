@@ -46,7 +46,7 @@ function createNode(id: string, offsetX: number, offsetY: number, className: str
     node.offsetY = offsetY;
     node.shape = {
         type: 'UmlClassifier',
-        class: {
+        classShape: {
             name: className,
         },
         classifier: 'Class'
@@ -73,7 +73,7 @@ function createMethods(name: string, type: string): object {
             id: 'Patient',
             shape: {
                 type: 'UmlClassifier',
-                class: {
+                classShape: {
                     name: 'Patient',
                     attributes: [
                         createProperty('accepted', 'Date'),
@@ -94,7 +94,7 @@ function createMethods(name: string, type: string): object {
             id: 'Doctor',
             shape: {
                 type: 'UmlClassifier',
-                class: {
+                classShape: {
                     name: 'Doctor',
                     attributes: [
                         createProperty('specialist', 'String[*]'),
@@ -110,7 +110,7 @@ function createMethods(name: string, type: string): object {
             id: 'Person',
             shape: {
                 type: 'UmlClassifier',
-                class: {
+                classShape: {
                     name: 'Person',
                     attributes: [
                         createProperty('name', 'Name'),
@@ -127,7 +127,7 @@ function createMethods(name: string, type: string): object {
             id: 'Hospital',
             shape: {
                 type: 'UmlClassifier',
-                class: {
+                classShape: {
                     name: 'Hospital',
                     attributes: [
                         createProperty('name', 'Name'),
@@ -147,7 +147,7 @@ function createMethods(name: string, type: string): object {
             id: 'Department',
             shape: {
                 type: 'UmlClassifier',
-                class: {
+                classShape: {
                     name: 'Department',
                     methods: [
                         createMethods('getStaffCount', 'Int'),
@@ -162,7 +162,7 @@ function createMethods(name: string, type: string): object {
             id: 'Staff',
             shape: {
                 type: 'UmlClassifier',
-                class: {
+                classShape: {
                     name: 'Staff',
                     attributes: [
                         createProperty('joined', 'Date'),

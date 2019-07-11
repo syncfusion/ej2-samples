@@ -11,6 +11,7 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
+    // custom code start
     // Used in templates to get time string
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).getTimeString = (value: Date) => {
@@ -19,6 +20,7 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
     interface TemplateFunction extends Window {
         getTimeString?: Function;
     }
+    // custom code end
     let viewsCollection: ViewsModel[] = [
         { option: 'Week', eventTemplate: '#event-template' },
         { option: 'TimelineWeek', eventTemplate: '#timeline-event-template' }

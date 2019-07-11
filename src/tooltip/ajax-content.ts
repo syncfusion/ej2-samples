@@ -36,7 +36,7 @@ import { ListView } from '@syncfusion/ej2-lists';
 
         //Set tooltip content
         content: 'Loading...',
-
+        cssClass: 'e-ajax-content',
         //Set tooltip target
         target: '#countrylist [title]',
 

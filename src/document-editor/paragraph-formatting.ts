@@ -14,7 +14,7 @@ import * as data from './data-paragraph-formatting.json';
 
     let container: DocumentEditorContainer = new DocumentEditorContainer({ enableToolbar: true });
     DocumentEditorContainer.Inject(Toolbar);
-    container.serviceUrl = hostUrl + 'api/documenteditor/Import';
+    container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
 
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);

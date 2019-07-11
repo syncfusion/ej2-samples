@@ -34,15 +34,13 @@ let powerData: object[] = [
         },
         //Initializing Chart Series
         series: [{
-            dataSource: series1, xName: 'x', yName: 'y',
-            name: 'Rupees', type: 'Spline',
-            marker: { visible: true },
+            dataSource: series1, xName: 'x', yName: 'y', name: 'Rupees', type: 'Spline', marker: { visible: true },
             //Initializing TrendLines
             trendlines: [{ type: 'Linear', width: 3, name: 'Linear',  fill:  '#C64A75' }]
         }],
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },  //Initializing Chart Title
-        title: 'Historical Indian Rupee Rate (INR USD)',
+        title: 'Historical Indian Rupee Rate (INR/USD)',
         legendSettings: { visible: false }, chartArea: { border: { width: 0 } },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

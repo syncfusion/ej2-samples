@@ -2,29 +2,31 @@
  * Default sample
  */
 import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
-import { annotationRender } from '@syncfusion/ej2-circulargauge/src/circular-gauge/model/constants';
 CircularGauge.Inject(Annotations);
-
-
-(window as any).default = (): void => {   
+// custom code start
+//tslint:disable:max-func-body-length
+// custom code end
+(window as any).default = (): void => {
     let circulargauge1: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
+        // custom code end
         width: '400px',
         height: '400px',
         axes: [{
             annotations: [{
                 angle: 8, radius: '80%', zIndex: '1',
-                content: '<div id="annotation1"><img style="width:25px;height:25px;" src="src/circular-gauge/images/image1.svg" /></div>'
-            },{
+                content: '<div id="annotation1"><img style="width:22px;height:22px;" src="src/circular-gauge/images/image1.svg" /></div>'
+            }, {
                 angle: 11, radius: '58%', zIndex: '1',
-                content: '<div id="annotation2"><img style="width:25px;height:25px;" src="src/circular-gauge/images/image2.svg" /></div>'
-            },{
+                content: '<div id="annotation2"><img style="width:20px;height:20px;" src="src/circular-gauge/images/image2.svg" /></div>'
+            }, {
                 angle: 16, radius: '36%', zIndex: '1',
-                content: '<div id="annotation3"><img style="width:25px;height:25px;" src="src/circular-gauge/images/image3.svg" /></div>'
+                content: '<div id="annotation3"><img style="width:22px;height:22px;" src="src/circular-gauge/images/image3.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },
@@ -57,7 +59,7 @@ CircularGauge.Inject(Annotations);
                 type: 'RangeBar',
                 radius: '90%',
                 color: '#E2011A',
-                animation: { enable: false },
+                animation: { enable: true },
                 pointerWidth: 40
             },
             {
@@ -66,7 +68,7 @@ CircularGauge.Inject(Annotations);
                 type: 'RangeBar',
                 radius: '68%',
                 color: '#3FE000',
-                animation: { enable: false },
+                animation: { enable: true },
                 pointerWidth: 40
             },
             {
@@ -75,28 +77,31 @@ CircularGauge.Inject(Annotations);
                 type: 'RangeBar',
                 radius: '46%',
                 color: '#00C9E6',
-                animation: { enable: false },
+                animation: { enable: true },
                 pointerWidth: 40
             }]
         }]
     });
     circulargauge1.appendTo('#gauge1');
 
-    let circulargauge2: CircularGauge = new CircularGauge({        
+    let circulargauge2: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
             if (selectedTheme === 'highcontrast') {
-                args.gauge.axes[0].annotations[0].content = '<div id="annotation5"><img style="width:20px;height:20px;" src="src/circular-gauge/images/image4.svg" /></div>';
+                args.gauge.axes[0].annotations[0].content =
+                    '<div id="annotation4"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image4.svg" /></div>';
             }
         },
+        // custom code end
         height: '65px',
         width: '65px',
         axes: [{
             annotations: [{
                 angle: 0, radius: '0%', zIndex: '1',
-                content: '<div id="annotation4"><img style="width:20px;height:20px;" src="src/circular-gauge/images/image1.svg" /></div>'
+                content: '<div id="annotation4"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image1.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },
@@ -118,28 +123,31 @@ CircularGauge.Inject(Annotations);
                 type: 'RangeBar',
                 radius: '100%',
                 color: '#E2011A',
-                animation: { enable: false },
+                animation: { enable: true },
                 pointerWidth: 8
             }]
         }]
     });
     circulargauge2.appendTo('#gauge2');
 
-    let circulargauge3: CircularGauge = new CircularGauge({        
+    let circulargauge3: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
             if (selectedTheme === 'highcontrast') {
-                args.gauge.axes[0].annotations[0].content = '<div id="annotation5"><img style="width:20px;height:20px;" src="src/circular-gauge/images/image5.svg" /></div>';
+                args.gauge.axes[0].annotations[0].content =
+                    '<div id="annotation5"><img style="width:15px;height:15px;" src="src/circular-gauge/images/image5.svg" /></div>';
             }
         },
+        // custom code end
         height: '65px',
         width: '65px',
         axes: [{
             annotations: [{
                 angle: 0, radius: '0%', zIndex: '1',
-                content: '<div id="annotation5"><img style="width:20px;height:20px;" src="src/circular-gauge/images/image2.svg" /></div>'
+                content: '<div id="annotation5"><img style="width:15px;height:15px;" src="src/circular-gauge/images/image2.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },
@@ -161,28 +169,31 @@ CircularGauge.Inject(Annotations);
                 type: 'RangeBar',
                 radius: '100%',
                 color: '#3FE000',
-                animation: { enable: false },
+                animation: { enable: true },
                 pointerWidth: 8
             }]
         }]
     });
     circulargauge3.appendTo('#gauge3');
 
-    let circulargauge4: CircularGauge = new CircularGauge({        
+    let circulargauge4: CircularGauge = new CircularGauge({
+        // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
             if (selectedTheme === 'highcontrast') {
-                args.gauge.axes[0].annotations[0].content = '<div id="annotation5"><img style="width:20px;height:20px;" src="src/circular-gauge/images/image6.svg" /></div>';
+                args.gauge.axes[0].annotations[0].content =
+                    '<div id="annotation6"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image6.svg" /></div>';
             }
         },
+        // custom code end
         height: '65px',
         width: '65px',
         axes: [{
             annotations: [{
                 angle: 0, radius: '0%', zIndex: '1',
-                content: '<div id="annotation6"><img style="width:20px;height:20px;" src="src/circular-gauge/images/image3.svg" /></div>'
+                content: '<div id="annotation6"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image3.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },
@@ -204,7 +215,7 @@ CircularGauge.Inject(Annotations);
                 type: 'RangeBar',
                 radius: '100%',
                 color: '#00C9E6',
-                animation: { enable: false },
+                animation: { enable: true },
                 pointerWidth: 8
             }]
         }]

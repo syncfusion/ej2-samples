@@ -49,6 +49,7 @@ Schedule.Inject(Month, Resize, DragAndDrop);
     });
     scheduleObj.appendTo('#Schedule');
 
+    // custom code start
     let headerBarCheckObj: CheckBox = new CheckBox({
         label: 'Show/Hide Header bar', checked: true,
         change: (args: ChangeEventArgs) => {
@@ -81,4 +82,5 @@ Schedule.Inject(Month, Resize, DragAndDrop);
         height: 80
     });
     profilePopup.hide();
+    // custom code end
 };

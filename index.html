@@ -25,6 +25,11 @@
     <link href="src/common/lib/content/codemirror.css" rel="stylesheet"></link>
     <script src="src/skipChunk.js" type="text/javascript"></script>
     <script src="src/common.min.js" type="text/javascript"></script>
+    <script>
+        if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+            document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/shim.min.js"><\/script>');
+        }
+    </script>
 </head>
 
 <body class='e-view' aria-busy="true">
@@ -160,6 +165,9 @@
                     </li>
                     <li role="listitem">
                         <a id='vue'>Vue </a>
+                    </li>
+                    <li role="listitem">
+                        <a id='blazor'>Blazor </a>
                     </li>
                 </ul>
             </div>

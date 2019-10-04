@@ -6,17 +6,20 @@
 
     </div>
     <div class="col-lg-3 property-section">
-        <table id="property" title="User Permission" style="width: 100%; margin:10px">
-            <tr>
-                <td class="left-side" style="width: 10%">User:</td>
-                <td style="width:90%;"> <input type="text" tabindex="1" id='ddlelement' /></td>
-            </tr>
-            <tr>
-                <td class="left-side" style="width: 10%;padding-top:20px;">Color:</td>
-                <td style="width:90%;"> <input id="color-picker" type="color"></td>
-            </tr>
-        </table>
+        <div class="content-wrapper">
+            <div class="heading-section">
+                <h5><b>User Permission</b></h5>
+            </div>
 
+            <div class="control-label"><b>Current User</b>
+            </div>
+            <div class="control-label">
+                <input type="text" tabindex="1" id='ddlelement' />
+            </div>
+            <div class="control-label"><b>User Color</b>
+            </div>
+            <input id="color-picker" type="color">
+        </div>
     </div>
 </div>
 
@@ -71,6 +74,19 @@
     [contenteditable="true"].single-line {
         white-space: nowrap;
         border-color: #e4e4e4 !important;
+    }
+
+    .property-panel-table div {
+        padding-left: 0px;
+    }
+
+    .heading-section {
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .control-label {
+        padding-bottom: 15px;
     }
 
     /** Document editor sample level font icons*/

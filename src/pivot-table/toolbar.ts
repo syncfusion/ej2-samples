@@ -5,6 +5,7 @@ import {
     ConditionalFormatting, IDataSet, RenameReportArgs, SaveReportArgs, FetchReportArgs, LoadReportArgs
 } from '@syncfusion/ej2-pivotview';
 import { enableRipple } from '@syncfusion/ej2-base';
+import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 
@@ -114,7 +115,15 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         allowPdfExport: true,
         showToolbar: true,
         allowCalculatedField: true,
-		displayOption:{view:'Both'},
+        displayOption: { view: 'Both' },
+        chartSettings: {
+            load: (args: ILoadedEventArgs) => {
+                let selectedTheme: string = location.hash.split('/')[1];
+                selectedTheme = selectedTheme ? selectedTheme : 'Material';
+                args.chart.theme = (selectedTheme.charAt(0).toUpperCase() +
+                    selectedTheme.slice(1)) as ChartTheme;
+            }
+        },
         showFieldList: true,
         gridSettings: { columnWidth: 140 }
     });

@@ -3,7 +3,7 @@
     "directory": "diagram",
     "category": "Data Visualization",
     "ftName": "diagram",
-    "type": "",
+    "type": "update",
     "samples": [
         {
             "url": "default-functionalities",
@@ -46,7 +46,6 @@
             "name": "Swimlane",
             "description": "This sample  Different types of connectors and decorators are used to customize the appearance, path, and direction of the data flow.",
             "category": "Getting Started"
-          
         },
         {
             "url": "custom-shapes",
@@ -76,6 +75,13 @@
             "url": "flow-execution",
             "name": "Flow Execution",
             "description": "This sample  Different types of connectors and decorators are used to customize the appearance, path, and direction of the data flow.",
+            "category": "Getting Started"
+        },
+        {
+            "url": "line-routing",
+            "name": "Line Routing",
+            "type": "new",
+            "description": "This sample visualizes the connectors that are automatically re-routing or moving away if any shape found on the connectors path.",
             "category": "Getting Started"
         },
         {

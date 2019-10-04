@@ -6,8 +6,6 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Default sample
  */
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
-import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
-import { EmitType } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -22,13 +20,14 @@ import { EmitType } from '@syncfusion/ej2-base';
         // custom code end
         moveToCenter: false,
         axes: [{
+            hideIntersectingLabel: true,
             startAngle: 270, endAngle: 90,
             lineStyle: { width: 0, color: '#0450C2' },
             labelStyle: {
                 position: 'Outside', autoAngle: true,
                 font: { fontWeight: 'normal' }
             }, majorTicks: {
-                position: 'Inside', width: 2, height: 12, interval: 20
+                position: 'Inside', width: 2, height: 12, interval: 4
             }, minorTicks: {
                 position: 'Inside', height: 5, width: 1, interval: 2
             },
@@ -46,16 +45,12 @@ import { EmitType } from '@syncfusion/ej2-base';
     });
     circulargauge.appendTo('#gauge');
     // code for property panel
-    let opacity: EmitType<CheckBoxChangeEvents>;
-    let highlightCheckBox: CheckBox = new CheckBox(
-    {
-        change: opacity, checked: false,
-    },
-    '#angle');
-    highlightCheckBox.change = opacity = (e: CheckBoxChangeEvents) => {
+    let highlightCheckBox: HTMLInputElement = <HTMLInputElement>document.getElementById('angle');
+    document.getElementById('angle').onchange = () => {
         let centerX: HTMLInputElement = document.getElementById('centerX') as HTMLInputElement;
         let centerY: HTMLInputElement = document.getElementById('centerY') as HTMLInputElement;
-        if (e.checked) {
+        let checkboxEnabled: boolean = (<HTMLInputElement>document.getElementById('angle')).checked;
+        if (checkboxEnabled) {
             circulargauge.centerX = null;
             circulargauge.centerY = null;
             circulargauge.moveToCenter = true;
@@ -108,5 +103,10 @@ import { EmitType } from '@syncfusion/ej2-base';
             circulargauge.centerY = '' + max + '%';
             circulargauge.refresh();
         }
+    };
+    document.getElementById('hidelabel').onchange = () => {
+        let labelIntersect: boolean = (<HTMLInputElement>document.getElementById('hidelabel')).checked;
+        circulargauge.axes[0].hideIntersectingLabel = labelIntersect;
+        circulargauge.refresh();
     };
 };

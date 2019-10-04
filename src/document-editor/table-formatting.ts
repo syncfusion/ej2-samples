@@ -21,7 +21,7 @@ import * as data from './data-table-formatting.json';
     container.documentEditor.documentName = 'Table Formatting';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

@@ -109,8 +109,8 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                     title: { text: pivotObj.dataSourceSettings.values.map(function (args) { return args.caption || args.name; }).join(' ~ ') },
                     labels: yLabels
                 },
-                dataSource: {
-                    data: jsonDataSource,
+                dataSource: jsonDataSource,
+                dataSourceSettings: {
                     isJsonData: true,
                     adaptorType: 'Table',
                     xDataMapping: 'xMember'
@@ -122,7 +122,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                 },
             }, '#heatmap');
         } else {
-            (heatmap.dataSource as any).data = jsonDataSource;
+            heatmap.dataSource = jsonDataSource;
             heatmap.xAxis = {
                 title: { text: pivotObj.dataSourceSettings.rows.map(function (args) { return args.caption || args.name; }).join(' ~ ') },
                 labels: xLabels,

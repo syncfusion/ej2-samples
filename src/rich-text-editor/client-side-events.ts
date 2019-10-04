@@ -3,11 +3,12 @@ import { loadCultureFiles } from '../common/culture-loader';
  * RichTextEditor client side events samples
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
 import { ActionBeginEventArgs, ActionCompleteEventArgs } from '@syncfusion/ej2-richtexteditor';
 import { Button } from '@syncfusion/ej2-buttons';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table);
 
+//tslint:disable:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
 
@@ -17,7 +18,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
                 'LowerCase', 'UpperCase', '|',
                 'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
-                'Outdent', 'Indent', '|',
+                'Outdent', 'Indent', '|', 'CreateTable',
                 'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
         },
@@ -27,7 +28,23 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
         focus: focus,
         blur: blur,
         change: change,
-        toolbarClick: toolbarClick
+        toolbarClick: toolbarClick,
+        beforeDialogOpen: beforeDialogOpen,
+        dialogOpen: dialogOpen,
+        dialogClose: dialogClose,
+        beforeQuickToolbarOpen: beforeQuickToolbarOpen,
+        quickToolbarOpen: quickToolbarOpen,
+        quickToolbarClose: quickToolbarClose,
+        imageSelected: imageSelected,
+        imageUploading: imageUploading,
+        imageUploadSuccess: imageUploadSuccess,
+        imageUploadFailed: imageUploadFailed,
+        imageRemoving: imageRemoving,
+        destroyed: destroyed,
+        beforeSanitizeHtml: beforeSanitizeHtml,
+        resizing: resizing,
+        resizeStart: resizeStart,
+        resizeStop: resizeStop
     });
     defaultRTE.appendTo('#defaultRTE');
     let clear: Button = new Button();
@@ -55,11 +72,75 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
         appendElement('RichTextEditor <b>blur</b> event called<hr>');
     }
     function change(): void {
-        appendElement('RidhTextEditor <b>change</b> event called<hr>');
+        appendElement('RichTextEditor <b>change</b> event called<hr>');
     }
     function toolbarClick(): void {
-        appendElement('RidhTextEditor <b>toolbar click</b> event called<hr>');
+        appendElement('RichTextEditor <b>toolbar click</b> event called<hr>');
     }
+    function beforeDialogOpen(): void {
+        appendElement('RichTextEditor <b>beforeDialogOpen</b> event called<hr>');
+    }
+
+    function dialogOpen(): void {
+        appendElement('RichTextEditor <b>dialogOpen</b> event called<hr>');
+    }
+
+    function dialogClose(): void {
+        appendElement('RichTextEditor <b>dialogClose</b> event called<hr>');
+    }
+
+    function beforeQuickToolbarOpen(): void {
+        appendElement('RichTextEditor <b>beforeQuickToolbarOpen</b> event called<hr>');
+    }
+
+    function quickToolbarOpen(): void {
+        appendElement('RichTextEditor <b>quickToolbarOpen</b> event called<hr>');
+    }
+
+    function quickToolbarClose(): void {
+        appendElement('RichTextEditor <b>quickToolbarClose</b> event called<hr>');
+    }
+
+    function imageSelected(): void {
+        appendElement('RichTextEditor <b>imageSelected</b> event called<hr>');
+    }
+
+    function imageUploading(): void {
+        appendElement('RichTextEditor <b>imageUploading</b> event called<hr>');
+    }
+
+    function imageUploadSuccess(): void {
+        appendElement('RichTextEditor <b>imageUploadSuccess</b> event called<hr>');
+    }
+
+    function imageUploadFailed(): void {
+        appendElement('RichTextEditor <b>imageUploadFailed</b> event called<hr>');
+    }
+
+    function imageRemoving(): void {
+        appendElement('RichTextEditor <b>imageRemoving</b> event called<hr>');
+    }
+
+    function destroyed(): void {
+        appendElement('RichTextEditor <b>destroyed</b> event called<hr>');
+    }
+
+    function beforeSanitizeHtml(): void {
+        appendElement('RichTextEditor <b>beforeSanitizeHtml</b> event called<hr>');
+    }
+
+    function resizing(): void {
+        appendElement('RichTextEditor <b>resizing</b> event called<hr>');
+    }
+
+    function resizeStart(): void {
+        appendElement('RichTextEditor <b>resizeStart</b> event called<hr>');
+    }
+
+    function resizeStop(): void {
+        appendElement('RichTextEditor <b>resizeStop</b> event called<hr>');
+    }
+
     function appendElement(html: string): void {
         let span: HTMLElement = document.createElement('span');
         span.innerHTML = html;

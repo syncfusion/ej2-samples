@@ -13,6 +13,9 @@
         },
         {
             "url":"right-to-left", "name": "Right to Left", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Right to Left Configuration ", "category": "PDF Viewer"
+        },
+        {
+            "url":"form-filling", "name": "Form Filling", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Form Filling Configuration ", "category": "PDF Viewer", "type": "new"
         }
     ]
 }

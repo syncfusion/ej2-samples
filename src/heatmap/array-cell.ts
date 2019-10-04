@@ -37,11 +37,12 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
         yAxis: {
             labels: ['2000', '2005', '2010', '2011', '2012', '2013', '2014'],
         },
-        dataSource: {
-            data: arrayCellData,
+        dataSource: arrayCellData,
+        dataSourceSettings: {
             isJsonData: false,
             adaptorType: 'Cell'
-        }, paletteSettings: {
+        },
+        paletteSettings: {
             palette: [{ color: '#3498DB' },
             { color: '#2C3E50' }
             ]

@@ -5,6 +5,18 @@ import { InputObject, TextBox } from  '@syncfusion/ej2-inputs';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
+    let outlineTextBox: TextBox = new TextBox({
+        placeholder: 'Outlined',
+        cssClass: 'e-outline',
+        floatLabelType: 'Auto'
+    });
+    outlineTextBox.appendTo('#outlined');
+    let filledTextBox: TextBox = new TextBox({
+        placeholder: 'Filled',
+        cssClass: 'e-filled',
+        floatLabelType: 'Auto',
+    });
+    filledTextBox.appendTo('#filled');
     let inputobj1: TextBox = new TextBox({
         placeholder: 'First Name',
         floatLabelType: 'Auto'

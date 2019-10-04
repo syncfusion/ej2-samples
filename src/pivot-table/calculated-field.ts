@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 
 import { PivotView, CalculatedField, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { Button } from '@syncfusion/ej2-buttons';
@@ -12,6 +13,7 @@ PivotView.Inject(CalculatedField, FieldList);
 /* tslint:disable */
 let Pivot_Data: IDataSet[] = (pivotData as any).data;
 (window as any).default = (): void => {
+    loadCultureFiles();
     let pivotObj: PivotView = new PivotView({
         dataSourceSettings: {
             dataSource: Pivot_Data,

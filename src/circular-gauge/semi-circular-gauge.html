@@ -44,7 +44,7 @@
                 </td>
                 <td style="width: 40%;">
                     <div>
-                        <input type="checkbox" id="angle" checked/>
+                        <input type="checkbox" id="angle"/>
                     </div>
                 </td>
         </tr>
@@ -68,18 +68,28 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <div id="enablehide"> Hide intersecting labels</span> </div>
+                </td>
+                <td>
+                    <div>
+                        <input type="checkbox" id="hidelabel" checked>
+                    </div>
+                </td>
+            </tr>
     
         </table>
     </div>
     </div>
     <div id="action-description">
         <p>
-            This sample visualizes the rendering of circular gauge with modified start and end angles. The radius, start angle, end angle, center X, and center Y of the circular gauge can be customized using the options in properties panel.
+            This sample visualizes the rendering of circular gauge with modified start and end angles. The radius, start angle, end angle, center X, center Y and labelIntersectAction of the circular gauge can be customized using the options in properties panel.
         </p>
     </div>
     <div id="description">
         <p>
-            In this example, you can see how to render the circular gauge with modified start and end angles to form semi or quarter circular gauges. By enabling the radius based on angle option, the radius of circular gauge will be calculated based on the start and end angles.
+            In this example, you can see how to render the circular gauge with modified start and end angles to form semi or quarter circular gauges. By enabling the radius based on angle option, the radius of circular gauge will be calculated based on the start and end angles. You can also hide the intersect labels using 'hideIntersectingLabel' property.
         </p>
         <p>
             For more information on ranges, refer to this

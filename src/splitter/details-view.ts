@@ -26,11 +26,11 @@ let liElement: HTMLElement;
 
     ListView.Inject(Virtualization);
     commonData = [
-        { name: 'Margaret', imgUrl: 'https://ej2.syncfusion.com/demos/src/listview/images/margaret.png', id: '1' },
-        { name: 'Laura', imgUrl: 'https://ej2.syncfusion.com/demos/src/listview/images/laura.png', id: '2' },
-        { name: 'Robert', icon: 'R', id: '3' },
-        { name: 'Albert', imgUrl: 'https://ej2.syncfusion.com/demos/src/listview/images/albert.png', id: '5' },
-        { name: 'Michale', icon: 'M', id: '4' }
+        { name: 'Margaret', imgUrl: 'https://ej2.syncfusion.com/demos/src/splitter/images/margaret.png', id: '1' },
+        { name: 'Laura', imgUrl: 'https://ej2.syncfusion.com/demos/src/splitter/images/laura.png', id: '2' },
+        { name: 'Robert', imgUrl: 'https://ej2.syncfusion.com/demos/src/splitter/images/robert.png', id: '3' },
+        { name: 'Albert', imgUrl: 'https://ej2.syncfusion.com/demos/src/splitter/images/albert.png', id: '5' },
+        { name: 'Michale', imgUrl: 'https://ej2.syncfusion.com/demos/src/splitter/images/michale.png', id: '4' }
     ];
 
     liElement = document.getElementById('ui-list');

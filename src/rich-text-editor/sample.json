@@ -7,6 +7,7 @@
     "samples": [{
             "url": "tools",
             "name": "Overview",
+            "type": "update",
             "description": "This demo shows the overview of an HTML and markdown editor using Syncfusion JavaScript rich text editor control.",
             "category": "Rich Text Editor",
             "api": { "RichTextEditor": ["Inject", "toolbarSettings", "showCharCount", "actionBegin", "actionComplete", "maxLength", "appendTo"], "ToolbarSettings": ["items"] }
@@ -21,6 +22,7 @@
         {
             "url": "image",
             "name": "Image",
+            "type": "update",
             "description": "The demo for Syncfusion JavaScript rich text editor control shows the option to insert images with image caption and link URLs to the images.",
             "category": "Rich Text Editor",
             "api": { "RichTextEditor": ["Inject", "quickToolbarSettings", "toolbarClick", "appendTo", "getRange"], "QuickToolbarSettings": ["image"] }
@@ -38,7 +40,7 @@
             "type": "update",
             "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates on paste cleanup feature while pasting the content.",
             "category": "Rich Text Editor",
-            "api": { "RichTextEditor": ["Inject", "pasteCleanupSettings", "appendTo"], "PasteCleanupSettings": [ "prompt", "plainText", "keepFormat", "deniedTags", "deniedAttrs", "allowedStyleProps"] }
+            "api": { "RichTextEditor": ["Inject", "pasteCleanupSettings", "appendTo"], "PasteCleanupSettings": ["prompt", "plainText", "keepFormat", "deniedTags", "deniedAttrs", "allowedStyleProps"] }
         },
         {
             "url": "iframe",
@@ -69,6 +71,14 @@
             "api": { "RichTextEditor": ["Inject", "showCharCount", "maxLength", "placeholder", "appendTo"] }
         },
         {
+            "url": "resize-editor",
+            "name": "Resizable Editor",
+            "type": "new",
+            "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates the resizable support on the rich text editor control.",
+            "category": "Rich Text Editor",
+            "api": { "RichTextEditor": ["enableResize", "appendTo"] }
+        },
+        {
             "url": "api",
             "name": "API",
             "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates the usage of API in rich text editor control.",
@@ -78,6 +88,7 @@
         {
             "url": "client-side-events",
             "name": "Events",
+            "type": "update",
             "description": "This demo for Syncfusion JavaScript rich text editor control shows the events that have been triggered during the rich text editor operations.",
             "category": "Rich Text Editor",
             "api": { "RichTextEditor": ["Inject", "toolbarSettings", "created", "actionBegin", "actionComplete", "focus", "blur", "change", "toolbarClick", "appendTo"], "ToolbarSettings": ["items"] }
@@ -90,6 +101,14 @@
             "api": { "RichTextEditor": ["Inject", "placeholder", "value", "dataBind", "refresh", "appendTo"] }
         },
         {
+            "url": "auto-save",
+            "name": "Auto Save",
+            "type": "new",
+            "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates how to design forum application using rich text editor.",
+            "category": "Rich Text Editor",
+            "api": { "RichTextEditor": ["Inject", "placeholder", "enablePersistance", "saveInterval", "toolbarSettings", "appendTo"] }
+        },
+        {
             "url": "types",
             "name": "Type",
             "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates the different behavior of toolbar support in the rich text editor.",
@@ -99,7 +118,6 @@
         {
             "url": "insert-emoticons",
             "name": "Insert  Emoticons",
-            "type": "new",
             "description": "This demo for Syncfusion JavaScript rich text editor control shows the users to add their emoticons to the toolbar along with the built-in commands.",
             "category": "Custom Tool",
             "api": { "RichTextEditor": ["Inject", "toolbarSettings", "value", "created", "appendTo"], "ToolbarSettings": ["items"] }
@@ -132,6 +150,14 @@
             "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates on how to customize tags of markdown formatting in rich text editor.",
             "category": "Markdown",
             "api": { "RichTextEditor": ["Inject", "toolbarSettings", "height", "created", "disableToolbarItem", "enableToolbarItem", "editorMode", "formatter", "appendTo"], "ToolbarSettings": ["items"] }
+        },
+        {
+            "url": "tribute",
+            "name": "Tribute JS",
+            "type": "new",
+            "description": "This demo for Syncfusion JavaScript rich text editor control demonstrates the HTML forms support on the rich text editor control.",
+            "category": "Third-parties Integration",
+            "api": { "RichTextEditor": ["placeholder", "appendTo"] }
         }
     ]
 }

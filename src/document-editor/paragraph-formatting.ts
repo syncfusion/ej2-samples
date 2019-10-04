@@ -22,7 +22,7 @@ import * as data from './data-paragraph-formatting.json';
     container.documentEditor.documentName = 'Paragraph Formatting';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

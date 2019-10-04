@@ -21,7 +21,7 @@ import * as data from './data-section-formatting.json';
     container.documentEditor.documentName = 'Section Formatting';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

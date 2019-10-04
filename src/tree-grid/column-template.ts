@@ -1,5 +1,4 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
 import { TreeGrid } from '@syncfusion/ej2-treegrid';
 import { textdata, getSparkData } from './data-source';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -55,7 +54,7 @@ import { RowDataBoundEventArgs, getObject } from '@syncfusion/ej2-grids';
         },
         rowHeight: 83,
         columns: [
-            { field: 'EmpID', headerText: 'Employee ID', width: 95 },
+            { field: 'EmpID', headerText: 'Employee ID', width: 100 },
             { field: 'Name', headerText: 'Name', width: 110 },
             { field: 'DOB', headerText: 'DOB', width: 90, textAlign: 'Right', format: 'yMd' },
             {

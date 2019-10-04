@@ -71,12 +71,13 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         //Initializing Chart title
         title: 'Profit Comparision of A and B', legendSettings: { visible: true, toggleVisibility: false },
         //Initializing Selection Mode
+        allowMultiSelection: false,
         selectionMode: 'DragXY',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
     });
     chart.appendTo('#container');
@@ -86,9 +87,18 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         width: 120,
         change: () => {
             chart.selectionMode = <SelectionMode>mode.value;
-            chart.dataBind();
+            chart.series[0].animation.enable = false;
+            chart.series[1].animation.enable = false;
+            chart.refresh();
         }
     });
     mode.appendTo('#selmode');
+    document.getElementById('select').onchange = () => {
+        let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('select'));
+        chart.allowMultiSelection = element.checked;
+        chart.series[0].animation.enable = false;
+        chart.series[1].animation.enable = false;
+        chart.refresh();
+    };
 
 };

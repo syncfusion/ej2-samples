@@ -10,7 +10,7 @@ import { createElement } from '@syncfusion/ej2-base';
     // Assigning badge data
     let badgeContent: string[] = ['7 New', '27 New', '2 New', '14 New'];
 
-    let template: string = '<div style="display:none"><li class="msg"><span class="e-acrdn-icons e-content-icon people">' +
+    let template: string = '<div><li class="msg"><span class="e-acrdn-icons e-content-icon people">' +
         '</span>Message Thread</li><li class="msg"><span class="e-acrdn-icons e-content-icon people"></span>Message Thread</li></div>';
     //Initialize Accordion component
     let acrdnObj: Accordion = new Accordion({

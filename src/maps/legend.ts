@@ -35,7 +35,7 @@ Maps.Inject(Legend, MapsTooltip);
             enable: false
         },
         titleSettings: {
-            text: 'Population density (per square kilometers) - 2015',
+            text: 'Population density (per square kilometer) - 2015',
             textStyle: {
                 size: '16px'
             }
@@ -53,7 +53,7 @@ Maps.Inject(Legend, MapsTooltip);
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'name',
-                    format: '${name} : ${density} per square kms'
+                    format: '${name} : ${density}'
                 },
                 shapeSettings: {
                     colorValuePath: 'density',
@@ -146,6 +146,16 @@ Maps.Inject(Legend, MapsTooltip);
             maps.layers[0].shapeSettings.colorMapping[5].color = null;
             maps.layers[0].shapeSettings.colorMapping[5].label = null;
         }
+        maps.refresh();
+    };
+    let toggleLegend: EmitType<CheckBoxChangeEvents>;
+    let legendCheckBox: CheckBox = new CheckBox(
+    {
+        change: toggleLegend, checked: false
+    },
+    '#toggleLegend');
+    legendCheckBox.change = toggleLegend = (e: CheckBoxChangeEvents) => {
+        maps.legendSettings.toggleLegendSettings.enable = e.checked;
         maps.refresh();
     };
 };

@@ -1,87 +1,66 @@
-'use strict';
-
+var glob = require('glob');
 var fs = require('fs');
 var gulp = require('gulp');
-var webpack = require('webpack');
+var path = require('path');
+var shelljs = global.shelljs || require('shelljs');
 var webpackGulp = require('webpack-stream');
+var webpack = require('webpack');
 
-/**
- * Compile script files
- */
-gulp.task('scripts', function(done) {
+gulp.task('scripts', function (done) {
     var ts = require('gulp-typescript');
-    var tsProject = ts.createProject('tsconfig.json', { typescript: require('typescript') });
-    var tsResult = gulp.src(['./src/**/*.ts', './spec/**/*.ts'], { base: '.' })
-        .pipe(tsProject());        
+    var tsProject = ts.createProject('tsconfig.json', {
+        typescript: require('typescript')
+    });
+    var srcLocation = ["./src/**/*.ts", "./spec/**/*.ts", "!./src/*/samples/**/*.ts", "!./src/node_modules/**/*.d.ts", "!./src/node_modules/**/*.ts"];
+    var tsResult = gulp.src(srcLocation, {
+        base: '.'
+    })
+        .pipe(ts(tsProject))
+        .on('error', function (e) {
+            done(e);
+            process.exit(1);
+        });
     tsResult.js
         .pipe(gulp.dest('./'))
-        .on('end', function() {
+        .on('error', function (e) {
+            done(e);
+            process.exit(1);
+        })
+        .on('end', function () {
             done();
         });
 });
 
-/**
- * Compile scss files
- */
-gulp.task('styles', function() {
-    var sass = require('gulp-sass');
-    return gulp.src(['./styles/**/*.scss'], { base: './' })
-        .pipe(sass({
-            outputStyle: 'expanded',
-            includePaths: './node_modules/@syncfusion/'
-        }))
-        .pipe(gulp.dest('.'));
-});
-
-/**
- * Bundle all module using webpack
- */
-gulp.task('bundle', function() {
+gulp.task('bundle', function (done) {
     var webpackConfig = require(fs.realpathSync('./webpack.config.js'));
-    return gulp.src('')
+    gulp.src('')
         .pipe(webpackGulp(webpackConfig, webpack))
-        .pipe(gulp.dest('.'));
+        .pipe(gulp.dest('.'))
+        .on('end', function () {
+            done();
+        })
+        .on('error', function (e) {
+            done(e);
+            process.exit(1);
+        });
 });
 
-/**
- * Bundle showcase using webpack
- */
-gulp.task('bundle-showcase', function() {
-    var webpackConfig = require(fs.realpathSync('./src/showcase/expense/webpack.config.js'));
-    return gulp.src('')
-        .pipe(webpackGulp(webpackConfig, webpack))
-        .pipe(gulp.dest('./src/showcase/expense/'));
+gulp.task('whole-bundle', function (done) {
+    if (shelljs.exec('node --max-old-space-size=7168 ./node_modules/gulp/bin/gulp.js bundle').code !== 0) {
+        process.exit(1);
+    } else {
+        done();
+    }
 });
 
-/**
- * Build ts and scss files
- */
-gulp.task('build', function(done) {
+gulp.task('build', function(done){
     var runSequence = require('run-sequence');
-    runSequence('scripts', 'styles', 'bundle', 'bundle-showcase', done);
-});
+    runSequence('scripts', 'whole-bundle', done);
+})
 
-/**
- * Run test for samplebrowser
- */
-gulp.task('test', function(done) {
-    var karma = require('karma');
-    new karma.Server({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: true,
-        browsers: ['ChromeHeadless'],
-        browserNoActivityTimeout: 30000
-    }, function(e) {
-        done(e === 0 ? null : 'karma exited with status ' + e);
-    }).start();
-});
-
-/**
- * Load the samples
- */
 gulp.task('serve', ['build'], function (done) {
     var browserSync = require('browser-sync');
-    var bs = browserSync.create('Essential JS 2');
+    var bs = browserSync.create('Essential TypeScript');
     var options = {
         server: {
             baseDir: './'
@@ -90,3 +69,5 @@ gulp.task('serve', ['build'], function (done) {
     };
     bs.init(options, done);
 });
+
+

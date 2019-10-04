@@ -19,11 +19,12 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
         toolbarSettings: {
             items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
-                'LowerCase', 'UpperCase', '|',
+                'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', '|',
                 'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
-                'Outdent', 'Indent', '|', 'CreateTable',
-                'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
-                'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
+                'Outdent', 'Indent', '|',
+                'CreateTable', 'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
+                'SourceCode', 'FullScreen', '|', 'Undo', 'Redo'
+            ]
         },
         showCharCount: true,
         actionBegin: handleFullScreen,

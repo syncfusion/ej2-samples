@@ -15,6 +15,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     let random: CircularGauge = new CircularGauge(gauge1());
     random.appendTo('#cutomization-container');
     let usage: CircularGauge = new CircularGauge(gauge2());
+    usage.appendTo('#cutomization-container1');
     let gauge: CircularGauge = random; let isUsage: boolean = false;
     let barColor: DropDownList; let rangeColor: DropDownList; let pointerColor: DropDownList;
     barColor = new DropDownList({
@@ -47,8 +48,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     });
     pointerColor.appendTo('#pointerColor');
     document.getElementById('usage').onclick = () => {
-        random.destroy();
-        usage.appendTo('#cutomization-container');
+        document.getElementById('cutomization-container').style.display = 'none';
+        document.getElementById('cutomization-container1').style.display = 'block';
         gauge = usage; isUsage = true;
         let element: HTMLSelectElement = <HTMLSelectElement>document.getElementById('currentValue');
         element.min = '0.5'; element.max = '100';
@@ -68,8 +69,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     };
     document.getElementById('random').onclick = () => {
         if (usage.element) {
-            usage.destroy();
-            random.appendTo('#cutomization-container');
+            document.getElementById('cutomization-container1').style.display = 'none';
+        	document.getElementById('cutomization-container').style.display = 'block';
             gauge = random; isUsage = false;
             let currentElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('random');
             let existElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('usage');

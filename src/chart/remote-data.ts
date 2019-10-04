@@ -12,7 +12,7 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
  * Sample for Remote Data bind in chart
  */
 let dataManager: DataManager = new DataManager({
-    url: 'https://mvc.syncfusion.com/Services/Northwnd.svc/Tasks/'
+    url: 'https://ej2services.syncfusion.com/production/web-services/api/Orders'
 });
 import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
 let query: Query = new Query().take(5).where('Estimate', 'lessThan', 3, false);
@@ -75,7 +75,7 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             {
                 type: 'Column',
                 dataSource: dataManager,
-                xName: 'Assignee', yName: 'Estimate', query: query,
+                xName: 'CustomerID', yName: 'Freight', query: query,
                 name: 'Story Point',
                 animation: { enable: false },
                 marker: {

@@ -24,7 +24,7 @@ Gantt.Inject(Edit, Toolbar, Selection);
                 allowEditing: true
             },
             columns: [
-                {field: 'TaskId', width: 60 },
+                {field: 'TaskId', width: 75 },
                 {field: 'TaskName', width: 80 },
                 {field: 'StartDate', width: 120},
                 {field: 'EndDate', width: 120 },

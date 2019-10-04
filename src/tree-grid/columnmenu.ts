@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { TreeGrid, Page, Sort, Filter, Resize, ColumnMenu } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
+import { ColumnMenuOpenEventArgs } from '@syncfusion/ej2-grids';
 
 /**
  * Default TreeGrid sample
@@ -16,7 +17,11 @@ TreeGrid.Inject(Page, Filter, Sort, Resize, ColumnMenu );
             allowPaging: true,
             pageSettings: {pageSize: 10},
             allowFiltering: true,
-            allowResizing: true,
+            columnMenuOpen: (args: ColumnMenuOpenEventArgs) => {
+                if (args.parentItem != null) {
+                    args.element.querySelectorAll('li')[treegrid.treeColumnIndex].style.display = 'none';
+                }
+            },
             filterSettings: { type: 'Menu' },
             allowSorting: true,
             showColumnMenu: true,

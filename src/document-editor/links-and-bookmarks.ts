@@ -21,7 +21,7 @@ import * as data from './data-links-and-bookmarks.json';
     container.documentEditor.documentName = 'Hyperlinks and Bookmarks';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

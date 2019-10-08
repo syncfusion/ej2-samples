@@ -1,8 +1,8 @@
 ﻿import { loadCultureFiles } from '../common/culture-loader';
 import { PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
-ThumbnailView, Print, TextSelection, TextSearch, Annotation} from '@syncfusion/ej2-pdfviewer';
+ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields} from '@syncfusion/ej2-pdfviewer';
 // tslint:disable-next-line:max-line-length
-PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation);
+PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields);
 import { L10n } from '@syncfusion/ej2-base';
 
 
@@ -55,9 +55,9 @@ L10n.load({
             'Opacity': 'غموض',
             'Color edit': 'غير اللون',
             'Opacity edit': 'تغيير التعتيم',
-            'Highlight context': 'تسليط الضوء',
-            'Underline context': 'أكد',
-            'Strikethrough context': 'يتوسطه',
+            'highlight': 'تسليط الضوء',
+            'underline': 'أكد',
+            'strikethrough': 'يتوسطه',
             // tslint:disable-next-line:max-line-length
             'Server error': 'خدمة الانترنت لا يستمع. يعتمد قوات الدفاع الشعبي المشاهد على خدمة الويب لجميع ميزاته. يرجى بدء خدمة الويب للمتابعة.',
             'Open text': 'افتح',
@@ -70,7 +70,7 @@ L10n.load({
             'Selection text': 'اختيار',
             'Pan text': 'مقلاة',
             'Print text': 'طباعة',
-            'Search text': 'بحث',
+            'Seach text': 'بحث',
             'Annotation Edit text': 'تحرير التعليق التوضيحي',
             'Line Thickness': 'سمك الخط',
             'Line Properties': 'خط الخصائص',
@@ -125,7 +125,29 @@ L10n.load({
             'Post': 'بريد',
             'Page': 'صفحة',
             'Add a comment': 'أضف تعليق',
-            'Add a reply': 'أضف رد'
+            'Add a reply': 'أضف رد',
+            'Import Annotations': 'استيراد التعليقات التوضيحية',
+            'Export Annotations': 'شروح التصدير',
+            'Add': 'أضف',
+            'Clear': 'واضح',
+            'Bold': 'بالخط العريض',
+            'Italic': 'مائل',
+            'Strikethroughs': 'يتوسطه',
+            'Underlines': 'تحت الخط',
+            'Superscript': 'حرف فوقي',
+            'Subscript': 'الفرعية النصي',
+            'Align left': 'محاذاة اليسار',
+            'Align right': 'محاذاة اليمين',
+            'Center': 'مركز',
+            'Justify': 'برر',
+            'Font color': 'لون الخط',
+            'Text Align': 'محاذاة النص',
+            'Text Properties': 'نوع الخط',
+            'Draw Signature': 'ارسم التوقيع',
+            'Create': 'خلق',
+            'Font family': 'خط العائلة',
+            'Font size': 'حجم الخط',
+            'Free Text': 'نص حر'
         }
     }
 });

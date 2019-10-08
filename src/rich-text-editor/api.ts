@@ -17,7 +17,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar);
     defaultAPI.appendTo('#defaultRTE');
 
     let maxLength: NumericTextBox = new NumericTextBox({
-        value: 560,
+        value: 1000,
         min: 555,
         max: 2000,
         format: 'n0',

@@ -19,14 +19,11 @@ let mdsource: HTMLElement;
         height: '250px',
         formatter: new MarkdownFormatter({ listTags: { 'OL': '1., 2., 3.'} }),
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'StrikeThrough', '|',
-                'Formats', 'OrderedList', 'UnorderedList', '|',
-                'CreateLink', 'Image', 'CreateTable', '|',
-                {
-                    tooltipText: 'Preview',
-                    template: '<button id="preview-code" class="e-tbar-btn e-control e-btn e-icon-btn">' +
-                    '<span class="e-btn-icon e-md-preview e-icons"></span></button>'
-                }, '|', 'Undo', 'Redo']
+            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'OrderedList',
+            'UnorderedList', 'SuperScript', 'SubScript', '|', 'CreateLink', 'Image', 'CreateTable', '|',
+           { tooltipText: 'Preview', template: '<button id="preview-code" class="e-tbar-btn e-control e-btn e-icon-btn">' +
+               '<span class="e-btn-icon e-md-preview e-icons"></span></button>' }, '|', 'Undo', 'Redo']
+
         },
         editorMode: 'Markdown',
         created: () => {
@@ -39,10 +36,10 @@ let mdsource: HTMLElement;
                 fullPreview();
                 if ((e.currentTarget as HTMLElement).classList.contains('e-active')) {
                     defaultRTE.disableToolbarItem(['Bold', 'Italic', 'StrikeThrough', 'OrderedList',
-                        'UnorderedList', 'CreateLink', 'Image', 'CreateTable', 'Formats', 'Undo', 'Redo']);
+                        'UnorderedList', 'SuperScript', 'SubScript', 'CreateLink', 'Image', 'CreateTable', 'Formats', 'Undo', 'Redo']);
                 } else {
                     defaultRTE.enableToolbarItem(['Bold', 'Italic', 'StrikeThrough', 'OrderedList',
-                        'UnorderedList', 'CreateLink', 'Image', 'CreateTable', 'Formats', 'Undo', 'Redo']);
+                        'UnorderedList', 'SuperScript', 'SubScript', 'CreateLink', 'Image', 'CreateTable', 'Formats', 'Undo', 'Redo']);
                 }
             });
         }

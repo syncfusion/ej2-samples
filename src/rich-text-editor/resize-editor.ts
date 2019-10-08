@@ -1,0 +1,15 @@
+import { loadCultureFiles } from '../common/culture-loader';
+/**
+ * RichTextEditor Resizable sample 
+ */
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Resize } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Resize);
+
+(window as any).default = (): void => {
+    loadCultureFiles();
+
+    let defaultRTE: RichTextEditor = new RichTextEditor({
+        enableResize: true
+    });
+    defaultRTE.appendTo('#defaultRTE');
+};

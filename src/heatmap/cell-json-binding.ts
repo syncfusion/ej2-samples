@@ -98,14 +98,15 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
         yAxis: {
             labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016'],
         },
-        dataSource: {
-            data: jsonCellData,
+        dataSource: jsonCellData,
+        dataSourceSettings: {
             isJsonData: true,
             adaptorType: 'Cell',
             xDataMapping: 'rowid',
             yDataMapping: 'columnid',
             valueMapping: 'value'
-        }, cellSettings: {
+        },
+        cellSettings: {
             border: {
                 radius: 4,
                 width: 1,

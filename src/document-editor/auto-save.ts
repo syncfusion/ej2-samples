@@ -22,7 +22,7 @@ import * as data from './data-default.json';
     container.documentEditor.documentName = 'Auto Save';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

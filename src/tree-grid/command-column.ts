@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { TreeGrid, Edit } from '@syncfusion/ej2-treegrid';
 import { CommandColumn} from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
@@ -8,7 +7,6 @@ TreeGrid.Inject(Edit, CommandColumn);
  * Auto wrap sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let grid: TreeGrid = new TreeGrid(
         {
             dataSource: sampleData,

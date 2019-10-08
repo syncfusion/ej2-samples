@@ -4,7 +4,7 @@ import { FileManager, Toolbar, NavigationPane, DetailsView, ContextMenu } from '
 FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
 
 /**
- * File Manager sample with azure service
+ * File Manager sample with Azure service
  */
 (window as any).default = (): void => {
     loadCultureFiles();

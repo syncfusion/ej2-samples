@@ -17,13 +17,14 @@ import { ColorPicker, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
     DocumentEditorContainer.Inject(Toolbar);
     container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
+    container.showPropertiesPane = false;
     container.documentEditor.currentUser = 'engineer@mycompany.com';
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
     container.documentEditor.open(JSON.stringify((<any>data)));
     container.documentEditor.documentName = 'Document Protection';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };
@@ -41,6 +42,7 @@ import { ColorPicker, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
     dropDownListObject.value = 'engineer@mycompany.com';
     dropDownListObject.addItem('manager@mycompany.com');
     let colorPicker: ColorPicker = new ColorPicker({
+        value: container.documentEditor.userColor,
         change: (e: ColorPickerEventArgs) => {
             container.documentEditor.userColor = e.currentValue.hex;
         }

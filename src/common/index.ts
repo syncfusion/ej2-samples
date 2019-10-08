@@ -29,7 +29,7 @@ import * as swissCultureDate from '../common/cldr-data/main/fr-CH/all.json';
 import * as enCultureData from '../common/cldr-data/main/fr-CH/all.json';
 import * as chinaCultureData from '../common/cldr-data/main/zh/all.json';
 import * as packageJson from '../common/pack.json';
-let packages: string = `{${JSON.stringify((<any>packageJson).dependencies).match(/"@syncfusion\/ej2[^"]*":"\*"/g).join(',')}}`;
+let packages: string = JSON.stringify((<any>packageJson).dependencies);
 let cBlock: string[] = ['ts-src-tab', 'html-src-tab'];
 const matchedCurrency: { [key: string]: string } = {
     'en': 'USD',
@@ -119,7 +119,7 @@ const urlRegex: RegExp = /(npmci\.syncfusion\.com|ej2\.syncfusion\.com)(\/)(deve
 const sampleRegex: RegExp = /#\/(([^\/]+\/)+[^\/\.]+)/;
 // Regex for removal of hidden codes 
 const reg: RegExp = /.*custom code start([\S\s]*?)custom code end.*/g;
-const sbArray: string[] = ['angular', 'react', 'javascript', 'aspnetcore', 'aspnetmvc', 'vue'];
+const sbArray: string[] = ['angular', 'react', 'javascript', 'aspnetcore', 'aspnetmvc', 'vue', 'blazor'];
 /**
  * constant for search operations
  */
@@ -160,7 +160,7 @@ if (Browser.isDevice || isMobile) {
     if (sidebar) {
         sidebar.destroy();
     }
-    sidebar = new Sidebar({ width: '280px', showBackdrop: true, closeOnDocumentClick: true, enableGestures: false });
+    sidebar = new Sidebar({ width: '280px', showBackdrop: true, closeOnDocumentClick: true, enableGestures: false,change: resizeFunction });
     sidebar.appendTo('#left-sidebar');
 } else {
     sidebar = new Sidebar({
@@ -168,6 +168,7 @@ if (Browser.isDevice || isMobile) {
         showBackdrop: false,
         closeOnDocumentClick: false,
         enableGestures: false,
+        change:resizeFunction
     });
     sidebar.appendTo('#left-sidebar');
 }
@@ -723,6 +724,14 @@ function processResize(e: any): void {
         switcherPopup.refresh();
     }
 }
+
+function resizeFunction(): void {
+    if (!isMobile && !isTablet) {
+        resizeManualTrigger = true;
+        setTimeout(cusResize(), 400);
+    }
+}
+
 function resetInput(arg: MouseEvent): void {
     arg.preventDefault();
     arg.stopPropagation();
@@ -953,17 +962,8 @@ function toggleLeftPane(): void {
         reverse = sidebar.isOpen;
         if (reverse) {
             sidebar.hide();
-            if (!isMobile && !isTablet) {
-                resizeManualTrigger = true;
-                setTimeout(cusResize(), 200);
-            }
         } else {
             sidebar.show();
-            resizeManualTrigger = true;
-            if (!isMobile && !isTablet) {
-                setTimeout(cusResize(), 200);
-
-            }
         }
     }
 }
@@ -1643,7 +1643,3 @@ function loadJSON(): void {
 
 
 loadJSON();
-
-if ('serviceWorker' in navigator){
-    navigator.serviceWorker.register('/src/service-worker.js');
-    }

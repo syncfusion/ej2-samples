@@ -3,8 +3,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  * RichTextEditor iframe sample
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -17,11 +17,12 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
         toolbarSettings: {
             items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
-                'LowerCase', 'UpperCase', '|',
+                'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', '|',
                 'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
                 'Outdent', 'Indent', '|',
-                'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
-                'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
+                'CreateTable', 'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
+                'SourceCode', 'FullScreen', '|', 'Undo', 'Redo'
+            ]
         },
         actionBegin: handleFullScreen,
         actionComplete: actionCompleteHandler

@@ -4,10 +4,11 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import { RichTextEditor, Toolbar, Image,  Link, HtmlEditor, QuickToolbar, NodeSelection } from '@syncfusion/ej2-richtexteditor';
 RichTextEditor.Inject(Toolbar, Image,  Link, HtmlEditor, QuickToolbar );
+import { CheckBox } from '@syncfusion/ej2-buttons';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 (window as any).default = (): void => {
     loadCultureFiles();
-
     let defaultRTE: RichTextEditor = new RichTextEditor({
         quickToolbarSettings: {
             image: [
@@ -26,6 +27,25 @@ RichTextEditor.Inject(Toolbar, Image,  Link, HtmlEditor, QuickToolbar );
         toolbarClick: onToolbarClick,
     });
     defaultRTE.appendTo('#defaultRTE');
+    let select: CheckBox = new CheckBox({
+            change: (args: any) => {
+            defaultRTE.enableAutoUrl = args.checked;
+            defaultRTE.dataBind();
+        }
+    });
+    select.appendTo('#select');
+    let listObj: DropDownList = new DropDownList({
+        change: (args: any) => {
+            if (listObj.value === 'base') {
+                defaultRTE.insertImageSettings.saveFormat = 'Base64';
+            } else {
+                defaultRTE.insertImageSettings.saveFormat = 'Blob';
+            }
+
+            defaultRTE.dataBind();
+        }
+    });
+    listObj.appendTo('#saveOption');
 
     function onToolbarClick(e: any): void {
         let nodeObj: NodeSelection = new NodeSelection();

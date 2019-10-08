@@ -21,7 +21,7 @@ import * as data from './data-bullets-and-numbering.json';
     container.documentEditor.documentName = 'Bullets and Numbering';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

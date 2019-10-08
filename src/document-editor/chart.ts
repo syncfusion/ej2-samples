@@ -21,7 +21,7 @@ import * as data from './data-chart.json';
     container.documentEditor.documentName = 'Product Report';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

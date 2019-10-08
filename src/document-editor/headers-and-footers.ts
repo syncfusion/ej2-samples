@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DocumentEditorContainer, Toolbar } from '@syncfusion/ej2-documenteditor';
 import { TitleBar } from './title-bar';
 import * as data from './data-headers-and-footers.json';
@@ -7,6 +8,7 @@ import * as data from './data-headers-and-footers.json';
  * Default document editor sample
  */
 (window as any).default = (): void => {
+    loadCultureFiles();
 
     let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
 
@@ -20,7 +22,7 @@ import * as data from './data-headers-and-footers.json';
     container.documentEditor.documentName = 'Headers and Footers';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

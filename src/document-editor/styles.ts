@@ -21,7 +21,7 @@ import * as data from './data-styles.json';
     container.documentEditor.documentName = 'Styles';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

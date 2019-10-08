@@ -37,7 +37,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel);
             visible: true, position: 'Top'
         },
         // Initialize the tooltip
-        tooltip: { enable: false },
+        tooltip: { enable: true },
         title: 'Project Cost Breakdown',
          // custom code start
         load: (args: IAccLoadedEventArgs) => {

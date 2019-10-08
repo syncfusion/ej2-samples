@@ -130,8 +130,7 @@
                     "displayName": "world-map.json",
                     "path": "src/maps/map-data/world-map.json"
                 }
-            ],
-            "type": "new"
+            ]
         },
         {
             "url": "data-label",
@@ -193,6 +192,7 @@
             "name": "Legend",
             "description": "This demo for Essential JS2 Maps control visualizes grouping of countries in the legend based on its population density.",
             "category": "Features",
+            "type": "update",
             "api": {
                 "Maps": [
                     "zoomSettings",
@@ -498,8 +498,7 @@
                     "displayName": "world-map.json",
                     "path": "src/maps/map-data/world-map.json"
                 }
-            ],
-            "type": "new"
+            ]
         },
         {
             "url": "pie",

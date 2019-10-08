@@ -7,50 +7,66 @@
     <div class="col-lg-4 property-section">
         <table id="property" title="Properties" style="width: 100%">
             <tr style="height: 50px">
-                <td style="width: 50%">
+                <td style="width: 30%">
                     <div>Pie Angle:
-                        <p id="anglevalue" style="font-weight: normal;">0</p>
                     </div>
                 </td>
-                <td style="width: 50%;">
+                <td style="width: 70%;">
                     <div data-role="rangeslider">
                         <input type="range" name="range-min" id="pieangle" value="0" min="0" max="360" style="width:90%">
                     </div>
                 </td>
-            </tr>
-            <tr style="height: 50px">
-                <td style="width: 50%">
-                    <div>Outer Radius:
-                        <p id="radius" style="font-weight: normal;">0.70</p>
+                <td style="width: 30%;">
+                    <div data-role="rangeslider">
+                        <p id="anglevalue" style="font-weight: normal; padding-top: 10px">0</p>
                     </div>
                 </td>
-                <td style="width: 50%;">
+            </tr>
+            <tr style="height: 50px">
+                <td style="width: 30%">
+                    <div>Outer Radius:
+                    </div>
+                </td>
+                <td style="width: 70%;">
                     <div data-role="rangeslider">
                         <input type="range" name="range-min" id="pieradius" value="70" min="0" max="80" style="width:90%">
                     </div>
                 </td>
-            </tr>
-            <tr style="height: 50px">
-                <td style="width: 50%">
-                    <div>Explode Radius:
-                        <p id="exploderadius" style="font-weight: normal;">0.1</p>
+                <td style="width: 30%;">
+                    <div data-role="rangeslider">
+                        <p id="radius" style="font-weight: normal; padding-top: 10px">0.70</p>
                     </div>
                 </td>
-                <td style="width: 50%;">
+            </tr>
+            <tr style="height: 50px">
+                <td style="width: 30%">
+                    <div>Explode Radius:
+                    </div>
+                </td>
+                <td style="width: 70%;">
                     <div data-role="rangeslider">
                         <input type="range" name="range-min" id="pieexploderadius" value="10" min="0" max="40" style="width:90%">
                     </div>
                 </td>
-            </tr>
-            <tr style="height: 50px">
-                <td style="width: 50%">
-                    <div>Explode Index:
-                        <p id="explodeindex" style="font-weight: normal;">0</p>
+                <td style="width: 30%;">
+                    <div data-role="rangeslider">
+                        <p id="exploderadius" style="font-weight: normal; padding-top: 10px">0.10</p>
                     </div>
                 </td>
-                <td style="width: 50%;">
+            </tr>
+            <tr style="height: 50px">
+                <td style="width: 30%">
+                    <div>Explode Index:
+                    </div>
+                </td>
+                <td style="width: 70%;">
                     <div data-role="rangeslider">
                         <input type="range" name="range-min" id="pieexplodeindex" value="0" min="0" max="6" style="width:90%">
+                    </div>
+                </td>
+                <td style="width: 30%;">
+                    <div data-role="rangeslider">
+                        <p id="explodeindex" style="font-weight: normal; padding-top: 10px">0</p>
                     </div>
                 </td>
             </tr>
@@ -94,6 +110,7 @@
 <div id="action-description">
     <p>
         This sample demonstrates pie chart for mobile browser usage statistics. <code>Datalabel</code> shows the Information about the points.
+        While hovering on the slice, border will be highlighted.
     </p>
 </div>
 <div id="description">

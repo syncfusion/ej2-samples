@@ -67,8 +67,7 @@ HeatMap.Inject(Tooltip);
                     ]
                 },
             ]
-        },
-        paletteSettings: {
+        }, paletteSettings: {
             palette: [{ color: '#F0ADCE' },
             { color: '#19307B' }
             ]

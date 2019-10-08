@@ -36,12 +36,13 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
             title : {text: 'Olympic Year'},
             labels: ['2000', '2004', '2008', '2012', '2016'],
         },
-        dataSource: {
-            data: jsonTableData,
+        dataSource: jsonTableData,
+        dataSourceSettings: {
             isJsonData: true,
             adaptorType: 'Table',
             xDataMapping: 'Region',
-        }, paletteSettings: {
+        },
+        paletteSettings: {
             palette: [{ color: '#F0C27B' },
             { color: '#4B1248' }
             ],

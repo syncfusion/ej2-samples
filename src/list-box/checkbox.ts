@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ListBox Checkbox sample
  */
@@ -7,6 +8,7 @@ import * as data from './datasource.json';
 ListBox.Inject(CheckBoxSelection);
 
 (window as any).default = (): void => {
+    loadCultureFiles();
 
     // Initialize the ListBox component.
     let listObj: ListBox = new ListBox({

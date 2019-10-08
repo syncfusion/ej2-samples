@@ -46,24 +46,24 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort);
             contextMenuClick: (args?: ContextMenuClickEventArgs) => {
                 let record: IGanttData = args.rowData;
                 if (args.item.id === 'collapserow') {
-                    gantt.collapseByID(record.ganttProperties.taskId);
+                    gantt.collapseByID(Number(record.ganttProperties.taskId));
                 }
                 if (args.item.id === 'expandrow') {
-                    gantt.expandByID(record.ganttProperties.taskId);
+                    gantt.expandByID(Number(record.ganttProperties.taskId));
                 }
             },
             contextMenuOpen: (args?: ContextMenuOpenEventArgs) => {
                 let record: IGanttData = args.rowData;
                 if (args.type !== 'Header') {
                     if (!record.hasChildRecords) {
-                        document.querySelectorAll('li#expandrow')[0].setAttribute('style', 'display: none;');
-                        document.querySelectorAll('li#collapserow')[0].setAttribute('style', 'display: none;');
+                        args.hideItems.push('Collapse the Row');
+                        args.hideItems.push('Expand the Row');
                     } else {
-                        let flag: boolean = record.expanded;
-                        let val: string = flag ? 'none' : 'block';
-                        document.querySelectorAll('li#expandrow')[0].setAttribute('style', 'display: ' + val + ';');
-                        val = !flag ? 'none' : 'block';
-                        document.querySelectorAll('li#collapserow')[0].setAttribute('style', 'display: ' + val + ';');
+                        if (record.expanded) {
+                            args.hideItems.push('Expand the Row');
+                        } else {
+                            args.hideItems.push('Collapse the Row');
+                        }
                     }
                 }
             },

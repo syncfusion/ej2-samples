@@ -64,12 +64,8 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
     };
 
     function onPanelResize(args: ResizeArgs): void {
-        if (args.element && args.element.querySelector('.e-panel-container .e-panel-content div') &&
-            dashboardObject.element.querySelector('.e-holder')) {
+        if (args.element && args.element.querySelector('.e-panel-container .e-panel-content div')) {
             let chartObj: any = (<any>args.element.querySelector('.e-panel-container .e-panel-content div')).ej2_instances[0];
-            let holderElementHeight: number = parseInt((<any>dashboardObject.element.querySelector('.e-holder')).style.height, 10);
-            let panelContanierElement: HTMLElement = args.element.querySelector('.e-panel-content');
-            panelContanierElement.style.height = holderElementHeight - 35 + 'px';
             chartObj.height = '95%';
             chartObj.width = '100%';
             chartObj.refresh();

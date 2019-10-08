@@ -21,7 +21,7 @@ import * as data from './data-table-of-contents.json';
     container.documentEditor.documentName = 'Table of Contents';
     titleBar.updateDocumentTitle();
 
-    container.documentEditor.documentChange = (): void => {
+    container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };

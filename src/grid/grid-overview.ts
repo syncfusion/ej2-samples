@@ -164,8 +164,8 @@ function startTimer(args: any): void {
                 width: '150', template: '#statusTemplate'
             },
             {
-                field: 'Trustworthiness', headerText: 'Trustworthiness', filter: { type: 'CheckBox', itemTemplate: '${ trustTemp(data)}' },
-                width: '160', template: '#trustTemplate'
+                field: 'Trustworthiness', headerText: 'Trustworthiness',
+                filter: { type: 'CheckBox', itemTemplate: '${ trustTemp(data)}' }, width: '160', template: '#trustTemplate'
             },
             {
                 field: 'Rating', filter: { type: 'CheckBox', itemTemplate: '<div>${ratingDetail(data)}</div>' }, headerText: 'Rating',

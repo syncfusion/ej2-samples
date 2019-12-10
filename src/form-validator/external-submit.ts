@@ -44,7 +44,7 @@ import { Uploader, NumericTextBox } from '@syncfusion/ej2-inputs';
         let formStatus: Boolean = formObj.validate();
         if (formStatus) {
             formObj.element.reset();
-            resume.remove();
+            resume.clearAll();
             confirm.show();
         }
     };

@@ -14,7 +14,8 @@ import { Browser, remove, Ajax } from '@syncfusion/ej2-base';
 
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
 
 // tslint:disable-next-line:max-func-body-length
 let removeSecondaryElement: Function;

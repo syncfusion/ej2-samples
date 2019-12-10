@@ -49,7 +49,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
             if (selectedTheme === 'highcontrast') {
                 args.accumulation.annotations[0].content = '#white' ;
             }
@@ -103,7 +103,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         }
     };
     let pie: AccumulationChart = new AccumulationChart(instance); pie.appendTo('#container');

@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, Category, Tooltip, ILoadedEventArgs, ChartTheme,
+    Chart, Category, Tooltip, ILoadedEventArgs, ChartTheme, Legend,
     Trendlines, ScatterSeries, SplineSeries, LineSeries, TrendlineTypes
 } from '@syncfusion/ej2-charts';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
-Chart.Inject(Category, Tooltip, ScatterSeries, SplineSeries, LineSeries, Trendlines);
+Chart.Inject(Category, Tooltip, ScatterSeries, SplineSeries, LineSeries, Trendlines, Legend);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
@@ -36,12 +36,12 @@ let powerData: object[] = [
         series: [{
             dataSource: series1, xName: 'x', yName: 'y', name: 'Rupees', type: 'Spline', marker: { visible: true },
             //Initializing TrendLines
-            trendlines: [{ type: 'Linear', width: 3, name: 'Linear',  fill:  '#C64A75' }]
+            trendlines: [{ type: 'Linear', width: 3, name: 'Trends',  fill:  '#C64A75' }]
         }],
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },  //Initializing Chart Title
         title: 'Historical Indian Rupee Rate (INR/USD)',
-        legendSettings: { visible: false }, chartArea: { border: { width: 0 } },
+        legendSettings: { visible: true }, chartArea: { border: { width: 0 } },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

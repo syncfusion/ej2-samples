@@ -3,11 +3,10 @@
     "directory": "tree-grid",
     "category": "Grids",
     "ftName": "tree-grid",
-    "type": "update",
     "samples": [
          {  
             "url": "treegrid-overview", "name": "Overview", "category": "Tree Grid","api":{"TreeGrid":["dataSource","childMapping","height","columns","allowReordering","allowFiltering","allowSorting","filterSettings","queryCellInfo"] },
-            "description": "This sample demonstrates the overview of basic treegrid features such as sorting, filtering, conditional formatting, column template and scrolling."
+            "description": "This sample demonstrates the overview of basic treegrid features such as sorting, filtering, conditional formatting, column template and scrolling." 
          },
         {  
             "url": "default", "name": "Default Functionalities", "category": "Tree Grid","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","height","columns"] },
@@ -78,7 +77,7 @@
          },
          {  
             "url": "row-reorder", "name": "Drag And Drop", "category": "Rows", "hideOnDevice":true, "api":{"TreeGrid":["dataSource","rowTemplate","height","width","columns","childMapping","treeColumnIndex"] },
-            "description": "This demo for Essential JS 2 TreeGrid control demonstrates how the rows can be dragged within the treegrid using the row drag-and-drop feature.", "type": "new"
+            "description": "This demo for Essential JS 2 TreeGrid control demonstrates how the rows can be dragged within the treegrid using the row drag-and-drop feature."
          },
          {  
             "url": "detail-template", "name": "Detail Template", "category": "Rows","api":{"TreeGrid":["dataSource","detailTemplate","height","width","columns","childMapping","treeColumnIndex"] },
@@ -155,7 +154,7 @@
          },
          {
             "url":"frozen-column", "name": "Frozen Column", "category":"Columns","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
-            "description": "This demo for Essential JS 2 treegrid control shows frozen columns feature of treegrid. Scroll the movable content to view the frozen columns.", "type": "new"
+            "description": "This demo for Essential JS 2 treegrid control shows frozen columns feature of treegrid. Scroll the movable content to view the frozen columns."
          },
          {"url":"aggregate-default", "name": "Default Aggregate", "category": "Aggregates","api":{"TreeGrid":["dataSource","childMapping", "treeColumnIndex","height","columns","aggregates"] },
             "description": "This demo explains how to display the summary values such as average, minimum, etc., for the columns in Syncfusion TypeScript TreeGrid control."

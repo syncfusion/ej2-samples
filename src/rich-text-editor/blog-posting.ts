@@ -4,6 +4,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import { RichTextEditor, Link, Image, HtmlEditor, Toolbar, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
 import { Button } from '@syncfusion/ej2-buttons';
+import { isNullOrUndefined as isNOU} from '@syncfusion/ej2-base';
 RichTextEditor.Inject(Link, Image, HtmlEditor, Toolbar, QuickToolbar);
 
 (window as any).default = (): void => {
@@ -31,7 +32,8 @@ RichTextEditor.Inject(Link, Image, HtmlEditor, Toolbar, QuickToolbar);
         let comment: string = answerElement.innerHTML;
         let empList: string[] = ['emp1', 'emp2', 'emp3'];
         let nameListList: string[] = ['Anne Dodsworth', 'Janet Leverling', 'Laura Callahan'];
-        if (comment !== null && comment.trim() !== '' && answerElement.innerText.trim() !== '') {
+        if (comment !== null && comment.trim() !== '' && (answerElement.innerText.trim() !== '' ||
+        !isNOU(answerElement.querySelector('img')) || !isNOU(answerElement.querySelector('table')))) {
             let answer: HTMLElement = document.querySelector('.answer');
             let cloneAnswer: HTMLElement = answer.cloneNode(true) as HTMLElement;
             let authorName: HTMLElement = cloneAnswer.querySelector('.authorname');

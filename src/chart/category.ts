@@ -88,7 +88,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         //Initializing Chart title
         title: Browser.isDevice ? 'Internet Users in Million – 2016' : 'Internet Users – 2016',

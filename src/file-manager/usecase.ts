@@ -35,7 +35,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView);
     });
     dialogObj.appendTo('#dialog');
 
-    let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
+    let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
     let contextmenuItems: string[] = ['Open', '|', 'Cut', 'Copy', 'Delete', 'Rename', '|', 'Details'];
 
     // Initialize the FileManager component

@@ -2,6 +2,7 @@
     "name": "DocumentEditor",
     "directory": "document-editor",
     "category": "Editors",
+    "type": "update",
     "hideOnDevice": true,
     "ftName": "document-editor",
     "samples": [
@@ -1213,6 +1214,14 @@
             "name": "Document Protection",
             "category": "Security",
             "description": "The Document Editor provides document protection supports to restrict the types of changes can be made to the document by a user/user group."
+        },
+        {
+            "url": "comments",
+            "name": "Comments",
+            "category": "Review",
+            "type": "new",
+            "description": "The Document Editor component supports add and edit comments in a Word document for comment discussion." 
         }
+
     ]
 }

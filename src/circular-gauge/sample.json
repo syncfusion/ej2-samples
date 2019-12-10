@@ -2,8 +2,7 @@
     "name": "Circular Gauge",
     "directory": "circular-gauge",
     "category": "Data Visualization",
-    "ftName": "circulargauge",  
-    "type": "update",
+    "ftName": "circulargauge",
     "samples": [
         {
             "url": "default",
@@ -43,8 +42,7 @@
         {
             "url": "semi-circular-gauge",
             "name": "Semi-circular Gauge",
-            "category": "Circular Gauge",
-			"type": "update"
+            "category": "Circular Gauge"
         },
         {
             "url": "arc-gauge",
@@ -56,8 +54,7 @@
             "name": "Legend",
             "description": "This demo for Essential JS2 Circular Gauge control illustrates the rendering of legend in circular gauge.",
             "category": "Circular Gauge",
-             "api":{"CircularGauge": [ "legendSettings"]},
-             "type": "new"
+             "api":{"CircularGauge": [ "legendSettings"]}
         },
         {
             "url": "compass",
@@ -99,8 +96,7 @@
             "name": "Tooltip",
             "description": "This demo for Essential JS2 Circular Gauge control visualizes the tooltip template for circular gauge pointer.",
             "category": "User Interaction",
-            "api":{"CircularGauge": ["axes", "tooltip", "tooltipRender"]},
-			"type": "update"
+            "api":{"CircularGauge": ["axes", "tooltip", "tooltipRender"]}
         },
         {
             "url": "data-sample",

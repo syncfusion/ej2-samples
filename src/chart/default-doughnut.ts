@@ -68,7 +68,7 @@ centerTitle.style.visibility = 'hidden';
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
             args.accumulation.legendSettings.position = Browser.isDevice ? 'Bottom' : 'Right';
         },
         loaded: (args: IAccLoadedEventArgs) => {

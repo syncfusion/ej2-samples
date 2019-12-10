@@ -329,7 +329,26 @@ L10n.load({
             'Error in establishing connection with web server': 'خطأ في تأسيس اتصال مع ملقم ويب',
             'Highlight the regions I can edit': 'تسليط الضوء على المناطق التي يمكنني تحريرها',
             'Show All Regions I Can Edit': 'إظهار كافة المناطق التي يمكنني تحريرها',
-            'Find Next Region I Can Edit': 'البحث عن المنطقة التالية التي يمكنني تحريرها'
+            'Find Next Region I Can Edit': 'البحث عن المنطقة التالية التي يمكنني تحريرها',
+            'Keep source formatting': 'الاحتفاظ بتنسيق المصدر',
+            'Match destination formatting': 'مطابقه تنسيق الوجهة',
+            'Text only': 'النص فقط',
+            'Comments': 'تعليقات',
+            'Type your comment': 'اكتب تعليقك',
+            'Post': 'وظيفه',
+            'Reply': 'الرد',
+            'New Comment': 'تعليق جديد',
+            'Edit': 'تحرير',
+            'Resolve': 'حل',
+            'Reopen': 'فتح',
+            'No comments in this document': 'لا توجد تعليقات في هذا المستند',
+            'more': 'اكثر',
+            'Type your comment hear': 'اكتب تعليقك الاستماع',
+            'Next Comment': 'التعليق التالي',
+            'Previous Comment': 'التعليق السابق',
+            'Un-posted comments': 'Un-نشر التعليقات',
+            // tslint:disable-next-line:max-line-length
+            'Added comments not posted. If you continue, that comment will be discarded.': 'لم يتم نشر التعليقات المضافة. إذا قمت بالمتابعة ، سيتم تجاهل هذا التعليق.'
         },
         'documenteditorcontainer': {
             'New': 'الجديد',
@@ -488,7 +507,12 @@ L10n.load({
             'Stop Protection': 'إيقاف الحماية',
             'Unprotect Document': 'إلغاء حماية المستند',
             'Password': 'كلمه المرور',
-            'Protections': 'الحمايه'
+            'Protections': 'الحمايه',
+            'Error in establishing connection with web server': 'خطا في تاسيس اتصال مع ملقم ويب',
+            'Single': 'واحد',
+            'Double': 'انقر نقرا مزدوجا',
+            'New comment': 'تعليق جديد',
+            'Comments': 'تعليقات'
         },
         'colorpicker': {
             'Apply': 'تطبيق',

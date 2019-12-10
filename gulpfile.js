@@ -69,5 +69,3 @@ gulp.task('serve', ['build'], function (done) {
     };
     bs.init(options, done);
 });
-
-

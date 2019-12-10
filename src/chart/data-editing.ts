@@ -74,7 +74,7 @@ Chart.Inject(LineSeries, ColumnSeries, Category, Legend, Tooltip, DataEditing);
 
         ],
         //Initializing Chart title
-        title: 'Sales prediction of products',
+        title: 'Sales Prediction of Products',
         //Initializing User Interaction Tooltip
         tooltip: {
             enable: true
@@ -84,7 +84,7 @@ Chart.Inject(LineSeries, ColumnSeries, Category, Legend, Tooltip, DataEditing);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
     });
     chart.appendTo('#dataediting');

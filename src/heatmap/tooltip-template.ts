@@ -1,4 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
+
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
 import * as data from './data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);

@@ -23,12 +23,12 @@ import { Button } from '@syncfusion/ej2-buttons';
     // After clicking apply button- 'min', 'max' and 'increment step' details will be received from properties panel
     // and set it to Numeric Textbox.
     document.getElementById('buttonApply').onclick = (): void => {
-        let min : number = parseFloat((document.getElementById('min') as HTMLInputElement).value);
-        let max : number = parseFloat((document.getElementById('max') as HTMLInputElement).value);
-        let step : number = parseFloat((document.getElementById('step') as HTMLInputElement).value);
 
+        let min: number = parseFloat((document.getElementById('min') as HTMLInputElement).value);
+        let max: number = parseFloat((document.getElementById('max') as HTMLInputElement).value);
+        let step: number = parseFloat((document.getElementById('step') as HTMLInputElement).value);
         numeric.min = min;
         numeric.max = max;
-        numeric.step = step;
+        numeric.step = isNaN(step) ? 1 : step;
     };
 };

@@ -3,6 +3,8 @@
  */
 import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
 import * as dataSource from './map-data/top-location.json';
+import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { EmitType } from '@syncfusion/ej2-base';
 let data: any  = dataSource as any;
 Maps.Inject(Marker, MapsTooltip);
 // custom code start
@@ -47,7 +49,7 @@ import { loadCultureFiles } from '../common/culture-loader';
                         animationDuration: 0,
                         shape: 'Circle',
                         fill: 'white',
-                        width: 3,
+                        width: 10,
                         border: { width: 2, color: '#285255' },
                         tooltipSettings: {
                             template: '#template',
@@ -60,4 +62,31 @@ import { loadCultureFiles } from '../common/culture-loader';
         ]
     });
     maps.appendTo('#container');
+
+    let markerShape: EmitType<CheckBoxChangeEvents>;
+    let markerShapeCheckBox: CheckBox = new CheckBox(
+    {
+        change: markerShape, checked: false
+    },
+    '#shape');
+    markerShapeCheckBox.change = markerShape = (e: CheckBoxChangeEvents) => {
+        if (e.checked) {
+            maps.layers[0].markerSettings[0].shapeValuePath = 'shape';
+        } else {
+            maps.layers[0].markerSettings[0].shapeValuePath = null;
+        }
+    };
+    let markerColor: EmitType<CheckBoxChangeEvents>;
+    let markerColorCheckBox: CheckBox = new CheckBox(
+    {
+        change: markerColor, checked: false
+    },
+    '#color');
+    markerColorCheckBox.change = markerColor = (e: CheckBoxChangeEvents) => {
+        if (e.checked) {
+            maps.layers[0].markerSettings[0].colorValuePath = 'color';
+        } else {
+            maps.layers[0].markerSettings[0].colorValuePath = null;
+        }
+    };
 };

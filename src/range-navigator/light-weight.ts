@@ -14,7 +14,8 @@ import { Browser } from '@syncfusion/ej2-base';
 
     let selectedTheme: string = location.hash.split('/')[1];
     selectedTheme = selectedTheme ? selectedTheme : 'Material';
-    let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+    let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
     let range: RangeNavigator = new RangeNavigator(
         {
             valueType: 'DateTime',

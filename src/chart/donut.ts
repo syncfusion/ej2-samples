@@ -37,14 +37,14 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel);
             visible: true, position: 'Top'
         },
         // Initialize the tooltip
-        tooltip: { enable: true },
+        tooltip: { enable: false },
         title: 'Project Cost Breakdown',
          // custom code start
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         }
          // custom code end
     });

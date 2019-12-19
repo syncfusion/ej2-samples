@@ -229,7 +229,7 @@ function preventTabSwipe(e: any): void {
     }
 }
 function dynamicTab(e: any): void {
-    let blockEle: Element = this.element.querySelector('#e-content_' + e.selectedIndex).children[0];
+    let blockEle: Element = this.element.querySelector('#e-content' + this.tabId + '_' + e.selectedIndex).children[0];
     blockEle.innerHTML = this.items[e.selectedIndex].data;
     blockEle.innerHTML = blockEle.innerHTML.replace(reg,'');
     blockEle.classList.add('sb-src-code');
@@ -242,11 +242,11 @@ function dynamicTabCreation(obj: any): void {
     if (obj) {
         tabObj = obj;
     } else { tabObj = this; }
-    let contentEle: Element = tabObj.element.querySelector('#e-content_' + tabObj.selectedItem);
+    let contentEle: Element = tabObj.element.querySelector('#e-content' + tabObj.tabId + '_' + tabObj.selectedItem);
     if (!contentEle) {
         return;
     }
-    let blockEle: Element = tabObj.element.querySelector('#e-content_' + tabObj.selectedItem).children[0];
+    let blockEle: Element = tabObj.element.querySelector('#e-content' + tabObj.tabId + '_' + tabObj.selectedItem).children[0];
     blockEle.innerHTML = tabObj.items[tabObj.selectedItem].data;
     blockEle.innerHTML = blockEle.innerHTML.replace(reg,'');
     blockEle.classList.add('sb-src-code');
@@ -378,7 +378,6 @@ function renderSbPopups(): void {
         // tslint:disable-next-line:align
         '#sb-source-tab');
     enableRipple(selectedTheme === 'material' || !selectedTheme);
-    sourceTab.selectedItem = 1;
     /**
      * api grid
      */
@@ -861,6 +860,8 @@ function setSbLink(): void {
         let ele: HTMLFormElement = <HTMLFormElement>select('#' + sb);
         if (sb === 'aspnetcore' || sb === 'aspnetmvc') {
             ele.href = sb === 'aspnetcore' ? 'https://ej2.syncfusion.com/aspnetcore/' : 'https://ej2.syncfusion.com/aspnetmvc/';
+        } else if (sb === 'blazor') { 
+            ele.href = 'https://blazor.syncfusion.com/demos/';
         } else {
             ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('https://ej2.syncfusion.com/')) +
                 sb + '/' + 'demos/#/' + sample + (sb === 'javascript' ? '.html' : '');
@@ -1375,7 +1376,6 @@ function addRoutes(samplesList: Controls[]): void {
                 /**
                  * BreadCrumb
                  */
-                sourceTab.selectedItem = 0;
                 contentTab.selectedItem = 0;
                 breadCrumbComponent.innerHTML = node.name;
                 if (node.name !== subNode.category) {

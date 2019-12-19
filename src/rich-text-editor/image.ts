@@ -55,10 +55,14 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             let transform: number = (imgEle.style.transform === '') ? 0 :
                 parseInt(imgEle.style.transform.split('(')[1].split(')')[0], 10);
             imgEle.style.transform = 'rotate(' + (transform + 90) + 'deg)';
+            defaultRTE.formatter.saveData();
+            defaultRTE.formatter.enableUndo(defaultRTE);
         } else if (e.item.tooltipText === 'Rotate Left') {
             let transform: number = (imgEle.style.transform === '') ? 0 :
                 Math.abs(parseInt(imgEle.style.transform.split('(')[1].split(')')[0], 10));
             imgEle.style.transform = 'rotate(-' + (transform + 90) + 'deg)';
+            defaultRTE.formatter.saveData();
+            defaultRTE.formatter.enableUndo(defaultRTE);
         }
     }
 };

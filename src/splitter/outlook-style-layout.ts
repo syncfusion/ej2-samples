@@ -21,7 +21,7 @@ enableRipple(true);
             { size: '33%', min: '23%' },
             { size: '37%', min: '30%' }
         ],
-        resizeStop: onSplitterResize,
+        resizing: onSplitterResize,
         width: '100%'
     });
     splitObj1.appendTo('#splitter1');
@@ -102,6 +102,6 @@ enableRipple(true);
     }
 
     function onSplitterResize(): void {
-        rteObj.refresh();
+        rteObj.refreshUI();
     }
 };

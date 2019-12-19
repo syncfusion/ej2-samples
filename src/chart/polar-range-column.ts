@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, PolarSeries, Category, Tooltip, ILoadedEventArgs, RadarSeries, ChartDrawType, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(PolarSeries, Category, Tooltip, RadarSeries);
+import { Chart, PolarSeries, Category, ILoadedEventArgs, RadarSeries, ChartDrawType  } from '@syncfusion/ej2-charts';
+import { RangeColumnSeries, DataLabel, ITextRenderEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
+Chart.Inject(PolarSeries, Category, RadarSeries, RangeColumnSeries, DataLabel);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
 
@@ -25,7 +26,7 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary Y Axis
         primaryYAxis: {
             labelFormat: '{value}˚C',
-            minimum: 0, maximum: 20, interval: 5
+            minimum: 0, maximum: 15, interval: 5
         },
 
         //Initializing Chart Series
@@ -33,19 +34,23 @@ import { Browser } from '@syncfusion/ej2-base';
             {
                 type: 'Polar', drawType: 'RangeColumn', name: 'Germany', xName: 'x', high: 'high', low: 'low',
                 dataSource: [
-                    { x: 'Jan', low: 2.7, high: 7.1 }, { x: 'Feb', low: 3.9, high: 7.7 },
-                    { x: 'Mar', low: 3.2, high: 7.5 }, { x: 'Apr', low: 4.5, high: 9.8 },
-                    { x: 'May', low: 6.7, high: 11.4 }, { x: 'June', low: 8.4, high: 14.4 },
-                    { x: 'July', low: 11.6, high: 17.2 }, { x: 'Aug', low: 12.7, high: 17.9 },
-                    { x: 'Sep', low: 9.5, high: 15.1 }, { x: 'Oct', low: 5.0, high: 10.5 },
-                    { x: 'Nov', low: 3.2, high: 7.9 }, { x: 'Dec', low: 6.1, high: 9.1 }
+                    { x: 'Jan', low: 2, high: 7 }, { x: 'Feb', low: 3, high: 7 },
+                    { x: 'Mar', low: 3, high: 7 }, { x: 'Apr', low: 4, high: 9 },
+                    { x: 'May', low: 6, high: 11 }, { x: 'June', low: 8, high: 14 }
                 ],
+                marker: {
+                    dataLabel: {
+                        visible: true,
+                        position: 'Top',
+                        font: { color: '#ffffff', fontWeight: '600'},
+                        enableRotation: true
+                    }
+                },
                 border: { width: 3, color: 'white' },
             },
         ],
-        //Initializing User Interaction Tooltip
-        tooltip: {
-            enable: true
+        textRender: (args: ITextRenderEventArgs) => {
+            args.text = args.text.replace('˚C', '');
         },
         legendSettings: { visible: false },
         //Initializing Chart Title

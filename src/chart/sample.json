@@ -499,7 +499,16 @@
             "url": "trend-lines",
             "name": "Trendlines",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the trend lines in charts.",
-            "category": "Other Types"
+            "category": "Other Types",
+            "type": "update",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "tooltip"
+                ]
+            }
         },
         {
             "url": "hilo",
@@ -739,8 +748,7 @@
             "url": "default-pie",
             "name": "Pie",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the pie charts.",
-            "category": "Accumulation Charts",
-            "type": "update",
+            "category": "Accumulation Charts",        
             "api": {
                 "AccumulationChart": [
                     "series",
@@ -766,8 +774,7 @@
             "url": "donut",
             "name": "Donut",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the doughnut charts.",
-            "category": "Accumulation Charts",
-            "type": "update",
+            "category": "Accumulation Charts",        
             "api": {
                 "AccumulationChart": [
                     "series",
@@ -975,6 +982,7 @@
             "name": "Range Column",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render range column in polar and radar charts.",
             "category": "Polar Radar",
+            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1228,7 +1236,7 @@
                     "tooltip"
                 ]
             }
-        },
+        },        
         {
             "url": "pie-annotation",
             "name": "Annotation",
@@ -1255,6 +1263,22 @@
                     "primaryYAxis",
                     "series",
                     "textRender"
+                ]
+            }
+        },
+        {
+            "url": "tooltip-template",
+            "name": "Tooltip Template",
+            "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to configure the tooltip template and background for chart.",
+            "category": "Chart Customization",
+            "type": "new",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "backgroundImage",
+                    "series",
+                    "tooltip"
                 ]
             }
         },
@@ -1340,8 +1364,7 @@
             "url": "range-selection",
             "name": "Range Selection",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates the range selection in chart .",
-            "category": "User Interaction",
-            "type": "update",
+            "category": "User Interaction",         
             "api": {
                 "Chart": [
                     "primaryXAxis",

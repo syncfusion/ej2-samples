@@ -1,9 +1,11 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample demonstrates custom characters and regular expression support.
  */
 import { MaskedTextBox } from '@syncfusion/ej2-inputs';
 
 (window as any).default = (): void => {
+    loadCultureFiles();
     // Render the Masked Textbox
     let mask1: MaskedTextBox = new MaskedTextBox({
         mask: '00:00 >PM',

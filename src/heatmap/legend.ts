@@ -11,7 +11,7 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
     loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
-            text: 'Hourly Weather Forecast (in Celsius)',
+            text: 'Hourly Weather Forecast',
             textStyle: {
                 size: '15px',
                 fontWeight: '500',
@@ -39,8 +39,11 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
             ]
         },
         legendSettings: {
-            position: 'Left',
+            position: 'Bottom',
             labelFormat: '{value}\xB0 C',
+            title: {
+              text: 'Celsius'
+            }
         },
         tooltipRender: (args: ITooltipEventArgs) => {
             args.content = [args.xLabel + ' | ' + args.yLabel + ' : ' + args.value + '\xB0 C'];
@@ -54,7 +57,7 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
     heatmap.appendTo('#container');
 
     let legentListObj: DropDownList = new DropDownList({
-        index: 0,
+        index: 3,
         popupHeight: '200px',
         change: () => { valueXChange(); }
     });

@@ -87,7 +87,7 @@
     content: '\e906';
 }
 
-#sb-content-header .e-tab-text{
+#sb-content-header .e-tab-text {
     display: table;
 }
 
@@ -1253,7 +1253,6 @@ button#tab-navigation-prev {
 
 .sb-open-new-wrapper {
     padding: 0px 16px;
-    display: none;
 }
 
 .sb-open-new-wrapper a {

@@ -88,7 +88,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         width: 120,
         change: () => {
             let rangeColor: string = labelColor.value.toString();
-            circulargauge.axes[0].ranges[0].color = rangeColor;
+            circulargauge.axes[0].labelStyle.font.color = rangeColor;
             circulargauge.refresh();
         }
     });

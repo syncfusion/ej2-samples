@@ -1,6 +1,7 @@
 {
     "name": "Heatmap Chart",
     "directory": "heatmap",
+    "type":"update",
     "ftName": "heatmap-chart",
     "category": "Data Visualization",
     "samples": [
@@ -219,6 +220,7 @@
         {
             "url": "legend",
             "name": "Legend Placement",
+            "type":"update",
             "category": "Features",
             "description": "This demo for Essential JS2 Heatmap control shows how to place the heatmap legend in different positions.",
             "api": {

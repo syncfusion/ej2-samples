@@ -3,12 +3,28 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Edit, Selection, Toolbar, DayMarkers, ContextMenuItem, ContextMenu, Resize, Sort,
     ContextMenuOpenEventArgs, ContextMenuClickEventArgs, IGanttData } from '@syncfusion/ej2-gantt';
 import { ItemModel } from '@syncfusion/ej2-navigations';
+import { EmitType } from '@syncfusion/ej2-base';
 import { editingData, editingResources } from './data-source';
 
 /**
  *  Context menu in Gantt sample
  */
 Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort);
+let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpenEventArgs) => {
+    let record: IGanttData = args.rowData;
+    if (args.type !== 'Header') {
+        if (!record.hasChildRecords) {
+            args.hideItems.push('Collapse the Row');
+            args.hideItems.push('Expand the Row');
+        } else {
+            if (record.expanded) {
+                args.hideItems.push('Expand the Row');
+            } else {
+                args.hideItems.push('Collapse the Row');
+            }
+        }
+    }
+};
 (window as any).default = (): void => {
     loadCultureFiles();
     let contextMenuItems: (string | ItemModel)[] = ['AutoFitAll', 'AutoFit', 'TaskInformation', 'DeleteTask', 'Save', 'Cancel',
@@ -32,12 +48,26 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort);
                 notes: 'info',
                 resourceInfo: 'resources'
             },
+            columns: [
+                { field: 'TaskID', width: 50 },
+                { field: 'TaskName', headerText: 'Job Name', width: '250', clipMode: 'EllipsisWithTooltip' },
+                { field: 'StartDate' },
+                { field: 'EndDate' },
+                { field: 'Duration' },
+                { field: 'Progress' },
+                { field: 'Predecessor' },
+                { field: 'resources' },
+                { field: 'info' },
+            ],
             editSettings: {
                 allowAdding: true,
                 allowEditing: true,
                 allowDeleting: true,
                 allowTaskbarEditing: true,
                 showDeleteConfirmDialog: true
+            },
+            splitterSettings: {
+                columnIndex: 2
             },
             allowResizing: true,
             allowSorting: true,
@@ -52,21 +82,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort);
                     gantt.expandByID(Number(record.ganttProperties.taskId));
                 }
             },
-            contextMenuOpen: (args?: ContextMenuOpenEventArgs) => {
-                let record: IGanttData = args.rowData;
-                if (args.type !== 'Header') {
-                    if (!record.hasChildRecords) {
-                        args.hideItems.push('Collapse the Row');
-                        args.hideItems.push('Expand the Row');
-                    } else {
-                        if (record.expanded) {
-                            args.hideItems.push('Expand the Row');
-                        } else {
-                            args.hideItems.push('Collapse the Row');
-                        }
-                    }
-                }
-            },
+            contextMenuOpen: contextMenuOpen,
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll'],
             allowSelection: true,
             gridLines: 'Both',

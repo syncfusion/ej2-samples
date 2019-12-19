@@ -47,7 +47,7 @@ AccumulationChart.Inject(AccumulationLegend, FunnelSeries, AccumulationTooltip, 
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
             if (args.accumulation.availableSize.width < args.accumulation.availableSize.height) {
                 args.accumulation.series[0].width = '80%';
                 args.accumulation.series[0].height = '70%';
@@ -64,7 +64,7 @@ AccumulationChart.Inject(AccumulationLegend, FunnelSeries, AccumulationTooltip, 
             }
         },
         //Initializing Chart title
-        title: 'Top populated countries in 2017',
+        title: 'Top population countries in the world 2017',
     });
     chart.appendTo('#container');
     function neckWidth(value: number): void {

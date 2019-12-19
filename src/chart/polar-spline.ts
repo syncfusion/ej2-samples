@@ -53,19 +53,20 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries);
 
         //Initializing Chart Series
         series: [
+
             {
                 type: 'Polar', drawType: 'Spline', dataSource: cardData,
-                animation: { enable: true }, width: 2,
+                animation: { enable: true }, width: 2, isClosed: false,
                 xName: 'x', yName: 'y', name: 'Cardioid (unidirectional)', dashArray: '5 5 2'
             },
             {
                 type: 'Polar', drawType: 'Spline', dataSource: omniDirData,
                 animation: { enable: true }, dashArray: '2', width: 2,
-                xName: 'x', yName: 'y', name: 'Omnidirectional'
+                xName: 'x', yName: 'y', name: 'Omnidirectional', isClosed: false
             },
             {
                 type: 'Polar', drawType: 'Spline', dataSource: biDirData,
-                animation: { enable: true }, width: 2,
+                animation: { enable: true }, width: 2, isClosed: false,
                 xName: 'x', yName: 'y', name: 'Bidirectional'
             },
         ],
@@ -80,7 +81,7 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries);
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         }
     });
     chart.appendTo('#container');

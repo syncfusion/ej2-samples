@@ -54,7 +54,7 @@ npm run build
 
 ### Testing
 
-To test the source files, use the below command
+To test the source files, use the below command.
 
 ```bash
 npm run test

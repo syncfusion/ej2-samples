@@ -55,10 +55,6 @@ import { loadCultureFiles } from '../common/culture-loader';
                         imageUrl: 'src/maps/images/ballon.png',
                         height: 20,
                         width: 20,
-                        offset: {
-                            y: -10,
-                            x: 0
-                        },
                         tooltipSettings: {
                             visible: true,
                             valuePath: 'name'

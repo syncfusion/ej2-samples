@@ -72,7 +72,6 @@ Maps.Inject(Zoom);
     document.getElementById('doubletap').onchange = () => {
         let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('doubletap'));
         maps.zoomSettings.doubleClickZoom = element.checked;
-        maps.zoomSettings.zoomOnClick = (!element.checked);
         let ele1: HTMLInputElement = <HTMLInputElement>document.getElementById('singletap');
         if (element.checked) {
             ele1.disabled = true;
@@ -84,7 +83,6 @@ Maps.Inject(Zoom);
         let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('singletap'));
         let ele1: HTMLInputElement = <HTMLInputElement>document.getElementById('doubletap');
         maps.zoomSettings.zoomOnClick = element.checked;
-        maps.zoomSettings.doubleClickZoom = (!element.checked);
         if (element.checked) {
             ele1.disabled = true;
         } else {

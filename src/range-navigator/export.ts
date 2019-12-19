@@ -14,7 +14,8 @@ import { Ajax } from '@syncfusion/ej2-base';
  */
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
 let themes: string[] = ['Material', 'Fabric', 'Bootstrap', 'Highcontrast'];
 let borderColor: string[] = ['#FF4081', '#007897', '#428BCA', '#FFD939'];
 let regionColor: string[] = ['rgba(255, 64, 129, 0.3)', ' rgba(0, 120, 151, 0.3)',

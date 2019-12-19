@@ -24,6 +24,19 @@ Gantt.Inject(Selection, Toolbar, ExcelExport);
                 child: 'subtasks',
                 resourceInfo: 'resources'
             },
+            columns: [
+                { field: 'TaskID', width: 60 },
+                { field: 'TaskName', width: 250 },
+                { field: 'StartDate' },
+                { field: 'EndDate' },
+                { field: 'Duration' },
+                { field: 'Predecessor' },
+                { field: 'Progress' },
+                { field: 'resources' }
+            ],
+            splitterSettings: {
+                columnIndex: 2
+            },
             allowExcelExport: true,
             toolbar: ['ExcelExport', 'CsvExport'],
             toolbarClick: (args?: ClickEventArgs) => {

@@ -9,7 +9,8 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Resize);
     loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
-        enableResize: true
+        enableResize: true,
+        height: 250
     });
     defaultRTE.appendTo('#defaultRTE');
 };

@@ -13,6 +13,7 @@ Gantt.Inject(Toolbar);
         {
             dataSource: zoomingData,
             height: '450px',
+            treeColumnIndex: 1,
             taskFields: {
                 id: 'TaskID',
                 name: 'TaskName',
@@ -23,9 +24,21 @@ Gantt.Inject(Toolbar);
                 dependency: 'Predecessor',
                 child: 'subtasks'
             },
+            columns: [
+                { field: 'TaskID', width: 60 },
+                { field: 'TaskName', width: 250 },
+                { field: 'StartDate' },
+                { field: 'EndDate' },
+                { field: 'Duration' },
+                { field: 'Predecessor' },
+                { field: 'Progress' },
+            ],
             toolbar: ['ZoomIn', 'ZoomOut', 'ZoomToFit'],
             labelSettings: {
                 leftLabel: 'TaskName'
+            },
+            splitterSettings: {
+                columnIndex: 2
             },
             projectStartDate: new Date('03/24/2019'),
             projectEndDate: new Date('04/28/2019')

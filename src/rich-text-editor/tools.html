@@ -65,6 +65,7 @@
         <li><code>FullScreen</code> - Stretches the editor to the maximum width and height of the browser window.</li>
         <li><code>Format</code> – Formats the sentence in different ways such as heading level, quotation, and code snippet</li>
         <li><code>Styles</code> – Allows you to apply inline styles to the selected content like bold, italic, and more.</li>
+        <li><code>Insert Code</code> - Allows you to apply code format to the selected parent nodes. In the above sample, the style for the code format ('pre' tag) is applied by adding the background color.</li>
     </ul>
     <p><b>Injecting Module</b></p>
     <p>The above features built as modules have to be included in your application. For example, to use image and link, inject the specific module using <code>RichTextEditor.Inject (Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table)</code>.</p>
@@ -100,5 +101,14 @@
 
     .sb-header.e-view.hide-header {
         display: none;
+    }
+
+    .e-richtexteditor .e-rte-content .e-content pre {
+        padding: 10px;
+        background: #F4F5F7;
+    }
+    .highcontrast .e-richtexteditor .e-rte-content .e-content pre {
+        padding: 10px;
+        background: #303030;
     }
 </style>

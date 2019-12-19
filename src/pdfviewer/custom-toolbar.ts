@@ -386,7 +386,6 @@ function updateSearchInputIcon(isEnable: boolean): void {
         document.getElementById('totalPage').textContent = 'of ' + viewer.pageCount;
         updatePageNavigation();
     };
-
     searchButton = document.getElementById('searchBtn');
     searchInput.addEventListener('focus', () => { searchInput.parentElement.classList.add('e-input-focus'); });
     searchInput.addEventListener('blur', () => { searchInput.parentElement.classList.remove('e-input-focus'); });

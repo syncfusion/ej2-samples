@@ -25,7 +25,8 @@ import { chartData } from './stock-chart-data';
 let index: number = 0;
 let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
 let removeSecondaryElement: Function;
 let periodsValue: PeriodSelectorSettingsModel = {
     position: 'Top',

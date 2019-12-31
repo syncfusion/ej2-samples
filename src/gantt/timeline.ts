@@ -81,12 +81,6 @@ Gantt.Inject(Selection, Sort, DayMarkers);
             labelSettings: {
                 rightLabel: 'taskName',
             },
-            eventMarkers: [
-                {
-                    day: '02/08/2019',
-                    label: 'Project kick-off'
-                }
-            ],
         });
     gantt.appendTo('#Timeline');
 

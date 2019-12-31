@@ -14,7 +14,7 @@ let message: string = 'Greetings Nancy! When will you share me the source files 
     let sendbutton: Button = new Button();
     let proxy: any = this;
     let dialog: Dialog = new Dialog({
-        header: headerimg + '<div id="template" title="Nancy" class="e-icon-settings"> Nancy </div>',
+        header: headerimg + '<div id="dlg-template" title="Nancy" class="e-icon-settings"> Nancy </div>',
         footerTemplate: ' <input id="inVal" class="e-input" type="text" placeholder="Enter your message here!"/>' + icontemp,
         showCloseIcon: true,
         content: '<div class="dialogContent"><span class="dialogText">' + message + '</span></div>',

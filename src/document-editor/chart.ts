@@ -11,7 +11,7 @@ import * as data from './data-chart.json';
     loadCultureFiles();
     let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
 
-    let container: DocumentEditorContainer = new DocumentEditorContainer({ enableToolbar: true });
+    let container: DocumentEditorContainer = new DocumentEditorContainer({ enableToolbar: true, height: '590px' });
     DocumentEditorContainer.Inject(Toolbar);
     container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');

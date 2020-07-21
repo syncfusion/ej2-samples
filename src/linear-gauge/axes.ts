@@ -38,6 +38,11 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         gauge.axes[0].isInversed = ele.checked;
         gauge.refresh();
     };
+    document.getElementById('lastlabel').onchange = (sender: Event) => {
+        let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('lastlabel');
+        gauge.axes[0].showLastLabel = ele.checked;
+        gauge.refresh();
+    };
 
     document.getElementById('min').ontouchmove = document.getElementById('min').onpointermove =
         document.getElementById('min').onchange = () => {
@@ -108,11 +113,12 @@ export function linearAxes(): LinearGauge {
         // custom code end
         orientation: 'Horizontal',
         axes: [{
+            maximum: 115,
             line: {
                 color: '#9E9E9E'
             },
             pointers: [{
-                value: 10,
+                value: 20,
                 height: 15,
                 width: 15,
                 color: '#757575',
@@ -120,7 +126,7 @@ export function linearAxes(): LinearGauge {
             }],
             majorTicks: {
                 color: '#9E9E9E',
-                interval: 10
+                interval: 20
             },
             minorTicks: {
                 color: '#9E9E9E',
@@ -134,7 +140,7 @@ export function linearAxes(): LinearGauge {
             content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px;">' +
             '${axes[0].pointers[0].currentValue} MPH</h1></div>',
             axisIndex: 0,
-            axisValue: 10,
+            axisValue: 20,
             x: 10,
             y: 60,
             zIndex: '1'

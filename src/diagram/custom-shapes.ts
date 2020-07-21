@@ -8,9 +8,22 @@ import {
 } from '@syncfusion/ej2-diagrams';
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 
-//Add Gauge control to Diagram.
-function getHtmlContent(): HTMLElement {
-    let div: HTMLElement = document.getElementById('gauge');
+(window as any).default = (): void => {
+    loadCultureFiles();
+    let shape: HtmlModel = { type: 'HTML' };
+    let node1: NodeModel = {
+        id: 'node', offsetX: 450, offsetY: 200, width: 300, height: 300, shape: shape
+    };
+    //initialize the diagram control
+    let diagram: Diagram = new Diagram({
+        width: '100%', height: '640px', nodes: [node1], snapSettings: { constraints: 0 },
+        nodeTemplate: '#nodetemplate', created: created
+    });
+    diagram.appendTo('#diagram');
+    function created(): void {
+        diagram.fitToPage();
+    }
+    //Add Gauge control to Diagram.
     let circularGauge: CircularGauge = new CircularGauge({
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
@@ -40,21 +53,6 @@ function getHtmlContent(): HTMLElement {
         }]
     });
     circularGauge.appendTo('#gauge');
-    return div;
-}
 
-(window as any).default = (): void => {
-    loadCultureFiles();
-    let htmlcontent: string = '<div id="gauge" style="height:100%; width:100%; overflow:hidden;"> </div>';
-    let shape: HtmlModel = { type: 'HTML', content: htmlcontent };
-    let node1: NodeModel = {
-        id: 'node', offsetX: 450, offsetY: 200, width: 300, height: 300, shape: shape
-    };
-    //initialize the diagram control
-    let diagram: Diagram = new Diagram({
-        width: '100%', height: '640px', nodes: [node1], snapSettings: { constraints: 0 },
-    });
-    diagram.appendTo('#diagram');
-    getHtmlContent();
 };
 

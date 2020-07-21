@@ -4,9 +4,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Changing exporting sample.
  */
-import { Maps, ILoadEventArgs, MapsTheme, ITooltipRenderEventArgs, MapsTooltip, Legend, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, ILoadEventArgs, MapsTheme, ITooltipRenderEventArgs, MapsTooltip, Legend, MapAjax, Print } from '@syncfusion/ej2-maps';
 import { Button } from '@syncfusion/ej2-buttons';
-Maps.Inject(Legend, MapsTooltip);
+Maps.Inject(Legend, MapsTooltip, Print);
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -24,6 +24,7 @@ Maps.Inject(Legend, MapsTooltip);
                 args.cancel = true;
             }
         },
+        allowPrint: true,
         format: 'n',
         useGroupingSeparator: true,
         titleSettings: {
@@ -88,7 +89,7 @@ Maps.Inject(Legend, MapsTooltip);
     maps.appendTo('#container');
     // onclick event
     let togglebtn: Button = new Button({
-        cssClass: 'e-info', isPrimary: true
+        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true
     });
     togglebtn.appendTo('#togglebtn');
     document.getElementById('togglebtn').onclick = () => {

@@ -1,4 +1,4 @@
-
+import { loadCultureFiles } from '../common/culture-loader';
 import { PivotView, PivotFieldList, IDataSet, CalculatedField, FieldList } from '@syncfusion/ej2-pivotview';
 import { Browser, setStyleAttribute, enableRipple } from '@syncfusion/ej2-base';
 import * as pivotData from './pivot-data/Pivot_Data.json';
@@ -11,6 +11,7 @@ PivotView.Inject(CalculatedField, FieldList);
 /* tslint:disable */
 let Pivot_Data: IDataSet[] = (pivotData as any).data;
 (window as any).default = (): void => {
+    loadCultureFiles();
     let pivotObj: PivotView = new PivotView({
         enginePopulated: () => {
             if (!Browser.isDevice && fieldlistObj && pivotObj) {

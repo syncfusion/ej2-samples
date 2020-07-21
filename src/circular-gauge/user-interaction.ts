@@ -23,15 +23,21 @@ CircularGauge.Inject(Annotations);
         },
         // custom code end
         enablePointerDrag: true,
+        enableRangeDrag: false,
         dragMove: (args: IPointerDragEventArgs) => {
-            pointerValue = Math.round(args.currentValue);
-            document.getElementById('pointerValue').innerHTML = 'Pointer Value <span> &nbsp;&nbsp;&nbsp;' + pointerValue;
-            (<HTMLInputElement>document.getElementById('value')).value = pointerValue.toString();
-            circulargauge.setAnnotationValue(0, 0, content + pointerValue + ' MPH</span></div>');
+            if (isNaN(args.rangeIndex)) {
+                pointerValue = Math.round(args.currentValue);
+                document.getElementById('pointerValue').innerHTML = 'Pointer Value <span> &nbsp;&nbsp;&nbsp;' + pointerValue;
+                (<HTMLInputElement>document.getElementById('value')).value = pointerValue.toString();
+                circulargauge.setAnnotationValue(0, 0, content + pointerValue + ' MPH</span></div>');
+            }
+
         },
         dragEnd: (args: IPointerDragEventArgs) => {
             pointerValue = Math.round(args.currentValue);
-            setPointersValue(circulargauge, pointerValue);
+            if (isNaN(args.rangeIndex)) {
+                setPointersValue(circulargauge, pointerValue);
+            }
         },
         axes: [{
             annotations: [{
@@ -88,8 +94,8 @@ CircularGauge.Inject(Annotations);
         let color: string = getRangeColor(pointerValue, <Range[]>(circulargauge.axes[0].ranges), circulargauge.axes[0].pointers[0].color);
         circulargauge.axes[0].pointers[0].color = color;
         circulargauge.axes[0].pointers[1].color = color;
-        circulargauge.axes[0].pointers[0].animation.enable = true;
-        circulargauge.axes[0].pointers[1].animation.enable = true;
+        circulargauge.axes[0].pointers[0].animation.enable = false;
+        circulargauge.axes[0].pointers[1].animation.enable = false;
         circulargauge.axes[0].pointers[0].needleTail.color = color;
         circulargauge.axes[0].pointers[1].needleTail.color = color;
         circulargauge.axes[0].pointers[0].cap.border.color = color;
@@ -110,4 +116,8 @@ CircularGauge.Inject(Annotations);
         let value: boolean = (<HTMLInputElement>document.getElementById('enable')).checked;
         circulargauge.enablePointerDrag = value;
     };
-};
+    document.getElementById('enable1').onchange = () => {
+        let value: boolean = (<HTMLInputElement>document.getElementById('enable1')).checked;
+        circulargauge.enableRangeDrag = value;
+    };
+   };

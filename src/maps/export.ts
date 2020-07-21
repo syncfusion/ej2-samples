@@ -4,11 +4,14 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Changing exporting sample.
  */
-import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, ExportType, MapAjax } from '@syncfusion/ej2-maps';
+import {
+        Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme,
+        ExportType, MapAjax, ShapeLayerType, ImageExport, PdfExport
+} from '@syncfusion/ej2-maps';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 
-Maps.Inject(Marker, MapsTooltip);
+Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -21,6 +24,8 @@ Maps.Inject(Marker, MapsTooltip);
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
         // custom code end
+        allowPdfExport: true,
+        allowImageExport: true,
         titleSettings: {
             text: 'Location of the Wonders in the World',
             textStyle: {
@@ -58,14 +63,31 @@ Maps.Inject(Marker, MapsTooltip);
         ]
     });
     maps.appendTo('#container');
-    // code for property panel
+    // code for property panel    
+    let modeData : string[] = ['JPEG', 'PNG', 'PDF', 'SVG'];
     let mode: DropDownList = new DropDownList({
         index: 0,
+        dataSource: modeData,
         width: '100px'
     });
     mode.appendTo('#mode');
+    let layertype: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select layer type',
+        width: '100px',
+        change: () => {
+            if (layertype.value === 'OSM') {
+                mode.dataSource = modeData.slice(0, 3);
+            } else {
+                mode.dataSource = modeData;
+            }
+            maps.layers[maps.layersCollection.length - 1].layerType = <ShapeLayerType>layertype.value;
+            maps.refresh();
+        }
+    });
+    layertype.appendTo('#layertype');
     let togglebtn: Button = new Button({
-         cssClass: 'e-info', isPrimary: true
+        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true
     });
     togglebtn.appendTo('#togglebtn');
     document.getElementById('togglebtn').onclick = () => {

@@ -2,7 +2,7 @@
  * Capital for each countries
  */
 //tslint:disable
-let countries: object[] = [ {
+export let countries: object[] = [ {
     "title": "Vienna",
     "latitude": 48.2092,
     "longitude": 16.3728

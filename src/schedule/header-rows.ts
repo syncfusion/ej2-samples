@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Schedule, ScheduleModel, TimelineViews, TimelineMonth, CellTemplateArgs,
-    getWeekNumber, EventRenderedArgs, Resize, DragAndDrop
+    getWeekNumber, EventRenderedArgs, Resize, DragAndDrop, getWeekLastDate
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 import { applyCategoryColor } from './helper';
@@ -23,7 +23,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         return instance.formatDate((value as CellTemplateArgs).date, { skeleton: 'yMMMM' });
     };
     (window as TemplateFunction).getWeekDetails = (value: CellTemplateArgs) => {
-        return 'Week ' + getWeekNumber((value as CellTemplateArgs).date);
+        return 'Week ' + getWeekNumber(getWeekLastDate(value.date, 0));
     };
     // custom code end
     let scheduleOptions: ScheduleModel = {

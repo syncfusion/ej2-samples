@@ -62,9 +62,13 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         },
         //Disables all interactions except zoom/pan
         tool: DiagramTools.ZoomPan,
-        snapSettings: { constraints: 0 }
+        snapSettings: { constraints: 0 },
+        created: created
     });
     diagram.appendTo('#diagram');
+    function created(): void {
+        diagram.fitToPage({ mode: 'Width' });
+    }
     //Click Event for Appearance of the layout.
     document.getElementById('appearance').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;

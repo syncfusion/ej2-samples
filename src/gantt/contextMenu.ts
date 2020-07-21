@@ -28,7 +28,7 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
 (window as any).default = (): void => {
     loadCultureFiles();
     let contextMenuItems: (string | ItemModel)[] = ['AutoFitAll', 'AutoFit', 'TaskInformation', 'DeleteTask', 'Save', 'Cancel',
-        'SortAscending', 'SortDescending', 'Add', 'DeleteDependency', 'Convert',
+        'SortAscending', 'SortDescending', 'Add', 'DeleteDependency', 'Convert', 'Indent', 'Outdent',
         { text: 'Collapse the Row', target: '.e-content', id: 'collapserow' } as ItemModel,
         { text: 'Expand the Row', target: '.e-content', id: 'expandrow' } as ItemModel,
     ];
@@ -88,8 +88,10 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
             gridLines: 'Both',
             height: '450px',
             treeColumnIndex: 1,
-            resourceNameMapping: 'resourceName',
-            resourceIDMapping: 'resourceId',
+            resourceFields: {
+                id: 'resourceId',
+                name: 'resourceName'
+            },
             resources: editingResources,
             highlightWeekends: true,
             timelineSettings: {

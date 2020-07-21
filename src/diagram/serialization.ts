@@ -225,17 +225,6 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     return { fit: true };
 }
 
-function onUploadSuccess(args: { [key: string]: Object }): void {
-    let file1: { [key: string]: Object } = args.file as { [key: string]: Object };
-    let file: Blob = file1.rawFile as Blob;
-    let reader: FileReader = new FileReader();
-    reader.readAsText(file);
-    reader.onloadend = loadDiagram;
-}
-//Load the diagraming object.
-function loadDiagram(event: ProgressEvent): void {
-    diagram.loadDiagram((event.target as FileReader).result.toString());
-}
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -277,7 +266,20 @@ function loadDiagram(event: ProgressEvent): void {
             saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
             removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove'
         },
-        success: onUploadSuccess
+        success: onUploadSuccess,
+        showFileList: false
     });
     uploadObj.appendTo('#fileupload');
+
+    function onUploadSuccess(args: { [key: string]: Object }): void {
+        let file1: { [key: string]: Object } = args.file as { [key: string]: Object };
+        let file: Blob = file1.rawFile as Blob;
+        let reader: FileReader = new FileReader();
+        reader.readAsText(file);
+        reader.onloadend = loadDiagram;
+    }
+    //Load the diagraming object.
+    function loadDiagram(event: ProgressEvent): void {
+        diagram.loadDiagram((event.target as FileReader).result.toString());
+    }
 };

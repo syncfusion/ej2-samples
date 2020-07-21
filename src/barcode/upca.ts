@@ -12,7 +12,6 @@ import { ChangeEventArgs as NumericChangeEventArgs } from '@syncfusion/ej2-input
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { ColorPicker, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 import { CheckBoxChangeEventArgs } from '@syncfusion/ej2-grids';
-import { EJ2Instance } from '@syncfusion/ej2-navigations';
 
 let barcode: BarcodeGenerator;
 // tslint:disable-next-line:max-func-body-length
@@ -75,11 +74,11 @@ let barcode: BarcodeGenerator;
     ];
 
     function updatePosition(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textPosition') as EJ2Instance).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textPosition') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.position = (positionValue.value) as TextPosition;
     }
     function updateAlignt(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textAlignment') as EJ2Instance).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textAlignment') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.alignment = (positionValue.value) as Alignment;
     }
 

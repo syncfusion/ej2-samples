@@ -95,7 +95,7 @@ Maps.Inject(Marker, Zoom, NavigationLine);
                         animationDuration: 0,
                         offset: {
                             x: 0,
-                            y: -5
+                            y: -14
                         }
                     },
                     {

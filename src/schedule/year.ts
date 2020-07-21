@@ -1,8 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Schedule, TimelineViews, TimelineYear, Orientation, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import { Schedule, Year, TimelineYear, EventRenderedArgs } from '@syncfusion/ej2-schedule';
 
-Schedule.Inject(TimelineViews, TimelineYear);
+Schedule.Inject(Year, TimelineYear);
 
 /**
  * Schedule Year view sample
@@ -14,25 +13,38 @@ Schedule.Inject(TimelineViews, TimelineYear);
     let scheduleObj: Schedule = new Schedule({
         width: '100%', height: '555px',
         views: [
-            { option: 'TimelineYear', displayName: 'Horizontal Year' }
+            { option: 'Year' },
+            { option: 'TimelineYear', displayName: 'Horizontal Timeline Year', isSelected: true },
+            {
+                option: 'TimelineYear', displayName: 'Vertical Timeline Year', orientation: 'Vertical',
+                group: { resources: ['Categories'] }
+            }
         ],
+        resources: [{
+            field: 'TaskId', title: 'Category', name: 'Categories', allowMultiple: true,
+            dataSource: [
+                { text: 'Nancy', id: 1, color: '#df5286' },
+                { text: 'Steven', id: 2, color: '#7fa900' },
+                { text: 'Robert', id: 3, color: '#ea7a57' },
+                { text: 'Smith', id: 4, color: '#5978ee' },
+                { text: 'Micheal', id: 5, color: '#df5286' }
+            ],
+            textField: 'text', idField: 'id', colorField: 'color'
+        }],
         eventSettings: { dataSource: generateEvents() },
-        eventRendered: (args: EventRenderedArgs) => applyEventColor(args)
+        eventRendered: (args: EventRenderedArgs) => {
+            let eventColor: string = args.data.EventColor as string;
+            if (!args.element || !eventColor) {
+                return;
+            } else {
+                args.element.style.backgroundColor = eventColor;
+            }
+        }
     });
     scheduleObj.appendTo('#Schedule');
 
-    // Initialize DropDownList component for timezone list
-    let dropDownListObject: DropDownList = new DropDownList({
-        popupWidth: 180,
-        change: (args: ChangeEventArgs) => {
-            scheduleObj.views = [{ option: 'TimelineYear', orientation: args.value as Orientation }];
-            scheduleObj.dataBind();
-        }
-    });
-    dropDownListObject.appendTo('#year-orientation');
-
     // custom code start
-    function generateEvents(count: number = 250, yearCount: number = 5, date: Date = new Date()): Object[] {
+    function generateEvents(count: number = 250, date: Date = new Date()): Object[] {
         let names: string[] = [
             'Bering Sea Gold', 'Technology', 'Maintenance', 'Meeting', 'Travelling', 'Annual Conference', 'Birthday Celebration',
             'Farewell Celebration', 'Wedding Aniversary', 'Alaska: The Last Frontier', 'Deadest Catch', 'Sports Day',
@@ -58,20 +70,12 @@ Schedule.Inject(TimelineViews, TimelineYear);
                 StartTime: new Date(start.getTime()),
                 EndTime: new Date(end.getTime()),
                 IsAllDay: (id % 10) ? true : false,
-                EventColor: colors[n]
+                EventColor: colors[n],
+                TaskId: (id % 5) + 1
             });
             id++;
         }
         return dateCollections;
-    }
-
-    function applyEventColor(args: EventRenderedArgs): void {
-        let eventColor: string = args.data.EventColor as string;
-        if (!args.element || !eventColor) {
-            return;
-        } else {
-            args.element.style.backgroundColor = eventColor;
-        }
     }
     // custom code end
 };

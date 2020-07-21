@@ -2,6 +2,7 @@
     "name": "Linear Gauge",
     "directory": "linear-gauge",
     "category": "Data Visualization",
+    "type": "update",
     "ftName": "lineargauge",
     "samples": [
         {
@@ -47,11 +48,11 @@
             "api":{"LinearGauge": ["orientation", "annotations", "axes", "rangePalettes"]}
         },
         {
-            "url": "tooltip",
-            "name": "Tooltip",
-            "description": "This demo for Essential JS2 Linear Gauge control visualizes the tooltip functionality for bar pointer.",
-            "category": "Linear Gauge",
-            "api":{"LinearGauge": ["orientation", "annotations", "axes", "tooltip", "tooltipRender", "axisLabelRender"]}            
+            "url": "gradient-color",
+            "name": "Gradient Color",
+            "type": "new",
+            "description": "This demo for Essential JS2 Linear Gauge control visualizes the gradient support for pointers and ranges.",
+            "category": "Linear Gauge"
         },
         {
             "url": "style",
@@ -59,6 +60,21 @@
             "description": "This demo for Essential JS2 Linear Gauge control visualizes the available options for customization.",
             "category": "Linear Gauge",
             "api":{"LinearGauge": ["orientation", "container", "axes"]}
+        },
+        {
+            "url": "tooltip",
+            "name": "Tooltip",
+            "description": "This demo for Essential JS2 Linear Gauge control visualizes the tooltip functionality for bar pointer.",
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["orientation", "annotations", "axes", "tooltip", "tooltipRender", "axisLabelRender"]}            
+        },
+        {
+            "url": "export",
+            "name": "Print & Export",
+            "type": "update",
+            "description": "This demo for Essential JS2 Linear Gauge control will print and export linear gauge into different format.",
+            "category": "Linear Gauge",
+            "api":{"LinearGauge": ["axes"]}
         }
     ]
 }

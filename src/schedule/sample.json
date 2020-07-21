@@ -3,7 +3,9 @@
     "directory": "schedule",
     "category": "Calendars",
     "ftName": "scheduler",
-    "samples": [{
+    "type": "update",
+    "samples": [
+        {
             "url": "default",
             "name": "Default Functionalities",
             "category": "Scheduler",
@@ -132,6 +134,20 @@
             }
         },
         {
+            "url": "inline-editing",
+            "name": "Inline Editing",
+            "category": "Appointments",
+            "type": "new",
+            "description": "The example showcases the inline mode of the JS Scheduler that is used to create an appointment or edit an existing appointment's subject easily and quickly.",
+            "api": {
+                "Schedule": [
+                    "currentView",
+                    "eventSettings",
+                    "allowInline"
+                ]
+            }
+        },
+        {
             "url": "virtual-scrolling",
             "name": "Virtual Scrolling ",
             "category": "Scrolling",
@@ -207,7 +223,8 @@
             "url": "year",
             "name": "Year View",
             "category": "Views",
-            "description": "This example presents a year view of the JS Scheduler that displays appointments or events for an entire year with a horizontal or vertical layout.",
+            "type": "update",
+            "description": "The example showcases the year view and Timeline year view of the JavaScript Scheduler. The views are helpful to view the events in an annual calendar view.",
             "api": {
                 "Schedule": [
                     "views",
@@ -451,6 +468,21 @@
             "name": "Tooltip",
             "category": "Templates",
             "description": "This demo shows how to enable tooltips (popovers) in JavaScript Scheduler appointments (events) and customize them using a tooltip template.",
+            "api": {
+                "Schedule": [
+                    "width",
+                    "height",
+                    "eventSettings",
+                    "selectedDate"
+                ]
+            }
+        },
+        {
+            "url": "quick-info-template",
+            "name": "Quick Info Template",
+            "type": "new",
+            "category": "Templates",
+            "description": "The example showcases the customized quick info popups for cells and events using the templates that help to override the built-in style in the JavaScript Scheduler.",
             "api": {
                 "Schedule": [
                     "width",

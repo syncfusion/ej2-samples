@@ -1,5 +1,4 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
 import { PivotView, IDataSet, FieldList } from '@syncfusion/ej2-pivotview';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { RadioButton, ChangeArgs } from '@syncfusion/ej2-buttons';

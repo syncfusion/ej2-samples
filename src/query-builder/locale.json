@@ -1,6 +1,6 @@
 {
     "de": {
-        "query-builder": {
+        "querybuilder": {
             "AddGroup": "Gruppe hinzufügen",
             "AddCondition": "Bedingung hinzufügen",
             "DeleteRule": "Entfernen Sie diesen Zustand",
@@ -36,7 +36,7 @@
         }
     },
     "ar": {
-        "query-builder": {
+        "querybuilder": {
             "AddGroup": "إضافة مجموعة",
             "AddCondition": "إضافة شرط",
             "DeleteRule": "حذف القاعدة",
@@ -68,7 +68,7 @@
         }
     },
     "en": {
-        "query-builder": {
+        "querybuilder": {
             "AddGroup": "Add Group",
             "AddCondition": "Add Condition",
             "DeleteRule": "Delete Rule",
@@ -104,7 +104,7 @@
         }
     },
     "zh": {
-        "query-builder": {
+        "querybuilder": {
             "AddGroup": "添加组",
             "AddCondition": "添加条件",
             "DeleteRule": "删除规则",
@@ -141,7 +141,7 @@
         }
     },
     "fr-CH": {
-        "query-builder": {
+        "querybuilder": {
             "AddGroup": "ajouter un groupe",
             "AddCondition": "ajouter une condition",
             "DeleteRule": "supprimer la règle",

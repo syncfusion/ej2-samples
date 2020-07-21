@@ -67,7 +67,6 @@
         {
             "url": "marker",
             "name": "Marker",
-            "type": "update",
             "description": "This demo for Essential JS2 Maps control shows the top 25 populated cities in the world by displaying the markers in their locations.",
             "category": "Features",
             "api": {
@@ -213,7 +212,6 @@
             "name": "Color Mapping",
             "description": "This sample shows the average amount of rainfall and snowfall in spring season of all the states in US. Color mapping is applied to the shapes.",
             "category": "Features",
-            "api": {},
             "sourceFiles":[ { "displayName": "color-mapping.html", "path":"src/maps/color-mapping.html" },
                 { "displayName": "color-mapping.ts", "path":"src/maps/color-mapping.ts" },
                 { "displayName": "color-mapping.json", "path":"src/maps/map-data/color-mapping.json" }
@@ -326,7 +324,6 @@
         {
             "url": "zoom-marker",
             "name": "Zoom to fit all markers",
-            "type": "new",
             "description": "This demo for Essential JS2 Maps control depicts the capitals of all countries in south america using markers and map will zoom based on marker position.",
             "category": "User Interaction",
             "api": {
@@ -371,6 +368,7 @@
             "name": "Print",
             "description": "This demo for Essential JS2 Maps control illustrates the printing functionality in the maps control.",
             "category": "Print and Export",
+            "type": "update",
             "api": {
                 "Maps": [
                     "titleSettings",
@@ -388,6 +386,7 @@
         {
             "url": "export",
             "name": "Export",
+            "type": "update",
             "description": "This demo for Essential JS2 Maps control illustrates the exporting functionality in the maps control.",
             "category": "Print and Export",
             "api": {
@@ -544,7 +543,6 @@
             "name": "Map with Slider",
             "description": "This demo for Essential JS2 Maps control demonstrates the rendering of normal geometry type shapes on the map.",
             "category": "Use Cases",
-            "api": {},
             "sourceFiles":[
                 { "displayName": "map-with-slider.html", "path":"src/maps/map-with-slider.html" },
                 { "displayName": "map-with-slider.ts", "path":"src/maps/map-with-slider.ts" },
@@ -555,7 +553,6 @@
         {
             "url": "sales-map",
             "name": "Sales map",
-            "type": "new",
             "description": "This demo for Essential JS2 Maps control depicts the sales details from all over the world using marker.",
             "category": "Use Cases",
             "api": {
@@ -576,7 +573,6 @@
             "name": "Bus seat booking",
             "description": "This demo for Essential JS2 Maps control demonstrates the rendering of normal geometry type shapes on the map.",
             "category": "Use Cases",
-            "api": {},
             "sourceFiles":[
                 { "displayName": "seat-selection.html", "path":"src/maps/seat-selection.html" },
                 { "displayName": "seat-selection.ts", "path":"src/maps/seat-selection.ts" },

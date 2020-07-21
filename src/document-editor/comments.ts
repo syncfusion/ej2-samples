@@ -1,7 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { DocumentEditorContainer, Toolbar } from '@syncfusion/ej2-documenteditor';
+import { DocumentEditorContainer, Toolbar, CommentDeleteEventArgs } from '@syncfusion/ej2-documenteditor';
 import { TitleBar } from './title-bar';
 import * as data from './data-comments.json';
+import { DialogUtility } from '@syncfusion/ej2-popups';
 
 
 /**
@@ -10,21 +11,35 @@ import * as data from './data-comments.json';
 (window as any).default = (): void => {
     loadCultureFiles();
     let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
-
-    let container: DocumentEditorContainer = new DocumentEditorContainer({ enableToolbar: true });
+    let container: DocumentEditorContainer = new DocumentEditorContainer({
+        enableToolbar: true, showPropertiesPane: false,
+        height: '590px',
+        userColor: '#b70f34', commentDelete: commentDelete
+    });
     DocumentEditorContainer.Inject(Toolbar);
     container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
-    container.showPropertiesPane = false;
     container.documentEditor.currentUser = 'Nancy Davolio';
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
     container.documentEditor.open(JSON.stringify((<any>data)));
     container.documentEditor.documentName = 'Comments';
+    container.documentEditor.showComments = true;
     titleBar.updateDocumentTitle();
-
     container.documentChange = (): void => {
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };
 
+    function commentDelete(args: CommentDeleteEventArgs): void {
+        if (args.author !== container.documentEditor.currentUser) {
+            args.cancel = true;
+            DialogUtility.alert({
+                title: 'Information',
+                content: 'Delete restriction enabled. Only the author of the comment can delete it.',
+                showCloseIcon: true,
+                closeOnEscape: true,
+            });
+        }
+    }
 };
+

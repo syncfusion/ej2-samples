@@ -2,7 +2,7 @@
  * Sales data
  */
 //tslint:disable
-let salesmap: any = [
+export let salesmap: any = [
     {
         "latitude": 44.2108,
         "longitude": 20.9224,

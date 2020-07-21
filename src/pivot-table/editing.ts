@@ -1,5 +1,4 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
 import { PivotView, IDataSet } from '@syncfusion/ej2-pivotview';
 import { RadioButton } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -26,7 +25,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             filters: []
         },
         width: '100%',
-        height: 300,
+        height: 290,
         showTooltip: false,
         gridSettings: { columnWidth: 140 },
         editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' }

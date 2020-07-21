@@ -3,16 +3,16 @@ import { Spreadsheet } from '@syncfusion/ej2-spreadsheet';
 import * as dataSource from './default-data.json';
 
 /**
- * Default Spreadsheet sample.
+ * Default Spreadsheet sample
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    //Initialize Spreadsheet component.
+    //Initialize Spreadsheet component
     let spreadsheet: Spreadsheet = new Spreadsheet({
         sheets: [
             {
                 name: 'Car Sales Report',
-                rangeSettings: [{ dataSource: (dataSource as any).defaultData }],
+                ranges: [{ dataSource: (dataSource as any).defaultData }],
                 rows: [
                     {
                         index: 30,
@@ -28,14 +28,13 @@ import * as dataSource from './default-data.json';
             }],
         openUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/open',
         saveUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/save',
-        dataBound: (): void => {
-            if (!spreadsheet.isOpen && spreadsheet.activeSheetTab === 1) {
-                spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center', verticalAlign: 'middle' }, 'A1:F1');
-                spreadsheet.numberFormat('$#,##0.00', 'F2:F31');
-            }
+        created: (): void => {
+            //Applies cell and number formatting to specified range of the active sheet
+            spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center', verticalAlign: 'middle' }, 'A1:F1');
+            spreadsheet.numberFormat('$#,##0.00', 'F2:F31');
         }
     });
 
-    //Render initialized Spreadsheet component.
+    //Render initialized Spreadsheet component
     spreadsheet.appendTo('#spreadsheet');
 };

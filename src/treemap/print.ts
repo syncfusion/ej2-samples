@@ -4,12 +4,12 @@
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
-import { TreeMap, ExportType, TreeMapTooltip, TreeMapAjax } from '@syncfusion/ej2-treemap';
+import { TreeMap, ExportType, TreeMapTooltip, TreeMapAjax, Print, ImageExport, PdfExport } from '@syncfusion/ej2-treemap';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+TreeMap.Inject(TreeMapTooltip, Print, ImageExport, PdfExport);
 // custom code start
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
@@ -27,6 +27,9 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
             text: 'Top 10 best selling smartphone brands - 2017',
             textStyle: { size: '15px'}
         },
+        allowPrint: true,
+        allowImageExport: true,
+        allowPdfExport: true,
         //enableDrillDown: true,
         dataSource: new TreeMapAjax('./src/treemap/treemap-data/product.json'),
         layoutType: 'SliceAndDiceVertical',

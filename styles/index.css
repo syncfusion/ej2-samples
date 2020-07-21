@@ -487,6 +487,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(126, 125, 125, 0.78);
+    top: 48px;
 }
 
 #search-input-wrapper {
@@ -707,6 +708,11 @@
 .copycode::before {
     content: '\e70a';
     font-size: 25px;
+}
+
+.bootstrap4 .copycode::before{
+    content:'\e77b';
+    font-size:25px;
 }
 
 .copy-tooltip {

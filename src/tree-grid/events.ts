@@ -52,55 +52,55 @@ TreeGrid.Inject(Page, Reorder, Sort, Edit);
         document.getElementById('EventLog').innerHTML = '';
     };
     function collapsing(): void {
-        appendElement('TreeGrid <b>collapsing</b> event called<hr>');
+        appendElement('Tree Grid <b>collapsing</b> event called<hr>');
     }
     function collapsed(): void {
-        appendElement('TreeGrid <b>collapsed</b> event called<hr>');
+        appendElement('Tree Grid <b>collapsed</b> event called<hr>');
     }
     function expanded(): void {
-        appendElement('TreeGrid <b>expanded</b> event called<hr>');
+        appendElement('Tree Grid <b>expanded</b> event called<hr>');
     }
     function expanding(): void {
-        appendElement('TreeGrid <b>expanding</b> event called<hr>');
+        appendElement('Tree Grid <b>expanding</b> event called<hr>');
     }
     function beginEdit(): void {
-        appendElement('TreeGrid <b>beginEdit</b> event called<hr>');
+        appendElement('Tree Grid <b>beginEdit</b> event called<hr>');
     }
     function columnDragStart(): void {
-        appendElement('TreeGrid <b>columnDragStart</b> event called<hr>');
+        appendElement('Tree Grid <b>columnDragStart</b> event called<hr>');
     }
     function columnDrop(): void {
-        appendElement('TreeGrid <b>columnDrop</b> event called<hr>');
+        appendElement('Tree Grid <b>columnDrop</b> event called<hr>');
     }
     function columnDrag(): void {
-        appendElement('TreeGrid <b>columnDrag</b> event called<hr>');
+        appendElement('Tree Grid <b>columnDrag</b> event called<hr>');
     }
     function load(): void {
-        appendElement('TreeGrid <b>load</b> event called<hr>');
+        appendElement('Tree Grid <b>load</b> event called<hr>');
     }
     function create(): void {
-        appendElement('TreeGrid <b>create</b> event called<hr>');
+        appendElement('Tree Grid <b>create</b> event called<hr>');
     }
     function actionBegin(): void {
-        appendElement('TreeGrid <b>actionBegin</b> event called<hr>');
+        appendElement('Tree Grid <b>actionBegin</b> event called<hr>');
     }
     function actionComplete(): void {
-        appendElement('TreeGrid <b>actionComplete</b> event called<hr>');
+        appendElement('Tree Grid <b>actionComplete</b> event called<hr>');
     }
     function dataBound(): void {
-        appendElement('TreeGrid <b>dataBound</b> event called<hr>');
+        appendElement('Tree Grid <b>dataBound</b> event called<hr>');
     }
     function rowSelecting(): void {
-        appendElement('TreeGrid <b>rowSelecting</b> event called<hr>');
+        appendElement('Tree Grid <b>rowSelecting</b> event called<hr>');
     }
     function rowSelected(): void {
-        appendElement('TreeGrid <b>rowSelected</b> event called<hr>');
+        appendElement('Tree Grid <b>rowSelected</b> event called<hr>');
     }
     function rowDeselecting(): void {
-        appendElement('TreeGrid <b>rowDeselecting</b> event called<hr>');
+        appendElement('Tree Grid <b>rowDeselecting</b> event called<hr>');
     }
     function rowDeselected(): void {
-        appendElement('TreeGrid <b>rowDeselected</b> event called<hr>');
+        appendElement('Tree Grid <b>rowDeselected</b> event called<hr>');
     }
 
 };

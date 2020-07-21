@@ -6,7 +6,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Pointer sample
  */
 import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
-import { gauge1, gauge2, gauge3, gauge4, gauge5 } from './pointer-gauge';
+import { gauge1, gauge2, gauge3 , gauge4, gauge5 } from './pointer-gauge';
 CircularGauge.Inject(Annotations);
 (window as any).default = (): void => {
     // custom code start
@@ -18,8 +18,8 @@ CircularGauge.Inject(Annotations);
     firstgauge.appendTo('#container2');
     let secondgauge: CircularGauge = new CircularGauge(gauge2());
     secondgauge.appendTo('#container1');
-    let thirdgauge: CircularGauge = new CircularGauge(gauge3());
-    thirdgauge.appendTo('#container3');
+    let thirdgauge: CircularGauge = new CircularGauge(gauge4());
+    thirdgauge.appendTo('#container4');
     let fourthgauge: CircularGauge = new CircularGauge({
         // custom code start
         load: (args: ILoadedEventArgs) => {
@@ -83,21 +83,21 @@ CircularGauge.Inject(Annotations);
                 {
                     angle: 180, zIndex: '1',
                     radius: '25%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Multiple Needle</div>'
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px; padding-top:20px">Multiple Needles</div>'
                 }
             ]
         }],
     });
     fourthgauge.appendTo('#container5');
-    let fifthGauge: CircularGauge = new CircularGauge(gauge4());
-    fifthGauge.appendTo('#container4');
+    let fifthGauge: CircularGauge = new CircularGauge(gauge3());
+    fifthGauge.appendTo('#container3');
     let sixthGauge: CircularGauge = new CircularGauge(gauge5());
     sixthGauge.appendTo('#container6');
 
     this.gauge5Interval1 = setInterval(
         (): void => {
             let newVal: number = Math.random() * (90 - 20) + 20;
-            if (document.getElementById('container5')) {
+            if (document.getElementById('container3')) {
                 fifthGauge.setPointerValue(0, 0, newVal);
             } else {
                 clearInterval(this.gauge5Interval1);

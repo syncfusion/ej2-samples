@@ -90,7 +90,7 @@ export function gauge2(): CircularGauge {
                 {
                     angle: 180, zIndex: '1',
                     radius: '20%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Inverted Triangle</div>'
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Marker</div>'
                 }
             ]
         }],
@@ -98,8 +98,8 @@ export function gauge2(): CircularGauge {
     return gauge2;
 }
 
-export function gauge3(): CircularGauge {
-    let gauge3: CircularGauge = new CircularGauge({
+export function gauge4(): CircularGauge {
+    let gauge4: CircularGauge = new CircularGauge({
         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
@@ -126,33 +126,35 @@ export function gauge3(): CircularGauge {
             minimum: 0,
             maximum: 100,
             pointers: [{
-                type: 'Marker',
-                markerShape: 'Triangle',
-                radius: '100%',
-                animation: { enable: true, duration: 1000 },
-                value: 70,
-                markerWidth: 15,
-                markerHeight: 15,
-                color: '#1E7145',
-                border: {
-                    width: 1,
-                    color: ' #1E7145'
-                }
+            animation: { enable: true , duration: 1000},
+            value: 70,
+            radius: '80%',
+            color: 'green',
+            pointerWidth: 2,
+            needleStartWidth: 4,
+            needleEndWidth: 4,
+            cap: {
+                radius: 8,
+                color: 'green'
+            },
+            needleTail: {
+                length: '0%'
+            }
             }],
             annotations: [
                 {
                     angle: 180, zIndex: '1',
                     radius: '20%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Triangle</div>'
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px; padding-top: 26px">Customized Needle</div>'
                 }
             ]
         }],
     });
-    return gauge3;
+    return gauge4;
 }
 
-export function gauge4(): CircularGauge {
-    let gauge4: CircularGauge = new CircularGauge({
+export function gauge3(): CircularGauge {
+    let gauge3: CircularGauge = new CircularGauge({
         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
@@ -197,7 +199,7 @@ export function gauge4(): CircularGauge {
             ]
         }],
     });
-    return gauge4;
+    return gauge3;
 }
 
 export function gauge6(): CircularGauge {
@@ -341,7 +343,7 @@ export function gauge5(): CircularGauge {
                 {
                     angle: 180, zIndex: '1',
                     radius: '20%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Live Update</div>'
+                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px; padding-top:26px">Live Update</div>'
                 }
             ]
         }],

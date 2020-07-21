@@ -37,22 +37,22 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
                 ], name: 'RIO',
                 xName: 'x',
                 yName: 'y',
-                startAngle: 0,
-                endAngle: 360,
+                startAngle: 60,
                 innerRadius: '0%',
                 dataLabel: {
                     visible: true, position: 'Outside',
-                    connectorStyle: { length: '10%' }, name: 'text',
+                    connectorStyle: { type: 'Curve', length: '20px' }, name: 'text',
                 },
             }
         ],
+        enableBorderOnMouseMove: false,
         legendSettings: {
             visible: false
         },
         //Initializing Tooltip
         tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
         //Initializing Title
-        title: 'RIO Olympics Gold',
+        title: 'Rio Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Selection, Sort, TimelineViewMode, DayMarkers } from '@syncfusion/ej2-gantt';
-import { projectData, projectResources } from './data-source';
+import { projectData } from './data-source';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { DropDownList, ChangeEventArgs as dropdownEvent } from '@syncfusion/ej2-dropdowns';
 import { CheckBox } from '@syncfusion/ej2-buttons';
@@ -29,8 +29,8 @@ Gantt.Inject(Selection, Sort, DayMarkers);
         { id: 'EEE MMM dd', format: 'Mon Jan 01' },
     ];
     let dayformat: { [key: string]: Object }[] = [
-        { id: 'EEE, dd', format: 'Mon, 01' },
-        { id: 'E', format: 'Mon' },
+        { id: '', format: 'M' },
+        { id: 'EEE', format: 'Mon' },
         { id: 'dd', format: '01' },
     ];
     let hourformat: { [key: string]: Object }[] = [
@@ -62,9 +62,6 @@ Gantt.Inject(Selection, Sort, DayMarkers);
             highlightWeekends: true,
             projectStartDate: new Date('02/03/2019'),
             projectEndDate: new Date('03/23/2019'),
-            resourceNameMapping: 'resourceName',
-            resourceIDMapping: 'resourceId',
-            resources: projectResources,
             timelineSettings: {
                 topTier: {
                     format: 'MMM dd, yyyy',
@@ -146,6 +143,7 @@ Gantt.Inject(Selection, Sort, DayMarkers);
 
     let bottomTierformat: DropDownList = new DropDownList({
         dataSource: dayformat,
+        value: '',
         fields: { text: 'format', value: 'id' },
         change: (e: dropdownEvent) => {
             let format: string = <string>e.value;

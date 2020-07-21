@@ -10,10 +10,10 @@ DocumentEditor.Inject(Print);
 (window as any).default = (): void => {
     loadCultureFiles();
     let containerPanel: HTMLElement = document.getElementById('documenteditor_container_panel');
-    updateContainerSize();
     let documenteditor: DocumentEditor = new DocumentEditor({ enablePrint: true });
     documenteditor.pageOutline = '#E0E0E0';
     documenteditor.appendTo('#container');
+    updateContainerSize();
     let documentLoader: DocumentLoader = new DocumentLoader(documenteditor);
     onLoadDefault();
     documenteditor.viewChange = (e: ViewChangeEventArgs) => {
@@ -66,8 +66,10 @@ DocumentEditor.Inject(Print);
         let titleBarDiv: HTMLElement = document.getElementById('documenteditor_titlebar');
         let statusBarDiv: HTMLElement = document.getElementById('documenteditor_statusbar');
         if (containerPanel && titleBarDiv && statusBarDiv) {
-            containerPanel.style.height = (window.innerHeight - (titleBarDiv.offsetHeight +
+            var height = (window.innerHeight - (titleBarDiv.offsetHeight +
                 statusBarDiv.offsetHeight)) + 'px';
+            containerPanel.style.height = height;
+            documenteditor.height = height;
         }
     }
     function applyPageCountAndDocumentTitle(): void {

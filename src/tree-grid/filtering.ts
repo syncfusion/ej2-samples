@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { TreeGrid, Column, Page, Filter } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
@@ -8,6 +9,7 @@ TreeGrid.Inject( Page, Filter );
  * Filtering TreeGrid sample
  */
 (window as any).default = (): void => {
+    loadCultureFiles();
     let mode: { [key: string]: Object }[] = [
         { id: 'Parent', mode: 'Parent' },
         { id: 'Child', mode: 'Child' },

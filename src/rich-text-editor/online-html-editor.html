@@ -1,0 +1,256 @@
+<div id="target" class="control-section">
+    <div class='button-content'>
+        <div class="center">
+            Click/Touch the button to view the sample
+        </div>
+        <div class="center">
+            <a class="e-btn open-btn" target="_blank">Open in new tab</a>
+        </div>
+    </div>
+    <div class='sample-head'>
+        <div class='content-grp'>
+            <div style="width: 70%; float:left">
+                <div class="head-content">Essential JS 2 for JavaScript</div>
+            </div>
+            <div class='btn-parent'> <a href='https://www.syncfusion.com/downloads/essential-js2' target="_blank">
+                    <button class='dwd-btn'> <span class='btn-content'><b>Download Now</b></span></button> </a></div>
+        </div>
+    </div>
+    <div class="sample-view">
+        <h1 class="title-head">RichTextEditor Online Html Editor</h1>
+        <div class="heading">
+            <h6 class="title"><b>PREVIEW</b> </h6>
+        </div>
+        <div class="heading right">
+            <h6 class="title"><b>HTML SOURCE CODE </b></h6>
+        </div>
+        <div id="horizontal">
+            <div class="splitter-default-content pane1">
+                <div id="defaultRTE">
+                    <p>The rich text editor is a WYSIWYG (what you see is what you get) editor used to create and edit
+                        the content and return the valid HTML markup or markdown of the content.
+                        This provides lot of commands to edit and format the content. </p>
+                    <p><b>Toolbar</b></p>
+                    <p>The editor’s toolbar provides various commands to align the text, format, insert link, image,
+                        list, undo/redo operations, HTML view, and more. The toolbar comes with different modes such as
+                        floating, multi-row, and expanded. </p>
+                    <p><b>Links</b></p>
+                    <p>Create a hyperlink using 'insert link' dialog and you can edit the hyperlink text, display text,
+                        and tooltip using 'edit link' dialog and quick toolbar. If the text has valid hyperlink text,
+                        the editor converts it to hyperlink automatically. For example, link to rich text editor.</p>
+                    <p><b>Table</b></p>
+                    <p>This editor allows you to insert a table with options to add, edit, and remove and perform other
+                        table related actions. </p>
+                    <p>For example</p>
+                    <table>
+                        <tr>
+                            <th>Employee name</th>
+                            <th>Role</th>
+                            <th>Mail</th>
+                            <th>Country</th>
+                        </tr>
+                        <tr>
+                            <td>Janet Fleet</td>
+                            <td>Manager</td>
+                            <td>janet95@arpy.com</td>
+                            <td>France</td>
+                        </tr>
+                        <tr>
+                            <td>Nancy Buchanan</td>
+                            <td>Project Lead</td>
+                            <td>nancy55@rpy.com</td>
+                            <td>Sweden</td>
+                        </tr>
+                        <tr>
+                            <td>Rose Rose</td>
+                            <td>Project Lead</td>
+                            <td>rose44@sample.com</td>
+                            <td>France</td>
+                        </tr>
+                    </table>
+                    <p><b>Image</b></p>
+                    <p>Allows you to insert images with caption, alt text, link, resize, and drag-and-drop from an
+                        online source and local computer. You can upload an image to server and insert into the editor.
+                        It provides an option to customize quick toolbar for an image.</p>
+                    <p>For example</p>
+                    <img id='rteImageID' style="height:300px;transform: rotate(0deg);" alt="Logo"
+                        src="./src/rich-text-editor/images/RTEImage-Feather.png" />
+                    <p><b>Lists</b></p>
+                    <p>You can include content with ordered and unordered lists.</p>
+                    <p>Examples for ordered list:</p>
+                    <ul>
+                        <li>TypeScript</li>
+                        <li>Javascript</li>
+                        <li>Angular</li>
+                        <li>React</li>
+                        <li>Vue</li>
+                    </ul>
+                    <p>Examples for unordered list:</p>
+                    <ol>
+                        <li>RichTextEditor</li>
+                        <li>Toolbar</li>
+                        <li>Button</li>
+                        <li>Dialog</li>
+                        <li>Data Grid</li>
+                    </ol>
+                    <p>The editor has lot of features to edit HTML content and Markdown content in web applications.</p>
+                </div>
+            </div>
+
+            <div class="splitter-default-content source-code pane2" contenteditable="true">
+            </div>
+        </div>
+    </div>
+    <div id="action-description">
+        <p>The online HTML editor sample demonstrates how to create LIVE editing scenario with real-world applications
+            using JavaScript Rich Text Editor. Most of the control features are enabled in this sample to edit the
+            content quickly.</p>
+        <p>You can edit the source code and content also parallelly. The source code is formatted using the code mirror
+            library.</p>
+    </div>
+
+    <div id="description">
+        <p>This sample explains how to create a live HTML editor application using rich text editor. Click ‘open in new
+            window’ and edit both the content and HTML source.</P>
+    </div>
+
+    <style>
+        #defaultRTE {
+            overflow: hidden;
+            border: none;
+        }
+
+        .e-splitter .CodeMirror {
+            height: auto;
+        }
+
+        .center {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 400;
+            margin-top: 20px;
+        }
+
+        .pane1 {
+            padding-right: 8px;
+        }
+
+        .pane2 {
+            padding-left: 8px;
+        }
+
+        .heading {
+            margin-top: 10px;
+            float: left;
+            width: 50%;
+            border: 1px solid #e8e8e8;
+            border-bottom: none;
+            position: relative;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+
+        .title {
+            color: #a0aabf;
+            letter-spacing: 1px;
+            padding-left: 10px;
+        }
+
+        .title-head {
+            text-align: center
+        }
+
+        .e-control.e-splitter .e-split-bar.e-split-bar-horizontal.e-last-bar {
+            margin: 0;
+        }
+
+        .heading.right {
+            border-left-width: thin;
+        }
+
+        .sample-view {
+            display: none;
+        }
+
+        .ej2-new .sample-view {
+            display: block;
+            padding: 15px;
+        }
+
+        .ej2-new .sb-bread-crumb,
+        .ej2-new .button-content,
+        .ej2-new #action-description,
+        .ej2-new #description-section,
+        .ej2-new .sb-header,
+        .ej2-new #description {
+            display: none !important;
+        }
+
+        .ej2-new .sample-head {
+            display: block !important;
+        }
+
+        .ej2-new .container-fluid {
+            padding: 0 !important;
+        }
+
+        .sample-head {
+            height: 48px;
+            background: #FFFFFF;
+            box-shadow: 0 8px 11px -6px rgba(0, 0, 0, 0.12);
+            z-index: 1001;
+            opacity: 100;
+            display: none;
+        }
+
+        .head-content {
+            padding: 15px 0 0 35px;
+            font-weight: 499;
+            line-height: 18px;
+            font-size: 15px;
+            color: #000000;
+            font-family: sans-serif;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .dwd-btn {
+            background-color: #3C78EF;
+            opacity: 100;
+            border-radius: 2px;
+            font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
+            font-weight: 500;
+            line-height: 18px;
+            height: 32px;
+            border-color: transparent;
+            padding-bottom: 2px;
+        }
+
+        .btn-parent {
+            float: right;
+            padding: 8px;
+            width: 10%;
+
+        }
+
+        table {
+            width: 100%
+        }
+
+        .btn-content {
+            color: white;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>

@@ -555,7 +555,7 @@ function contextMenuOpen(args: DiagramBeforeMenuOpenEventArgs): void {
 (window as any).default = (): void => {
     loadCultureFiles();
     diagram = new Diagram({
-        width: '100%', height: '469px', nodes: nodes, connectors: connectors,
+        width: '100%', height: '445px', nodes: nodes, connectors: connectors,
         contextMenuSettings: contextMenu,
         contextMenuOpen: contextMenuOpen,
         contextMenuClick: contextMenuClick,

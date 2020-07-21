@@ -1,5 +1,4 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
 import { PivotView, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { CheckBox, ChangeEventArgs as checkEventArgs } from '@syncfusion/ej2-buttons';
 import { DropDownList, ChangeEventArgs as dropEventArgs } from '@syncfusion/ej2-dropdowns';

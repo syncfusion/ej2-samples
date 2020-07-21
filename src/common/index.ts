@@ -112,6 +112,9 @@ let sbContentOverlay: HTMLElement = <any>select('.sb-content-overlay');
 let sbBodyOverlay: HTMLElement = <any>select('.sb-body-overlay');
 let sbHeader: HTMLElement = <HTMLElement>select('#sample-header');
 let resetSearch: Element = select('.sb-reset-icon');
+let newYear: number = new Date().getFullYear();
+let copyRight: HTMLElement= document.querySelector('.sb-footer-copyright');
+copyRight.innerHTML = "Copyright © 2001 - " + newYear + " Syncfusion Inc.";
 /**
  * constant to process the sample url
  */
@@ -1461,9 +1464,15 @@ function addRoutes(samplesList: Controls[]): void {
             });
         }
     }
+    let isTempLocaion: string;
+    if(location.hash.indexOf('.html') === -1) {
+        isTempLocaion = location.hash+".html";
+    } else {
+        isTempLocaion = location.hash;
+    }
     if(Browser.isDevice)
     {
-       if(location.hash && samplesAr.indexOf(location.hash) == -1)
+       if(location.hash && location.hash !== "" && samplesAr.indexOf(isTempLocaion) == -1)
        {
         let toastObj: Toast = new Toast({
             position: {

@@ -81,7 +81,7 @@ npm run serve
             <a href="src/grid">DataGrid</a>
         </td>
         <td>
-            <a href="src/pivot-view">Pivot Table (Updated)</a>
+            <a href="src/pivot-view">Pivot Table</a>
         </td>
         <td>
             <a href="src/tree-grid">Tree Grid</a>
@@ -89,9 +89,9 @@ npm run serve
     </tr>
     <tr>
         <td>
-            <a href="src/spreadsheet">Spreadsheet (Preview)</a>
+            <a href="src/spreadsheet">Spredsheet</a>
         </td>
-        <td></td> 
+        <td></td>
         <td></td>
     </tr>
     <tr>
@@ -101,7 +101,7 @@ npm run serve
     </tr>
     <tr>
         <td>
-            <a href="src/chart">Charts (Updated)</a>
+            <a href="src/chart">Charts</a>
         </td>
         <td>
             <a href="src/stock-chart">Stock Chart</a>
@@ -112,29 +112,29 @@ npm run serve
     </tr>
     <tr>
         <td>
-            <a href="src/linear-gauge">Linear Gauge</a>
-        </td>
-        <td>
             <a href="src/diagram">Diagram</a>
         </td>
         <td>
-            <a href="src/heatmap">Heatmap chart (Updated)</a>
-        </td>     
+            <a href="src/heatmap-chart">HeatMap Chart</a>
+        </td>
+         <td>
+            <a href="src/linear-gauge">Linear Gauge</a>
+        </td>
     </tr>
     <tr>
         <td>
-            <a href="src/maps">Maps (Updated)</a>
+            <a href="src/maps">Maps</a>
         </td>
-        <td>
+       <td>
             <a href="src/range-navigator">Range Selector</a>
         </td>
         <td>
             <a href="src/smith-chart">Smith Chart</a>
-        </td>        
+        </td>
     </tr>
     <tr>
         <td>
-            <a href="src/barcode">Barcode</a>
+            <a href="src/barcode">Barcode Generator</a>
         </td>
         <td>
             <a href="src/sparkline">Sparkline Charts</a>
@@ -145,9 +145,11 @@ npm run serve
     </tr>
     <tr>
         <td>
-            <a href="src/bullet-chart">Bullet Chart (Preview)</a>
+            <a href="src/bullet-chart">Bullet Chart</a>
         </td>
-        <td></td>
+        <td>
+            <a href="src/kanban">Kanban (preview)</a>
+        </td>
         <td></td>
     </tr>
     <tr>
@@ -157,21 +159,14 @@ npm run serve
     </tr>
     <tr>
         <td>
-            <a href="src/rich-text-editor">Rich Text Editor (Updated)</a>
+            <a href="src/rte">Rich Text Editor</a>
         </td>
         <td>
-            <a href="src/document-editor">DocumentEditor (Updated)</a>
+            <a href="src/document-editor">Word Processor</a>
         </td>
         <td>
-            <a href="src/chips">Chips</a>
+            <a href="src/inplace-editor">In-place Editor</a>
         </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/inplace-editor">InplaceEditor</a>
-        </td>
-        <td></td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="3" rowspan="1">
@@ -183,26 +178,26 @@ npm run serve
             <a href="src/schedule">Scheduler</a>
         </td>
         <td>
-            <a href="src/gantt">Gantt (Updated)</a>
-        </td>
-        <td>
             <a href="src/calendar">Calendar</a>
         </td>
-    </tr>
-    <tr>
-       <td>
+        <td>
             <a href="src/datepicker">DatePicker</a>
         </td>
+    </tr>
+    <tr>
         <td>
-            <a href="src/daterangepicker">DateRangePicker</a>
+            <a href="src/daterangepicker">Date Range Picker</a>
         </td>
         <td>
-            <a href="src/datetimepicker">DateTimePicker</a>
+            <a href="src/datetimepicker">DateTime Picker</a>
+        </td>
+        <td>
+            <a href="src/timepicker">Time Picker</a>
         </td>
     </tr>
     <tr>
         <td>
-            <a href="src/timepicker">TimePicker</a>
+            <a href="src/gantt">Gantt Chart</a>
         </td>
         <td></td>
         <td></td>
@@ -214,34 +209,25 @@ npm run serve
     </tr>
     <tr>
         <td>
-            <a href="src/button/default.ts">Button</a>
+            <a href="src/button">Button</a>
         </td>
         <td>
             <a href="src/button/button-group.ts">Button Group</a>
         </td>
         <td>
-            <a href="src/button/checkbox.ts">Checkbox</a>
+            <a href="src/button/dropdown-button.ts">Dropdown Menu</a>
         </td>
     </tr>
     <tr>
         <td>
-            <a href="src/button/radio-button.ts">Radio Button</a>
-        </td>
-        <td>
-            <a href="src/button/dropdown-button.ts">Dropdown Menu</a>
+            <a href="src/button/progress-button.ts">Progress Button</a>
         </td>
         <td>
             <a href="src/button/split-button.ts">Split Button</a>
         </td>
-    </tr>
-    <tr>
         <td>
-            <a href="src/button/switch.ts">Switch</a>
+             <a href="src/button/chips">Chips</a>
         </td>
-        <td>
-            <a href="src/button/progress-button.ts">Progress Button</a>
-        </td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="3" rowspan="1">
@@ -261,12 +247,14 @@ npm run serve
     </tr>
     <tr>
         <td>
+            <a href="src/drop-down-tree">Dropdown Tree</a>
+        </td>
+        <td>
             <a href="src/multi-select">MultiSelect Dropdown</a>
         </td>
         <td>
             <a href="src/list-box">List Box</a>
         </td>
-        <td></td>
     </tr>
     <tr>
         <td colspan="3" rowspan="1">
@@ -300,21 +288,7 @@ npm run serve
             <a href="src/treeview">TreeView</a>
         </td>
         <td>
-            <a href="src/file-manager">File Manager (Updated)</a>
-        </td>
-        <td></td>
-    </tr>
-        <tr>
-        <td colspan="3" rowspan="1">
-            <b>NOTIFICATIONS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/badge">Badge</a>
-        </td>
-        <td>
-            <a href="src/toast">Toast</a>
+            <a href="src/file-manager">File Manager</a>
         </td>
         <td></td>
     </tr>
@@ -325,32 +299,36 @@ npm run serve
     </tr>
     <tr>
         <td>
-            <a href="src/form-validator">Form Validation</a>
-        </td>
-        <td>
             <a href="src/textboxes">TextBox</a>
         </td>
         <td>
             <a href="src/maskedtextbox">Input Mask</a>
         </td>
+         <td>
+            <a href="src/numerictextbox">Numeric Textbox</a>
+        </td>
     </tr>
     <tr>
         <td>
-            <a href="src/numerictextbox">Numeric Textbox</a>
+            <a href="src/button/radio-button.ts">Radio Button</a>
+        </td>
+        <td>
+            <a href="src/button/check-box.ts">Checkbox</a>
         </td>
         <td>
             <a href="src/color-picker">Color Picker</a>
         </td>
-        <td>
-            <a href="src/uploader">File Upload</a>
-        </td>  
     </tr>
     <tr>
         <td>
+            <a href="src/uploader">File Upload</a>
+        </td>
+        <td>
             <a href="src/slider">Range Slider</a>
         </td>
-        <td></td>
-        <td></td>
+        <td>
+            <a href="src/button/switch.ts">Toggle Switch Button</a>
+        </td>
     </tr>
     <tr>
         <td colspan="3" rowspan="1">
@@ -365,7 +343,7 @@ npm run serve
             <a href="src/card">Card</a>
         </td>
         <td>
-            <a href="src/dialog">Dialog (Updated)</a>
+            <a href="src/dialog">Dialog</a>
         </td>
     </tr>
     <tr>
@@ -376,7 +354,7 @@ npm run serve
             <a href="src/tooltip">Tooltip</a>
         </td>
         <td>
-            <a href="src/splitter">Splitter</a>
+            <a href="src/splitter">Splitter</a>           
         </td>
     </tr>
     <tr>
@@ -388,15 +366,19 @@ npm run serve
     </tr>
     <tr>
         <td colspan="3" rowspan="1">
-            <b>FORMS<b>
+            <b>NOTIFICATIONS<b>
         </td>
     </tr>
     <tr>
         <td>
-            <a href="src/query-builder">Query Builder</a>
+            <a href="src/badge">Badge</a>
         </td>
-        <td></td>
-        <td></td>
+        <td>
+            <a href="src/toast">Toast</a>
+        </td>
+        <td>
+            <a href="src/progress-bar">Progress Bar</a>
+        </td>
     </tr>
     <tr>
         <td colspan="3" rowspan="1">
@@ -410,12 +392,23 @@ npm run serve
         <td></td>
         <td></td>
     </tr>
+    <tr>
+        <td colspan="3" rowspan="1">
+            <b>FORMS<b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="src/form-validator">Form Validation</a>
+        </td>
+        <td>
+            <a href="src/query-builder">Query Builder</a>
+        </td>
+        <td></td>
+    </tr>
 </table>
 
 
 ## Support and Feedback
 
 * For any other queries, reach our [Syncfusion support team](https://www.syncfusion.com/support/directtrac/incidents/newincident?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples) or post the queries through the [community forums](https://www.syncfusion.com/forums?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples).
-
-
-

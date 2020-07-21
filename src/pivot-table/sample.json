@@ -14,18 +14,21 @@
             "url": "local",
             "name": "Local Data",
             "category": "Data Binding",
-            "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivot table with local JSON data",
+			"type": "update",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivot table with local JSON or CSV data",
             "sourceFiles":[
                 { "displayName": "local.ts", "path":"src/pivot-table/local.ts" },
+				{ "displayName":"local.html", "path":"src/pivot-table/local.html" },
                 { "displayName": "localData.json", "path": "src/pivot-table/pivot-data/rData.json" },
-				{ "displayName":"local.html", "path":"src/pivot-table/local.html" }
+                { "displayName": "csvData.ts", "path": "src/pivot-table/pivot-data/csvData.ts" }
 			]
         },
         {
             "url": "remote",
             "name": "Remote Data",
             "category": "Data Binding",
-            "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivot table with remote data or service data"
+			"type": "update",
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivot table with remote JSON or CSV data"
         },
         {
             "url": "olap",
@@ -36,6 +39,7 @@
         {
             "url": "pivot-chart",
             "name": "Pivot Chart",
+            "type": "update",
             "category": "Integration",
             "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivot table data into a simple pivot chart"
         },
@@ -85,12 +89,12 @@
             "url": "toolbar",
             "name": "Toolbar",
             "category": "User Interaction",
+			"type": "update",
             "description": "This demo for Essential JS2 Pivot Table control demonstrate the toolbar feature with pivot table and pivot chart"
         },
         {
             "url": "calculated-field",
             "name": "Calculated Field",
-            "type": "update",
             "category": "Formula",
             "description": "This demo for Essential JS2 Pivot Table control shows calculated field, and it allows users to add calculated items"
         },

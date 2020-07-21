@@ -16,7 +16,7 @@ BulletChart.Inject(BulletTooltip);
         valueField: 'value',
         targetField: 'target',
         animation: { enable: false },
-        margin: { left: Browser.isDevice ? 10 : 35 },
+        margin: { left: Browser.isDevice ? 10 : 62 },
         ranges: [{ end: 150, },
         { end: 250 },
         { end: 300 }
@@ -29,8 +29,8 @@ BulletChart.Inject(BulletTooltip);
         },
         minimum: 0, maximum: 300, interval: 50,
         title: 'Revenue',
-        labelFormat: '${value}',
-        subtitle: 'U.S. $ (1,000s)',
+        labelFormat: '${value}K',
+        subtitle: 'U.S. $',
         titlePosition: Browser.isDevice ? 'Top' : 'Left',
     });
     chart1.appendTo('#container1');

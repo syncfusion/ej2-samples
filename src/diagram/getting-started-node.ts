@@ -105,10 +105,13 @@ function applyNodeStyle(
         getNodeDefaults: getNodeDefaults,
         //Sets the default values of a Connector
         getConnectorDefaults: getConnectorDefaults,
-        snapSettings: { constraints: SnapConstraints.None }
+        snapSettings: { constraints: SnapConstraints.None },
+        created: created
     });
     diagram.appendTo('#diagram');
-
+    function created(): void {
+        diagram.fitToPage({ mode: 'Width' });
+    }
     //Click event for Appearance of the Property Panel
     document.getElementById('appearance').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;

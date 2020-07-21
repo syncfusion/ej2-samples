@@ -319,9 +319,9 @@ function getNodes(): NodeModel[] {
     let objects: NodeModel[] = getNodes();
     //Initialize diagram control
     let diagram: Diagram = new Diagram({
-        width: '100%', height: '499px', snapSettings: { constraints: SnapConstraints.None },
+        width: '100%', height: '800px', snapSettings: { constraints: SnapConstraints.None },
         nodes: objects,
     });
     diagram.appendTo('#diagram');
-    diagram.fitToPage({ mode: 'Width' });
+    diagram.fitToPage({ mode: 'Height' });
 };

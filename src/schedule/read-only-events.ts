@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import {
     Schedule, Day, Week, WorkWeek, Month, Resize, DragAndDrop, PopupOpenEventArgs, ActionEventArgs, DragEventArgs, ResizeEventArgs
 } from '@syncfusion/ej2-schedule';
@@ -9,7 +10,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
  * Schedule readonly events sample
  */
 
-(window as any).default = () => {
+(window as any).default = (): void => {
+    loadCultureFiles();
     let data: Object[] = getReadOnlyEventsData();
     let scheduleObj: Schedule = new Schedule({
         width: '100%',

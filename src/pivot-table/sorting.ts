@@ -1,4 +1,4 @@
-
+import { loadCultureFiles } from '../common/culture-loader';
 import { PivotView, IDataSet } from '@syncfusion/ej2-pivotview';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Button, CheckBox, ChangeEventArgs as CheckChange } from '@syncfusion/ej2-buttons';
@@ -12,6 +12,7 @@ enableRipple(false);
 /* tslint:disable */
 let Pivot_Data: IDataSet[] = (pivotData as any).data;
 (window as any).default = (): void => {
+    loadCultureFiles();
     let pivotObj: PivotView = new PivotView({
         dataSourceSettings: {
             rows: [{ name: 'Country' }, { name: 'Products' }],

@@ -94,9 +94,16 @@ PivotView.Inject(FieldList, GroupingBar, CalculatedField, Toolbar, ConditionalFo
             pivotObj.setProperties({ dataSourceSettings: { columns: [], rows: [], values: [], filters: [] } }, false);
         },
         renameReport: function (args: RenameReportArgs): void {
-            let reportsCollection: string[] = [];
+            let reportsCollection: any[] = [];
             if (localStorage.pivotviewReports && localStorage.pivotviewReports !== "") {
                 reportsCollection = JSON.parse(localStorage.pivotviewReports);
+            }
+            if (args.isReportExists) {
+                for (let i: number = 0; i < reportsCollection.length; i++) {
+                    if (reportsCollection[i].reportName === args.rename) {
+                        reportsCollection.splice(i, 1);
+                    }
+                }
             }
             reportsCollection.map(function (item: any): any { if (args.reportName === item.reportName) { item.reportName = args.rename; } });
             if (localStorage.pivotviewReports && localStorage.pivotviewReports !== "") {
@@ -113,6 +120,7 @@ PivotView.Inject(FieldList, GroupingBar, CalculatedField, Toolbar, ConditionalFo
         allowCalculatedField: true,
         displayOption: { view: 'Both' },
         chartSettings: {
+            title: 'Sales Analysis',
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];
                 selectedTheme = selectedTheme ? selectedTheme : 'Material';

@@ -1,12 +1,13 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, Selection, SelectionMode, ColumnSeries, ChartTheme } from '@syncfusion/ej2-charts';
-import { Legend, Category, ScatterSeries, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(Selection, Legend, ColumnSeries, Category, ScatterSeries);
+import { Chart, Selection, SelectionMode, ColumnSeries, ChartTheme, SelectionPattern, Highlight } from '@syncfusion/ej2-charts';
+import { Legend, Category, ScatterSeries, ILoadedEventArgs, HighlightMode } from '@syncfusion/ej2-charts';
+Chart.Inject(Selection, Legend, ColumnSeries, Category, ScatterSeries, Highlight);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
  * Sample for Selection.
  */
+// tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
     let chart: Chart = new Chart({
@@ -72,12 +73,18 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         }
     });
     chart.appendTo('#container');
+    let highlightselect: HTMLInputElement = document.getElementById('highlight') as HTMLInputElement;
     let mode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
         width: 120,
         change: () => {
             chart.selectionMode = <SelectionMode>mode.value;
+            if (highlightselect.checked) {
+                chart.highlightMode = <HighlightMode>mode.value;
+            } else {
+                chart.highlightMode = 'None';
+            }
             chart.dataBind();
         }
     });
@@ -87,5 +94,39 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         chart.isMultiSelect = element.checked;
         chart.dataBind();
     };
-
+    let pattern: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select pattern values',
+        width: 120,
+        change: () => {
+            chart.selectionPattern = <SelectionPattern>pattern.value;
+            chart.dataBind();
+        }
+    });
+    pattern.appendTo('#selpattern');
+    let highLight: DropDownList = new DropDownList({
+        index: 0,
+        placeholder: 'Select pattern values',
+        width: 120,
+        change: () => {
+            if (highlightselect.checked) {
+                chart.highlightPattern = <SelectionPattern>highLight.value;
+            } else {
+                chart.highlightPattern  = 'None';
+            }
+            chart.dataBind();
+        }
+    });
+    highLight.appendTo('#highpattern');
+    document.getElementById('highlight').onchange = () => {
+        let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('highlight'));
+        if (element.checked) {
+            chart.highlightMode = <HighlightMode>mode.value;
+            chart.highlightPattern = <SelectionPattern>highLight.value;
+        } else {
+            chart.highlightMode = 'None';
+            chart.highlightPattern  = 'None';
+        }
+        chart.dataBind();
+    };
 };

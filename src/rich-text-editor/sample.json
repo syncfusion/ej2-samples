@@ -1,13 +1,11 @@
 {
     "name": "Rich Text Editor",
-    "type": "update",
     "directory": "rich-text-editor",
     "category": "Editors",
     "ftName": "wysiwyg-rich-text-editor",
     "samples": [{
             "url": "tools",
             "name": "Overview",
-            "type": "update",
             "description": "This demo describes basic and advanced features of the JavaScript rich text editor control (WYSIWYG HTML Editor) with all its tools and functionalities.",
             "category": "Rich Text Editor",
             "api": { "RichTextEditor": ["Inject", "toolbarSettings", "showCharCount", "actionBegin", "actionComplete", "maxLength", "appendTo"], "ToolbarSettings": ["items"] }
@@ -102,6 +100,13 @@
             "description": "This demo shows how to autosave the content of the editor with customized time intervals and retrieve the saved content in JS Rich Text Editor.",
             "category": "Rich Text Editor",
             "api": { "RichTextEditor": ["Inject", "placeholder", "enablePersistance", "saveInterval", "toolbarSettings", "appendTo"] }
+        },
+        {
+            "url": "online-html-editor",
+            "name": "Online Html Editor",
+            "description": "The online HTML editor is a demo that provides LIVE experience for both content and HTML editing with Rich Text Editor features in a real-world scenario.",
+            "category": "Rich Text Editor",
+            "api": { "RichTextEditor": ["Inject", "actionComplete", "saveInterval","change", "toolbarSettings", "appendTo"] }
         },
         {
             "url": "types",

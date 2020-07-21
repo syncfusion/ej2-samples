@@ -2,6 +2,7 @@
     "name": "Circular Gauge",
     "directory": "circular-gauge",
     "category": "Data Visualization",
+    "type": "update",
     "ftName": "circulargauge",
     "samples": [
         {
@@ -54,14 +55,20 @@
             "name": "Legend",
             "description": "This demo for Essential JS2 Circular Gauge control illustrates the rendering of legend in circular gauge.",
             "category": "Circular Gauge",
-             "api":{"CircularGauge": [ "legendSettings"]}
+            "api":{"CircularGauge": [ "legendSettings"]}
+        },
+        {
+            "url": "gradient-color",
+            "name": "Gradient Color",
+            "type": "new",
+            "category": "Circular Gauge"
         },
         {
             "url": "compass",
             "name": "Direction Compass",
             "description": "This demo for Essential JS2 Circular Gauge control illustrates how to make a direction compass by using the circular gauge.",
             "category": "Circular Gauge",
-            "api":{"CircularGauge": [ "axes", "axisLabelRender"]}
+            "api":{"CircularGauge": ["axes", "axisLabelRender"]}
         },
         {
             "url": "pointer-image",
@@ -86,10 +93,10 @@
         },
         {
             "url": "user-interaction",
-            "name": "Pointer Drag",
+            "name": "Pointer & Ranges Drag",
             "description": "This demo for Essential JS2 Circular Gauge control visualizes the pointer drag support and its options.",
             "category": "User Interaction",
-            "api":{"CircularGauge": ["axes", "enablePointerDrag", "dragEnd", "dragMove"]}
+			"api":{"CircularGauge": ["axes", "enablePointerDrag", "dragEnd", "dragMove"]}
         },
         {
             "url": "tooltip",
@@ -97,6 +104,13 @@
             "description": "This demo for Essential JS2 Circular Gauge control visualizes the tooltip template for circular gauge pointer.",
             "category": "User Interaction",
             "api":{"CircularGauge": ["axes", "tooltip", "tooltipRender"]}
+        },
+        {
+            "url": "export",
+            "name": "Print & Export",
+            "type": "update",
+            "category": "Export",
+            "description": "This demo for Essential JS2 Circular Gauge control demonstrates the export and print methode of circular gauge."
         },
         {
             "url": "data-sample",

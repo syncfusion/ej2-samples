@@ -69,6 +69,11 @@ Maps.Inject(Zoom);
         maps.zoomSettings.enable = element.checked;
         maps.refresh();
     };
+    document.getElementById('pan').onchange = () => {
+        let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('pan'));
+        maps.zoomSettings.enablePanning = element.checked;
+        maps.refresh();
+    };
     document.getElementById('doubletap').onchange = () => {
         let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('doubletap'));
         maps.zoomSettings.doubleClickZoom = element.checked;

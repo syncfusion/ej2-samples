@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Filter, Page, Selection } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
+import { CheckBox } from '@syncfusion/ej2-buttons';
 
 Grid.Inject(Filter, Page, Selection);
 
@@ -15,10 +16,9 @@ Grid.Inject(Filter, Page, Selection);
             allowPaging: true,
             allowFiltering: true,
             columns: [
-                { field: 'CategoryName', headerText: 'Category Name', width: 160 },
-                { field: 'ProductName', headerText: 'Product Name', width: 170 },
-                { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 170, textAlign: 'Right' },
-                { field: 'UnitsInStock', headerText: 'Units In Stock', width: 170, textAlign: 'Right' },
+                { field: 'CategoryName', headerText: 'Category Name', width: 150 },
+                { field: 'ProductName', headerText: 'Product Name', width: 150 },
+                { field: 'UnitsInStock', headerText: 'Units In Stock', width: 150, textAlign: 'Right' },
                 {
                     field: 'Discontinued', headerText: 'Discontinued', width: 150,
                     textAlign: 'Center', displayAsCheckBox: true, type: 'boolean'
@@ -27,4 +27,16 @@ Grid.Inject(Filter, Page, Selection);
             pageSettings: { pageCount: 5 }
         });
     grid.appendTo('#Grid');
+
+    let filterbarOperator: CheckBox = new CheckBox();
+    filterbarOperator.appendTo('#filterBarOperator');
+
+    document.getElementById('filterBarOperator').onclick = () => {
+        if (filterbarOperator.checked) {
+            grid.filterSettings.showFilterBarOperator = true;
+        } else {
+            grid.filterSettings.showFilterBarOperator = false;
+        }
+        grid.clearFiltering();
+    };
 };

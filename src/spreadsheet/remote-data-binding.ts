@@ -3,11 +3,12 @@ import { DataManager, ODataAdaptor } from '@syncfusion/ej2-data';
 import { Spreadsheet } from '@syncfusion/ej2-spreadsheet';
 
 /**
- * Remote Data Binding sample.
+ * Remote data binding sample
  */
 (window as any).default = (): void => {
     loadCultureFiles();
 
+    //Custom code to handle data
     class CustomAdaptor extends ODataAdaptor {
         public processResponse(): Object {
             let result: Object[] = [];
@@ -24,7 +25,7 @@ import { Spreadsheet } from '@syncfusion/ej2-spreadsheet';
         }
     }
 
-    //Initialize DataManager.
+    //Initialize DataManager
     let data: DataManager = new DataManager({
         // Remote service url
         url: 'https://ej2services.syncfusion.com/production/web-services/api/Orders',
@@ -32,28 +33,26 @@ import { Spreadsheet } from '@syncfusion/ej2-spreadsheet';
         crossDomain: true
     });
 
-    //Initialize Spreadsheet component.
+    //Initialize Spreadsheet component
     let spreadsheet: Spreadsheet = new Spreadsheet({
-        sheets: [
-            {
+        sheets: [{
                 name: 'Shipment Details',
                 rows: [{
                     cells: [{ value: 'Order ID' }, { value: 'Customer Name' }, { value: 'Ship Name' },
                     { value: 'Ship City' }, { value: 'Ship Country' }]
                 }],
-                rangeSettings: [{ dataSource: data, showFieldAsHeader: false, startCell: 'A2' }],
+                ranges: [{ dataSource: data, showFieldAsHeader: false, startCell: 'A2' }],
                 columns: [{ width: 100 }, { width: 130 }, { width: 150 }, { width: 200 }, { width: 180 }]
             }],
         openUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/open',
         saveUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/save',
-        dataBound: (): void => {
-            if (spreadsheet.activeSheetTab === 1 && !spreadsheet.isOpen) {
-                spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center' }, 'A1:G1');
-            }
+        created: (): void => {
+            //Apply style to a range
+            spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center' }, 'A1:G1');
         }
     });
 
-    //Render initialized Spreadsheet component.
+    //Render initialized Spreadsheet component
     spreadsheet.appendTo('#spreadsheet');
 
 };

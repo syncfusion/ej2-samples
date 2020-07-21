@@ -1,0 +1,120 @@
+{
+    "name": "Dropdown Tree",
+    "directory": "drop-down-tree",
+    "category": "Dropdowns",
+    "ftName": "dropdown-tree",
+    "type": "update",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "description": "This example demonstrates the default functionalities of the JavaScript drop-down tree control with minimum configuration.",
+            "category": "Dropdown Tree",
+            "api": {
+                "DropDownTree": [
+                    "placeholder",
+                    "fields",
+                    "change",
+                    "popupHeight"
+                ]
+            }
+        },
+        {
+            "url": "icons",
+            "name": "Icons and Images",
+            "description": "The dropdown tree items can be rendered with any custom icons. This sample demonstrated like a file system with custom icons and images.",
+            "category": "Dropdown Tree",
+            "api": {
+                "DropDownTree": [
+                    "placeholder",
+                    "fields",
+                    "popupHeight"
+                ]
+            }
+        },
+        {
+            "url": "checkbox",
+            "name": "Checkbox",
+            "description": "This demo demonstrates the drop-down tree control with checkbox functionality",
+            "category": "Dropdown Tree",
+            "api": {
+                "DropDownTree": [
+                    "placeholder",
+                    "fields",
+                    "popupHeight"
+                ]
+            }
+        },
+        {
+            "url": "multiple-selection",
+            "name": "Multiple Selection",
+            "description": "The drop-down tree control allows to select multiple items by pressing CTRL key, also can select the range of items by pressing SHIFT key.",
+            "category": "Dropdown Tree",
+            "api": {
+                "DropDownTree": [
+                    "placeholder",
+                    "fields",
+                    "popupHeight"
+                ]
+            }
+        },
+        {
+            "url": "template",
+            "name": "Template",
+            "description": "This example demonstrates how to customize the appearance of each item in the JavaScript drop-down tree control pop-up item using the template.",
+            "category": "Dropdown Tree",
+            "api": {
+                "DropDownTree": [
+                    "placeholder",
+                    "fields",
+                    "popupHeight",
+                    "headerTemplate",
+                    "itemTemplate",
+                    "footerTemplate"
+                ]
+            }
+        },
+        {
+            "url": "filtering",
+            "name": "Filtering",
+            "description": "This example demonstrates how the filtering functionalities works based on the typed characters in the JavaScript drop-down tree control.",
+            "category": "Dropdown Tree",
+            "type": "new",
+            "api": {
+                "DropDownTree": [
+                    "placeholder",
+                    "fields",
+                    "allowFiltering",
+                    "filterBarPlaceholder",
+                    "popupHeight"
+                ]
+            }
+        },
+        {
+            "url": "local-data",
+            "name": "Local Data",
+            "description": "This example demonstrates how to bind with local data source in the JavaScript drop-down tree control.",
+            "category": "Data Binding",
+            "api": {
+                "DropDownTree": [
+                    "placeholder",
+                    "fields",
+                    "popupHeight"
+                ]
+            }
+        },
+        {
+            "url": "remote-data",
+            "name": "Remote Data",
+            "description": "This example demonstrates how to bind with remote data source in the JavaScript drop-down tree control.",
+            "category": "Data Binding",
+            "api": {
+                "DropDownTree": [
+                    "placeholder",
+                    "fields",
+                    "popupHeight"
+                ]
+            }
+        }
+    ]
+}

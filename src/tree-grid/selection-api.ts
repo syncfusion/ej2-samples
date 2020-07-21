@@ -53,7 +53,7 @@ TreeGrid.Inject( Page );
         let startRow: number = start.value;
         let toRow: number = to.value;
         let rows: number[] = [];
-        for ( let i: number = startRow ; i <= toRow ; i++ ) {
+        for ( let i: number = startRow > toRow ? toRow : startRow ; i <= (startRow > toRow ? startRow : toRow) ; i++ ) {
             rows.push(i);
         }
         treegrid.selectRows(rows);

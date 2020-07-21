@@ -51,9 +51,9 @@ import * as dataSource from './number-formatting-data.json';
         ],
         columns: [{ width: 120 }, { width: 180 }, { width: 100 }, { width: 120 }, { width: 120 }],
         selectedRange: 'E17',
-        rangeSettings: [{
+        ranges: [{
             dataSource: (dataSource as any).numberFormatData,
-            startCell: 'A3',
+            startCell: 'A3'
         }]
     }];
 
@@ -62,19 +62,17 @@ import * as dataSource from './number-formatting-data.json';
         sheets: sheet,
         showRibbon: false,
         showFormulaBar: false,
-        dataBound: (): void => {
-            if (!spreadsheet.isOpen && spreadsheet.activeSheetTab === 1) {
-                spreadsheet.cellFormat({ fontWeight: 'bold' }, 'A1:E2');
-                spreadsheet.cellFormat({ textAlign: 'center', fontWeight: 'bold' }, 'A3:E3');
-                spreadsheet.cellFormat({ textAlign: 'center' }, 'A4:A14');
-                spreadsheet.cellFormat({ textAlign: 'center' }, 'C4:C14');
-                spreadsheet.cellFormat({ backgroundColor: '#F9FBE7' }, 'A4:E15');
-                spreadsheet.cellFormat({ backgroundColor: '#1E88E5', color: '#F5F5F5' }, 'A1:E2');
-                spreadsheet.cellFormat({ backgroundColor: '#BBDEFB' }, 'A3:E3');
-                spreadsheet.cellFormat({ backgroundColor: '#B3E5FC' }, 'A15:E17');
-                spreadsheet.numberFormat('$#,##0.00', 'D4:E14');
-                spreadsheet.numberFormat('$#,##0.00', 'E15:E17');
-            }
+        created: (): void => {
+            spreadsheet.cellFormat({ fontWeight: 'bold' }, 'A1:E2');
+            spreadsheet.cellFormat({ textAlign: 'center', fontWeight: 'bold' }, 'A3:E3');
+            spreadsheet.cellFormat({ textAlign: 'center' }, 'A4:A14');
+            spreadsheet.cellFormat({ textAlign: 'center' }, 'C4:C14');
+            spreadsheet.cellFormat({ backgroundColor: '#F9FBE7' }, 'A4:E15');
+            spreadsheet.cellFormat({ backgroundColor: '#1E88E5', color: '#F5F5F5' }, 'A1:E2');
+            spreadsheet.cellFormat({ backgroundColor: '#BBDEFB' }, 'A3:E3');
+            spreadsheet.cellFormat({ backgroundColor: '#B3E5FC' }, 'A15:E17');
+            spreadsheet.numberFormat('$#,##0.00', 'D4:E14');
+            spreadsheet.numberFormat('$#,##0.00', 'E15:E17');
         }
     });
     //Render initialized Spreadsheet component.

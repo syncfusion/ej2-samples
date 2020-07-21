@@ -46,8 +46,10 @@ Gantt.Inject(Selection);
             splitterSettings: {
                 columnIndex: 4
             },
-            resourceNameMapping: 'resourceName',
-            resourceIDMapping: 'resourceId',
+            resourceFields: {
+                id: 'resourceId',
+                name: 'resourceName'
+            },
             resources: projectResources,
             projectStartDate: new Date('03/24/2019'),
             projectEndDate: new Date('07/06/2019')

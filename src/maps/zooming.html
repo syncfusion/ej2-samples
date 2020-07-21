@@ -88,6 +88,14 @@
                 </tr>
                 <tr style="height: 50px">
                     <td style="width: 50%">
+                        <div>Panning</div>
+                    </td>
+                    <td>
+                        <input type="checkbox" checked id="pan" style="margin-top: 15px" />
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td style="width: 50%">
                         <div>Mouse wheel zoom</div>
                     </td>
                     <td>
@@ -135,14 +143,18 @@
         </div>
         <div id="description">
             <p>
-              In this example, you can see how to zoom and pan the map. The support has been provided for zooming with toolbar, rectangle zoom, pinch zoom, mouse wheel zoom, single-click and double-click zoom.
+                In this example, you can see how to zoom and pan the map. The support has been provided for zooming with the toolbar, rectangle zoom, pinch zoom, mouse wheel zoom, single-click, and double-click zoom.Panning can be enabled or disabled using
+                the Panning option. When it is disabled, the map will switch to zooming mode.
             </p>
         <br/>
             <p style="font-weight: 500">Injecting Module</p>
             <p>
               Maps component features are segregated into individual feature-wise modules. To use the zooming feature, inject the <code>Zoom</code> module using the <code>Maps.Inject(Zoom)</code> method.
             </p>
-            
+            <p>
+                More information on zooming can be found in this
+                <a target="_blank" href="https://ej2.syncfusion.com/documentation/maps/user-interactions/#zooming">documentation section</a>.
+            </p>
         </div>
 <!-- custom code start -->
     <style>

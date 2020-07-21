@@ -1,12 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, ExcelExport, Selection, Toolbar } from '@syncfusion/ej2-gantt';
+import { Gantt, ExcelExport, Selection, Toolbar, PdfExport } from '@syncfusion/ej2-gantt';
 import { editingData, editingResources } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 
 /**
  * Editing Gantt sample
  */
-Gantt.Inject(Selection, Toolbar, ExcelExport);
+Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport);
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
@@ -31,27 +31,32 @@ Gantt.Inject(Selection, Toolbar, ExcelExport);
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor' },
-                { field: 'Progress' },
-                { field: 'resources' }
+                { field: 'resources' },
+                { field: 'Progress' }
             ],
             splitterSettings: {
                 columnIndex: 2
             },
             allowExcelExport: true,
-            toolbar: ['ExcelExport', 'CsvExport'],
+            allowPdfExport: true,
+            toolbar: ['ExcelExport', 'CsvExport', 'PdfExport'],
             toolbarClick: (args?: ClickEventArgs) => {
                 if (args.item.id === 'GanttExport_excelexport') {
                     gantt.excelExport();
                 } else if (args.item.id === 'GanttExport_csvexport') {
                     gantt.csvExport();
+                } else if (args.item.id === 'GanttExport_pdfexport') {
+                    gantt.pdfExport();
                 }
             },
             allowSelection: true,
             gridLines: 'Both',
             height: '450px',
             treeColumnIndex: 1,
-            resourceNameMapping: 'resourceName',
-            resourceIDMapping: 'resourceId',
+            resourceFields: {
+                id: 'resourceId',
+                name: 'resourceName'
+            },
             resources: editingResources,
             highlightWeekends: true,
             timelineSettings: {

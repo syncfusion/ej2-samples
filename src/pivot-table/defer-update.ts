@@ -1,5 +1,4 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
 import { PivotView, PivotFieldList, IDataSet, CalculatedField, FieldList } from '@syncfusion/ej2-pivotview';
 import { Browser, setStyleAttribute, enableRipple } from '@syncfusion/ej2-base';
 import * as pivotData from './pivot-data/Pivot_Data.json';

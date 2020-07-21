@@ -51,8 +51,10 @@ Gantt.Inject(DayMarkers, Selection);
                 { field: 'Progress' },
                 { field: 'resources' },
             ],
-            resourceNameMapping: 'resourceName',
-            resourceIDMapping: 'resourceId',
+            resourceFields: {
+                id: 'resourceId',
+                name: 'resourceName'
+            },
             resources: editingResources,
             labelSettings: {
                 leftLabel: '#leftLabel',

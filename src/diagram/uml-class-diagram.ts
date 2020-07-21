@@ -224,5 +224,6 @@ function createMethods(name: string, type: string): object {
         setNodeTemplate: setNodeTemplate
     });
     diagram.appendTo('#diagram');
+    diagram.fitToPage();
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "@syncfusion/ej2-samples",
-  "version": "18.2.44",
+  "version": "18.3.35",
   "description": "Samples for Syncfusion Essential JS 2",
   "author": "Syncfusion Inc.",
   "license": "SEE LICENSE IN license",
@@ -79,8 +79,8 @@
     "@types/requirejs": "^2.1.26",
     "run-sequence": "^1.2.2",
     "typescript": "2.8.4",
-    "webpack": "*",
-    "webpack-cli": "*",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
     "shelljs": "*"
   },
   "scripts": {

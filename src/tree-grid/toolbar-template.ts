@@ -21,6 +21,7 @@ TreeGrid.Inject(Filter, Toolbar, Page);
         },
         allowFiltering: true,
         childMapping: 'subtasks',
+        height: 350,
         allowPaging: true,
         pageSettings: {pageSize: 11},
         treeColumnIndex: 1,

@@ -16,6 +16,7 @@ let treegrid: TreeGrid = new TreeGrid(
     {
         dataSource: sampleData,
         childMapping: 'subtasks',
+        height: 350,
         treeColumnIndex: 1,
         allowPaging: true,
         pageSettings: { pageSize: 10 },

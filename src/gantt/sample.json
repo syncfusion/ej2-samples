@@ -2,7 +2,6 @@
    "name": "Gantt",
    "directory": "gantt",
    "category": "Calendars",
-   "type": "update",
    "ftName": "gantt",
    "samples": [
       {
@@ -119,7 +118,6 @@
          "url": "resource-view",
          "name": "Resource View",
          "category": "Resources",
-         "type": "update",
          "api": {
             "Gantt": [
                "dataSource",
@@ -150,7 +148,6 @@
          "url": "resource-multi-taskbar",
          "name": "Resource Multi Taskbar",
          "category": "Resources",
-         "type": "new",
          "api": {
             "Gantt": [
                "dataSource",
@@ -386,7 +383,6 @@
          "url": "editing",
          "name": "Editing",
          "category": "Gantt",
-         "type": "update",
          "api": {
             "Gantt": [
                "dataSource",
@@ -436,37 +432,9 @@
          "description": "This example demonstrates the various selection support of row and cell with different type in Syncfusion Essential JS2 Gantt"
       },
       {
-         "url": "filtering",
-         "name": "Filtering",
-         "category": "Gantt",
-         "api": {
-            "Gantt": [
-               "dataSource",
-               "dateFormat",
-               "taskFields",
-               "columns",
-               "treeColumnIndex",
-               "height",
-               "timelineSettings",
-               "labelSettings",
-               "toolbar",
-               "allowFiltering",
-               "includeWeekend",
-               "timelineSettings",
-               "splitterSettings",
-               "durationUnit",
-               "dayWorkingTime",
-               "projectStartDate",
-               "projectEndDate"
-            ]
-         },
-         "description": "This example demonstrates the filtering support with filter menu option for various types of columns in Gantt"
-      },
-      {
          "url": "contextMenu",
          "name": "Context Menu",
          "category": "Gantt",
-         "type": "update",
          "api": {
             "Gantt": [
                "dataSource",
@@ -526,6 +494,33 @@
             ]
          },
          "description": "This demo explains how to export Gantt content to Excel and CSV documents using the Syncfusion TypeScript Gantt control."
+      },
+      {
+         "url": "filtering",
+         "name": "Filtering",
+         "category": "Gantt",
+         "api": {
+            "Gantt": [
+               "dataSource",
+               "dateFormat",
+               "taskFields",
+               "columns",
+               "treeColumnIndex",
+               "height",
+               "timelineSettings",
+               "labelSettings",
+               "toolbar",
+               "allowFiltering",
+               "includeWeekend",
+               "timelineSettings",
+               "splitterSettings",
+               "durationUnit",
+               "dayWorkingTime",
+               "projectStartDate",
+               "projectEndDate"
+            ]
+         },
+         "description": "This example demonstrates the filtering support with filter menu option for various types of columns in Gantt"
       },
       {
          "url": "events",

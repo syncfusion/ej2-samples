@@ -50,8 +50,6 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                     fieldCnt--;
                 }
                 values = fieldCollections[fields[0]];
-                valuesddl.dataSource = values;
-                valuesddl.dataBind();
                 isInitial = false;
             }
             for (let field of pivotObj.dataSourceSettings.filterSettings) {

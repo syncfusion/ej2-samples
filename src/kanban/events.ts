@@ -62,16 +62,16 @@ import * as dataSource from './datasource.json';
         appendElement('Kanban <b>Data Bound</b> event called<hr>');
     }
     function OnCardRendered(args: CardRenderedEventArgs): void {
-        appendElement('Kanban - ' + args.data.Id + ' - <b>Card Rendered</b> event called<hr>');
+        appendElement('Kanban - ' + (args.data as { [key: string]: Object }).Id + ' - <b>Card Rendered</b> event called<hr>');
     }
     function OnQueryCellInfo(): void {
         appendElement('Kanban <b>Query Cell Info</b> event called<hr>');
     }
     function OnCardClick(args: CardClickEventArgs): void {
-        appendElement('Kanban - ' + args.data.Id + ' - <b>Card Click</b> event called<hr>');
+        appendElement('Kanban - ' + (args.data as { [key: string]: Object }).Id + ' - <b>Card Click</b> event called<hr>');
     }
     function OnCardDoubleClick(args: CardClickEventArgs): void {
-        appendElement('Kanban - ' + args.data.Id + ' - <b>Card Double Click</b> event called<hr>');
+        appendElement('Kanban - ' + (args.data as { [key: string]: Object }).Id + ' - <b>Card Double Click</b> event called<hr>');
     }
     function OnDragStart(): void {
         appendElement('Kanban <b>Drag Start</b> event called<hr>');

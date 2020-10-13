@@ -1253,7 +1253,6 @@
             "url": "comments",
             "name": "Comments",
             "category": "Review",
-            "type":"update",
             "description": "The Document Editor component supports add and edit comments in a Word document for comment discussion.",
             "api": {
                 "Editor": [
@@ -1272,7 +1271,6 @@
             "url": "track-changes",
             "name": "Track Changes",
             "category": "Review",
-            "type":"new",
             "description": "The Document Editor component supports add and edit comments in a Word document for comment discussion.",
             "api": {
                 "DocumentEditor": [
@@ -1309,7 +1307,6 @@
             "url": "form-fields",
             "name": "Form Fields",
             "category": "Editing Features",
-            "type":"new",
             "description": "The Document Editor component supports add and edit comments in a Word document for comment discussion.",
             "api": {
                 "DocumentEditor": [
@@ -1341,7 +1338,43 @@
                     "resize"
                 ]
             }
-        }                  
-
+        },
+        {
+            "url": "mail-merge",
+            "name": "Mail Merge",
+            "category": "Mail Merge",
+            "type":"new",
+            "description": "The Document Editor component provides support to mail merge document with the help of Syncfusion DocIO.",
+            "api": {
+                "DocumentEditor": [
+                    "isReadOnly",
+                    "enableAllModules",
+                    "acceptTab",
+                    "documentName",
+                    "pageOutline",
+                    "selection",
+                    "editor",
+                    "editorHistory",
+                    "enableLocalPaste",
+                    "pageCount",
+                    "zoomFactor",
+                    "documentChange",
+                    "viewChange",
+                    "selectionChange",
+                    "requestNavigate",
+                    "contentChange",
+                    "open",
+                    "print",
+                    "openBlank",
+                    "focusIn",
+                    "save",
+                    "showDialog",
+                    "showOptionsPane",
+                    "fitPage",
+                    "getStyleNames",
+                    "resize"
+                ]
+            }
+        }
     ]
 }

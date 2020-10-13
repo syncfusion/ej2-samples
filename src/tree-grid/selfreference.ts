@@ -13,6 +13,7 @@ TreeGrid.Inject(Page);
     let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: projectData,
+            height: 400,
             idMapping: 'TaskID',
             parentIdMapping: 'parentID',
             allowPaging: true,

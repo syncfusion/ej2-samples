@@ -24,7 +24,8 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
                 dependency: 'Predecessor',
                 resourceInfo: 'resources',
                 work: 'work',
-                child: 'subtasks'
+                child: 'subtasks',
+                type: 'taskType'
             },
             editSettings: {
                 allowAdding: true,

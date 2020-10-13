@@ -19,6 +19,7 @@ module.exports = function (config) {
             "test-main.js",
             { pattern: "src/**/*.*", included: false },
             { pattern: "styles/**/*.*", included: false },
+            { pattern: "src/skipChunk.js", included: true },
             { pattern: "src/common.min.js", included: true },
             { pattern: "spec/**/*.spec.js", included: false },
             { pattern: "node_modules/@syncfusion/ej2-base/**/*.js", included: false },

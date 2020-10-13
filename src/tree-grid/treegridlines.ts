@@ -20,6 +20,7 @@ TreeGrid.Inject( Page );
     let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: sampleData,
+            height: 350,
             allowPaging: true,
             pageSettings: {pageSize: 10},
             childMapping: 'subtasks',

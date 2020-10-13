@@ -14,6 +14,7 @@ TreeGrid.Inject(Page, Reorder, Sort, Edit);
             dataSource: sampleData,
             allowPaging: true,
             childMapping: 'subtasks',
+            height: 350,
             treeColumnIndex: 1,
             editSettings: { allowEditing: true },
             load: load,

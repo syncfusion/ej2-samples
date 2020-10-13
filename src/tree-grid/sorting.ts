@@ -15,6 +15,7 @@ TreeGrid.Inject(Sort, Page);
             dataSource: sortData,
             allowPaging: true,
             childMapping: 'subtasks',
+            height: 350,
             treeColumnIndex: 0,
             allowSorting: true,
             columns: [

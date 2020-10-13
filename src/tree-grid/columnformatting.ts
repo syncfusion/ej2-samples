@@ -37,6 +37,7 @@ TreeGrid.Inject(Page);
             dataSource: formatData,
             allowPaging: true,
             childMapping: 'subtasks',
+            height: 350,
             treeColumnIndex: 1,
             pageSettings: { pageCount: 5 },
             columns: [

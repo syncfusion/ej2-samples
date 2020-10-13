@@ -22,6 +22,7 @@ TreeGrid.Inject(Page, Toolbar, Filter);
             dataSource: sampleData,
             allowPaging: true,
             childMapping: 'subtasks',
+            height: 350,
             treeColumnIndex: 1,
             toolbar: ['Search'],
             columns: [

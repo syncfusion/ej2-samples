@@ -13,6 +13,7 @@ TreeGrid.Inject(Page);
             dataSource: textWrapData,
             allowPaging: true,
             allowTextWrap: true,
+            height: 350,
             childMapping: 'subtasks',
             pageSettings: { pageSize: 8 },
             treeColumnIndex: 1,

@@ -30,7 +30,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             filters: [{ name: 'Product_Categories', caption: 'Product Categories' }]
         },
         width: '100%',
-        height:600,
+        height: 450,
         saveReport: function (args: SaveReportArgs): void {
             let reports: SaveReportArgs[] = [];
             let isSaved: boolean = false;

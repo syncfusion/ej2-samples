@@ -14,6 +14,7 @@ TreeGrid.Inject(Page, Filter, Sort, Resize, ColumnMenu );
         {
             dataSource: sampleData,
             childMapping: 'subtasks',
+            height: 350,
             allowPaging: true,
             pageSettings: {pageSize: 10},
             allowFiltering: true,

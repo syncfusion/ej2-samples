@@ -10,18 +10,17 @@ import { Button } from '@syncfusion/ej2-buttons';
 (window as any).default = (): void => {
     loadCultureFiles();
     let div: HTMLCollection = document.getElementsByClassName('progressbar-label');
-    
     let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
         let selectedTheme: string = location.hash.split('/')[1];
         selectedTheme = selectedTheme ? selectedTheme : 'Material';
         args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
-         if(selectedTheme === 'highcontrast') {
-            for (let i = 0; i < div.length; i++) {
+        if (selectedTheme === 'highcontrast') {
+            for (let i: number = 0; i < div.length; i++) {
                 div[i].setAttribute('style', 'color:white');
             }
-         }
-      }
+        }
+    };
 
     let button: Button = new Button();
     button = new Button({ cssClass: 'e-outline', isPrimary: true });
@@ -98,10 +97,10 @@ import { Button } from '@syncfusion/ej2-buttons';
 
     let replayBtn: HTMLElement = document.getElementById('reLoad') as HTMLElement;
     replayBtn.onclick = () => {
-    uploadProgress.refresh();
-    successProgress.refresh();
-    warningsProgress.refresh();
-    errorProgress.refresh();
-    activeProgress.refresh();
-};
+        uploadProgress.refresh();
+        successProgress.refresh();
+        warningsProgress.refresh();
+        errorProgress.refresh();
+        activeProgress.refresh();
+    };
 };

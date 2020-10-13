@@ -2,7 +2,6 @@
     "name": "Circular Gauge",
     "directory": "circular-gauge",
     "category": "Data Visualization",
-    "type": "update",
     "ftName": "circulargauge",
     "samples": [
         {
@@ -60,7 +59,6 @@
         {
             "url": "gradient-color",
             "name": "Gradient Color",
-            "type": "new",
             "category": "Circular Gauge"
         },
         {
@@ -108,7 +106,6 @@
         {
             "url": "export",
             "name": "Print & Export",
-            "type": "update",
             "category": "Export",
             "description": "This demo for Essential JS2 Circular Gauge control demonstrates the export and print methode of circular gauge."
         },

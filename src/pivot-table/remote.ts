@@ -29,6 +29,7 @@ enableRipple(false);
 
 	let csvReport: IDataOptions = {
 		url: 'https://bi.syncfusion.com/productservice/api/sales',
+		dataSource: undefined,
 		type: 'CSV',
 		expandAll: false,
 		enableSorting: true,
@@ -62,8 +63,10 @@ enableRipple(false);
 		placeholder: 'Content Type',
 		change: (args: ChangeEventArgs) => {
 			if (args.value === 'JSON') {
+				pivotObj.engineModule.fieldList = undefined;
 				pivotObj.dataSourceSettings = jsonReport;
 			} else if (args.value === 'CSV') {
+				pivotObj.engineModule.fieldList = undefined;
 				pivotObj.dataSourceSettings = csvReport;
 			}
 		}

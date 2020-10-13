@@ -1105,7 +1105,9 @@ function controlSelect(arg: any): void {
                 toggleLeftPane();
             }
             window.hashString = '#/' + theme + path;
-            setTimeout(() => { location.hash = '#/' + theme + path; }, 600);
+            setTimeout(() => { 
+                location.hash = '#/' + theme + path;
+            }, 600);
         }
     }
 }

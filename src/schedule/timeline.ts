@@ -31,7 +31,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
     scheduleObj.appendTo('#Schedule');
 
     // custom code start
-    let currentDate: DatePicker = new DatePicker({
+    let currentDateObj: DatePicker = new DatePicker({
         value: new Date(2019, 0, 10),
         showClearButton: false,
         change: (args: ChangeEventArgs) => {
@@ -39,6 +39,6 @@ Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
             scheduleObj.dataBind();
         }
     });
-    currentDate.appendTo('#scheduledate');
+    currentDateObj.appendTo('#scheduledate');
     // custom code end
 };

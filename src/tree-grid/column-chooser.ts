@@ -14,6 +14,7 @@ TreeGrid.Inject(Toolbar, ColumnChooser, Page );
         {
             dataSource: sampleData,
             childMapping: 'subtasks',
+            height: 350,
             treeColumnIndex: 1,
             showColumnChooser: true,
             allowPaging: true,

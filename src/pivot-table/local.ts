@@ -69,9 +69,11 @@ let data: IDataSet[] = (localData as any).data;
         placeholder: 'Content Type',
         change: (args: ChangeEventArgs) => {
             if (args.value === 'JSON') {
+                pivotObj.engineModule.fieldList = undefined;
                 pivotObj.dataSourceSettings = jsonReport;
             } else if (args.value === 'CSV') {
                 csvReport.dataSource = getCSVData();
+                pivotObj.engineModule.fieldList = undefined;
                 pivotObj.dataSourceSettings = csvReport;
             }
         }

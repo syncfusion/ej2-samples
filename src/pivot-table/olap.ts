@@ -44,7 +44,7 @@ PivotView.Inject(FieldList, GroupingBar, CalculatedField, Toolbar, ConditionalFo
             ]
         },
         width: '100%',
-        height: 600,
+        height: 500,
         toolbarRender: function (args: ToolbarArgs): void {
             args.customToolbar.splice(6, 0, {
                 type: 'Separator'

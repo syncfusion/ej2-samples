@@ -33,20 +33,20 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize
     });
     scheduleObj.appendTo('#Schedule');
     // custom code start
-    let start: TimePicker = new TimePicker({
+    let startObj: TimePicker = new TimePicker({
         width: 100,
         value: new Date(2000, 0, 1, 8),
         format: 'HH:mm'
     });
-    start.appendTo('#startTime');
-    let end: TimePicker = new TimePicker({
+    startObj.appendTo('#startTime');
+    let endObj: TimePicker = new TimePicker({
         width: 100,
         value: new Date(2000, 0, 1, 20),
         format: 'HH:mm'
     });
-    end.appendTo('#endTime');
-    let button: Button = new Button();
-    button.appendTo('#submit');
+    endObj.appendTo('#endTime');
+    let buttonObj: Button = new Button();
+    buttonObj.appendTo('#submit');
     document.getElementById('submit').onclick = () => {
         let start: HTMLInputElement = document.getElementById('startTime') as HTMLInputElement;
         let end: HTMLInputElement = document.getElementById('endTime') as HTMLInputElement;

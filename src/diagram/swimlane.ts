@@ -67,20 +67,20 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     let gridlines: GridlinesModel = { lineColor: '#e0e0e0', lineIntervals: interval };
 
     let port: PointPortModel[] = [
-        { id:'Port1', offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-        { id:'Port2',offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-        { id:'Port3',offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-        { id:'Port4',offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw }
+        { id:'Port1', offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Default |  PortConstraints.Draw },
+        { id:'Port2',offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Default |  PortConstraints.Draw },
+        { id:'Port3',offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Default |  PortConstraints.Draw },
+        { id:'Port4',offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Default |  PortConstraints.Draw }
     ]
     let nodes: NodeModel[] = [
         {
             id: 'swimlane',
             shape: {
                 type: 'SwimLane',
+                orientation: 'Horizontal',
                 header: {
                     annotation: { content: 'SALES PROCESS FLOW CHART', style: { fill: 'transparent' } },
                     height: 50, style: { fontSize: 11 },
-                    orientation: 'Horizontal',
                 },
                 lanes: [
                     {
@@ -196,7 +196,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                 phases: [
                     {
                         id: 'phase1', offset: 170,
-                        header: { content: { content: 'Phase' } }
+                        header: { annotation: { content: 'Phase' } }
                     },
                 ],
                 phaseSize: 20,

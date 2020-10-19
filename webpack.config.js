@@ -29,7 +29,7 @@ function getControlWiseBundle() {
 }
 
 module.exports = webpackConfig({
-    mode : 'production',
+    mode : (/hotfix\/|release\/|master/).test(process.env.BRANCH_NAME) ? 'production' : 'development',
     entry: {
         'src/common/index.min': './src/common/index'
     },

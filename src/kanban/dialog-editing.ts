@@ -37,7 +37,7 @@ import * as dataSource from './datasource.json';
     let priorityData: string[] = ['Low', 'Normal', 'Critical', 'Release Breaker', 'High'];
     function onDialogOpen(args: DialogEventArgs): void {
         if (args.requestType !== 'Delete') {
-            let curData: { [key: string]: Object } = args.data;
+            let curData: { [key: string]: Object } = args.data as { [key: string]: Object };
             let filledTextBox: TextBox = new TextBox({});
             filledTextBox.appendTo(args.element.querySelector('#Id') as HTMLInputElement);
             let numericObj: NumericTextBox = new NumericTextBox({
@@ -68,7 +68,7 @@ import * as dataSource from './datasource.json';
     }
     let count: number = 31;
     document.getElementById('addNew').onclick = (e: Event): void => {
-        let curData: object = {
+        let curData: Object = {
             Id: 'Task ' + count, Status: 'Open', Priority: 'Normal', Assignee: 'Andrew Fuller', Estimate: 0, Tags: '', Summary: ''
         };
         kanbanObj.openDialog('Add', curData);

@@ -45,11 +45,11 @@ ProgressBar.Inject(ProgressAnnotation);
         load: progressLoad,
         progressCompleted: (args: IProgressValueEventArgs) => {
             clearTimeout(clearTimeout1);
-            clearTimeout1 = setTimeout(
+            clearTimeout1 = +setTimeout(
                 () => {
-                //tslint:disable-next-line
-                pausePlay.annotations[0].content = '<img src="src/progress-bar/images/' + (pausePlay.theme).toLowerCase() + '-Play.svg"></img>';
-                pausePlay.dataBind();
+                    //tslint:disable-next-line
+                    pausePlay.annotations[0].content = '<img src="src/progress-bar/images/' + (pausePlay.theme).toLowerCase() + '-Play.svg"></img>';
+                    pausePlay.dataBind();
                 },
                 2000);
         },
@@ -75,11 +75,11 @@ ProgressBar.Inject(ProgressAnnotation);
         },
         progressCompleted: (args: IProgressValueEventArgs) => {
             clearTimeout(clearTimeout2);
-            clearTimeout2 = setTimeout(
+            clearTimeout2 = +setTimeout(
                 () => {
-                //tslint:disable-next-line
-                downloadProgress.annotations[0].content = '<img src="src/progress-bar/images/' + (downloadProgress.theme).toLowerCase() + '-Tick.svg"></img>';
-                downloadProgress.dataBind();
+                    //tslint:disable-next-line
+                    downloadProgress.annotations[0].content = '<img src="src/progress-bar/images/' + (downloadProgress.theme).toLowerCase() + '-Tick.svg"></img>';
+                    downloadProgress.dataBind();
                 },
                 2000);
         },
@@ -97,7 +97,7 @@ ProgressBar.Inject(ProgressAnnotation);
         width: '160px',
         height: '160px',
         cornerRadius: 'Round',
-        startAngle:  180,
+        startAngle: 180,
         endAngle: 180,
         animation: {
             enable: true,

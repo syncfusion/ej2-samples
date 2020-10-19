@@ -25,6 +25,7 @@ TreeGrid.Inject( Page, Filter );
             allowFiltering: true,
             filterSettings: { type: 'FilterBar', hierarchyMode: 'Parent', mode: 'Immediate' },
             childMapping: 'subtasks',
+            height: 350,
             treeColumnIndex: 1,
             columns: [
                 { field: 'taskID', headerText: 'Task ID', textAlign: 'Right', width: 80 },

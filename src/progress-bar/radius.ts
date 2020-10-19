@@ -13,7 +13,7 @@ ProgressBar.Inject(ProgressAnnotation);
         width: '160px',
         height: '160px',
         enableRtl: false,
-        progressColor: "white",
+        progressColor: 'white',
         radius: '100%',
         innerRadius: '190%',
         trackThickness: 80,
@@ -29,6 +29,7 @@ ProgressBar.Inject(ProgressAnnotation);
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // tslint:disable-next-line:align
             switch (selectedTheme) {
                 case 'material':
                     args.progressBar.trackColor = '#e91e63';
@@ -42,7 +43,8 @@ ProgressBar.Inject(ProgressAnnotation);
                 case 'highcontrast':
                     args.progressBar.trackColor = '#FFD939';
                     args.progressBar.progressColor = '#000000';
-                    args.progressBar.annotations[0].content = '<div id="point1" style="font-size:20px;font-weight:bold;color:#000000;fill:#000000"><span>60%</span></div>';
+                    args.progressBar.annotations[0].content =
+                        '<div id="point1" style="font-size:20px;font-weight:bold;color:#000000;fill:#000000"><span>60%</span></div>';
                     break;
                 default:
                     args.progressBar.trackColor = '#007bff';

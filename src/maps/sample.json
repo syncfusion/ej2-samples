@@ -3,7 +3,6 @@
     "directory": "maps",
     "category": "Data Visualization",
     "ftName": "maps",
-    "type": "update",
     "samples": [{
             "url": "default",
             "name": "Default Functionalities",
@@ -368,7 +367,6 @@
             "name": "Print",
             "description": "This demo for Essential JS2 Maps control illustrates the printing functionality in the maps control.",
             "category": "Print and Export",
-            "type": "update",
             "api": {
                 "Maps": [
                     "titleSettings",
@@ -386,7 +384,6 @@
         {
             "url": "export",
             "name": "Export",
-            "type": "update",
             "description": "This demo for Essential JS2 Maps control illustrates the exporting functionality in the maps control.",
             "category": "Print and Export",
             "api": {

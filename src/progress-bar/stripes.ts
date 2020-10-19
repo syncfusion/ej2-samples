@@ -9,18 +9,17 @@ import { Button } from '@syncfusion/ej2-buttons';
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
-
     let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
         let selectedTheme: string = location.hash.split('/')[1];
         selectedTheme = selectedTheme ? selectedTheme : 'Material';
         args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
-            if(args.progressBar.theme === 'Material') {
-                args.progressBar.trackColor = '#eee';
-            }
-            if(selectedTheme === 'highcontrast') {
-                args.progressBar.trackColor = '#969696';
-            }
+        if (args.progressBar.theme === 'Material') {
+            args.progressBar.trackColor = '#eee';
+        }
+        if (selectedTheme === 'highcontrast') {
+            args.progressBar.trackColor = '#969696';
+        }
     };
 
     let button: Button = new Button();
@@ -41,7 +40,7 @@ import { Button } from '@syncfusion/ej2-buttons';
             duration: 2000,
             delay: 0,
         },
-        load:progressLoad
+        load: progressLoad
     });
     dangerProgress.appendTo('#danger');
     let warningProgress: ProgressBar = new ProgressBar({
@@ -58,7 +57,7 @@ import { Button } from '@syncfusion/ej2-buttons';
             duration: 2000,
             delay: 0,
         },
-        load:progressLoad
+        load: progressLoad
     });
     warningProgress.appendTo('#warning');
     let infoProgress: ProgressBar = new ProgressBar({
@@ -75,7 +74,7 @@ import { Button } from '@syncfusion/ej2-buttons';
             duration: 2000,
             delay: 0,
         },
-        load:progressLoad
+        load: progressLoad
     });
     infoProgress.appendTo('#info');
 
@@ -93,41 +92,41 @@ import { Button } from '@syncfusion/ej2-buttons';
             duration: 2000,
             delay: 0,
         },
-        load:progressLoad
+        load: progressLoad
     });
     successProgress.appendTo('#success');
 
     let animationBtn: HTMLElement = document.getElementById('animation') as HTMLElement;
     animationBtn.onclick = () => {
-        if(!dangerProgress.animation.enable) {
-        dangerProgress.animation.enable = true;
-        animationBtn.innerHTML = 'Stop Animation';
-        dangerProgress.refresh();
+        if (!dangerProgress.animation.enable) {
+            dangerProgress.animation.enable = true;
+            animationBtn.innerHTML = 'Stop Animation';
+            dangerProgress.refresh();
         } else {
-        dangerProgress.animation.enable = false;
-        animationBtn.innerHTML = 'Start Animation';
-        dangerProgress.refresh(); 
+            dangerProgress.animation.enable = false;
+            animationBtn.innerHTML = 'Start Animation';
+            dangerProgress.refresh();
         }
-        if(!warningProgress.animation.enable) {
+        if (!warningProgress.animation.enable) {
             warningProgress.animation.enable = true;
             warningProgress.refresh();
         } else {
             warningProgress.animation.enable = false;
-            warningProgress.refresh(); 
+            warningProgress.refresh();
         }
-        if(!infoProgress.animation.enable) {
+        if (!infoProgress.animation.enable) {
             infoProgress.animation.enable = true;
             infoProgress.refresh();
         } else {
             infoProgress.animation.enable = false;
-            infoProgress.refresh(); 
+            infoProgress.refresh();
         }
-        if(!successProgress.animation.enable) {
+        if (!successProgress.animation.enable) {
             successProgress.animation.enable = true;
             successProgress.refresh();
         } else {
             successProgress.animation.enable = false;
-            successProgress.refresh(); 
+            successProgress.refresh();
         }
     };
-}
+};

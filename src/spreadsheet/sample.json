@@ -193,7 +193,7 @@
             "url": "conditional-formatting",
             "name": "Conditional Formatting",
             "category": "Formatting",
-            "type": "new",
+            "type": "update",
             "api": {
                 "Spreadsheet": [
                     "sheets",
@@ -237,6 +237,30 @@
                 {
                     "displayName": "sorting-and-filtering-data.json",
                     "path": "src/spreadsheet/sorting-and-filtering-data.json"
+                }
+            ]
+        },
+        {
+            "url": "image",
+            "name": "Image",
+            "category": "Illustrations",
+            "type": "new",
+            "api": {
+                "Spreadsheet": [
+                    "sheets",
+                    "created",
+                    "beforeCellRender"
+                ]
+            },
+            "description": "This demo for Essential JS 2 Spreadsheet control shows image feature.",
+            "sourceFiles": [
+                {
+                    "displayName": "image.ts",
+                    "path": "src/spreadsheet/image.ts"
+                },
+                {
+                    "displayName": "image.html",
+                    "path": "src/spreadsheet/image.html"
                 }
             ]
         },

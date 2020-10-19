@@ -22,8 +22,7 @@ Schedule.Inject(TimelineViews, Resize, DragAndDrop);
             resources: ['MeetingRoom']
         },
         resources: [{
-            field: 'RoomId', title: 'Room Type',
-            name: 'MeetingRoom', allowMultiple: true,
+            field: 'RoomId', title: 'Room Type', name: 'MeetingRoom', allowMultiple: true,
             dataSource: [
                 { text: 'Room A', id: 1, color: '#98AFC7' },
                 { text: 'Room B', id: 2, color: '#99c68e' },
@@ -39,7 +38,6 @@ Schedule.Inject(TimelineViews, Resize, DragAndDrop);
             textField: 'text', idField: 'id', colorField: 'color'
         }],
         eventSettings: {
-            dataSource: <Object[]>extend([], (dataSource as any).roomData, null, true),
             fields: {
                 id: 'Id',
                 subject: { title: 'Summary', name: 'Subject' },
@@ -47,15 +45,19 @@ Schedule.Inject(TimelineViews, Resize, DragAndDrop);
                 description: { title: 'Comments', name: 'Description' },
                 startTime: { title: 'From', name: 'StartTime' },
                 endTime: { title: 'To', name: 'EndTime' }
-            }
+            },
+            dataSource: <Object[]>extend([], (dataSource as any).roomData, null, true)
         }
     });
     scheduleObj.appendTo('#Schedule');
 
     //custom code start
-    function onChange(args: ChangeEventArgs): void {
-        scheduleObj.rowAutoHeight = args.checked;
-    }
-    new CheckBox({ label: 'Row Auto Height', checked: true, change: onChange }, '#adaptive-rows');
+    let checkboxObj: CheckBox = new CheckBox({
+        label: 'Row Auto Height', checked: true,
+        change: (args: ChangeEventArgs): void => {
+            scheduleObj.rowAutoHeight = args.checked;
+        }
+    });
+    checkboxObj.appendTo('#adaptive-rows');
     //custom code end
 };

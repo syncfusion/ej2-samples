@@ -1044,7 +1044,7 @@
         {
             "url": "table-of-contents",
             "name": "Table of Contents",
-            "category": "Editing Features",
+            "category": "References",
             "description": "The Document Editor supports table of contents with options for including hyperlink, page number, right-aligned tabs, and styles.",
             "api": {
                 "DocumentEditor": [
@@ -1343,7 +1343,6 @@
             "url": "mail-merge",
             "name": "Mail Merge",
             "category": "Mail Merge",
-            "type":"new",
             "description": "The Document Editor component provides support to mail merge document with the help of Syncfusion DocIO.",
             "api": {
                 "DocumentEditor": [
@@ -1373,6 +1372,122 @@
                     "fitPage",
                     "getStyleNames",
                     "resize"
+                ]
+            }
+        },
+        {
+            "url": "notes",
+            "name": "Footnotes and Endnotes",
+            "category": "References",
+            "type":"new",
+            "description": "The DocumentEditor provides support to insert footnotes and endnotes to provide more information about something in the document.",
+            "api": {
+                "DocumentEditor": [
+                    "isReadOnly",
+                    "enableAllModules",
+                    "acceptTab",
+                    "documentName",
+                    "pageOutline",
+                    "selection",
+                    "editor",
+                    "editorHistory",
+                    "enableLocalPaste",
+                    "pageCount",
+                    "zoomFactor",
+                    "documentChange",
+                    "viewChange",
+                    "selectionChange",
+                    "requestNavigate",
+                    "contentChange",
+                    "open",
+                    "print",
+                    "openBlank",
+                    "focusIn",
+                    "save",
+                    "showDialog",
+                    "showOptionsPane",
+                    "fitPage",
+                    "getStyleNames",
+                    "resize"
+                ],
+                "Selection": [
+                    "contextType",
+                    "characterFormat",
+                    "paragraphFormat",
+                    "sectionFormat",
+                    "cellFormat",
+                    "imageFormat",
+                    "goToPage",
+                    "goToHeader",
+                    "goToFooter",
+                    "closeHeaderFooter"
+                ],
+                "SelectionCharacterFormat": [
+                    "bold",
+                    "italic",
+                    "underline",
+                    "fontFamily",
+                    "fontSize",
+                    "fontColor",
+                    "highlightColor",
+                    "strikethrough",
+                    "baselineAlignment"
+                ],
+                "SelectionParagraphFormat": [
+                    "textAlignment",
+                    "lineSpacing",
+                    "styleName"
+                ],
+                "SelectionSectionFormat": [
+                    "differentFirstPage",
+                    "differentOddAndEvenPages",
+                    "headerDistance",
+                    "footerDistance"
+                ],
+                "SelectionCellFormat": [
+                    "topMargin",
+                    "bottomMargin",
+                    "leftMargin",
+                    "rightMargin",
+                    "verticalAlignment",
+                    "background"
+                ],
+                "SelectionImageFormat": [
+                    "width",
+                    "height",
+                    "resize"
+                ],
+                "Editor": [
+                    "insertImage",
+                    "toggleBold",
+                    "toggleItalic",
+                    "toggleUnderline",
+                    "toggleStrikethrough",
+                    "toggleSubscript",
+                    "toggleSuperscript",
+                    "toggleTextAlignment",
+                    "increaseIndent",
+                    "decreaseIndent",
+                    "applyNumbering",
+                    "applyBullet",
+                    "applyStyle",
+                    "clearList",
+                    "clearFormatting",
+                    "canMergeCells",
+                    "mergeCells",
+                    "applyBorders",
+                    "insertPageNumber",
+                    "insertTableOfContents",
+                    "insertRow",
+                    "insertColumn",
+                    "deleteRow",
+                    "deleteColumn"
+                ],
+                "EditorHistory": [
+                    "undo",
+                    "redo",
+                    "canUndo",
+                    "canRedo"
                 ]
             }
         }

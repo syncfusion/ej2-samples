@@ -70,6 +70,7 @@ function getFlowShape(id: string, shapeType: FlowShapes): NodeModel {
 }
 
 function getSymbolDefaults(symbol: NodeModel): void {
+    symbol.style = { strokeColor: '#757575' };
     if (symbol.id === 'Terminator' || symbol.id === 'Process' || symbol.id === 'Delay') {
         symbol.width = 80;
         symbol.height = 40;
@@ -200,23 +201,25 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     let connectorSymbols: ConnectorModel[] = [
         {
             id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 1 }
+            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
+            style: { strokeWidth: 1, strokeColor: '#757575' }
         },
         {
             id: 'link3', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            style: { strokeWidth: 1 }, targetDecorator: { shape: 'None' }
+            style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
         },
         {
             id: 'Link21', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 1 }
+            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
+            style: { strokeWidth: 1, strokeColor: '#757575' }
         },
         {
             id: 'link23', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            style: { strokeWidth: 1 }, targetDecorator: { shape: 'None' }
+            style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
         },
         {
             id: 'link33', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            style: { strokeWidth: 1 }, targetDecorator: { shape: 'None' }
+            style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
         },
     ];
 

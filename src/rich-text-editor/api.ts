@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor API sample
+ * Rich Text Editor API sample
  */
 import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
 import { CheckBox } from '@syncfusion/ej2-buttons';

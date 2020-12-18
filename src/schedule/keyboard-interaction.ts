@@ -12,7 +12,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).zooEventsData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor client side events samples
+ * Rich Text Editor client side events samples
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
@@ -55,7 +55,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table);
     };
 
     function create(): void {
-        appendElement('RichTextEditor <b>create</b> event called<hr>');
+        appendElement('Rich Text Editor <b>create</b> event called<hr>');
     }
     function actionBegin(args: ActionBeginEventArgs): void {
         appendElement('<b>' + args.requestType + '</b> action is called<hr>');
@@ -66,79 +66,79 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table);
         actionCompleteHandler();
     }
     function focus(): void {
-        appendElement('RichTextEditor <b>focus</b> event called<hr>');
+        appendElement('Rich Text Editor <b>focus</b> event called<hr>');
     }
     function blur(): void {
-        appendElement('RichTextEditor <b>blur</b> event called<hr>');
+        appendElement('Rich Text Editor <b>blur</b> event called<hr>');
     }
     function change(): void {
-        appendElement('RichTextEditor <b>change</b> event called<hr>');
+        appendElement('Rich Text Editor <b>change</b> event called<hr>');
     }
     function toolbarClick(): void {
-        appendElement('RichTextEditor <b>toolbar click</b> event called<hr>');
+        appendElement('Rich Text Editor <b>toolbar click</b> event called<hr>');
     }
     function beforeDialogOpen(): void {
-        appendElement('RichTextEditor <b>beforeDialogOpen</b> event called<hr>');
+        appendElement('Rich Text Editor <b>beforeDialogOpen</b> event called<hr>');
     }
 
     function dialogOpen(): void {
-        appendElement('RichTextEditor <b>dialogOpen</b> event called<hr>');
+        appendElement('Rich Text Editor <b>dialogOpen</b> event called<hr>');
     }
 
     function dialogClose(): void {
-        appendElement('RichTextEditor <b>dialogClose</b> event called<hr>');
+        appendElement('Rich Text Editor <b>dialogClose</b> event called<hr>');
     }
 
     function beforeQuickToolbarOpen(): void {
-        appendElement('RichTextEditor <b>beforeQuickToolbarOpen</b> event called<hr>');
+        appendElement('Rich Text Editor <b>beforeQuickToolbarOpen</b> event called<hr>');
     }
 
     function quickToolbarOpen(): void {
-        appendElement('RichTextEditor <b>quickToolbarOpen</b> event called<hr>');
+        appendElement('Rich Text Editor <b>quickToolbarOpen</b> event called<hr>');
     }
 
     function quickToolbarClose(): void {
-        appendElement('RichTextEditor <b>quickToolbarClose</b> event called<hr>');
+        appendElement('Rich Text Editor <b>quickToolbarClose</b> event called<hr>');
     }
 
     function imageSelected(): void {
-        appendElement('RichTextEditor <b>imageSelected</b> event called<hr>');
+        appendElement('Rich Text Editor <b>imageSelected</b> event called<hr>');
     }
 
     function imageUploading(): void {
-        appendElement('RichTextEditor <b>imageUploading</b> event called<hr>');
+        appendElement('Rich Text Editor <b>imageUploading</b> event called<hr>');
     }
 
     function imageUploadSuccess(): void {
-        appendElement('RichTextEditor <b>imageUploadSuccess</b> event called<hr>');
+        appendElement('Rich Text Editor <b>imageUploadSuccess</b> event called<hr>');
     }
 
     function imageUploadFailed(): void {
-        appendElement('RichTextEditor <b>imageUploadFailed</b> event called<hr>');
+        appendElement('Rich Text Editor <b>imageUploadFailed</b> event called<hr>');
     }
 
     function imageRemoving(): void {
-        appendElement('RichTextEditor <b>imageRemoving</b> event called<hr>');
+        appendElement('Rich Text Editor <b>imageRemoving</b> event called<hr>');
     }
 
     function destroyed(): void {
-        appendElement('RichTextEditor <b>destroyed</b> event called<hr>');
+        appendElement('Rich Text Editor <b>destroyed</b> event called<hr>');
     }
 
     function beforeSanitizeHtml(): void {
-        appendElement('RichTextEditor <b>beforeSanitizeHtml</b> event called<hr>');
+        appendElement('Rich Text Editor <b>beforeSanitizeHtml</b> event called<hr>');
     }
 
     function resizing(): void {
-        appendElement('RichTextEditor <b>resizing</b> event called<hr>');
+        appendElement('Rich Text Editor <b>resizing</b> event called<hr>');
     }
 
     function resizeStart(): void {
-        appendElement('RichTextEditor <b>resizeStart</b> event called<hr>');
+        appendElement('Rich Text Editor <b>resizeStart</b> event called<hr>');
     }
 
     function resizeStop(): void {
-        appendElement('RichTextEditor <b>resizeStop</b> event called<hr>');
+        appendElement('Rich Text Editor <b>resizeStop</b> event called<hr>');
     }
 
     function appendElement(html: string): void {

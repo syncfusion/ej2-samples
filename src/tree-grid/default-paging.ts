@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { TreeGrid, Page} from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
 
@@ -8,7 +7,6 @@ TreeGrid.Inject( Page );
  * Search TreeGrid sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let grid: TreeGrid = new TreeGrid(
         {
             dataSource: sampleData,

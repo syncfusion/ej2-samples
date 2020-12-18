@@ -6,6 +6,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { ListView } from '@syncfusion/ej2-lists';
 import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
 import { Toolbar } from '@syncfusion/ej2-navigations';
+import { closest } from '@syncfusion/ej2-base';
 //tslint:disable:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -106,9 +107,8 @@ import { Toolbar } from '@syncfusion/ej2-navigations';
 
   //click event handler to close Tooltip while navigating to other tabs in right pane
   function onClick(args: any): void {
-    if (
-      !args.target.parentNode.parentNode.classList.contains('e-toolbar-item')
-    ) {
+    let targetEle: Element = <Element>closest(args.target, '.e-toolbar-item');
+    if (!targetEle) {
       if (document.getElementsByClassName('e-tooltip-wrap').length > 0) {
         tip.close();
       }

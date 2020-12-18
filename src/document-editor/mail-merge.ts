@@ -17,6 +17,19 @@ import { Dialog, DialogUtility } from '@syncfusion/ej2-popups';
             'New', 'Open', 'Separator', 'Undo',
             'Redo',
             'Separator',
+            {
+                prefixIcon: 'sf-icon-InsertMergeField',
+                tooltipText: 'Insert Field',
+                text: onWrapText('Insert Field'),
+                id: 'InsertField'
+            },
+            {
+                prefixIcon: 'sf-icon-FinishMerge',
+                tooltipText: 'Merge Document',
+                text: onWrapText('Merge Document'),
+                id: 'MergeDocument'
+            },
+            'Separator',
             'Image',
             'Table',
             'Hyperlink',
@@ -38,20 +51,7 @@ import { Dialog, DialogUtility } from '@syncfusion/ej2-popups';
             'RestrictEditing',
             'Separator',
             'FormFields',
-            'UpdateFields',
-            'Separator',
-            {
-                prefixIcon: 'sf-icon-InsertMergeField',
-                tooltipText: 'Insert Field',
-                text: onWrapText('Insert Field'),
-                id: 'InsertField'
-            },
-            {
-                prefixIcon: 'sf-icon-FinishMerge',
-                tooltipText: 'Merge Document',
-                text: onWrapText('Merge Document'),
-                id: 'MergeDocument'
-            },
+            'UpdateFields'
         ]
     });
     DocumentEditorContainer.Inject(Toolbar);

@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Grid, Filter, Page, Selection, FilterType } from '@syncfusion/ej2-grids';
+import { Grid, Filter, Page, Selection, FilterType, Sort } from '@syncfusion/ej2-grids';
 import { orderDataSource } from './data-source';
 
-Grid.Inject(Filter, Page, Selection);
+Grid.Inject(Filter, Page, Selection, Sort);
 
 /**
  * Filtering sample
@@ -21,6 +21,7 @@ Grid.Inject(Filter, Page, Selection);
             dataSource: orderDataSource,
             allowPaging: true,
             allowFiltering: true,
+            allowSorting: true,
             filterSettings: { type: 'Menu' },
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },

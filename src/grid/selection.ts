@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Grid, SelectionType, Selection, SelectionMode } from '@syncfusion/ej2-grids';
+import { CheckBox } from '@syncfusion/ej2-buttons';
+import { Grid, SelectionType, Selection } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 
 Grid.Inject(Selection);
@@ -19,12 +20,20 @@ Grid.Inject(Selection);
         { id: 'Both', mode: 'Both' }
     ];
 
+    let selecting: any = (e: any) => {
+        if (grid.selectionSettings.allowColumnSelection) {
+            e.cancel = true;
+        }
+    };
+
     let grid: Grid = new Grid(
         {
             dataSource: employeeData,
             allowSelection: true,
             selectionSettings: { type: 'Multiple' },
             enableHover: false,
+            rowSelecting : selecting,
+            cellSelecting: selecting,
             columns: [
                 { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 135 },
                 { field: 'FirstName', headerText: 'Name', width: 125 },
@@ -53,9 +62,25 @@ Grid.Inject(Selection);
         fields: { text: 'mode', value: 'id' },
         value: 'Row',
         change: (e: ChangeEventArgs) => {
-            let mode: string = <string>e.value;
-            grid.selectionSettings.mode = <SelectionMode>mode;
+            let mode: any = e.value;
+            grid.selectionSettings.mode = mode ;
         }
     });
     dropDownMode.appendTo('#mode');
+
+    // enable/disable Column Selection
+    let columnSelection: CheckBox = new CheckBox({
+        change: ( e: any) => {
+            grid.clearSelection();
+            if (e.checked) {
+                grid.selectionSettings.allowColumnSelection = true;
+                dropDownMode.enabled = false;
+            } else {
+                grid.selectionSettings.allowColumnSelection = false;
+                dropDownMode.enabled = true;
+            }
+        }
+    });
+    columnSelection.appendTo('#columnSelection');
+
 };

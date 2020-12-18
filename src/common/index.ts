@@ -723,7 +723,7 @@ function processResize(e: any): void {
         }
     }
     if (switcherPopup) {
-        switcherPopup.refresh();
+        switcherPopup.refreshPosition();
     }
 }
 

@@ -11,14 +11,14 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
 (window as any).default = (): void => {
     loadCultureFiles();
     let dataManger: DataManager = new DataManager({
-        url: 'https://js.syncfusion.com/demos/ejservices/api/Schedule/LoadData',
+        url: 'https://ej2services.syncfusion.com/production/web-services/api/Schedule',
         adaptor: new WebApiAdaptor,
         crossDomain: true
     });
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2017, 5, 5),
+        selectedDate: new Date(2020, 10, 22),
         eventSettings: { dataSource: dataManger },
         readonly: true
     });

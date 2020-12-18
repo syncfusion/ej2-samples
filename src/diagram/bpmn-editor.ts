@@ -441,6 +441,10 @@ function contextMenuClick(args: MenuEventArgs): void {
 
 }
 
+function getSymbolDefaults(symbol: NodeModel): void {
+    symbol.style.strokeColor = '#757575'
+}
+
 function contextMenuOpen(args: DiagramBeforeMenuOpenEventArgs): void {
     let hiddenId: string[] = [];
     if (args.element.className !== 'e-menu-parent e-ul ') {
@@ -569,24 +573,25 @@ function contextMenuOpen(args: DiagramBeforeMenuOpenEventArgs): void {
     let connectorSymbols: ConnectorModel[] = [
         {
             id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
+            targetDecorator: { shape: 'Arrow', style:{strokeColor: '#757575', fill: '#757575'} }, style: { strokeWidth: 2, strokeColor: '#757575' }
         },
         {
             id: 'Link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2, strokeDashArray: '4 4' }
+            targetDecorator: { shape: 'Arrow', style:{strokeColor: '#757575', fill: '#757575'} }, style: { strokeWidth: 2, strokeDashArray: '4 4',strokeColor: '#757575' }
         },
         {
             id: 'Link3', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
+            targetDecorator: { shape: 'Arrow', style:{strokeColor: '#757575', fill: '#757575'} }, style: { strokeWidth: 2, strokeColor: '#757575' }
         },
         {
             id: 'link4', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 }, type: 'Orthogonal',
+            targetDecorator: { style:{strokeColor: '#757575', fill: '#757575'} },
             shape: {
                 type: 'Bpmn',
                 flow: 'Association',
                 association: 'Directional'
             }, style: {
-                strokeDashArray: '2,2'
+                strokeDashArray: '2,2', strokeColor: '#757575'
             },
         }
     ];
@@ -597,7 +602,7 @@ function contextMenuOpen(args: DiagramBeforeMenuOpenEventArgs): void {
             { id: 'Bpmn', expanded: true, symbols: bpmnShapes, iconCss: 'shapes', title: 'BPMN Shapes' },
             { id: 'Connector', expanded: true, symbols: connectorSymbols, iconCss: 'shapes', title: 'Connectors' },
         ],
-        width: '100%', height: '471px'
+        width: '100%', height: '471px', getNodeDefaults: getSymbolDefaults
     });
     palette.appendTo('#symbolpalette');
     addEvents();

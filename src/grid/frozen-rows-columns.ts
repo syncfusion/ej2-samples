@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Selection, Freeze, Sort, Resize } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
@@ -12,7 +11,6 @@ Grid.Inject(Selection, Freeze, Sort, Resize);
  * Grid frozen rows and columns sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let data: Object = new DataManager(orderData as JSON[]).executeLocal(new Query().take(50));
     let grid: Grid = new Grid(
         {

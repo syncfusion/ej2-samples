@@ -114,23 +114,25 @@ let flowshapes: NodeModel[] = [
 let connectorSymbols: ConnectorModel[] = [
     {
         id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
+        targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
+        style: { strokeWidth: 2, strokeColor: '#757575' }
     },
     {
         id: 'link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
     },
     {
         id: 'Link3', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
+        targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
+        style: { strokeWidth: 2, strokeColor: '#757575' }
     },
     {
         id: 'link4', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
     },
     {
         id: 'link5', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
     },
 ];
 
@@ -220,6 +222,7 @@ function getSymbolDefaults(symbol: NodeModel): void {
         symbol.height = 50;
     }
     symbol.style.strokeWidth = 2;
+    symbol.style.strokeColor = '#757575';
 }
 function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     return { fit: true };

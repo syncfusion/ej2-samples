@@ -12,8 +12,8 @@ import { isNullOrUndefined } from '@syncfusion/ej2-base';
         autoUpload: false,
         maxFileSize: 104857600,
         asyncSettings: {
-            saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
-            removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove',
+            saveUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Save',
+            removeUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Remove',
             chunkSize: 500000
         },
         removing: onFileRemove,

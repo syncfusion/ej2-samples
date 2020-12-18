@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor Paste Cleanup sample
+ * Rich Text Editor Paste Cleanup sample
  */
 import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, PasteCleanup, Table } from '@syncfusion/ej2-richtexteditor';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';

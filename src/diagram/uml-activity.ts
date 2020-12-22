@@ -37,9 +37,9 @@ let umlActivityShapes: NodeModel[] = [
 function getConnectorStyle(dashArrayed?: boolean): StrokeStyleModel {
     let style: StrokeStyleModel = {};
     if (dashArrayed) {
-        style = { strokeWidth: 2, strokeColor: '#444', strokeDashArray: '4 4' };
+        style = { strokeWidth: 2, strokeColor: '#757575', strokeDashArray: '4 4' };
     } else {
-        style = { strokeWidth: 2, strokeColor: '#444' };
+        style = { strokeWidth: 2, strokeColor: '#757575' };
     }
     return style;
 
@@ -78,9 +78,9 @@ function setPaletteNodeDefaults(symbol: NodeModel): NodeModel {
         symbol.width = 50; symbol.height = 50;
     }
     if (symbol.id === 'InitialNode' || symbol.id === 'FinalNode' || symbol.id === 'JoinNode' || symbol.id === 'ForkNode') {
-        symbol.style.fill = '#444';
+        symbol.style.fill = '#757575';
     }
-    symbol.style.strokeColor = '#444';
+    symbol.style.strokeColor = '#757575';
     return symbol;
 }
 
@@ -88,7 +88,7 @@ function setPaletteNodeDefaults(symbol: NodeModel): NodeModel {
 function getConnectors(): ConnectorModel[] {
     let sourcePoint: PointModel = { x: 0, y: 0 };
     let targetPoint: PointModel = { x: 40, y: 40 };
-    let targetDecorator: DecoratorModel = { shape: 'Arrow', style: { fill: '#444', strokeColor: '#444' } };
+    let targetDecorator: DecoratorModel = { shape: 'Arrow', style: { fill: '#757575', strokeColor: '#757575' } };
     let connectorSymbols: ConnectorModel[] = [
         {
             id: 'Link2', sourcePoint: sourcePoint, targetPoint: targetPoint,

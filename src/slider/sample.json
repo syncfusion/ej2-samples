@@ -2,7 +2,7 @@
     "name": "Range Slider",
     "directory": "slider",
     "category": "Inputs",
-    "ftName" : "slider",
+    "ftName" : "range-slider",
     "samples": [
         {
             "url": "default",

@@ -86,7 +86,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             let data: { [key: string]: Object } = <{ [key: string]: Object }>args.data;
             if (args.type === 'QuickInfo' || args.type === 'Editor' || args.type === 'RecurrenceAlert' || args.type === 'DeleteAlert') {
                 let target: HTMLElement = (args.type === 'RecurrenceAlert' ||
-                    args.type === 'DeleteAlert') ? data.element[0] : args.target;
+                    args.type === 'DeleteAlert') ? args.element[0] : args.target;
                 if (!isNullOrUndefined(target) && target.classList.contains('e-work-cells')) {
                     if ((target.classList.contains('e-read-only-cells')) || (!scheduleObj.isSlotAvailable(data))) {
                         args.cancel = true;

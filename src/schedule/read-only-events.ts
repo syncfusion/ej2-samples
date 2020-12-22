@@ -40,7 +40,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
     }
 
     function onPopupOpen(args: PopupOpenEventArgs): void {
-        if ((!args.target.classList.contains('e-appointment') && (args.type === 'QuickInfo')) || (args.type === 'Editor')) {
+        if ((args.target && !args.target.classList.contains('e-appointment') && (args.type === 'QuickInfo')) || (args.type === 'Editor')) {
             args.cancel = onEventCheck(args);
         }
     }

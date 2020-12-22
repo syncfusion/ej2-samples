@@ -45,23 +45,25 @@ let basicShapes: NodeModel[] = [
 let connectorSymbols: ConnectorModel[] = [
     {
         id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
+        targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
+        style: { strokeWidth: 2, strokeColor: '#757575' }
     },
     {
         id: 'link3', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
     },
     {
         id: 'Link21', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        targetDecorator: { shape: 'Arrow' }, style: { strokeWidth: 2 }
+        targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
+        style: { strokeWidth: 2, strokeColor: '#757575' }
     },
     {
         id: 'link23', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
     },
     {
         id: 'link33', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2 }, targetDecorator: { shape: 'None' }
+        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
     },
 ];
 
@@ -75,7 +77,7 @@ function getNodeDefaults(symbol: NodeModel): NodeModel {
         symbol.width = 50;
         symbol.height = 40;
     }
-    symbol.style = { strokeWidth: 2 };
+    symbol.style = { strokeWidth: 2, strokeColor: '#757575' };
     return symbol;
 }
 

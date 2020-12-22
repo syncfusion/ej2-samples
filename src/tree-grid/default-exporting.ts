@@ -1,7 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { TreeGrid, Toolbar, ExcelExport, PdfExport } from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Toolbar, ExcelExport, PdfExport} from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
+import { DialogUtility } from '@syncfusion/ej2-popups';
 
 TreeGrid.Inject(Toolbar, ExcelExport, PdfExport);
 /**
@@ -30,11 +31,17 @@ TreeGrid.Inject(Toolbar, ExcelExport, PdfExport);
         });
     treegrid.appendTo('#TreeGrid');
     treegrid.toolbarClick = (args?: ClickEventArgs) => {
-        if (args.item.text === 'Excel Export') {
+        if (args.item.id === treegrid.grid.element.id + '_excelexport') {
             treegrid.excelExport();
-        } else if (args.item.text === 'PDF Export') {
-            treegrid.pdfExport();
-        } else if (args.item.text === 'CSV Export') {
+        } else if (args.item.id === treegrid.grid.element.id + '_pdfexport') {
+         if (treegrid.enableRtl === true && treegrid.locale === 'ar') {
+            let innercontent: any = 'You need custom fonts to export Arabic characters, refer this'
+             + '<a target="_blank" href="https://ej2.syncfusion.com/documentation/treegrid/pdf-export/#add-custom-font-for-pdf-exporting">'
+             + 'documentation section</a>';
+            DialogUtility.alert({content: innercontent});
+         } else {
+            treegrid.pdfExport(); }
+        } else if (args.item.id === treegrid.grid.element.id + '_csvexport') {
             treegrid.csvExport();
         }
     };

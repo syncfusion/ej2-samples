@@ -1,13 +1,15 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor iframe sample
+ * Rich Text Editor iframe sample
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table);
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager);
 
 (window as any).default = (): void => {
     loadCultureFiles();
+
+    let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
 
     let iframeRTE: RichTextEditor = new RichTextEditor({
         height: 500,
@@ -20,9 +22,19 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table);
                 'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', '|',
                 'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
                 'Outdent', 'Indent', '|',
-                'CreateTable', 'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
+                'CreateTable', 'CreateLink', 'Image', 'FileManager', '|', 'ClearFormat', 'Print',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo'
             ]
+        },
+        fileManagerSettings: {
+            enable: true,
+            path: '/Pictures/Food',
+            ajaxSettings: {
+                url: hostUrl + 'api/FileManager/FileOperations',
+                getImageUrl: hostUrl + 'api/FileManager/GetImage',
+                uploadUrl: hostUrl + 'api/FileManager/Upload',
+                downloadUrl: hostUrl + 'api/FileManager/Download'
+            }
         },
         actionBegin: handleFullScreen,
         actionComplete: actionCompleteHandler

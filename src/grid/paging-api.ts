@@ -3,6 +3,16 @@ import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { Grid, Page, Selection, PageEventArgs } from '@syncfusion/ej2-grids';
 import { productData } from './data-source';
+import { L10n } from '@syncfusion/ej2-base';
+
+L10n.load({
+    'en-US': {
+        'pager': {
+                'currentPageInfo': '',
+                'totalItemsInfo': '{1} to {2} of {0}',
+        }
+    }
+});
 
 Grid.Inject(Page, Selection);
 
@@ -14,6 +24,7 @@ Grid.Inject(Page, Selection);
     let grid: Grid = new Grid(
         {
             dataSource: productData,
+            locale: 'en-US',
             allowPaging: true,
             pageSettings: { pageCount: 2 },
             columns: [

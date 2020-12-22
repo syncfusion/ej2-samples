@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor Markdown Overview Sample
+ * Rich Text Editor Markdown Overview Sample
  */
 import { RichTextEditor, Toolbar, Link, Image, MarkdownEditor, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
 import { MarkdownFormatter } from '@syncfusion/ej2-richtexteditor';

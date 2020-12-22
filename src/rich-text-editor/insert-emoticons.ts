@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor insert emoticons sample
+ * Rich Text Editor insert emoticons sample
  */
 import { RichTextEditor, Toolbar, Link, NodeSelection, Image, QuickToolbar, HtmlEditor } from '@syncfusion/ej2-richtexteditor';
 import { Dialog } from '@syncfusion/ej2-popups';

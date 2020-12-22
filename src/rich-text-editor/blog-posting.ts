@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor Blog-post sample
+ * Rich Text Editor Blog-post sample
  */
 import { RichTextEditor, Link, Image, HtmlEditor, Toolbar, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
 import { Button } from '@syncfusion/ej2-buttons';

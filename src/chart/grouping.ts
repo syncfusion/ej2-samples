@@ -96,7 +96,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         pie.refreshSeries();
         pie.refreshChart();
     }
-    document.getElementById('clubpoint').onpointermove = document.getElementById('clubpoint').ontouchmove =
+    document.getElementById('clubpoint').ontouchmove =
         document.getElementById('clubpoint').onchange = (e: Event) => {
             clubchange(+(document.getElementById('clubpoint') as HTMLInputElement).value);
         };

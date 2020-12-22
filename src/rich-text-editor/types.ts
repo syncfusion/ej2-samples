@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor expand toolbar sample
+ * Rich Text Editor expand toolbar sample
  */
 import { RichTextEditor, Toolbar, Link, Image, ToolbarType, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';

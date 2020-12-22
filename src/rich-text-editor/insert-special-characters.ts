@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor insert special characters sample
+ * Rich Text Editor insert special characters sample
  */
 import { RichTextEditor, Toolbar, Link, NodeSelection, Image, QuickToolbar, HtmlEditor } from '@syncfusion/ej2-richtexteditor';
 import { Dialog } from '@syncfusion/ej2-popups';

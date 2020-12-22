@@ -13,8 +13,8 @@ import { createElement, isNullOrUndefined, detach, EventHandler } from '@syncfus
     let filesList: Element[] = [];
     let uploadObj: Uploader = new Uploader({
         asyncSettings: {
-            saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
-            removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove'
+            saveUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Save',
+            removeUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Remove'
         }, dropArea: dropElement, selected: onFileSelect, progress: onFileUpload, success: onUploadSuccess,
         failure: onUploadFailed, removing: onFileRemove,
     });

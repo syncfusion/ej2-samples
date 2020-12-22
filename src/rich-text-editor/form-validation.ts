@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor form validation sample
+ * Rich Text Editor form validation sample
  */
 import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
 import { FormValidator } from '@syncfusion/ej2-inputs';

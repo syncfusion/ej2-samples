@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor overview sample
+ * Rich Text Editor overview sample
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table);
+import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager);
 import { createElement } from '@syncfusion/ej2-base';
 import * as CodeMirror from 'codemirror';
 
@@ -15,6 +15,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
 (window as any).default = (): void => {
     loadCultureFiles();
 
+    let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
             items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
@@ -22,14 +23,22 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
                 'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', '|',
                 'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
                 'Outdent', 'Indent', '|',
-                'CreateTable', 'CreateLink', 'Image', '|', 'ClearFormat', 'Print',
+                'CreateTable', 'CreateLink', 'Image', 'FileManager', '|', 'ClearFormat', 'Print',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo'
             ]
         },
-        showCharCount: true,
+        fileManagerSettings: {
+            enable: true, path: '/Pictures/Food',
+            ajaxSettings: {
+                url: hostUrl + 'api/FileManager/FileOperations',
+                getImageUrl: hostUrl + 'api/FileManager/GetImage',
+                uploadUrl: hostUrl + 'api/FileManager/Upload',
+                downloadUrl: hostUrl + 'api/FileManager/Download'
+            }
+        },
+        showCharCount: true, maxLength: 2000,
         actionBegin: handleFullScreen,
-        actionComplete: actionCompleteHandler,
-        maxLength: 2000
+        actionComplete: actionCompleteHandler
     });
     defaultRTE.appendTo('#defaultRTE');
 
@@ -49,9 +58,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
                 mirrorView = createElement('div', { className: 'e-content' });
                 mirrorView.id = id;
                 textArea.parentNode.appendChild(mirrorView);
-            } else {
-                mirrorView.innerHTML = '';
-            }
+            } else { mirrorView.innerHTML = ''; }
             textArea.style.display = 'none';
             mirrorView.style.display = 'block';
             renderCodeMirror(mirrorView, defaultRTE.value);
@@ -65,7 +72,6 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
             lineNumbers: true,
             mode: 'text/html',
             lineWrapping: true,
-
         });
     }
 
@@ -82,17 +88,13 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
             transformElement = document.querySelector('#right-pane');
         }
         if (e.targetItem === 'Maximize') {
-            if (Browser.isDevice && Browser.isIos) {
-                addClass([sbCntEle, sbHdrEle], ['hide-header']);
-            }
+            if (Browser.isDevice && Browser.isIos) { addClass([sbCntEle, sbHdrEle], ['hide-header']); }
             addClass([leftBar], ['e-close']);
             removeClass([leftBar], ['e-open']);
             if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
             transformElement.style.transform = 'inherit';
         } else if (e.targetItem === 'Minimize') {
-            if (Browser.isDevice && Browser.isIos) {
-                removeClass([sbCntEle, sbHdrEle], ['hide-header']);
-            }
+            if (Browser.isDevice && Browser.isIos) { removeClass([sbCntEle, sbHdrEle], ['hide-header']); }
             removeClass([leftBar], ['e-close']);
             if (!Browser.isDevice) {
             addClass([leftBar], ['e-open']);

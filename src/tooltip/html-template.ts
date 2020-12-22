@@ -3,7 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Loading html template sample
  */
 
-import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
+import { Tooltip } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 /* tslint:disable */
 (window as any).default = (): void => {
@@ -42,18 +42,9 @@ import { Button } from '@syncfusion/ej2-buttons';
 				</p>
 			</div>
 		</div>`,
-    //Raise beforeRender event
-    beforeOpen: onBeforeRender
   });
   //Render initialized Tooltip component
   tooltip.appendTo('#content');
-
-  //beforRender event handler for Tooltip
-  function onBeforeRender(args: TooltipEventArgs): void {
-    let htmlcontent: any = document.getElementById('democontent');
-    htmlcontent.style.display = 'block';
-    tooltip.content = htmlcontent;
-  }
 
   //Attached scroll and click event listners in right pane
   if (document.getElementById('right-pane')) {

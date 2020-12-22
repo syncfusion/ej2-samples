@@ -5,13 +5,13 @@ import { loadCultureFiles } from '../common/culture-loader';
 
 import {
     Diagram, NodeModel, DataBinding, DiagramTools,
-    ComplexHierarchicalTree, LayoutOrientation, ConnectorModel
+    ComplexHierarchicalTree, LayoutOrientation, ConnectorModel, LineDistribution, ConnectionPointOrigin
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
 import { NumericTextBox, ChangeEventArgs as NumericChangeEventArgs } from '@syncfusion/ej2-inputs';
 import * as Data from './diagram-data.json';
-
-Diagram.Inject(DataBinding, ComplexHierarchicalTree);
+import { CheckBox } from '@syncfusion/ej2-buttons';
+Diagram.Inject(DataBinding, ComplexHierarchicalTree, LineDistribution);
 
 export interface DataInfo {
     [key: string]: string;
@@ -43,6 +43,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         //Configrues hierarchical tree layout
         layout: {
             type: 'ComplexHierarchicalTree',
+            connectionPointOrigin: ConnectionPointOrigin.DifferentPoint,
             horizontalSpacing: 40, verticalSpacing: 40, orientation: 'TopToBottom',
             margin: { left: 10, right: 0, top: 50, bottom: 0 }
         },
@@ -66,6 +67,17 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         created: created
     });
     diagram.appendTo('#diagram');
+    let checkBoxObj: CheckBox = new CheckBox({
+        checked: true, label: 'Prevent Connector Overlapping',
+        change: () => {
+            if (checkBoxObj.checked) {
+                diagram.layout.connectionPointOrigin = ConnectionPointOrigin.DifferentPoint;
+            } else {
+                diagram.layout.connectionPointOrigin = ConnectionPointOrigin.SamePoint;
+            }
+        }
+    });
+    checkBoxObj.appendTo('#checked');
     function created(): void {
         diagram.fitToPage({ mode: 'Width' });
     }

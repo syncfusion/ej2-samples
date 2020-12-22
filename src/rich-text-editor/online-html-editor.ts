@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * RichTextEditor online html editor sample
+ * RichTextEditor Online Html Editor sample
  */
 import { createElement } from '@syncfusion/ej2-base';
 import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, ToolbarType, Table } from '@syncfusion/ej2-richtexteditor';
@@ -34,11 +34,12 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
   document.head.appendChild(element);
 
   element.onload = (): void => {
-    let openButton: HTMLElement = document.querySelector('.open-btn');
-    openButton.addEventListener('click', () => {
-     window.open(location.href.replace(location.search, '').split('#')[0] + 'rich-text-editor/online-html-editor/index.html');
-    });
-
+    let openButton: HTMLElement = document.querySelector('#OpenBtn');
+    if (openButton) {
+      openButton.addEventListener('click', () => {
+      window.open(location.href.replace(location.search, '').split('#')[0] + 'rich-text-editor/online-html-editor/index.html');
+      });
+   }
     splitObj = new Splitter({
       height: '450px',
       paneSettings: [{ resizable: false, size: '50%' }, {}],
@@ -86,7 +87,10 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       if (!mirrorView) {
         mirrorView = createElement('div', { className: 'e-content' });
         mirrorView.id = 'src-view';
-        document.querySelector('.source-code').appendChild(mirrorView);
+        let srcCodeElement: HTMLElement = document.querySelector('.source-code');
+        if (srcCodeElement) {
+            srcCodeElement.appendChild(mirrorView);
+        }
         mirrorView.innerHTML = '';
         mirrorView.style.display = 'block';
       }

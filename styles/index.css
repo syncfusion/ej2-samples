@@ -2574,6 +2574,7 @@ body.highcontrast,
 }
 
 .sb-npm-btn {
+    display: none;
     background: #fff;
     border: 1px solid #3c78ef;
     border-radius: 3px;

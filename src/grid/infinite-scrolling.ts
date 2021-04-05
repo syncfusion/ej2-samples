@@ -9,9 +9,10 @@ Grid.Inject(InfiniteScroll);
 
 (window as any).default = (): void => {
     loadCultureFiles(); let genarateData: Button = new Button({}, '#genarate');
+    let data: Object[] = [];
     genarateData.element.onclick = () => {
-        if (!virtualData.length) {
-            dataSource(); grid.dataSource = virtualData;
+        if (!data.length) {
+            dataSource(); grid.dataSource = data = virtualData;
         }
     };
     let grid: Grid = new Grid(

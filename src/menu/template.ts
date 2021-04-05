@@ -7,7 +7,7 @@ import * as dataSource from './template-data.json';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    // Menu model definition 
+    // Menu model definition
     let menuOptions: MenuModel = {
         // Menu data source
         items: (dataSource as any).templateData,

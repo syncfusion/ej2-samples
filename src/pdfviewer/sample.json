@@ -3,9 +3,8 @@
     "directory": "pdfviewer",
     "category": "Viewer",
     "ftName": "pdfviewer",
-    "type": "new",
     "samples": [
-        {            
+        {
             "url":"default", "name": "Default Functionalities", "description": "This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with minimum configuration.", "category": "PDF Viewer"
         },
         {
@@ -18,7 +17,7 @@
            "url":"form-filling", "name": "Form Filling", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Form Filling Configuration ", "category": "PDF Viewer"
         },
         {
-            "url":"hand-written", "name": "Handwritten Signature", "description": "The sample demonstrates the Handwritten Signature support of  PDF Viewer. The Handwritten signature reduces the paperwork of reviewing the contents and it's verified it's digitally", "category": "PDF Viewer", "type": "new"
+           "url":"hand-written", "name": "Handwritten Signature", "description": "The sample demonstrates the Handwritten Signature support of  PDF Viewer. The Handwritten signature reduces the paperwork of reviewing the contents and it's verified it's digitally", "category": "PDF Viewer"
         }
     ]
 }

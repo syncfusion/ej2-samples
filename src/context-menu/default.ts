@@ -10,7 +10,7 @@ import { select, Browser } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
     loadCultureFiles();
 
-    //ContextMenu items definition 
+    //ContextMenu items definition
     let menuItems: MenuItemModel[] = [
         {
             text: 'Cut',
@@ -46,7 +46,7 @@ import { select, Browser } from '@syncfusion/ej2-base';
             iconCss: 'e-cm-icons e-comment'
         }];
 
-    //ContextMenu model definition 
+    //ContextMenu model definition
     let menuOptions: ContextMenuModel = {
         target: '#contextmenutarget',
         items: menuItems,

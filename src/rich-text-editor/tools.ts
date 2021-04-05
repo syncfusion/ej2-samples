@@ -14,7 +14,6 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
 (window as any).default = (): void => {
     loadCultureFiles();
-
     let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
@@ -22,8 +21,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
                 'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', '|',
                 'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
-                'Outdent', 'Indent', '|',
-                'CreateTable', 'CreateLink', 'Image', 'FileManager', '|', 'ClearFormat', 'Print',
+                'Outdent', 'Indent', '|', 'CreateTable', 'CreateLink', 'Image', 'FileManager', '|', 'ClearFormat', 'Print',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo'
             ]
         },
@@ -36,9 +34,12 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
                 downloadUrl: hostUrl + 'api/FileManager/Download'
             }
         },
+        quickToolbarSettings: {
+            table: ['TableHeader', 'TableRows', 'TableColumns', 'TableCell', '-',
+            'BackgroundColor', 'TableRemove', 'TableCellVerticalAlign', 'Styles']
+        },
         showCharCount: true, maxLength: 2000,
-        actionBegin: handleFullScreen,
-        actionComplete: actionCompleteHandler
+        actionBegin: handleFullScreen, actionComplete: actionCompleteHandler
     });
     defaultRTE.appendTo('#defaultRTE');
 
@@ -85,8 +86,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
             transformElement = document.querySelector('.sample-browser.e-view.e-content-animation');
         } else {
             leftBar = document.querySelector('#left-sidebar');
-            transformElement = document.querySelector('#right-pane');
-        }
+            transformElement = document.querySelector('#right-pane'); }
         if (e.targetItem === 'Maximize') {
             if (Browser.isDevice && Browser.isIos) { addClass([sbCntEle, sbHdrEle], ['hide-header']); }
             addClass([leftBar], ['e-close']);
@@ -108,7 +108,6 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
             this.sourceCodeModule.getPanel().style.display = 'none';
             mirrorConversion(e);
         } else {
-            setTimeout(() => { defaultRTE.toolbarModule.refreshToolbarOverflow(); }, 400);
-        }
+            setTimeout(() => { defaultRTE.toolbarModule.refreshToolbarOverflow(); }, 400); }
     }
 };

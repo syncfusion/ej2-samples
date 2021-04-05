@@ -14,7 +14,7 @@ import { createElement } from '@syncfusion/ej2-base';
         '</span>Message Thread</li><li class="msg"><span class="e-acrdn-icons e-content-icon people"></span>Message Thread</li></div>';
     //Initialize Accordion component
     let acrdnObj: Accordion = new Accordion({
-        // Assigning accordion data 
+        // Assigning accordion data
         items: [
             { header: 'Robert', iconCss: 'e-people e-acrdn-icons', content: template, expanded: true },
             { header: 'Kevin', iconCss: 'e-people e-acrdn-icons', content: template },

@@ -13,6 +13,8 @@ import * as dataSource from './protect-sheet-data.json';
 
     //Initialize Spreadsheet component
     let spreadsheet: Spreadsheet = new Spreadsheet({
+        // To protect the workbook
+        password: 'spreadsheet',
         sheets: [{
             isProtected: true,
             name: 'EMI Calculator',
@@ -113,6 +115,8 @@ import * as dataSource from './protect-sheet-data.json';
                 width: 90
             }]
         }],
+        openUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/open',
+        saveUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/save',
         created: () => {
             //Applied style and number formatting to a range
             spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center' }, 'EMI Schedule!A1:F1');

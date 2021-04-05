@@ -12,7 +12,7 @@ import { Browser, select } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
     loadCultureFiles();
 
-    // Menu model definition 
+    // Menu model definition
     let menuOptions: MenuModel = {
         // custom code start
         created: () => {

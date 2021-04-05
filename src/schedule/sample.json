@@ -2,12 +2,14 @@
     "name": "Scheduler",
     "directory": "schedule",
     "category": "Calendars",
+    "type": "update",
     "ftName": "scheduler",
     "samples": [
         {
             "url": "overview",
             "name": "Overview",
             "category": "Scheduler",
+            "type": "update",
             "description": "This demo shows for Javascript Scheduler features such as Multiple views, Templates, Resources, Grouping, Timezone, Timescale, etc...",
             "hideOnDevice": true,
             "api": {
@@ -143,6 +145,22 @@
                     "group",
                     "resources",
                     "actionBegin"
+                ]
+            }
+        },
+        {
+            "url": "multi-drag",
+            "name": "Multiple Drag",
+            "category": "Appointments",
+            "type": "new",
+            "description": "This demo explains you about the ability to select multiple appointments and drag them simultaneously.",
+            "api": {
+                "Schedule": [
+                    "allowMultiDrag",
+                    "currentView",
+                    "views",
+                    "selectedDate",
+                    "eventSettings"
                 ]
             }
         },

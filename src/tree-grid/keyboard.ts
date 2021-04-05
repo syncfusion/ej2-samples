@@ -13,7 +13,6 @@ TreeGrid.Inject(Page, Edit);
             dataSource: sampleData,
             childMapping: 'subtasks',
             treeColumnIndex: 1,
-            selectionSettings: { type: 'Multiple'},
             height: 900,
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Row' },
             columns: [

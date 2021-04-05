@@ -6,7 +6,7 @@ import { Menu, MenuItemModel } from '@syncfusion/ej2-navigations';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    // Menu items definition 
+    // Menu items definition
     let menuItems: MenuItemModel[] = [
         {
             text: 'File',

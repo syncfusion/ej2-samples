@@ -31,7 +31,7 @@ Schedule.Inject(Day, TimelineViews, TimelineMonth, Resize, DragAndDrop);
     (window as TemplateFunction).getEmployeeDesignation = (value: ResourceDetails) => {
         return (value as ResourceDetails).resourceData.Designation;
     };
-    // custom code end    
+    // custom code end
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

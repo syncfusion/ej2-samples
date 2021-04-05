@@ -1,48 +1,39 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate } from '@syncfusion/ej2-grids';
+import {
+    Grid, Toolbar, ExcelExport, PdfExport, Group,
+    PdfQueryCellInfoEventArgs, ExcelQueryCellInfoEventArgs
+} from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
-import { orderDetails } from './data-source';
+import { employeeDetails } from './data-source';
+import { CheckBox } from '@syncfusion/ej2-buttons';
 
-Grid.Inject(Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate);
+Grid.Inject(Toolbar, ExcelExport, PdfExport, Group);
 /**
  * Excel,PDF, CSV export sample
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let refresh: Boolean;
+    let isInitial: Boolean = true;
     let grid: Grid = new Grid(
         {
-            dataSource: orderDetails,
+            dataSource: employeeDetails,
             allowExcelExport: true,
             allowPdfExport: true,
-            allowPaging: true,
             allowGrouping: true,
             toolbar: ['ExcelExport', 'PdfExport', 'CsvExport'],
-            groupSettings: { showDropArea: false, columns: ['ShipCountry'] },
-            pageSettings: { pageCount: 5 },
+            height: 350,
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },
-                { field: 'CustomerID', headerText: 'Customer ID', width: 150 },
-                { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'Right' },
-                { field: 'Freight', width: 120, format: 'C2', textAlign: 'Right' },
-                { field: 'ShipCountry', visible: false, headerText: 'Ship Country', width: 150 },
-                { field: 'ShipCity', visible: false, headerText: 'Ship City', width: 150 }
+                { headerText: 'Employee Image', template: '#template1', textAlign: 'Center', width: 150 },
+                { field: 'FirstName', headerText: 'Name', width: 130 },
+                { field: 'Title', headerText: 'Designation', width: 180 },
+                { headerText: 'Email ID', template: '#template2', width: 180 },
+                { field: 'HireDate', headerText: 'Hire Date', textAlign: 'Right', width: 135, format: 'yMd' },
+                { field: 'Address', width: 180, allowGrouping: false }
             ],
-            aggregates: [{
-                columns: [{
-                    type: 'Sum',
-                    field: 'Freight',
-                    format: 'C2',
-                    groupFooterTemplate: 'Total freight: ${Sum}'
-                }]
-            }],
-            load: () => {
-                refresh = (<any>grid).refreshing;
-            },
             dataBound: () => {
-                if (refresh) {
-                    grid.groupColumn('ShipCountry');
-                    refresh = false;
+                if (isInitial) {
+                    grid.toolbarModule.toolbar.hideItem(2, true);
+                    isInitial = false;
                 }
             }
         });
@@ -56,6 +47,38 @@ Grid.Inject(Page, Toolbar, ExcelExport, PdfExport, Group, Aggregate);
         }
         if (args.item.id === 'Grid_csvexport') {
             grid.csvExport();
+        }
+    };
+
+    function exportQueryCellInfo(args: ExcelQueryCellInfoEventArgs | PdfQueryCellInfoEventArgs): any {
+        if (args.column.headerText === 'Employee Image') {
+            if ((args as any).name === 'excelQueryCellInfo') {
+                args.image = { height: 75, base64: (args as any).data.EmployeeImage, width: 75 };
+            } else {
+                args.image = { base64: (args as any).data.EmployeeImage };
+            }
+        }
+        if (args.column.headerText === 'Email ID') {
+            args.hyperLink = {
+                target: 'mailto:' + (args as any).data.EmailID,
+                displayText: (args as any).data.EmailID
+            };
+        }
+    }
+
+    grid.excelQueryCellInfo = grid.pdfQueryCellInfo = exportQueryCellInfo;
+
+    let templateExport: CheckBox = new CheckBox({ checked: true });
+    templateExport.appendTo('#templateExport');
+
+    let fields: string[] = ['Employee Image', 'Email ID'];
+    document.getElementById('templateExport').onclick = () => {
+        if (templateExport.checked) {
+            grid.showColumns(fields, 'headerText');
+            grid.toolbarModule.toolbar.hideItem(2, true);
+        } else {
+            grid.hideColumns(fields, 'headerText');
+            grid.toolbarModule.toolbar.hideItem(2, false);
         }
     };
 };

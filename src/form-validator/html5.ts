@@ -16,7 +16,7 @@ import { Button } from '@syncfusion/ej2-buttons';
     let buttonReset: Button = new Button();
     buttonReset.appendTo('#resetbtn');
 
-    // Initialize Custom placement 
+    // Initialize Custom placement
     let options: FormValidatorModel = {
         customPlacement: (inputElement: HTMLElement, errorElement: HTMLElement) => {
             inputElement.parentElement.appendChild(errorElement);

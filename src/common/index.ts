@@ -313,6 +313,7 @@ function renderSbPopups(): void {
                 if (location.hash !== hashval) {
                     sampleOverlay();
                     location.hash = hashval;
+                    window.hashString = location.hash;
                     setSelectList();
                 }
             }
@@ -899,10 +900,10 @@ function loadTheme(theme: string): void {
     body.classList.add(theme);
     themeList.querySelector('.active').classList.remove('active');
     themeList.querySelector('#' + theme).classList.add('active');
+    let doc: HTMLFormElement = <HTMLFormElement>document.getElementById('themelink');
+    doc.setAttribute('href','./styles/' + theme + '.css');
     let ajax: Ajax = new Ajax('./styles/' + theme + '.css', 'GET', true);
     ajax.send().then((result: any) => {
-        let doc: HTMLFormElement = <HTMLFormElement>document.getElementById('themelink');
-        doc.innerHTML = result;
         selectedTheme = theme;
         //renderleftpane 
         renderLeftPaneComponents();
@@ -930,7 +931,6 @@ function loadTheme(theme: string): void {
         hasher.initialized.add(parseHash);
         hasher.changed.add(parseHash);
         hasher.init();
-        // doc.href = 'styles/' + selectedTheme + '.css';
     });
 }
 /**

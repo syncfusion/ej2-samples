@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Tab orientation sample
  */
@@ -41,8 +40,7 @@ let listObj3: ListView = new ListView({
         'alt="${id}" /></div><div class="left info"><div class="name">${name}</div> <div class="role">${role}</div></div></div>'
 });
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     //Initialize Tab component
     let tabObj: Tab = new Tab({
         heightAdjustMode: 'None',

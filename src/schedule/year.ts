@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Schedule, Year, TimelineYear, EventRenderedArgs } from '@syncfusion/ej2-schedule';
+import { Schedule, Year, TimelineYear, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 
-Schedule.Inject(Year, TimelineYear);
+Schedule.Inject(Year, TimelineYear, Resize, DragAndDrop);
 
 /**
  * Schedule Year view sample

@@ -63,7 +63,7 @@ Grid.Inject(Selection, Freeze, Sort, Resize);
         rows.max = 5;
     }
 
-    //After clicking 'Set' button, the `frozenRows` and `frozenColumns` values will be updated in Grid. 
+    //After clicking 'Set' button, the `frozenRows` and `frozenColumns` values will be updated in Grid.
     document.getElementById('buttonSet').onclick = (): void => {
         grid.frozenColumns = columns.value;
         grid.frozenRows = rows.value;

@@ -6,7 +6,7 @@ import * as dataSource from './menu-data.json';
  * Scrollable Menu sample
  */
 (window as any).default = () => {
-    // Menu model definition 
+    // Menu model definition
     let menuOptions: MenuModel = {
         items: (dataSource as any).scrollableData,
         cssClass: 'e-custom-scroll',

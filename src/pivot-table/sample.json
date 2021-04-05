@@ -2,7 +2,7 @@
     "name": "Pivot Table",
     "directory": "pivot-table",
     "category": "Grids",
-	"type": "update",
+    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -86,6 +86,7 @@
             "url": "toolbar",
             "name": "Toolbar",
             "category": "User Interaction",
+            "type": "update",
             "description": "This demo for Essential JS2 Pivot Table control demonstrate the toolbar feature with pivot table and pivot chart"
         },
         {
@@ -98,7 +99,7 @@
             "url": "aggregation",
             "name": "Aggregation",
             "category": "Formula",
-			"type": "update",
+            "type": "update",
             "description": "This demo for Essential JS2 Pivot Table control shows different types of aggregation for value fields"
         },
         {

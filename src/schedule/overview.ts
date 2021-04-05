@@ -78,8 +78,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
 
     (window as TemplateFunction).getResourceData = (data: { [key: string]: Object }) => {
         let resources: ResourcesModel = scheduleObj.getResourceCollections().slice(-1)[0];
-        let resourceData: { [key: string]: Object } = (resources.dataSource as Object[]).filter((resource: { [key: string]: Object }) =>
-            resource.CalendarId === data.CalendarId)[0] as { [key: string]: Object };
+        let resourceData: { [key: string]: Object } =
+            (resources.dataSource as { [key: string]: Object }[]).filter((resource: { [key: string]: Object }) =>
+                resource.CalendarId === data.CalendarId)[0] as { [key: string]: Object };
         return resourceData;
     };
 
@@ -255,8 +256,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
 
     let timelineTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
         '<button id="timeline_views"></button></div><div class="text-child" style="font-size: 14px;">Timeline Views</div></div>';
-    let weekNumberTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
-        '<button id="week_number"></button></div><div class="text-child" style="font-size: 14px;">Week Number</div></div>';
+    let allowMultiDrag: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
+        '<button id="multi_drag"></button></div><div class="text-child" style="font-size: 14px;">Allow Multi Drag</div></div>';
     let groupTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
         '<button id="grouping"></button></div><div class="text-child" style="font-size: 14px;">Grouping</div></div>';
     let gridlineTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
@@ -282,11 +283,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             { prefixIcon: 'e-icons e-schedule-agenda-view', tooltipText: 'Agenda', text: 'Agenda' },
             { tooltipText: 'Timeline Views', text: 'Timeline Views', template: timelineTemplate },
             { type: 'Separator' },
-            { tooltipText: 'Week Number', text: 'Week Number', template: weekNumberTemplate },
             { tooltipText: 'Grouping', text: 'Grouping', template: groupTemplate },
             { tooltipText: 'Gridlines', text: 'Gridlines', template: gridlineTemplate },
             { tooltipText: 'Row Auto Height', text: 'Row Auto Height', template: autoHeightTemplate },
-            { tooltipText: 'Tooltip', text: 'Tooltip', template: tooltipTemplate }
+            { tooltipText: 'Tooltip', text: 'Tooltip', template: tooltipTemplate },
+            { tooltipText: 'Allow Multi Drag', text: 'Allow Multi Drag', template: allowMultiDrag },
         ],
         created: () => {
             setInterval(() => { updateLiveTime(); }, 1000);
@@ -323,11 +324,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 }
             });
             timelineView.appendTo('#timeline_views');
-            let weekNumber: Switch = new Switch({
+            let multiDrag: Switch = new Switch({
                 checked: false,
-                change: (args: SwitchEventArgs) => { scheduleObj.showWeekNumber = args.checked; }
+                change: (args: SwitchEventArgs) => { scheduleObj.allowMultiDrag = args.checked; }
             });
-            weekNumber.appendTo('#week_number');
+            multiDrag.appendTo('#multi_drag');
             let grouping: Switch = new Switch({
                 checked: true,
                 change: (args: SwitchEventArgs) => { scheduleObj.group.resources = args.checked ? ['Calendars'] : []; }
@@ -486,6 +487,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     scheduleObj.appendTo('#scheduler');
 
     let selectedTarget: Element;
+    let targetElement: HTMLElement;
     let menuObj: ContextMenu = new ContextMenu({
         target: '.e-schedule',
         items: [
@@ -515,7 +517,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 remove(newEventElement);
                 removeClass([document.querySelector('.e-selected-cell')], 'e-selected-cell');
             }
-            let targetElement: HTMLElement = <HTMLElement>args.event.target;
+            targetElement = <HTMLElement>args.event.target;
             if (closest(targetElement, '.e-contextmenu')) {
                 return;
             }
@@ -552,7 +554,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 case 'Add':
                 case 'AddRecurrence':
                     let selectedCells: Element[] = scheduleObj.getSelectedElements();
-                    let activeCellsData: CellClickEventArgs =
+                    let activeCellsData: CellClickEventArgs = scheduleObj.getCellDetails(targetElement) ||
                         scheduleObj.getCellDetails(selectedCells.length > 0 ? selectedCells : selectedTarget);
                     if (selectedMenuItem === 'Add') {
                         scheduleObj.openEditor(activeCellsData, 'Add');
@@ -751,7 +753,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         change: (args: ChangeEventArgs) => scheduleObj.timeScale.interval = args.value as number
     });
     slotDuration.appendTo('#slotDuration');
-
     let slotInterval: DropDownList = new DropDownList({
         width: 170,
         dataSource: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
@@ -760,5 +761,38 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         change: (args: ChangeEventArgs) => scheduleObj.timeScale.slotCount = args.value as number
     });
     slotInterval.appendTo('#slotInterval');
+    let timeFormat: DropDownList = new DropDownList({
+        width: 170,
+        dataSource: [
+            { Name: '12 hours', Value: 'hh:mm a' },
+            { Name: '24 hours', Value: 'HH:mm' }
+        ],
+        fields: { text: 'Name', value: 'Value' },
+        popupHeight: 150,
+        value: 'hh:mm a',
+        change: (args: ChangeEventArgs) => scheduleObj.timeFormat = args.value as string,
+    });
+    timeFormat.appendTo('#timeFormat');
+    let weekNumber: DropDownList = new DropDownList({
+        width: 170,
+        dataSource: [
+            { Name: 'Off', Value: 'Off' },
+            { Name: 'First Day of Year', Value: 'FirstDay' },
+            { Name: 'First Full Week', Value: 'FirstFullWeek' },
+            { Name: 'First Four-Day Week', Value: 'FirstFourDayWeek' }
+        ],
+        fields: { text: 'Name', value: 'Value' },
+        popupHeight: 150,
+        value: 'Off',
+        change: (args: ChangeEventArgs) => {
+            if (args.value === 'Off') {
+                scheduleObj.showWeekNumber = false;
+            } else {
+                scheduleObj.showWeekNumber = true;
+                scheduleObj.weekRule = args.value as any;
+            }
+        },
+    });
+    weekNumber.appendTo('#week_number');
 
 };

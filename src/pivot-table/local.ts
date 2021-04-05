@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { PivotView, IDataSet, IDataOptions } from '@syncfusion/ej2-pivotview';
+import { PivotView, IDataSet, IDataOptions, LoadEventArgs } from '@syncfusion/ej2-pivotview';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { enableRipple, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { csvdata } from './pivot-data/csvData';
@@ -61,7 +61,12 @@ let data: IDataSet[] = (localData as any).data;
         dataSourceSettings: jsonReport,
         height: 290,
         width: '100%',
-        gridSettings: { columnWidth: 120 }
+        gridSettings: { columnWidth: 120 },
+        load: (args: LoadEventArgs) => {
+            if (args.dataSourceSettings.type === 'CSV') {
+                args.dataSourceSettings.dataSource = getCSVData();
+            }
+        }
     });
     pivotObj.appendTo('#PivotView1');
 

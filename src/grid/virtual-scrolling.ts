@@ -10,9 +10,10 @@ Grid.Inject(VirtualScroll);
 (window as any).default = (): void => {
     loadCultureFiles();
     let date1: number; let date2: number; let flag: boolean = true; let genarateData: Button = new Button({}, '#genarate');
+    let data: Object[] = [];
     genarateData.element.onclick = () => {
-        if (!virtualData.length) {
-            show(); dataSource(); date1 = new Date().getTime(); grid.dataSource = virtualData;
+        if (!data.length) {
+            show(); dataSource(); date1 = new Date().getTime(); grid.dataSource = data = virtualData;
         }
     };
     let grid: Grid = new Grid(

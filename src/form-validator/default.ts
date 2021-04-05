@@ -14,7 +14,7 @@ import { Button } from '@syncfusion/ej2-buttons';
     // Initialize Reset button
     let buttonReset: Button = new Button({});
     buttonReset.appendTo('#resetbtn');
-    // Initialize Custom placement 
+    // Initialize Custom placement
     let option: FormValidatorModel = {
         rules: {
             // Initialize the CustomPlacement.

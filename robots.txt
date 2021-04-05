@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /ExportingServices/
+Disallow: /UG/
+Disallow: /ug/

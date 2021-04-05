@@ -109,7 +109,8 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         nodeDragStop: onTreeDragStop,
         nodeDragging: onItemDrag,
         nodeTemplate: '#treeTemplate',
-        cssClass: 'treeview-external-drag'
+        cssClass: 'treeview-external-drag',
+        dragArea: '.content-wrapper'
     });
     treeObj.appendTo('#Tree');
 

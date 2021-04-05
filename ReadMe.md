@@ -1,414 +1,149 @@
-# Syncfusion JavaScript UI Controls samples
+# TypeScript Sample Browser
 
-This repository contains the demos of [Syncfusion JavaScript UI Controls](https://www.syncfusion.com/javascript-ui-controls?utm_medium=listing&utm_source=github&utm_campaign=ej2-samples). This is the best place to check our controls to get more insight about the usage of APIs.
+Repository for typescript sample browser.
 
-This section guides you to use the Syncfusion JavaScript UI Controls samples in your applications.
+## Adding New Sample
 
-* [Requirements to run the demo](#requirements-to-run-the-demo)
-* [Documentation](#documentation)
-* [License](#license)
-* [Using the samples](#using-the-samples)
-* [Controls Catalog](#controls-catalog)
-* [Support and Feedback](#support-and-feedback)
+Create your new folder in 'src' location and name the folder as control name for example “button” it is control name.
 
-## Requirements to run the demo
+Add your sample order in the `src/common/sampleOrder.json` with corresponding category.
 
-The samples requires the below requirements to run.
+Note: Do not use whitespace at any cause in folder’s name. Use “-” instead of space.
 
-* [Node.js](https://nodejs.org/en/)
+[Refer here](https://bitbucket.org/syncfusion/ej2-sample-browser/src/7740ab838973c7ebb3e970acb5246ff4c89ccd67/src/?at=master)
 
-## Documentation
+### Configure the folder and sample
 
-All controls documentation for the Syncfusion JavaScript UI controls can be found on [Syncfusion Help](https://ej2.syncfusion.com/documentation/?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples). All API documentation can be found at the [API Reference](https://ej2.syncfusion.com/documentation/api?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples).
+Create the “sample.json” file inside of your control folder.  Create your sample html and ts file in same folder also name the html and ts files with same name.
 
-## License
+Note: Do not use whitespace at any cause in file’s name. Use “-” instead of space.
 
-Syncfusion JavaScript UI (Essential JS 2) controls library is available under the Syncfusion Essential Studio program,  and can be licensed either under the Syncfusion Community License Program or the Syncfusion commercial license.
+[Refer here](https://bitbucket.org/syncfusion/ej2-sample-browser/src/7740ab838973c7ebb3e970acb5246ff4c89ccd67/src/button/?at=master)
 
-To be qualified for the Syncfusion Community License Program you must have a gross revenue of less than one (1) million U.S. dollars ($1,000,000.00 USD) per year and have less than five (5) developers in your organization, and agree to be bound by Syncfusion’s terms and conditions.
+### Configure Sample JSON
 
-Customers who do not qualify for the community license can contact sales@syncfusion.com for commercial licensing options.
+Configure your sample json file as like below code snippet.
 
-Under no circumstances can you use this product without (1) either a Community License or a commercial license and (2) without agreeing and abiding by Syncfusion’s license containing all terms and conditions.
+```
+{ 
+   "name": "Button", 
+   "directory": "button", 
+   "category":"Editors", 
+   "samples" : [
+    {"url":"default", "name": "Default Functionalities", "category":"Button"},
+    {"url":"api", "name": "API", "category":"Button"},
+    {"url":"repeatbutton", "name": "Repeat Button", "category":"Button", hideOnDevice:true },
+    {"url":"events", "name": "Events", "category":"Button"},
+    {"url":"rtl", "name": "RTL", "category":"Button"}
+   ]
+}
 
-The Syncfusion license that contains the terms and conditions can be found at
-[https://www.syncfusion.com/content/downloads/syncfusion_license.pdf](https://www.syncfusion.com/content/downloads/syncfusion_license.pdf)
+```
+*Note: To exculde a sample in the device you need to set **hideOnDevice** as true for the sample json file.*
 
-## Using the samples
+**Fields Description:**
 
-### Installing
+_name :_ Its can be any string that you want show as a control name.
 
-To install all dependent packages, use the below command
+_directory :_ Specifies that your sample directory name.
 
-```bash
-npm install
+_category :_ Specify that your sample comes under which category.
+
+_samples :_ Specify array of samples are in your control.
+
+_samples.url :_ specifies the file name without extension.
+
+_samples.name :_ Its can be any string that you want show as a sample name.
+
+_samples.category :_ Specify that your sample comes under which category.
+
+## Configure your dependency
+
+Add your dependency in “package.json” file inside the dependencies.
+
+Note: Here, `'*'` Specifies that install the latest published package form the online. `'*'` is recommended for Syncfusion packages.
+
+```
+    "dependencies": {
+        "@syncfusion/ej2-base": "*",
+        "@syncfusion/ej2-buttons": "*",
+        "@syncfusion/ej2-lists": "*",
+        "@syncfusion/ej2-grids": "*",
+        "bootstrap": "^3.3.6",
+        "crossroads": "^0.12.2",
+        "hasher": "^1.2.0"
+    },
+    
 ```
 
-### Building
+## Run the sample browser
 
-To compile the source files, use the below command
+We can run the sample browser with two commands
 
-```bash
-npm run build
+1. **gulp _serve_** – run the sample browser alone.
+2. **gulp _watch_** – run the sample browser and monitor typescript as well. This will help at development time. If any changes detect means it will automatically compile and browser will reloaded.
+
+```
+D:\dev\typescript\source\ej2-sample-browser>gulp serve
 ```
 
-### Testing
 
-To test the source files, use the below command
+**Access URLs:**
 
-```bash
-npm run test
+Local URL is works only in your machine.
+
+```
+http://localhost:3000
 ```
 
-### Running
+External URL is works in all locally connected LAN. (You can use to see sample browser in mobile).
 
-To run the samples, use the below command
-
-```bash
-npm run serve
+```
+http://your-ip-address:3000
 ```
 
-## Controls Catalog
+Note: Here, The mentioned IP is your local machine IP Address.
 
-<table>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>GRIDS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/grid">DataGrid</a>
-        </td>
-        <td>
-            <a href="src/pivot-view">Pivot Table</a>
-        </td>
-        <td>
-            <a href="src/tree-grid">Tree Grid</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/spreadsheet">Spredsheet</a>
-        </td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>DATA VISUALIZATION<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/chart">Charts</a>
-        </td>
-        <td>
-            <a href="src/stock-chart">Stock Chart</a>
-        </td>
-        <td>
-            <a href="src/circular-gauge">Circular Gauge</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/diagram">Diagram</a>
-        </td>
-        <td>
-            <a href="src/heatmap-chart">HeatMap Chart</a>
-        </td>
-         <td>
-            <a href="src/linear-gauge">Linear Gauge</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/maps">Maps</a>
-        </td>
-       <td>
-            <a href="src/range-navigator">Range Selector</a>
-        </td>
-        <td>
-            <a href="src/smith-chart">Smith Chart</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/barcode">Barcode Generator</a>
-        </td>
-        <td>
-            <a href="src/sparkline">Sparkline Charts</a>
-        </td>
-        <td>
-            <a href="src/treemap">TreeMap</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/bullet-chart">Bullet Chart</a>
-        </td>
-        <td>
-            <a href="src/kanban">Kanban (preview)</a>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>EDITORS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/rte">Rich Text Editor</a>
-        </td>
-        <td>
-            <a href="src/document-editor">Word Processor</a>
-        </td>
-        <td>
-            <a href="src/inplace-editor">In-place Editor</a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>CALENDARS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/schedule">Scheduler</a>
-        </td>
-        <td>
-            <a href="src/calendar">Calendar</a>
-        </td>
-        <td>
-            <a href="src/datepicker">DatePicker</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/daterangepicker">Date Range Picker</a>
-        </td>
-        <td>
-            <a href="src/datetimepicker">DateTime Picker</a>
-        </td>
-        <td>
-            <a href="src/timepicker">Time Picker</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/gantt">Gantt Chart</a>
-        </td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>BUTTONS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/button">Button</a>
-        </td>
-        <td>
-            <a href="src/button/button-group.ts">Button Group</a>
-        </td>
-        <td>
-            <a href="src/button/dropdown-button.ts">Dropdown Menu</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/button/progress-button.ts">Progress Button</a>
-        </td>
-        <td>
-            <a href="src/button/split-button.ts">Split Button</a>
-        </td>
-        <td>
-             <a href="src/button/chips">Chips</a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>DROPDOWNS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/auto-complete">AutoComplete</a>
-        </td>
-        <td>
-            <a href="src/combo-box">ComboBox</a>
-        </td>
-        <td>
-            <a href="src/drop-down-list">Dropdown List</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/drop-down-tree">Dropdown Tree</a>
-        </td>
-        <td>
-            <a href="src/multi-select">MultiSelect Dropdown</a>
-        </td>
-        <td>
-            <a href="src/list-box">List Box</a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>NAVIGATION<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/accordion">Accordion</a>
-        </td>
-        <td>
-            <a href="src/context-menu">Context Menu</a>
-        </td>
-        <td>
-            <a href="src/menu">Menu Bar</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/sidebar">Sidebar</a>
-        </td>
-        <td>
-            <a href="src/tab">Tabs</a>
-        </td>
-        <td>
-            <a href="src/toolbar">Toolbar</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/treeview">TreeView</a>
-        </td>
-        <td>
-            <a href="src/file-manager">File Manager</a>
-        </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>INPUTS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/textboxes">TextBox</a>
-        </td>
-        <td>
-            <a href="src/maskedtextbox">Input Mask</a>
-        </td>
-         <td>
-            <a href="src/numerictextbox">Numeric Textbox</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/button/radio-button.ts">Radio Button</a>
-        </td>
-        <td>
-            <a href="src/button/check-box.ts">Checkbox</a>
-        </td>
-        <td>
-            <a href="src/color-picker">Color Picker</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/uploader">File Upload</a>
-        </td>
-        <td>
-            <a href="src/slider">Range Slider</a>
-        </td>
-        <td>
-            <a href="src/button/switch.ts">Toggle Switch Button</a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>LAYOUT<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/avatar">Avatar</a>
-        </td>
-        <td>
-            <a href="src/card">Card</a>
-        </td>
-        <td>
-            <a href="src/dialog">Dialog</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/listview">ListView</a>
-        </td>
-        <td>
-            <a href="src/tooltip">Tooltip</a>
-        </td>
-        <td>
-            <a href="src/splitter">Splitter</a>           
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/dashboard-layout">Dashboard Layout</a>
-        </td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>NOTIFICATIONS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/badge">Badge</a>
-        </td>
-        <td>
-            <a href="src/toast">Toast</a>
-        </td>
-        <td>
-            <a href="src/progress-bar">Progress Bar</a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>VIEWER<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/pdfviewer">PDF Viewer</a>
-        </td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td colspan="3" rowspan="1">
-            <b>FORMS<b>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a href="src/form-validator">Form Validation</a>
-        </td>
-        <td>
-            <a href="src/query-builder">Query Builder</a>
-        </td>
-        <td></td>
-    </tr>
-</table>
+# Plunker Guidelines
 
+1.	In import statements in html file for a sample the package subdirectory shouldn’t be mentioned. Please refer the link given below.
 
-## Support and Feedback
+    https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/grid/events.ts#L3 
 
-* For any other queries, reach our [Syncfusion support team](https://www.syncfusion.com/support/directtrac/incidents/newincident?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples) or post the queries through the [community forums](https://www.syncfusion.com/forums?utm_source=github&utm_medium=listing&utm_campaign=ej2-samples).
+2.	In Base component dom and util are not available in the customer end. So, please don’t use the same. Please refer the link below.
+
+    https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/grid/events.ts#L3 
+
+3.	To add any icon in the samples use base64 font and don’t use any font files like ttf, woff, or svg externally. Please refer the link given below.
+
+    https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/toolbar/default.html#L5 
+
+    For example:
+    ```
+    <style>
+        @font-face {
+    font-family: 'temp1';
+    src:url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAAKAIAAAwAgT1MvMj0gSIMAAAEoAAAAVmNtYXDnEOdVAAABiAAAADZnbHlmazsA9wAAAcgAAAAcaGVhZA3qwqgAAADQAAAANmhoZWEHmQNrAAAArAAAACRobXR4B+gAAAAAAYAAAAAIbG9jYQAOAAAAAAHAAAAABm1heHABDQAPAAABCAAAACBuYW1lv7gVOQAAAeQAAAINcG9zdD4ZCQ8AAAP0AAAANgABAAADUv9qAFoEAAAA//4D6gABAAAAAAAAAAAAAAAAAAAAAgABAAAAAQAAThBvMl8PPPUACwPoAAAAANVxP0wAAAAA1XE/TAAAAAAD6gMrAAAACAACAAAAAAAAAAEAAAACAAMAAQAAAAAAAgAAAAoACgAAAP8AAAAAAAAAAQP0AZAABQAAAnoCvAAAAIwCegK8AAAB4AAxAQIAAAIABQMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUGZFZABA5wDnAANS/2oAWgNSAJYAAAABAAAAAAAABAAAAAPoAAAAAAACAAAAAwAAABQAAwABAAAAFAAEACIAAAAEAAQAAQAA5wD//wAA5wD//wAAAAEABAAAAAEAAAAAAAAADgAAAAEAAAAAA+oDKwACAAA3IQECA+j+DMICaQAAAAAAABIA3gABAAAAAAAAAAEAAAABAAAAAAABAAUAAQABAAAAAAACAAcABgABAAAAAAADAAUADQABAAAAAAAEAAUAEgABAAAAAAAFAAsAFwABAAAAAAAGAAUAIgABAAAAAAAKACwAJwABAAAAAAALABIAUwADAAEECQAAAAIAZQADAAEECQABAAoAZwADAAEECQACAA4AcQADAAEECQADAAoAfwADAAEECQAEAAoAiQADAAEECQAFABYAkwADAAEECQAGAAoAqQADAAEECQAKAFgAswADAAEECQALACQBCyB0ZW1wMVJlZ3VsYXJ0ZW1wMXRlbXAxVmVyc2lvbiAxLjB0ZW1wMUZvbnQgZ2VuZXJhdGVkIHVzaW5nIFN5bmNmdXNpb24gTWV0cm8gU3R1ZGlvd3d3LnN5bmNmdXNpb24uY29tACAAdABlAG0AcAAxAFIAZQBnAHUAbABhAHIAdABlAG0AcAAxAHQAZQBtAHAAMQBWAGUAcgBzAGkAbwBuACAAMQAuADAAdABlAG0AcAAxAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAHUAcwBpAG4AZwAgAFMAeQBuAGMAZgB1AHMAaQBvAG4AIABNAGUAdAByAG8AIABTAHQAdQBkAGkAbwB3AHcAdwAuAHMAeQBuAGMAZgB1AHMAaQBvAG4ALgBjAG8AbQAAAAACAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBAgEDAAxhcnJvd2hlYWQtMDEAAAAA) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    }
+    #font::after {
+        content: "\e700";
+        font-size: large
+    }
+    .icon {
+        font-family: temp1;
+    }
+    </style>
+    <div id="font" class="icon"></div>
+    ```
+    
+4. For loading json files in the sample use import statements instead of require. Please refer the link given below.
+
+    https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/calendar/internationalization.ts#L9
+    
+    ( For example: import * as testJson from '../common/cldr-data/supplemental/numberingSystems.json'; )
+
+5. If a New Component is added to TypeScript Sample Browser it’s package dependency should be added to the config in src/sys.js file.
+
+    ( For example: https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/sys.js#L19 )

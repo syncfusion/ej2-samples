@@ -26,7 +26,7 @@ enableRipple(true);
     // open new tab
     let URL: any = location.href.replace(location.search, '');
     document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/sidebar-menu/index.html');
-    // MainMenuItems definition 
+    // MainMenuItems definition
     let mainMenuItems: MenuItemModel[] = [
         {
             text: 'Overview',

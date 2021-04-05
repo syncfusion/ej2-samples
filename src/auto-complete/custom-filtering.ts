@@ -29,7 +29,7 @@ import * as booksData from './dataSource.json';
             let result: any = fuse.search(e.text);
             // declare  object array for storing filtering results
             let data: { [key: string]: Object; }[] = [];
-            // store the search result to the array 
+            // store the search result to the array
             for (let i: number = 0; i < result.length; i++) {
                 data.push(result[i].item as any);
             }

@@ -40,6 +40,8 @@ import * as dataSource from './sorting-and-filtering-data.json';
                 width: 124
             }]
         }],
+        openUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/open',
+        saveUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/save',
         created: () => {
             spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center' }, 'A1:G1');
             // Sorted B(Employee Name field) column in ascending order

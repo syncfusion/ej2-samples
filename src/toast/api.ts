@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toast api sample
  */
-import { Toast, ToastBeforeOpenArgs, ToastCloseArgs } from '@syncfusion/ej2-notifications';
+import { Toast, ToastBeforeOpenArgs, ToastCloseArgs, ProgressDirectionType } from '@syncfusion/ej2-notifications';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Effect } from '@syncfusion/ej2-base';
@@ -95,12 +95,23 @@ import { Effect } from '@syncfusion/ej2-base';
     });
     dropDownListShowEase.appendTo('#ShowEasing');
 
+    let dropDownListProgressDirection: DropDownList = new DropDownList({
+        placeholder: 'ProgressDirection',
+        floatLabelType: 'Auto',
+        change: onProgressDirectionChange
+    });
+    dropDownListProgressDirection.appendTo('#progressDirection');
+
     //Initialize DropDownList component and Rendering
     let dropDownListHideEase: DropDownList = new DropDownList({
         placeholder: 'Select an Easing',
         change: onHideEase
     });
     dropDownListHideEase.appendTo('#HideEasing');
+
+    function onProgressDirectionChange() {
+        toastObj.progressDirection = dropDownListProgressDirection.value.toString() as ProgressDirectionType;
+    }
 
     function onShowEase(): void {
         toastObj.animation.show.easing = dropDownListShowEase.value.toString();

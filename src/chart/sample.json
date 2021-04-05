@@ -3,6 +3,7 @@
     "directory": "chart",
     "category": "Data Visualization",
     "ftName": "chart",
+    "type": "update",
     "samples": [
         {
             "url": "line",
@@ -1320,6 +1321,21 @@
                     "isTransposed",
                     "loaded",
                     "tooltip"
+                ]
+            }
+        },
+        {
+            "url": "range-color-mapping",
+            "name": "Range Color Mapping",
+            "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure range color mapping feature.",
+            "category": "Chart Customization",
+            "type": "new",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "series",
+                    "legendSettings",
+                    "rangeColorSettings"
                 ]
             }
         },

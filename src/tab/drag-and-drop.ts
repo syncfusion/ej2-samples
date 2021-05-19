@@ -3,7 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  *  Tab drag and drop sample
  */
 import { Tab, DragEventArgs, TreeView, DragAndDropEventArgs, SelectEventArgs, TabItemModel } from '@syncfusion/ej2-navigations';
-import { isNullOrUndefined, createElement, Browser } from '@syncfusion/ej2-base';
+import { isNullOrUndefined, createElement } from '@syncfusion/ej2-base';
 import { Chart, LineSeries, Category } from '@syncfusion/ej2-charts';
 import { Schedule, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-schedule';
 import { Grid } from '@syncfusion/ej2-grids';
@@ -110,8 +110,8 @@ function renderComponents(): void {
         let dropElement: HTMLElement = <HTMLElement>args.target.closest('#draggableTab .e-toolbar-item');
         if (dropElement != null) {
             let tabElement: HTMLElement = document.querySelector('#draggableTab');
-            let itemPosition: number = (args.event.clientX < dropElement.getBoundingClientRect().left +
-                dropElement.offsetWidth / 2) ? 0 : 1;
+            let itemPosition: number = (((args.event.type.indexOf('touch') > -1) ? args.event.changedTouches[0].clientX
+                : args.event.clientX) < dropElement.getBoundingClientRect().left + dropElement.offsetWidth / 2) ? 0 : 1;
             let dropItemIndex: number = [].slice.call(tabElement.querySelectorAll('.e-toolbar-item')).indexOf(dropElement) + itemPosition;
             let tabContent: HTMLElement;
             let content: string = '';
@@ -182,13 +182,8 @@ function renderComponents(): void {
             }];
             tabObj.addTab(newTabItem, dropItemIndex);
             treeViewObj.removeNodes([args.draggedNode]);
-            args.cancel = true;
-        } else {
-            let dropNode: HTMLElement = <HTMLElement>args.target.closest('#ListView .e-list-item ');
-            if (!isNullOrUndefined(dropNode) && args.dropIndicator === 'e-drop-in') {
-                args.cancel = true;
-            }
         }
+        args.cancel = true;
     }
     function onNodeDrag(args: DragAndDropEventArgs): void {
         if (!isNullOrUndefined(args.target.closest('.tab-content'))) {
@@ -251,7 +246,6 @@ function renderChart(): void {
         primaryXAxis: {
             valueType: 'Category'
         },
-        width: Browser.isDevice ? '100%' : '60%',
         series: [{
             dataSource: chartData,
             xName: 'month',

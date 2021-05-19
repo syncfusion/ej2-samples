@@ -76,6 +76,129 @@ Note: Here, `'*'` Specifies that install the latest published package form the o
     
 ```
 
+# Using the samples
+
+## Installing
+
+Before npm installation check `@syncfusion:registry=http://nexus.syncfusion.com/repository/ej2-production/` is available in npmrc file. Then use the below command to install all dependent packages.
+
+```
+npm install
+```
+## Build
+
+Use `npm run build` command to compile the source files. It calls the following tasks synchronously,
+
+1. SEO changes
+2. Build
+3. Styles ship
+4. Site-map generate.
+
+### SEO changes
+
+It will set meta data and description for the h1 tag to show our components first in search engine. Use the below command to run it individual. 
+
+```
+gulp SEO-changes
+```
+### Build
+
+Use the below command to generate scripts, styles, locale and sample lists.
+
+```
+gulp build
+```
+It runs the following tasks syncronously,
+
+1. Scripts
+2. Styles
+
+#### Scripts
+
+ It compiles the Typescript files and use the below command to run this task.
+
+```
+gulp scripts
+```
+
+#### Styles
+
+`gulp styles` command is used to compile default themes. It calls the following two tasks synchronously.
+
+1. Default theme
+2. Compile styles
+
+#### Default theme
+
+Use the below command to generate default theme files.
+
+```
+gulp default-theme
+```
+
+#### Compile Styles
+It compiles the scss file to css file. To run this task use the below command,
+
+```
+gulp compile-styles
+```
+
+### Styles Shipping
+
+It copies css files for themes from node_modules. Use the below command to run it individual.
+
+```
+gulp styles-ship
+```
+
+### Site map generation
+
+The below command combines sample of all components and store it in sitemap-demos.xml file to index our components, samples, documents in search engine.
+
+```
+gulp sitemap-generate
+```
+
+## Testing
+
+Use the following command to test lint errors in all files. It calls lint task synchronously,
+
+```
+npm run test
+```
+
+### Lint
+
+Use `gulp lint` command to run this task. It calls the below tasks synchronously,
+
+1. SASS Lint
+2. TS Lint
+3. File Checker
+
+#### SASS Lint
+
+It is used to test all SASS files whether it have any lint errors. The following command used to run this task,
+
+```
+gulp sass-lint
+```
+
+#### TS Lint
+
+It check lint errors in all typescript files. Use the below command to run this task,
+
+```
+gulp ts-lint
+```
+
+#### File checker
+
+A valid sample name and components name not have any numbers and symbols. The file checker task is used to check all file names are valid or not. Use the below command to run file checker task,
+
+```
+gulp file-checker
+```
+
 ## Run the sample browser
 
 We can run the sample browser with two commands
@@ -84,9 +207,8 @@ We can run the sample browser with two commands
 2. **gulp _watch_** – run the sample browser and monitor typescript as well. This will help at development time. If any changes detect means it will automatically compile and browser will reloaded.
 
 ```
-D:\dev\typescript\source\ej2-sample-browser>gulp serve
+gulp serve
 ```
-
 
 **Access URLs:**
 

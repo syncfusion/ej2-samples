@@ -927,7 +927,6 @@ function loadTheme(theme: string): void {
         }
         (elasticlunr as any).clearStopWords();
         searchInstance = (elasticlunr as any).Index.load(searchJson);
-        // 
         hasher.initialized.add(parseHash);
         hasher.changed.add(parseHash);
         hasher.init();

@@ -6,7 +6,7 @@ import { Button } from '@syncfusion/ej2-buttons';
  */
 
 (window as any).default = () => {
-    // Render the alert Dialog 
+    // Render the alert Dialog
     let alertDialogObj: Dialog = new Dialog({
         header: 'Low Battery',
         content: '<div>10% of battery remaining</div>',
@@ -37,7 +37,7 @@ import { Button } from '@syncfusion/ej2-buttons';
         open: dialogOpen, close: dialogClose
     });
     confirmDialogObj.appendTo('#confirmDialog');
-    // Render the prompt Dialog 
+    // Render the prompt Dialog
     let promptDialogObj: Dialog = new Dialog({
         header: 'Join Wi-Fi network',
         visible: false,

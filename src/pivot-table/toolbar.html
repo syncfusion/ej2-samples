@@ -13,7 +13,8 @@
 <div id="description">
     <p>
         In this example, users can generate a report at runtime, as well as save and load them. Save and load operations
-        are performed in localStorage (session storage) using the <b>saveReport</b> and <b>loadReport</b> events. Users can change to
+        are performed in localStorage (session storage) using the <b>saveReport</b> and <b>loadReport</b> events. Users
+        can change to
         either pivot table or pivot chart using the toolbar options. Other toolbar options available are:
     </p>
     <table>
@@ -57,7 +58,9 @@
             <td style="vertical-align: top;padding: 4px 0;">
                 <code>Pivot Chart and its types:</code>
             </td>
-            <td>Allows user to view data in graphical format. The chart types include column, bar, line, area, etc.</td>
+            <td>Allows user to view data in graphical format. The chart types include column, bar, line, area, etc. It
+                also has options for showing and hiding legends and displaying chart series of different measures on
+                single and multiple axes.</td>
         </tr>
         <tr>
             <td style="vertical-align: top;padding: 4px 0;">
@@ -98,12 +101,15 @@
             overflow: auto;
         }
     }
+
     .sb-sample-content-area {
         min-height: 255px !important;
     }
+
     .control-section {
         min-height: 255px !important;
     }
+
     #PivotViewcontainerwrapper {
         height: auto !important;
     }

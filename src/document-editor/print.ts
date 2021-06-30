@@ -1,6 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DocumentEditor, ViewChangeEventArgs, Print } from '@syncfusion/ej2-documenteditor';
 import { DocumentLoader } from './document-loader';
+import { NumericTextBox } from '@syncfusion/ej2-inputs';
+import { Tooltip } from '@syncfusion/ej2-popups';
 import { TitleBar } from './title-bar';
 import { StatusBar } from './status-bar';
 DocumentEditor.Inject(Print);
@@ -10,10 +12,10 @@ DocumentEditor.Inject(Print);
 (window as any).default = (): void => {
     loadCultureFiles();
     let containerPanel: HTMLElement = document.getElementById('documenteditor_container_panel');
-    let documenteditor: DocumentEditor = new DocumentEditor({ enablePrint: true });
+    let documenteditor: DocumentEditor = new DocumentEditor({ enablePrint: true, height: '590px' });
     documenteditor.pageOutline = '#E0E0E0';
     documenteditor.appendTo('#container');
-    updateContainerSize();
+    documenteditor.documentEditorSettings.printDevicePixelRatio = 2;
     let documentLoader: DocumentLoader = new DocumentLoader(documenteditor);
     onLoadDefault();
     documenteditor.viewChange = (e: ViewChangeEventArgs) => {
@@ -22,7 +24,24 @@ DocumentEditor.Inject(Print);
     documenteditor.documentChange = (): void => {
         applyPageCountAndDocumentTitle();
     };
-    window.addEventListener('resize', updateContainerSize);
+
+    let numeric: NumericTextBox = new NumericTextBox({
+        width: "120px",
+        min: 1,
+        max: 10,
+        value: 2,
+        format: 'n',
+        decimals: 1,
+        step: 0.5,
+        change: (args) => { 
+            documenteditor.documentEditorSettings.printDevicePixelRatio = args.value;
+          }
+    });
+    numeric.appendTo('#numeric');
+    let tooltip: Tooltip = new Tooltip({
+        content: 'Specifies the device pixel ratio for the image generated while printing the document.',
+    });
+    tooltip.appendTo('#numeric');
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), documenteditor, false);
     let statusBar: StatusBar = new StatusBar(document.getElementById('documenteditor_statusbar'), documenteditor);
     applyPageCountAndDocumentTitle();
@@ -61,16 +80,6 @@ DocumentEditor.Inject(Print);
         documenteditor.documentName = 'Getting Started';
         waitingPopUp.style.display = 'none';
         overlay.style.display = 'none';
-    }
-    function updateContainerSize(): void {
-        let titleBarDiv: HTMLElement = document.getElementById('documenteditor_titlebar');
-        let statusBarDiv: HTMLElement = document.getElementById('documenteditor_statusbar');
-        if (containerPanel && titleBarDiv && statusBarDiv) {
-            var height = (window.innerHeight - (titleBarDiv.offsetHeight +
-                statusBarDiv.offsetHeight)) + 'px';
-            containerPanel.style.height = height;
-            documenteditor.height = height;
-        }
     }
     function applyPageCountAndDocumentTitle(): void {
         //Sets Document name.

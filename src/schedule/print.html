@@ -1,9 +1,40 @@
-<div class="control-section">
+<div class="col-lg-10 control-section">
     <div class="content-wrapper">
         <div id="Schedule"></div>
     </div>
 </div>
 <!-- custom code start -->
+<div class="col-lg-2 property-section">
+    <table id="property" title="Properties">
+        <tbody>
+            <tr>
+                <td style="height: 50px;">
+                    <input id="checked" type="checkbox" />
+                </td>
+            </tr>
+            <tr class="e-height-row e-hide-row">
+                <td>
+                    <input type="text" id="heightElement" />
+                </td>
+            </tr>
+            <tr class="e-width-row e-hide-row">
+                <td>
+                    <input type="text" id="widthElement" />
+                </td>
+            </tr>
+            <tr class="e-selected-date-row e-hide-row">
+                <td>
+                    <input type="text" id="selectedDateElement" />
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 15px; text-align: center;">
+                    <button id="print-btn">Print</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 <style>
     @font-face {
         font-family: 'Schedule_print';
@@ -13,16 +44,25 @@
         font-style: normal;
     }
 
-    .e-schedule .e-schedule-toolbar .e-icons {
+    .e-print-btn .e-icons {
         font-family: 'Schedule_print', 'e-icons';
     }
 
-    .e-schedule .e-schedule-toolbar .e-icon-schedule-print::before {
+    .e-print-btn .e-icon-schedule-print::before {
         content: '\e204';
     }
 
-    .e-schedule-toolbar .e-toolbar-item.e-today {
+    .e-schedule-toolbar .e-toolbar-item.e-today,
+    .e-hide-row {
         display: none;
+    }
+
+    .property-panel-table .e-checkbox-wrapper {
+        padding: 0;
+    }
+
+    .property-panel-table td {
+        padding-bottom: 1rem;
     }
 </style>
 <!-- custom code end -->
@@ -32,7 +72,19 @@
 </div>
 <div id="description">
     <p>In this example, the Scheduler element is Printed by making use of the public method
-        <code>print</code>.</p>
+        <code>print</code>.
+    </p>
+    <p>
+        Also, we can print the schedule based on the custom rendering by passing the <code>ScheduleModel</code> in the
+        <code>print</code> method.
+        In the above demo, we have demonstrated the <code>print</code> method with the below properties of the
+        <code>ScheduleModel</code>.
+    </p>
+    <ul>
+        <li>height</li>
+        <li>width</li>
+        <li>selectedDate</li>
+    </ul>
     <p>
         <strong>Module Injection</strong>
     </p>

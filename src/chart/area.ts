@@ -19,7 +19,7 @@ import { Browser } from '@syncfusion/ej2-base';
             edgeLabelPlacement: 'Shift'
         },
 
-        //Initializing Primary Y Axis	
+        //Initializing Primary Y Axis
         primaryYAxis:
         {
             title: 'Revenue in Millions',

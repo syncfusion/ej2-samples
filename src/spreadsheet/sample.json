@@ -66,7 +66,6 @@
             "url": "protect-sheet",
             "name": "Protection",
             "category": "Spreadsheet",
-            "type": "update",
             "api": {
                 "Spreadsheet": [
                     "sheets",
@@ -94,7 +93,6 @@
             "url": "freeze-pane",
             "name": "Freeze Panes",
             "category": "Spreadsheet",
-            "type": "new",
             "api": {
                 "Spreadsheet": [
                     "sheets",
@@ -110,6 +108,74 @@
                 {
                     "displayName": "freeze-pane.html",
                     "path": "src/spreadsheet/freeze-pane.html"
+                }
+            ]
+        },
+        {
+            "url": "data-validation",
+            "name": "Data Validation",
+            "category": "Spreadsheet",
+            "type": "new",
+            "api": {
+                "Spreadsheet": [
+                    "sheets",
+                    "created"
+                ],
+                "sheets": [
+                    "columns",
+                    "rows",
+                    "name"
+                ],
+                "rows": [
+                    "cells"
+                ],
+                "cells": [
+                    "value"
+                ]
+            },
+            "description": "This demo for Essential JS 2 Spreadsheet control shows data validation feature.",
+            "sourceFiles": [
+                {
+                    "displayName": "data-validation.ts",
+                    "path": "src/spreadsheet/data-validation.ts"
+                },
+                {
+                    "displayName": "data-validation.html",
+                    "path": "src/spreadsheet/data-validation.html"
+                }
+            ]
+        },
+        {
+            "url": "hyper-link",
+            "name": "Hyperlink",
+            "category": "Spreadsheet",
+            "type": "new",
+            "api": {
+                "Spreadsheet": [
+                    "sheets",
+                    "created"
+                ],
+                "sheets": [
+                    "columns",
+                    "rows",
+                    "name"
+                ],
+                "rows": [
+                    "cells"
+                ],
+                "cells": [
+                    "value"
+                ]
+            },
+            "description": "This demo for Essential JS 2 Spreadsheet control shows hyperlink feature.",
+            "sourceFiles": [
+                {
+                    "displayName": "hyper-link.ts",
+                    "path": "src/spreadsheet/hyper-link.ts"
+                },
+                {
+                    "displayName": "hyper-link.html",
+                    "path": "src/spreadsheet/hyper-link.html"
                 }
             ]
         },

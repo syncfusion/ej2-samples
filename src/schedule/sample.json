@@ -9,7 +9,6 @@
             "url": "overview",
             "name": "Overview",
             "category": "Scheduler",
-            "type": "update",
             "description": "This demo shows for Javascript Scheduler features such as Multiple views, Templates, Resources, Grouping, Timezone, Timescale, etc...",
             "hideOnDevice": true,
             "api": {
@@ -152,7 +151,6 @@
             "url": "multi-drag",
             "name": "Multiple Drag",
             "category": "Appointments",
-            "type": "new",
             "description": "This demo explains you about the ability to select multiple appointments and drag them simultaneously.",
             "api": {
                 "Schedule": [
@@ -253,6 +251,7 @@
             "url": "year",
             "name": "Year View",
             "category": "Views",
+            "type": "update",
             "description": "The example showcases the year view and Timeline year view of the JavaScript Scheduler. The views are helpful to view the events in an annual calendar view.",
             "api": {
                 "Schedule": [
@@ -439,6 +438,21 @@
                 "Schedule": [
                     "startHour",
                     "endHour",
+                    "group",
+                    "resources",
+                    "eventSettings"
+                ]
+            }
+        },
+        {
+            "url": "adaptive-grouping",
+            "name": "Adaptive Grouping",
+            "category": "Resource Grouping",
+            "type": "new",
+            "description": "This demo shows how to change the mode of the Schedule to Adaptive mode in the JavaScript Scheduler control.",
+            "api": {
+                "Schedule": [
+                    "enableAdaptiveUI",
                     "group",
                     "resources",
                     "eventSettings"
@@ -748,6 +762,7 @@
             "url": "print",
             "name": "Print",
             "category": "Exporting",
+            "type": "update",
             "hideOnDevice": false,
             "description": "This sample demonstrates how to print all the appointments (events) in the JavaScript Scheduler on the client side using the Print Library.",
             "api": {

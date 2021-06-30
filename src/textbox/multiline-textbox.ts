@@ -31,7 +31,7 @@ import { NumericTextBox} from '@syncfusion/ej2-inputs';
         }
     });
     readonlyCheckBox.appendTo('#readonly');
-    //initialize numeric textbox
+    //initialize numeric textbox 
     let numeric: NumericTextBox = new NumericTextBox({
         format: '##',
         min: 1,

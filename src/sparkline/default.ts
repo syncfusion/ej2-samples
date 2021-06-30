@@ -2,7 +2,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 /**
- * sparkline sample for population 
+ * sparkline sample for population
  */
 import { Sparkline, SparklineTooltip, ISparklineLoadEventArgs, SparklineTheme } from '@syncfusion/ej2-charts/index';
 import { EmitType } from '@syncfusion/ej2-base';

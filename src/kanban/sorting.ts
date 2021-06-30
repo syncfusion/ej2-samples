@@ -25,7 +25,7 @@ import * as dataSource from './datasource.json';
         }
     });
     kanbanObj.appendTo('#Kanban'); //Render initialized Kanban control
-    let sortBy: DropDownList = new DropDownList({ change: onChange });
+    let sortBy: DropDownList = new DropDownList({ change: onChange, index: 1 });
     sortBy.appendTo('#sortBy');
     let field: DropDownList = new DropDownList({ enabled: false });
     field.appendTo('#field');
@@ -35,7 +35,7 @@ import * as dataSource from './datasource.json';
         setKanbanProperties();
     };
     document.getElementById('clear').onclick = (): void => {
-        sortBy.value = 'DataSourceOrder';
+        sortBy.value = 'Index';
         direction.value = 'Ascending';
         setFieldValue('None');
         setKanbanProperties();

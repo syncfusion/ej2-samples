@@ -5,6 +5,9 @@ import {
 import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
 
+/**
+ * Sample for Range Color Mapping
+ */
 (window as any).default = (): void => {
     loadCultureFiles();
     let chart: Chart = new Chart({
@@ -24,18 +27,18 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
         series: [
             {
                 dataSource: [
-                    { x: "Jan", y: 6.96 },
-                    { x: "Feb", y: 8.9 },
-                    { x: "Mar", y: 12 },
-                    { x: "Apr", y: 17.5 },
-                    { x: "May", y: 22.1 },
-                    { x: "June", y: 25 },
-                    { x: "July", y: 29.4 },
-                    { x: "Aug", y: 29.6 },
-                    { x: "Sep", y: 25.8 },
-                    { x: "Oct", y: 21.1 },
-                    { x: "Nov", y: 15.5 },
-                    { x: "Dec", y: 9.9 }
+                    { x: 'Jan', y: 6.96 },
+                    { x: 'Feb', y: 8.9 },
+                    { x: 'Mar', y: 12 },
+                    { x: 'Apr', y: 17.5 },
+                    { x: 'May', y: 22.1 },
+                    { x: 'June', y: 25 },
+                    { x: 'July', y: 29.4 },
+                    { x: 'Aug', y: 29.6 },
+                    { x: 'Sep', y: 25.8 },
+                    { x: 'Oct', y: 21.1 },
+                    { x: 'Nov', y: 15.5 },
+                    { x: 'Dec', y: 9.9 }
 
                 ], xName: 'x', yName: 'y', type: 'Column',
                 animation: { enable: false }, name: 'USA',
@@ -46,22 +49,22 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
         ],
         rangeColorSettings: [
             {
-                label: "1°C to 10°C",
+                label: '1°C to 10°C',
                 start: 1,
                 end: 10,
-                colors: ["#FFFF99"]
+                colors: ['#FFFF99']
             },
             {
-                label: "11°C to 20°C",
+                label: '11°C to 20°C',
                 start: 11,
                 end: 20,
-                colors: ["#FFA500"]
+                colors: ['#FFA500']
             },
             {
-                label: "21°C to 30°C",
+                label: '21°C to 30°C',
                 start: 21,
                 end: 30,
-                colors: ["#FF4040"]
+                colors: ['#FF4040']
             }
         ],
         legendSettings: {
@@ -70,7 +73,7 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
         tooltip: {
             enable: true
         },
-        title: "USA CLIMATE - WEATHER BY MONTH",
+        title: 'USA CLIMATE - WEATHER BY MONTH',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

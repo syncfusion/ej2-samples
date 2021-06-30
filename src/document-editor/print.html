@@ -1,22 +1,40 @@
-<div class="control-section">
-    <input type="file" id="uploadfileButton" style="position:fixed; left:-100em" />
-    <div id="panel">
-        <div id='documenteditor_titlebar' class="e-de-ctn-title">
+<div>
+    <div class="col-lg-8 control-section">
+        <input type="file" id="uploadfileButton" style="position:fixed; left:-100em" />
+        <div id="panel">
+            <div id='documenteditor_titlebar' class="e-de-ctn-title">
+            </div>
+            <div id="documenteditor_container_panel" style="position:relative;">
+                <div id="container"></div>
+            </div>
+            <div id="documenteditor_statusbar">
+            </div>
         </div>
-        <div id="documenteditor_container_panel" style="position:relative;">
-            <div id="container"></div>
+        <div class="overlay" id="popup-overlay" style="display: block;">
         </div>
-        <div id="documenteditor_statusbar">
+        <div id='waiting-popup' style="display: block;">
+            <svg class="circular" height="40" width="40">
+                <circle class="circle-path" cx="25" cy="25" r="20" fill="none" stroke-width="6" stroke-miterlimit="10" />
+            </svg>
         </div>
     </div>
-    <div class="overlay" id="popup-overlay" style="display: block;">
-    </div>
-    <div id='waiting-popup' style="display: block;">
-        <svg class="circular" height="40" width="40">
-            <circle class="circle-path" cx="25" cy="25" r="20" fill="none" stroke-width="6" stroke-miterlimit="10" />
-        </svg>
+    <div class="col-lg-4 property-section">
+            <div style="padding-top: 20px">
+                <b >Document Editor settings</b>
+            </div>
+            <table style="margin-top: 20px; margin-bottom: 30px;">
+                <tr>
+                    <td style="width: 50%;">
+                        <span for="numeric" style="padding-right: 10px">Device pixel ratio:</span>
+                    </td>
+                    <td style="width: 50%;">
+                        <input id="numeric" type="text" />
+                    </td>
+                </tr>
+            </table>
     </div>
 </div>
+
 
 <div id="action-description">
 <p>This sample demonstrates how to view and print Word documents online using document editor.</p>
@@ -29,10 +47,10 @@
     <li>Open Word documents with document elements like text, images, hyperlinks, tables, bookmarks, page numbers, tables
         of contents, headers, and footers.</li>
     <li>Scroll or navigate to specific pages.</li>
-    <li>Print Word documents.</li>        
+    <li>Print Word documents in required quality by using your own device pixel ratio.</li>        
 </ul>
 <p style="display: block"> More information about the document editor features can be found in this
-    <a target="_blank" href="https://ej2.syncfusion.com/documentation/document-editor">documentation section.</a>
+    <a target="_blank" href="https://ej2.syncfusion.com/documentation/document-editor/print/">documentation section.</a>
 </p>
 </div>
 <style>

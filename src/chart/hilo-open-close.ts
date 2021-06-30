@@ -36,7 +36,7 @@ this.renderChart = (chartData: Object[]): void => {
                         xName: 'x', low: 'low', high: 'high', open: 'open', close: 'close', name: 'Apple Inc'
                     }
                 ],
-                //Initializing Chart title     
+                //Initializing Chart title
                 tooltip: { enable: true, shared: true },
                 crosshair: {
                     enable: true, lineType: 'Vertical', line: { width: 0 }

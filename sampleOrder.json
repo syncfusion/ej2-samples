@@ -127,7 +127,6 @@
             "step-area": "Step Area",
             "range-area": "Range Area",
             "stacked-area": "Stacked Area",
-            "stacked-step-area":"Stacked Step Area",
             "stacked-area-100": "100% Stacked Area",
             "area-empty": "Area - Empty Points",
             "area-segments": "Area Zone",
@@ -235,7 +234,6 @@
             "semi-circular-gauge": "Semi-circular Gauge",
             "arc-gauge": "Arc Gauge",
             "legend": "Legend",
-            "gradient-color":"Gradient Color",  
             "compass": "Direction Compass",
             "pointer-image": "Pointer Image",
             "pointer": "Pointer Customization",
@@ -368,8 +366,7 @@
             "remote-data": "Remote Data",
             "crud": "CRUD",
             "venn-diagram": "Venn Diagram",
-            "fishbone-diagram": "Fishbone Diagram",
-            "virtualization":"Virtualization"
+            "fishbone-diagram": "Fishbone Diagram"
         }
     },
     "dialog": {
@@ -384,8 +381,7 @@
             "resizable": "Resizable",
             "position": "Positioning",
             "animation": "Animation",
-            "multiple-dialogs": "Multiple Dialogs",
-            "components-dialog":"Components inside Dialog"
+            "multiple-dialogs": "Multiple Dialogs"
         }
     },
     "document-editor": {
@@ -409,11 +405,7 @@
             "document-protection": "Document Protection",
             "toolbar-customization": "Toolbar Customization",
             "web-layout": "Web Layout",
-            "comments": "Comments",
-            "track-changes":"Track Changes",
-            "form-fields":"Form Fields",
-            "mail-merge":"Mail Merge",
-            "notes":"Footnotes and Endnotes"
+            "comments": "Comments"
         }
     },
     "drop-down-list": {
@@ -436,10 +428,7 @@
             "local-data": "Local Data",
             "remote-data": "Remote Data",
             "icons": "Icons and Images",
-            "checkbox":"Checkbox",
-            "multiple-selection":"Multiple Selection",
-            "template": "Template",
-            "filtering":"Filtering"
+            "template": "Template"
         }
     },
     "file-manager": {
@@ -479,8 +468,6 @@
             "working-time-range": "Working Time Range",
             "holidays": "Holidays",
             "resources": "Resource Allocation",
-            "resource-view":"Resource View",
-            "resource-multi-taskbar":"Resource Multi Taskbar",
             "event-markers": "Event Markers",
             "indicators": "Indicators",
             "baseline": "Baseline",
@@ -488,13 +475,11 @@
             "timeline": "Timeline API",
             "zooming": "Zooming",
             "editing": "Editing",
-            "selection":"Selection",
             "filtering": "Filtering",
             "contextMenu": "Context Menu",
             "exporting": "Exporting",
             "events": "Events",
             "keyboard-interactions": "Keyboard Interactions",
-            "split-tasks":"Split Tasks",
             "column-menu": "Column Menu",
             "show-hide-column": "Show or Hide Column",
             "reorder": "Column Reorder",
@@ -509,8 +494,7 @@
             "sorting": "Default",
             "sorting-api": "Sorting API",
             "taskMode": "Task Scheduling Mode",
-            "drag-and-drop": "Row Drag And Drop",
-            "virtual-scroll":"Virtual Scrolling"
+            "drag-and-drop": "Row Drag And Drop"
         }
     },
     "grid": {
@@ -592,7 +576,6 @@
             "legend": "Legend Placement",
             "large-data": "Large Data",
             "palette": "Palette Mode",
-            "color-range":"Color Range",
             "render-mode": "Rendering mode",
             "tooltip-template": "Tooltip Template"
         }
@@ -612,11 +595,8 @@
             "overview": "Overview",
             "default": "Default Functionalities",
             "swimlane": "Swimlane",
-            "workflow":"Workflow",
             "stacked-header": "Stacked Header",
             "dialog-editing": "Dialog Editing",
-            "search-filter":"Search and Filter Cards",
-            "sorting":"Sorting Cards",
             "local-data": "Local Data",
             "remote-data": "Remote Data",
             "header-template": "Header Template",
@@ -639,7 +619,6 @@
             "data": "Data Sample",
             "axes": "Axes and Pointers",
             "annotation": "Annotation",
-            "gradient-color":"Gradient Color",
             "tooltip": "Tooltip",
             "style": "Styles",
             "export": "Export"
@@ -757,7 +736,9 @@
             "custom-toolbar": "Custom Toolbar",
             "right-to-left": "Right to Left",
             "form-filling": "Form Filling",
-            "hand-written":"Handwritten Signature"
+            "formdesigner": "Form Designer",
+            "annotations": "Annotations",
+            "hand-written": "Handwritten Signature"
         }
     },
     "pivot-table": {
@@ -804,9 +785,7 @@
             "angle": "Angle",
             "custom-content": "Custom Contents",
             "labels": "Labels",
-            "radius": "Radius",
-            "stripes": "Stripes",
-            "progress_segment":"Progress Segment"
+            "radius": "Radius"
         }
     },
     "query-builder": {
@@ -851,7 +830,6 @@
             "client-side-events": "Events",
             "blog-posting": "Use Case",
             "auto-save": "Auto Save",
-            "file-browser":"File Browser",
             "types": "Type",
             "insert-emoticons": "Insert  Emoticons",
             "insert-special-characters": "Insert Special Characters",
@@ -865,7 +843,6 @@
     "schedule": {
         "ControlName": "Scheduler",
         "Samples": {
-            "overview":"Overview",
             "default": "Default Functionalities",
             "local-data": "Local Data",
             "remote-data": "Remote Data",
@@ -875,7 +852,6 @@
             "search-events": "Search Events",
             "timezone": "Timezone",
             "external-drag-drop": "External Drag and Drop",
-            "inline-editing": "Inline Editing",
             "virtual-scrolling": "Virtual Scrolling ",
             "views": "Basic Views",
             "timeline": "Timeline Views",
@@ -899,7 +875,6 @@
             "date-header-template": "Date Header",
             "event-template": "Events",
             "tooltip": "Tooltip",
-            "quick-info-template": "Quick Info Template",
             "editor-validation": "Field Validation",
             "editor-custom-field": "Additional Fields",
             "editor-template": "Editor Template",
@@ -988,7 +963,6 @@
         "Samples": {
             "default": "Default Functionalities",
             "formula": "Formula",
-            "protect-sheet": "Protect Sheet",
             "cell-data-binding": "Cell Data Binding",
             "remote-data-binding": "Remote Data Binding",
             "cell-formatting": "Cell Formatting",

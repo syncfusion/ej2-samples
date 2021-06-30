@@ -20,6 +20,7 @@ import { Dialog } from '@syncfusion/ej2-popups';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { TextBox } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
+import { Ajax } from '@syncfusion/ej2-base';
 
 Diagram.Inject(DataBinding, HierarchicalTree);
 
@@ -58,6 +59,15 @@ let items: ItemModel[] = [
         tooltipText: 'Delete',
         prefixIcon: 'e-ddb-icons e-delete',
         id: 'Delete'
+    },
+    {
+        type: 'Separator'
+    },
+    {
+        text: 'Reset',
+        tooltipText: 'Reset',
+        prefixIcon: 'e-ddc-icons e-reset',
+        id: 'Reset'
     }
 ];
 
@@ -214,7 +224,15 @@ function toolbarClick(args: ClickEventArgs): void {
                 let element: object = { Name: selectedItem.id, Label: (selectedItem as DataInfo).Description };
                 let index: number = nodeData.indexOf(element as { [key: string]: Object });
                 nodeData.splice(index, 1);
+                break;
         }
+    }
+    switch (args.item.tooltipText) {
+        case 'Reset':
+            let callback = new Ajax("https://js.syncfusion.com/demos/ejServices/api/Diagram/ResetData", 'POST');
+            callback.send().then();
+            diagram.refreshDiagram();
+            diagram.refresh();
     }
 }
 

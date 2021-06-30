@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { PivotView, GroupingBar, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
+import { PivotView, GroupingBar, IDataSet } from '@syncfusion/ej2-pivotview';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
 import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 
-PivotView.Inject(GroupingBar, FieldList);
+PivotView.Inject(GroupingBar);
 
 /**
  * PivotView Grouping bar Sample
@@ -22,14 +22,14 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             formatSettings: [{ name: 'Amount', format: 'C0' }],
             dataSource: Pivot_Data,
             expandAll: false,
-            values: [{ name: 'In_Stock', caption: 'In Stock' }, { name: 'Sold', caption: 'Units Sold' },
+            values: [{ name: 'Sold', caption: 'Units Sold' },
             { name: 'Amount', caption: 'Sold Amount' }],
-            filters: [{ name: 'Product_Categories', caption: 'Product Categories' }]
+            filters: []
         },
         width: '100%',
         height: 450,
         showGroupingBar: true,
-        showFieldList: true,
+        groupingBarSettings: { showFieldsPanel: true },
         gridSettings: { columnWidth: 140 }
     });
     pivotObj.appendTo('#PivotView');

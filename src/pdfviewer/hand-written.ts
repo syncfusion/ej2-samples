@@ -9,7 +9,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     let viewer: PdfViewer = new PdfViewer();
     viewer.serviceUrl = 'https://ej2services.syncfusion.com/production/web-services/api/pdfviewer';
     viewer.appendTo('#pdfViewer');
-    viewer.load('PDF_Succinctly.pdf', null);
+    viewer.load('HandwrittenSignature.pdf', null);
     // tslint:disable-next-line
     viewer.documentLoad = function(): any {
     viewer.annotationModule.setAnnotationMode('HandWrittenSignature');

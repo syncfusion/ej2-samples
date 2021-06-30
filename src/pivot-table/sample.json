@@ -56,6 +56,7 @@
             "url": "grouping-bar",
             "name": "Grouping Bar",
             "category": "User Interaction",
+            "type": "update",
             "description": "This demo for Essential JS2 Pivot Table control demonstrate the grouping bar feature of the pivot table"
         },
         {
@@ -86,7 +87,6 @@
             "url": "toolbar",
             "name": "Toolbar",
             "category": "User Interaction",
-            "type": "update",
             "description": "This demo for Essential JS2 Pivot Table control demonstrate the toolbar feature with pivot table and pivot chart"
         },
         {
@@ -99,7 +99,6 @@
             "url": "aggregation",
             "name": "Aggregation",
             "category": "Formula",
-            "type": "update",
             "description": "This demo for Essential JS2 Pivot Table control shows different types of aggregation for value fields"
         },
         {

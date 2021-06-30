@@ -14,7 +14,7 @@ Chart.Inject(
  */
 this.renderChart = (chartData: Object[]): void => {
             let chart: Chart = new Chart({
-                // Initializing the axes 
+                // Initializing the axes
                 primaryXAxis: {
                     valueType: 'DateTime',
                     majorGridLines: { width: 0 },

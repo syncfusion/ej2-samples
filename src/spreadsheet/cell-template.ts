@@ -20,6 +20,10 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
         showFormulaBar: false,
         allowOpen: false,
         allowSave: false,
+        allowEditing: false,
+        selectionSettings: {
+        mode: 'None'
+        },
         scrollSettings: {
             isFinite: true
         },
@@ -44,7 +48,7 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
                 height: 45,
                 cells: [{
                     index: 1,
-                    value: 'Name:'
+                    value: 'Name'
                 }],
             }, {
                 height: 45,
@@ -155,10 +159,6 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
         created: () => {
             //Applies format to specified range
             spreadsheet.cellFormat({ fontWeight: 'bold' }, 'B2:B9');
-        },
-        beforeSelect: (args: BeforeSelectEventArgs) => {
-            //Prevents selection
-            args.cancel = true;
         }
     });
     //Render initialized Spreadsheet component

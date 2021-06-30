@@ -24,7 +24,7 @@ import { Browser } from '@syncfusion/ej2-base';
                 width: 0
             }
         },
-        //Initializing Vertical Mode 
+        //Initializing Vertical Mode
         isTransposed: true,
         //Initializing Chart Title
         title: 'Indonesia - Seismograph Analysis',

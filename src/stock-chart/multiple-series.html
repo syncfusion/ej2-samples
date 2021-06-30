@@ -3,23 +3,26 @@
 </div>
 <div id="action-description">
     <p>
-        This sample visualizes stock chart with multiple series.
+        This sample visualizes stock chart with multiple series and legend.
     </p>
 </div>
 <div id="description">
     <p>
-        In this example, you can see how to render and configure the Stock chart.
-        <code>LineSeries</code> is used to represent selected data value.
+        In this example, you can see how to render and configure the Stock Chart.
+        The <code>SplineSeries</code> is used to display data based on the selection made in the Range Selector. Since there are multiple series, the interactive legend has been enabled, which provides a quick overview of each series.
     </p>
     <br>
-    <p style="font-weight: 500">Injecting Module</p>
+    <p> <b>Injecting Module: </b></p>
     <p>
-        The Stock chart component features are segregated into individual feature-wise modules. To use date-time axis,
-        inject
-        the
+        The Stock Chart component features are segregated into individual feature-wise modules. 
+        To use date-time axis, inject the
         <code>DateTime</code> module using the
-        <code>StockChart.Inject(DateTime)</code> method. To use the LineSeries, inject the
-        <code>LineSeries</code> module using the
-        <code>StockChart.Inject(LineSeries)</code> method.
+        <code>StockChart.Inject(DateTime)</code> method.
+        To use legend, inject the 
+        <code>StockLegend</code> module using the
+        <code>StockChart.Inject(StockLegend)</code> method.
+        To use SplineSeries, inject the
+        <code>SplineSeries</code> module using the
+        <code>StockChart.Inject(SplineSeries)</code> method.
     </p>
 </div>

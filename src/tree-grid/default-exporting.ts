@@ -1,5 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { TreeGrid, Toolbar, ExcelExport, PdfExport, TreeGridExcelExportProperties, TreeGridPdfExportProperties} from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Toolbar, ExcelExport, PdfExport, TreeGridExcelExportProperties} from '@syncfusion/ej2-treegrid';
+import { TreeGridPdfExportProperties } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { DialogUtility } from '@syncfusion/ej2-popups';

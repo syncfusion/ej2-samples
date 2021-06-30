@@ -126,7 +126,6 @@
             "url": "character-formatting",
             "name": "Character Formatting",
             "category": "Editing Features",
-            "type": "update",
             "description": "The Document Editor supports character formatting such as bold, italic, underline, subscript, superscript, font color, and more in JavaScript platform.",
             "api": {
                 "DocumentEditor": [
@@ -1162,6 +1161,7 @@
             "url": "print",
             "name": "Print",
             "category": "Print",
+            "type":"update",
             "description": "The Document Editor component in JavaScript is used to view and print Word documents in web applications by injecting only the modules that are necessary.",
             "api": {
                 "DocumentEditor": [
@@ -1227,7 +1227,6 @@
         {
             "url": "document-protection",
             "name": "Document Protection",
-            "type": "update",
             "category": "Security",
             "description": "The Document Editor provides document protection supports to restrict the types of changes can be made to the document by a user/user group.",
             "api": {

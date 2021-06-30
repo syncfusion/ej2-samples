@@ -19,7 +19,7 @@ CircularGauge.Inject(Annotations);
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
         },
         // custom code end
-        title: 'Short Put Distance',
+        title: 'Shot Put Distance',
         titleStyle: {
             size: '18px'
         },

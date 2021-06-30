@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { extend, Internationalization } from '@syncfusion/ej2-base';
+import { extend, Internationalization, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { TextBox } from '@syncfusion/ej2-inputs';
@@ -51,12 +51,18 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         let quickPopup: HTMLElement = scheduleObj.element.querySelector('.e-quick-popup-wrapper') as HTMLElement;
         let getSlotData: Function = (): { [key: string]: Object } => {
             let cellDetails: CellClickEventArgs = scheduleObj.getCellDetails(scheduleObj.getSelectedElements());
+            if (isNullOrUndefined(cellDetails)) {
+                cellDetails = scheduleObj.getCellDetails(scheduleObj.activeCellsData.element);
+            }
+            let subject = ((quickPopup.querySelector('#title') as EJ2Instance).ej2_instances[0] as TextBox).value;
+            let notes = ((quickPopup.querySelector('#notes') as EJ2Instance).ej2_instances[0] as TextBox).value;
             let addObj: { [key: string]: Object } = {};
             addObj.Id = scheduleObj.getEventMaxID();
-            addObj.Subject = ((quickPopup.querySelector('#title') as EJ2Instance).ej2_instances[0] as TextBox).value;
+            addObj.Subject = isNullOrUndefined(subject) ? 'Add title' : subject;
             addObj.StartTime = new Date(+cellDetails.startTime);
             addObj.EndTime = new Date(+cellDetails.endTime);
-            addObj.Description = ((quickPopup.querySelector('#notes') as EJ2Instance).ej2_instances[0] as TextBox).value;
+            addObj.IsAllDay = cellDetails.isAllDay;
+            addObj.Description = isNullOrUndefined(notes) ? 'Add notes' : notes;
             addObj.RoomId = ((quickPopup.querySelector('#eventType') as EJ2Instance).ej2_instances[0] as DropDownList).value;
             return addObj;
         };

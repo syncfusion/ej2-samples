@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { VirtualScroll, Grid } from '@syncfusion/ej2-grids';
+import { VirtualScroll, Grid, Edit, Toolbar } from '@syncfusion/ej2-grids';
 import { Button } from '@syncfusion/ej2-buttons';
 import { virtualData, dataSource } from './data-source';
 /**
  * virtualscrolling sample
  */
-Grid.Inject(VirtualScroll);
+Grid.Inject(VirtualScroll, Edit, Toolbar);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -18,12 +18,15 @@ Grid.Inject(VirtualScroll);
     };
     let grid: Grid = new Grid(
         {
-            dataSource: [], enableVirtualization: true, enableColumnVirtualization: true, height: 600,
+            dataSource: [], enableVirtualization: true, enableColumnVirtualization: true, height: 400,
+            editSettings: { allowEditing: true, allowDeleting: true, mode: 'Normal', newRowPosition: 'Top' },
+            toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
             columns: [
-                { field: 'FIELD1', headerText: 'Player Name', width: 140 },
+                { field: 'SNo', headerText: 'S.No', width: 140, isPrimaryKey: true, validationRules: { required: true } },
+                { field: 'FIELD1', headerText: 'Player Name', width: 140, validationRules: { required: true } },
                 { field: 'FIELD2', headerText: 'Year', width: 120, textAlign: 'Right' },
-                { field: 'FIELD3', headerText: 'Stint', width: 120, textAlign: 'Right' },
-                { field: 'FIELD4', headerText: 'TMID', width: 120, textAlign: 'Right' },
+                { field: 'FIELD3', headerText: 'Sports', width: 160, textAlign: 'Right', editType: 'dropdownedit', validationRules: { required: true } },
+                { field: 'FIELD4', headerText: 'Country', width: 160, textAlign: 'Right', editType: 'dropdownedit' },
                 { field: 'FIELD5', headerText: 'LGID', width: 120, textAlign: 'Right' },
                 { field: 'FIELD6', headerText: 'GP', width: 120, textAlign: 'Right' },
                 { field: 'FIELD7', headerText: 'GS', width: 120, textAlign: 'Right' },
@@ -49,7 +52,7 @@ Grid.Inject(VirtualScroll);
                 { field: 'FIELD27', headerText: 'Post Points', width: 130, textAlign: 'Right' },
                 { field: 'FIELD28', headerText: 'Post OREB', width: 130, textAlign: 'Right' },
                 { field: 'FIELD29', headerText: 'Post DREB', width: 130, textAlign: 'Right' },
-                { field: 'FIELD30', headerText: 'Post REB', width: 130, textAlign: 'Right' }],
+                { field: 'FIELD30', headerText: 'Post REB', width: 130, textAlign: 'Right', editType: 'numericedit', validationRules: { required: true } }],
             dataBound: hide
         });
     grid.appendTo('#Grid');
@@ -61,6 +64,7 @@ Grid.Inject(VirtualScroll);
         if (flag && date1) {
             let date2: number = new Date().getTime();
             document.getElementById('performanceTime').innerHTML = 'Time Taken: ' + (date2 - date1) + 'ms';
+            grid.editSettings.allowAdding = true;
             flag = false; genarateData.disabled = true;
         }
         document.getElementById('popup').style.display = 'none';

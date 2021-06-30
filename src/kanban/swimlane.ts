@@ -26,12 +26,14 @@ import * as dataSource from './datasource.json';
         },
         swimlaneSettings: {
             keyField: 'Assignee'
-        }
+        },
+        height: '500px'
     });
     kanbanObj.appendTo('#Kanban'); //Render initialized Kanban control
     new CheckBox({ checked: false, change: onChange }, '#acrossDragAndDrop');
     new CheckBox({ checked: false, change: onChange }, '#emptyRow');
     new CheckBox({ checked: true, change: onChange }, '#itemCount');
+    new CheckBox({ change: onChange }, '#frozenRows');
     //Initialize DropDownList control
     let sortOrder: DropDownList = new DropDownList({
         width: '100%',
@@ -50,6 +52,9 @@ import * as dataSource from './datasource.json';
                 break;
             case 'itemCount':
                 kanbanObj.swimlaneSettings.showItemCount = args.checked;
+                break;
+            case 'frozenRows':
+                kanbanObj.swimlaneSettings.enableFrozenRows = args.checked;
                 break;
             default:
                 break;

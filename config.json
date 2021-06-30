@@ -143,6 +143,8 @@
 		"wip",
 		"validation",
 		"editing",
-		"progressbar"
+		"progressbar",
+		"adaptive-ui",
+		null
 	]
 }

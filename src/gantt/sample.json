@@ -3,6 +3,7 @@
    "directory": "gantt",
    "category": "Calendars",
    "ftName": "gantt",
+   "type": "update",
    "samples": [
       {
          "url": "default",
@@ -143,6 +144,7 @@
          },
          "description": "This sample explains the Resource break down view in the Gantt chart that is how to visualize the list of tasks assigned to each resource in hierarchy manner."
       },
+      
       {
          "url": "resource-multi-taskbar",
          "name": "Resource Multi Taskbar",
@@ -184,11 +186,11 @@
                "height",
                "highlightWeekends",
                "workWeek",
-               "labelSettings"
+			      "labelSettings"
             ]
          },
          "description": "This sample demonstrates the way to bind the customizable array of working days in a week for project."
-      },
+      },    
       {
          "url": "working-time-range",
          "name": "Working Time Range",
@@ -209,6 +211,7 @@
          },
          "description": "This example demonstrates how to customize the working time of a day for the whole project. We can define working time in different intervals."
       },
+
       {
          "url": "holidays",
          "name": "Holidays",
@@ -268,7 +271,7 @@
             ]
          },
          "description": "This example demonstrates how to highlight the different stages in the project development cycle just like bookmark."
-      },
+      },      
       {
          "url": "indicators",
          "name": "Indicators",
@@ -334,6 +337,25 @@
             ]
          },
          "description": "This example demonstrates the unscheduled tasks in Gantt with custom toolbar item and dynamic add support."
+      },
+      {
+         "url": "timezone",
+         "name": "Timezone",
+         "category": "Scheduling Concepts",
+         "type": "new",
+         "api": {
+            "Gantt": [
+               "dataSource",
+               "taskFields",
+               "timelineSettings",
+               "timezone",
+               "durationUnit",
+               "dateFormat",
+               "dayWorkingTime",
+               "includeWeekend"
+            ]
+         },
+         "description": "This demo explains how the Gantt Chart schedules projects in different timezones."
       },
       {
          "url": "timeline",
@@ -627,7 +649,7 @@
                "projectEndDate"
             ]
          },
-         "description": "This demo explains how to reorder the columns of Gantt by simple drag and drop of columns using Syncfusion Essential JS2 Gantt."
+         "description": "This demo explains how to reorder the columns of Gantt by simple drag and drop of columns using Syncfusion Essential JS2 Gantt." 
       },
       {
          "url": "resizing",
@@ -860,7 +882,7 @@
          },
          "description": "This demo demonstrates how to sort columns and clear sorted columns dynamically using the sortColumn and clearSorting method of Syncfusion Essential JS2 Gantt."
       },
-      {
+	  {
          "url": "drag-and-drop",
          "name": "Row Drag And Drop",
          "category": "Gantt",
@@ -873,7 +895,7 @@
                "height",
                "highlightWeekends",
                "allowRowDragAndDrop",
-               "splitterSettings",
+			      "splitterSettings",
                "labelSettings",
                "projectStartDate",
                "projectEndDate",
@@ -902,42 +924,42 @@
                "splitterSettings",
                "allowSelection",
                "highlightWeekends",
-               "workUnit",
+			   "workUnit",
                "enableContextMenu"
             ]
          },
          "description": "This demo explains how to interrupt the already scheduled tasks using the Syncfusion TypeScript Gantt control."
       },
       {
-         "url": "virtual-scroll",
-         "name": "Virtual Scrolling",
-         "category": "Gantt",
-         "api": {
-            "Gantt": [
-               "dataSource",
-               "taskFields",
-               "columns",
-               "treeColumnIndex",
-               "height",
-               "highlightWeekends",
-               "allowRowDragAndDrop",
-               "splitterSettings",
-               "labelSettings",
-               "projectStartDate",
-               "projectEndDate",
-               "selectionSettings",
-               "allowSorting",
-               "allowFiltering",
-               "allowRowDragAndDrop",
-               "enableContextMenu",
-               "enableVirtualization",
-               "editSettings",
-               "toolbar",
-               "allowSelection",
-               "timelineSettings"
-            ]
-         },
-         "description": "This example illustrates binding large data and smooth scrolling with large data using the Virtual Scroll feature in the Syncfusion Gantt chart."
-      }
+          "url": "virtual-scroll",
+          "name": "Virtual Scrolling",
+          "category": "Gantt",
+          "api": {
+             "Gantt": [
+                "dataSource",
+                "taskFields",
+                "columns",
+                "treeColumnIndex",
+                "height",
+                "highlightWeekends",
+                "allowRowDragAndDrop",
+                "splitterSettings",
+                "labelSettings",
+                "projectStartDate",
+                "projectEndDate",
+                "selectionSettings",
+                "allowSorting",
+                "allowFiltering",
+                "allowRowDragAndDrop",
+                "enableContextMenu",
+                "enableVirtualization",
+                "editSettings",
+                "toolbar",
+                "allowSelection",
+                "timelineSettings"
+             ]
+          },
+          "description": "This example illustrates binding large data and smooth scrolling with large data using the Virtual Scroll feature in the Syncfusion Gantt chart."
+       }
    ]
 }

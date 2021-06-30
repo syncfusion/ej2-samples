@@ -51,7 +51,7 @@ let initschedule: boolean = true;
   // Initialize Reset button
   let buttonReset: Button = new Button({});
   buttonReset.appendTo('#resetbtn');
-  // Initialize Custom placement 
+  // Initialize Custom placement
   let option: FormValidatorModel = {
     rules: {
       // Initialize the CustomPlacement.

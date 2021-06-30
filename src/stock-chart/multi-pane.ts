@@ -37,7 +37,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Co
             },
             {
                 dataSource: chartData,
-                type: 'Column', yName: 'volume'
+                type: 'Column', yName: 'volume', enableTooltip: false
             }
         ],
         crosshair: { enable: true },

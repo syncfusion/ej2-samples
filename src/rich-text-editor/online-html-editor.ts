@@ -10,9 +10,9 @@ import * as CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
+
 (window as any).default = (): void => {
     loadCultureFiles();
-
   let textArea: HTMLTextAreaElement;
   let srcArea: HTMLElement;
   let myCodeMirror: any;
@@ -41,9 +41,8 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       });
    }
     splitObj = new Splitter({
-      height: '450px',
+      height: '450px', width: '100%',
       paneSettings: [{ resizable: false, size: '50%' }, {}],
-      width: '100%'
     });
     splitObj.appendTo('#horizontal');
 
@@ -60,12 +59,8 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
           '|', 'Undo', 'Redo'
         ]
       },
-      saveInterval: 1,
-      actionComplete: updateValue,
-      change: onChange,
-      showCharCount : true,
-      maxLength : 5000,
-      created: onCreate,
+      saveInterval: 1, actionComplete: updateValue, change: onChange,
+      showCharCount : true, maxLength : 5000, created: onCreate,
     });
     defaultRTE.appendTo('#defaultRTE');
     function onChange(): void {
@@ -75,9 +70,11 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       updateValue();
       textArea = defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement;
       srcArea = document.querySelector('.source-code');
-      srcArea.addEventListener('keyup', (e: any) => {
-        updateHtmlValue();
-      });
+      if (srcArea) {
+        srcArea.addEventListener('keyup', (e: any) => {
+          updateHtmlValue();
+        });
+      }
     }
     function updateHtmlValue(): void {
       textArea.innerHTML = myCodeMirror.getValue();

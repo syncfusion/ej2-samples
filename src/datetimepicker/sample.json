@@ -1,5 +1,6 @@
 {
     "name": "DateTimePicker",
+    "type": "update",
     "directory": "datetimepicker",
     "category": "Calendars",
     "samples": [
@@ -7,6 +8,7 @@
         { "url": "disabled", "name": "Disabled Dates", "category": "DateTimePicker", "api":{"DateTimePicker": ["renderDayCell" ]}, "description": "Customizable DateTimePicker widget for JavaScript (TypeScript) with disabled dates and times that restrict selection for specific date and time durations" },
         { "url": "date-time-range", "name": "DateTime Range", "category": "DateTimePicker", "api":{"DatePicker": [ "min", "max", "value" ]}, "description": "This example demonstrates how to disables the specific range of dates and times (min and max) in a JavaScript (TypeScript) DateTimePicker" },
         { "url": "date-time-format", "name": "Format", "category": "DateTimePicker", "api":{"DateTimePicker": [ "format", "value"]}, "description": "Flexible DateTimePicker for JavaScript (TypeScript) with options to customize date and time formats based on the preferred culture for improved readability" },
-        { "url": "special-dates", "name": "Special Dates", "category": "DateTimePicker", "api":{"DateTimePicker": [ "renderDayCell", "value"]}, "description": "This example demonstrates how to highlight the specific dates and times like weekends, holidays and special dates in a JavaScript (TypeScript) DateTimePicker" }
+        { "url": "special-dates", "name": "Special Dates", "category": "DateTimePicker", "api":{"DateTimePicker": [ "renderDayCell", "value"]}, "description": "This example demonstrates how to highlight the specific dates and times like weekends, holidays and special dates in a JavaScript (TypeScript) DateTimePicker" },
+        { "url": "input-mask","type": "new", "name": "Mask Support", "category": "DateTimePicker", "api":{"DateTimePicker": [ "enableMask", "format" ]}, "description": "This example demonstrates how to render the date time format in the input field using enableMask in a JavaScript (TypeScript) DateTimePicker" }
        ]
 }

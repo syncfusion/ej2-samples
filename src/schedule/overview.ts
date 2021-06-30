@@ -93,7 +93,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     (window as TemplateFunction).getHeaderStyles = (data: { [key: string]: Object }) => {
         if (data.elementType === 'event') {
             let resourceData: { [key: string]: Object } = (window as TemplateFunction).getResourceData(data);
-            return 'background:' + resourceData.CalendarColor + '; color: #FFFFFF;';
+            let calendarColor: string = '#3f51b5';
+            if (resourceData) {
+                calendarColor = (resourceData.CalendarColor).toString();
+            }
+            return 'background:' + calendarColor + '; color: #FFFFFF;';
         } else {
             return 'align-items: center; color: #919191;';
         }
@@ -101,7 +105,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
 
     (window as TemplateFunction).getEventType = (data: { [key: string]: Date }) => {
         let resourceData: { [key: string]: Object } = (window as TemplateFunction).getResourceData(data);
-        return resourceData.CalendarText;
+        let calendarText: string = '';
+        if (resourceData) {
+            calendarText = resourceData.CalendarText.toString();
+        }
+        return calendarText;
     };
 
     let updateLiveTime: Function = (): void => {
@@ -177,12 +185,18 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         let quickPopup: HTMLElement = scheduleObj.element.querySelector('.e-quick-popup-wrapper') as HTMLElement;
         let getSlotData: Function = (): { [key: string]: Object } => {
             let cellDetails: CellClickEventArgs = scheduleObj.getCellDetails(scheduleObj.getSelectedElements());
+            if (isNullOrUndefined(cellDetails)) {
+                cellDetails = scheduleObj.getCellDetails(scheduleObj.activeCellsData.element);
+            }
+            let subject = ((quickPopup.querySelector('#title') as EJ2Instance).ej2_instances[0] as TextBox).value;
+            let notes = ((quickPopup.querySelector('#notes') as EJ2Instance).ej2_instances[0] as TextBox).value;
             let eventObj: { [key: string]: Object } = {};
             eventObj.Id = scheduleObj.getEventMaxID();
-            eventObj.Subject = ((quickPopup.querySelector('#title') as EJ2Instance).ej2_instances[0] as TextBox).value;
+            eventObj.Subject = isNullOrUndefined(subject) ? 'Add title' : subject;
             eventObj.StartTime = new Date(+cellDetails.startTime);
             eventObj.EndTime = new Date(+cellDetails.endTime);
-            eventObj.Description = ((quickPopup.querySelector('#notes') as EJ2Instance).ej2_instances[0] as TextBox).value;
+            eventObj.IsAllDay = cellDetails.isAllDay;
+            eventObj.Description = isNullOrUndefined(notes) ? 'Add notes' : notes;
             eventObj.CalendarId = ((quickPopup.querySelector('#eventType') as EJ2Instance).ej2_instances[0] as DropDownList).value;
             return eventObj;
         };

@@ -84,7 +84,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
     });
     mode.appendTo('#mode');
     let togglebtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+        iconCss: 'e-icons e-export-icon', cssClass: 'e-flat', isPrimary: true,
     });
     togglebtn.appendTo('#togglebtn');
     document.getElementById('togglebtn').onclick = () => {

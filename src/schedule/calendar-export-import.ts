@@ -3,8 +3,7 @@ import { extend } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 import { Uploader, SelectedEventArgs } from '@syncfusion/ej2-inputs';
 import {
-    Schedule, Day, Week, WorkWeek, Month, Agenda,
-    ICalendarExport, ICalendarImport, Resize, DragAndDrop
+    Schedule, Day, Week, WorkWeek, Month, Agenda, ICalendarExport, ICalendarImport, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 
@@ -22,7 +21,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, ICalendarExport, ICalendarIm
         width: '100%',
         height: '650px',
         views: ['Day', 'Week', 'WorkWeek', 'Month', 'Agenda'],
-        selectedDate: new Date(2019, 0, 10),
+        selectedDate: new Date(2021, 0, 10),
         eventSettings: { dataSource: data },
     });
     scheduleObj.appendTo('#Schedule');

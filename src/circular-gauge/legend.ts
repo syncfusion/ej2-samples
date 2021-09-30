@@ -14,7 +14,8 @@ CircularGauge.Inject(Annotations, Legend);
          load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code end
         title: 'Measure of wind speed in Km/h',
@@ -25,8 +26,7 @@ CircularGauge.Inject(Annotations, Legend);
         axes: [{
             lineStyle: { width: 2 },
             labelStyle: {
-                position: 'Inside', useRangeColor: false,
-                font: { size: '12px', color: '#424242', fontFamily: 'Roboto', fontStyle: 'Regular' }
+                position: 'Inside', useRangeColor: false
             }, majorTicks: { height: 16, color: '#9E9E9E', interval: 20 }, minorTicks: { height: 8, interval: 10 },
             startAngle: 210, endAngle: 150, minimum: 0, maximum: 120, radius: '80%',
             ranges: [

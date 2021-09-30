@@ -39,6 +39,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.stockChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+            args.stockChart.series[0].fill = 'url(#' + selectedTheme.toLowerCase() + '-gradient-chart)';
         }
     });
     stockChart.appendTo('#container');

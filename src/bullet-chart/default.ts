@@ -25,7 +25,7 @@ BulletChart.Inject(BulletTooltip);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
         },
         minimum: 0, maximum: 300, interval: 50,
         title: 'Revenue',
@@ -51,7 +51,7 @@ BulletChart.Inject(BulletTooltip);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
         },
         minimum: 0, maximum: 30, interval: 5,
         labelFormat: '{value}%',
@@ -78,7 +78,7 @@ BulletChart.Inject(BulletTooltip);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
         },
         minimum: 0, maximum: 600, interval: 100,
         title: 'Avg Order Size',
@@ -104,7 +104,7 @@ BulletChart.Inject(BulletTooltip);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
         },
         enableGroupSeparator: true,
         minimum: 0, maximum: 2500, interval: 500,
@@ -131,7 +131,7 @@ BulletChart.Inject(BulletTooltip);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
         },
         minimum: 0, maximum: 5, interval: 1,
         title: 'Cust Satisfication',

@@ -17,7 +17,7 @@ Schedule.Inject(Agenda);
         width: '100%',
         height: '650px',
         views: [{ option: 'Agenda', allowVirtualScrolling: false }],
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         currentView: 'Agenda',
         eventSettings: { dataSource: generateObject() },
     });
@@ -30,6 +30,8 @@ Schedule.Inject(Agenda);
         min: 1,
         max: 15,
         format: 'n0',
+        placeholder: "Days Count",
+        floatLabelType: "Always",
         change: (args: ChangeEventArgs) => {
             scheduleObj.agendaDaysCount = args.value !== null ? args.value : 7;
             scheduleObj.dataBind();
@@ -39,6 +41,8 @@ Schedule.Inject(Agenda);
 
     // Initialize DropDownList component for allow virtual scroll
     let virtualScrollDropDown: DropDownList = new DropDownList({
+        placeholder: "Allow Virtual Scrolling",
+        floatLabelType: "Always",
         change: (args: DropDownChangeArgs) => {
             let allowVS: boolean = (args.value === 'true') ? true : false;
             scheduleObj.views = [{ option: 'Agenda', allowVirtualScrolling: allowVS }];
@@ -49,6 +53,8 @@ Schedule.Inject(Agenda);
 
     // Initialize DropDownList component for hide empty agenda days
     let hideEmptyDaysDropDown: DropDownList = new DropDownList({
+        placeholder: "Hide Empty Days",
+        floatLabelType: "Always",
         change: (args: DropDownChangeArgs) => {
             scheduleObj.hideEmptyAgendaDays = (args.value === 'true') ? true : false;
             scheduleObj.dataBind();

@@ -11,7 +11,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
+            args.gauge.theme = <LinearGaugeTheme>(theme.charAt(0).toUpperCase() +
+            theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code start
         title: 'Temperature Measure',
@@ -66,7 +67,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     let containerMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 120,
+        width: 140,
         change: () => {
             gauge.container.type = <ContainerType>containerMode.value;
             gauge.refresh();
@@ -77,7 +78,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     let orientationMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 120,
+        width: 140,
         change: () => {
             gauge.orientation = <Orientation>orientationMode.value;
             gauge.refresh();

@@ -1,13 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
+import { extend } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 import { MultiSelect, CheckBoxSelection, MultiSelectChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import {
-    Schedule, Day, Week, Month, TimelineViews, TimelineMonth,
-    EventRenderedArgs, Resize, DragAndDrop
+    Schedule, Day, Week, Month, TimelineViews, TimelineMonth, EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 import { applyCategoryColor } from './helper';
-import { extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 MultiSelect.Inject(CheckBoxSelection);
@@ -28,7 +27,7 @@ MultiSelect.Inject(CheckBoxSelection);
             start: '08:00'
         },
         views: ['Day', 'Week', 'Month', 'TimelineWeek', 'TimelineMonth'],
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
@@ -52,6 +51,8 @@ MultiSelect.Inject(CheckBoxSelection);
         showDropDownIcon: true,
         showClearButton: false,
         popupWidth: 180,
+        placeholder: "Working days",
+        floatLabelType: "Always",
         change: (args: MultiSelectChangeEventArgs) => {
             let value: number[] = (args.value as number[]).slice(0).map(Number).sort();
             scheduleObj.workDays = value.length === 0 ? [0] : value;

@@ -22,7 +22,9 @@ import * as data from './datasource.json';
         scope: '#listbox2',
 
         // Set the tool settings with set of items.
-        toolbarSettings: { items: ['moveUp', 'moveDown', 'moveTo', 'moveFrom', 'moveAllTo', 'moveAllFrom']}
+        toolbarSettings: { items: ['moveUp', 'moveDown', 'moveTo', 'moveFrom', 'moveAllTo', 'moveAllFrom']},
+        // set the no record template
+        noRecordsTemplate: '<div class= "e-list-nrt"><span>NO DATA AVAILABLE</span></div>'
     });
 
     listObj1.appendTo('#listbox1');
@@ -35,7 +37,9 @@ import * as data from './datasource.json';
         height: '330px',
 
         // Set field property with text as `Name`.
-        fields: { text: 'Name'}
+        fields: { text: 'Name'},
+        // set the no record template
+        noRecordsTemplate: '<div class= "e-list-nrt"><span>NO DATA AVAILABLE</span></div>'
     });
 
     listObj2.appendTo('#listbox2');

@@ -11,11 +11,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).zooEventsData, null, true);
+    let data: Record<string, any>[] = <Record<string, any>[]>extend([], (dataSource as Record<string, any>).zooEventsData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => {
             let categoryColor: string = args.data.CategoryColor as string;

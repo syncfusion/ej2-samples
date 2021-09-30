@@ -83,7 +83,8 @@ export function gauge(): CircularGauge {
             // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
             // custom code end
             let width: number = args.gauge.element.offsetWidth;
             let height: number = args.gauge.element.offsetHeight;
@@ -133,7 +134,8 @@ export function gauge1(): CircularGauge {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code end
         centerX: centerX,
@@ -202,7 +204,8 @@ export function gauge2(): CircularGauge {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code end
         axes: [
@@ -282,7 +285,8 @@ export function gauge3(): CircularGauge {
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code end
         axes: [

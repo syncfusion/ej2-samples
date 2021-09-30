@@ -27,8 +27,9 @@ Schedule.Inject(Month, Resize, DragAndDrop);
             return '<img src="src/schedule/images/newyear.svg" /><div class="caption">New Year\'s Day</div>';
         } else if (date.getMonth() === 0 && date.getDate() === 14) {
             return '<img src="src/schedule/images/get-together.svg" /><div class="caption">Get together</div>';
+        } else {
+            return '';
         }
-        return '';
     };
     interface TemplateFunction extends Window {
         getCellContent?: Function;
@@ -40,7 +41,7 @@ Schedule.Inject(Month, Resize, DragAndDrop);
         cellTemplate: '${if(type === "monthCells")}<div class="templatewrap">${getCellContent(data.date)}</div>${/if}',
         views: ['Month'],
         currentView: 'Month',
-        selectedDate: new Date(2017, 11, 15)
+        selectedDate: new Date(2021, 11, 15)
     });
     scheduleObj.appendTo('#Schedule');
 };

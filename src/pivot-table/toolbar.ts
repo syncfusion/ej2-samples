@@ -128,8 +128,8 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];
                 selectedTheme = selectedTheme ? selectedTheme : 'Material';
-                args.chart.theme = (selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)) as ChartTheme;
+                args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             }
         },
         showFieldList: true,

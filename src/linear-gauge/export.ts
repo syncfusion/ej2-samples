@@ -13,7 +13,8 @@ LinearGauge.Inject(Print, ImageExport, PdfExport);
         load: (args: ILoadEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code end
         orientation: 'Horizontal',
@@ -87,7 +88,7 @@ LinearGauge.Inject(Print, ImageExport, PdfExport);
 
     let mode: DropDownList = new DropDownList({
         index: 0,
-        width: '100px'
+        width: '90px'
     });
     mode.appendTo('#type');
     let exportGauge: Button = new Button({

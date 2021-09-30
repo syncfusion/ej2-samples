@@ -29,6 +29,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         width: '100%',
         height: 450,
         showGroupingBar: true,
+        showValuesButton: true,
         groupingBarSettings: { showFieldsPanel: true },
         gridSettings: { columnWidth: 140 }
     });

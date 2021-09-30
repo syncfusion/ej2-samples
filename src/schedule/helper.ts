@@ -16,7 +16,7 @@ export function applyCategoryColor(args: EventRenderedArgs, currentView: View): 
     }
 }
 
-export function generateObject(start: number = new Date(2017, 6, 1).getTime(), end: number = new Date(2018, 6, 31).getTime()): Object[] {
+export function generateObject(start: number = new Date(2020, 6, 1).getTime(), end: number = new Date(2022, 11, 31).getTime()): Object[] {
     let data: Object[] = [];
     let names: string[] = [
         'Story Time for Kids', 'Camping with Turtles', 'Wildlife Warriors', 'Parrot Talk', 'Birds of Prey', 'Croco World',
@@ -46,10 +46,11 @@ export function generateObject(start: number = new Date(2017, 6, 1).getTime(), e
     return data;
 }
 
+const msPerDay: number = 86400000;
+const msPerHour: number = 3600000;
+const currentTime: number = new Date().setMinutes(0, 0, 0);
+
 export function getReadOnlyEventsData(): Object[] {
-    let msPerDay: number = 86400000;
-    let msPerHour: number = 3600000;
-    let currentTime: number = new Date().setMinutes(0, 0, 0);
     let readonlyEventsData: Object[] = [
         {
             Id: 1,
@@ -114,4 +115,51 @@ export function getReadOnlyEventsData(): Object[] {
         }
     ];
     return readonlyEventsData;
+}
+
+export function getReminderEvents(): Record<string, any>[] {
+    const today: number = new Date().getTime();
+
+    let reminderEvents: Record<string, any>[] = [{
+        Id: 1,
+        Subject: 'Explosion of Betelgeuse Star',
+        Location: 'Space Centre USA',
+        StartTime: new Date(today + 5000),
+        EndTime: new Date(today + (msPerHour * 2) + 5000),
+        StartTimezone: "UTC",
+        EndTimezone: "UTC"
+    }, {
+        Id: 2,
+        Subject: 'Thule Air Crash Report',
+        Location: 'Newyork City',
+        StartTime: new Date(today - msPerDay - (msPerHour * 2)),
+        EndTime: new Date(today - msPerDay),
+        StartTimezone: "UTC",
+        EndTimezone: "UTC"
+    }, {
+        Id: 3,
+        Subject: 'Milky Way as Melting pot',
+        Location: 'Space Centre USA',
+        StartTime: new Date(today - msPerDay),
+        EndTime: new Date(today - msPerDay + (msPerHour * 2)),
+        StartTimezone: "UTC",
+        EndTimezone: "UTC"
+    }, {
+        Id: 4,
+        Subject: 'Blue Moon Eclipse',
+        Location: 'Space Centre USA',
+        StartTime: new Date(today + msPerDay + (msPerHour * 2)),
+        EndTime: new Date(today + msPerDay + (msPerHour * 4)),
+        StartTimezone: "UTC",
+        EndTimezone: "UTC"
+    }, {
+        Id: 5,
+        Subject: 'Mysteries of Bermuda Triangle',
+        Location: 'Bermuda',
+        StartTime: new Date(today + msPerDay),
+        EndTime: new Date(today + msPerDay + (msPerHour * 2)),
+        StartTimezone: "UTC",
+        EndTimezone: "UTC"
+    }];
+    return reminderEvents;
 }

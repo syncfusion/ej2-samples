@@ -16,7 +16,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 5, 21),
+        selectedDate: new Date(2021, 5, 16),
         eventSettings: { dataSource: data },
         views: [
             { displayName: '3 Days', option: 'Day', interval: 3 },

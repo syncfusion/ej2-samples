@@ -7,6 +7,7 @@ import { InPlaceEditor, TimePicker, DateRangePicker, RenderMode } from '@syncfus
 import { DropDownList, ChangeEventArgs as DropDownChangeArgs } from '@syncfusion/ej2-dropdowns';
 
 InPlaceEditor.Inject(TimePicker, DateRangePicker);
+
 (window as any).default = (): void => {
     loadCultureFiles();
     let dateObj: InPlaceEditor = new InPlaceEditor({

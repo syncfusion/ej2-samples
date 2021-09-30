@@ -1,8 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { addClass } from '@syncfusion/ej2-base';
 import {
-    Schedule, ScheduleModel, WorkWeek, Month, ResourceDetails,
-    TreeViewArgs, PopupOpenEventArgs, ActionEventArgs, EventFieldsMapping, RenderCellEventArgs
+    Schedule, ScheduleModel, WorkWeek, Month, ResourceDetails, PopupOpenEventArgs, ActionEventArgs, EventFieldsMapping, RenderCellEventArgs
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 
@@ -24,7 +23,7 @@ Schedule.Inject(WorkWeek, Month);
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 3, 1),
+        selectedDate: new Date(2021, 3, 6),
         currentView: 'WorkWeek',
         resourceHeaderTemplate: '#resourceTemplate',
         group: {
@@ -54,8 +53,8 @@ Schedule.Inject(WorkWeek, Month);
         actionBegin: (args: ActionEventArgs) => {
             let isEventChange: boolean = (args.requestType === 'eventChange');
             if ((args.requestType === 'eventCreate' && (<Object[]>args.data).length > 0) || isEventChange) {
-                let eventData: { [key: string]: Object } = (isEventChange) ? args.data as { [key: string]: Object } :
-                    args.data[0] as { [key: string]: Object };
+                let eventData: Record<string, any> = (isEventChange) ? args.data as Record<string, any> :
+                    args.data[0] as Record<string, any>;
                 let eventField: EventFieldsMapping = scheduleObj.eventFields;
                 let startDate: Date = eventData[eventField.startTime] as Date;
                 let endDate: Date = eventData[eventField.endTime] as Date;
@@ -87,17 +86,17 @@ Schedule.Inject(WorkWeek, Month);
         let endHour: number = parseInt(resource.resourceData.endHour.toString().slice(0, 2), 10);
         return (startHour <= startDate.getHours() && endHour >= endDate.getHours());
     }
-    (window as TemplateFunction).getDoctorName = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getDoctorName = (value: ResourceDetails) => {
         return ((value as ResourceDetails).resourceData) ?
-            (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] : (value as TreeViewArgs).resourceName;
+            (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] : value.resourceName;
     };
 
-    (window as TemplateFunction).getDoctorImage = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getDoctorImage = (value: ResourceDetails) => {
         let resourceName: string = (window as TemplateFunction).getDoctorName(value);
         return resourceName.replace(' ', '-').toLowerCase();
     };
 
-    (window as TemplateFunction).getDoctorLevel = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getDoctorLevel = (value: ResourceDetails) => {
         let resourceName: string = (window as TemplateFunction).getDoctorName(value);
         return (resourceName === 'Will Smith') ? 'Cardiologist' : (resourceName === 'Alice') ? 'Neurologist' : 'Orthopedic Surgeon';
     };

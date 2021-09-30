@@ -38,7 +38,8 @@ LinearGauge.Inject(Gradient);
         load: (args: ILoadEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         orientation: 'Horizontal',
         container: {
@@ -49,8 +50,7 @@ LinearGauge.Inject(Gradient);
             majorTicks: { interval: 25, height: 0 },
             minorTicks: { height: 0 },
             labelStyle: {
-                font: { color: '#424242',
-                }, offset: 55
+                offset: 55
             },
             pointers: [{
                 value: 80, height: 25,

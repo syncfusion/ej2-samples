@@ -10,7 +10,7 @@ Schedule.Inject(Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let calendarCollections: Object[] = [
+    let calendarCollections: { [key: string]: any }[] = [
         { CalendarText: 'My Calendar', CalendarId: 1, CalendarColor: '#c43081' },
         { CalendarText: 'Company', CalendarId: 2, CalendarColor: '#ff7f50' },
         { CalendarText: 'Birthday', CalendarId: 3, CalendarColor: '#AF27CD' },
@@ -19,7 +19,7 @@ Schedule.Inject(Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 3, 1),
+        selectedDate: new Date(2021, 3, 1),
         group: {
             resources: ['Calendars']
         },
@@ -38,7 +38,7 @@ Schedule.Inject(Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
     // custom code start
     function onChange(args: ChangeEventArgs): void {
         let value: number = parseInt((<Element>args.event.target).getAttribute('value'), 10);
-        let resourceData: Object[] = calendarCollections.filter((calendar: { [key: string]: Object }) => calendar.CalendarId === value);
+        let resourceData: Object[] = calendarCollections.filter((calendar: { [key: string]: number }) => calendar.CalendarId === value);
         if (args.checked) {
             scheduleObj.addResource(resourceData[0], 'Calendars', value - 1);
         } else {

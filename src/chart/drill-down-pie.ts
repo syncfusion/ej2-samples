@@ -53,6 +53,9 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             if (selectedTheme === 'highcontrast') {
                 args.accumulation.annotations[0].content = '#white' ;
             }
+            if (args.accumulation.theme.indexOf('Dark') > -1){
+                args.accumulation.annotations[0].content = '#white' ;
+            }
         }
          // custom code end
     };

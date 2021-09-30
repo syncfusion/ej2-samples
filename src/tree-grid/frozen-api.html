@@ -1,0 +1,60 @@
+<div class="control-section">
+    <div class="content-wrapper">
+        <div class="freezeprop">
+            <div class="freezecol">
+                <div class="freezecol">
+                    <span>
+                        Column
+                    </span>
+                </div>
+                <div class="freezecol"><input type="text" tabindex="1" id="column"></div>
+            </div>
+            <div class="freezecol">
+                <div class="freezecol">
+                    <span>
+                        Freeze Direction
+                    </span>
+                </div>
+                <div class="freezecol"><input type="text" tabindex="1" id="FreezeDirection"></div>
+            </div>
+        </div>
+        <div id="TreeGrid">
+        </div>
+        <div id="alertDialog"></div>
+    </div>
+</div>
+
+<!-- custom code start -->
+<style>
+    .freezeprop {
+        padding-bottom: 5px;
+    }
+
+    .freezecol {
+        display: inline-block;
+        padding-right: 10px;
+    }
+</style>
+<!-- custom code end -->
+<div id="action-description">
+    <p>This sample demonstrates the freeze direction feature of the Tree Grid. Scroll the movable content
+        horizontally to view the frozen columns
+        with the content.
+    </p>
+</div>
+<div id="description">
+    <p>
+        The freezing feature enables the user to freeze certain rows/columns at both sides to scroll remaining movable
+        content. This can be achieved by setting <code><a target="_blank" class="code"
+            href="https://ej2.syncfusion.com/documentation/treegrid/scrolling/#frozen-rows-and-columns">
+            Freeze
+            </a></code> property in column settings.
+    </p>
+    <p> In this demo sample, the <b>Task ID</b> columns freezed at left side and <b>Approved</b> column freezed at
+        right side using <code>Column->Freeze</code>property.</p>
+    <p> Tree Grid features are segregated into individual feature-wise modules. To use frozen rows and columns feature, we
+        need to inject <code><a target="_blank" class="code"
+    href="https://ej2.syncfusion.com/documentation/treegrid/scrolling/#frozen-rows-and-columns">
+    Freeze
+    </a></code> module using the <code>TreeGrid.Inject(Freeze)</code> method.</p>
+</div>

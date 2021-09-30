@@ -3,7 +3,6 @@
     "directory": "pdfviewer",
     "category": "Viewer",
     "ftName": "pdfviewer",
-    "type": "update",
     "samples": [
         {            
             "url":"default", "name": "Default Functionalities", "description": "This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with minimum configuration.", "category": "PDF Viewer"
@@ -15,16 +14,16 @@
             "url":"right-to-left", "name": "Right to Left", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Right to Left Configuration ", "category": "PDF Viewer"
         },
         {
-           "url":"form-filling", "name": "Form Filling", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Form Filling Configuration ", "category": "PDF Viewer"
+            "url":"form-filling", "name": "Form Filling", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Form Filling Configuration ", "category": "PDF Viewer"
         },
         {
-            "url":"formdesigner", "name": "Form Designer", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Form Fields.", "category": "PDF Viewer", "type": "new"
+            "url":"formdesigner", "name": "Form Designer", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Form Fields.", "category": "PDF Viewer"
         },
         {
-           "url":"annotations", "name": "Annotations", "description":"This sample demonstrates the creation of different types of annotations such as Text Markup, Shapes, Measurements, Free text, Stamps, Handwritten signature, ink, and sticky notes in the PDF Viewer. And also we can customize the added annotations or we can include new annotations through user interaction from the PDF Viewer.", "category": "PDF Viewer", "type": "new"
+            "url":"annotations", "name": "Annotations", "description":"This sample demonstrates the creation of different types of annotations such as Text Markup, Shapes, Measurements, Free text, Stamps, Handwritten signature, ink, and sticky notes in the PDF Viewer. And also we can customize the added annotations or we can include new annotations through user interaction from the PDF Viewer.", "category": "PDF Viewer"
         },
         {
-            "url":"hand-written", "name": "Handwritten Signature", "description": "The sample demonstrates the Handwritten Signature support of  PDF Viewer. The Handwritten signature reduces the paperwork of reviewing the contents and it's verified it's digitally", "category": "PDF Viewer", "type": "update"
+            "url":"hand-written", "name": "Handwritten Signature", "description": "The sample demonstrates the Handwritten Signature support of  PDF Viewer. The Handwritten signature reduces the paperwork of reviewing the contents and it's verified it's digitally", "category": "PDF Viewer"
         }
     ]
 }

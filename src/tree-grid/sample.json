@@ -3,10 +3,11 @@
     "directory": "tree-grid",
     "category": "Grids",
     "ftName": "tree-grid",
+    "type": "update",
     "samples": [
          {  
             "url": "treegrid-overview", "name": "Overview", "category": "Tree Grid","api":{"TreeGrid":["dataSource","childMapping","height","columns","allowReordering","allowFiltering","allowSorting","filterSettings","queryCellInfo"] },
-            "description": "This sample demonstrates the overview of basic Tree Grid features such as sorting, filtering, conditional formatting, column template and scrolling."
+         "description": "This JavaScript Tree Grid example demonstrates the overview in JavaScript Tree Grid Component. Explore here for more details."
          },
         {  
             "url": "default", "name": "Default Functionalities", "category": "Tree Grid","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","height","columns"] },
@@ -171,9 +172,13 @@
             "description": "This demo explains how the hierarchy selection between the records using column checkboxes in Essential TypeScript Tree Grid control."
          },
          {
-            "url":"frozen-column", "name": "Frozen Column", "category":"Columns","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
+            "url":"frozen-column", "name": "Default Frozen", "category":"Frozen","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
             "description": "This demo for Essential JS 2 Tree Grid control shows frozen columns feature of Tree Grid. Scroll the movable content to view the frozen columns."
          },
+         {
+            "url":"frozen-api", "name": "Freeze Direction", "type": "new", "category":"Frozen","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
+            "description": "This demo for Essential JS 2 Tree Grid control shows frozen columns feature of Tree Grid with Freeze direction Left/Right."
+         },         
          {"url":"aggregate-default", "name": "Default Aggregate", "category": "Aggregates","api":{"TreeGrid":["dataSource","childMapping", "treeColumnIndex","height","columns","aggregates"] },
             "description": "This demo explains how to display the summary values such as average, minimum, etc., for the columns in Syncfusion TypeScript Tree Grid control."
          },

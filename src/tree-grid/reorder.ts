@@ -57,6 +57,7 @@ TreeGrid.Inject(Reorder, Page);
     treegrid.appendTo('#Grid');
     let dropDownColumn: DropDownList = new DropDownList({
         dataSource: columnNames,
+        popupWidth: '100%',
         fields: { text: 'name', value: 'id' },
         value: 'taskID',
         change: (e: ChangeEventArgs) => {

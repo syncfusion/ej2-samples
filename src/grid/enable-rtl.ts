@@ -25,14 +25,14 @@ Grid.Inject(Page, Selection, Sort, Group, Filter, Reorder, Edit);
             filterSettings: { type: 'Menu' },
             columns: [
                 {
-                    field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Left',
+                    field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right',
                     editType: 'numericedit', isPrimaryKey: true, validationRules: { required: true }
                 },
-                { field: 'CustomerID', headerText: 'Customer Name', width: 150 },
+                { field: 'CustomerID', headerText: 'Customer Name', width: 150, textAlign: 'Left' },
                 {
-                    field: 'OrderDate', headerText: 'Order Date', width: 130, type: 'date', format: 'yMd', editType: 'datepickeredit'
+                    field: 'OrderDate', headerText: 'Order Date', width: 130, type: 'date', format: 'yMd', editType: 'datepickeredit', textAlign: 'Right'
                 },
-                { field: 'Freight', width: 120, format: 'C2', editType: 'numericedit' },
+                { field: 'Freight', width: 120, format: 'C2', editType: 'numericedit', textAlign: 'Right' },
                 { field: 'ShipCountry', headerText: 'Ship Country', textAlign: 'Left', width: 150, editType: 'dropdownedit' }
             ],
             pageSettings: { pageSize: 10, pageCount: 2 },

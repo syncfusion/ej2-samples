@@ -15,8 +15,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
-        eventSettings: { dataSource: extend([], (dataSource as { [key: string]: Object }).zooEventsData, null, true) as Object[] },
+        selectedDate: new Date(2021, 1, 15),
+        eventSettings: { dataSource: extend([], (dataSource as Record<string, any>).zooEventsData, null, true) as Record<string, any>[] },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
     scheduleObj.appendTo('#Schedule');

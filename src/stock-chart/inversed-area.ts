@@ -26,7 +26,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
 
         series: [
             {
-                dataSource: aapl, xName: 'x', yName: 'high', type: 'Area', name: 'google', fill: '#BDEDE9'
+                dataSource: aapl, xName: 'x', yName: 'high', type: 'Area', opacity: 0.5, name: 'google'
             }
         ],
         seriesType : [],

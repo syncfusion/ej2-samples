@@ -25,6 +25,7 @@ import * as dataSource from './datasource.json';
         ],
         cardSettings: {
             headerField: 'Id',
+            contentField: 'Description',
             template: '#cardTemplate'
         }
     });

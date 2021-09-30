@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Schedule, ScheduleModel, Week, Month, ResourceDetails, TreeViewArgs, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
+import { Schedule, ScheduleModel, Week, Month, ResourceDetails, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 
 /**
  * schedule resources group sample
@@ -20,8 +20,7 @@ Schedule.Inject(Week, Month, Agenda, Resize, DragAndDrop);
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
-        cssClass: 'horizontal-grouping',
-        selectedDate: new Date(2018, 3, 1),
+        selectedDate: new Date(2021, 3, 6),
         views: ['Week', 'Month', 'Agenda'],
         resourceHeaderTemplate: '#restemplate',
         group: {
@@ -49,32 +48,33 @@ Schedule.Inject(Week, Month, Agenda, Resize, DragAndDrop);
         }
     };
 
-    let scheduleObj: Schedule = new Schedule(scheduleOptions, document.getElementById('Schedule'));
+    let scheduleObj: Schedule = new Schedule(scheduleOptions);
+    scheduleObj.appendTo(document.getElementById('Schedule'));
     // custom code start
-    (window as TemplateFunction).getAirlineImage = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getAirlineImage = (value: ResourceDetails) => {
         let airlineName: string = (window as TemplateFunction).getAirlineName(value);
         return airlineName.replace(' ', '-').toLowerCase();
     };
-    (window as TemplateFunction).getAirlineName = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getAirlineName = (value: ResourceDetails) => {
         return ((value as ResourceDetails).resourceData) ?
-            (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] : (value as TreeViewArgs).resourceName;
+            (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] : value.resourceName;
     };
-    (window as TemplateFunction).getAirlineModel = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getAirlineModel = (value: ResourceDetails) => {
         let airlineName: string = (window as TemplateFunction).getAirlineName(value);
         return (airlineName === 'Airways 1') ? 'CRJ 700' : (airlineName === 'Airways 2') ? 'Airbus A330' : 'ATR 72-600';
     };
-    (window as TemplateFunction).getAirlineSeats = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getAirlineSeats = (value: ResourceDetails) => {
         let airlineName: string = (window as TemplateFunction).getAirlineName(value);
         return (airlineName === 'Airways 1') ? 50 : (airlineName === 'Airways 2') ? 75 : 100;
     };
 
-    function generateEvents(): Object[] {
+    function generateEvents(): Record<string, any>[] {
         let subjectCollection: string[] = ['Barcelona to Los Angeles', 'Los Angeles to Barcelona'];
-        let collections: Object[] = [];
+        let collections: Record<string, any>[] = [];
         let dataCollections: number[] = [1, 2, 3];
         let id: number = 1;
         for (let data of dataCollections) {
-            let startDate: Date = new Date(2018, 3, 1);
+            let startDate: Date = new Date(2021, 3, 1);
             startDate.setMilliseconds(1000 * 60 * 60 * .5 * (data - 1));
             let lastDate: Date = new Date((+startDate) + (1000 * 60 * 60 * 24 * 30));
             for (let date: Date = startDate; date.getTime() < lastDate.getTime(); date = new Date(date.getTime() + (1000 * 60 * 60 * 5))) {

@@ -72,9 +72,17 @@
                 background: #f9f9f9;
         }
 
-        .highcontrast #control_wrapper {
-            background: #000000;
+        .highcontrast #control_wrapper,
+        .material-dark #control_wrapper,
+        .fabric-dark #control_wrapper,
+        .bootstrap-dark #control_wrapper,
+        .bootstrap5-dark #control_wrapper {
+            background: #393939;
         }
+        .tailwind-dark #control_wrapper { 
+            background: #6c757d;
+        }
+
         .upload-area, .e-bigger .upload-area {
             width: 73%;
         }
@@ -187,7 +195,8 @@
 
 </style>       
 <div id="action-description">
-    <p>This example demonstrates the Uploader control supported with HTML form upload. Fill the mandatory details in a form and click the submit button.</p>
+    <p>This <a href="https://www.syncfusion.com/javascript-ui-controls/js-file-upload"
+        target="_blank">JavaScript File Upload</a> example demonstrates the Uploader control supported with HTML form upload. Fill the mandatory details in a form and click the submit button.</p>
 </div>
 
 <div id="description">    

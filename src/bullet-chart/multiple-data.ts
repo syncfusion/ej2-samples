@@ -71,7 +71,7 @@ let data: Object[] = [
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, "Dark").replace(/contrast/i, 'Contrast');;
         },
         height: '400',
         minimum: 5, maximum: 45, interval: 5,

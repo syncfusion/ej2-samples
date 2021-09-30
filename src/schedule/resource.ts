@@ -18,14 +18,14 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, MonthAgenda, DragAndDrop, Re
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 5, 5),
+        selectedDate: new Date(2021, 5, 6),
         resources: [{
             field: 'OwnerId', title: 'Owners',
             name: 'Owners', allowMultiple: true,
             dataSource: ownerCollections,
             textField: 'OwnerText', idField: 'OwnerId', colorField: 'Color'
         }],
-        eventSettings: { dataSource: (dataSource as any).resourceSampleData }
+        eventSettings: { dataSource: (dataSource as Record<string, any>).resourceSampleData }
     };
 
     let scheduleObj: Schedule = new Schedule(scheduleOptions, document.getElementById('schedule'));

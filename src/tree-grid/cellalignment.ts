@@ -42,7 +42,7 @@ TreeGrid.Inject( Page );
     treegrid.appendTo('#TreeGrid');
     let dropDownColumn: DropDownList = new DropDownList({
         dataSource: columnNames,
-        width: 100,
+        popupWidth: '100%',
         fields: { text: 'name', value: 'id' },
         value: 'taskID',
         change: (e: ChangeEventArgs) => {
@@ -55,7 +55,6 @@ TreeGrid.Inject( Page );
 
     let dropDownAlign: DropDownList = new DropDownList({
         dataSource: alignment,
-        width: 100,
         fields: { text: 'name', value: 'id' },
         value: 'Right',
         change: (e: ChangeEventArgs) => {

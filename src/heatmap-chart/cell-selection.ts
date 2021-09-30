@@ -36,7 +36,7 @@ Chart.Inject(ColumnSeries, DataLabel, Category, Legend, chartTooltip);
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
         },
         cellSelected: (args: ISelectedEventArgs) => {
             let data: SelectedCellDetails[] = args.data;
@@ -96,7 +96,7 @@ Chart.Inject(ColumnSeries, DataLabel, Category, Legend, chartTooltip);
         load: (args: IChartLoadedEventsArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
         }
     });
     chart.appendTo('#container1');

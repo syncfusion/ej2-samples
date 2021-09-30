@@ -43,7 +43,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Co
         crosshair: { enable: true },
         tooltip: { enable: true },
         tooltipRender : (args: ITooltipRenderEventArgs) => {
-            if  (args.text.split('<br/>')[4]) {
+            if (args.text.split('<br/>')[4]) {
                 let target : number = parseFloat(args.text.split('<br/>')[4].split('<b>')[1].split('</b>')[0]);
                 let value : string = (target / 100000000).toFixed(1) + 'B';
                 args.text = args.text.replace(args.text.split('<br/>')[4].split('<b>')[1].split('</b>')[0], value);

@@ -28,8 +28,7 @@ Gantt.Inject(Edit, Toolbar, Selection);
                 {field: 'TaskName', width: 80 },
                 {field: 'StartDate', width: 120},
                 {field: 'EndDate', width: 120 },
-                {field: 'Duration', width: 90 },
-                {field: 'TaskType', visible: false}
+                {field: 'Duration', width: 90 }
             ],
             splitterSettings: {
                 columnIndex: 4

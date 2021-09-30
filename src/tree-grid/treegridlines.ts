@@ -38,7 +38,6 @@ TreeGrid.Inject( Page );
     let dropDownListObject: DropDownList = new DropDownList({
         dataSource: lines,
         popupWidth: '100%',
-        width: 100,
         fields: { text: 'type', value: 'id' },
         value: 'Vertical',
         change: (e: ChangeEventArgs) => {

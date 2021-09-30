@@ -23,11 +23,10 @@ Schedule.Inject(Day, TimelineViews, TimelineMonth, Resize, DragAndDrop);
     };
 
     (window as TemplateFunction).getEmployeeImage = (value: ResourceDetails) => {
-        let resourceName: string =
-            (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] as string;
-        return '<img class="employee-image" src="src/schedule/images/' +
-            resourceName.toLowerCase() + '.png" />';
+        let resourceName: string = (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] as string;
+        return `<img class="employee-image" src="src/schedule/images/${resourceName.toLowerCase()}.png" />`;
     };
+
     (window as TemplateFunction).getEmployeeDesignation = (value: ResourceDetails) => {
         return (value as ResourceDetails).resourceData.Designation;
     };
@@ -35,7 +34,7 @@ Schedule.Inject(Day, TimelineViews, TimelineMonth, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 7, 1),
+        selectedDate: new Date(2021, 7, 2),
         currentView: 'TimelineDay',
         views: [
             { option: 'Day' },

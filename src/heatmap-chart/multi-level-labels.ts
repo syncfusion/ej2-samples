@@ -90,9 +90,9 @@ HeatMap.Inject(Tooltip);
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
             selectedTheme = selectedTheme.toLowerCase();
-            if (selectedTheme === 'highcontrast') {
+            if (selectedTheme === 'highcontrast' || selectedTheme === 'bootstrap5-dark' || selectedTheme === 'material-dark' || selectedTheme === 'fabric-dark' || selectedTheme === 'bootstrap-dark' || selectedTheme === 'tailwind-dark') {
                 args.heatmap.xAxis.textStyle.color = 'White';
                 args.heatmap.yAxis.textStyle.color = 'White';
                 args.heatmap.xAxis.multiLevelLabels[0].textStyle.color = 'White';

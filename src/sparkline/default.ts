@@ -11,7 +11,7 @@ export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadE
     // custom code start
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
-    args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
+    args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
 };
 // tslint:disable:max-func-body-length
 // custom code end

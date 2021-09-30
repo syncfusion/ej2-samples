@@ -36,7 +36,6 @@ import { employeeData } from './data-source';
         }]
     };
     let qryBldrObj: QueryBuilder = new QueryBuilder({
-        width: '70%',
         dataSource: employeeData,
         columns: columnData,
         rule: importRules,

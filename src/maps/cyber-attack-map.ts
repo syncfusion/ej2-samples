@@ -148,7 +148,8 @@ Maps.Inject(Marker, NavigationLine, MapsTooltip);
         load: (args: ILoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
             theme = theme ? theme : 'Material';
-            args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
+            args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() +
+            theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         loaded: (args: ILoadedEventArgs) => {
             let lines: NavigationLineSettingsModel[] = args.maps.layers[0].navigationLineSettings;

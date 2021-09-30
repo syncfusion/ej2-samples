@@ -44,6 +44,7 @@ TreeGrid.Inject(Filter, Sort, Reorder);
     (<{utcZone?: Function}>window).utcZone = (data: any) => {
         let img: HTMLImageElement = document.createElement('img');
         img.src = 'src/tree-grid/images/__Normal.png';
+        img.style.filter = "brightness(150%)";
         if (data.timezone.indexOf('-') !== -1) {
             img.className = 'negativeTimeZone';
         }

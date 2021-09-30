@@ -31,8 +31,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         if (resourceName === 'GENERAL' || resourceName === 'DENTAL') {
             return '';
         } else {
-            return '<img class="specialist-image" src="src/schedule/images/' +
-                resourceName.toLowerCase() + '.png" />';
+            return '<img class="specialist-image" src="src/schedule/images/' + resourceName.toLowerCase() + '.png" />';
         }
     };
     (window as TemplateFunction).getConsultantDesignation = (value: ResourceDetails) => {
@@ -49,7 +48,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 7, 1),
+        selectedDate: new Date(2021, 7, 2),
         currentView: 'TimelineDay',
         resourceHeaderTemplate: '#resource-template',
         cssClass: 'schedule-drag-drop',
@@ -90,7 +89,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             }
         ],
         eventSettings: {
-            dataSource: (dataSource as any).hospitalData,
+            dataSource: (dataSource as Record<string, any>).hospitalData,
             fields: {
                 subject: { title: 'Patient Name', name: 'Name' },
                 startTime: { title: 'From', name: 'StartTime' },
@@ -104,7 +103,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     scheduleObj.appendTo('#Schedule');
 
     let treeObj: TreeView = new TreeView({
-        fields: { dataSource: (dataSource as any).waitingList, id: 'Id', text: 'Name' },
+        fields: { dataSource: (dataSource as Record<string, any>).waitingList, id: 'Id', text: 'Name' },
         allowDragAndDrop: true,
         nodeDragStop: onTreeDragStop,
         nodeDragging: onItemDrag,
@@ -141,13 +140,13 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
     function onActionBegin(event: ActionEventArgs): void {
         if (event.requestType === 'eventCreate' && isTreeItemDropped) {
-            let treeViewdata: { [key: string]: Object }[] = treeObj.fields.dataSource as { [key: string]: Object }[];
-            const filteredPeople: { [key: string]: Object }[] =
-                treeViewdata.filter((item: any) => item.Id !== parseInt(draggedItemId, 10));
+            let treeViewData: Record<string, any>[] = treeObj.fields.dataSource as Record<string, any>[];
+            const filteredPeople: Record<string, any>[] =
+                treeViewData.filter((item: any) => item.Id !== parseInt(draggedItemId, 10));
             treeObj.fields.dataSource = filteredPeople;
             let elements: NodeListOf<HTMLElement> = document.querySelectorAll('.e-drag-item.treeview-external-drag');
-            for (let i: number = 0; i < elements.length; i++) {
-                remove(elements[i]);
+            for (let element of [].slice.call(elements)) {
+                remove(element);
             }
         }
     }
@@ -163,14 +162,14 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             let scheduleElement: Element = <Element>closest(event.target, '.e-content-wrap') ||
                 <Element>closest(event.target, '.e-all-day-row');
             if (scheduleElement) {
-                let treeviewData: { [key: string]: Object }[] =
-                    treeObj.fields.dataSource as { [key: string]: Object }[];
+                let treeviewData: Record<string, any>[] =
+                    treeObj.fields.dataSource as Record<string, any>[];
                 if (event.target.classList.contains('e-work-cells')) {
-                    const filteredData: { [key: string]: Object }[] =
+                    const filteredData: Record<string, any>[] =
                         treeviewData.filter((item: any) => item.Id === parseInt(event.draggedNodeData.id as string, 10));
                     let cellData: CellClickEventArgs = scheduleObj.getCellDetails(event.target);
                     let resourceDetails: ResourceDetails = scheduleObj.getResourcesByIndex(cellData.groupIndex);
-                    let eventData: { [key: string]: Object } = {
+                    let eventData: Record<string, any> = {
                         Name: filteredData[0].Name,
                         StartTime: cellData.startTime,
                         EndTime: cellData.endTime,

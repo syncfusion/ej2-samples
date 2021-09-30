@@ -16,7 +16,7 @@ Schedule.Inject(Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, Dra
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).employeeEventData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).employeeEventData, null, true);
     // Initialize schedule component
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
@@ -27,7 +27,7 @@ Schedule.Inject(Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, Dra
             start: '08:00'
         },
         views: ['Week', 'WorkWeek', 'Month', 'TimelineWeek', 'TimelineMonth'],
-        selectedDate: new Date(2018, 1, 14),
+        selectedDate: new Date(2021, 1, 14),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
@@ -37,6 +37,8 @@ Schedule.Inject(Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, Dra
     // Initialize DropDownList component for work days
     let workDaysDropDown: DropDownList = new DropDownList({
         popupWidth: 180,
+        placeholder: "Work days",
+        floatLabelType: "Always",
         change: (args: ChangeEventArgs) => {
             scheduleObj.workDays = args.value.toString().split(',').map(Number);
             scheduleObj.dataBind();
@@ -46,6 +48,8 @@ Schedule.Inject(Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize, Dra
 
     // Initialize DropDownList component for first day of week
     let dayOfWeekDropDown: DropDownList = new DropDownList({
+        placeholder: "First day of week",
+        floatLabelType: "Always",
         change: (args: ChangeEventArgs) => {
             scheduleObj.firstDayOfWeek = parseInt(<string>args.value, 10);
             scheduleObj.dataBind();

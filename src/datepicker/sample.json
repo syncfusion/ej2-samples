@@ -1,6 +1,5 @@
 {
     "name": "DatePicker",
-    "type": "update",
     "directory": "datepicker",
     "category": "Calendars",
     "samples": [
@@ -10,6 +9,6 @@
         { "url": "date-format", "name": "Format", "category": "DatePicker", "api":{"DatePicker": [ "format", "value", "placeholder" ]}, "description": "This example demonstrates how to change the date time format in the input field based on the format in a JavaScript (TypeScript) DatePicker" },
         { "url": "special-dates", "name": "Special Dates", "category": "DatePicker", "api":{"DatePicker": [ "value", "placeholder", "renderDayCell" ]}, "description": "DatePicker for TypeScript that highlights multiple dates like weekends, holidays, and special events with options to add custom styles and descriptions" },
         { "url": "month-picker", "name": "Month Picker", "category": "DatePicker", "api":{"DatePicker": [ "start", "depth" ]}, "description": "The JavaScript DatePicker control can act as a month and year picker. It helps you to select a month or year quickly with all months related properties."},
-        { "url": "input-mask","type": "new", "name": "Mask Support", "category": "DatePicker", "api":{"DatePicker": [ "enableMask", "format" ]}, "description": "This example demonstrates how to render the date time format in the input field using enableMask in a JavaScript (TypeScript) DatePicker" }
+        { "url": "input-mask", "name": "Mask Support", "category": "DatePicker", "api":{"DatePicker": [ "enableMask", "format" ]}, "description": "This example demonstrates how to render the date time format in the input field using enableMask in a JavaScript (TypeScript) DatePicker" }
     ]
 }

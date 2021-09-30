@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { extend, Internationalization, isNullOrUndefined } from '@syncfusion/ej2-base';
+import { extend, Internationalization, isNullOrUndefined, closest } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { TextBox } from '@syncfusion/ej2-inputs';
@@ -25,10 +25,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         getResourceData?: Function;
     }
 
-    (window as TemplateFunction).getResourceData = (data: { [key: string]: Object }) => {
+    (window as TemplateFunction).getResourceData = (data: Record<string, any>) => {
         let resources: ResourcesModel = scheduleObj.getResourceCollections().slice(-1)[0];
-        let resourceData: { [key: string]: Object } = (resources.dataSource as Object[]).filter((resource: { [key: string]: Object }) =>
-            resource.Id === data.RoomId)[0] as { [key: string]: Object };
+        let resourceData: Record<string, any> =
+            (resources.dataSource as { [key: string]: number }[]).filter((resource: { [key: string]: number }) =>
+                resource.Id === data.RoomId)[0] as Record<string, any>;
         return resourceData;
     };
 
@@ -38,25 +39,25 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
             intl.formatDate(data.StartTime, { skeleton: 'hm' }) + ' - ' + intl.formatDate(data.EndTime, { skeleton: 'hm' }) + ')';
     };
 
-    (window as TemplateFunction).getHeaderStyles = (data: { [key: string]: Object }) => {
+    (window as TemplateFunction).getHeaderStyles = (data: Record<string, any>) => {
         if (data.elementType === 'cell') {
             return 'align-items: center; color: #919191;';
         } else {
-            let resourceData: { [key: string]: Object } = (window as TemplateFunction).getResourceData(data);
+            let resourceData: Record<string, any> = (window as TemplateFunction).getResourceData(data);
             return 'background:' + resourceData.Color + '; color: #FFFFFF;';
         }
     };
 
     let buttonClickActions: Function = (e: Event) => {
-        let quickPopup: HTMLElement = scheduleObj.element.querySelector('.e-quick-popup-wrapper') as HTMLElement;
-        let getSlotData: Function = (): { [key: string]: Object } => {
+        let quickPopup: HTMLElement = closest(e.target as HTMLElement, '.e-quick-popup-wrapper') as HTMLElement;
+        let getSlotData: Function = (): Record<string, any> => {
             let cellDetails: CellClickEventArgs = scheduleObj.getCellDetails(scheduleObj.getSelectedElements());
             if (isNullOrUndefined(cellDetails)) {
                 cellDetails = scheduleObj.getCellDetails(scheduleObj.activeCellsData.element);
             }
             let subject = ((quickPopup.querySelector('#title') as EJ2Instance).ej2_instances[0] as TextBox).value;
             let notes = ((quickPopup.querySelector('#notes') as EJ2Instance).ej2_instances[0] as TextBox).value;
-            let addObj: { [key: string]: Object } = {};
+            let addObj: Record<string, any> = {};
             addObj.Id = scheduleObj.getEventMaxID();
             addObj.Subject = isNullOrUndefined(subject) ? 'Add title' : subject;
             addObj.StartTime = new Date(+cellDetails.startTime);
@@ -67,10 +68,10 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
             return addObj;
         };
         if ((e.target as HTMLElement).id === 'add') {
-            let addObj: { [key: string]: Object } = getSlotData();
+            let addObj: Record<string, any> = getSlotData();
             scheduleObj.addEvent(addObj);
         } else if ((e.target as HTMLElement).id === 'delete') {
-            let eventDetails: { [key: string]: Object } = scheduleObj.activeEventData.event as { [key: string]: Object };
+            let eventDetails: Record<string, any> = scheduleObj.activeEventData.event as Record<string, any>;
             let currentAction: CurrentAction;
             if (eventDetails.RecurrenceRule) {
                 currentAction = 'DeleteOccurrence';
@@ -78,8 +79,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
             scheduleObj.deleteEvent(eventDetails, currentAction);
         } else {
             let isCellPopup: boolean = quickPopup.firstElementChild.classList.contains('e-cell-popup');
-            let eventDetails: { [key: string]: Object } = isCellPopup ? getSlotData() :
-                scheduleObj.activeEventData.event as { [key: string]: Object };
+            let eventDetails: Record<string, any> = isCellPopup ? getSlotData() :
+                scheduleObj.activeEventData.event as Record<string, any>;
             let currentAction: CurrentAction = isCellPopup ? 'Add' : 'Save';
             if (eventDetails.RecurrenceRule) {
                 currentAction = 'EditOccurrence';
@@ -90,15 +91,15 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     };
 
     (window as TemplateFunction).getEventType = (data: { [key: string]: Date }) => {
-        let resourceData: { [key: string]: Object } = (window as TemplateFunction).getResourceData(data);
+        let resourceData: Record<string, any> = (window as TemplateFunction).getResourceData(data);
         return resourceData.Name;
     };
 
-    let data: Object[] = <Object[]>extend([], (dataSource as any).quickInfoTemplateData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).quickInfoTemplateData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2020, 0, 9),
+        selectedDate: new Date(2021, 0, 9),
         eventSettings: { dataSource: data },
         resources: [{
             field: 'RoomId', title: 'Room Type', name: 'MeetingRoom', textField: 'Name', idField: 'Id', colorField: 'Color',
@@ -132,11 +133,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
             }
         },
         popupOpen: (args: PopupOpenEventArgs) => {
-            if (args.type === 'QuickInfo') {
+            if (args.type === 'QuickInfo' || args.type === 'ViewEventInfo') {
                 let titleObj: TextBox = new TextBox({ placeholder: 'Title' });
                 titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
                 let typeObj: DropDownList = new DropDownList({
-                    dataSource: scheduleObj.getResourceCollections().slice(-1)[0].dataSource as { [key: string]: Object }[],
+                    dataSource: scheduleObj.getResourceCollections().slice(-1)[0].dataSource as Record<string, any>[],
                     placeholder: 'Choose Type',
                     fields: { text: 'Name', value: 'Id' },
                     index: 0

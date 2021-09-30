@@ -31,7 +31,6 @@ Grid.Inject(Page, Selection);
     };
 
     let qryBldrObj: QueryBuilder = new QueryBuilder({
-        width: '100%',
         dataSource: hardwareData,
         columns: columnData,
         rule: importRules,

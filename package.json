@@ -1,6 +1,6 @@
 {
   "name": "@syncfusion/ej2-samples",
-  "version": "19.2.44",
+  "version": "19.3.43",
   "description": "Samples for Syncfusion Essential JS 2",
   "author": "Syncfusion Inc.",
   "license": "SEE LICENSE IN license",
@@ -42,6 +42,7 @@
     "@types/signals": "0.0.16",
     "@types/moment-timezone": "0.5.7",
     "@types/hasher": "0.0.27",
+    "@microsoft/signalr": "5.0.9",
     "fuse.js": "3.2.0",
     "marked": "^0.3.19",
     "codemirror": "^5.37.0",
@@ -79,7 +80,9 @@
     "run-sequence": "^1.2.2",
     "typescript": "2.8.4",
     "webpack": "^4.43.0",
+    "gulp-jsoncombine": "^1.0.4",
     "webpack-cli": "^3.3.12",
+    "webpack-stream": "^5.0.0",
     "shelljs": "*"
   },
   "scripts": {

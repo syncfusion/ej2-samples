@@ -13,20 +13,24 @@ Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).recurrenceData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).recurrenceData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 1, 20),
+        selectedDate: new Date(2021, 1, 20),
         views: ['Day', 'Week', 'Month'],
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
     scheduleObj.appendTo('#Schedule');
     // custom code start
-    function onChange(args: ChangeEventArgs): void {
-        scheduleObj.eventSettings.editFollowingEvents = args.checked;
-    }
-    new CheckBox({ label: 'Enable Following Events', checked: false, change: onChange }, '#editFollowingEvents');
+    let checkBoxObj: CheckBox = new CheckBox({
+        label: 'Enable Following Events',
+        checked: false,
+        change: (args: ChangeEventArgs) => {
+            scheduleObj.eventSettings.editFollowingEvents = args.checked;
+        }
+    });
+    checkBoxObj.appendTo('#editFollowingEvents');
     // custom code end
 };

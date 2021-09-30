@@ -15,7 +15,7 @@ let currentMonth: number = new Date().getMonth();
     });
     calendar.appendTo('#calendar');
     function changeValue(): void {
-        let element: HTMLElement = document.getElementById('multiSelect');
+        let element: HTMLElement = document.getElementById('multiselect');
         element.innerHTML = '';
         for (let index: number = 0; index < this.values.length; index++) {
             element.insertBefore(document.createTextNode(this.values[index]), element.childNodes[0]);

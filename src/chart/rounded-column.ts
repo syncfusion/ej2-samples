@@ -71,7 +71,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         },
         loaded: (args: ILoadedEventArgs) => {
             chart.loaded = null;
-            let columninterval: number = setInterval(
+            let columninterval: number = window.setInterval(
                 () => {
                     if (document.getElementById('column-container')) {
                         if (count === 0) {

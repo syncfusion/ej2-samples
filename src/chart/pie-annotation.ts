@@ -114,7 +114,7 @@ export function getValue(series: Series[], pointIndex: number, y: number): strin
                     dataSource: pieDataSource, border: { color: 'transparent'},
                     xName: 'x', yName: 'y', dataLabel: { visible: true, position: 'Inside', name: 'text' },
                 }],
-                theme: <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)),
+                theme: <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast')),
                 legendSettings: { visible: false },
                 resized: (args: IAccResizeEventArgs) => { location.reload();  }
             });

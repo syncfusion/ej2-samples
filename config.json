@@ -144,7 +144,9 @@
 		"validation",
 		"editing",
 		"progressbar",
-		"adaptive-ui",
-		null
+		"multiline",
+		"sys",
+		"realtime",
+		"binding"
 	]
 }

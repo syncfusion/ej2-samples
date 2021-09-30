@@ -68,7 +68,7 @@ let gauge: LinearGauge;
         ],
         annotations: [
             {
-                content: '<div id="first"><h1 style="font-size:15px; color: #686868">Inches</h1></div>',
+                content: '<div id="first"><h1 style="font-size:15px;">Inches</h1></div>',
                 axisIndex: 0,
                 axisValue: 5.4,
                 x: 35,
@@ -76,7 +76,7 @@ let gauge: LinearGauge;
                 zIndex: '1'
             },
             {
-                content: '<div id="second"><h1 style="font-size:15px; color: #686868">Centimeters</h1></div>',
+                content: '<div id="second"><h1 style="font-size:15px;">Centimeters</h1></div>',
                 axisIndex: 1,
                 axisValue: 16.5,
                 x: 50,
@@ -127,7 +127,8 @@ function gaugeLoad(args: ILoadEventArgs): void {
     // custom code start
     let selectedTheme: string = location.hash.split('/')[1];
     selectedTheme = selectedTheme ? selectedTheme : 'Material';
-    args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+    args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
     if (args.gauge.theme.toLowerCase().indexOf('dark') > 1 || args.gauge.theme.toLowerCase() === 'highcontrast') {
         args.gauge.annotations[0].content = '<div id="second"><h1 style="font-size:15px; color: #DADADA">Inches</h1></div>';
         args.gauge.annotations[1].content = '<div id="second"><h1 style="font-size:15px; color: #DADADA">Centimeters</h1></div>';

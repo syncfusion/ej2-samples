@@ -29,7 +29,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 0, 1),
+        selectedDate: new Date(2021, 0, 1),
         headerRows: [
             { option: 'Month', template: '#month-template' },
             { option: 'Week', template: '#week-template' },

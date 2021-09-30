@@ -1,7 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Schedule, ScheduleModel, Day, WorkWeek, Month, TimelineViews,
-    ResourceDetails, TreeViewArgs, Resize, DragAndDrop
+    Schedule, ScheduleModel, Day, WorkWeek, Month, TimelineViews, ResourceDetails, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 
@@ -25,7 +24,7 @@ Schedule.Inject(Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop);
         width: '100%',
         height: '650px',
         currentView: 'WorkWeek',
-        selectedDate: new Date(2018, 5, 5),
+        selectedDate: new Date(2021, 5, 5),
         resourceHeaderTemplate: '#resourceTemplate',
         views: [
             { option: 'Day' }, { option: 'WorkWeek' },
@@ -57,20 +56,21 @@ Schedule.Inject(Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop);
         }
     };
 
-    let scheduleObj: Schedule = new Schedule(scheduleOptions, document.getElementById('Schedule'));
+    let scheduleObj: Schedule = new Schedule(scheduleOptions);
+    scheduleObj.appendTo(document.getElementById('Schedule'));
 
     // custom code start
-    (window as TemplateFunction).getEmployeeName = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getEmployeeName = (value: ResourceDetails) => {
         return ((value as ResourceDetails).resourceData) ?
-            (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] : (value as TreeViewArgs).resourceName;
+            (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] : value.resourceName;
     };
 
-    (window as TemplateFunction).getEmployeeImage = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getEmployeeImage = (value: ResourceDetails) => {
         let resourceName: string = (window as TemplateFunction).getEmployeeName(value);
         return resourceName.replace(' ', '-').toLowerCase();
     };
 
-    (window as TemplateFunction).getEmployeeDesignation = (value: ResourceDetails | TreeViewArgs) => {
+    (window as TemplateFunction).getEmployeeDesignation = (value: ResourceDetails) => {
         let resourceName: string = (window as TemplateFunction).getEmployeeName(value);
         return (resourceName === 'Margaret') ? 'Sales Representative' : (resourceName === 'Robert') ?
             'Vice President, Sales' : 'Inside Sales Coordinator';

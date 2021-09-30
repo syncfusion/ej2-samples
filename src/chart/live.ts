@@ -92,7 +92,7 @@ for (i = 0; i < 100; i++) {
 
 
     let setTimeoutValue: number = 100;
-    intervalId = setInterval(
+    intervalId = window.setInterval(
         (): void => {
             if (getElement('container-live') === null) {
                 clearInterval(intervalId);

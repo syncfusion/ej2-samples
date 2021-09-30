@@ -14,7 +14,7 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).employeeEventData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
@@ -22,21 +22,23 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
         endHour: '20:00',
         views: ['Day', 'Week', 'TimelineDay', 'TimelineWeek'],
         workHours: { highlight: false },
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
     scheduleObj.appendTo('#Schedule');
     // custom code start
     let start: TimePicker = new TimePicker({
-        width: 100,
-        value: new Date(2000, 0, 1, 8),
+        placeholder: 'Start Hour',
+        floatLabelType: "Always",
+        value: new Date(2021, 0, 1, 8),
         format: 'HH:mm'
     });
     start.appendTo('#startTime');
     let end: TimePicker = new TimePicker({
-        width: 100,
-        value: new Date(2000, 0, 1, 20),
+        placeholder: 'End Hour',
+        floatLabelType: "Always",
+        value: new Date(2021, 0, 1, 20),
         format: 'HH:mm'
     });
     end.appendTo('#endTime');

@@ -13,7 +13,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         width: '100%',
         height: '650px',
         currentView: 'WorkWeek',
-        selectedDate: new Date(2018, 5, 5),
+        selectedDate: new Date(2021, 5, 5),
         startHour: '09:00',
         endHour: '19:00',
         group: {
@@ -46,5 +46,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
             }
         }
     };
-    let scheduleObj: Schedule = new Schedule(scheduleOptions, document.getElementById('Schedule'));
+    let scheduleObj: Schedule = new Schedule(scheduleOptions);
+    scheduleObj.appendTo(document.getElementById('Schedule'));
 };

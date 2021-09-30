@@ -1,12 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { closest, isNullOrUndefined, removeClass, remove, extend } from '@syncfusion/ej2-base';
 import { Query, DataManager } from '@syncfusion/ej2-data';
-import {
-    Schedule, Day, Week, WorkWeek, Month, Agenda, CellClickEventArgs
-} from '@syncfusion/ej2-schedule';
-import {
-    ContextMenu, MenuItemModel, BeforeOpenCloseMenuEventArgs, MenuEventArgs
-} from '@syncfusion/ej2-navigations';
+import { Schedule, Day, Week, WorkWeek, Month, Agenda, CellClickEventArgs } from '@syncfusion/ej2-schedule';
+import { ContextMenu, MenuItemModel, BeforeOpenCloseMenuEventArgs, MenuEventArgs } from '@syncfusion/ej2-navigations';
 import * as dataSource from './datasource.json';
 
 /**
@@ -21,56 +17,33 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2019, 0, 10),
-        eventSettings: { dataSource: data }
+        selectedDate: new Date(2021, 0, 10),
+        eventSettings: { dataSource: data },
+        destroyed: () => {
+            menuObj.destroy();
+        }
     });
     scheduleObj.appendTo('#Schedule');
 
     let selectedTarget: Element;
     let menuObj: ContextMenu;
     let menuItems: MenuItemModel[] = [
+        { text: 'New Event', iconCss: 'e-icons e-plus', id: 'Add' },
+        { text: 'New Recurring Event', iconCss: 'e-icons e-repeat', id: 'AddRecurrence' },
+        { text: 'Today', iconCss: 'e-icons e-timeline-today', id: 'Today' },
+        { text: 'Edit Event', iconCss: 'e-icons e-edit', id: 'Save' },
         {
-            text: 'New Event',
-            iconCss: 'e-icons new',
-            id: 'Add'
-        }, {
-            text: 'New Recurring Event',
-            iconCss: 'e-icons recurrence',
-            id: 'AddRecurrence'
-        }, {
-            text: 'Today',
-            iconCss: 'e-icons today',
-            id: 'Today'
-        }, {
-            text: 'Edit Event',
-            iconCss: 'e-icons edit',
-            id: 'Save'
-        }, {
-            text: 'Edit Event',
-            id: 'EditRecurrenceEvent',
-            iconCss: 'e-icons edit',
-            items: [{
-                text: 'Edit Occurrence',
-                id: 'EditOccurrence'
-            }, {
-                text: 'Edit Series',
-                id: 'EditSeries'
-            }]
-        }, {
-            text: 'Delete Event',
-            iconCss: 'e-icons delete',
-            id: 'Delete'
-        }, {
-            text: 'Delete Event',
-            id: 'DeleteRecurrenceEvent',
-            iconCss: 'e-icons delete',
-            items: [{
-                text: 'Delete Occurrence',
-                id: 'DeleteOccurrence'
-            }, {
-                text: 'Delete Series',
-                id: 'DeleteSeries'
-            }]
+            text: 'Edit Event', id: 'EditRecurrenceEvent', iconCss: 'e-icons e-edit', items: [
+                { text: 'Edit Occurrence', id: 'EditOccurrence' },
+                { text: 'Edit Series', id: 'EditSeries' }
+            ]
+        },
+        { text: 'Delete Event', iconCss: 'e-icons e-trash', id: 'Delete' },
+        {
+            text: 'Delete Event', id: 'DeleteRecurrenceEvent', iconCss: 'e-icons e-trash', items: [
+                { text: 'Delete Occurrence', id: 'DeleteOccurrence' },
+                { text: 'Delete Series', id: 'DeleteSeries' }
+            ]
         }
     ];
     menuObj = new ContextMenu({
@@ -80,7 +53,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
         select: onMenuItemSelect,
         cssClass: 'schedule-context-menu'
     });
-    menuObj.appendTo('#ContextMenu');
+    menuObj.appendTo('#ScheduleContextMenu');
 
     function onContextMenuBeforeOpen(args: BeforeOpenCloseMenuEventArgs): void {
         let newEventElement: HTMLElement = document.querySelector('.e-new-event') as HTMLElement;

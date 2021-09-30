@@ -19,13 +19,12 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
             return tz.zone(timezone).utcOffset(date.getTime());
         };
     }
-    let fifaEvents: Object[] = <Object[]>extend([], ((dataSource as any).fifaEventsData), null, true);
+    let fifaEvents: Record<string, any>[] = <Object[]>extend([], ((dataSource as Record<string, any>).fifaEventsData), null, true);
     let timezone: Timezone = new Timezone();
     // Here remove the local offset from events
     for (let fifaEvent of fifaEvents) {
-        let event: { [key: string]: Object } = fifaEvent as { [key: string]: Object };
-        event.StartTime = timezone.removeLocalOffset(new Date(<string>event.StartTime));
-        event.EndTime = timezone.removeLocalOffset(new Date(<string>event.EndTime));
+        fifaEvent.StartTime = timezone.removeLocalOffset(new Date(<string>fifaEvent.StartTime));
+        fifaEvent.EndTime = timezone.removeLocalOffset(new Date(<string>fifaEvent.EndTime));
     }
     // Initialize schedule component
     let scheduleObj: Schedule = new Schedule({
@@ -33,7 +32,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         height: '650px',
         timezone: 'UTC',
         workHours: { start: '11:00' },
-        selectedDate: new Date(2018, 5, 20),
+        selectedDate: new Date(2021, 5, 20),
         eventSettings: { dataSource: fifaEvents },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
@@ -43,6 +42,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     // Initialize DropDownList component for timezone list
     let dropDownListObject: DropDownList = new DropDownList({
         popupWidth: 250,
+        width: 250,
+        floatLabelType: "Always",
         change: (args: ChangeEventArgs) => {
             scheduleObj.timezone = <string>args.value;
             scheduleObj.dataBind();

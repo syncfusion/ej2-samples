@@ -49,7 +49,7 @@ let cities: any = [
 
 function renderComponents(): void {
     /* Initialize Tab with disabled headers for the wizard */
-    tabObj = new Tab({ heightAdjustMode: 'None', height: 390, showCloseButton: false,
+    tabObj = new Tab({ heightAdjustMode: 'None', height: 440, showCloseButton: false,
         selecting: tabSelecting,
         items: [
             { header: { 'text': 'New Booking' }, content: '#booking' },
@@ -156,6 +156,16 @@ function dlgCreated(): void {
     buttonModel: { content: 'Ok', isPrimary: true },
       click: (() => {
         alertDlg.hide();
+        for (let i: number = 1; i <= 3; i++) {
+            let name: any = document.getElementById('pass_name' + i);
+            let berthSelected: any = document.getElementById('pass_berth' + i);
+            let age: any = document.getElementById('pass_age' + i);
+            let gender: any = document.getElementById('pass_gender' + i);
+            name.value = '';
+            age.value = 18;
+            gender.value = 'Male';
+            berthSelected.value = '';
+        }
         tabObj.enableTab(0, true);
         tabObj.enableTab(1, false);
         tabObj.enableTab(2, false);

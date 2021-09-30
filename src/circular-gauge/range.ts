@@ -17,7 +17,8 @@ CircularGauge.Inject(Annotations);
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code end
         axes: [{
@@ -27,10 +28,10 @@ CircularGauge.Inject(Annotations);
                 font: { size: '12px', fontFamily: 'Roboto', fontStyle: 'Regular' }
             }, majorTicks: { height: 10, offset: 5 }, minorTicks: { height: 0 },
             annotations: [{
-                content: '<div><span style="font-size:14px; color:#9E9E9E; font-family:Regular">Speedometer</span></div>',
+                content: '<div><span style="font-size:14px; font-family:Regular">Speedometer</span></div>',
                 radius: '30%', angle: 0, zIndex: '1'
             }, {
-                content: '<div><span style="font-size:20px; color:#424242; font-family:Regular">65 MPH</span></div>',
+                content: '<div><span style="font-size:20px; font-family:Regular">65 MPH</span></div>',
                 radius: '40%', angle: 180, zIndex: '1'
             }],
             startAngle: 210, endAngle: 150, minimum: 0, maximum: 120, radius: '80%',

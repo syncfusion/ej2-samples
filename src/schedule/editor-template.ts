@@ -2,8 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { DateTimePicker } from '@syncfusion/ej2-calendars';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import {
-    Schedule, Day, Week, WorkWeek, Month, PopupOpenEventArgs,
-    ActionEventArgs, EventRenderedArgs, Resize, DragAndDrop
+    Schedule, Day, Week, WorkWeek, Month, PopupOpenEventArgs, ActionEventArgs, EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 import { extend } from '@syncfusion/ej2-base';
@@ -22,7 +21,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
         height: '650px',
         views: ['Day', 'Week', 'WorkWeek', 'Month'],
         showQuickInfo: false,
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         eventSettings: { dataSource: data },
         editorTemplate: '#EventEditorTemplate',
         popupOpen: (args: PopupOpenEventArgs) => {
@@ -61,15 +60,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
         },
         actionBegin: (args: ActionEventArgs) => {
             if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
-                let data: any;
-                if (args.requestType === 'eventCreate') {
-                    data = <any>args.data[0];
-                } else if (args.requestType === 'eventChange') {
-                    data = <any>args.data;
-                }
-                if (!scheduleObj.isSlotAvailable(data.StartTime as Date, data.EndTime as Date)) {
-                    args.cancel = true;
-                }
+                let data: Record<string, any> = args.data instanceof Array ? args.data[0] : args.data;
+                args.cancel = !scheduleObj.isSlotAvailable(data.StartTime as Date, data.EndTime as Date);
             }
         }
     });

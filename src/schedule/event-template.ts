@@ -26,8 +26,10 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
         { option: 'TimelineWeek', eventTemplate: '#timeline-event-template' }
     ];
     if (Browser.isDevice) {
-        viewsCollection = [{ option: 'Day', eventTemplate: '#event-template' },
-        { option: 'TimelineDay', eventTemplate: '#timeline-event-template' }];
+        viewsCollection = [
+            { option: 'Day', eventTemplate: '#event-template' },
+            { option: 'TimelineDay', eventTemplate: '#timeline-event-template' }
+        ];
     }
     let data: Object[] = <Object[]>extend([], (dataSource as any).webinarData, null, true);
     let scheduleObj: Schedule = new Schedule({
@@ -39,7 +41,7 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
             start: '08:00'
         },
         views: viewsCollection,
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         readonly: true,
         eventSettings: {
             dataSource: data

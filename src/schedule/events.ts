@@ -17,7 +17,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2019, 0, 10),
+        selectedDate: new Date(2021, 0, 10),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView),
         created: OnCreate,

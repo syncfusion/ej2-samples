@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
-ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, HighlightSettings, UnderlineSettings, StrikethroughSettings, LineSettings, ArrowSettings, RectangleSettings, CircleSettings, PolygonSettings, DistanceSettings, PerimeterSettings, AreaSettings, RadiusSettings, VolumeSettings, FreeTextSettings, DynamicStampItem, SignStampItem, StandardBusinessStampItem, CustomStampSettings, InkAnnotationSettings, StickyNotesSettings, StampSettings } from '@syncfusion/ej2-pdfviewer';
+ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, HighlightSettings, UnderlineSettings, StrikethroughSettings, LineSettings, ArrowSettings, RectangleSettings, CircleSettings, PolygonSettings, DistanceSettings, PerimeterSettings, AreaSettings, RadiusSettings, VolumeSettings, FreeTextSettings, DynamicStampItem, SignStampItem, StandardBusinessStampItem, CustomStampSettings, InkAnnotationSettings, StickyNotesSettings, StampSettings } from '@syncfusion/ej2-pdfviewer';
 // tslint:disable-next-line:max-line-length
-PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields);
+PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner);
 
 /**
  * Annotations PdfViewer sample

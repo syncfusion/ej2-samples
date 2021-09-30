@@ -11,7 +11,7 @@ import { EmitType } from '@syncfusion/ej2-base';
 export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadEventArgs) => {
     let theme: string = location.hash.split('/')[1];
     theme = theme ? theme : 'Material';
-    args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
+    args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
 };
 // tslint:disable:max-func-body-length
 // custom code end
@@ -78,7 +78,7 @@ export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadE
             }
         }
     }
-    let time: number = setInterval(update, 500);
+    let time: number = window.setInterval(update, 500);
     let spark1: Sparkline = new Sparkline({
         height: '130px',
         width: '90%', load: sparkload,
@@ -145,7 +145,7 @@ export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadE
             }
         }
     }
-    let time1: number = setInterval(update1, 500);
+    let time1: number = window.setInterval(update1, 500);
     let spark2: Sparkline = new Sparkline({
         height: '130px',
         width: '90%', load: sparkload,
@@ -206,7 +206,7 @@ export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadE
             }
         }
     }
-    let time2: number = setInterval(update2, 500);
+    let time2: number = window.setInterval(update2, 500);
     let spark3: Sparkline = new Sparkline({
         height: '130px',
         width: '90%', load: sparkload,
@@ -267,5 +267,5 @@ export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadE
             }
         }
     }
-    let time4: number = setInterval(update4, 500);
+    let time4: number = window.setInterval(update4, 500);
 };

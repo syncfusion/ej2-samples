@@ -1,5 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { addClass, closest, extend, isNullOrUndefined, remove, removeClass, Browser, Internationalization } from '@syncfusion/ej2-base';
+import {
+    addClass, closest, extend, isNullOrUndefined, remove, removeClass, Browser, Internationalization, compile
+} from '@syncfusion/ej2-base';
 import { Button, Switch, ChangeEventArgs as SwitchEventArgs } from '@syncfusion/ej2-buttons';
 import { TimePicker, ChangeEventArgs as TimeEventArgs } from '@syncfusion/ej2-calendars';
 import { DataManager, Predicate, Query } from '@syncfusion/ej2-data';
@@ -76,11 +78,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         return '<img class="weather-image" src="' + imgPath + '"/><div class="weather-text">' + celsius + '</div>';
     };
 
-    (window as TemplateFunction).getResourceData = (data: { [key: string]: Object }) => {
+    (window as TemplateFunction).getResourceData = (data: Record<string, any>) => {
         let resources: ResourcesModel = scheduleObj.getResourceCollections().slice(-1)[0];
-        let resourceData: { [key: string]: Object } =
-            (resources.dataSource as { [key: string]: Object }[]).filter((resource: { [key: string]: Object }) =>
-                resource.CalendarId === data.CalendarId)[0] as { [key: string]: Object };
+        let resourceData: Record<string, any> =
+            (resources.dataSource as Record<string, any>[]).filter((resource: Record<string, any>) =>
+                resource.CalendarId === data.CalendarId)[0] as Record<string, any>;
         return resourceData;
     };
 
@@ -90,9 +92,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             intlObj.formatDate(eventObj.EndTime, { skeleton: 'hm' }) + ')';
     };
 
-    (window as TemplateFunction).getHeaderStyles = (data: { [key: string]: Object }) => {
+    (window as TemplateFunction).getHeaderStyles = (data: Record<string, any>) => {
         if (data.elementType === 'event') {
-            let resourceData: { [key: string]: Object } = (window as TemplateFunction).getResourceData(data);
+            let resourceData: Record<string, any> = (window as TemplateFunction).getResourceData(data);
             let calendarColor: string = '#3f51b5';
             if (resourceData) {
                 calendarColor = (resourceData.CalendarColor).toString();
@@ -104,7 +106,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     };
 
     (window as TemplateFunction).getEventType = (data: { [key: string]: Date }) => {
-        let resourceData: { [key: string]: Object } = (window as TemplateFunction).getResourceData(data);
+        let resourceData: Record<string, any> = (window as TemplateFunction).getResourceData(data);
         let calendarText: string = '';
         if (resourceData) {
             calendarText = resourceData.CalendarText.toString();
@@ -116,7 +118,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         let scheduleTimezone: string = scheduleObj ? scheduleObj.timezone : 'Etc/GMT';
         let timeBtn: Element = document.querySelector('.schedule-overview #timeBtn');
         if (timeBtn) {
-            timeBtn.innerHTML = '<span class="e-btn-icon e-icons e-schedule-clock e-icon-left"></span>' +
+            timeBtn.innerHTML = '<span class="e-btn-icon e-icons e-clock e-icon-left"></span>' +
                 new Date().toLocaleTimeString('en-US', { timeZone: scheduleTimezone });
         }
     };
@@ -172,25 +174,24 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         }
         let overviewEvents: { [key: string]: Date }[] = extend([], eventData, null, true) as { [key: string]: Date }[];
         let timezone: Timezone = new Timezone();
-        let utcTimezone: never = 'UTC' as never;
-        let currentTimezone: never = timezone.getLocalTimezoneName() as never;
+        let currentTimezone: string = timezone.getLocalTimezoneName();
         for (let event of overviewEvents) {
-            event.StartTime = timezone.convert(event.StartTime, utcTimezone, currentTimezone);
-            event.EndTime = timezone.convert(event.EndTime, utcTimezone, currentTimezone);
+            event.StartTime = timezone.convert(event.StartTime, 'UTC', currentTimezone);
+            event.EndTime = timezone.convert(event.EndTime, 'UTC', currentTimezone);
         }
         return overviewEvents;
     };
 
     let buttonClickActions: Function = (e: Event) => {
-        let quickPopup: HTMLElement = scheduleObj.element.querySelector('.e-quick-popup-wrapper') as HTMLElement;
-        let getSlotData: Function = (): { [key: string]: Object } => {
+        let quickPopup: HTMLElement = closest(e.target as HTMLElement, '.e-quick-popup-wrapper') as HTMLElement;
+        let getSlotData: Function = (): Record<string, any> => {
             let cellDetails: CellClickEventArgs = scheduleObj.getCellDetails(scheduleObj.getSelectedElements());
             if (isNullOrUndefined(cellDetails)) {
                 cellDetails = scheduleObj.getCellDetails(scheduleObj.activeCellsData.element);
             }
             let subject = ((quickPopup.querySelector('#title') as EJ2Instance).ej2_instances[0] as TextBox).value;
             let notes = ((quickPopup.querySelector('#notes') as EJ2Instance).ej2_instances[0] as TextBox).value;
-            let eventObj: { [key: string]: Object } = {};
+            let eventObj: Record<string, any> = {};
             eventObj.Id = scheduleObj.getEventMaxID();
             eventObj.Subject = isNullOrUndefined(subject) ? 'Add title' : subject;
             eventObj.StartTime = new Date(+cellDetails.startTime);
@@ -207,11 +208,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             if ((scheduleObj.activeEventData.event as { [key: string]: string }).RecurrenceRule) {
                 currentAction = 'DeleteOccurrence';
             }
-            scheduleObj.deleteEvent(scheduleObj.activeEventData.event as { [key: string]: Object }, currentAction);
+            scheduleObj.deleteEvent(scheduleObj.activeEventData.event as Record<string, any>, currentAction);
         } else {
             let isCellPopup: boolean = quickPopup.firstElementChild.classList.contains('e-cell-popup');
-            let eventDetails: { [key: string]: Object } = isCellPopup ? getSlotData() :
-                scheduleObj.activeEventData.event as { [key: string]: Object };
+            let eventDetails: Record<string, any> = isCellPopup ? getSlotData() :
+                scheduleObj.activeEventData.event as Record<string, any>;
             let currentAction: CurrentAction = isCellPopup ? 'Add' : 'Save';
             if (eventDetails.RecurrenceRule) {
                 currentAction = 'EditOccurrence';
@@ -223,20 +224,25 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
 
     let isTimelineView: boolean = false;
 
-    let timezoneBtn: Button = new Button({ iconCss: 'e-icons e-schedule-timezone', cssClass: 'title-bar-btn', disabled: true });
+    let timezoneBtn: Button = new Button({ iconCss: 'e-icons e-time-zone', cssClass: 'title-bar-btn', disabled: true });
     timezoneBtn.appendTo('#timezoneBtn');
 
-    let timeBtn: Button = new Button({ iconCss: 'e-icons e-schedule-clock', cssClass: 'title-bar-btn', disabled: true });
+    let timeBtn: Button = new Button({ iconCss: 'e-icons e-clock', cssClass: 'title-bar-btn', disabled: true });
     timeBtn.appendTo('#timeBtn');
 
-    let printBtn: Button = new Button({ iconCss: 'e-icons e-schedule-print', cssClass: 'title-bar-btn' });
+    let printBtn: Button = new Button({ iconCss: 'e-icons e-print', cssClass: 'title-bar-btn' });
     printBtn.appendTo('#printBtn');
     printBtn.element.onclick = () => { scheduleObj.print(); };
+
+    let importTemplateFn: Function = (data: Record<string, any>): NodeList => {
+        const template: string = '<div class="e-template-btn"><span class="e-btn-icon e-icons e-upload-1 e-icon-left"></span>${text}</div>';
+        return compile(template.trim())(data) as NodeList;
+    };
 
     let importObj: Uploader = new Uploader({
         allowedExtensions: '.ics',
         cssClass: 'calendar-import',
-        buttons: { browse: 'Import' },
+        buttons: { browse: importTemplateFn({ text: 'Import' })[0] as HTMLElement },
         multiple: false,
         showFileList: false,
         selected: (args: SelectedEventArgs) => scheduleObj.importICalendar((<HTMLInputElement>args.event.target).files[0])
@@ -245,18 +251,19 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
 
     let exportObj: DropDownButton = new DropDownButton({
         items: [
-            { text: 'iCalendar', iconCss: 'e-icons e-schedule-ical-export' },
-            { text: 'Excel', iconCss: 'e-icons e-schedule-excel-export' }
+            { text: 'iCalendar', iconCss: 'e-icons e-export' },
+            { text: 'Excel', iconCss: 'e-icons e-export-excel' }
         ],
         select: (args: MenuEventArgs) => {
             if (args.item.text === 'Excel') {
-                let exportDatas: { [key: string]: Object }[] = [];
-                let eventCollection: Object[] = scheduleObj.getEvents();
+                let exportDatas: Record<string, any>[] = [];
+                let eventCollection: Record<string, any>[] = scheduleObj.getEvents();
                 let resourceCollection: ResourcesModel[] = scheduleObj.getResourceCollections();
-                let resourceData: { [key: string]: Object }[] = resourceCollection[0].dataSource as { [key: string]: Object }[];
+                let resourceData: Record<string, any>[] = resourceCollection[0].dataSource as Record<string, any>[];
                 for (let resource of resourceData) {
-                    let data: Object[] = eventCollection.filter((e: { [key: string]: Object }) => e.CalendarId === resource.CalendarId);
-                    exportDatas = exportDatas.concat(data as { [key: string]: Object }[]);
+                    let data: Record<string, any>[] = eventCollection.filter((e: Record<string, any>) =>
+                        e.CalendarId === resource.CalendarId);
+                    exportDatas = exportDatas.concat(data);
                 }
                 scheduleObj.exportToExcel({
                     exportType: 'xlsx', customData: exportDatas, fields: ['Id', 'Subject', 'StartTime', 'EndTime', 'CalendarId']
@@ -286,15 +293,15 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         overflowMode: 'Scrollable',
         scrollStep: 100,
         items: [
-            { prefixIcon: 'e-icons e-schedule-add-event', tooltipText: 'New Event', text: 'New Event' },
-            { prefixIcon: 'e-icons e-schedule-add-recurrence-event', tooltipText: 'New Recurring Event', text: 'New Recurring Event' },
+            { prefixIcon: 'e-icons e-plus', tooltipText: 'New Event', text: 'New Event' },
+            { prefixIcon: 'e-icons e-repeat', tooltipText: 'New Recurring Event', text: 'New Recurring Event' },
             { type: 'Separator' },
-            { prefixIcon: 'e-icons e-schedule-day-view', tooltipText: 'Day', text: 'Day' },
-            { prefixIcon: 'e-icons e-schedule-week-view', tooltipText: 'Week', text: 'Week' },
-            { prefixIcon: 'e-icons e-schedule-workweek-view', tooltipText: 'WorkWeek', text: 'WorkWeek' },
-            { prefixIcon: 'e-icons e-schedule-month-view', tooltipText: 'Month', text: 'Month' },
-            { prefixIcon: 'e-icons e-schedule-year-view', tooltipText: 'Year', text: 'Year' },
-            { prefixIcon: 'e-icons e-schedule-agenda-view', tooltipText: 'Agenda', text: 'Agenda' },
+            { prefixIcon: 'e-icons e-day', tooltipText: 'Day', text: 'Day' },
+            { prefixIcon: 'e-icons e-week', tooltipText: 'Week', text: 'Week' },
+            { prefixIcon: 'e-icons e-week', tooltipText: 'WorkWeek', text: 'WorkWeek' },
+            { prefixIcon: 'e-icons e-month', tooltipText: 'Month', text: 'Month' },
+            { prefixIcon: 'e-icons e-month', tooltipText: 'Year', text: 'Year' },
+            { prefixIcon: 'e-icons e-agenda-date-range', tooltipText: 'Agenda', text: 'Agenda' },
             { tooltipText: 'Timeline Views', text: 'Timeline Views', template: timelineTemplate },
             { type: 'Separator' },
             { tooltipText: 'Grouping', text: 'Grouping', template: groupTemplate },
@@ -308,6 +315,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
 
             let timelineView: Switch = new Switch({
                 checked: false,
+                created: () => { timelineView.element.setAttribute('tabindex', '-1'); },
                 change: (args: SwitchEventArgs) => {
                     isTimelineView = args.checked;
                     switch (scheduleObj.currentView) {
@@ -340,26 +348,31 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             timelineView.appendTo('#timeline_views');
             let multiDrag: Switch = new Switch({
                 checked: false,
+                created: () => { multiDrag.element.setAttribute('tabindex', '-1'); },
                 change: (args: SwitchEventArgs) => { scheduleObj.allowMultiDrag = args.checked; }
             });
             multiDrag.appendTo('#multi_drag');
             let grouping: Switch = new Switch({
                 checked: true,
+                created: () => { grouping.element.setAttribute('tabindex', '-1'); },
                 change: (args: SwitchEventArgs) => { scheduleObj.group.resources = args.checked ? ['Calendars'] : []; }
             });
             grouping.appendTo('#grouping');
             let gridlines: Switch = new Switch({
                 checked: true,
+                created: () => { gridlines.element.setAttribute('tabindex', '-1'); },
                 change: (args: SwitchEventArgs) => { scheduleObj.timeScale.enable = args.checked; }
             });
             gridlines.appendTo('#gridlines');
             let rowAutoHeight: Switch = new Switch({
                 checked: false,
+                created: () => { rowAutoHeight.element.setAttribute('tabindex', '-1'); },
                 change: (args: SwitchEventArgs) => { scheduleObj.rowAutoHeight = args.checked; }
             });
             rowAutoHeight.appendTo('#row_auto_height');
             let tooltip: Switch = new Switch({
                 checked: false,
+                created: () => { tooltip.element.setAttribute('tabindex', '-1'); },
                 change: (args: SwitchEventArgs) => { scheduleObj.eventSettings.enableTooltip = args.checked; }
             });
             tooltip.appendTo('#tooltip');
@@ -368,6 +381,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 let settingsPanel: Element = document.querySelector('.overview-content .right-panel');
                 if (settingsPanel.classList.contains('hide')) {
                     removeClass([settingsPanel], 'hide');
+                    workweek.refresh();
+                    resources.refresh();
                 } else {
                     addClass([settingsPanel], 'hide');
                 }
@@ -428,12 +443,12 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     toolbarObj.appendTo('#toolbar_options');
 
     let settingsBtn: Button = new Button({
-        iconCss: 'e-icons e-schedule-toolbar-settings',
+        iconCss: 'e-icons e-settings',
         cssClass: 'overview-toolbar-settings', iconPosition: 'Top'
     });
     settingsBtn.appendTo('#settingsBtn');
 
-    let resourceData: { [key: string]: Object }[] = [
+    let resourceData: Record<string, any>[] = [
         { CalendarText: 'My Calendar', CalendarId: 1, CalendarColor: '#c43081' },
         { CalendarText: 'Company', CalendarId: 2, CalendarColor: '#ff7f50' },
         { CalendarText: 'Birthday', CalendarId: 3, CalendarColor: '#AF27CD' },
@@ -463,7 +478,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         },
         eventSettings: { dataSource: generateEvents() },
         popupOpen: (args: PopupOpenEventArgs) => {
-            if (args.type === 'QuickInfo') {
+            if (args.type === 'QuickInfo' || args.type === 'ViewEventInfo') {
                 let titleObj: TextBox = new TextBox({ placeholder: 'Title' });
                 titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
                 let typeObj: DropDownList = new DropDownList({
@@ -496,6 +511,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                     deleteBtn.onclick = (e: Event) => { buttonClickActions(e); };
                 }
             }
+        },
+        destroyed: () => {
+            menuObj.destroy();
         }
     });
     scheduleObj.appendTo('#scheduler');
@@ -505,20 +523,20 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     let menuObj: ContextMenu = new ContextMenu({
         target: '.e-schedule',
         items: [
-            { text: 'New Event', iconCss: 'e-icons new', id: 'Add' },
-            { text: 'New Recurring Event', iconCss: 'e-icons recurrence', id: 'AddRecurrence' },
-            { text: 'Today', iconCss: 'e-icons today', id: 'Today' },
-            { text: 'Edit Event', iconCss: 'e-icons edit', id: 'Save' },
-            { text: 'Delete Event', iconCss: 'e-icons delete', id: 'Delete' },
+            { text: 'New Event', iconCss: 'e-icons e-plus', id: 'Add' },
+            { text: 'New Recurring Event', iconCss: 'e-icons e-repeat', id: 'AddRecurrence' },
+            { text: 'Today', iconCss: 'e-icons e-timeline-today', id: 'Today' },
+            { text: 'Edit Event', iconCss: 'e-icons e-edit', id: 'Save' },
+            { text: 'Delete Event', iconCss: 'e-icons e-trash', id: 'Delete' },
             {
-                text: 'Delete Event', id: 'DeleteRecurrenceEvent', iconCss: 'e-icons delete',
+                text: 'Delete Event', id: 'DeleteRecurrenceEvent', iconCss: 'e-icons e-trash',
                 items: [
                     { text: 'Delete Occurrence', id: 'DeleteOccurrence' },
                     { text: 'Delete Series', id: 'DeleteSeries' }
                 ]
             },
             {
-                text: 'Edit Event', id: 'EditRecurrenceEvent', iconCss: 'e-icons edit',
+                text: 'Edit Event', id: 'EditRecurrenceEvent', iconCss: 'e-icons e-edit',
                 items: [
                     { text: 'Edit Occurrence', id: 'EditOccurrence' },
                     { text: 'Edit Series', id: 'EditSeries' }
@@ -542,7 +560,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 return;
             }
             if (selectedTarget.classList.contains('e-appointment')) {
-                let eventObj: { [key: string]: Object } = <{ [key: string]: Object }>scheduleObj.getEventDetails(selectedTarget);
+                let eventObj: Record<string, any> = <Record<string, any>>scheduleObj.getEventDetails(selectedTarget);
                 if (eventObj.RecurrenceRule) {
                     menuObj.showItems(['EditRecurrenceEvent', 'DeleteRecurrenceEvent'], true);
                     menuObj.hideItems(['Add', 'AddRecurrence', 'Today', 'Save', 'Delete'], true);
@@ -557,9 +575,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         },
         select: (args: ContextMenuEventArgs) => {
             let selectedMenuItem: string = args.item.id;
-            let eventObj: { [key: string]: Object };
+            let eventObj: Record<string, any>;
             if (selectedTarget && selectedTarget.classList.contains('e-appointment')) {
-                eventObj = <{ [key: string]: Object }>scheduleObj.getEventDetails(selectedTarget);
+                eventObj = <Record<string, any>>scheduleObj.getEventDetails(selectedTarget);
             }
             switch (selectedMenuItem) {
                 case 'Today':
@@ -581,7 +599,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 case 'EditSeries':
                     if (selectedMenuItem === 'EditSeries') {
                         let query: Query = new Query().where(scheduleObj.eventFields.id, 'equal', eventObj.RecurrenceID as string | number);
-                        eventObj = new DataManager(scheduleObj.eventsData).executeLocal(query)[0] as { [key: string]: Object };
+                        eventObj = new DataManager(scheduleObj.eventsData).executeLocal(query)[0] as Record<string, any>;
                     }
                     scheduleObj.openEditor(eventObj, selectedMenuItem);
                     break;
@@ -596,9 +614,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         },
         cssClass: 'schedule-context-menu'
     });
-    menuObj.appendTo('#ContextMenu');
+    menuObj.appendTo('#OverViewContextMenu');
 
-    let weekDays: { [key: string]: Object }[] = [
+    let weekDays: Record<string, any>[] = [
         { text: 'Sunday', value: 0 },
         { text: 'Monday', value: 1 },
         { text: 'Tuesday', value: 2 },
@@ -609,7 +627,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     ];
 
     let weekFirstDay: DropDownList = new DropDownList({
-        width: 170,
         dataSource: weekDays,
         fields: { text: 'text', value: 'value' },
         popupHeight: 150,
@@ -620,7 +637,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
 
     let workweek: MultiSelect = new MultiSelect({
         cssClass: 'schedule-workweek',
-        width: 170,
         dataSource: weekDays,
         fields: { text: 'text', value: 'value' },
         mode: 'CheckBox',
@@ -635,7 +651,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
 
     let resources: MultiSelect = new MultiSelect({
         cssClass: 'schedule-resource',
-        width: 170,
         dataSource: resourceData,
         fields: { text: 'CalendarText', value: 'CalendarId' },
         mode: 'CheckBox',
@@ -659,7 +674,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     resources.appendTo('#resources');
 
     let timezone: DropDownList = new DropDownList({
-        width: 170,
         dataSource: [
             { text: 'UTC -12:00', value: 'Etc/GMT+12' },
             { text: 'UTC -11:00', value: 'Etc/GMT+11' },
@@ -697,13 +711,13 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             scheduleObj.timezone = args.value as string;
             updateLiveTime();
             document.querySelector('.schedule-overview #timezoneBtn').innerHTML =
-                '<span class="e-btn-icon e-icons e-schedule-timezone e-icon-left"></span>' + args.itemData.text;
+                '<span class="e-btn-icon e-icons e-time-zone e-icon-left"></span>' + args.itemData.text;
         }
     });
     timezone.appendTo('#timezone');
 
     let dayStartHour: TimePicker = new TimePicker({
-        width: 170, value: new Date(new Date().setHours(0, 0, 0)), showClearButton: false,
+        value: new Date(new Date().setHours(0, 0, 0)), showClearButton: false,
         change: (args: TimeEventArgs) => {
             scheduleObj.startHour = new Internationalization().formatDate(args.value, { skeleton: 'Hm' });
         }
@@ -711,7 +725,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     dayStartHour.appendTo('#dayStartHour');
 
     let dayEndHour: TimePicker = new TimePicker({
-        width: 170, value: new Date(new Date().setHours(23, 59, 59)), showClearButton: false,
+        value: new Date(new Date().setHours(23, 59, 59)), showClearButton: false,
         change: (args: TimeEventArgs) => {
             scheduleObj.endHour = new Internationalization().formatDate(args.value, { skeleton: 'Hm' });
         }
@@ -719,7 +733,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     dayEndHour.appendTo('#dayEndHour');
 
     let workHourStart: TimePicker = new TimePicker({
-        width: 170, value: new Date(new Date().setHours(9, 0, 0)), showClearButton: false,
+        value: new Date(new Date().setHours(9, 0, 0)), showClearButton: false,
         change: (args: TimeEventArgs) => {
             scheduleObj.workHours.start = new Internationalization().formatDate(args.value, { skeleton: 'Hm' });
         }
@@ -727,7 +741,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     workHourStart.appendTo('#workHourStart');
 
     let workHourEnd: TimePicker = new TimePicker({
-        width: 170, value: new Date(new Date().setHours(18, 0, 0)), showClearButton: false,
+        value: new Date(new Date().setHours(18, 0, 0)), showClearButton: false,
         change: (args: TimeEventArgs) => {
             scheduleObj.workHours.end = new Internationalization().formatDate(args.value, { skeleton: 'Hm' });
         }
@@ -735,7 +749,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     workHourEnd.appendTo('#workHourEnd');
 
     let slotDuration: DropDownList = new DropDownList({
-        width: 170,
         dataSource: [
             { Name: '1 hour', Value: 60 },
             { Name: '1.5 hours', Value: 90 },
@@ -768,7 +781,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     });
     slotDuration.appendTo('#slotDuration');
     let slotInterval: DropDownList = new DropDownList({
-        width: 170,
         dataSource: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
         popupHeight: 150,
         value: 2,
@@ -776,7 +788,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     });
     slotInterval.appendTo('#slotInterval');
     let timeFormat: DropDownList = new DropDownList({
-        width: 170,
         dataSource: [
             { Name: '12 hours', Value: 'hh:mm a' },
             { Name: '24 hours', Value: 'HH:mm' }
@@ -788,7 +799,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     });
     timeFormat.appendTo('#timeFormat');
     let weekNumber: DropDownList = new DropDownList({
-        width: 170,
         dataSource: [
             { Name: 'Off', Value: 'Off' },
             { Name: 'First Day of Year', Value: 'FirstDay' },

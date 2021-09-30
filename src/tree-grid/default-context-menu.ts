@@ -21,7 +21,7 @@ TreeGrid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort);
             pageSettings: { pageSize: 10 },
             treeColumnIndex: 1,
             editSettings: { allowAdding: true, allowDeleting: true, allowEditing: true, mode: 'Row' },
-            contextMenuItems: ['SortAscending', 'SortDescending',
+            contextMenuItems: ['AutoFit', 'AutoFitAll', 'SortAscending', 'SortDescending',
                  'Edit', 'Delete', 'Save', 'Cancel',
                 'PdfExport', 'ExcelExport', 'CsvExport', 'FirstPage', 'PrevPage',
                 'LastPage', 'NextPage'],

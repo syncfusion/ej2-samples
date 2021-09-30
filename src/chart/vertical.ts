@@ -40,7 +40,7 @@ import { Browser } from '@syncfusion/ej2-base';
         loaded: (args: ILoadedEventArgs) => {
             chart.loaded = null;
             interval =
-                setInterval(
+                window.setInterval(
                     () => {
                         chart.series[0].dataSource = liveData(chart.series[0].dataSource as any[], <Series>chart.series[0]);
                         chart.refresh();

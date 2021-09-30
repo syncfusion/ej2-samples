@@ -12,7 +12,7 @@ Schedule.Inject(Month, TimelineMonth, Resize, DragAndDrop);
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 3, 4),
+        selectedDate: new Date(2021, 3, 4),
         allowMultiDrag: true,
         showQuickInfo: false,
         allowResizing: false,
@@ -29,7 +29,7 @@ Schedule.Inject(Month, TimelineMonth, Resize, DragAndDrop);
                 { text: 'Steven', id: 2, color: '#7fa900' },
                 { text: 'Robert', id: 3, color: '#ea7a57' },
                 { text: 'Smith', id: 4, color: '#5978ee' },
-                { text: 'Michael', id: 5, color: '#df5286' }
+                { text: 'Micheal', id: 5, color: '#df5286' }
             ],
             textField: 'text', idField: 'id', colorField: 'color'
         }
@@ -39,5 +39,6 @@ Schedule.Inject(Month, TimelineMonth, Resize, DragAndDrop);
         }
     };
 
-    let scheduleObj: Schedule = new Schedule(scheduleOptions, '#Schedule');
+    let scheduleObj: Schedule = new Schedule(scheduleOptions);
+    scheduleObj.appendTo('#Schedule');
 };

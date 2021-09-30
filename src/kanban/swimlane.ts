@@ -8,7 +8,7 @@ import * as dataSource from './datasource.json';
  * Swimlane Sample
  */
 
-(window as any).default = (): void => {
+ (window as any).default = (): void => {
     loadCultureFiles();
     // To maintain the property changes, extend the object.
     let data: Object[] = <Object[]>extend([], (dataSource as any).kanbanData, null, true);

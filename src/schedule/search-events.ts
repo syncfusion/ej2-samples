@@ -5,8 +5,7 @@ import { Input } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DatePicker } from '@syncfusion/ej2-calendars';
 import {
-    Schedule, ScheduleModel, Day, Week, WorkWeek, Month,
-    Agenda, Resize, DragAndDrop, EJ2Instance
+    Schedule, ScheduleModel, Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop, EJ2Instance
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 
@@ -22,9 +21,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '550px',
-        selectedDate: new Date(2019, 0, 10),
+        selectedDate: new Date(2021, 0, 10),
         eventSettings: {
-            dataSource: (dataSource as any).scheduleData,
+            dataSource: (dataSource as Record<string, any>).scheduleData,
         }
     };
 
@@ -120,7 +119,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         if (searchString !== '') {
             new DataManager(scheduleObj.getEvents(null, null, true)).executeQuery(new Query().
                 search(searchString, ['Subject', 'Location', 'Description'], null, true, true)).then((e: ReturnOption) => {
-                    if ((<Object[]>e.result).length > 0) {
+                    if ((<Record<string, any>[]>e.result).length > 0) {
                         showSearchEvents('show', e.result);
                     } else {
                         showSearchEvents('hide');
@@ -131,7 +130,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         }
     };
 
-    function showSearchEvents(type: string, data?: Object): void {
+    function showSearchEvents(type: string, data?: Record<string, any>): void {
         if (type === 'show') {
             if (document.getElementById('grid').classList.contains('e-grid')) {
                 let gridObj: Grid = (document.querySelector('#grid') as EJ2Instance).ej2_instances[0] as Grid;
@@ -153,7 +152,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
                 scheduleObj.element.style.display = 'none';
             }
         } else {
-            let gridObj: Object[] = (document.querySelector('#grid') as EJ2Instance).ej2_instances;
+            let gridObj: Record<string, any>[] = (document.querySelector('#grid') as EJ2Instance).ej2_instances;
             if (gridObj && gridObj.length > 0 && !(gridObj[0] as Grid).isDestroyed) {
                 (gridObj[0] as Grid).destroy();
             }

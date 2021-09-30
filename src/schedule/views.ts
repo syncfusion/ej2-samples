@@ -13,13 +13,13 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).zooEventsData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).zooEventsData, null, true);
     // Initialize schedule component
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
         views: ['Day', 'Week', 'WorkWeek', 'Month'],
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
@@ -28,6 +28,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
     // custom code start
     // Initialize DropDownList component for views
     let dropDownListObject: DropDownList = new DropDownList({
+        placeholder: 'Current View',
+        floatLabelType: "Always",
         change: (args: ChangeEventArgs) => {
             scheduleObj.currentView = <View>args.value;
             scheduleObj.dataBind();

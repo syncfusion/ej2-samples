@@ -43,6 +43,7 @@ TreeGrid.Inject( Page );
     treegrid.appendTo('#TreeGrid');
     let dropDownType: DropDownList = new DropDownList({
         dataSource: type,
+        popupWidth: '100%',
         fields: { text: 'type', value: 'id' },
         value: 'Multiple',
         change: (e: ChangeEventArgs) => {
@@ -60,6 +61,7 @@ TreeGrid.Inject( Page );
 
     let dropDownMode: DropDownList = new DropDownList({
         dataSource: mode,
+        popupWidth: '100%',
         fields: { text: 'mode', value: 'id' },
         value: 'Row',
         change: (e: ChangeEventArgs) => {
@@ -76,6 +78,7 @@ TreeGrid.Inject( Page );
     dropDownMode.appendTo('#mode');
     let dropDownCellMode: DropDownList = new DropDownList({
         dataSource: cellmode,
+        popupWidth: '100%',
         fields: { text: 'mode', value: 'id' },
         value: 'Flow',
         change: (e: ChangeEventArgs) => {

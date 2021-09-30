@@ -20,7 +20,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         getRoomCapacity?: Function;
     }
     let isReadOnly: Function = (endDate: Date): boolean => {
-        return (endDate < new Date(2018, 6, 31, 0, 0));
+        return (endDate < new Date(2021, 6, 31, 0, 0));
     };
     (window as TemplateFunction).getRoomName = (value: ResourceDetails) => {
         return (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField];
@@ -33,9 +33,10 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     };
     // custom code end
     let scheduleObj: Schedule = new Schedule({
+        cssClass: 'room-schedule',
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 7, 1),
+        selectedDate: new Date(2021, 7, 2),
         currentView: 'TimelineWeek',
         workHours: {
             start: '08:00',
@@ -83,7 +84,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             }
         },
         popupOpen: (args: PopupOpenEventArgs) => {
-            let data: { [key: string]: Object } = <{ [key: string]: Object }>args.data;
+            let data: Record<string, any> = <Record<string, any>>args.data;
             if (args.type === 'QuickInfo' || args.type === 'Editor' || args.type === 'RecurrenceAlert' || args.type === 'DeleteAlert') {
                 let target: HTMLElement = (args.type === 'RecurrenceAlert' ||
                     args.type === 'DeleteAlert') ? args.element[0] : args.target;
@@ -99,7 +100,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         },
         renderCell: (args: RenderCellEventArgs) => {
             if (args.element.classList.contains('e-work-cells')) {
-                if (args.date < new Date(2018, 6, 31, 0, 0)) {
+                if (args.date < new Date(2021, 6, 31, 0, 0)) {
                     args.element.setAttribute('aria-readonly', 'true');
                     args.element.classList.add('e-read-only-cells');
                 }
@@ -110,7 +111,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             }
         },
         eventRendered: (args: EventRenderedArgs) => {
-            let data: { [key: string]: Object } = args.data;
+            let data: Record<string, any> = args.data;
             if (isReadOnly(data.EndTime)) {
                 args.element.setAttribute('aria-readonly', 'true');
                 args.element.classList.add('e-read-only');
@@ -118,15 +119,8 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         },
         actionBegin: (args: ActionEventArgs) => {
             if (args.requestType === 'eventCreate' || args.requestType === 'eventChange') {
-                let data: { [key: string]: Object };
-                if (args.requestType === 'eventCreate') {
-                    data = <{ [key: string]: Object }>args.data[0];
-                } else if (args.requestType === 'eventChange') {
-                    data = <{ [key: string]: Object }>args.data;
-                }
-                if (!scheduleObj.isSlotAvailable(data)) {
-                    args.cancel = true;
-                }
+                let data: Record<string, any> = args.data instanceof Array ? args.data[0] : args.data;
+                args.cancel = !scheduleObj.isSlotAvailable(data);
             }
         }
     });

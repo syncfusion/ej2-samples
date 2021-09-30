@@ -135,7 +135,12 @@
         color: transparent;
         border-radius: 5px;
     }
-    .highcontrast div.file-name {
+    .highcontrast div.file-name,
+    .material-dark div.file-name,
+    .fabric-dark div.file-name,
+    .bootstrap-dark div.file-name,
+    .bootstrap5-dark div.file-name,
+    .tailwind-dark div.file-name {
         color: white;
     }
     div.file-name {
@@ -164,6 +169,12 @@
         width: 90%;
         top: -60px;
         position: relative;
+    }
+    .bootstrap5 .progressbar,
+    .bootstrap5-dark .progressbar,
+    .tailwind .progressbar,
+    .tailwind-dark .progressbar {
+        top: -70px;
     }
     #dropArea progress {
         border: none;
@@ -227,6 +238,21 @@
     .highcontrast #dropArea span a {
         color: #ffd939;
     }
+    .material-dark #dropArea span a {
+        color:#56a4fd;
+    }
+    .fabric-dark #dropArea span a {
+        color:#0074cc;
+    }
+    .bootstrap-dark #dropArea span a {
+        color:#0070f0;
+    }
+    .bootstrap5-dark #dropArea span a {
+        color:#0d6efd;
+    }
+    .tailwind-dark #dropArea span a {
+        color:#22d3ee;
+    }
 	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 		#dropArea .e-upload .e-upload-files .e-file-remove-btn.e-icons, .e-bigger #dropArea .e-upload .e-upload-files .e-file-remove-btn.e-icons {
 		   padding: 18px 25px 18px 12px;
@@ -235,7 +261,8 @@
 </style>
 
 <div id="action-description">
-    <p>This example demonstrates how to add an image preview of the uploaded files. Browse or drag-and-drop image files (PNG, JPG) to display preview for the selected files. </p>
+    <p>This <a href="https://www.syncfusion.com/javascript-ui-controls/js-file-upload"
+        target="_blank">JavaScript File Upload</a> example demonstrates how to add an image preview of the uploaded files. Browse or drag-and-drop image files (PNG, JPG) to display preview for the selected files. </p>
 </div>
 
 <div id="description">

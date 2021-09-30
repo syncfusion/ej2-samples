@@ -7,6 +7,13 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
 /**
  * Sample for Zooming in chart
  */
+ let selectedTheme: string = location.hash.split('/')[1];
+ selectedTheme = selectedTheme ? selectedTheme : 'Material';
+ let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+ selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+ let themes : string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'materialdark', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast'];
+ let borderColor : string[] = ['#262E0B', '#5ECB9B', '#5A61F6', '#8B5CF6', '#00bdae', '#9ECB08', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4'];
+ let fill : string = 'url(#' + selectedTheme + '-gradient-chart)';
 (window as any).default = (): void => {
     loadCultureFiles();
     let series1: Object[] = [];
@@ -51,8 +58,8 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
                 name: 'Product X',
                 xName: 'x',
                 yName: 'y',
-                fill: 'url(#gradient-chart)',
-                border: { width: 0.5, color: '#00bdae' },
+                fill: fill,
+                border: { width: 0.5, color: borderColor[themes.indexOf(theme)]},
                 animation: { enable: false }
             },
         ],
@@ -74,6 +81,7 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+            args.chart.series[0].border = { width: 0.5, color: borderColor[themes.indexOf(args.chart.theme.toLowerCase())] }
         }
     });
     chart.appendTo('#container');

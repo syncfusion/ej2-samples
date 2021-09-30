@@ -140,6 +140,7 @@ function startTimer(args: any): void {
         filterSettings: { type: 'Menu' },
         selectionSettings: { persistSelection: true, type: 'Multiple', checkboxOnly: true },
         enableHover: false,
+        enableHeaderFocus: true,
         height: 600,
         rowHeight: 38,
         columns: [

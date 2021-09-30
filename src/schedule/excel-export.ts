@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { extend } from '@syncfusion/ej2-base';
 import { ItemModel } from '@syncfusion/ej2-navigations';
 import {
-    Schedule, Week, ActionEventArgs, ToolbarActionArgs, ExcelExport, DragAndDrop, Resize, ExportOptions
+    Schedule, Week, ActionEventArgs, ExcelExport, DragAndDrop, Resize, ExportOptions
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 
@@ -19,12 +19,12 @@ import * as dataSource from './datasource.json';
         height: '550px',
         views: ['Week'],
         currentView: 'Week',
-        selectedDate: new Date(2019, 0, 10),
+        selectedDate: new Date(2021, 0, 10),
         eventSettings: { dataSource: data },
-        actionBegin: (args: ActionEventArgs & ToolbarActionArgs) => {
+        actionBegin: (args: ActionEventArgs) => {
             if (args.requestType === 'toolbarItemRendering') {
                 let exportItem: ItemModel = {
-                    align: 'Right', showTextOn: 'Both', prefixIcon: 'e-icon-schedule-excel-export',
+                    align: 'Right', showTextOn: 'Both', prefixIcon: 'e-icons e-export-excel',
                     text: 'Excel Export', cssClass: 'e-excel-export', click: onExportClick
                 };
                 args.items.push(exportItem);

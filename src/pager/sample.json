@@ -1,0 +1,17 @@
+{
+    "name": "Pager",
+    "directory": "pager",
+    "category": "Navigation",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default",
+            "category": "Pager"
+        },
+        {
+            "url": "api",
+            "name": "API",
+            "category": "Pager"
+        }
+    ]
+}

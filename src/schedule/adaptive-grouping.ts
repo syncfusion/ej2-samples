@@ -15,7 +15,7 @@ Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
         width: '100%', height: '555px',
         views: ['Day', 'Week', 'Month'],
         currentView: 'Month',
-        selectedDate: new Date(2018, 3, 4),
+        selectedDate: new Date(2021, 3, 4),
         enableAdaptiveUI: true,
         group: {
             resources: ['Projects', 'Categories']
@@ -37,7 +37,7 @@ Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
                     { text: 'Steven', id: 2, groupId: 1, color: '#7fa900' },
                     { text: 'Robert', id: 3, groupId: 2, color: '#ea7a57' },
                     { text: 'Smith', id: 4, groupId: 2, color: '#5978ee' },
-                    { text: 'Michael', id: 5, groupId: 3, color: '#df5286' },
+                    { text: 'Micheal', id: 5, groupId: 3, color: '#df5286' },
                     { text: 'Root', id: 6, groupId: 3, color: '#00bdae' }
                 ],
                 textField: 'text', idField: 'id', groupIDField: 'groupId', colorField: 'color'

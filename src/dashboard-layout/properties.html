@@ -58,12 +58,6 @@
 </div>
 
 <style>
-    #sizeX,
-    #sizeY,
-    #cellspacing {
-        height: 18px !important;
-    }
-    
     .form-label {
         margin-bottom: 0;
         font-size: 12px;
@@ -270,6 +264,18 @@
     
     .sb-property-border {
         border: 1px solid lightgray;
+    }
+
+    body.tailwind-dark .e-dashboardlayout.e-control .e-panel {
+        border: 1px solid #d7d7d7;
+    }
+
+    body.tailwind-dark .e-dashboardlayout.e-control .e-panel .e-panel-header {
+        border-radius: 5px;
+    }
+    
+    #property-section .e-input-group, .e-input-group.e-control-wrapper {
+        width:122px;
     }
 
 </style>

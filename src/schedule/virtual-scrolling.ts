@@ -8,8 +8,9 @@ import { Schedule, TimelineViews, TimelineMonth, Resize, DragAndDrop } from '@sy
 Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 (window as any).default = (): void => {
     loadCultureFiles();
-    let ownerData: Object[] = generateResourceData(1, 300, 'Resource');
-    let eventData: Object[] = generateStaticEvents(new Date(2018, 4, 1), 300, 12);
+    let date: Date = new Date(new Date().getFullYear(), 4, 1);
+    let ownerData: Record<string, any>[] = generateResourceData(1, 300, 'Resource');
+    let eventData: Record<string, any>[] = generateStaticEvents(new Date(date), 300, 12);
     let scheduleObj: Schedule = new Schedule({
         height: '650px', width: '100%',
         currentView: 'TimelineMonth',
@@ -28,15 +29,15 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
                 textField: 'Text', idField: 'Id', colorField: 'Color'
             }
         ],
-        selectedDate: new Date(2018, 4, 1),
+        selectedDate: new Date(date),
         eventSettings: { dataSource: eventData }
     });
 
     scheduleObj.appendTo('#Schedule');
 
-    // custom code start
-    function generateStaticEvents(start: Date, resCount: number, overlapCount: number): Object[] {
-        let data: Object[] = [];
+
+    function generateStaticEvents(start: Date, resCount: number, overlapCount: number): Record<string, any>[] {
+        let data: Record<string, any>[] = [];
         let id: number = 1;
         for (let i: number = 0; i < resCount; i++) {
             let randomCollection: number[] = [];
@@ -68,8 +69,8 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         return data;
     }
 
-    function generateResourceData(startId: number, endId: number, text: string): Object[] {
-        let data: { [key: string]: Object }[] = [];
+    function generateResourceData(startId: number, endId: number, text: string): Record<string, any>[] {
+        let data: Record<string, any>[] = [];
         let colors: string[] = [
             '#ff8787', '#9775fa', '#748ffc', '#3bc9db', '#69db7c',
             '#fdd835', '#748ffc', '#9775fa', '#df5286', '#7fa900',
@@ -77,13 +78,8 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         ];
         for (let a: number = startId; a <= endId; a++) {
             let n: number = Math.floor(Math.random() * colors.length);
-            data.push({
-                Id: a,
-                Text: text + ' ' + a,
-                Color: colors[n]
-            });
+            data.push({ Id: a, Text: text + ' ' + a, Color: colors[n] });
         }
         return data;
     }
-    // custom code end
 };

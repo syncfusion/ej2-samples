@@ -7,6 +7,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { CircularGauge, ILoadedEventArgs, GaugeTheme, ExportType, Print, ImageExport, PdfExport } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
+
 CircularGauge.Inject(Print, ImageExport, PdfExport);
 (window as any).default = (): void => {
     // custom code start
@@ -17,7 +18,8 @@ CircularGauge.Inject(Print, ImageExport, PdfExport);
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1));
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code end
         allowPrint: true,
@@ -69,6 +71,7 @@ CircularGauge.Inject(Print, ImageExport, PdfExport);
                     size: '12px',
                     fontWeight: 'Regular'
                 },
+                hiddenLabel: 'Last',
                 offset: 2,
                 position: 'Outside',
                 useRangeColor: true

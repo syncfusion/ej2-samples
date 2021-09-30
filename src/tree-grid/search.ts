@@ -37,6 +37,7 @@ TreeGrid.Inject(Page, Toolbar, Filter);
     grid.appendTo('#Grid');
     let dropDownMode: DropDownList = new DropDownList({
         dataSource: mode,
+        popupWidth: '100%',
         fields: { text: 'mode', value: 'id' },
         value: 'Parent',
         change: (e: ChangeEventArgs) => {

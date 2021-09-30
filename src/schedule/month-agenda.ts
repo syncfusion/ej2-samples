@@ -11,12 +11,12 @@ Schedule.Inject(MonthAgenda);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).fifaEventsData, null, true);
+    let data: Record<string, any>[] = <Record<string, any>[]>extend([], (dataSource as Record<string, any>).fifaEventsData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '510px',
         views: ['MonthAgenda'],
-        selectedDate: new Date(2018, 5, 20),
+        selectedDate: new Date(2021, 5, 20),
         eventSettings: { dataSource: data }
     });
     scheduleObj.appendTo('#Schedule');

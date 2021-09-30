@@ -18,7 +18,7 @@ LinearGauge.Inject(Annotations);
     let rangeIndex: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 120,
+        width: 130,
         change: () => {
             let value: number = +rangeIndex.value;
             let start: HTMLInputElement = <HTMLInputElement>document.getElementById('start');
@@ -85,7 +85,7 @@ LinearGauge.Inject(Annotations);
     let useRangeColor: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 120,
+        width: 130,
         change: () => {
             gauge.axes[0].labelStyle.useRangeColor = (useRangeColor.value === 'range') ? true : false;
             gauge.refresh();

@@ -12,7 +12,7 @@ import { RecurrenceEditor } from '@syncfusion/ej2-schedule';
     recObject.appendTo('#RecurrenceEditor');
     recObject.setRecurrenceRule('FREQ=DAILY;INTERVAL=2;COUNT=8');
 
-    let datas: { [key: string]: Object }[] = [
+    let datas: Record<string, string>[] = [
         { rule: 'FREQ=DAILY;INTERVAL=1' },
         { rule: 'FREQ=DAILY;INTERVAL=2;UNTIL=20410606T000000Z' },
         { rule: 'FREQ=DAILY;INTERVAL=2;COUNT=8' },

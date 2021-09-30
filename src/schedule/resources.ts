@@ -1,9 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { extend, Internationalization, createElement, closest, remove, addClass, removeClass } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
-import {
-    Schedule, Month, EventFieldsMapping, ActionEventArgs, ToolbarActionArgs, PopupOpenEventArgs
-} from '@syncfusion/ej2-schedule';
+import { Schedule, Month, EventFieldsMapping, ActionEventArgs, PopupOpenEventArgs } from '@syncfusion/ej2-schedule';
 
 /**
  * schedule resources group sample
@@ -20,14 +18,14 @@ Schedule.Inject(Month);
         getFormattedTime?: Function;
     }
     // custom code end
-    let dManager: Object[] = [];
+    let dManager: Record<string, any>[] = [];
     let initialLoad: Boolean = true;
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
         views: ['Month'],
         readonly: true,
-        selectedDate: new Date(2018, 3, 1),
+        selectedDate: new Date(2021, 3, 1),
         resources: [{
             field: 'AirlineId',
             title: 'Airline',
@@ -45,7 +43,7 @@ Schedule.Inject(Month);
             enableTooltip: true,
             tooltipTemplate: '#tooltip-template'
         },
-        actionBegin: (args: ActionEventArgs & ToolbarActionArgs) => {
+        actionBegin: (args: ActionEventArgs) => {
             if (args.requestType === 'toolbarItemRendering') {
                 args.items[2].align = 'Center';
                 args.items[2].suffixIcon = '';
@@ -59,10 +57,9 @@ Schedule.Inject(Month);
             }
         },
         dataBound: () => {
-            let eventCollections: Object[] = scheduleObj.getCurrentViewEvents();
-            eventCollections.sort((a: { [key: string]: Object }, b: { [key: string]: Object }) =>
-                ((<number>a.Fare) - (<number>b.Fare)));
-            let indexDate: Date = new Date((<Date>(<{ [key: string]: Object }>eventCollections[0]).StartTime).getTime());
+            let eventCollections: Record<string, any>[] = scheduleObj.getCurrentViewEvents();
+            eventCollections.sort((a: Record<string, number>, b: Record<string, number>) => a.Fare - b.Fare);
+            let indexDate: Date = new Date((<Date>(<Record<string, any>>eventCollections[0]).StartTime).getTime());
             indexDate.setHours(0, 0, 0, 0);
             let index: number = scheduleObj.getIndexOfDate(scheduleObj.activeView.renderDates, indexDate);
             let target: HTMLElement = scheduleObj.element.querySelectorAll('.e-work-cells')[index] as HTMLElement;
@@ -97,7 +94,7 @@ Schedule.Inject(Month);
             removeClass([closest(tdElement, 'td')], 'best-price');
             remove(tdElement);
         }
-        let scheduleData: Object[] = extend([], dManager, null, true) as Object[];
+        let scheduleData: Record<string, any>[] = extend([], dManager, null, true) as Record<string, any>[];
         let selectedResource: number[] = [];
         let resourceCollection: HTMLElement[] = [].slice.call(document.querySelectorAll('.e-resource'));
         resourceCollection.forEach((element: HTMLElement, index: number) => {
@@ -105,11 +102,11 @@ Schedule.Inject(Month);
                 selectedResource.push(index);
             }
         });
-        let filteredData: Object[] = [];
-        let resources: { [key: string]: Object }[] =
-            scheduleObj.resourceBase.resourceCollection.slice(-1)[0].dataSource as { [key: string]: Object }[];
+        let filteredData: Record<string, any>[] = [];
+        let resources: Record<string, any>[] =
+            scheduleObj.resourceBase.resourceCollection.slice(-1)[0].dataSource as Record<string, any>[];
         for (let resource of selectedResource) {
-            let data: Object[] = scheduleData.filter((event: { [key: string]: Object }) => resources[resource].id === event.AirlineId);
+            let data: Record<string, any>[] = scheduleData.filter((event: Record<string, any>) => resources[resource].id === event.AirlineId);
             filteredData = filteredData.concat(data);
         }
         filteredData = filterByFare(filteredData, scheduleObj);
@@ -117,9 +114,9 @@ Schedule.Inject(Month);
         scheduleObj.dataBind();
     }
 
-    function filterByFare(appointments: Object[], scheduleObj: Schedule): Object[] {
+    function filterByFare(appointments: Record<string, any>[], scheduleObj: Schedule): Record<string, any>[] {
         let fieldMapping: EventFieldsMapping = scheduleObj.eventFields;
-        appointments.sort((object1: { [key: string]: Object }, object2: { [key: string]: Object }) => {
+        appointments.sort((object1: Record<string, any>, object2: Record<string, any>) => {
             let d1: number = +(object1[fieldMapping.startTime] as Date);
             let d2: number = +(object2[fieldMapping.startTime] as Date);
             let d3: number = +(object1[fieldMapping.endTime] as Date);
@@ -127,14 +124,14 @@ Schedule.Inject(Month);
             return ((d1 - d2) || ((d4 - d2) - (d3 - d1)));
         });
         let renderDate: Date[] = scheduleObj.activeView.getRenderDates();
-        let finalData: Object[] = [];
+        let finalData: Record<string, any>[] = [];
         for (let date of renderDate) {
             if (scheduleObj.selectedDate.getMonth() === date.getMonth()) {
                 let strTime: Date = new Date(+date);
                 let endTime: Date = new Date(new Date(strTime.getTime()).setHours(23, 59, 59, 59));
-                let perDayData: Object[] = scheduleObj.eventBase.filterEvents(strTime, endTime, appointments);
+                let perDayData: Record<string, any>[] = scheduleObj.eventBase.filterEvents(strTime, endTime, appointments);
                 if (perDayData.length > 0) {
-                    perDayData.sort((a: { [key: string]: Object }, b: { [key: string]: Object }) => ((<number>a.Fare) - (<number>b.Fare)));
+                    perDayData.sort((a: Record<string, any>, b: Record<string, any>) => ((<number>a.Fare) - (<number>b.Fare)));
                     finalData.push(perDayData[0]);
                 }
             }
@@ -143,26 +140,26 @@ Schedule.Inject(Month);
     }
 
     function generateEvents(scheduleObj: Schedule): Object[] {
-        let collections: Object[] = [];
-        let dataCollections: { [key: string]: Object }[] = [
+        let collections: Record<string, any>[] = [];
+        let dataCollections: Record<string, any>[] = [
             {
                 Id: 100,
-                StartTime: new Date(2018, 3, 1, 8, 30),
-                EndTime: new Date(2018, 3, 1, 10, 0),
+                StartTime: new Date(2021, 3, 1, 8, 30),
+                EndTime: new Date(2021, 3, 1, 10, 0),
                 AirlineId: 1
             }, {
                 Id: 102,
-                StartTime: new Date(2018, 3, 1, 11, 0),
-                EndTime: new Date(2018, 3, 1, 12, 0),
+                StartTime: new Date(2021, 3, 1, 11, 0),
+                EndTime: new Date(2021, 3, 1, 12, 0),
                 AirlineId: 2
             }, {
                 Id: 103,
-                StartTime: new Date(2018, 3, 1, 14, 0),
-                EndTime: new Date(2018, 3, 1, 15, 0),
+                StartTime: new Date(2021, 3, 1, 14, 0),
+                EndTime: new Date(2021, 3, 1, 15, 0),
                 AirlineId: 3
             }
         ];
-        let start: Date = new Date(2018, 3, 1);
+        let start: Date = new Date(2021, 3, 1);
         let dateCollections: Date[] = Array.apply(null, { length: 30 })
             .map((value: number, index: number) => { return new Date(start.getTime() + (1000 * 60 * 60 * 24 * index)); });
         let id: number = 1;

@@ -14,8 +14,9 @@ Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
     loadCultureFiles();
     let scheduleObj: Schedule = new Schedule({
         height: '650px',
-        selectedDate: new Date(2019, 0, 10),
+        selectedDate: new Date(2021, 0, 10),
         currentView: 'TimelineWeek',
+        workDays: [0, 1, 2, 3, 4, 5],
         views: [
             { option: 'TimelineDay' },
             { option: 'TimelineWeek' },
@@ -24,15 +25,16 @@ Schedule.Inject(TimelineViews, TimelineMonth, Agenda, Resize, DragAndDrop);
             { option: 'Agenda' }
         ],
         eventSettings: {
-            dataSource:
-                <Object[]>extend([], (dataSource as any).scheduleData.concat((dataSource as any).timelineData), null, true)
+            dataSource: <Object[]>extend([], (dataSource as any).scheduleData.concat((dataSource as any).timelineData), null, true)
         }
     });
     scheduleObj.appendTo('#Schedule');
 
     // custom code start
     let currentDateObj: DatePicker = new DatePicker({
-        value: new Date(2019, 0, 10),
+        placeholder: 'Current Date',
+        floatLabelType: "Always",
+        value: new Date(2021, 0, 10),
         showClearButton: false,
         change: (args: ChangeEventArgs) => {
             scheduleObj.selectedDate = args.value;

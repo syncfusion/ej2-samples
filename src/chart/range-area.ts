@@ -70,16 +70,9 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Chart Title
         title: 'Temperature Variation',
         seriesRender: (args: ISeriesRenderEventArgs) => {
-            let theme: ChartTheme = args.series.chart.theme;
-            let color: string;
-            if (theme === 'Material') {
-                color = '#008E83';
-            } else if (theme === 'Bootstrap') {
-                color = '#7953AC';
-            } else {
-                color = '#335693';
-            }
-            args.series.border.color = color;
+            let areathemes: string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast'];
+            let borderColor: string[] = ['#262E0B', '#5ECB9B', '#5A61F6', '#8B5CF6', '#00bdae', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4'];
+            args.series.border.color = borderColor[areathemes.indexOf(args.series.chart.theme.toLowerCase())];
         },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

@@ -12,7 +12,7 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).fifaEventsData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).fifaEventsData, null, true);
     // custom code start
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).getTimeString = (value: Date) => {
@@ -25,12 +25,12 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
     let agendaTemplate: string = '<div class="subject">${Subject}</div> ${if(Description !== null && Description !== undefined)}' +
         '<div class="group" > ${ Description } </div>${/if}<div class="location">${getTimeString(data.StartTime)} ${if(City !== null &&' +
         'City !== undefined)}, ${ City } ${/if}</div > ';
-    let monthEventTemplate: string = '<div class="subject">${Subject}</div>';
+    let monthEventTemplate: string = '<div class="e-subject">${Subject}</div>';
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
         currentView: 'Month',
-        selectedDate: new Date(2018, 5, 20),
+        selectedDate: new Date(2021, 5, 20),
         eventSettings: { dataSource: data },
         resources: [{
             field: 'GroupId', title: 'Owner', name: 'Owners',

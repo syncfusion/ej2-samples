@@ -124,10 +124,6 @@ function combineSampleList(platform, done) {
 
         }))
         .pipe(gulp.dest(sampleListPath))
-        .on('error', function (e) {
-            done(e);
-            process.exit(1);
-        });
 }
 
 function getSamples(data, component) {

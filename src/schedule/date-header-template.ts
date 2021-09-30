@@ -1,7 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Schedule, Day, Week, WorkWeek, Month,
-    TimelineMonth, RenderCellEventArgs, EventRenderedArgs, Resize, DragAndDrop
+    Schedule, Day, Week, WorkWeek, Month, TimelineMonth, RenderCellEventArgs, EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
 import { Internationalization, extend } from '@syncfusion/ej2-base';
 import * as dataSource from './datasource.json';
@@ -53,7 +52,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineMonth, Resize, DragAndDrop);
         height: '650px',
         dateHeaderTemplate: '<div class="date-text">${getDateHeaderText(data.date)}</div>${getWeather(data.date)}',
         views: ['Day', 'Week', 'WorkWeek', 'Month', 'TimelineMonth'],
-        selectedDate: new Date(2019, 0, 10),
+        selectedDate: new Date(2021, 0, 10),
         eventSettings: { dataSource: data },
         cssClass: 'schedule-date-header-template',
         renderCell: (args: RenderCellEventArgs) => {

@@ -1,7 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Schedule, Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth,
-    EventRenderedArgs, Resize, DragAndDrop
+    Schedule, Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, EventRenderedArgs, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
 import { Button } from '@syncfusion/ej2-buttons';
 import { TimePicker } from '@syncfusion/ej2-calendars';
@@ -17,7 +16,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).employeeEventData, null, true);
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
@@ -27,21 +26,23 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineViews, TimelineMonth, Resize
             end: '20:00'
         },
         views: ['Day', 'Week', 'WorkWeek', 'Month', 'TimelineWeek', 'TimelineMonth'],
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
     scheduleObj.appendTo('#Schedule');
     // custom code start
     let startObj: TimePicker = new TimePicker({
-        width: 100,
-        value: new Date(2000, 0, 1, 8),
+        placeholder: 'Work Start',
+        floatLabelType: "Always",
+        value: new Date(2021, 0, 1, 8),
         format: 'HH:mm'
     });
     startObj.appendTo('#startTime');
     let endObj: TimePicker = new TimePicker({
-        width: 100,
-        value: new Date(2000, 0, 1, 20),
+        placeholder: 'Work End',
+        floatLabelType: "Always",
+        value: new Date(2021, 0, 1, 20),
         format: 'HH:mm'
     });
     endObj.appendTo('#endTime');

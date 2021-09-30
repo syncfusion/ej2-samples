@@ -13,7 +13,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let data: Object[] = <Object[]>extend([], (dataSource as any).eventsData, null, true);
+    let data: Record<string, any>[] = <Record<string, any>[]>extend([], (dataSource as Record<string, any>).eventsData, null, true);
     let template: string = '<div class="tooltip-wrap">' +
         '<div class="image ${EventType}"></div>' +
         '<div class="content-area"><div class="name">${Subject}</></div>' +
@@ -23,7 +23,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         eventSettings: {
             dataSource: data,
             enableTooltip: true,
@@ -37,11 +37,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     let enableTooltipCheckObj: CheckBox = new CheckBox({
         label: 'Enable Tooltip', checked: true,
         change: (args: ChangeEventArgs) => {
-            if (args.checked) {
-                scheduleObj.eventSettings.enableTooltip = true;
-            } else {
-                scheduleObj.eventSettings.enableTooltip = false;
-            }
+            scheduleObj.eventSettings.enableTooltip = args.checked;
             scheduleObj.dataBind();
         }
     });
@@ -50,11 +46,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     let enableTooltipTemplateCheckObj: CheckBox = new CheckBox({
         label: 'Enable Tooltip Template', checked: true,
         change: (args: ChangeEventArgs) => {
-            if (args.checked) {
-                scheduleObj.eventSettings.tooltipTemplate = template;
-            } else {
-                scheduleObj.eventSettings.tooltipTemplate = null;
-            }
+            scheduleObj.eventSettings.tooltipTemplate = args.checked ? template : null;
             scheduleObj.dataBind();
         }
     });

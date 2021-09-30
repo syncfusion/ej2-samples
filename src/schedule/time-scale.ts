@@ -23,11 +23,11 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
         minorSlotTemplate?: Function;
     }
     // custom code end
-    let data: Object[] = <Object[]>extend([], (dataSource as any).scheduleData, null, true);
+    let data: Record<string, any>[] = <Record<string, any>[]>extend([], (dataSource as Record<string, any>).scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2019, 0, 10),
+        selectedDate: new Date(2021, 0, 10),
         currentView: 'TimelineWeek',
         views: ['Day', 'Week', 'TimelineDay', 'TimelineWeek'],
         timeScale: {
@@ -35,12 +35,15 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
             interval: 60,
             slotCount: 6
         },
+        workDays: [0, 1, 2, 3, 4, 5],
         eventSettings: { dataSource: data }
     });
 
     scheduleObj.appendTo('#Schedule');
     // custom code start
     let minorSlot: DropDownList = new DropDownList({
+        placeholder: "Slot Count",
+        floatLabelType: "Always",
         change: (args: DropDownChangeArgs) => {
             scheduleObj.timeScale.slotCount = parseInt(args.value as string, 10);
             scheduleObj.dataBind();
@@ -49,6 +52,8 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
     minorSlot.appendTo('#slotCount');
 
     let majorSlotCount: DropDownList = new DropDownList({
+        placeholder: "Interval (in Minutes)",
+        floatLabelType: "Always",
         change: (args: DropDownChangeArgs) => {
             scheduleObj.timeScale.interval = parseInt(args.value as string, 10);
             scheduleObj.dataBind();
@@ -57,6 +62,8 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
     majorSlotCount.appendTo('#interval');
 
     let timeScale: DropDownList = new DropDownList({
+        placeholder: "Grid lines",
+        floatLabelType: "Always",
         change: (args: DropDownChangeArgs) => {
             scheduleObj.timeScale.enable = (args.value === 'enable') ? true : false;
             scheduleObj.dataBind();
@@ -65,6 +72,8 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
     timeScale.appendTo('#timescale');
 
     let timescaleTemplate: DropDownList = new DropDownList({
+        placeholder: "Apply Template",
+        floatLabelType: "Always",
         change: (args: DropDownChangeArgs) => {
             scheduleObj.timeScale.majorSlotTemplate = (args.value === 'yes') ? '#majorSlotTemplate' : null;
             scheduleObj.timeScale.minorSlotTemplate = (args.value === 'yes') ? '#minorSlotTemplate' : null;

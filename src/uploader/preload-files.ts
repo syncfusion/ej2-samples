@@ -14,7 +14,7 @@ import { Uploader, RemovingEventArgs } from '@syncfusion/ej2-inputs';
         {name: 'TypeScript Succinctly', size: 12000, type: '.pdf'},
         {name: 'ASP.NET Webhooks', size: 500000, type: '.docx'},
     ];
-    //Initialize the control by preload files 
+    //Initialize the control by preload files
     let uploadObj: Uploader = new Uploader({
         asyncSettings: {
             saveUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Save',

@@ -18,7 +18,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2020, 10, 22),
         eventSettings: { dataSource: dataManger },
         readonly: true
     });

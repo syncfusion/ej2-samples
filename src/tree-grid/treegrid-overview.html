@@ -11,9 +11,13 @@
         height: 19px;
         border-radius: 15px;
         text-align: center;
-        background-color: #cff0dc;
+        background-color: #C3F1D0;
         color: #00752F;
         width: 47px;
+    }
+    .tailwind .e-grid .statustemp, .tailwind-dark .e-grid .statustemp,
+    .bootstrap5 .e-grid .statustemp, .bootstrap5-dark .e-grid .statustemp{
+        padding-top: 2px;
     }
 
     .statustemp.e-lowgdp {
@@ -23,9 +27,10 @@
     }
 
     td.e-rowcell .statustxt {
-        color: #00cc00;
+        color: #398120;
         position: relative;
     }
+    
 
     td.e-rowcell .statustxt.e-lowgdp {
         color: #e60000;
@@ -38,7 +43,7 @@
     }
 
     .rating .star.checked {
-        color: #ffa600;
+        color: #EE9E54;
     }
 
     .rating .star:before {
@@ -66,17 +71,24 @@
         color: white;
     }
     .highcontrast .e-grid #myProgress {
-        background-color: black;
+        background-color: whitesmoke;
     }
     #myProgress {
         position: relative;
         height: 18px;
         width: 10em;
         text-align: left;
-        background-color: white;
+        background-color: whitesmoke;
     }
     #myBar.progressdisable {
         background-color: #df2222;
+    }
+    .tailwind .e-grid #coordinates.e-checkbox-wrapper .e-label, .e-css.e-checkbox-wrapper .e-label,
+    .tailwind-dark .e-grid #coordinates.e-checkbox-wrapper .e-label, .e-css.e-checkbox-wrapper .e-label {
+        display: inline;
+    }
+    #coordinates .e-image {
+        filter: brightness(180%);
     }
 </style>
 <!-- custom code end -->
@@ -109,7 +121,7 @@
              </span>
             </script>
             <script id="locationtemplate" type="text/x-template">
-             <div class="image">
+             <div class="image" id="coordinates">
                  <img src="src/tree-grid/images/Map.png" class="e-image" alt="${coordinates}" /> &nbsp
                  <a target="_blank" href="https://www.google.com/maps/place/${coordinates}">${coordinates}</a>
              </div>
@@ -146,7 +158,9 @@
 </div>
 
 <div id="action-description">
-    <p>This sample demonstrates the overview of basic Tree Grid features such as sorting, filtering, conditional formatting, column template and scrolling.</p>
+    <p>This <a target="_blank" 
+        href="https://www.syncfusion.com/javascript-ui-controls/js-tree-grid">
+        JavaScript Tree Grid</a> example demonstrates the overview of basic Tree Grid features such as sorting, filtering, conditional formatting, column template and scrolling.</p>
 </div>
 
 <div id="description">

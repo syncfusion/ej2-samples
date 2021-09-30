@@ -13,7 +13,6 @@ ProgressBar.Inject(ProgressAnnotation);
         width: '160px',
         height: '160px',
         enableRtl: false,
-        progressColor: 'white',
         radius: '100%',
         innerRadius: '190%',
         trackThickness: 80,
@@ -27,6 +26,7 @@ ProgressBar.Inject(ProgressAnnotation);
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.progressBar.progressColor = '#FFFFFF';
             args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             // tslint:disable-next-line:align
@@ -40,12 +40,28 @@ ProgressBar.Inject(ProgressAnnotation);
                 case 'bootstrap':
                     args.progressBar.trackColor = '#317ab9';
                     break;
+                case 'tailwind':
+                    args.progressBar.progressColor = '#4F46E5';
+                    args.progressBar.annotations[0].content = '<div id="point1" style="font-size:24px;font-weight:bold;color:#4F46E5"><span></span></div>';
+                    break;    
                 case 'highcontrast':
                     args.progressBar.trackColor = '#FFD939';
                     args.progressBar.progressColor = '#000000';
                     args.progressBar.annotations[0].content =
                         '<div id="point1" style="font-size:20px;font-weight:bold;color:#000000;fill:#000000"><span>60%</span></div>';
                     break;
+                case 'bootstrap-dark':
+                case 'fabric-dark':
+                case 'material-dark':
+                    args.progressBar.progressColor = '#9A9A9A';
+                    break;
+                case 'tailwind-dark':
+                    args.progressBar.progressColor = '#22D3EE';
+                    break;
+                case 'bootstrap5':
+                case 'bootstrap5-dark':
+                    args.progressBar.progressColor = '#0D6EFD';
+                    break;     
                 default:
                     args.progressBar.trackColor = '#007bff';
                     break;

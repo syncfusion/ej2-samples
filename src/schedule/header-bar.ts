@@ -3,7 +3,7 @@ import { createElement, compile, extend } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { Popup } from '@syncfusion/ej2-popups';
 import { ItemModel } from '@syncfusion/ej2-navigations';
-import { Schedule, Month, ActionEventArgs, ToolbarActionArgs, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
+import { Schedule, Month, ActionEventArgs, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 import { applyCategoryColor } from './helper';
 
@@ -19,16 +19,14 @@ Schedule.Inject(Month, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
-        selectedDate: new Date(2018, 1, 15),
+        selectedDate: new Date(2021, 1, 15),
         views: ['Month'],
         currentView: 'Month',
         eventSettings: { dataSource: data },
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView),
-        actionBegin: (args: ActionEventArgs & ToolbarActionArgs) => {
+        actionBegin: (args: ActionEventArgs) => {
             if (args.requestType === 'toolbarItemRendering') {
-                let userIconItem: ItemModel = {
-                    align: 'Right', prefixIcon: 'user-icon', text: 'Nancy', cssClass: 'e-schedule-user-icon'
-                };
+                let userIconItem: ItemModel = { align: 'Right', prefixIcon: 'user-icon', text: 'Nancy', cssClass: 'e-schedule-user-icon' };
                 args.items.push(userIconItem);
             }
         },

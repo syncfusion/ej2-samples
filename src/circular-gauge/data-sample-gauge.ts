@@ -21,7 +21,7 @@ export function gauge1(): CircularGauge {
                 angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
-                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Roboto">Germany</div>',
+                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Segoe UI">Germany</div>',
                 angle: 180, zIndex: '1',
                 radius: '65%'
             }],
@@ -74,7 +74,7 @@ export function gauge2(): CircularGauge {
                 angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
-                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Roboto">USA</div>',
+                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Segoe UI">USA</div>',
                 angle: 180, zIndex: '1',
                 radius: '65%'
             }],
@@ -127,7 +127,7 @@ export function gauge3(): CircularGauge {
                 angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
-                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Roboto">UK</div>',
+                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Segoe UI">UK</div>',
                 angle: 180, zIndex: '1',
                 radius: '65%'
             }],

@@ -8,27 +8,36 @@
     <!-- property panel image-->
     <div class="col-md-4 property-section">
         <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
+            <colgroup>
+                <col span="1" style="width: 50%;">
+                <col span="1" style="width: 30%;">
+                <col span="1" style="width: 20%;">
+             </colgroup>   
+             <tbody>
             <tr style="height: 50px">
-                <td>
-                    <img id='random' src="src/circular-gauge/images/gauge1.png" alt="Customized gauge 1" style="margin-left:25px;margin-top:10px;"
+                <td align="center">
+                    <img id='random' src="src/circular-gauge/images/gauge1.png" alt="Customized gauge 1" style="margin-top:10px;"
                     />
-                    <div id="random_line" style="display:block;left: 0px;background: #ff4081;padding-top: 0px;height: 2px !important;width: 85px;margin: 2px 2px 2px 17px;"></div>
+                    <div id="random_line" style="display:block;left: 0px;background: #ff4081;padding-top: 0px;height: 2px !important;width: 85px;margin: 2px 2px 2px 5px;"></div>
                 </td>
-                <td>
-                    <img id='usage' src="src/circular-gauge/images/gauge2.png" alt="Customized gauge 2" style="margin-left:25px;margin-top:10px;" />
-                    <div id="usage_line" style="display:none;left: 0px;background: #ff4081;padding-top: 0px;height: 2px !important;width: 85px;margin: 2px 2px 2px 17px;"></div>
+                <td align="center">
+                    <img id='usage' src="src/circular-gauge/images/gauge2.png" alt="Customized gauge 2" style="margin-top:10px;" />
+                    <div id="usage_line" style="display:none;left: 0px;background: #ff4081;padding-top: 0px;height: 2px !important;width: 85px;margin: 2px 2px 2px 5px;"></div>
                 </td>
             </tr>
             <!--- property panel -->
-            <tr style="height: 50px">
-                <td>
-                    <div id='currentPointerValue'>Current Value <span> &nbsp;&nbsp;&nbsp;1800</span> </div>
+            <tr style="height: 70px">
+                <td style="padding-top: 20px">
+                    <div>Current Value</div>
                 </td>
-                <td>
+                <td style="padding-top: 20px">
                     <div style="margin-left: 10px">
-                        <input type="range" id="currentValue" value="1800" min="1000" max="2000" style="width: 120px" />
+                        <input type="range" id="currentValue" value="1800" min="1000" max="2000" style="width: 65%" />
                     </div>
                 </td>
+                <td style="padding-top: 30px; text-align: center;"> 
+                    <span id='currentPointerValue' style="margin-left: -35px;">1800</span>
+                </td>   
             </tr>
             <tr style="height: 50px">
                 <td>
@@ -72,6 +81,7 @@
                     </div>
                 </td>
             </tr>
+            </tbody>
         </table>
     </div>
 </div>

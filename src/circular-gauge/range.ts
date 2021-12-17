@@ -7,6 +7,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { EmitType } from '@syncfusion/ej2-base';
 CircularGauge.Inject(Annotations);
 (window as any).default = (): void => {
     // custom code start
@@ -25,13 +27,13 @@ CircularGauge.Inject(Annotations);
             lineStyle: { width: 10, color: 'transparent' },
             labelStyle: {
                 position: 'Inside', useRangeColor: false,
-                font: { size: '12px', fontFamily: 'Roboto', fontStyle: 'Regular' }
+                font: { size: '12px', fontFamily: 'Segoe UI', fontStyle: 'Regular' }
             }, majorTicks: { height: 10, offset: 5 }, minorTicks: { height: 0 },
             annotations: [{
-                content: '<div><span style="font-size:14px; font-family:Regular">Speedometer</span></div>',
+                content: '<div><span style="font-size:14px; font-family:Segoe UI">Speedometer</span></div>',
                 radius: '30%', angle: 0, zIndex: '1'
             }, {
-                content: '<div><span style="font-size:20px; font-family:Regular">65 MPH</span></div>',
+                content: '<div><span style="font-size:20px; font-family:Segoe UI">65 MPH</span></div>',
                 radius: '40%', angle: 180, zIndex: '1'
             }],
             startAngle: 210, endAngle: 150, minimum: 0, maximum: 120, radius: '80%',
@@ -47,31 +49,26 @@ CircularGauge.Inject(Annotations);
     // code for property panel
     let colortObj: DropDownList;
     let listObj: DropDownList = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             let index: number = +listObj.value;
             colortObj.value = circulargauge.axes[0].ranges[index].color;
             (<HTMLInputElement>document.getElementById('endWidth')).value = circulargauge.axes[0].ranges[index].endWidth.toString();
-            document.getElementById('rangeEndWidth').innerHTML = 'End Width <span> &nbsp;&nbsp;&nbsp;' +
-                circulargauge.axes[0].ranges[index].endWidth;
+            document.getElementById('rangeEndWidth').innerHTML = circulargauge.axes[0].ranges[index].endWidth.toString();
             (<HTMLInputElement>document.getElementById('startWidth')).value = circulargauge.axes[0].ranges[index].startWidth.toString();
-            document.getElementById('rangeStartWidth').innerHTML = 'Start Width <span> &nbsp;&nbsp;&nbsp;' +
-                circulargauge.axes[0].ranges[index].startWidth;
+            document.getElementById('rangeStartWidth').innerHTML = circulargauge.axes[0].ranges[index].startWidth.toString();
             (<HTMLInputElement>document.getElementById('end')).value = circulargauge.axes[0].ranges[index].end.toString();
-            document.getElementById('rangeEnd').innerHTML = 'Range End <span> &nbsp;&nbsp;&nbsp;' +
-                circulargauge.axes[0].ranges[index].end;
+            document.getElementById('rangeEnd').innerHTML = circulargauge.axes[0].ranges[index].end.toString();
             (<HTMLInputElement>document.getElementById('start')).value = circulargauge.axes[0].ranges[index].start.toString();
-            document.getElementById('rangeStart').innerHTML = 'Range Start <span> &nbsp;&nbsp;&nbsp;' +
-                circulargauge.axes[0].ranges[index].start;
+            document.getElementById('rangeStart').innerHTML = circulargauge.axes[0].ranges[index].start.toString();
             (<HTMLInputElement>document.getElementById('radius')).value = circulargauge.axes[0].ranges[index].roundedCornerRadius.toString();
-            document.getElementById('cornerRadius').innerHTML = 'Corner Radius <span>    ' +
-                circulargauge.axes[0].ranges[index].roundedCornerRadius;
+            document.getElementById('cornerRadius').innerHTML = circulargauge.axes[0].ranges[index].roundedCornerRadius.toString();
         }
     });
     listObj.appendTo('#rangeSelect');
 
     colortObj = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             circulargauge.axes[0].ranges[+listObj.value].color = colortObj.value.toString();
             circulargauge.axes[0].pointers[0].animation.enable = false; circulargauge.refresh();
@@ -82,7 +79,7 @@ CircularGauge.Inject(Annotations);
     document.getElementById('start').onpointermove = document.getElementById('start').ontouchmove =
         document.getElementById('start').onchange = () => {
             let min: number = parseInt((<HTMLInputElement>document.getElementById('start')).value, 10);
-            document.getElementById('rangeStart').innerHTML = 'Range Start <span> &nbsp;&nbsp;&nbsp;' + min;
+            document.getElementById('rangeStart').innerHTML = min.toString();
             circulargauge.axes[0].ranges[+listObj.value].start = min;
             circulargauge.axes[0].pointers[0].animation.enable = false; circulargauge.refresh();
         };
@@ -90,7 +87,7 @@ CircularGauge.Inject(Annotations);
     document.getElementById('end').onpointermove = document.getElementById('end').ontouchmove =
         document.getElementById('end').onchange = () => {
             let max: number = parseInt((<HTMLInputElement>document.getElementById('end')).value, 10);
-            document.getElementById('rangeEnd').innerHTML = 'Range End <span> &nbsp;&nbsp;&nbsp;' + max;
+            document.getElementById('rangeEnd').innerHTML = max.toString();
             circulargauge.axes[0].ranges[+listObj.value].end = max;
             circulargauge.axes[0].pointers[0].animation.enable = false; circulargauge.refresh();
         };
@@ -98,7 +95,7 @@ CircularGauge.Inject(Annotations);
     document.getElementById('startWidth').onpointermove = document.getElementById('startWidth').ontouchmove =
         document.getElementById('startWidth').onchange = () => {
             let startWidth: number = parseInt((<HTMLInputElement>document.getElementById('startWidth')).value, 10);
-            document.getElementById('rangeStartWidth').innerHTML = 'Start Width <span> &nbsp;&nbsp;&nbsp;' + startWidth;
+            document.getElementById('rangeStartWidth').innerHTML = startWidth.toString();
             circulargauge.axes[0].ranges[+listObj.value].startWidth = startWidth;
             circulargauge.axes[0].pointers[0].animation.enable = false; circulargauge.refresh();
         };
@@ -106,7 +103,7 @@ CircularGauge.Inject(Annotations);
     document.getElementById('endWidth').onpointermove = document.getElementById('endWidth').ontouchmove =
         document.getElementById('endWidth').onchange = () => {
             let endWidth: number = parseInt((<HTMLInputElement>document.getElementById('endWidth')).value, 10);
-            document.getElementById('rangeEndWidth').innerHTML = 'End Width <span> &nbsp;&nbsp;&nbsp;' + endWidth;
+            document.getElementById('rangeEndWidth').innerHTML = endWidth.toString();
             circulargauge.axes[0].ranges[+listObj.value].endWidth = endWidth;
             circulargauge.axes[0].pointers[0].animation.enable = false; circulargauge.refresh();
         };
@@ -114,16 +111,22 @@ CircularGauge.Inject(Annotations);
     document.getElementById('radius').onpointermove = document.getElementById('radius').ontouchmove =
         document.getElementById('radius').onchange = () => {
             let radius: number = parseInt((<HTMLInputElement>document.getElementById('radius')).value, 10);
-            document.getElementById('cornerRadius').innerHTML = 'Corner Radius <span> &nbsp;&nbsp;&nbsp;' + radius;
+            document.getElementById('cornerRadius').innerHTML = radius.toString();
             circulargauge.axes[0].ranges[+listObj.value].roundedCornerRadius = radius;
             circulargauge.axes[0].pointers[0].animation.enable = false; circulargauge.refresh();
         };
-
-    document.getElementById('enable').onchange = () => {
-        let useRangeColor: boolean = (<HTMLInputElement>document.getElementById('enable')).checked;
-        circulargauge.axes[0].labelStyle.useRangeColor = useRangeColor;
-        circulargauge.axes[0].majorTicks.useRangeColor = useRangeColor;
-        circulargauge.axes[0].minorTicks.useRangeColor = useRangeColor;
+    let rangeFontchange: EmitType<CheckBoxChangeEvents>;
+    let rangeFontchangeCheckBox: CheckBox = new CheckBox(
+    {
+        change: rangeFontchange
+    },
+    '#enable');
+    
+    rangeFontchangeCheckBox.change = rangeFontchange = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        circulargauge.axes[0].labelStyle.useRangeColor = boolean;
+        circulargauge.axes[0].majorTicks.useRangeColor = boolean;
+        circulargauge.axes[0].minorTicks.useRangeColor = boolean;
         circulargauge.axes[0].pointers[0].animation.enable = false; circulargauge.refresh();
-    };
+    }
 };

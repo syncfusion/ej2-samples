@@ -17,7 +17,7 @@ Maps.Inject(Marker, NavigationLine, MapsTooltip);
     let maps: Maps = new Maps({
         titleSettings: {
             text: 'Cyber Attack Map of United States',
-            textStyle: { size: '16px' }
+            textStyle: { size: '16px',  fontFamily: 'Segoe UI' }
         },
         layers: [
             {

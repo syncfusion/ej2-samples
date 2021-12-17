@@ -51,7 +51,7 @@ let pointerRadialGradient: Object = {
         axes: [{
             lineStyle: { width: 0, color: 'transparent' },
             startAngle: 210, endAngle: 150, minimum: 0, maximum: 100, radius: '80%',
-            labelStyle: { font: { fontFamily: 'Roboto',
+            labelStyle: { font: { fontFamily: 'Segoe UI',
             size: '12px',
             fontWeight: 'Regular' }, offset: 10 },
             majorTicks: { width: 0, interval: 10 },
@@ -75,7 +75,7 @@ let pointerRadialGradient: Object = {
 
     let gradientType: DropDownList = new DropDownList({
         index: 0,
-        width: '145px',
+        width: '100%',
         change: () => {
             if (gradientType.value === '1' && element.value === '0') {
                 circulargauge.axes[0].ranges[0].linearGradient = null;
@@ -102,7 +102,7 @@ let pointerRadialGradient: Object = {
     gradientType.appendTo('#gradient');
     let element: DropDownList = new DropDownList({
         index: 0,
-        width: '145px',
+        width: '100%',
         change: () => {
             if (gradientType.value === '1' && element.value === '0') {
                 circulargauge.axes[0].ranges[0].linearGradient = null;

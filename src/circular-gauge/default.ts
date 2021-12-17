@@ -31,9 +31,9 @@ import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-cir
             },
             labelStyle: {
                 font: {
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Segoe UI',
                     size: '12px',
-                    fontWeight: 'Regular'
+                    fontWeight: 'Regular'   
                 },
                 offset: -5
             },

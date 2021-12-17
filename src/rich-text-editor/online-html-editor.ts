@@ -99,12 +99,14 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       renderCodeMirror(srcViewEle as HTMLElement, defaultRTE.value);
     }
     function renderCodeMirror(mirrorView: HTMLElement, content: string): void {
-      myCodeMirror = CodeMirror(mirrorView, {
-        value: content,
-        lineNumbers: true,
-        mode: 'text/html',
-        lineWrapping: true,
-      });
+      if (content) {
+        myCodeMirror = CodeMirror(mirrorView, {
+          value: content,
+          lineNumbers: true,
+          mode: 'text/html',
+          lineWrapping: true,
+        });
+      }
     }
   };
 };

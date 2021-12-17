@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Internationalization, extend } from '@syncfusion/ej2-base';
-import { Schedule, Day, Week, Month, Agenda, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
+import { Schedule, Day, Week, Month, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import { applyCategoryColor } from './helper';
 import * as dataSource from './datasource.json';
 
@@ -48,8 +48,7 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
             },
             { option: 'Month', group: { resources: ['Owners'] }, eventTemplate: monthEventTemplate },
             { option: 'Agenda', eventTemplate: agendaTemplate }
-        ],
-        eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
+        ]
     });
     scheduleObj.appendTo('#Schedule');
 };

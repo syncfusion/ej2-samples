@@ -35,7 +35,8 @@ Maps.Inject(Zoom, Marker);
         titleSettings: {
             text: '7.6 Magnitude earthquake strikes Sumatra - 2009',
             textStyle: {
-                size: '18px'
+                size: '18px',
+                fontFamily: 'Segoe UI'
             }
         },
         layers: [

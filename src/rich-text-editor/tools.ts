@@ -108,6 +108,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
             this.sourceCodeModule.getPanel().style.display = 'none';
             mirrorConversion(e);
         } else {
-            setTimeout(() => { defaultRTE.toolbarModule.refreshToolbarOverflow(); }, 400); }
+            setTimeout(() => { defaultRTE.toolbarModule.refreshToolbarOverflow(); }, 1000);
+        }
     }
 };

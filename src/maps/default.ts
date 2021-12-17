@@ -18,14 +18,18 @@ import { loadCultureFiles } from '../common/culture-loader';
         titleSettings: {
             text: 'YouTube office locations',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         zoomSettings: {
             enable: false
         },
         legendSettings: {
-            visible: true
+            visible: true,
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         layers: [
             {
@@ -57,7 +61,10 @@ import { loadCultureFiles } from '../common/culture-loader';
                         width: 20,
                         tooltipSettings: {
                             visible: true,
-                            valuePath: 'name'
+                            valuePath: 'name',
+                            textStyle: {
+                                fontFamily: 'Segoe UI'
+                            }
                         },
                         animationDuration: 0
                     },

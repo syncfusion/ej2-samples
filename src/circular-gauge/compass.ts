@@ -29,7 +29,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             lineStyle: { width: 10 },
             labelStyle: {
                 font: {
-                    size: '12px', fontFamily: 'Roboto'
+                    size: '12px', fontFamily: 'Segoe UI'
                 },
                 autoAngle: true,
                 hiddenLabel: 'Last'
@@ -70,7 +70,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     pointerColor = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 120,
+        width: "100%",
         change: () => {
             let rangeColor: string = pointerColor.value.toString();
             circulargauge.axes[0].pointers[0].color = rangeColor;
@@ -82,7 +82,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     labelColor = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 120,
+        width: "100%",
         change: () => {
             let rangeColor: string = labelColor.value.toString();
             circulargauge.axes[0].labelStyle.font.color = rangeColor;

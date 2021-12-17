@@ -30,7 +30,8 @@ import { loadCultureFiles } from '../common/culture-loader';
         titleSettings: {
             text: 'Samsung Semiconductor office locations in USA',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         layers: [
@@ -46,7 +47,10 @@ import { loadCultureFiles } from '../common/culture-loader';
                 dataLabelSettings: {
                     visible: true,
                     labelPath: 'iso_3166_2',
-                    smartLabelMode: 'Hide'
+                    smartLabelMode: 'Hide',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                    }
                 }
             },
             {
@@ -75,7 +79,10 @@ import { loadCultureFiles } from '../common/culture-loader';
                         tooltipSettings: {
                             visible: true,
                             valuePath: 'name',
-                            format: '<b>${name}</b><br>Manufacturing Center,<br>Research and Development Center'
+                            format: '<b>${name}</b><br>Manufacturing Center,<br>Research and Development Center',
+                            textStyle: {
+                                fontFamily: 'Segoe UI'
+                            }
                         }
                     },
                     {
@@ -86,7 +93,7 @@ import { loadCultureFiles } from '../common/culture-loader';
                                 longitude: -98.96484375
                             }
                         ],
-                        template: '<div style="color:black;">TX</div>'
+                        template: '<div style="color:black; font-family: Segoe UI;">TX</div>'
                     }
                 ]
             },
@@ -115,7 +122,10 @@ import { loadCultureFiles } from '../common/culture-loader';
                         tooltipSettings: {
                             visible: true,
                             valuePath: 'name',
-                            format: '<b>${name}</b><br>Regional Office,<br>Research and Development Center'
+                            format: '<b>${name}</b><br>Regional Office,<br>Research and Development Center',
+                            textStyle: {
+                                fontFamily: 'Segoe UI'
+                            }
                         },
                         template: '#markercircle'
                     },
@@ -127,7 +137,7 @@ import { loadCultureFiles } from '../common/culture-loader';
                                 longitude: -119.35546875000001
                             }
                         ],
-                        template: '<div style="color:black;">CA</div>'
+                        template: '<div style="color:black; font-family: Segoe UI;">CA</div>'
                     }
                 ]
             }

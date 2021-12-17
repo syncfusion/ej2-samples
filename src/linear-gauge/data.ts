@@ -39,7 +39,10 @@ export function firstGauge(): LinearGauge {
                 offset: 30
             },
             labelStyle: {
-                offset: 50
+                offset: 50,
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
             },
             pointers: [{
                 value: 10,
@@ -63,7 +66,7 @@ export function firstGauge(): LinearGauge {
             {
                 content: '<div id="title" style="width:300px;"> <img style="float:left" src'
                     + '="src/linear-gauge/images/exercise-tracking.svg"/><p style="font-size:18px;color:#4285F4;' +
-                    'float:left;margin-left:12px;margin-top:4px">Exercise Tracking </p></div>',
+                    'float:left;margin-left:12px;margin-top:4px; font-family:Segoe UI;">Exercise Tracking </p></div>',
                 axisIndex: 0, zIndex: '1',
                 axisValue: 0,
                 x: 150,
@@ -71,14 +74,14 @@ export function firstGauge(): LinearGauge {
             },
             {
                 content: '<div id="running" style="width:100px;"><img style="height:25px;width:25px;float:left" src="src/linear-gauge' +
-                    '/images/running.svg" /></span><p style="float:left;margin-left:10px;">Running</p></div>',
+                    '/images/running.svg" /></span><p style="float:left;margin-left:10px;font-family:Segoe UI;">Running</p></div>',
                 axisIndex: 0, zIndex: '1',
                 axisValue: 0,
                 x: 50,
                 y: -130
             },
             {
-                content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;">10 MPH</p></div>',
+                content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px; font-family:Segoe UI;">10 MPH</p></div>',
                 axisIndex: 0, zIndex: '1',
                 axisValue: 10,
                 y: -65
@@ -114,7 +117,10 @@ export function secondGauge(): LinearGauge {
                 offset: 30
             },
             labelStyle: {
-                offset: 50
+                offset: 50,
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
             },
             pointers: [{
                 value: 28,
@@ -136,14 +142,14 @@ export function secondGauge(): LinearGauge {
         }],
         annotations: [{
             content: '<div id="cycle" style="width:100px;"><img style="height:25px;width:25px;float:left" src="src/linear-gauge'
-                + '/images/cycling.svg" /></span><p style="float:left;margin-left:10px;">Cycling</p></div>',
+                + '/images/cycling.svg" /></span><p style="float:left;margin-left:10px; font-family:Segoe UI;">Cycling</p></div>',
             axisIndex: 0, zIndex: '1',
             axisValue: 0,
             x: 50,
             y: -110
         },
         {
-            content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px;">28 MPH</p></div>',
+            content: '<div id="pointerText" style="width:60px;"><p style="font-size:15px; font-family:Segoe UI;">28 MPH</p></div>',
             axisIndex: 0,
             axisValue: 28, zIndex: '1',
             y: -70
@@ -180,7 +186,10 @@ export function thirdGauge(): LinearGauge {
             },
             labelStyle: {
                 format: '{value}k',
-                offset: 50
+                offset: 50,
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
             },
             pointers: [{
                 value: 2,
@@ -202,14 +211,14 @@ export function thirdGauge(): LinearGauge {
         }],
         annotations: [{
             content: '<div id="walk" style="width:100px;"><img style="height:25px;width:25px;float:left" src="src/' +
-                'linear-gauge/images/walking.svg" /></span><p style="float:left;margin-left:10px;">Walking</p></div>',
+                'linear-gauge/images/walking.svg" /></span><p style="float:left;margin-left:10px; font-family:Segoe UI;">Walking</p></div>',
             axisIndex: 0,
             axisValue: 0, zIndex: '1',
             x: 50,
             y: -120
         },
         {
-            content: '<div id="pointerText" style="width:100px;"><p style="font-size:15px;">2000 Steps</p></div>',
+            content: '<div id="pointerText" style="width:100px;"><p style="font-size:15px;font-family:Segoe UI;">2000 Steps</p></div>',
             axisIndex: 0,
             axisValue: 2.2, zIndex: '1',
             y: -65

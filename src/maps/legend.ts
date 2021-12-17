@@ -38,12 +38,16 @@ Maps.Inject(Legend, MapsTooltip);
         titleSettings: {
             text: 'Population density (per square kilometer) - 2015',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         legendSettings: {
             visible: true,
             position: 'Top',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         layers: [
             {
@@ -54,7 +58,10 @@ Maps.Inject(Legend, MapsTooltip);
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'name',
-                    format: '${name} : ${density}'
+                    format: '${name} : ${density}',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                    }
                 },
                 shapeSettings: {
                     colorValuePath: 'density',
@@ -88,7 +95,7 @@ Maps.Inject(Legend, MapsTooltip);
     let legendPosition: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Legend Position',
-        width: 100,
+        width: '100%',
         change: () => {
             maps.legendSettings.position = <LegendPosition>legendPosition.value;
             if (legendPosition.value === 'Left' || legendPosition.value === 'Right') {
@@ -114,7 +121,7 @@ Maps.Inject(Legend, MapsTooltip);
     let mode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select layoutMode type',
-        width: 100,
+        width: '100%',
         change: () => {
             maps.legendSettings.mode = <LegendMode>mode.value;
             if (mode.value === 'Interactive') {

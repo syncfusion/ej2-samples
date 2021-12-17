@@ -3,7 +3,6 @@
   "directory": "query-builder",
   "category": "Forms",
   "ftName": "query-builder",
-  "type": "update",
   "samples": [
     {
       "url": "default",
@@ -26,7 +25,6 @@
       "name": "Complex Databinding",
       "category": "Query Builder",
       "ftName": "query-builder",
-      "type": "new",
       "api": {
           "QueryBuilder": [
               "width",
@@ -57,7 +55,6 @@
       "url": "rule-template",
       "name": "Rule Template",
       "category": "Template",
-      "type": "new",
       "api": {
           "QueryBuilder": [
               "width",
@@ -72,7 +69,6 @@
       "url": "header-template",
       "name": "Header Template",
       "category": "Template",
-      "type": "new",
       "api": {
           "QueryBuilder": [
               "width",

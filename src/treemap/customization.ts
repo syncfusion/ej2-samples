@@ -27,7 +27,7 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         // To config Title for treemap 
         titleSettings: {
             text: 'US Gold medal categories in Summer Olympics - 2016',
-            textStyle: {size: '15px'}
+            textStyle: {size: '15px', fontFamily: 'Segoe UI'}
         },
         //enableDrillDown: true,
         dataSource: new TreeMapAjax('./src/treemap/treemap-data/metal.json'),
@@ -35,11 +35,17 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         // To config tooltip for treemap 
         tooltipSettings: {
             visible: true,
-            format: '${Sport} : ${Gold}'
+            format: '${Sport} : ${Gold}',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         // To config leaf items for treemap
         leafItemSettings: {
             showLabels: !Browser.isDevice,
+            labelStyle: {
+                fontFamily: 'Segoe UI'
+            },
             labelPath: 'Sport',
             fill: '#993399',
             templatePosition: 'Center',

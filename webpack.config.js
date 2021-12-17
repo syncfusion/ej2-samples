@@ -27,9 +27,9 @@ function getControlWiseBundle() {
     }
     return controlWiseBundleList;
 }
-// mode : (/hotfix\/|release\/|master/).test(process.env.BRANCH_NAME) ? 'production' : 'development',
+
 module.exports = webpackConfig({
-    mode: 'development',
+    mode : 'development',
     entry: {
         'src/common/index.min': './src/common/index'
     },

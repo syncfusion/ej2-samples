@@ -22,22 +22,41 @@ CircularGauge.Inject(Annotations);
         // custom code end
         title: 'Shot Put Distance',
         titleStyle: {
-            size: '18px'
+            size: '18px',
+            fontFamily: 'Segoe UI'
         },
         centerY: '57%',
         axes: [{
             annotations: [{
-                content: '12 M', radius: '108%', angle: 98, zIndex: '1'
+                content: '12 M', radius: '108%', angle: 98, zIndex: '1',
+                textStyle: {
+                    fontFamily: 'Segoe UI'
+                }    
             }, {
-                content: '11 M', radius: '80%', angle: 81, zIndex: '1'
+                content: '11 M', radius: '80%', angle: 81, zIndex: '1',
+                textStyle: {
+                    fontFamily: 'Segoe UI'
+                } 
             }, {
-                content: '10 M', radius: '50%', angle: 69, zIndex: '1'
+                content: '10 M', radius: '50%', angle: 69, zIndex: '1',
+                textStyle: {
+                    fontFamily: 'Segoe UI'
+                } 
             }, {
-                content: 'Doe', radius: '108%', angle: 190, zIndex: '1'
+                content: 'Doe', radius: '108%', angle: 190, zIndex: '1',
+                textStyle: {
+                    fontFamily: 'Segoe UI'
+                } 
             }, {
-                content: 'Almaida', radius: '80%', angle: 185, zIndex: '1'
+                content: 'Almaida', radius: '80%', angle: 185, zIndex: '1',
+                textStyle: {
+                    fontFamily: 'Segoe UI'
+                } 
             }, {
-                content: 'John', radius: '50%', angle: 180, zIndex: '1'
+                content: 'John', radius: '50%', angle: 180, zIndex: '1',
+                textStyle: {
+                    fontFamily: 'Segoe UI'
+                } 
             }],
             lineStyle: {
                 width: 0, color: '#1d1d1d'

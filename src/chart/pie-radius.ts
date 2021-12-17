@@ -37,9 +37,11 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         enableSmartLabels: true,
         legendSettings: {
             visible: true,
+            reverse: true
         },
+        useGroupingSeparator: true,
         // Initialize tht tooltip
-        tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>' },
+        tooltip: { enable: true },
         enableAnimation: true,
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

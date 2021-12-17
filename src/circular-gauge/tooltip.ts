@@ -21,7 +21,7 @@ CircularGauge.Inject(GaugeTooltip);
         },
         // custom code end
         title: 'Tooltip Customization',
-        titleStyle: { size: '15px', color: 'grey' },
+        titleStyle: { size: '15px', color: 'grey', fontFamily: 'Segoe UI' },
         axes: [{
             radius: '90%',
             minimum: 0,
@@ -31,7 +31,7 @@ CircularGauge.Inject(GaugeTooltip);
             lineStyle: { width: 0 },
             majorTicks: { color: 'white', offset: -5, height: 12 },
             minorTicks: { width: 0 },
-            labelStyle: { useRangeColor: true, font: { color: '#424242', size: '13px', fontFamily: 'Roboto' } },
+            labelStyle: { useRangeColor: true, font: { color: '#424242', size: '13px', fontFamily: 'Segoe UI' } },
             pointers: [{
                 value: 70,
                 radius: '60%',

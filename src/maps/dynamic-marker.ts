@@ -107,7 +107,7 @@ let longitude: number[] = [];
     let markerShape: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select marker shape',
-        width: 87
+        width: '100%'
     });
     markerShape.appendTo('#type');
 

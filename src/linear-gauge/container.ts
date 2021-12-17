@@ -16,6 +16,9 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         },
         // custom code start
         title: 'Temperature Measure',
+        titleStyle: {
+            fontFamily: 'Segoe UI'
+        },
         container: {
             width: 13,
             roundedCornerRadius: 5,
@@ -51,6 +54,11 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             line: {
                 width: 0
             },
+            labelStyle:{
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
+           },
             majorTicks: {
                 interval: 20
             },
@@ -67,7 +75,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     let containerMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 140,
+        width: '100%',
         change: () => {
             gauge.container.type = <ContainerType>containerMode.value;
             gauge.refresh();
@@ -78,7 +86,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     let orientationMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 140,
+        width: '100%',
         change: () => {
             gauge.orientation = <Orientation>orientationMode.value;
             gauge.refresh();

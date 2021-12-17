@@ -5,44 +5,48 @@
     </div>
 </div>
 <div class="col-lg-3 property-section">
-    <table id="property" title="Properties" style="width: 100%">
-        <tbody>
-            <tr>
-                <td style="width: 70%">
-                    <div class="property-text">Drilldown View</div>
+    <table id="property" title="Properties" style="width: 100%;">
+        <colgroup>
+            <col span="1" style="width: 40%;">
+            <col span="1" style="width: 60%;">
+         </colgroup>
+         <tbody>
+         <tr style="height: 50px">
+                <td>
+                    <div class="property-text" >Drilldown View</div>
                 </td>
-                <td style="width: 70%;">
-                    <div>
+                <td>
+                    <div class="property-text"  style="margin-left: -1px; margin-top: -10px;">
                         <input type="checkbox" id="drillView" />
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="width: 70%">
+            <tr style="height: 50px">
+                <td>
                     <div class="property-text">Enable Breadcrumb</div>
                 </td>
-                <td style="width: 70%;">
-                    <div>
+                <td>
+                    <div class="property-text"  style="margin-left: -1px; margin-top: -10px;">
                         <input type="checkbox" id="breadCrumb" />
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="width: 70%">
+            <tr style="height: 50px">
+                <td>
                     <div class="property-text">Breadcrumb Connector</div>
                 </td>
-                <td style="width: 70%;">
-                    <div>
-                        <input type="text" id="connectorText" value=' - ' disabled=true style="width:70px;margin-left:10px" />
+                <td>
+                    <div class="property-text"  style="margin-left: 10px;">
+                        <input type="text" id="connectorText" value=' - ' disabled=true style="width:100%;" />
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="width:40%;">
+            <tr style="height: 50px">
+                <td>
                     <div class="property-text">Header Alignment</div>
                 </td>
-                <td style="width: 60%;">
-                    <div style="margin-left:10px">
+                <td>
+                    <div class="property-text"  style="margin-left: 10px;">
                         <select name="selectIndex" id="header">
                             <option value="Near" selected>Near</option>
                             <option value="Far">Far</option>
@@ -51,12 +55,12 @@
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="width:40%;">
-                    <div class="property-text">Label Alignment</div>
+            <tr style="height: 50px">
+                <td>
+                    <div  class="property-text" style="width: 94%;">Label Alignment</div>
                 </td>
-                <td style="width: 60%;">
-                    <div style="margin-left:10px">
+                <td>
+                    <div  class="property-text" style="margin-left: 10px;">
                         <select name="selectIndex" id="label">
                             <option value="Near" selected>Near</option>
                             <option value="Far">Far</option>
@@ -68,7 +72,11 @@
         </tbody>
     </table>
 </div>
-
+<style>
+      div.property-text {
+            padding-left: 0px; padding-top: 0px;
+        }
+</style>
 <div id="action-description">
     <p>
         This sample demonstrates drill-down with the continents at the top level followed by regions and countries. By

@@ -29,7 +29,7 @@ let prevTime: Date; let curTime: Date;
         load: treemapload,
         titleSettings: {
             text: 'Top 10 largest islands in the World',
-            textStyle: { size: '15px' }
+            textStyle: { size: '15px', fontFamily: 'Segoe UI' }
         },
         format: 'n',
         useGroupingSeparator: true,
@@ -43,16 +43,28 @@ let prevTime: Date; let curTime: Date;
             title: {
                 text: 'Area'
             },
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            },
+            titleStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         tooltipSettings: {
             visible: true,
             format: 'Name: ${Name}<br>Area: ${Area} per square kms<br>Continent: ${Location}',
-            opacity: 0.8
+            opacity: 0.8,
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         weightValuePath: 'Area',
         leafItemSettings: {
             labelPath: 'Name',
             border: { color: 'white', width: 0.5 },
+            labelStyle: {
+                fontFamily: 'Segoe UI'
+            },
             colorMapping: [
                 { from: 100000, to: 250000, label: '0.1M - 0.25M', color: '#547C84' },
                 { from: 250000, to: 550000, label: '0.25M - 0.55M', color: '#37AFAB' },
@@ -121,7 +133,7 @@ let prevTime: Date; let curTime: Date;
     let sampleValue: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Range ColorMaping',
-        width: 110,
+        width: '100%',
         change: () => {
             let element: string = sampleValue.value.toString();
             if (element === 'RangeColorMapping') {

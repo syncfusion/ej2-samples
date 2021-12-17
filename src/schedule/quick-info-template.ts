@@ -136,6 +136,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
             if (args.type === 'QuickInfo' || args.type === 'ViewEventInfo') {
                 let titleObj: TextBox = new TextBox({ placeholder: 'Title' });
                 titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
+                if (!args.target.classList.contains('e-appointment')) {
+                    titleObj.focusIn();
+                }
                 let typeObj: DropDownList = new DropDownList({
                     dataSource: scheduleObj.getResourceCollections().slice(-1)[0].dataSource as Record<string, any>[],
                     placeholder: 'Choose Type',

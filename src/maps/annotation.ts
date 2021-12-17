@@ -43,7 +43,7 @@ Maps.Inject(Annotations, Marker);
                 markerSettings: [
                     {
                         visible: true,
-                        template: '<h3 style="color:white">{{:name}}</h3>',
+                        template: '<h3 style="color:white; font-family: Segoe UI;">{{:name}}</h3>',
                         animationDuration: 1,
                         dataSource: [{
                             name: 'Africa', latitude: 13.97274101999902, longitude: 20.390625

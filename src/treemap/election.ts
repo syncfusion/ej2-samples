@@ -52,18 +52,24 @@ let prevTime: Date; let curTime: Date;
         },
         titleSettings: {
             text: 'US Presidential election result - 2016',
-            textStyle: { size: '15px' }
+            textStyle: { size: '15px',  fontFamily: 'Segoe UI' }
         },
         dataSource: new TreeMapAjax('./src/treemap/treemap-data/election-data.json'),
         weightValuePath: 'Population',
         tooltipSettings: {
             visible: true,
-            format: '<b>${Winner}</b><br>State : ${State}<br>Trump : ${Trump} %<br>Clinton : ${Clinton} %'
+            format: '<b>${Winner}</b><br>State : ${State}<br>Trump : ${Trump} %<br>Clinton : ${Clinton} %',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         legendSettings: {
             visible: true,
             position: 'Top',
-            shape: 'Rectangle'
+            shape: 'Rectangle',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         format: 'n',
         useGroupingSeparator: true,
@@ -72,6 +78,9 @@ let prevTime: Date; let curTime: Date;
         leafItemSettings: {
             labelPath: 'State',
             fill: '#6699cc',
+            labelStyle: {
+                fontFamily: 'Segoe UI'
+            },
             border: { color: 'white', width: 0.5 },
             colorMapping: [
                 {
@@ -87,7 +96,7 @@ let prevTime: Date; let curTime: Date;
     let mode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select legend type',
-        width: 100,
+        width: '100%',
         change: () => {
             treemap.legendSettings.mode = <LegendMode>mode.value;
             if (mode.value === 'Interactive') {

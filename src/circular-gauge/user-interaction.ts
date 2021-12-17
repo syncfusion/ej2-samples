@@ -7,12 +7,14 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import { CircularGauge, IPointerDragEventArgs, Annotations, getRangeColor, Range } from '@syncfusion/ej2-circulargauge';
 import { ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
+import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { EmitType } from '@syncfusion/ej2-base';
 CircularGauge.Inject(Annotations);
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
     // custom code end
-    let content: string = '<div style="font-size: 14px;color:#E5C31C;font-weight: lighter;font-style: oblique;"><span>';
+    let content: string = '<div style="font-size: 14px;color:#E5C31C;font-weight: lighter;font-style: oblique; font-family: Segoe UI;"><span>';
     let pointerValue: number;
     let circulargauge: CircularGauge = new CircularGauge({
         // custom code start
@@ -28,7 +30,7 @@ CircularGauge.Inject(Annotations);
         dragMove: (args: IPointerDragEventArgs) => {
             if (isNaN(args.rangeIndex)) {
                 pointerValue = Math.round(args.currentValue);
-                document.getElementById('pointerValue').innerHTML = 'Pointer Value <span> &nbsp;&nbsp;&nbsp;' + pointerValue;
+                document.getElementById('pointerValue').innerHTML = pointerValue.toString();
                 (<HTMLInputElement>document.getElementById('value')).value = pointerValue.toString();
                 circulargauge.setAnnotationValue(0, 0, content + pointerValue + ' MPH</span></div>');
             }
@@ -53,7 +55,7 @@ CircularGauge.Inject(Annotations);
             maximum: 120,
             majorTicks: { useRangeColor: true },
             minorTicks: { useRangeColor: true },
-            labelStyle: { useRangeColor: true },
+            labelStyle: { useRangeColor: true,  font: { fontFamily: 'Segoe UI' } },
             ranges: [{
                 start: 0,
                 end: 40,
@@ -110,15 +112,30 @@ CircularGauge.Inject(Annotations);
         document.getElementById('value').onchange = () => {
             let pointerValue: number = parseInt((<HTMLInputElement>document.getElementById('value')).value, 10);
             setPointersValue(circulargauge, pointerValue);
-            document.getElementById('pointerValue').innerHTML = 'Pointer Value <span> &nbsp;&nbsp;&nbsp;' + pointerValue;
+            document.getElementById('pointerValue').innerHTML = pointerValue.toString();
         };
+    let pointerchange: EmitType<CheckBoxChangeEvents>;
+    let rangechange: EmitType<CheckBoxChangeEvents>;
+    let pointerchangeCheckBox: CheckBox = new CheckBox(
+    {
+        change: pointerchange,
+        checked: true
+    },
+    '#enable');
+    
+    pointerchangeCheckBox.change = pointerchange = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        circulargauge.enablePointerDrag = boolean;
+    }
 
-    document.getElementById('enable').onchange = () => {
-        let value: boolean = (<HTMLInputElement>document.getElementById('enable')).checked;
-        circulargauge.enablePointerDrag = value;
-    };
-    document.getElementById('enable1').onchange = () => {
-        let value: boolean = (<HTMLInputElement>document.getElementById('enable1')).checked;
-        circulargauge.enableRangeDrag = value;
-    };
+    let rangechangeCheckBox: CheckBox = new CheckBox(
+        {
+            change: rangechange
+        },
+        '#enable1');
+        
+        rangechangeCheckBox.change = rangechange = (e: CheckBoxChangeEvents) => {
+            let boolean: boolean = e.checked;
+            circulargauge.enableRangeDrag = boolean;
+        }
    };

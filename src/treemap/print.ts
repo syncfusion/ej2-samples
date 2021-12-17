@@ -9,6 +9,7 @@ import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+import { TextBox } from  '@syncfusion/ej2-inputs';
 TreeMap.Inject(TreeMapTooltip, Print, ImageExport, PdfExport);
 // custom code start
 export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
@@ -26,7 +27,7 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         load: treemapload,
         titleSettings: {
             text: 'Top 10 best selling smartphone brands - 2017',
-            textStyle: { size: '15px'}
+            textStyle: { size: '15px', fontFamily: 'Segoe UI' }
         },
         allowPrint: true,
         allowImageExport: true,
@@ -38,7 +39,10 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         rangeColorValuePath: 'Percentage',
         tooltipSettings: {
             visible: true,
-            format: '${Product} (+${Percentage}) %'
+            format: '${Product} (+${Percentage}) %',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         leafItemSettings: {
             labelPath: 'Product',
@@ -46,6 +50,9 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
             border: { color: 'black', width: 0.5 },
             labelPosition: 'Center',
             interSectAction: 'Hide',
+            labelStyle: {
+                fontFamily: 'Segoe UI'
+            },
             labelFormat: '${Product} (+${Percentage}) %',
             colorMapping: [
                 {
@@ -70,15 +77,18 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     // Treemap file format (PNG, JPEG, PDF, SVG)
     let mode: DropDownList = new DropDownList({
         index: 0,
-        width: 70
+        width: '100%'
     });
     mode.appendTo('#mode');
     let togglebtn1: Button = new Button({
          cssClass: 'e-info', isPrimary: true
     });
     togglebtn1.appendTo('#togglebtn1');
+    let fileText: TextBox = new TextBox({
+    });
+    fileText.appendTo('#fileName');
     document.getElementById('togglebtn1').onclick = () => {
-        let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
+        let fileName: string = fileText.value;
         treemap.export(<ExportType>mode.value, fileName);
     };
 };

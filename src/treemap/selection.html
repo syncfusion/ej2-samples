@@ -22,72 +22,75 @@
 </div>
 <!-- property panel-->
 <div class="col-lg-3 property-section">
-        <table id="property" title="Properties" style="width: 100%">
-            <tbody>
-                    <tr style="height: 50px">
-                            <td style="width: 60%">
-                                <div class="property-text"><b>Highlight</b></div>
-                            </td>
+        <table id="property" title="Properties" style="width: 100%;">
+            <colgroup>
+                <col span="1" style="width: 50%;">
+                <col span="1" style="width: 50%;">
+             </colgroup> 
+             <tbody>
+             <tr style="height: 50px">
+                    <td>
+                        <div><b>Highlight</b></div>
+                    </td>                        
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                        <div> Enable</div>
+                    </td>
+                    <td>
+                        <div style="margin-top: 12px;">
+                            <input type="checkbox" id="highlightEnable" checked />
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                        <div>Mode</div>
+                    </td>
+                    <td>
+                        <div>
+                            <select name="selectIndex" autocomplete="off" id="highlightMode">
+                                <option value="Item" selected>Item</option>
+                                <option value="Child">Child</option>
+                                <option value="Parent">Parent</option>
+                                <option value="All">All</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                        <td>
+                            <div ><b>Selection</b></div>
+                        </td>
                             
                     </tr>
-                    <tr >
-                            <td style="width: 60%">
-                                <div class="property-text"> Enable</div>
-                            </td>
-                            <td style="width: 40%;">
-                                <div>
-                                    <input type="checkbox" id="highlightEnable" checked/>
-                                </div>
-                            </td>
+                    <tr style="height: 50px">
+                        <td>
+                            <div>Enable</div>
+                        </td>
+                        <td>
+                            <div style="margin-top: 12px;">
+                                <input type="checkbox" id="SelectionEnable" checked />
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                            <td style="width: 60%">
-                                <div class="property-text">Mode</div>
-                            </td>
-                            <td style="width: 40%;">
-                                <div>
-                                    <select name="selectIndex" autocomplete="off" id="highlightMode" style="width:60%;">
-                                        <option value="Item" selected>Item</option>
-                                        <option value="Child">Child</option>
-                                        <option value="Parent">Parent</option>
-                                        <option value="All">All</option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="height: 50px">
-                                <td style="width: 80%">
-                                    <div class="property-text"><b>Selection</b></div>
-                                </td>
-                                
-                        </tr>
-                        <tr >
-                                <td style="width: 60%">
-                                    <div class="property-text">Enable</div>
-                                </td>
-                                <td style="width: 40%;">
-                                    <div>
-                                        <input type="checkbox" id="SelectionEnable" checked/>
-                                    </div>
-                                </td>
-                        </tr>
-                        <tr>
-                                <td style="width: 60%">
-                                    <div class="property-text"> Mode</div>
-                                </td>
-                                <td style="width: 40%;">
-                                    <div>
-                                        <select name="selectIndex" autocomplete="off" id="selectionMode" style="width:60%;">
-                                            <option value="Item" selected>Item</option>
-                                            <option value="Child">Child</option>
-                                            <option value="Parent">Parent</option>
-                                            <option value="All">All</option>
-                                        </select>
-                                    </div>
-                                </td>
-                        </tr>
-                       
-        </tbody></table>
+                    <tr style="height: 50px">
+                        <td>
+                            <div> Mode</div>
+                        </td>
+                        <td >
+                            <div>
+                                <select name="selectIndex" autocomplete="off" id="selectionMode">
+                                    <option value="Item" selected>Item</option>
+                                    <option value="Child">Child</option>
+                                    <option value="Parent">Parent</option>
+                                    <option value="All">All</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+        </table>
     </div>
     
     
@@ -118,5 +121,10 @@
             font-size: 13px !important;
             font-weight: 400 !important;
         }
+        .property-panel-table div {
+         padding-left: 0px;
+         padding-top: 0px;
+      }
+
     </style>
     <!-- custom code end -->

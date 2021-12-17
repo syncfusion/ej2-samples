@@ -919,6 +919,14 @@
             "sidebar-list": "Sidebar with ListView"
         }
     },
+    "signature": {
+	"ControlName": "Signature",
+	"Samples": {
+	   "default": "Default Functionalities",
+	   "toolbar": "Toolbar",
+	   "keyboard-navigation": "Keyboard Navigation"
+	}
+    },
     "slider": {
         "ControlName": "Range Slider",
         "Samples": {

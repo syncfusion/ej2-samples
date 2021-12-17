@@ -25,7 +25,8 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         titleSettings: {
-            text: 'Import and Export details of US'
+            text: 'Import and Export details of US',
+            textStyle: { fontFamily: 'Segoe UI' }
         },
         dataSource: new TreeMapAjax('./src/treemap/treemap-data/import.json'),
         weightValuePath: 'sales',
@@ -37,7 +38,10 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
             labelPath: 'type',
             fill: '#8ebfe2',
             labelPosition: 'Center',
-            gap: 10
+            gap: 10,
+            labelStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         selectionSettings: {
             enable: true,
@@ -79,7 +83,7 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let highlightMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select highlight type',
-        width: 80,
+        width: '100%',
         change: () => {
             treemap.highlightSettings.mode = <HighLightMode>highlightMode.value;
             treemap.refresh();
@@ -90,7 +94,7 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let selectionMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Selection selection type',
-        width: 80,
+        width: '100%',
         change: () => {
             treemap.selectionSettings.mode = <SelectionMode>selectionMode.value;
             treemap.refresh();

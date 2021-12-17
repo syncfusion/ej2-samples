@@ -1,4 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
+import { getComponent } from '@syncfusion/ej2-base';
+import { Button } from '@syncfusion/ej2-buttons';
 import { BreadcrumbItemModel, Breadcrumb } from '@syncfusion/ej2-navigations';
 
 (window as any).default = (): void => {
@@ -26,7 +28,7 @@ import { BreadcrumbItemModel, Breadcrumb } from '@syncfusion/ej2-navigations';
     let overflowItems: BreadcrumbItemModel[] = [
         {
             text: "Home",
-            url: "../"
+            url: "./"
         },
         {
             text: "Breadcrumb",
@@ -82,4 +84,14 @@ import { BreadcrumbItemModel, Breadcrumb } from '@syncfusion/ej2-navigations';
         enableNavigation: false,
         enableActiveItemNavigation: true
     }, '#active-item');
+    
+    // To refresh all Breadcrumb control state when reset button clicked
+    new Button({ cssClass: 'e-small' }, '#reset').element.onclick = () => {
+        var breadcrumb, breadcrumbInst, breadcrumbs = document.querySelector('.content-wrapper').getElementsByClassName("e-breadcrumb");
+        for (var i = 0; i < breadcrumbs.length; i++) {
+            breadcrumb = breadcrumbs[i];
+            breadcrumbInst = (getComponent(breadcrumb as HTMLElement, 'breadcrumb') as Breadcrumb);
+            breadcrumbInst.activeItem = breadcrumbInst.items[breadcrumbInst.items.length - 1].text;
+        }
+    };
 };

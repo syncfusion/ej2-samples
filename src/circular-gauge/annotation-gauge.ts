@@ -38,20 +38,23 @@ export function gauge1(): CircularGauge {
                 ],
                 annotations: [{
                     angle: 270, radius: '50%', zIndex: '1',
-                    content: '<div id="minutes" style="width:75px;height:75px;"></div>'
+                    content: '<div id="minutes" style="width:75px;height:75px; font-family: Segoe UI;"></div>'
                 }, {
                     angle: 180, radius: '50%', zIndex: '1',
-                    content: '<div id="seconds" style="width:75px;height:75px;"></div>'
+                    content: '<div id="seconds" style="width:75px;height:75px; font-family: Segoe UI;"></div>'
                 }, {
                     angle: 90, zIndex: '1',
                     radius: '40%',
-                    content: '<div id="hr" style="background-color:rgb(128,128,128); color:white;font-size:12px;">11:11 AM</div>'
+                    content: '<div id="hr" style="background-color:rgb(128,128,128); color:white;font-size:12px font-family: Segoe UI;;">11:11 AM</div>'
                 }, {
                     angle: 360, radius: '50%', zIndex: '1',
-                    content: '<div id="tm" style="font-size:10px;">21-06-17</div>'
+                    content: '<div id="tm" style="font-size:10px; font-family: Segoe UI;">21-06-17</div>'
                 }],
                 labelStyle: {
-                    hiddenLabel: 'First', autoAngle: false
+                    hiddenLabel: 'First', autoAngle: false,
+                    font: {
+                        fontFamily: 'Segoe UI'
+                    }    
                 }, majorTicks: {
                     width: 2, height: 14, interval: 1
                 }, minorTicks: {
@@ -148,7 +151,7 @@ export function gauge2(): CircularGauge {
                 }, {
                     angle: 360, zIndex: '1',
                     radius: '35%',
-                    content: '<div id="tm" style="font-size:10px;">21-06-17</div>'
+                    content: '<div id="tm" style="font-size:10px;  font-family: Segoe UI;">21-06-17</div>'
                 }],
                 labelStyle: {
                     hiddenLabel: 'First',

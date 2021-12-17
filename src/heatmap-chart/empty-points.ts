@@ -10,7 +10,7 @@ HeatMap.Inject(Tooltip, Legend);
     loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
-            text: 'Deffective Count per 1000 Products from a Manufacturing Unit',
+            text: 'Defective Count per 1000 Products from a Manufacturing Unit',
             textStyle: {
                 size: '15px',
                 fontWeight: '500',

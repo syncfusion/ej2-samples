@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Tooltip smart position sample
  */
@@ -6,8 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Tooltip } from '@syncfusion/ej2-popups';
 import { Draggable } from '@syncfusion/ej2-base';
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
 
     //Initialize Tooltip component
     let tooltip: Tooltip = new Tooltip({

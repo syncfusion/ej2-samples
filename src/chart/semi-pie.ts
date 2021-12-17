@@ -36,6 +36,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
                 },
             }
         ],
+        enableAnimation: false,
         //Initializing Tooltip
         tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
         legendSettings: {

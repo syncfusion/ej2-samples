@@ -35,7 +35,7 @@ CircularGauge.Inject(Annotations);
             lineStyle: { width: 2, color: '#9E9E9E' },
             labelStyle: {
                 position: 'Outside', autoAngle: true,
-                font: { size: '10px' }
+                font: { size: '10px', fontFamily: 'Segoe UI' }
             }, majorTicks: {
                 position: 'Inside', color: '#757575', width: 2, height: 10, interval: 20
             }, minorTicks: {
@@ -53,7 +53,7 @@ CircularGauge.Inject(Annotations);
     // code for property panel
     let ticks: DropDownList; let tickPosition: DropDownList; let labelPosition: DropDownList;
     ticks = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             let value: string = ticks.value.toString();
             let tick: TickModel; isMajorTicks = value === 'major';
@@ -65,8 +65,8 @@ CircularGauge.Inject(Annotations);
             tickPosition.value = tick.position;
             (<HTMLInputElement>document.getElementById('tickOffset')).value = tick.offset.toString();
             (<HTMLInputElement>document.getElementById('tickHeight')).value = tick.height.toString();
-            document.getElementById('offset').innerHTML = 'Tick Offset <span>&nbsp;&nbsp;&nbsp;' + tick.offset;
-            document.getElementById('height').innerHTML = 'Tick Height <span>&nbsp;&nbsp;&nbsp;' + tick.height;
+            document.getElementById('offset').innerHTML = tick.offset.toString();
+            document.getElementById('height').innerHTML = tick.height.toString();
         }
     });
     ticks.appendTo('#Ticks');
@@ -84,7 +84,7 @@ CircularGauge.Inject(Annotations);
     }
 
     tickPosition = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             let value: string = tickPosition.value.toString();
             if (isMajorTicks) {
@@ -98,7 +98,7 @@ CircularGauge.Inject(Annotations);
     tickPosition.appendTo('#tickposition');
 
     labelPosition = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             circulargauge.axes[0].labelStyle.position = <Position>labelPosition.value.toString();
             circulargauge.refresh();
@@ -114,7 +114,7 @@ CircularGauge.Inject(Annotations);
             } else {
                 circulargauge.axes[0].minorTicks.offset = value;
             }
-            document.getElementById('offset').innerHTML = 'Tick Offset <span>&nbsp;&nbsp;&nbsp;' + value;
+            document.getElementById('offset').innerHTML = value.toString();
             circulargauge.refresh();
         };
 
@@ -126,7 +126,7 @@ CircularGauge.Inject(Annotations);
             } else {
                 circulargauge.axes[0].minorTicks.height = value;
             }
-            document.getElementById('height').innerHTML = 'Tick Height <span>&nbsp;&nbsp;&nbsp;' + value;
+            document.getElementById('height').innerHTML = value.toString();
             circulargauge.refresh();
         };
 
@@ -134,7 +134,7 @@ CircularGauge.Inject(Annotations);
         document.getElementById('labelOffset').onchange = () => {
             let value: number = parseInt((<HTMLInputElement>document.getElementById('labelOffset')).value, 10);
             circulargauge.axes[0].labelStyle.offset = value;
-            document.getElementById('labelOffsetValue').innerHTML = 'Label Offset <span>&nbsp;&nbsp;&nbsp;' + value;
+            document.getElementById('labelOffsetValue').innerHTML = value.toString();
             circulargauge.refresh();
         };
 };

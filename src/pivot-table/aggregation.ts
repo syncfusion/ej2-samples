@@ -17,7 +17,7 @@ let data: IDataSet[] = (rData as any).data;
     let pivotObj: PivotView = new PivotView({
         dataSourceSettings: {
             enableSorting: true,
-            formatSettings: [{ name: 'ProCost', format: 'C' }],
+            formatSettings: [{ name: 'PowUnits', format: 'N' }, { name: 'ProCost', format: 'C' }],
             drilledMembers: [{ name: 'EnerType', items: ['Biomass', 'Free Energy'] }],
             columns: [
                 { name: 'EnerType', caption: 'Energy Type' },
@@ -67,6 +67,11 @@ let data: IDataSet[] = (rData as any).data;
         let isAvail: boolean = false;
         for (let vCnt: number = 0; vCnt < pivotObj.dataSourceSettings.values.length; vCnt++) {
             if (pivotObj.dataSourceSettings.values[vCnt].name === fieldName) {
+                if (pivotObj.dataSourceSettings.values[vCnt].name === 'PowUnits' && summaryType === 'Avg') {
+                    pivotObj.setProperties({ dataSourceSettings: { formatSettings: [{ name: 'PowUnits', format: 'N2' }, { name: 'ProCost', format: 'C' }] } }, true);
+                } else {
+                    pivotObj.setProperties({ dataSourceSettings: { formatSettings: [{ name: 'PowUnits', format: 'N' }, { name: 'ProCost', format: 'C' }] } }, true);
+                }
                 pivotObj.dataSourceSettings.values[vCnt].type = summaryType;
                 isAvail = true;
             }

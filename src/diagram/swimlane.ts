@@ -276,16 +276,24 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         },
         contextMenuOpen: function (args: DiagramBeforeMenuOpenEventArgs) {
             for (let item of args.items) {
-                if ((diagram.selectedItems.connectors.length + diagram.selectedItems.nodes.length) > 0) {
-                    if (item.id === 'InsertLaneBefore' || item.id === 'InsertLaneAfter') {
-                        if (diagram.selectedItems.connectors.length || (diagram.selectedItems.nodes.length && !(diagram.selectedItems.nodes[0] as Node).isLane)) {
-                            args.hiddenItems.push(item.text);
-                        }
+                if (
+                  diagram.selectedItems.connectors.length +
+                    diagram.selectedItems.nodes.length >
+                  0
+                ) {
+                  if (item.id === 'InsertLaneBefore' || item.id === 'InsertLaneAfter') {
+                    if (
+                      diagram.selectedItems.connectors.length ||
+                      (diagram.selectedItems.nodes.length &&
+                        !(diagram.selectedItems.nodes[0] as Node).isLane)
+                    ) {
+                      args.hiddenItems.push(item.id);
                     }
+                  }
                 } else {
-                    args.hiddenItems.push(item.text);
+                  args.hiddenItems.push(item.id);
                 }
-            }
+              }
         },
         contextMenuClick: function (args: MenuEventArgs) {
             if (args.item.id === 'InsertLaneBefore' || args.item.id === 'InsertLaneAfter') {

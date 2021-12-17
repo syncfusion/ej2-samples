@@ -6,6 +6,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Default sample
  */
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
+import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { EmitType } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -26,7 +28,7 @@ import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-cir
             lineStyle: { width: 0, color: '#0450C2' },
             labelStyle: {
                 position: 'Outside', autoAngle: true,
-                font: { fontWeight: 'normal' }
+                font: { fontWeight: 'normal', fontFamily: 'Segoe UI' }
             }, majorTicks: {
                 position: 'Inside', width: 2, height: 12, interval: 4
             }, minorTicks: {
@@ -69,21 +71,21 @@ import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-cir
     document.getElementById('start').onpointermove = document.getElementById('start').ontouchmove =
     document.getElementById('start').onchange = () => {
         let min: number = parseInt((<HTMLInputElement>document.getElementById('start')).value, 10);
-        document.getElementById('rangeStart').innerHTML = 'Start Angle <span> &nbsp;&nbsp;&nbsp;' + min + '°';
+        document.getElementById('rangeStart').innerHTML = min + '°';
         circulargauge.axes[0].startAngle = min;
         circulargauge.refresh();
     };
     document.getElementById('end').onpointermove = document.getElementById('end').ontouchmove =
     document.getElementById('end').onchange = () => {
         let max: number = parseInt((<HTMLInputElement>document.getElementById('end')).value, 10);
-        document.getElementById('rangeEnd').innerHTML = 'End Angle <span> &nbsp;&nbsp;&nbsp;' + max + '°';
+        document.getElementById('rangeEnd').innerHTML = max + '°';
         circulargauge.axes[0].endAngle = max;
         circulargauge.refresh();
     };
     document.getElementById('radius').onpointermove = document.getElementById('radius').ontouchmove =
     document.getElementById('radius').onchange = () => {
         let max: number = parseInt((<HTMLInputElement>document.getElementById('radius')).value, 10);
-        document.getElementById('radius1').innerHTML = 'Radius <span> &nbsp;&nbsp;&nbsp;' + max + '%';
+        document.getElementById('radius1').innerHTML = max + '%';
         circulargauge.axes[0].radius = '' + max + '%';
         circulargauge.refresh();
     };
@@ -91,7 +93,7 @@ import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-cir
     document.getElementById('centerX').onchange = () => {
         if (!highlightCheckBox.checked) {
             let max: number = parseInt((<HTMLInputElement>document.getElementById('centerX')).value, 10);
-            document.getElementById('center1').innerHTML = 'Center X <span> &nbsp;&nbsp;&nbsp;' + max + '%';
+            document.getElementById('center1').innerHTML = max + '%';
             circulargauge.centerX = '' + max + '%';
             circulargauge.refresh();
         }
@@ -100,7 +102,7 @@ import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-cir
     document.getElementById('centerY').onchange = () => {
         if (!highlightCheckBox.checked) {
             let max: number = parseInt((<HTMLInputElement>document.getElementById('centerY')).value, 10);
-            document.getElementById('center2').innerHTML = 'Center Y <span> &nbsp;&nbsp;&nbsp;' + max + '%';
+            document.getElementById('center2').innerHTML =  max + '%';
             circulargauge.centerY = '' + max + '%';
             circulargauge.refresh();
         }

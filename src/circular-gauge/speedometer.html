@@ -7,45 +7,54 @@
     </div>
     <!-- property panel -->
     <div class="col-lg-3 property-section">
-            <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
-                <tbody>                       
-                        <tr >
-                                <td style="width: 40%">
-                                    <div class="property-text" style="width:100px"> Show text labels</div>
+            <table id="property" title="Properties" style="width: 100%;"> 
+                <colgroup>
+                    <col span="1" style="width: 70%;">
+                    <col span="1" style="width: 30%;">
+                 </colgroup>     
+                 <tbody>                       
+                    <tr style="height: 50px">
+                                <td>
+                                    <div class="property-text" style="width: 110%;"> Show text labels</div>
                                 </td>
-                                <td style="width: 40%;">
-                                    <div style="margin-left: 30px">
+                                <td>
+                                    <div style="margin-left: 60px; margin-top:-10px;" class="property-text">
                                         <input type="checkbox" id="showText" checked/>
                                     </div>
                                 </td>
                         </tr>
-                        <tr >
-                            <td style="width: 40%">
-                                <div class="property-text" style="width:100px"> Combine ranges</div>
+                        <tr style="height: 50px">
+                            <td>
+                                <div class="property-text" style="width: 110%;"> Combine ranges</div>
                             </td>
-                            <td style="width: 40%;">
-                                <div style="margin-left: 30px">
+                            <td>
+                                <div style="margin-left: 60px; margin-top:-10px;" class="property-text">
                                     <input type="checkbox" id="combineRange" checked/>
                                 </div>
                             </td>
                         </tr>
-                        <tr >
-                            <td style="width: 40%">
-                                <div class="property-text" style="width:100px"> Gap between ranges</div>
+                        <tr style="height: 50px">
+                            <td>
+                                <div style="width: 136%;" class="property-text"> Gap between ranges</div>
                             </td>
-                            <td style="width: 40%;">
-                                <div style="margin-left: 30px">
+                            <td>
+                                <div style="margin-left: 60px; margin-top:-10px;" class="property-text">
                                     <input type="checkbox" id="range" checked/>
                                 </div>
                             </td>
                     </tr>
-                </tbody>
+                    </tbody>
             </table>
     </div>
+    <style>
+        div.property-text {
+            padding-left: 0px; padding-top: 0px;
+        }
+    </style>
     <script id='pointerValue' type="text/x-template">
         <div id='templateWrap'>
             <div class='des'>
-                <div id='pointerannotation' style="width:90px;text-align:center;font-size:20px;font-family:Roboto">${pointers[0].value} km/h</div>
+                <div id='pointerannotation' style="width:90px;text-align:center;font-size:20px;font-family:Segoe UI;">${pointers[0].value} km/h</div>
             </div>
         </div>
     </script>

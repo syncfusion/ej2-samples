@@ -38,34 +38,34 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         document.getElementById('EventLog').innerHTML = '';
     };
     function OnCreate(): void {
-        appendElement('Schedule <b>Load</b> event called<hr>');
+        appendElement('Schedule <b>Load</b> event is triggered<hr>');
     }
     function OnActionBegin(): void {
-        appendElement('Schedule <b>Action Begin</b> event called<hr>');
+        appendElement('Schedule <b>Action Begin</b> event is triggered<hr>');
     }
     function OnActionComplete(): void {
-        appendElement('Schedule <b>Action Complete</b> event called<hr>');
+        appendElement('Schedule <b>Action Complete</b> event is triggered<hr>');
     }
     function OnActionFailure(): void {
-        appendElement('Schedule <b>Action Failure</b> event called<hr>');
+        appendElement('Schedule <b>Action Failure</b> event is triggered<hr>');
     }
     function OnCellDoubleClick(): void {
-        appendElement('SChedule <b>Cell Double Click</b> event called<hr>');
+        appendElement('SChedule <b>Cell Double Click</b> event is triggered<hr>');
     }
     function OnCellClick(): void {
-        appendElement('Schedule <b>Cell Click</b> event called<hr>');
+        appendElement('Schedule <b>Cell Click</b> event is triggered<hr>');
     }
     function OnNavigating(): void {
-        appendElement('Schedule <b>Navigating</b> event called<hr>');
+        appendElement('Schedule <b>Navigating</b> event is triggered<hr>');
     }
     function OnDestroyed(): void {
-        appendElement('Schedule <b>Destroyed</b> event called<hr>');
+        appendElement('Schedule <b>Destroyed</b> event is triggered<hr>');
     }
     function OnEventClick(): void {
-        appendElement('Schedule <b>Event Click</b> event called<hr>');
+        appendElement('Schedule <b>Event Click</b> event is triggered<hr>');
     }
     function OnPopupOpen(): void {
-        appendElement('Schedule <b>Popup Open</b> event called<hr>');
+        appendElement('Schedule <b>Popup Open</b> event is triggered<hr>');
     }
     function appendElement(html: string): void {
         let span: HTMLElement = document.createElement('span');

@@ -17,6 +17,10 @@
            "description": "This sample demonstrates copy to clipboard functionality of the Tree Grid component. Select rows and click Copy button from toolbar to copy content. To copy with header click Copy with header button from toolbar."
          },
          {  
+            "url": "adaptive", "name": "Adaptive", "type": "new", "category": "Tree Grid","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","height","columns","enableAdaptiveUI","allowSorting","allowFiltering","editSettings","toolbar","allowPaging"] },
+            "description": "This example demonstrates the adaptive rendering behavior of Tree Grid features."
+         },
+         {  
             "url":"localdata", "name": "Local Data", "category":"Data Binding","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","allowPaging","columns"] },
             "description": "This example shows the binding of an array of list objects in the Syncfusion TypeScript Tree Grid control."
          },
@@ -172,11 +176,11 @@
             "description": "This demo explains how the hierarchy selection between the records using column checkboxes in Essential TypeScript Tree Grid control."
          },
          {
-            "url":"frozen-column", "name": "Default Frozen", "category":"Frozen","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
+            "url":"frozen-column", "name": "Frozen Column", "category":"Frozen","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
             "description": "This demo for Essential JS 2 Tree Grid control shows frozen columns feature of Tree Grid. Scroll the movable content to view the frozen columns."
          },
          {
-            "url":"frozen-api", "name": "Freeze Direction", "type": "new", "category":"Frozen","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
+            "url":"frozen-api", "name": "Freeze Direction", "category":"Frozen","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
             "description": "This demo for Essential JS 2 Tree Grid control shows frozen columns feature of Tree Grid with Freeze direction Left/Right."
          },         
          {"url":"aggregate-default", "name": "Default Aggregate", "category": "Aggregates","api":{"TreeGrid":["dataSource","childMapping", "treeColumnIndex","height","columns","aggregates"] },

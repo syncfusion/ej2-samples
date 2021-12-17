@@ -72,7 +72,7 @@ function gaugeLoad(args: ILoadEventArgs): void {
     if (this.count === undefined) {
         gauge.annotations = [
             {
-                content: '<div id="title" style="width:200px;"><p style="font-size:18px;">CPU Utilization</p></div>',
+                content: '<div id="title" style="width:200px;"><p style="font-size:18px; font-family:Segoe UI;">CPU Utilization</p></div>',
                 horizontalAlignment: 'Center',
                 x: 35, zIndex: '1',
                 y: 50
@@ -99,19 +99,19 @@ function gaugeLoad(args: ILoadEventArgs): void {
                 zIndex: '1'
             },
             {
-                content: '<div id="lowText"><p style="font-size:15px;color:#248622;">Low</p></div>',
+                content: '<div id="lowText"><p style="font-size:15px;color:#248622; font-family:Segoe UI;">Low</p></div>',
                 axisIndex: 0, zIndex: '1',
                 axisValue: 15,
                 y: 20
             },
             {
-                content: '<div id="moderateText"><p style="font-size:15px;color:#ba9e2a;">Moderate</p></div>',
+                content: '<div id="moderateText"><p style="font-size:15px;color:#ba9e2a; font-family:Segoe UI;">Moderate</p></div>',
                 axisIndex: 0, zIndex: '1',
                 axisValue: 45,
                 y: 20
             },
             {
-                content: '<div id="highText"><p style="font-size:15px;color:#b42f2f;">High</p></div>',
+                content: '<div id="highText"><p style="font-size:15px;color:#b42f2f; font-family:Segoe UI;">High</p></div>',
                 axisIndex: 0, zIndex: '1',
                 axisValue: 75,
                 y: 20

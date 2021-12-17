@@ -8,15 +8,19 @@
 </div>
 <!-- property panel -->
 <div class="col-lg-3 property-section">
-    <table id="property" title="Properties" style="width: 100%">
-        <tbody>
-            <tr style="height: 50px">
-                <td style="width: 60%">
-                    <div class="property-text" style="padding-top: 0px !important">Layout Type</div>
+    <table id="property" title="Properties" style="width: 100%; margin-left: -10px;">
+        <colgroup>
+            <col span="1" style="width: 50%;">
+            <col span="1" style="width: 50%;">
+       </colgroup> 
+       <tbody>
+       <tr style="height: 50px">
+                <td>
+                    <div>Layout Type</div>
                 </td>
-                <td style="width: 60%;">
-                    <div style="margin-left:10px">
-                    <select name="selectIndex" autocomplete="off" id="layoutMode" style="width:60%;">
+                <td>
+                    <div>
+                    <select name="selectIndex" autocomplete="off" id="layoutMode">
                         <option value="Squarified" selected>Squarified</option>
                         <option value="SliceAndDiceHorizontal">Horizontal</option>
                         <option value="SliceAndDiceVertical">Vertical</option>
@@ -26,12 +30,12 @@
                 </td>
             </tr>
             <tr style="height: 50px">
-                <td style="width: 60%">
-                    <div class="property-text" style="padding-top: 0px !important">Render Direction</div>
+                <td>
+                    <div>Render Direction</div>
                 </td>
-                <td style="width: 60%">
-                    <div style="margin-left:10px">
-                        <select name="selectIndex" id="highlightMode" style="width:60%;">
+                <td>
+                    <div>
+                        <select name="selectIndex" id="highlightMode">
                             <option value="TopLeftBottomRight" selected>TopLeftBottomRight</option>
                             <option value="TopRightBottomLeft">TopRightBottomLeft</option>
                             <option value="BottomLeftTopRight">BottomLeftTopRight</option>
@@ -70,12 +74,3 @@
 
 
 </div>
-<!-- custom code start -->
-<style>
-    .property-text {
-        font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif" !important;
-        font-size: 13px !important;
-        font-weight: 400 !important;
-    }
-</style>
-<!-- custom code end -->

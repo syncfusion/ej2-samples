@@ -14,6 +14,8 @@ TreeGrid.Inject(Page, Edit);
             childMapping: 'subtasks',
             treeColumnIndex: 1,
             height: 900,
+            allowSelection: true,
+            selectionSettings: { type: 'Multiple'},
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Row' },
             columns: [
                 { field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, width: 90, textAlign: 'Right' },

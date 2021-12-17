@@ -78,7 +78,10 @@ export function secondGauge(): LinearGauge {
                 interval: 10,
             },
             labelStyle: {
-                offset: 50
+                offset: 50,
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
             },
             pointers: [{
                 value: 10,
@@ -172,7 +175,10 @@ export function fourthGauge(): LinearGauge {
                 height: 0
             },
             labelStyle: {
-                offset: 55
+                offset: 55,
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
             },
             pointers: [
                 {

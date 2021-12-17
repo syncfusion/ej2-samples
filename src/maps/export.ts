@@ -10,6 +10,7 @@ import {
 } from '@syncfusion/ej2-maps';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
+import { TextBox } from  '@syncfusion/ej2-inputs';
 
 Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
 (window as any).default = (): void => {
@@ -30,7 +31,8 @@ Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
         titleSettings: {
             text: 'Location of the Wonders in the World',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             },
         },
         layers: [
@@ -56,7 +58,10 @@ Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
                         width: 15,
                         tooltipSettings: {
                             visible: true,
-                            valuePath: 'name'
+                            valuePath: 'name',
+                            textStyle: {
+                                fontFamily: 'Segoe UI'
+                            }
                         },
                     }
                 ],
@@ -69,13 +74,13 @@ Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
     let mode: DropDownList = new DropDownList({
         index: 0,
         dataSource: modeData,
-        width: '110px'
+        width: '100%'
     });
     mode.appendTo('#mode');
     let layertype: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select layer type',
-        width: '110px',
+        width: '100%',
         change: () => {
             if (layertype.value === 'OSM') {
                 mode.dataSource = modeData.slice(0, 3);
@@ -91,8 +96,11 @@ Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
         iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true
     });
     togglebtn.appendTo('#togglebtn');
+    let fileText: TextBox = new TextBox({
+    });
+    fileText.appendTo('#fileName');
     document.getElementById('togglebtn').onclick = () => {
-        let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
+        let fileName: string = fileText.value;
         maps.export(<ExportType>mode.value, fileName);
     };
 };

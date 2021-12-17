@@ -7,13 +7,17 @@
     <!-- propeety panel -->
     <div class="col-md-4 property-section">
         <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
-            <tbody>
-                <tr>
+            <colgroup>
+                <col span="1" style="width: 30%;">
+                <col span="1" style="width: 70%;">
+             </colgroup>
+             <tbody>
+             <tr style="height: 50px">
                     <td>
                         <div>Orientation</div>
                     </td>
                     <td>
-                        <div>
+                        <div style="margin-left: -20px">
                             <select name="selectIndex" autocomplete="off" id="orientationMode" class="form-control"
                                 style="width:90%">
                                 <option value="Vertical" selected>Vertical</option>
@@ -22,12 +26,12 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr style="height: 50px">
                     <td>
-                        <div>Container Type</div>
+                        <div style="width: 70%">Container Type</div>
                     </td>
                     <td>
-                        <div>
+                        <div style="margin-left: -20px">
                             <select name="selectIndex" autocomplete="off" id="containerMode" class="form-control" style="width:90%">
                                 <option value="Thermometer" selected>Thermometer</option>
                                 <option value="Normal">Normal</option>
@@ -36,7 +40,6 @@
                         </div>
                     </td>
                 </tr>
-
             </tbody>
         </table>
     </div>

@@ -1,4 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
+import { getComponent } from '@syncfusion/ej2-base';
+import { Button } from '@syncfusion/ej2-buttons';
 import { BreadcrumbItemModel, Breadcrumb, Menu, MenuItemModel, MenuEventArgs, BreadcrumbBeforeItemRenderEventArgs } from '@syncfusion/ej2-navigations';
 
 (window as any).default = (): void => {
@@ -24,6 +26,7 @@ import { BreadcrumbItemModel, Breadcrumb, Menu, MenuItemModel, MenuEventArgs, Br
             text: 'Pictures'
         }
     ];
+    let initialBreadcrumbItems: BreadcrumbItemModel[] = [].slice.call(breadcrumbItems);
 
     let items: any = [
         {
@@ -108,12 +111,54 @@ import { BreadcrumbItemModel, Breadcrumb, Menu, MenuItemModel, MenuEventArgs, Br
     let breadcrumbObj: Breadcrumb = new Breadcrumb({
         cssClass: 'e-custom-breadcrumb',
         itemTemplate: '#itemTemplate',
+        separatorTemplate: '#separatorTemplate',
         items: breadcrumbItems,
         beforeItemRender: beforeItemRenderHanlder
     }, '#address-bar');
 
     function beforeItemRenderHanlder(args: BreadcrumbBeforeItemRenderEventArgs): void {
-        if (!args.element.classList.contains('e-breadcrumb-separator')) {
+        if (args.element.classList.contains('e-breadcrumb-separator')) {
+            const previousItemText: string = (args.item as { previousItem: BreadcrumbItemModel }).previousItem.text;
+            if (previousItemText !== 'LastItem' && getItems(previousItemText)[0].items) {
+                new Menu({
+                    items: getItems(previousItemText),
+                    showItemOnClick: true,
+                    select: function (args: MenuEventArgs): void {
+                        if (!args.element.parentElement.classList.contains('e-menu') && this.items[0] && this.items[0].items) {
+                            let idx: number;
+                            for (let i: number = 0; i < this.items[0].items.length; i++) {
+                                for (let j: number = 0; j < breadcrumbItems.length; j++) {
+                                    if (this.items[0].items[i].text === breadcrumbItems[j].text) {
+                                        idx = j;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (idx) {
+                                breadcrumbItems = breadcrumbItems.slice(0, idx);
+                            }
+                            breadcrumbItems[0].iconCss = 'e-bicons e-' + (args.item as { type: string }).type;
+                            if (breadcrumbItems[breadcrumbItems.length - 1].text === 'LastItem') {
+                                breadcrumbItems.pop();
+                            }
+                            breadcrumbItems.push({ text: args.item.text });
+                            breadcrumbItems.push({ text: 'LastItem' });
+                            breadcrumbObj.items = breadcrumbItems;
+                        }
+                    },
+                    beforeOpen: function () {
+                        this.element.classList.add('e-open');
+                    },
+                    onClose: function () {
+                        this.element.classList.remove('e-open');
+                    }
+                }, args.element.querySelector('ul'));
+            }
+        } else {
+            if (args.item.text === 'LastItem') {
+                args.element.style.display = 'none';
+                return;
+            }
             new Menu({
                 items: [{
                     text: args.item.text, iconCss: args.item.iconCss
@@ -127,40 +172,10 @@ import { BreadcrumbItemModel, Breadcrumb, Menu, MenuItemModel, MenuEventArgs, Br
                             break;
                         }
                     }
+                    breadcrumbObj.items.push({ text: 'LastItem' });
+                    breadcrumbObj.activeItem = 'LastItem';
                 }
             }, args.element.querySelector('ul'));
-            if (args.item) {
-                if (getItems(args.item.text)[0].items) {
-                    new Menu({
-                        items: getItems(args.item.text),
-                        showItemOnClick: true,
-                        select: function (args: MenuEventArgs): void {
-                            if (!args.element.parentElement.classList.contains('e-menu') && this.items[0] && this.items[0].items) {
-                                let idx: number;
-                                for (let i: number = 0; i < this.items[0].items.length; i++) {
-                                    for (let j: number = 0; j < breadcrumbItems.length; j++) {
-                                        if (this.items[0].items[i].text === breadcrumbItems[j].text) {
-                                            idx = j;
-                                        }
-                                    }
-                                }
-                                if (idx) {
-                                    breadcrumbItems = breadcrumbItems.slice(0, idx);
-                                }
-                                breadcrumbItems[0].iconCss = 'e-bicons e-' + (args.item as { type: string }).type;
-                                breadcrumbItems.push({ text: args.item.text });
-                                breadcrumbObj.items = breadcrumbItems;
-                            }
-                        },
-                        beforeOpen: function () {
-                            this.element.classList.add('e-open');
-                        },
-                        onClose: function () {
-                            this.element.classList.remove('e-open');
-                        }
-                    }, args.element.querySelectorAll('ul')[1]);
-                }
-            }
         }
     }
 
@@ -206,4 +221,11 @@ import { BreadcrumbItemModel, Breadcrumb, Menu, MenuItemModel, MenuEventArgs, Br
         }
         return subItems;
     }
+
+    // To refresh Breadcrumb control state when reset button clicked
+    new Button({ cssClass: 'e-small' }, '#reset').element.onclick = () => {
+        var breadcrumb = document.getElementById('address-bar');
+        var breadcrumbInst = (getComponent(breadcrumb as HTMLElement, 'breadcrumb') as Breadcrumb);
+        breadcrumbInst.items = initialBreadcrumbItems;
+    };
 };

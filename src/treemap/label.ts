@@ -26,19 +26,25 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         load: treemapload,
         titleSettings: {
             text: 'Countries ordered based on Population - 2017',
-            textStyle: { size: '15px' }
+            textStyle: { size: '15px', fontFamily: 'Segoe UI'  }
         },
         dataSource: new TreeMapAjax('./src/treemap/treemap-data/country-population.json'),
         tooltipSettings: {
             visible: true,
-            format: '${Country} : ${Population}'
+            format: '${Country} : ${Population}',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         legendSettings: {
             visible: true,
             mode: 'Interactive',
             width: '300px',
             height: '10',
-            position: 'Top'
+            position: 'Top',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         format: 'n',
         useGroupingSeparator: true,
@@ -48,6 +54,9 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
             showLabels: true,
             labelPath: 'Country',
             fill: 'red',
+            labelStyle: {
+                fontFamily: 'Segoe UI'
+            },
             colorMapping: [
                 {
                     to: 10000000000,
@@ -64,7 +73,7 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let labelMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Label Action',
-        width: 100,
+        width: '100%',
         change: () => {
             treemap.leafItemSettings.interSectAction = <LabelAlignment>labelMode.value;
             treemap.refresh();

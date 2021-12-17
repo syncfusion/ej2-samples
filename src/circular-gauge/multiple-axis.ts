@@ -23,13 +23,14 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         },
         // custom code end
         title: 'Gauge with Multiple Axes',
-        titleStyle: { color: 'gray', size: '16px' },
+        titleStyle: { color: 'gray', size: '16px', fontFamily: 'Segoe UI' },
         axes: [{
             lineStyle: { width: 1.5 },
             radius: '95%',
             labelStyle: {
                 position: 'Inside', autoAngle: true,
                 hiddenLabel: 'None',
+                font: { fontFamily: 'Segoe UI' }
             }, majorTicks: {
                 position: 'Inside',
                 width: 2, height: 10
@@ -47,7 +48,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             lineStyle: { width: 1.5, color: '#E84011' }, radius: '95%',
             labelStyle: {
                 position: 'Outside', autoAngle: true,
-                hiddenLabel: 'None', font: { color: '#E84011' }
+                hiddenLabel: 'None', font: { color: '#E84011', fontFamily: 'Segoe UI'  }
             }, majorTicks: {
                 position: 'Outside', width: 2, height: 10,
                 color: '#E84011'
@@ -66,14 +67,14 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     circulargauge.appendTo('#axis-container');
     // code for property panel
     axis = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             axisIndex = +axis.value;
             direction.value = circulargauge.axes[axisIndex].direction;
             let startAngle: number = circulargauge.axes[axisIndex].startAngle;
             let endAngle: number = circulargauge.axes[axisIndex].endAngle;
-            document.getElementById('start').innerHTML = 'Start Angle <span> &nbsp;&nbsp;&nbsp;' + startAngle;
-            document.getElementById('end').innerHTML = 'End Angle <span> &nbsp;&nbsp;&nbsp;' + endAngle;
+            document.getElementById('start').innerHTML = startAngle.toString();
+            document.getElementById('end').innerHTML = endAngle.toString();
             (<HTMLInputElement>document.getElementById('startAngle')).value = startAngle.toString();
             (<HTMLInputElement>document.getElementById('endAngle')).value = endAngle.toString();
         }
@@ -81,7 +82,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     axis.appendTo('#axisIndex');
 
     direction = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             circulargauge.axes[axisIndex].direction = <GaugeDirection>direction.value.toString();
             circulargauge.axes[0].pointers[0].animation.enable = false;
@@ -97,7 +98,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             circulargauge.axes[0].pointers[0].animation.enable = false;
             circulargauge.axes[1].pointers[0].animation.enable = false;
             circulargauge.axes[axisIndex].startAngle = value;
-            document.getElementById('start').innerHTML = 'Start Angle <span> &nbsp;&nbsp;&nbsp;' + value;
+            document.getElementById('start').innerHTML = value.toString();
             circulargauge.axes[axisIndex].labelStyle.hiddenLabel =
                 isCompleteAngle(circulargauge.axes[axisIndex].startAngle, circulargauge.axes[axisIndex].endAngle) ?
                     'First' : 'None';
@@ -110,7 +111,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             circulargauge.axes[0].pointers[0].animation.enable = false;
             circulargauge.axes[1].pointers[0].animation.enable = false;
             circulargauge.axes[axisIndex].endAngle = value;
-            document.getElementById('end').innerHTML = 'End Angle <span> &nbsp;&nbsp;&nbsp;' + value;
+            document.getElementById('end').innerHTML = value.toString();
             circulargauge.axes[axisIndex].labelStyle.hiddenLabel =
                 isCompleteAngle(circulargauge.axes[axisIndex].startAngle, circulargauge.axes[axisIndex].endAngle) ?
                     'First' : 'None';

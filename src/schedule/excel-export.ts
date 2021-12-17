@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { extend } from '@syncfusion/ej2-base';
 import { ItemModel } from '@syncfusion/ej2-navigations';
 import {
-    Schedule, Week, ActionEventArgs, ExcelExport, DragAndDrop, Resize, ExportOptions
+    Schedule, Week, ActionEventArgs, ExcelExport, DragAndDrop, Resize, ExportOptions, ExportFieldInfo
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 
@@ -34,7 +34,14 @@ import * as dataSource from './datasource.json';
     scheduleObj.appendTo('#Schedule');
 
     function onExportClick(): void {
-        let exportValues: ExportOptions = { fields: ['Id', 'Subject', 'StartTime', 'EndTime', 'Location'] };
+        const exportFields: ExportFieldInfo[] = [
+            { name: 'Id', text: 'Id' },
+            { name: 'Subject', text: 'Summary' },
+            { name: 'StartTime', text: 'Start Date' },
+            { name: 'EndTime', text: 'End Date' },
+            { name: 'Location', text: 'Place' }
+        ];
+        const exportValues: ExportOptions = { fieldsInfo: exportFields };
         scheduleObj.exportToExcel(exportValues);
     }
 };

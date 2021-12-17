@@ -53,7 +53,7 @@ Maps.Inject(Zoom);
     slider.change = sliderChange = (e: SliderChangeEventArgs) => {
         maps.layers[0].animationDuration = e.value as number;
         maps.refresh();
-        document.getElementById('dur').innerHTML = e.value.toString() + ' ms';
+        document.getElementById('dur').innerHTML = e.value.toString() + 'ms';
     };
     document.getElementById('mousewheel').onchange = () => {
         let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('mousewheel'));

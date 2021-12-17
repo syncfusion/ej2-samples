@@ -9,25 +9,29 @@
 </div>
 <!-- property panel-->
 <div class="col-lg-4 property-section">
-        <table id="property" title="Properties" style="width: 100%;">
-            <tbody>
-                <tr style="height: 50px">
-                    <td style="width: 10%">
-                        <div class="property-text" style="padding: 0px;">Legend mode </div>
+        <table id="property" title="Properties" style="width: 100%; margin-left: -10px;">
+            <colgroup>
+                <col span="1" style="width: 60%;">
+                <col span="1" style="width: 40%;">
+             </colgroup>   
+             <tbody> 
+             <tr style="height: 65px">
+                    <td>
+                        <div class="property-text" style="padding-top: 0px;">Legend mode </div>
                     </td>
-                    <td style="width: 30%;">
-                        <select name="selectIndex" autocomplete="off" id="legendMode" style="width:60%;">
+                    <td>
+                        <select name="selectIndex" autocomplete="off" id="legendMode">
                             <option value="Default" selected>Default</option>
                             <option value="Interactive">Interactive</option>
                         </select>
                     </td>
                 </tr>
-                <tr style="height: 50px">
-                    <td style="width: 10%">
-                        <div class="property-text" style="padding: 0px;">Legend position </div>
+                <tr style="height: 65px">
+                    <td>
+                        <div class="property-text" style="padding-top: 0px;">Legend position </div>
                     </td>
-                    <td style="width: 30%">
-                        <select name="legendPos" autocomplete="off" id="legendPosition" style="width:60%;">
+                    <td>
+                        <select name="legendPos" autocomplete="off" id="legendPosition">
                             <option value="Top" selected>Top</option>
                             <option value="Bottom">Bottom</option>
                             <option value="Left">Left</option>
@@ -35,27 +39,27 @@
                         </select>
                     </td>
                 </tr>
-                <tr style="height: 50px">
-                    <td style="width: 70%">
-                        <div class="property-text" style="padding: 0px; margin-top: 10px">Show legend for remaining data source items</div>
+                <tr style="height: 65px">
+                    <td>
+                        <div class="property-text" style="width: 83%; padding-top: 0px;">Show legend for remaining data source items</div>
                     </td>
-                    <td style="width: 20%">
-                        <div  style="padding-top:0px; margin-top: 10px; margin-left: 20px">
+                    <td >
+                        <div style="margin-left: -20px;margin-top: -17px;">
                             <input type="checkbox" id="opacity"/>
                         </div>
                     </td>
                 </tr>
-                <tr style="height: 50px">
-                    <td style="width: 70%">
-                        <div class="property-text" style="padding: 0px; margin-top: 20px">Show population density when the legend item is toggled</div>
+                <tr style="height: 65px">
+                    <td>
+                        <div class="property-text" style="width: 83%;">Show population density when the legend item is toggled</div>
                     </td>
-                    <td style="width: 20%">
-                        <div  style="padding-top:0px; margin-top: 20px; margin-left: 20px">
+                    <td>
+                        <div style="margin-left: -20px;margin-top: -10px;">
                             <input type="checkbox" id="toggleLegend"/>
                         </div>
                     </td>
                 </tr>
-            </tbody>
+                </tbody>
         </table>
     </div>
 <div id="action-description">

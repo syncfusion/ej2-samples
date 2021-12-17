@@ -123,7 +123,10 @@ Maps.Inject(Marker, Zoom, MapsTooltip);
                         },
                         tooltipSettings: {
                             visible: true,
-                            valuePath: 'text'
+                            valuePath: 'text',
+                            textStyle: {
+                                fontFamily: 'Segoe UI'
+                            }    
                         }
                     },
                     {
@@ -142,7 +145,10 @@ Maps.Inject(Marker, Zoom, MapsTooltip);
                         ],
                         tooltipSettings: {
                             visible: true,
-                            valuePath: 'text'
+                            valuePath: 'text',
+                            textStyle: {
+                                fontFamily: 'Segoe UI'
+                            }    
                         },
                         border: {
                             color: 'transparent'

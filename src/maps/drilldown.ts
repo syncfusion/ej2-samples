@@ -82,7 +82,10 @@ export interface ShapeData {
                 },
                 tooltipSettings: {
                     visible: true,
-                    valuePath: 'continent'
+                    valuePath: 'continent',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                   }
                 },
                 markerSettings: [
                     {
@@ -153,7 +156,10 @@ export interface ShapeData {
                 },
                 tooltipSettings: {
                     visible: true,
-                    valuePath: 'name'
+                    valuePath: 'name',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                   }
                 }
             },
             {
@@ -168,7 +174,10 @@ export interface ShapeData {
                 },
                 tooltipSettings: {
                     visible: true,
-                    valuePath: 'name'
+                    valuePath: 'name',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                   }
                 }
             },
             {
@@ -183,7 +192,10 @@ export interface ShapeData {
                 },
                 tooltipSettings: {
                     visible: true,
-                    valuePath: 'name'
+                    valuePath: 'name',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                   }
                 }
             },
             {
@@ -198,7 +210,10 @@ export interface ShapeData {
                 },
                 tooltipSettings: {
                     visible: true,
-                    valuePath: 'name'
+                    valuePath: 'name',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                   }
                 }
             },
             {
@@ -213,7 +228,10 @@ export interface ShapeData {
                 },
                 tooltipSettings: {
                     visible: true,
-                    valuePath: 'name'
+                    valuePath: 'name',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                   }
                 }
             },
             {
@@ -228,7 +246,10 @@ export interface ShapeData {
                 },
                 tooltipSettings: {
                     visible: true,
-                    valuePath: 'name'
+                    valuePath: 'name',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                   }
                 }
             }
         ]

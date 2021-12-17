@@ -4,7 +4,6 @@
     "category": "Grids",
     "ftName": "spreadsheet",
     "hideOnDevice": true,
-    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -115,7 +114,6 @@
             "url": "data-validation",
             "name": "Data Validation",
             "category": "Spreadsheet",
-            "type": "update",
             "api": {
                 "Spreadsheet": [
                     "sheets",
@@ -243,7 +241,6 @@
             "url": "number-formatting",
             "name": "Number Formatting",
             "category": "Formatting",
-            "type": "update",
             "api": {
                 "sheets": [
                     "columns",

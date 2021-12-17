@@ -4,21 +4,25 @@
 <!-- property panel-->
 <div class="col-lg-3 property-section">
     <table id="property" title="Properties" style="width: 100%; margin-left: -10px">
-        <tbody>
+        <colgroup>
+            <col span="1" style="width: 50%;">
+            <col span="1" style="width: 50%;">
+         </colgroup>
+         <tbody>
             <tr style="height: 50px">
-                <td style="width: 80%">
-                    <div style="width:60%">Show Labels</div>
+                <td>
+                    <div style="width:82%">Show Labels</div>
                 </td>
                 <td>
-                    <input type="checkbox" checked id="select" style="margin-top: 15px;  margin-left: 35px">
+                    <input type="checkbox" checked id="select" style="margin-top: 15px;">
                 </td>
             </tr>            
         <tr style="height: 50px">
-            <td style="width: 60%">
-                <div style="width:60%">Smart label mode</div>
+            <td>
+                <div style="width:77%">Smart label mode</div>
             </td>
-            <td style="width: 40%">
-                <select id="smartlabelmode" style="margin-left: -25px">
+            <td>
+                <select id="smartlabelmode">
                     <option value="Trim">Trim</option>
                     <option value="None">None</option>                    
                     <option value="Hide">Hide</option>
@@ -26,18 +30,19 @@
             </td>
         </tr>
         <tr style="height: 50px">
-            <td style="width: 60%">
-                <div style="width:60%">Intersect action</div>
+            <td>
+                <div style="width:100%">Intersect action</div>
             </td>
             <td style="width: 40%;">
-                <select id="intersectaction" style="margin-left: -25px">
+                <select id="intersectaction">
                     <option value="None">None</option>
                     <option value="Trim">Trim</option>
                     <option value="Hide">Hide</option>
                 </select>
             </td>
         </tr>
-    </tbody></table>
+        </tbody>
+</table>
     <div id="action-description">
             <p>
                This sample visualizes the names of all the states in USA in data labels. Options have been provided to change the intersect action and smart labels mode of the data labels.
@@ -64,12 +69,6 @@
            
         </div>
         <!-- custom code start-->
-        <style>
-            #control-container {
-                padding: 0px !important;
-            }
-        </style>
-
 <style>
     #control-container {
         padding: 0px !important;

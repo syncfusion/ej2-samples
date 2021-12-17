@@ -367,37 +367,67 @@ function dragEnter(args: IDragEnterEventArgs): void {
 function contextMenuClick(args: MenuEventArgs): void {
     if (diagram.selectedItems.nodes.length > 0) {
         let bpmnShape: BpmnShapeModel = diagram.selectedItems.nodes[0].shape as BpmnShapeModel;
-        if (args.item.iconCss.indexOf('e-adhocs') > -1) {
-            bpmnShape.activity.subProcess.adhoc = args.item.id === 'AdhocNone' ? false : true;
-        }
-        if (args.item.iconCss.indexOf('e-event') > -1) {
-            bpmnShape.event.event = (args.item.id as BpmnEvents);
-        }
-        if (args.item.iconCss.indexOf('e-trigger') > -1) {
-            bpmnShape.event.trigger = (args.item.text as BpmnTriggers);
-        }
-        if (args.item.iconCss.indexOf('e-loop') > -1) {
-            let loop: string = (args.item.id === 'LoopNone' as BpmnLoops) ? 'None' : args.item.id;
-            if (bpmnShape.activity.activity === 'Task') {
-                bpmnShape.activity.task.loop = loop as BpmnLoops;
+        if (args.item.iconCss) {
+            if (args.item.iconCss.indexOf('e-adhocs') > -1) {
+                bpmnShape.activity.subProcess.adhoc = args.item.id === 'AdhocNone' ? false : true;
             }
-            if (bpmnShape.activity.activity === 'SubProcess') {
-                bpmnShape.activity.subProcess.loop = loop as BpmnLoops;
+            if (args.item.iconCss.indexOf('e-event') > -1) {
+                bpmnShape.event.event = (args.item.id as BpmnEvents);
             }
-        }
-        if (args.item.iconCss.indexOf('e-compensation') > -1) {
-            let compensation: boolean = (args.item.id === 'CompensationNone') ? false : true;
-            if (bpmnShape.activity.activity === 'Task') {
-                bpmnShape.activity.task.compensation = compensation;
+            if (args.item.iconCss.indexOf('e-trigger') > -1) {
+                bpmnShape.event.trigger = (args.item.text as BpmnTriggers);
             }
-            if (bpmnShape.activity.activity === 'SubProcess') {
-                bpmnShape.activity.subProcess.compensation = compensation;
+            if (args.item.iconCss.indexOf('e-loop') > -1) {
+                let loop: string = (args.item.id === 'LoopNone' as BpmnLoops) ? 'None' : args.item.id;
+                if (bpmnShape.activity.activity === 'Task') {
+                    bpmnShape.activity.task.loop = loop as BpmnLoops;
+                }
+                if (bpmnShape.activity.activity === 'SubProcess') {
+                    bpmnShape.activity.subProcess.loop = loop as BpmnLoops;
+                }
             }
-        }
-        if (args.item.iconCss.indexOf('e-call') > -1) {
-            let compensation: boolean = (args.item.id === 'CallNone') ? false : true;
-            if (bpmnShape.activity.activity === 'Task') {
-                bpmnShape.activity.task.call = compensation;
+            if (args.item.iconCss.indexOf('e-compensation') > -1) {
+                let compensation: boolean = (args.item.id === 'CompensationNone') ? false : true;
+                if (bpmnShape.activity.activity === 'Task') {
+                    bpmnShape.activity.task.compensation = compensation;
+                }
+                if (bpmnShape.activity.activity === 'SubProcess') {
+                    bpmnShape.activity.subProcess.compensation = compensation;
+                }
+            }
+            if (args.item.iconCss.indexOf('e-call') > -1) {
+                let compensation: boolean = (args.item.id === 'CallNone') ? false : true;
+                if (bpmnShape.activity.activity === 'Task') {
+                    bpmnShape.activity.task.call = compensation;
+                }
+            }
+
+            if (args.item.iconCss.indexOf('e-boundry') > -1) {
+                let call: string = args.item.id;
+                if (args.item.id !== 'Default') {
+                    call = (args.item.id === 'BoundryEvent') ? 'Event' : 'Call';
+                }
+                bpmnShape.activity.subProcess.boundary = call as BpmnBoundary;
+            }
+            if (args.item.iconCss.indexOf('e-data') > -1) {
+                let call: string = args.item.id === 'DataObjectNone' ? 'None' : args.item.id;
+                bpmnShape.dataObject.type = call as BpmnDataObjects;
+            }
+            if (args.item.iconCss.indexOf('e-collection') > -1) {
+                let call: boolean = (args.item.id === 'Collectioncollection') ? true : false;
+                bpmnShape.dataObject.collection = call;
+            }
+            if (args.item.iconCss.indexOf('e-task') > -1) {
+                let task: string = args.item.id === 'TaskNone' ? 'None' : args.item.id;
+                if (bpmnShape.activity.activity === 'Task') {
+                    bpmnShape.activity.task.type = task as BpmnTasks;
+                }
+            }
+            if (args.item.iconCss.indexOf('e-gate') > -1) {
+                let task: string = args.item.id.replace('Gateway', '');
+                if (bpmnShape.shape === 'Gateway') {
+                    bpmnShape.gateway.type = task as BpmnGateways;
+                }
             }
         }
         if (args.item.id === 'CollapsedSubProcess' || args.item.id === 'ExpandedSubProcess') {
@@ -407,33 +437,6 @@ function contextMenuClick(args: MenuEventArgs): void {
             } else {
                 bpmnShape.activity.activity = 'SubProcess';
                 bpmnShape.activity.subProcess.collapsed = true;
-            }
-        }
-        if (args.item.iconCss.indexOf('e-boundry') > -1) {
-            let call: string = args.item.id;
-            if (args.item.id !== 'Default') {
-                call = (args.item.id === 'BoundryEvent') ? 'Event' : 'Call';
-            }
-            bpmnShape.activity.subProcess.boundary = call as BpmnBoundary;
-        }
-        if (args.item.iconCss.indexOf('e-data') > -1) {
-            let call: string = args.item.id === 'DataObjectNone' ? 'None' : args.item.id;
-            bpmnShape.dataObject.type = call as BpmnDataObjects;
-        }
-        if (args.item.iconCss.indexOf('e-collection') > -1) {
-            let call: boolean = (args.item.id === 'Collectioncollection') ? true : false;
-            bpmnShape.dataObject.collection = call;
-        }
-        if (args.item.iconCss.indexOf('e-task') > -1) {
-            let task: string = args.item.id === 'TaskNone' ? 'None' : args.item.id;
-            if (bpmnShape.activity.activity === 'Task') {
-                bpmnShape.activity.task.type = task as BpmnTasks;
-            }
-        }
-        if (args.item.iconCss.indexOf('e-gate') > -1) {
-            let task: string = args.item.id.replace('Gateway', '');
-            if (bpmnShape.shape === 'Gateway') {
-                bpmnShape.gateway.type = task as BpmnGateways;
             }
         }
         diagram.dataBind();
@@ -573,19 +576,19 @@ function contextMenuOpen(args: DiagramBeforeMenuOpenEventArgs): void {
     let connectorSymbols: ConnectorModel[] = [
         {
             id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow', style:{strokeColor: '#757575', fill: '#757575'} }, style: { strokeWidth: 2, strokeColor: '#757575' }
+            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } }, style: { strokeWidth: 2, strokeColor: '#757575' }
         },
         {
             id: 'Link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow', style:{strokeColor: '#757575', fill: '#757575'} }, style: { strokeWidth: 2, strokeDashArray: '4 4',strokeColor: '#757575' }
+            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } }, style: { strokeWidth: 2, strokeDashArray: '4 4', strokeColor: '#757575' }
         },
         {
             id: 'Link3', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-            targetDecorator: { shape: 'Arrow', style:{strokeColor: '#757575', fill: '#757575'} }, style: { strokeWidth: 2, strokeColor: '#757575' }
+            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } }, style: { strokeWidth: 2, strokeColor: '#757575' }
         },
         {
             id: 'link4', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 }, type: 'Orthogonal',
-            targetDecorator: { style:{strokeColor: '#757575', fill: '#757575'} },
+            targetDecorator: { style: { strokeColor: '#757575', fill: '#757575' } },
             shape: {
                 type: 'Bpmn',
                 flow: 'Association',

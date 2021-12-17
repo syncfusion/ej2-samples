@@ -49,7 +49,7 @@ let cities: any = [
 
 function renderComponents(): void {
     /* Initialize Tab with disabled headers for the wizard */
-    tabObj = new Tab({ heightAdjustMode: 'None', height: 440, showCloseButton: false,
+    tabObj = new Tab({ heightAdjustMode: 'None', height: 'auto', showCloseButton: false,
         selecting: tabSelecting,
         items: [
             { header: { 'text': 'New Booking' }, content: '#booking' },
@@ -82,7 +82,7 @@ function renderComponents(): void {
     ticketType.appendTo('#ticket_type');
     alertDlg = new Dialog({
         header: 'Success', width: 250, isModal: true, visible: false, showCloseIcon: true,
-        content: 'Your payment successfully processed',  target: document.getElementById('dialog_target'), created: dlgCreated
+        content: 'Your payment was successfully processed',  target: document.getElementById('dialog_target'), created: dlgCreated
     });
     alertDlg.appendTo('#alertDialog');
     alertDlg.hide();

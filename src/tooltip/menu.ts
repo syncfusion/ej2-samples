@@ -32,8 +32,7 @@ import { closest } from '@syncfusion/ej2-base';
         overflow: 'Hide',
         tooltipText: 'Personal'
       }
-    ],
-    width: 387
+    ]
   });
   //Render initialized Toolbar component
   toolbarObj.appendTo('#toolbar-menu');

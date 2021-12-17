@@ -7,6 +7,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { CircularGauge, ILoadedEventArgs, GaugeTheme, ExportType, Print, ImageExport, PdfExport } from '@syncfusion/ej2-circulargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
+import { TextBox } from  '@syncfusion/ej2-inputs';
 
 CircularGauge.Inject(Print, ImageExport, PdfExport);
 (window as any).default = (): void => {
@@ -67,7 +68,7 @@ CircularGauge.Inject(Print, ImageExport, PdfExport);
             labelStyle: {
                 font: {
                     color: '#424242',
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Segoe UI',
                     size: '12px',
                     fontWeight: 'Regular'
                 },
@@ -83,15 +84,18 @@ CircularGauge.Inject(Print, ImageExport, PdfExport);
 
     let mode: DropDownList = new DropDownList({
         index: 0,
-        width: '100px'
+        width: '100%'
     });
     mode.appendTo('#type');
     let exportGauge: Button = new Button({
         iconCss: 'e-icons e-play-icon1', cssClass: 'e-flat', isPrimary: true,
     });
     exportGauge.appendTo('#export');
+    let fileText: TextBox = new TextBox({
+    });
+    fileText.appendTo('#fileName');
     document.getElementById('export').onclick = () => {
-        let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
+        let fileName: string = fileText.value;
         circulargauge.export(<ExportType>mode.value, fileName);
     };
     let printGauge: Button = new Button({

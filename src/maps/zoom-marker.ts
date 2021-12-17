@@ -36,7 +36,8 @@ import { loadCultureFiles } from '../common/culture-loader';
         titleSettings: {
             text: 'Capitals of South American countries',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         layers: [
@@ -63,6 +64,9 @@ import { loadCultureFiles } from '../common/culture-loader';
                             format:  '<b>Capital</b> : ${name}<br><b>Country</b> : ${Country}',
                             visible: true,
                             valuePath: 'name',
+                            textStyle: {
+                                fontFamily: 'Segoe UI'
+                            }                
                         }
                     },
                 ]

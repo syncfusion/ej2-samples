@@ -28,7 +28,10 @@ Maps.Inject(MapsTooltip, DataLabel);
                 dataLabelSettings: {
                     visible: true,
                     labelPath: 'name',
-                    smartLabelMode: 'Trim'
+                    smartLabelMode: 'Trim',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                    }
                 },
                 shapeData: new MapAjax('./src/maps/map-data/usa.json'),
                 shapeSettings: {
@@ -46,7 +49,7 @@ Maps.Inject(MapsTooltip, DataLabel);
     let intersectaction: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select intersect action',
-        width: 90,
+        width: '100%',
         change: () => {
             maps.layers[0].dataLabelSettings.intersectionAction = <IntersectAction>intersectaction.value;
             maps.refresh();
@@ -56,7 +59,7 @@ Maps.Inject(MapsTooltip, DataLabel);
     let smartlabelmode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select smartlabel mode',
-        width: 90,
+        width: '100%',
         change: () => {
             maps.layers[0].dataLabelSettings.smartLabelMode = <SmartLabelMode>smartlabelmode.value;
             maps.refresh();

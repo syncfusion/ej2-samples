@@ -31,7 +31,8 @@ Maps.Inject(Legend, MapsTooltip, Print);
         titleSettings: {
             text: 'State-wise US population - 2010',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             },
         },
         legendSettings: {
@@ -41,7 +42,10 @@ Maps.Inject(Legend, MapsTooltip, Print);
             height: '10',
             width: '350',
             labelDisplayMode: 'Trim',
-            alignment: 'Center'
+            alignment: 'Center',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         layers: [
             {
@@ -82,7 +86,10 @@ Maps.Inject(Legend, MapsTooltip, Print);
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'population',
-                    format: 'State: ${name} <br> Population: ${population}'
+                    format: 'State: ${name} <br> Population: ${population}',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                    }        
                 }
             }
         ]

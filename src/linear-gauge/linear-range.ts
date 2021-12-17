@@ -13,11 +13,15 @@ export function linear(): LinearGauge {
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         // custom code end
+        allowMargin: false,
         orientation: 'Horizontal',
         axes: [{
             labelStyle: {
                 format: '{value}%',
-                offset: 30
+                offset: 30,
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
             },
             line: {
                 width: 0
@@ -61,7 +65,7 @@ export function linear(): LinearGauge {
             }]
         }],
         annotations: [{
-            content: '<div id="pointer" style="width:20px"><h1 style="font-size:18px;">35</h1></div>',
+            content: '<div id="pointer" style="width:20px"><h1 style="font-size:18px; font-family: Segoe UI;">35</h1></div>',
             axisIndex: 0, zIndex: '1',
             axisValue: 35,
             y: -50

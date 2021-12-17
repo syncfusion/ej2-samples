@@ -1,50 +1,82 @@
-<div class="col-lg-8 control-section">
+<div class="col-lg-9 control-section">
     <div class="content-wrapper">
         <div id="PivotView" style="width: 100%;height:100%;">
         </div>
     </div>
 </div>
 
-<div class="col-lg-4 property-section pivot-table-property-section">
+<div class="col-lg-3 property-section pivot-table-property-section">
     <table id="property" title="Properties" style="width: 100%;height:100%;">
         <tbody>
-            <tr style="height: 50px">
+            <tr>
                 <td>
-                    <div style="font-weight: 600; font-size: 13px">
-                        Hide grand totals
+                    <div style="font-weight: 600; font-size: 13px; white-space: nowrap">
+                        Grand totals position
                     </div>
                 </td>
             </tr>
-            <tr style="height: 50px">
+            <tr>
+                <td>
+                    <div>
+                        <input id="radio5" type="radio">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <input id="radio6" type="radio">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div>
+                        <div style="font-weight: 600; font-size: 13px; white-space: nowrap">
+                            Hide grand totals
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
                 <td>
                     <div>
                         <input id="radio1" type="radio">
                     </div>
                 </td>
             </tr>
-            <tr style="height: 50px">
+            <tr>
                 <td>
                     <div>
                         <input id="radio2" type="radio">
                     </div>
                 </td>
             </tr>
-            <tr style="height: 50px">
+            <tr>
                 <td>
                     <div>
                         <input id="radio3" type="radio">
                     </div>
                 </td>
             </tr>
-            <tr style="height: 50px">
+            <tr>
                 <td>
-                    <div style="font-weight: 600; font-size: 13px">
-                        Hide sub-totals
+                    <div>
+                        <input id="radio4" type="radio">
                     </div>
                 </td>
             </tr>
-            <tr style="height: 50px">
+            <tr>
                 <td>
+                    <div>
+                        <div style="font-weight: 600; font-size: 13px; white-space: nowrap">
+                            Hide sub-totals
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
                     <div>
                         <input type="text" tabindex="1" id='summary-values' />
                     </div>
@@ -61,17 +93,20 @@
 <div id="description">
     <p>
         In this sample, you can hide grand totals in row, column, or both using radio buttons available under the
-        <b>Hide grand totals</b> category. To hide grand totals in both row and column, set the property
-        <code>dataSourceSettings->showGrandTotals</code> as false. To hide the row and column grand totals separately,
-        set the property <code>dataSourceSettings->showRowGrandTotals</code> and
-        <code>dataSourceSettings->showColumnGrandTotals</code>as false.
+        <b>Hide grand totals</b> category. To hide grand totals in both row and column, set the property 
+        <code>dataSourceSettings->showGrandTotals</code> as <b>false</b>. To hide the row and column grand totals separately, 
+        set the property <code>dataSourceSettings->showRowGrandTotals</code> and 
+        <code>dataSourceSettings->showColumnGrandTotals</code>as <b>false</b>.
+    </p>
+    <p>
+        You can also, display the grand totals either at the top or bottom of the row and column axes using radio buttons available under the <b>Grand totals position</b> category. To display the grand totals at top, set the property <code>dataSourceSettings->grandTotalsPosition</code> as <b>Top</b>. And, to display the grand totals at botton, set the property <code>dataSourceSettings->grandTotalsPosition</code> as <b>Bottom</b>.
     </p>
     <p>
         Also, in this sample, you can hide subtotals for specific fields too. It can be achieved by selecting
         appropriate fields
         from the drop-down available under the <b>Hide sub-totals</b> category. To hide subtotals for a specific field,
         set the
-        <code>showSubTotals</code> property as false inside the field definition.
+        <code>showSubTotals</code> property as <b>false</b> inside the field definition.
     </p>
 </div>
 
@@ -80,9 +115,22 @@
         overflow: auto;
     }
 
+    .pivot-table-property-section .property-panel-header {
+        padding-bottom: 10px;
+    }
+
     .pivot-table-property-section .e-multiselect {
         padding: 0;
     }
+    
+    .pivot-table-property-section  .property-panel-table td {
+        width: auto;
+    }
+
+    .pivot-table-property-section  .property-panel-table div {
+        padding-left: unset;
+    }
+
     .sb-sample-content-area {
         min-height: 255px !important;
     }

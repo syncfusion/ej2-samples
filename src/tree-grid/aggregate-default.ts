@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { TreeGrid, Page, Aggregate } from '@syncfusion/ej2-treegrid';
 import { summaryRowData } from './data-source';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
@@ -8,7 +7,6 @@ TreeGrid.Inject(Page, Aggregate);
  * Aggregates
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let grid: TreeGrid = new TreeGrid(
         {
             dataSource: summaryRowData,

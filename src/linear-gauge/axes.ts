@@ -5,16 +5,26 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { LinearGauge, Point, Annotations, Placement, Pointer, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
 LinearGauge.Inject(Annotations);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { EmitType } from '@syncfusion/ej2-base';
+import { TextBox } from  '@syncfusion/ej2-inputs';
 // code for property panel
 (window as any).default = (): void => {
     loadCultureFiles();
     let gauge: LinearGauge = new LinearGauge(linearAxes());
     gauge.appendTo('#axisContainer');
 
-    document.getElementById('opposed').onchange = (sender: Event) => {
-        let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('opposed');
-        gauge.axes[0].opposedPosition = ele.checked;
-        if (ele.checked) {
+    let opposedchange: EmitType<CheckBoxChangeEvents>;
+    let opposedchangeCheckBox: CheckBox = new CheckBox(
+    {
+        change: opposedchange
+    },
+    '#opposed');
+    
+    opposedchangeCheckBox.change = opposedchange = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        gauge.axes[0].opposedPosition = boolean;
+        if (boolean) {
             gauge.axes[0].pointers[0].placement = 'Near';
             gauge.axes[0].pointers[0].markerType = 'Triangle';
             gauge.axes[0].pointers[0].offset = -20;
@@ -31,26 +41,41 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             gauge.annotations[0].y = 60;
         }
         gauge.refresh();
-    };
+    }
 
-    document.getElementById('axisInversed').onchange = (sender: Event) => {
-        let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('axisInversed');
-        gauge.axes[0].isInversed = ele.checked;
+    let axisInversedchange: EmitType<CheckBoxChangeEvents>;
+    let axisInversedchangeCheckBox: CheckBox = new CheckBox(
+    {
+        change: axisInversedchange
+    },
+    '#axisInversed');
+    
+    axisInversedchangeCheckBox.change = axisInversedchange = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        gauge.axes[0].isInversed = boolean;
         gauge.refresh();
-    };
-    document.getElementById('lastlabel').onchange = (sender: Event) => {
-        let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('lastlabel');
-        gauge.axes[0].showLastLabel = ele.checked;
-        gauge.refresh();
-    };
+    }
 
+    let lastlabelchange: EmitType<CheckBoxChangeEvents>;
+    let lastlabelchangeCheckBox: CheckBox = new CheckBox(
+    {
+        change: lastlabelchange
+    },
+    '#lastlabel');
+    
+    lastlabelchangeCheckBox.change = lastlabelchange = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        gauge.axes[0].showLastLabel = boolean;
+        gauge.refresh();
+    }
+    
     document.getElementById('min').ontouchmove = document.getElementById('min').onpointermove =
         document.getElementById('min').onchange = () => {
             let min: HTMLInputElement = <HTMLInputElement>document.getElementById('min');
             let max: HTMLInputElement = <HTMLInputElement>document.getElementById('max');
             gauge.axes[0].minimum = parseInt(min.value, 10);
             gauge.axes[0].maximum = parseInt(max.value, 10);
-            document.getElementById('minValue').innerHTML = 'Axis Minimum <span>&nbsp;&nbsp;&nbsp;' + min.value;
+            document.getElementById('minValue').innerHTML = min.value.toString();
             gauge.refresh();
             gauge.annotations[0].axisValue = (<Pointer>gauge.axes[0].pointers[0]).currentValue;
             gauge.refresh();
@@ -62,22 +87,24 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             let max: HTMLInputElement = <HTMLInputElement>document.getElementById('max');
             gauge.axes[0].maximum = parseInt(max.value, 10);
             gauge.axes[0].minimum = parseInt(min.value, 10);
-            document.getElementById('maxValue').innerHTML = 'Axis Maximum <span>&nbsp;&nbsp;&nbsp;' + max.value;
+            document.getElementById('maxValue').innerHTML = max.value.toString();
             gauge.refresh();
             gauge.annotations[0].axisValue = (<Pointer>gauge.axes[0].pointers[0]).currentValue;
             gauge.refresh();
         };
 
+    let fileText: TextBox = new TextBox({
+    });
+    fileText.appendTo('#format');
     document.getElementById('format').onchange = () => {
-        let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('format');
-        gauge.axes[0].labelStyle.format = ele.value.indexOf('{value}') > -1 ? ele.value : gauge.axes[0].labelStyle.format;
+        gauge.axes[0].labelStyle.format = fileText.value.indexOf('{value}') > -1 ? fileText.value : gauge.axes[0].labelStyle.format;
         gauge.refresh();
     };
 
     let pointerPlace: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 120,
+        width: '100%',
         change: () => {
             gauge.axes[0].pointers[0].placement = <Placement>pointerPlace.value;
             gauge.refresh();
@@ -88,7 +115,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     let pointerType: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 120,
+        width: '100%',
         change: () => {
             gauge.axes[0].pointers[0].type = <Point>pointerType.value;
             pointerPlace.enabled = (pointerType.value === 'Marker');
@@ -138,7 +165,7 @@ export function linearAxes(): LinearGauge {
             }
         }],
         annotations: [{
-            content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px;">' +
+            content: '<div id="pointer" style="width:70px"><h1 style="font-size:14px; font-family:Segoe UI;">' +
             '${axes[0].pointers[0].currentValue} MPH</h1></div>',
             axisIndex: 0,
             axisValue: 20,

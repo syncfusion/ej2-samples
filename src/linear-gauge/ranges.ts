@@ -7,6 +7,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { LinearGauge, Annotations } from '@syncfusion/ej2-lineargauge';
 import { linear } from './linear-range';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { TextBox } from  '@syncfusion/ej2-inputs';
 LinearGauge.Inject(Annotations);
 (window as any).default = (): void => {
     // custom code start
@@ -18,7 +19,7 @@ LinearGauge.Inject(Annotations);
     let rangeIndex: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 130,
+        width: '110%',
         change: () => {
             let value: number = +rangeIndex.value;
             let start: HTMLInputElement = <HTMLInputElement>document.getElementById('start');
@@ -31,18 +32,22 @@ LinearGauge.Inject(Annotations);
             startWidth.value = gauge.axes[0].ranges[value].startWidth.toString();
             endWidth.value = gauge.axes[0].ranges[value].endWidth.toString();
             rangeColor.value = gauge.axes[0].ranges[value].color.toString();
-            document.getElementById('startWidthValue').innerHTML = 'Range Start Width<span>&nbsp;&nbsp;&nbsp;' + startWidth.value;
-            document.getElementById('endWidthValue').innerHTML = 'Range End Width<span>&nbsp;&nbsp;&nbsp;' + endWidth.value;
-            document.getElementById('startRangeValue').innerHTML = 'Range Start <span>&nbsp;&nbsp;&nbsp;' + start.value;
-            document.getElementById('endRangeValue').innerHTML = 'Range End <span>&nbsp;&nbsp;&nbsp;' + end.value;
+            document.getElementById('startWidthValue').innerHTML = startWidth.value.toString();
+            document.getElementById('endWidthValue').innerHTML = endWidth.value.toString();
+            document.getElementById('startRangeValue').innerHTML = start.value.toString();
+            document.getElementById('endRangeValue').innerHTML = end.value.toString();
             gauge.refresh();
         }
     });
     rangeIndex.appendTo('#rangeIndex');
 
+    let fileText: TextBox = new TextBox({
+        width: '110%'
+    });
+    fileText.appendTo('#color');
+
     document.getElementById('color').onchange = () => {
-        let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('color');
-        gauge.axes[0].ranges[+rangeIndex.value].color = ele.value;
+        gauge.axes[0].ranges[+rangeIndex.value].color = fileText.value;
         gauge.refresh();
     };
 
@@ -50,7 +55,7 @@ LinearGauge.Inject(Annotations);
         document.getElementById('startWidth').onchange = (): void => {
             let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('startWidth');
             gauge.axes[0].ranges[+rangeIndex.value].startWidth = parseInt(ele.value, 10);
-            document.getElementById('startWidthValue').innerHTML = 'Range Start Width<span>&nbsp;&nbsp;&nbsp;' + ele.value;
+            document.getElementById('startWidthValue').innerHTML = ele.value.toString();
             gauge.refresh();
         };
 
@@ -58,7 +63,7 @@ LinearGauge.Inject(Annotations);
         document.getElementById('endWidth').onchange = (): void => {
             let ele: HTMLInputElement = <HTMLInputElement>document.getElementById('endWidth');
             gauge.axes[0].ranges[+rangeIndex.value].endWidth = parseInt(ele.value, 10);
-            document.getElementById('endWidthValue').innerHTML = 'Range End Width<span>&nbsp;&nbsp;&nbsp;' + ele.value;
+            document.getElementById('endWidthValue').innerHTML = ele.value.toString();
             gauge.refresh();
         };
 
@@ -68,7 +73,7 @@ LinearGauge.Inject(Annotations);
             let start: HTMLInputElement = <HTMLInputElement>document.getElementById('start');
             gauge.axes[0].ranges[+rangeIndex.value].start = parseInt(start.value, 10);
             gauge.axes[0].ranges[+rangeIndex.value].end = parseInt(end.value, 10);
-            document.getElementById('startRangeValue').innerHTML = 'Range Start <span>&nbsp;&nbsp;&nbsp;' + start.value;
+            document.getElementById('startRangeValue').innerHTML = start.value.toString();
             gauge.refresh();
         };
 
@@ -78,14 +83,14 @@ LinearGauge.Inject(Annotations);
             let end: HTMLInputElement = <HTMLInputElement>document.getElementById('end');
             gauge.axes[0].ranges[+rangeIndex.value].start = parseInt(start.value, 10);
             gauge.axes[0].ranges[+rangeIndex.value].end = parseInt(end.value, 10);
-            document.getElementById('endRangeValue').innerHTML = 'Range End <span>&nbsp;&nbsp;&nbsp;' + end.value;
+            document.getElementById('endRangeValue').innerHTML = end.value.toString();
             gauge.refresh();
         };
 
     let useRangeColor: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
-        width: 130,
+        width: '110%',
         change: () => {
             gauge.axes[0].labelStyle.useRangeColor = (useRangeColor.value === 'range') ? true : false;
             gauge.refresh();

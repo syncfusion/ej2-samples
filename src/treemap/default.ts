@@ -33,7 +33,7 @@ let prevTime: Date; let curTime: Date;
         load: treemapload,
         titleSettings: {
             text: 'Car Sales by Country - 2017',
-            textStyle: { size: '15px' }
+            textStyle: { size: '15px',  fontFamily: 'Segoe UI' }
         },
         itemMove: tooltipRender,
         itemClick: tooltipRender,
@@ -45,15 +45,24 @@ let prevTime: Date; let curTime: Date;
             visible: true,
             position: 'Top',
             shape: 'Rectangle',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         palette: ['#C33764', '#AB3566', '#993367', '#853169', '#742F6A', '#632D6C', '#532C6D', '#412A6F', '#312870', '#1D2671'],
         tooltipSettings: {
-            visible: true
+            visible: true,
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         weightValuePath: 'Sales',
         leafItemSettings: {
             labelPath: 'Company',
-            border: { color: 'white', width: 0.5 }
+            border: { color: 'white', width: 0.5 },
+            labelStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         levels: [
             {

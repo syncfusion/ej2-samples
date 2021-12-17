@@ -58,16 +58,23 @@ gulp.task('whole-bundle', function (done) {
 
 gulp.task('build', function(done){
     var runSequence = require('run-sequence');
-    runSequence('create-locale', 'scripts', 'whole-bundle', done);
+    runSequence('create-locale', 'combine-samplelists', 'scripts', 'whole-bundle', done);
 })
 var jsoncombine = require('gulp-jsoncombine');
 var elasticlunr = require('elasticlunr');
 var sampleOrder = '';
 var sampleList;
 
-gulp.task('combine-samplelists', function (done) {
-    combineSampleList(platform, false, done);
+gulp.task('combine-samplelists', function () {
+    combineSampleList(platform, false);
 });
+
+gulp.task('styles', function() {
+    var styleFiles = glob.sync('./node_modules/@syncfusion/ej2/*.css');
+    for(var i=0; i < styleFiles.length; i++) {
+        shelljs.cp('-R',styleFiles[i], './styles');
+    }
+})
 
 function combineSampleList(platform, done) {
     var filename = platform === 'javascript' ? 'samplelist.js' : 'sampleList.ts';

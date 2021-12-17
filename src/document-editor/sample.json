@@ -701,7 +701,6 @@
             "url": "table-formatting",
             "name": "Table Formatting",
             "category": "Editing Features",
-            "type": "update",
             "description": "The Document Editor supports table formatting such as cell margins, cell spacing, horizontal merge, vertical merge, border styles, background color, and more.",
             "api": {
                 "DocumentEditor": [

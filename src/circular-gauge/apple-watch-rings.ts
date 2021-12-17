@@ -40,26 +40,26 @@ CircularGauge.Inject(Annotations);
                 start: 0, end: 100,
                 radius: '90%',
                 startWidth: 40, endWidth: 40,
-                color: '#E30219', opacity: 0.2
+                color: '#fa114f', opacity: 0.2
             },
             {
                 start: 0, end: 100,
                 radius: '68%',
                 startWidth: 40, endWidth: 40,
-                color: '#3EDE00', opacity: 0.2
+                color: '#99ff01', opacity: 0.2
             },
             {
                 start: 0, end: 100,
                 radius: '46%',
                 startWidth: 40, endWidth: 40,
-                color: '#18F8F6', opacity: 0.2
+                color: '#00d8fe', opacity: 0.2
             }],
             pointers: [{
                 roundedCornerRadius: 25,
                 value: 65,
                 type: 'RangeBar',
                 radius: '90%',
-                color: '#E2011A',
+                color: '#fa114f',
                 animation: { enable: true },
                 pointerWidth: 40
             },
@@ -68,7 +68,7 @@ CircularGauge.Inject(Annotations);
                 value: 43,
                 type: 'RangeBar',
                 radius: '68%',
-                color: '#3FE000',
+                color: '#99ff01',
                 animation: { enable: true },
                 pointerWidth: 40
             },
@@ -77,7 +77,7 @@ CircularGauge.Inject(Annotations);
                 value: 58,
                 type: 'RangeBar',
                 radius: '46%',
-                color: '#00C9E6',
+                color: '#00d8fe',
                 animation: { enable: true },
                 pointerWidth: 40
             }]
@@ -94,7 +94,7 @@ CircularGauge.Inject(Annotations);
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
             if (selectedTheme === 'highcontrast') {
                 args.gauge.axes[0].annotations[0].content =
-                    '<div id="annotation4"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image4.svg" /></div>';
+                    '<div class="annotation4"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image4.svg" /></div>';
             }
         },
         // custom code end
@@ -103,7 +103,7 @@ CircularGauge.Inject(Annotations);
         axes: [{
             annotations: [{
                 angle: 0, radius: '0%', zIndex: '1',
-                content: '<div id="annotation4"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image1.svg" /></div>'
+                content: '<div class="annotation4"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image1.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },
@@ -117,14 +117,14 @@ CircularGauge.Inject(Annotations);
                 start: 0, end: 100,
                 radius: '100%',
                 startWidth: 8, endWidth: 8,
-                color: '#E30219', opacity: 0.2
+                color: '#fa114f', opacity: 0.2
             }],
             pointers: [{
                 roundedCornerRadius: 5,
                 value: 65,
                 type: 'RangeBar',
                 radius: '100%',
-                color: '#E2011A',
+                color: '#fa114f',
                 animation: { enable: true },
                 pointerWidth: 8
             }]
@@ -141,7 +141,7 @@ CircularGauge.Inject(Annotations);
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
             if (selectedTheme === 'highcontrast') {
                 args.gauge.axes[0].annotations[0].content =
-                    '<div id="annotation5"><img style="width:15px;height:15px;" src="src/circular-gauge/images/image5.svg" /></div>';
+                    '<div class="annotation5"><img style="width:15px;height:15px;" src="src/circular-gauge/images/image5.svg" /></div>';
             }
         },
         // custom code end
@@ -150,7 +150,7 @@ CircularGauge.Inject(Annotations);
         axes: [{
             annotations: [{
                 angle: 0, radius: '0%', zIndex: '1',
-                content: '<div id="annotation5"><img style="width:15px;height:15px;" src="src/circular-gauge/images/image2.svg" /></div>'
+                content: '<div class="annotation5"><img style="width:15px;height:15px;" src="src/circular-gauge/images/image2.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },
@@ -164,14 +164,14 @@ CircularGauge.Inject(Annotations);
                 start: 0, end: 100,
                 radius: '100%',
                 startWidth: 8, endWidth: 8,
-                color: '#3EDE00', opacity: 0.2
+                color: '#99ff01', opacity: 0.2
             }],
             pointers: [{
                 roundedCornerRadius: 5,
                 value: 43,
                 type: 'RangeBar',
                 radius: '100%',
-                color: '#3FE000',
+                color: '#99ff01',
                 animation: { enable: true },
                 pointerWidth: 8
             }]
@@ -188,7 +188,7 @@ CircularGauge.Inject(Annotations);
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             if (selectedTheme === 'highcontrast') {
                 args.gauge.axes[0].annotations[0].content =
-                    '<div id="annotation6"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image6.svg" /></div>';
+                    '<div class="annotation6"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image6.svg" /></div>';
             }
         },
         // custom code end
@@ -197,7 +197,7 @@ CircularGauge.Inject(Annotations);
         axes: [{
             annotations: [{
                 angle: 0, radius: '0%', zIndex: '1',
-                content: '<div id="annotation6"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image3.svg" /></div>'
+                content: '<div class="annotation6"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image3.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },
@@ -211,14 +211,14 @@ CircularGauge.Inject(Annotations);
                 start: 0, end: 100,
                 radius: '100%',
                 startWidth: 8, endWidth: 8,
-                color: '#18F8F6', opacity: 0.2
+                color: '#00d8fe', opacity: 0.2
             }],
             pointers: [{
                 roundedCornerRadius: 5,
                 value: 58,
                 type: 'RangeBar',
                 radius: '100%',
-                color: '#00C9E6',
+                color: '#00d8fe',
                 animation: { enable: true },
                 pointerWidth: 8
             }]

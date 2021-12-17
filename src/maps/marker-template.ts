@@ -26,7 +26,8 @@ import { loadCultureFiles } from '../common/culture-loader';
         titleSettings: {
             text: ' Australia cities weather detail',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         layers: [

@@ -7,14 +7,18 @@
 </div>
 <!-- property panel-->
 <div class="col-lg-3 property-section">
-    <table id="property" title="Properties" style="width: 100%; margin-left: 10px">
-        <tbody><tr style="height: 50px">
-            <td style="width: 60%">
-                <div style="margin-left: -20px">Projection Type</div>
+    <table id="property" title="Properties" style="width: 100%;">
+        <colgroup>
+            <col span="1" style="width: 40%;">
+            <col span="1" style="width: 60%;">
+         </colgroup>
+         <tbody>
+      <tr>
+            <td style="width: 30%;">
+                Projection Type
             </td>
-            <td style="width: 40%;">
-                <div>
-                <select name="projectionType" id="projectiontype" style="margin-left: -25px">
+            <td>
+                <select name="projectionType" id="projectiontype">
                     <option value="Mercator">Mercator</option>
                     <option value="Equirectangular">Equirectangular</option>                    
                     <option value="Miller">Miller</option>
@@ -24,10 +28,10 @@
                     <option value="Winkel3">Winkel3</option>                    
                     <option value="AitOff">AitOff</option>
                 </select>
-                </div>
             </td>
         </tr>
-    </tbody></table>
+    </tbody>
+ </table>
 </div>
 <div id="action-description">
         <p>
@@ -55,6 +59,6 @@
 <style>
     #control-container {
         padding: 0px !important;
-    }
+    }    
 </style>
 <!-- custom code end -->

@@ -27,7 +27,8 @@ Maps.Inject(Marker, MapsTooltip, Legend);
         titleSettings: {
             text: "State wise India's population - 2011",
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         legendSettings: {
@@ -37,7 +38,10 @@ Maps.Inject(Marker, MapsTooltip, Legend);
             height: '10',
             width: '350',
             labelDisplayMode: 'Trim',
-            alignment: 'Center'
+            alignment: 'Center',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         zoomSettings: {
             enable: false
@@ -51,7 +55,10 @@ Maps.Inject(Marker, MapsTooltip, Legend);
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'population',
-                    format: 'State: ${Name} <br> Population: ${population}'
+                    format: 'State: ${Name} <br> Population: ${population}',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                    }
                 },
                 shapeSettings: {
                     border: {

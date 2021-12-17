@@ -26,15 +26,22 @@ import { loadCultureFiles } from '../common/culture-loader';
         titleSettings: {
             text: 'Members of the UN Security Council',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             },
             subtitleSettings: {
                 text: '- In 2017',
-                alignment: 'Far'
+                alignment: 'Far',
+                textStyle: {
+                    fontFamily: 'Segoe UI'
+                }
             }
         },
         legendSettings: {
-            visible: true
+            visible: true,
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         zoomSettings: {
             enable: false
@@ -48,6 +55,9 @@ import { loadCultureFiles } from '../common/culture-loader';
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'Country',
+                    textStyle: {
+                        fontFamily: 'Segoe UI'
+                    }    
                 },
                 shapeSettings: {
                     fill: '#E5E5E5',
@@ -71,7 +81,7 @@ import { loadCultureFiles } from '../common/culture-loader';
     let projection: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select projection type',
-        width: 105,
+        width: '100%',
         change: () => {
             maps.projectionType = <ProjectionType>projection.value;
             maps.refresh();

@@ -89,6 +89,7 @@ let listObj3: ListView = new ListView({
             tabObj.element.classList.add('e-background');
             tabObj.element.classList.add('e-accent');
         }
+        (tabObj as any).refreshActiveBorder();
     }
 
     function removeStyleClass(): void {

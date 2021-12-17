@@ -6,14 +6,18 @@
     </div>
 <!-- property panel -->
 <div class="col-md-4 property-section">
-    <table id="property" title="Properties" style="width: 100%; margin-left:5px">
-        <tbody>
-            <tr style="height: 50px">
+    <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
+        <colgroup>
+            <col span="1" style="width: 30%;">
+            <col span="1" style="width: 70%;">
+         </colgroup>
+         <tbody>
+         <tr style="height: 50px">
                 <td>
-                    <div style="margin-top:30px;margin-left:-15px;width: 120px;"> Gradient Type </div>
+                    <div> Gradient Type </div>
                 </td>
                 <td>
-                    <div style="margin-top:20px;margin-left:-15px;">
+                    <div style="margin-left: -20px">
                         <select id="gradient" class="form-control">
                             <option value='0' >Linear Gradient</option>
                             <option value='1'>Radial Gradient</option>
@@ -23,10 +27,10 @@
             </tr>
             <tr style="height: 50px">
                 <td>
-                    <div style="margin-top:30px;margin-left:-15px;">Elements</div>
+                    <div>Elements</div>
                 </td>
                 <td>
-                    <div style="margin-top:30px;margin-left:-15px;">
+                    <div style="margin-left: -20px">
                         <select id="element" class="form-control">
                             <option value='0' >Range</option>
                             <option value='1'>Pointer</option>
@@ -34,7 +38,7 @@
                     </div>
                 </td>
             </tr>
-        </tbody>
+            </tbody>
     </table>
 </div>
 <div id="action-description">

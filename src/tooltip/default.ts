@@ -19,7 +19,7 @@ import { Button } from '@syncfusion/ej2-buttons';
     let tooltip: Tooltip = new Tooltip({
 
         //Set tooltip content
-        content: 'Lets go green & Save Earth !!!'
+        content: "Let's go green to save the planet!!"
 
     });
 

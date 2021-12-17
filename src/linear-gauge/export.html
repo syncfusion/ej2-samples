@@ -1,18 +1,19 @@
 <div>
-    <div class="col-md-9 control-section">
+    <div class="col-md-8 control-section">
         <div class="content-wrapper">
             <div id="gauge"></div>
         </div>
     </div>
     <!-- property panel-->
-    <div class="col-md-3 property-section">
+    <div class="col-md-4 property-section">
         <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
+            <tbody>
             <tr style="height: 50px">
-                <td style="width: 40%">
+                <td>
                         <div> Export Type </div>
                     </td>
-                    <td style="width: 60%;">
-                        <div style="margin-left: -10px">
+                    <td>
+                        <div>
                             <select id="type">
                                 <option value='JPEG' selected>JPEG</option>
                                 <option value='PNG'>PNG</option>
@@ -24,28 +25,28 @@
                     </td>
                 </tr>&nbsp;
                 <tr style="height: 50px">
-                    <td style="width: 40%">
+                    <td>
                         <div> File Name </div>
                     </td>
-                    <td style="width: 60%;">
+                    <td>
                         <div class="e-float-input" style='margin-top: 0px;'>
-                            <input type="text" value="Gauge" id="fileName" style="margin-left: -10px;width: 90px;">
+                            <input value="Gauge" id="fileName" style="width: 100%;">
                         </div>
                     </td>
                 </tr>&nbsp;
-                    <tr id="button-control" style="height: 50px" align='center'>
-                        <td>
-                            <div style="width: 100px">
+                    <tr id="button-control" style="height: 70px" align='center'>
+                        <td align='center'>
+                            <div>
                                     <button id="export" style="text-transform:none !important;width: 90px;">Export</button>
                             </div>
                         </td>
-                        <td>
-                            <div style="width: 100px">
+                        <td align='center'>
+                            <div>
                                     <button id="print" style="text-transform:none !important;width: 90px; margin-left: 5px">Print</button>
                             </div>
                         </td>
                 </tr>&nbsp;
-            <br/>
+          </tbody>
         </table>
     </div>
 </div>

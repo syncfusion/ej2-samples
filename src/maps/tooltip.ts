@@ -30,7 +30,8 @@ Maps.Inject(MapsTooltip, Legend);
         titleSettings: {
             text: 'Finalist in Cricket World Cup',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         zoomSettings: {
@@ -42,7 +43,10 @@ Maps.Inject(MapsTooltip, Legend);
             position: 'Left',
             orientation: 'Vertical',
             height: '70%',
-            width: '10'
+            width: '10',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         layers: [
             {

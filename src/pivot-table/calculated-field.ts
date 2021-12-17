@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { PivotView, CalculatedField, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
 import { Button } from '@syncfusion/ej2-buttons';
-import { enableRipple } from '@syncfusion/ej2-base';
+import { Browser, enableRipple } from '@syncfusion/ej2-base';
 import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 PivotView.Inject(CalculatedField, FieldList);
@@ -42,7 +42,10 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     button.appendTo('#calculated-field-btn');
 
     button.element.onclick = (): void => {
-        if (pivotObj.calculatedFieldModule) {
+        if (Browser.isDevice) {
+            (pivotObj.pivotFieldListModule.dialogRenderer as any).onShowFieldList();
+        }
+        else if (pivotObj.calculatedFieldModule) {
             pivotObj.calculatedFieldModule.createCalculatedFieldDialog();
         }
     };

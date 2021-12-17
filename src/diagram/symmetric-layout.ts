@@ -94,6 +94,7 @@ function setNodeTemplate(obj: NodeModel): void {
         format: '###.##',
         value: 0.8,
         step: .1,
+        max: 3.5
     });
     springfactor.appendTo('#springfactor');
 

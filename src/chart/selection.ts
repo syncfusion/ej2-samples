@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, Selection, SelectionMode, ColumnSeries, ChartTheme, SelectionPattern, Highlight } from '@syncfusion/ej2-charts';
 import { Legend, Category, ScatterSeries, ILoadedEventArgs, HighlightMode } from '@syncfusion/ej2-charts';
+import { ColorPicker, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 Chart.Inject(Selection, Legend, ColumnSeries, Category, ScatterSeries, Highlight);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
@@ -39,6 +40,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
                 ],
                 xName: 'x', width: 2,
                 yName: 'y', name: 'Age 0-14',
+                animation: { enable: false },
             },
             {
                 type: 'Column',
@@ -49,6 +51,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
                 ],
                 xName: 'x', width: 2,
                 yName: 'y', name: 'Age 15-64',
+                animation: { enable: false },
             },
             {
                 type: 'Column',
@@ -59,6 +62,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
                 ],
                 xName: 'x', width: 2,
                 yName: 'y', name: 'Age 65 & Above',
+                animation: { enable: false },
             }
         ],
         //Initializing Chart title
@@ -118,6 +122,16 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         }
     });
     highLight.appendTo('#highpattern');
+    let colorPicker: ColorPicker = new ColorPicker(
+        {
+            value: 'null',
+            mode: 'Palette',
+            change: (args: ColorPickerEventArgs) => {
+                chart.highlightColor = args.currentValue.hex;
+                chart.dataBind();
+            }
+        });
+    colorPicker.appendTo('#color-picker');
     document.getElementById('highlight').onchange = () => {
         let element: HTMLInputElement = <HTMLInputElement>(document.getElementById('highlight'));
         if (element.checked) {

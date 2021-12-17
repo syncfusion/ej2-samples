@@ -5,6 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { LinearGauge, ILoadEventArgs, LinearGaugeTheme, ExportType, Print, ImageExport, PdfExport } from '@syncfusion/ej2-lineargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
+import { TextBox } from  '@syncfusion/ej2-inputs';
 LinearGauge.Inject(Print, ImageExport, PdfExport);
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -41,7 +42,10 @@ LinearGauge.Inject(Print, ImageExport, PdfExport);
             },
             labelStyle: {
                 position: 'Outside',
-                offset: 4
+                offset: 4,
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
             },
             ranges: [{
                 start: 0,
@@ -88,15 +92,18 @@ LinearGauge.Inject(Print, ImageExport, PdfExport);
 
     let mode: DropDownList = new DropDownList({
         index: 0,
-        width: '90px'
+        width: '100%'
     });
     mode.appendTo('#type');
     let exportGauge: Button = new Button({
         iconCss: 'e-icons e-play-icon1', cssClass: 'e-flat', isPrimary: true,
     });
     exportGauge.appendTo('#export');
+    let fileText: TextBox = new TextBox({
+    });
+    fileText.appendTo('#fileName');
     document.getElementById('export').onclick = () => {
-        let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
+        let fileName: string = fileText.value;
         gauge.export(<ExportType>mode.value, fileName);
     };
     let printGauge: Button = new Button({

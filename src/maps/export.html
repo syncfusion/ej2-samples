@@ -10,49 +10,47 @@
     </div>
     <!-- property panel-->
     <div class="col-lg-3 property-section">
-        <table id="property" title="Properties" style="width: 100%; margin-left: -10px">
-            <tr style="height: 50px">
-                <td style="width: 40%">
-                    <div style="width:50%;">Map Type
-                    </div>
+        <table id="property" title="Properties" style="width: 100%;">
+            <colgroup>
+                <col span="1" style="width: 50%;">
+                <col span="1" style="width: 50%;">
+           </colgroup>
+           <tbody>  
+           <tr style="height: 50px">
+                <td class="property-text">
+                    Map Type
                 </td>
-                <td style="width: 60%;">
-                    <div style="margin-left: -30px">
-                        <select id="layertype">
-                            <option value='Geometry'>Geometry</option>
-                            <option value='OSM'>OSM</option>
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td style="width: 40%">
-                    <div style="width:50%;">Export Type
-                    </div>
-                </td>
-                <td style="width: 60%;">
-                    <div style="margin-left: -30px">
-                        <input id="mode">
-                    </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td style="width: 40%">
-                    <div style="width:50%;">File Name</div>
-                </td>
-                <td style="width: 40%;">
-                    <div class="e-float-input" style='margin-top: 0px;'>
-                        <input type="text" value="Maps" id="fileName" style="margin-left: -30px;width: 110px;">
-                    </div>
-                </td>
-            </tr>
-            <tr id="button-control" style="height: 50px" align='center'>
                 <td>
-                    <div style="margin-left: 60%;">
-                            <button id="togglebtn" style="text-transform:none !important;width: 90px;">Export</button>
-                    </div>
+                    <select id="layertype">
+                        <option value='Geometry'>Geometry</option>
+                        <option value='OSM'>OSM</option>
+                    </select>
                 </td>
             </tr>
+            <tr style="height: 50px">
+                <td class="property-text">
+                    Export Type
+                </td>
+                <td>
+                    <input id="mode">
+                </td>
+            </tr>
+            <tr style="height: 50px">
+                <td class="property-text">
+                    File Name
+                </td>
+                <td style="width:70%">
+                    <input value="Maps" id="fileName" style="width: 100%;">
+                </td>
+            </tr>
+            <tr id="button-control"  class=".e-play-icon" style="height: 70px">
+                <td align='center'>
+                <div style="margin-left: 40%">
+                <button id="togglebtn" style="text-transform:none !important;width: 90px;">Export</button>
+                </div>
+                </td>
+            </tr>
+            </tbody>
         </table>
     </div>
 </div>

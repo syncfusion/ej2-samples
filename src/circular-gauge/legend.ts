@@ -19,14 +19,21 @@ CircularGauge.Inject(Annotations, Legend);
         },
         // custom code end
         title: 'Measure of wind speed in Km/h',
+        titleStyle: {
+            fontFamily: 'Segoe UI'
+        },
         legendSettings: {
             visible: true,
-            position: 'Bottom'
+            position: 'Bottom',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         axes: [{
             lineStyle: { width: 2 },
             labelStyle: {
-                position: 'Inside', useRangeColor: false
+                position: 'Inside', useRangeColor: false,
+                font: { fontFamily: 'Segoe UI' }
             }, majorTicks: { height: 16, color: '#9E9E9E', interval: 20 }, minorTicks: { height: 8, interval: 10 },
             startAngle: 210, endAngle: 150, minimum: 0, maximum: 120, radius: '80%',
             ranges: [

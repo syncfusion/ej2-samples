@@ -14,51 +14,57 @@
 </div>
 <!-- property panel -->
 <div class="col-lg-3 property-section">
-    <table id="property" title="Properties" style="width: 100%">
-        <tbody>
-            <tr style="height: 50px">
-                <td style="width: 10%">
-                    <div class="property-text">Color Mapping Type</div>
+    <table id="property" title="Properties" style="width: 100%;">
+        <colgroup>
+            <col span="1" style="width: 50%;">
+            <col span="1" style="width: 50%;">
+         </colgroup>
+         <tbody>
+         <tr style="height: 50px">
+                <td>
+                    <div class="property-text" style="width: 92%;">Color Mapping Type</div>
                 </td>
-                <td style="width: 30%;">
+                <td>
+                    <div class="property-text">
                     <select autocomplete="off" id="colorMapping">
                         <option value="RangeColorMapping" selected>Range</option>
                         <option value="EqualColorMapping">Equal</option>
                         <option value="DesaturationColorMapping">Desaturation</option>
                     </select>
+                </div>
                 </td>
             </tr>
-            <tr >
-                <td style="width: 40%">
-                    <div class="property-text" id="text1" style="display: none"> Change Opacity</div>
+            <tr style="height: 50px">
+                <td>
+                    <div id="text1" class="property-text"  style="display: none; width: 99%;" class="property-text"> Change Opacity</div>
                 </td>
-                <td style="width: 40%;">
-                    <div id="input1" style="display: none">
+                <td>
+                    <div id="input1" class="property-text"  style="display: none; margin-top: -10px; margin-left: -10px">
                         <input type="checkbox" id="opacity"/>
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="width: 50%">
-                    <div class="property-text" id="text2" style="margin-top:12%; display: none">Min Opacity</div>
+            <tr style="height: 50px">
+                <td>
+                    <div id="text2" style="display: none;" class="property-text">Min Opacity</div>
                 </td>
-                <td style="width: 50%;">
-                    <div id="input2" style="display: none">
-                        <input type="range" id="minopacity" step="0.1" value="0.5" min="0" max="1" style="width:100%;margin-top: 20%" />
+                <td>
+                    <div id="input2" style="display: none;" class="property-text">
+                        <input type="range" id="minopacity" step="0.1" value="0.5" min="0" max="1" style="width:100%;" />
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="width: 50%">
-                    <div class="property-text" id="text3" style="margin-top:12%; display: none">Max Opacity</div>
+            <tr style="height: 50px">
+                <td>
+                    <div class="property-text" id="text3" class="property-text" style="display: none;">Max Opacity</div>
                 </td>
-                <td style="width: 50%;">
-                    <div id="input3" style="display: none">
-                        <input type="range" id="maxopacity" step="0.1" value="1" min="0" max="1" style="width:100%;margin-top: 20%" />
+                <td>
+                    <div id="input3" class="property-text" style="display: none;">
+                        <input type="range" id="maxopacity" step="0.1" value="1" min="0" max="1" style="width:100%;" />
                     </div>
                 </td>
             </tr>
-        </tbody>
+            </tbody>
     </table>
 </div>
 <!-- tooltip template -->
@@ -122,5 +128,8 @@
              font-size:13px;
              color:#ffffff;
              font-weight: 500;
+        } 
+        div.property-text {
+            padding-left: 0px; padding-top: 0px;
         }
      </style>

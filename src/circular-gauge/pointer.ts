@@ -84,7 +84,7 @@ CircularGauge.Inject(Annotations);
                 {
                     angle: 180, zIndex: '1',
                     radius: '25%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px; padding-top:20px">Multiple Needles</div>'
+                    content: '<div style="color:#757575; font-family:Segoe UI; font-size:14px; padding-top:20px">Multiple Needles</div>'
                 }
             ]
         }],

@@ -50,7 +50,10 @@ LinearGauge.Inject(Gradient);
             majorTicks: { interval: 25, height: 0 },
             minorTicks: { height: 0 },
             labelStyle: {
-                offset: 55
+                offset: 55,
+                font: {
+                    fontFamily: 'Segoe UI'
+                }
             },
             pointers: [{
                 value: 80, height: 25,
@@ -99,14 +102,14 @@ LinearGauge.Inject(Gradient);
     }
 
     let gradientType: DropDownList = new DropDownList({
-        index: 0, width: '145px',
+        index: 0, width: '100%',
         change: () => {
             changeGradient();
         }
     });
     gradientType.appendTo('#gradientType');
     let element: DropDownList = new DropDownList({
-        index: 0, width: '145px',
+        index: 0, width: '100%',
         change: () => {
             changeGradient();
         }

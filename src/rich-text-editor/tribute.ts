@@ -14,8 +14,15 @@ declare const Tribute: any;
   element.onload = (): void => {
     let defaultRTE: RichTextEditor = new RichTextEditor({
       placeholder: 'Type @ to get the employee list with their email IDs.',
+      actionBegin: actionBeginEvent
     });
     defaultRTE.appendTo('#AtRTE');
+
+    function actionBeginEvent(args: any) {
+      if (args.requestType === 'EnterAction') {
+        args.cancel = true;
+      }
+    }
     /* tslint:disable */
     var tribute = new Tribute({
       /* tslint:enable */

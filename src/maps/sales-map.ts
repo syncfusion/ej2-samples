@@ -34,7 +34,8 @@ import { loadCultureFiles } from '../common/culture-loader';
         titleSettings: {
             text: 'Sales details of products in various countries',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         tooltipDisplayMode: 'Click',
@@ -63,6 +64,9 @@ import { loadCultureFiles } from '../common/culture-loader';
                             format: '<b>Name</b> : ${name}<br><b>Product</b> : ${product}<br><b>Total value</b> : ${worth}',
                             visible: true,
                             valuePath: 'area',
+                            textStyle: {
+                                fontFamily: 'Segoe UI'
+                            }            
                         },
                         height: 15,
                         width: 15,

@@ -19,7 +19,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     let gauge: CircularGauge = random; let isUsage: boolean = false;
     let barColor: DropDownList; let rangeColor: DropDownList; let pointerColor: DropDownList;
     barColor = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             gauge.axes[0].pointers[0].color = barColor.value.toString();
             gauge.refresh();
@@ -27,7 +27,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     });
     barColor.appendTo('#barColor');
     rangeColor = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             gauge.axes[0].ranges[0].color = rangeColor.value.toString();
             gauge.refresh();
@@ -35,7 +35,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     });
     rangeColor.appendTo('#rangeColor');
     pointerColor = new DropDownList({
-        index: 0, width: 120,
+        index: 0, width: '100%',
         change: () => {
             let color: string = pointerColor.value.toString();
             if (!isUsage) {
@@ -54,8 +54,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         let element: HTMLSelectElement = <HTMLSelectElement>document.getElementById('currentValue');
         element.min = '0.5'; element.max = '100';
         element.value = usage.axes[0].pointers[0].value.toString();
-        document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;'
-            + usage.axes[0].pointers[0].value + '</span>';
+        document.getElementById('currentPointerValue').innerHTML = usage.axes[0].pointers[0].value.toString();
         barColor.value = usage.axes[0].pointers[0].color; rangeColor.value = usage.axes[0].ranges[0].color;
         pointerColor.enabled = false;
         let pointElement: HTMLSelectElement = <HTMLSelectElement>document.getElementById('pointColor');
@@ -82,8 +81,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             pointElement.className = 'e-enabled'; pointerColor.enabled = true;
             element.min = '1000'; element.max = '2000';
             element.value = random.axes[0].pointers[0].value.toString();
-            document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;' +
-                random.axes[0].pointers[0].value + '</span>';
+            document.getElementById('currentPointerValue').innerHTML = random.axes[0].pointers[0].value.toString();
             barColor.value = random.axes[0].pointers[0].color;
             rangeColor.value = random.axes[0].ranges[0].color;
             pointerColor.value = random.axes[0].pointers[1].color;
@@ -100,7 +98,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
                 gauge.setPointerValue(0, 1, value);
             }
             gauge.setAnnotationValue(0, 0, '<div style="color:#666666;font-size:35px;">' + value + (isUsage ? 'GB' : '') + '</div>');
-            document.getElementById('currentPointerValue').innerHTML = 'Current Value <span> &nbsp;&nbsp;&nbsp;' + value + '</span>';
+            document.getElementById('currentPointerValue').innerHTML = value.toString();
         };
         // custom code start
     let selectedTheme: string = location.hash.split('/')[1]; let color: string;

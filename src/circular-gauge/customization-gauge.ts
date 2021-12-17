@@ -17,7 +17,7 @@ export function gauge1(): CircularGauge {
         // custom code end
         axes: [{
             annotations: [{
-                content: '<div style="color:#666666;font-size:35px;">1800</div>',
+                content: '<div style="color:#666666;font-size:35px;font-family: Segoe UI;">1800</div>',
                 angle: 0,
                 zIndex: '1',
                 radius: '110%'
@@ -64,13 +64,13 @@ export function gauge2(): CircularGauge {
         // custom code end
         axes: [{
             annotations: [{
-                content: '<div style="color:#666666;font-size:35px;">50.5GB</div>',
+                content: '<div style="color:#666666;font-size:35px; font-family: Segoe UI;">50.5GB</div>',
                 angle: 180, radius: '0%', zIndex: '1',
             }, {
                 content: '<div style="color:#757575;font-size:15px;">Used</div>',
                 angle: 180, radius: '25%', zIndex: '1',
                 textStyle: {
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Segoe UI',
                     color: '#9E9E9E',
                     fontStyle: 'Bold',
                     fontWeight: 'Regular',

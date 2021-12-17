@@ -38,6 +38,11 @@ let gauge: LinearGauge;
                 minorTicks: {
                     interval: 0.2
                 },
+                labelStyle: {
+                    font: {
+                        fontFamily: 'Segoe UI'
+                    }
+                },        
                 pointers: [{
                     type: 'Bar',
                     value: 5.4,
@@ -68,7 +73,7 @@ let gauge: LinearGauge;
         ],
         annotations: [
             {
-                content: '<div id="first"><h1 style="font-size:15px;">Inches</h1></div>',
+                content: '<div id="first"><h1 style="font-size:15px; font-family: Segoe UI;">Inches</h1></div>',
                 axisIndex: 0,
                 axisValue: 5.4,
                 x: 35,
@@ -76,7 +81,7 @@ let gauge: LinearGauge;
                 zIndex: '1'
             },
             {
-                content: '<div id="second"><h1 style="font-size:15px;">Centimeters</h1></div>',
+                content: '<div id="second"><h1 style="font-size:15px; font-family: Segoe UI;">Centimeters</h1></div>',
                 axisIndex: 1,
                 axisValue: 16.5,
                 x: 50,

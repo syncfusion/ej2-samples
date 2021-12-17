@@ -34,7 +34,8 @@ import { loadCultureFiles } from '../common/culture-loader';
         titleSettings: {
             text: 'Top 25 populated cities in the world',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'Segoe UI'
             }
         },
         layers: [

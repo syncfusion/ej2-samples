@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { BreadcrumbItemModel, Breadcrumb, BreadcrumbClickEventArgs, BreadcrumbBeforeItemRenderEventArgs } from '@syncfusion/ej2-navigations';
 import { Button } from '@syncfusion/ej2-buttons';
+import { getComponent } from '@syncfusion/ej2-base';
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -53,8 +54,18 @@ let items: BreadcrumbItemModel[] = [
 
  function logEvent(eventName: string): void {
   let span: HTMLElement = document.createElement('span');
-  span.innerHTML = 'Breadcrumb <b>' + eventName  + '</b> event called<hr>';
+  span.innerHTML = 'Breadcrumb <b>' + eventName  + '</b> event is triggered<hr>';
   let log: HTMLElement = document.getElementById('EventLog');
   log.insertBefore(span, log.firstChild);
   }
+
+  // To refresh Breadcrumb control state when reset button clicked
+  new Button({ cssClass: 'e-small' }, '#reset').element.onclick = () => {
+    var breadcrumb, breadcrumbInst, breadcrumbs = document.querySelector('.content-wrapper').getElementsByClassName("e-breadcrumb");
+    for (var i = 0; i < breadcrumbs.length; i++) {
+        breadcrumb = breadcrumbs[i];
+        breadcrumbInst = (getComponent(breadcrumb as HTMLElement, 'breadcrumb') as Breadcrumb);
+        breadcrumbInst.activeItem = breadcrumbInst.items[breadcrumbInst.items.length  -1].text;
+    }
+  };
 };

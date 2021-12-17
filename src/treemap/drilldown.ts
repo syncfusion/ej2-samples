@@ -50,7 +50,7 @@ let prevTime: Date; let curTime: Date;
         palette: ['#9999ff', '#CCFF99', '#FFFF99', '#FF9999', '#FF99FF', '#FFCC66'],
         titleSettings: {
             text: 'List of countries by population',
-            textStyle: { size: '15px' }
+            textStyle: { size: '15px', fontFamily: 'Segoe UI' }
         },
         enableDrillDown: true,
         format: 'n',
@@ -59,12 +59,15 @@ let prevTime: Date; let curTime: Date;
         weightValuePath: 'Population',
         tooltipSettings: {
             visible: true,
-            format: '${Name} : ${Population}'
+            format: '${Name} : ${Population}',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
         },
         leafItemSettings: {
             labelPath: 'Name',
             showLabels: false,
-            labelStyle: { size: '0px' },
+            labelStyle: { size: '0px',  fontFamily: 'Segoe UI'  },
             border: { color: 'black', width: 0.5 }
         },
         levels: [
@@ -114,7 +117,7 @@ let prevTime: Date; let curTime: Date;
     let header: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Selection selection type',
-        width: 80,
+        width: '100%',
         change: () => {
             for (let i: number = 0; i < treemap.levels.length - 1; i++) {
                 treemap.levels[i].headerAlignment = <Alignment>header.value;
@@ -127,7 +130,7 @@ let prevTime: Date; let curTime: Date;
     let label: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Selection selection type',
-        width: 80,
+        width: '100%',
         change: () => {
             treemap.levels[2].headerAlignment = <Alignment>label.value;
             treemap.refresh();

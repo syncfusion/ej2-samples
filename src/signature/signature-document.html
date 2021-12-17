@@ -1,0 +1,139 @@
+<div class="col-lg-12 control-section">
+    <div id='target'>
+        <div id='dialog'>
+
+        </div>
+    </div>
+    <div id='container'>
+        <form>
+            <div class="paragraph">
+                <p>Dear <b>Peter Parker</b>,</p></br>
+
+                <p>Good day! </p></br>
+
+                <p class='para'>I am writing this letter to express my gratefulness and appreciation for agreeing to rent me your property 
+                at <b>Street 11, Avenue 6, Wales</b>. As per our previous discussion regarding the house rental, I am required 
+                to make a security deposit of <b>$4000</b> and pay an amount of <b>$3500</b> as rent on the first of every month.</p>
+                </br>
+                
+                <p class='para'>Attached to this letter packet is a copy of the signed house rental agreement, indicating alters and 
+                conditions of my stay in your property. This agreement and my rental stay are valid for <b>1 year</b>, as per our 
+                previous conversation.</p></br>
+                
+                <p class='para'>Please do not hesitate to contact me if there are any changes to be made to the agreement. I look forward 
+                to hearing from you. Thank you</p></br>
+                
+                Regards,</br></br>
+                <div id="signature-control">
+                    <canvas id="signature" height=50 width=200></canvas>
+                </div>
+                </br>
+            </div>
+          </form>
+          <button class="e-btn e-send-btn" id="sendButton">Send</button>
+    </div>
+</div>
+<div id="action-description">
+    <p>
+
+    </p>
+</div>
+<div id="description">
+    <p>
+
+    </p>
+</div>
+<!-- custom code start -->
+<style>
+
+    .paragraph {
+        width: 90%;
+        font-size: 14px;
+        margin: 20px;
+    }
+    .e-send-btn {
+        margin-left: 20px;
+    }
+    .para {
+        text-align: justify;
+    }
+    .e-signature {
+        border: 1px solid gray;
+        background-color: rgb(255, 255, 255);
+        box-sizing: border-box;
+    }
+
+    #signature-control {
+        height: 50px;
+        width: 200px;
+        margin: 0;
+    }
+
+    #draw_appearance,
+    #upload_appearance {
+        margin-top: 30px;
+    }
+
+    #type_appearance {
+        margin-top: 8px;
+    }
+    #type_content {
+        margin-top: 8px;
+        border: 1px dotted rgb(189, 189, 189);
+        box-sizing: border-box;
+        border-radius: 5px;
+        background-color: white;
+        color: black;
+    }
+
+    .e-font-sign {
+        display: inline-block;
+        font-size: 13px;
+        height: 70px;
+        margin: 15px;
+        text-align: center;
+        width: 244px;
+        word-wrap: break-word;
+    }
+
+    #type_content tr:nth-child(2) .e-font-sign {
+        margin-top: 0;
+    }
+
+    #type_content td:nth-child(2) .e-font-sign {
+        margin-left: 0;
+    }
+
+    .e-selected-item .e-signature,
+    .e-selected-item.e-signature {
+		border-color: red;
+        box-shadow: 0 0 5px red;
+	}
+
+    .e-sign-dlg.e-dialog .e-footer-content {
+        padding: 0px 18px 18px 12px;
+    }
+
+    .e-sign-dlg.e-dialog .e-dlg-header-content {
+        padding: 10px 18px;
+    }
+
+    .e-disclaimer,
+    #upload_appearance .e-file-select-wrap {
+        text-align: center;
+    }
+
+    #upload_appearance .e-file-select-wrap {
+        padding: 8rem;
+    }
+
+    .e-disclaimer {
+        margin-bottom: 12px;
+    }
+
+    #upload_appearance .e-control-wrapper {
+        height: 208px;
+    }
+
+</style>
+<!-- custom code end -->

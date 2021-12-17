@@ -29,14 +29,17 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         // To config title for treemap 
         titleSettings: {
             text: 'Top 10 countries by GDP Nominal - 2015',
-            textStyle: {size: '15px'}
+            textStyle: {size: '15px', fontFamily: 'Segoe UI'}
         },
         dataSource: new TreeMapAjax('./src/treemap/treemap-data/econmics.json'),
         weightValuePath: 'GDP',
         // To config tooltip for treemap 
         tooltipSettings: {
             visible: true,
-            format: '${State}<br>Rank : ${Rank}'
+            format: '${State}<br>Rank : ${Rank}',
+            textStyle: {
+                fontFamily: 'Segoe UI'
+            }
 
         },
         rangeColorValuePath: 'GDP',
@@ -45,7 +48,8 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
             labelPath: 'State',
             labelFormat: '${State}<br>$${GDP} Trillion<br>(${percentage} %)',
             labelStyle: {
-                color: '#000000'
+                color: '#000000',
+                fontFamily: 'Segoe UI'
             },
             border: {
                 color: '#000000',
@@ -67,7 +71,7 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let layoutMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select layoutMode type',
-        width: 90,
+        width: '100%',
         change: () => {
             treemap.layoutType = <LayoutMode>layoutMode.value;
             treemap.refresh();
@@ -78,7 +82,7 @@ export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
     let highlightMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Rendering Direction',
-        width: 115,
+        width: '100%',
         change: () => {
             treemap.renderDirection = <RenderingMode>highlightMode.value;
             treemap.refresh();

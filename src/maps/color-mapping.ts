@@ -45,7 +45,7 @@ Maps.Inject(MapsTooltip, Legend);
             },
             title: {
                 text: 'Inches'
-            },
+        },
         },
         layers: [
             {
@@ -148,7 +148,7 @@ Maps.Inject(MapsTooltip, Legend);
     let sampleValue: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Range ColorMaping',
-        width: 100,
+        width: '100%',
         change: () => {
             let element: string = sampleValue.value.toString();
             if (element === 'RangeColorMapping') {

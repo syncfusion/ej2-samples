@@ -43,7 +43,7 @@ export function gauge1(): CircularGauge {
                 {
                     angle: 180, zIndex: '1',
                     radius: '20%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Range Bar</div>'
+                    content: '<div style="color:#757575; font-family:Segoe UI; font-size:14px;">Range Bar</div>'
                 }
             ]
         }],
@@ -92,7 +92,7 @@ export function gauge2(): CircularGauge {
                 {
                     angle: 180, zIndex: '1',
                     radius: '20%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Marker</div>'
+                    content: '<div style="color:#757575; font-family:Segoe UI; font-size:14px;">Marker</div>'
                 }
             ]
         }],
@@ -148,7 +148,7 @@ export function gauge4(): CircularGauge {
                 {
                     angle: 180, zIndex: '1',
                     radius: '20%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px; padding-top: 26px">Customized Needle</div>'
+                    content: '<div style="color:#757575; font-family:Segoe UI; font-size:14px; padding-top: 26px">Customized Needle</div>'
                 }
             ]
         }],
@@ -198,7 +198,7 @@ export function gauge3(): CircularGauge {
                 {
                     angle: 180, zIndex: '1',
                     radius: '20%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px;">Needle</div>'
+                    content: '<div style="color:#757575; font-family:Segoe UI; font-size:14px;">Needle</div>'
                 }
             ]
         }],
@@ -349,7 +349,7 @@ export function gauge5(): CircularGauge {
                 {
                     angle: 180, zIndex: '1',
                     radius: '20%',
-                    content: '<div style="color:#757575; font-family:Roboto; font-size:14px; padding-top:26px">Live Update</div>'
+                    content: '<div style="color:#757575; font-family:Segoe UI; font-size:14px; padding-top:26px">Live Update</div>'
                 }
             ]
         }],

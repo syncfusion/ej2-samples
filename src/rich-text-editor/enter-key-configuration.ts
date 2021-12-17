@@ -41,12 +41,14 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
             codeView.appendChild(mirrorView);
         }
         mirrorView.style.display = 'block';
-        CodeMirror(mirrorView, {
-            value: defaultRTE.value,
-            mode: 'text/html',
-            lineWrapping: true,
-            readOnly: true
-        });
+        if (defaultRTE.value !== null) {
+            CodeMirror(mirrorView, {
+                value: defaultRTE.value,
+                mode: 'text/html',
+                lineWrapping: true,
+                readOnly: true
+            });
+        }
     }
 
     let enterListObj: DropDownList = new DropDownList({

@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { PivotView, IDataSet, VirtualScroll } from '@syncfusion/ej2-pivotview';
-import { enableRipple } from '@syncfusion/ej2-base';
+import { enableRipple, Browser } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
 enableRipple(false);
 
@@ -78,6 +78,9 @@ let data: Function = (count: number) => {
                 isInit = false;
                 button.disabled = true;
                 document.getElementById('popup').style.display = 'none';
+            }
+            if (Browser.isDevice && pivotObj && pivotObj.enableRtl) {
+                document.querySelector('.control-section').classList.add('e-rtl');
             }
         },
     });

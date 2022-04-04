@@ -7,6 +7,7 @@ import { DateRangePicker } from '@syncfusion/ej2-calendars';
     loadCultureFiles();
     let start: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
     let daterangepicker: DateRangePicker = new DateRangePicker({
+        placeholder: "Select a range",
         presets: [
             {
                 label: 'This Week',

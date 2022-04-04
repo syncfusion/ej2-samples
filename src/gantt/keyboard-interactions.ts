@@ -28,7 +28,7 @@ Gantt.Inject(Selection, Toolbar, Edit, Filter, DayMarkers );
                 child: 'subtasks'
             },
             columns: [
-                { field: 'TaskID', width: 70 },
+                { field: 'TaskID', width: 80 },
                 { field: 'TaskName', width: 250 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },

@@ -69,7 +69,7 @@ Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar,
                 child: 'subtasks'
             },
             columns: [
-                { field: 'TaskID', width: 60 },
+                { field: 'TaskID', width: 75 },
                 { field: 'TaskName', width: 250 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },

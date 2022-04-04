@@ -3,7 +3,7 @@ import { Chart, BubbleSeries, Tooltip, IPointRenderEventArgs } from '@syncfusion
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors } from './theme-color';
 Chart.Inject(BubbleSeries, Tooltip);
 
 let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
@@ -15,6 +15,10 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = materialColors[args.point.index % 10];
     } else if (selectedTheme === 'highcontrast') {
         args.fill = highContrastColors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent') {
+        args.fill = fluentColors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent-dark') {
+        args.fill = fluentDarkColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }

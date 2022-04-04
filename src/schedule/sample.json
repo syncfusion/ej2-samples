@@ -2,7 +2,6 @@
     "name": "Scheduler",
     "directory": "schedule",
     "category": "Calendars",
-    "type": "update",
     "ftName": "scheduler",
     "samples": [
         {
@@ -275,7 +274,6 @@
             "url": "custom-month-view",
             "name": "Custom Month View",
             "category": "Views",
-            "type": "new",
             "description": "This example showcases how to customize the starting week of the month and also customize the number of weeks to be rendered in month view with JavaScript Scheduler.",
             "api": {
                 "Schedule": [
@@ -772,7 +770,6 @@
             "name": "Excel Exporting",
             "category": "Exporting",
             "hideOnDevice": false,
-            "type": "update",
             "description": "This example demonstrates how to export JavaScript Scheduler events (appointments) to the Microsoft Excel file format on the client side.",
             "api": {
                 "Schedule": [

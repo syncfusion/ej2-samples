@@ -19,42 +19,23 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
   let defaultRTE: RichTextEditor;
   let splitObj: Splitter;
   // Add the styles and script referrence for code-mirror.
-  let link: Element = document.createElement('link');
-  link.setAttribute('rel', 'stylesheet');
-  link.setAttribute('type', 'text/css');
-  link.setAttribute('href', 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css');
-  document.head.appendChild(link);
-  let elem: HTMLScriptElement = document.createElement('script');
-  elem.src = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js';
-  elem.type = 'text/javascript';
-  document.head.appendChild(elem);
-  let element: HTMLScriptElement = document.createElement('script');
-  element.src = 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js';
-  element.type = 'text/javascript';
-  document.head.appendChild(element);
-
-  element.onload = (): void => {
-    let openButton: HTMLElement = document.querySelector('#OpenBtn');
-    if (openButton) {
-      openButton.addEventListener('click', () => {
-      window.open(location.href.replace(location.search, '').split('#')[0] + 'rich-text-editor/online-html-editor/index.html');
-      });
-   }
     splitObj = new Splitter({
       height: '450px', width: '100%',
-      paneSettings: [{ resizable: false, size: '50%' }, {}],
+      resizing: onResizing,
+      paneSettings: [{ resizable: true, size: '50%',min: '60px' }, {}],
     });
     splitObj.appendTo('#horizontal');
 
     defaultRTE = new RichTextEditor({
       height: '100%',
+      floatingToolbarOffset:0,
       toolbarSettings: {
-        type : ToolbarType.MultiRow,
+        type : ToolbarType.Expand,
+        enableFloating: false,
         items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
           'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
-          'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', '|',
           'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
-          'Outdent', 'Indent', '|',
+          'Outdent', 'Indent',
           'CreateTable', 'CreateLink', 'Image', '|', 'ClearFormat',
           '|', 'Undo', 'Redo'
         ]
@@ -65,6 +46,10 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
     defaultRTE.appendTo('#defaultRTE');
     function onChange(): void {
       updateValue();
+    }
+    function onResizing():void
+    {
+      defaultRTE.refreshUI();
     }
     function onCreate(): void {
       updateValue();
@@ -77,7 +62,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       }
     }
     function updateHtmlValue(): void {
-      textArea.innerHTML = myCodeMirror.getValue();
+      defaultRTE.value = myCodeMirror.getValue();
     }
     function updateValue(): void {
       let mirrorView: HTMLElement = document.querySelector('#src-view');
@@ -96,17 +81,17 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       if (codemirrorEle) {
         codemirrorEle.remove();
       }
+      if(defaultRTE.value){
       renderCodeMirror(srcViewEle as HTMLElement, defaultRTE.value);
-    }
-    function renderCodeMirror(mirrorView: HTMLElement, content: string): void {
-      if (content) {
-        myCodeMirror = CodeMirror(mirrorView, {
-          value: content,
-          lineNumbers: true,
-          mode: 'text/html',
-          lineWrapping: true,
-        });
       }
     }
+    function renderCodeMirror(mirrorView: HTMLElement, content: string): void {
+      myCodeMirror = CodeMirror(mirrorView, {
+        value: content,
+        lineNumbers: true,
+        mode: 'text/html',
+        lineWrapping: true,
+      });
+    }
   };
-};
+

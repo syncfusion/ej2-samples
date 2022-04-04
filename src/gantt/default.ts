@@ -13,6 +13,7 @@ Gantt.Inject(Selection);
         {
             dataSource: projectNewData,
             height: '450px',
+            treeColumnIndex: 1,
             taskFields: {
                 id: 'TaskID',
                 name: 'TaskName',
@@ -23,6 +24,15 @@ Gantt.Inject(Selection);
                 dependency: 'Predecessor',
                 child: 'subtasks'
             },
+            columns: [
+                { field: 'TaskID', width: 80 },
+                { field: 'TaskName',headerText: 'Name', width: 250 },
+                { field: 'StartDate' },
+                { field: 'EndDate' },
+                { field: 'Duration' },
+                { field: 'Predecessor' },
+                { field: 'Progress' },
+            ],
             labelSettings: {
                 leftLabel: 'TaskName'
             },

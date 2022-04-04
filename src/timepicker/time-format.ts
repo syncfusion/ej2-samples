@@ -9,6 +9,7 @@ import { TimePicker } from '@syncfusion/ej2-calendars';
     loadCultureFiles();
 
     let timeObj: TimePicker = new TimePicker({
+        placeholder: "Select a time",
         value: new Date(),
         step: 60,
         format: 'HH:mm'

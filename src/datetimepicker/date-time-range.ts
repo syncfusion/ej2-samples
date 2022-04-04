@@ -12,6 +12,7 @@ import { DateTimePicker } from '@syncfusion/ej2-calendars';
     let currentMonth: number = today.getMonth();
     let currentDay: number = today.getDate();
     let dateTimeInstance: DateTimePicker = new DateTimePicker({
+        placeholder: "Select a date and time",
         min: new Date(currentYear, currentMonth, 7, 10, 0, 0),
         max: new Date(currentYear, currentMonth, 27, 22, 30, 0),
         value: new Date(currentYear, currentMonth, 14, 12, 0, 0)

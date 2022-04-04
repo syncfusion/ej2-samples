@@ -28,7 +28,8 @@ Maps.Inject(MapsTooltip, Legend);
         titleSettings: {
             text: 'Spring Precipitation Averages of US States',
             textStyle: {
-                size: '16px'
+                size: '16px',
+                fontFamily: 'inherit' 
             }
         },
         zoomSettings: {
@@ -38,14 +39,18 @@ Maps.Inject(MapsTooltip, Legend);
             visible: true,
             position: 'Bottom',
             height: '10',
+            textStyle: {
+                fontFamily: 'inherit'
+            },
             width: '80%',
             mode: 'Interactive',
             titleStyle: {
-                size: '18px'
+                size: '18px',
+                fontFamily: 'inherit'
             },
             title: {
                 text: 'Inches'
-        },
+            }
         },
         layers: [
             {
@@ -84,7 +89,10 @@ Maps.Inject(MapsTooltip, Legend);
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'State',
-                    template: '#template'
+                    template: '#template',
+                    textStyle: {
+                        fontFamily: 'inherit'
+                    }        
                 },
             }
         ]

@@ -1,33 +1,42 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Sidebar } from '@syncfusion/ej2-navigations';
+import { Sidebar, Toolbar, ClickEventArgs } from '@syncfusion/ej2-navigations';
+import { TextBox } from '@syncfusion/ej2-inputs';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { TreeView } from '@syncfusion/ej2-navigations';
 enableRipple(true);
 
 /**
- * Sidebar with TreeView sample
+ * Sidebar with TreeView sample.
  */
 
-// Sidebar initialization
+// Initialization of Sidebar.
 (window as any).default = (): void => {
     loadCultureFiles();
+    //Toolbar component template element specification.
+    let folderEle: string = '<div class= "e-folder"><div class= "e-folder-name">Navigation Pane</div></div>';
+    //Defines the rendering code blocks for the Toolbar component.
+    let toolbarObj: Toolbar = new Toolbar({
+        clicked: ToolbarCliked,
+        items: [
+            { prefixIcon: "e-tbar-menu-icon tb-icons", tooltipText: "Menu" },
+            { template: folderEle }
+        ]
+    });
+    toolbarObj.appendTo("#resToolbar");
+    //Defines the rendering code blocks for the Sidebar component.
     let sidebarMenu: Sidebar = new Sidebar({
         width: '290px',
         target: '.main-content',
         mediaQuery: '(min-width: 600px)',
+        isOpen: true
     });
-    sidebarMenu.appendTo('#sidebar-treeview');
-
-    // Toggle the Sidebar
-    document.getElementById('hamburger').onclick = (): void => {
-        sidebarMenu.toggle();
-    };
-
-    // open new tab
-    let URL: any = location.href.replace(location.search, '');
-    document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/responsive-panel/index.html');
-
-    // Render the TreeView with image icons
+    sidebarMenu.appendTo('#sideTree');
+    //Defines the rendering code blocks for the Textbox component.
+    let inputObj: TextBox = new TextBox({
+        placeholder: "Search..."
+    });
+    inputObj.appendTo("#resSearch");
+    // Initialization of TreeView datasource with iconCss.
     let data: { [key: string]: Object }[] = [
         {
             nodeId: '01', nodeText: 'Installation', iconCss: 'icon-microchip icon',
@@ -77,10 +86,19 @@ enableRipple(true);
         }
     ];
 
-    // TreeView  initialization
+    //Initialization of TreeView.
     let mainTreeView: TreeView = new TreeView({
-        fields: { dataSource: data, id: 'nodeId', text: 'nodeText', child: 'nodeChild' }, expandOn: 'Click'
+        cssClass: "main-treeview",
+        fields: { dataSource: data, id: 'nodeId', text: 'nodeText', child: 'nodeChild', iconCss: "iconCss" },
+        expandOn: 'Click'
     });
 
-    mainTreeView.appendTo('#main-treeview');
+    mainTreeView.appendTo('#mainTree');
+
+    // Specifies the event handler for the Toolbar clicked event.
+    function ToolbarCliked(args: ClickEventArgs): void {
+        if (args.item.tooltipText === 'Menu') {
+            sidebarMenu.toggle();
+        }
+    }
 };

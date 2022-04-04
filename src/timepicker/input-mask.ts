@@ -9,6 +9,7 @@ import { TimePicker, MaskedDateTime } from '@syncfusion/ej2-calendars';
     loadCultureFiles();
 
     let timeObj: TimePicker = new TimePicker({
+        placeholder: "Select a time",
         format: "h:mm a",
         enableMask: true
     });

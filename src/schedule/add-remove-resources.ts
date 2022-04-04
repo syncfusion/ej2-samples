@@ -37,7 +37,7 @@ Schedule.Inject(Month, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
     // custom code start
     function onChange(args: ChangeEventArgs): void {
-        let value: number = parseInt((<Element>args.event.target).getAttribute('value'), 10);
+        let value: number = parseInt((<Element>args.event.currentTarget).querySelector('input').getAttribute('value'), 10);
         let resourceData: Object[] = calendarCollections.filter((calendar: { [key: string]: number }) => calendar.CalendarId === value);
         if (args.checked) {
             scheduleObj.addResource(resourceData[0], 'Calendars', value - 1);

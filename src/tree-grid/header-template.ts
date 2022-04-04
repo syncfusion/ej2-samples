@@ -24,5 +24,5 @@ TreeGrid.Inject(Page);
                 { field: 'progress', headerTemplate: '#progressTemplate', textAlign: 'Center' }
             ]
         });
-    grid.appendTo('#Grid');
+    grid.appendTo('#TreeGrid');
 };

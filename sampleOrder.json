@@ -233,6 +233,16 @@
             "api": "API"
         }
     },
+    "carousel": {
+        "ControlName": "Carousel",
+        "Samples": {
+            "default": "Default Functionalities",
+            "templates": "Templates",
+            "datasource-binding": "DataSource Binding",
+            "custom-animation": "Custom Animation",
+            "keyboard-navigation": "Keyboard Navigation"
+        }
+    },
     "circular-gauge": {
         "ControlName": "Circular Gauge",
         "Samples": {

@@ -41,7 +41,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     });
     exportType.appendTo('#mode');
     let exportBtn: Button = new Button({
-        cssClass: 'e-flat', isPrimary: true,
+        isPrimary: true,
     });
     exportBtn.appendTo('#export-btn');
     document.getElementById('export-btn').onclick = () => {

@@ -147,6 +147,11 @@
 		"multiline",
 		"sys",
 		"realtime",
-		"binding"
+		"binding",
+		"insert-emoticons",
+		"online-html-editor",
+		"form-validator",
+		"signature",
+		"multiline-textbox"
 	]
 }

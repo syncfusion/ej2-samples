@@ -1,11 +1,9 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Accordion RTL Sample
  */
 import { Accordion } from '@syncfusion/ej2-navigations';
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     //Initialize Accordion component
     let acrdnObj: Accordion = new Accordion({
         enableRtl: true,

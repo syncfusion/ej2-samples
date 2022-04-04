@@ -1,11 +1,9 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Toolbar sample to demonstrate popup mode feature.
  */
 import { Toolbar } from '@syncfusion/ej2-navigations';
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     //Initialize Toolbar component
     let toolbarObj: Toolbar = new Toolbar({
         overflowMode: 'Popup',

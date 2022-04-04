@@ -5,6 +5,8 @@ import { DateRangePicker } from '@syncfusion/ej2-calendars';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let daterangepicker: DateRangePicker = new DateRangePicker();
+    let daterangepicker: DateRangePicker = new DateRangePicker({
+        placeholder: "Select a range",
+    });
     daterangepicker.appendTo('#daterangepicker');
 };

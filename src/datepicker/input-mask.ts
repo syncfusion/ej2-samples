@@ -7,6 +7,7 @@ import { DatePicker, MaskedDateTime } from '@syncfusion/ej2-calendars';
 (window as any).default = (): void => {
     loadCultureFiles();
     let datepicker: DatePicker = new DatePicker({
+        placeholder: "Choose a date",
         format: "M/d/yyyy",
         enableMask: true
     });

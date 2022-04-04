@@ -8,6 +8,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 (window as any).default = (): void => {
     loadCultureFiles();
     let datepicker: DatePicker = new DatePicker({
+        placeholder: "Choose a date",
         value: new Date(),
         format: 'dd-MMM-yy',
     });

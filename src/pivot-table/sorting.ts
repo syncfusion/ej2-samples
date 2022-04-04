@@ -82,7 +82,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     orderddl.appendTo('#order');
 
     let applyBtn: Button = new Button({
-        cssClass: 'e-flat', isPrimary: true,
+        isPrimary: true,
     });
     applyBtn.appendTo('#sort-apply');
 

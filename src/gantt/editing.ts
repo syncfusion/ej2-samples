@@ -53,7 +53,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 },
             },
             columns: [
-                { field: 'TaskID', width: 60 },
+                { field: 'TaskID', width: 80 },
                 { field: 'TaskName', headerText: 'Job Name', width: '250', clipMode: 'EllipsisWithTooltip' },
                 { field: 'StartDate' },
                 { field: 'Duration' },

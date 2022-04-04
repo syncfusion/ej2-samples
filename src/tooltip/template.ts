@@ -43,7 +43,7 @@ import { Toolbar } from '@syncfusion/ej2-navigations';
     let tooltip: Tooltip = new Tooltip({
 
         //Set tooltip target
-        target: '#Toolbar [title]',
+        target: '#Toolbar [title] button',
 
         //Raise beforeRender event
         beforeRender: onBeforeRender,
@@ -81,7 +81,7 @@ function onBeforeRender(args: TooltipEventArgs): void {
         { title: 'Paste', name: 'Paste (Ctrl+V)', description: 'Add content on the Clipboard to your document.' }
     ];
     for (let i: number = 0; i < data.length; i++) {
-        if (data[i].title === args.target.getAttribute('title')) {
+        if (data[i].title === args.target.parentElement.getAttribute('title')) {
             this.content = '<h6>' + data[i].name + '</h6><p>' + data[i].description + '</p>';
         }
     }

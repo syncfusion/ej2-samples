@@ -27,7 +27,7 @@ Gantt.Inject(DayMarkers, Selection );
                 child: 'subtasks'
             },
             columns: [
-                { field: 'TaskID', width: 60 },
+                { field: 'TaskID', width: 80 },
                 { field: 'TaskName', width: 250 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
@@ -54,7 +54,7 @@ Gantt.Inject(DayMarkers, Selection );
             { id: 'Horizontal', type: 'Horizontal' },
             { id: 'None', type: 'None' }
         ],
-        popupWidth: '100px',
+        popupWidth: '125px',
         fields: { text: 'type', value: 'id' },
         value: 'Both',
         change: (e: ChangeEventArgs) => {

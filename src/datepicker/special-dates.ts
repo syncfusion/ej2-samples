@@ -8,6 +8,7 @@ import { addClass } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
     loadCultureFiles();
     let datepicker: DatePicker = new DatePicker({
+        placeholder: "Choose a date",
         renderDayCell: customDates, value: new Date('1/13/2017'),
         cssClass: 'e-customStyle'
     });

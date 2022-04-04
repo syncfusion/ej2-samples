@@ -7,6 +7,7 @@ import { DateTimePicker, RenderDayCellEventArgs } from '@syncfusion/ej2-calendar
 (window as any).default = (): void => {
     loadCultureFiles();
     let dateTimeInstance: DateTimePicker = new DateTimePicker({
+        placeholder: "Select a date and time",
         renderDayCell: disableDate
     });
     dateTimeInstance.appendTo('#datetimepicker');

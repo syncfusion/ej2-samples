@@ -45,7 +45,7 @@ import * as dataSource from './datasource.json';
     let printHeightAndWidthData: string[] = ['auto', '100%', '500px'];
 
     let heightObj: DropDownList = new DropDownList({
-        width: 'auto',
+        width: '100%',
         placeholder: 'Height',
         floatLabelType: 'Always',
         dataSource: printHeightAndWidthData,
@@ -55,7 +55,7 @@ import * as dataSource from './datasource.json';
     heightObj.appendTo('#heightElement');
 
     let widthObj: DropDownList = new DropDownList({
-        width: 'auto',
+        width: '100%',
         placeholder: 'Width',
         floatLabelType: 'Always',
         dataSource: printHeightAndWidthData,
@@ -65,7 +65,7 @@ import * as dataSource from './datasource.json';
     widthObj.appendTo('#widthElement');
 
     let selectedDateObj: DatePicker = new DatePicker({
-        width: 'auto',
+        width: '100%',
         placeholder: 'Selected date',
         floatLabelType: 'Always',
         value: new Date(2021, 0, 10)

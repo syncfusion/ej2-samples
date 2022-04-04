@@ -42,7 +42,7 @@ Gantt.Inject(DayMarkers, Selection);
                 child: 'subtasks'
             },
             columns: [
-                { field: 'TaskID', width: 60 },
+                { field: 'TaskID', width: 80 },
                 { field: 'TaskName', width: 250 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },

@@ -9,6 +9,7 @@ import { TimePicker, ItemEventArgs } from '@syncfusion/ej2-calendars';
     loadCultureFiles();
 
     let timeObj: TimePicker = new TimePicker({
+        placeholder: "Select a time",
         value: new Date(), itemRender: itemRanderHandler,
         cssClass: 'e-custom-style',
         open: onOpen,

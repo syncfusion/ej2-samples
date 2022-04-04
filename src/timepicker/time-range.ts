@@ -11,10 +11,12 @@ import { CheckBox, ChangeEventArgs as checkboxChange } from '@syncfusion/ej2-but
     let value: Date;
     let isStartTimeChange: Boolean = true;
     let startTime: TimePicker = new TimePicker({
+        placeholder: "Select a start time",
         change: onEnableEndTime
     });
     startTime.appendTo('#start');
     let endTime: TimePicker = new TimePicker({
+        placeholder: "Select a end time",
         enabled: false
     });
     endTime.appendTo('#end');

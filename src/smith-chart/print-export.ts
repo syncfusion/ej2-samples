@@ -81,7 +81,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
     });
     mode.appendTo('#mode');
     let togglebtn1: Button = new Button({
-         cssClass: 'e-info', isPrimary: true
+        iconCss: 'e-icons e-export-icon', cssClass: 'e-flat', isPrimary: true
     });
     togglebtn1.appendTo('#togglebtn1');
     document.getElementById('togglebtn1').onclick = () => {
@@ -89,7 +89,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
         smithchart.export(<SmithchartExportType>mode.value, fileName);
     };
     let togglebtn2: Button = new Button({
-         cssClass: 'e-info', isPrimary: true
+        cssClass: 'e-flat', iconCss: 'e-icons e-print-icon', isPrimary: true
     });
     togglebtn2.appendTo('#togglebtn2');
     document.getElementById('togglebtn2').onclick = () => {

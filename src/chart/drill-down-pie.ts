@@ -102,11 +102,6 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         textRender: (args: IAccTextRenderEventArgs) => { args.text = args.point.x + ' ' + args.point.y + ' %'; },
         tooltip: { enable: false, format: '${point.x} <br> ${point.y} %' },
         title: 'Automobile Sales by Category',
-        chartMouseMove: (args: IMouseEventArgs) => {
-            if (args.target.indexOf("container_Series_0_") > -1) {
-                document.getElementById(args.target).style.cursor = "pointer";
-            }
-        },
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

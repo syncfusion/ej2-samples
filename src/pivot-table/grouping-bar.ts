@@ -38,38 +38,43 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     let filter: CheckBox = new CheckBox({
         label: 'Show Filter Icon',
         checked: true,
-        change: onChange
+        change: onFilter
     });
     filter.appendTo('#filter');
     let sort: CheckBox = new CheckBox({
         label: 'Show Sort Icon',
         checked: true,
-        change: onChange
+        change: onSort
     });
     sort.appendTo('#sort');
     let remove: CheckBox = new CheckBox({
         label: 'Show Remove Icon',
         checked: true,
-        change: onChange
+        change: onRemove
     });
     remove.appendTo('#remove');
     let summary: CheckBox = new CheckBox({
         label: 'Show Value Type Icon',
         checked: true,
-        change: onChange
+        change: onValueType
     });
     summary.appendTo('#summary');
 
     /* tslint:disable */
-    function onChange(args: any) {
-        if ((args.event.target as HTMLElement).id === 'filter') {
-            pivotObj.groupingBarSettings.showFilterIcon = args.checked;
-        } else if (args.event.target.id === 'sort') {
-            pivotObj.groupingBarSettings.showSortIcon = args.checked;
-        } else if (args.event.target.id === 'remove') {
-            pivotObj.groupingBarSettings.showRemoveIcon = args.checked;
-        } else {
-            pivotObj.groupingBarSettings.showValueTypeIcon = args.checked;
-        }
+
+    function onSort(args: any) {
+        pivotObj.groupingBarSettings.showSortIcon = args.checked;
+    }
+
+    function onFilter(args: any) {
+        pivotObj.groupingBarSettings.showFilterIcon = args.checked;
+    }
+
+    function onRemove(args: any) {
+        pivotObj.groupingBarSettings.showRemoveIcon = args.checked;
+    }
+
+    function onValueType(args: any) {
+        pivotObj.groupingBarSettings.showValueTypeIcon = args.checked;
     }
 };

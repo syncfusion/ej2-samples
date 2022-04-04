@@ -1,12 +1,10 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Kanban } from '@syncfusion/ej2-kanban';
 import { extend } from '@syncfusion/ej2-base';
 import * as dataSource from './datasource.json';
 /**
  * Kanban Default Sample
  */
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     // To maintain the property changes, extend the object.
     let data: Object[] = <Object[]>extend([], (dataSource as any).kanbanData, null, true);
     let kanbanObj: Kanban = new Kanban({ //Initialize Kanban control

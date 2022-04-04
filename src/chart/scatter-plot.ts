@@ -17,7 +17,7 @@ Chart.Inject(ScatterSeries, Legend, Tooltip);
             minimum: 100,
             maximum: 220,
             edgeLabelPlacement: 'Shift',
-            title: 'Height in Inches'
+            title: 'Height (cm)'
         },
         chartArea: {
             border: {
@@ -35,7 +35,7 @@ Chart.Inject(ScatterSeries, Legend, Tooltip);
             lineStyle: {
                 width: 0
             },
-            title: 'Weight in Pounds',
+            title: 'Weight (kg)',
             rangePadding: 'None'
         },
 
@@ -70,7 +70,7 @@ Chart.Inject(ScatterSeries, Legend, Tooltip);
         //Initializing User Interaction Tooltip
         tooltip: {
             enable: true,
-            format: 'Weight: <b>${point.x} lbs</b> <br/> Height: <b>${point.y}"</b>'
+            format: 'Weight: <b>${point.x} kg</b> <br/> Height: <b>${point.y}cm</b>'
         },
         width: Browser.isDevice ? '100%' : '80%',
         // custom code start

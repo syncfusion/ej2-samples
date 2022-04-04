@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     ChartTheme, Chart, CandleSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic, ColumnSeries,
-    Crosshair, StripLine, IAxisLabelRenderEventArgs, ITooltipRenderEventArgs
+    Crosshair, StripLine, IAxisLabelRenderEventArgs, ISharedTooltipRenderEventArgs
 } from '@syncfusion/ej2-charts';
 import { IPointRenderEventArgs } from '@syncfusion/ej2-charts';
 import { Browser, Ajax } from '@syncfusion/ej2-base';
@@ -44,9 +44,9 @@ this.renderChart = (chartData: Object[]): void => {
                         xName: 'x', low: 'low', high: 'high', open: 'open', close: 'close', name: 'Apple Inc',
                     }
                 ], tooltip: { enable: true, shared: true },
-                tooltipRender: (args: ITooltipRenderEventArgs) => {
-                    if (!args.series.index) {
-                        args.text = 'Volume : <b>' + getLabelText(args.text.split('<b>')[1].split('</b>')[0]) + '</b>';
+                sharedTooltipRender: (args: ISharedTooltipRenderEventArgs) => {
+                    if (!args.series[0].index) {
+                        args.text[0] = 'Volume : <b>' + getLabelText(args.text[0].split('<b>')[1].split('</b>')[0]) + '</b>';
                     }
                 },
                 pointRender: (args: IPointRenderEventArgs) => {

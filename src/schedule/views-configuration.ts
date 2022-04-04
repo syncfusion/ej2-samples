@@ -22,9 +22,9 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
         getTimeString?: Function;
     }
     // custom code end
-    let agendaTemplate: string = '<div class="subject">${Subject}</div> ${if(Description !== null && Description !== undefined)}' +
+    let agendaTemplate: string = '<div><div class="subject">${Subject}</div> ${if(Description !== null && Description !== undefined)}' +
         '<div class="group" > ${ Description } </div>${/if}<div class="location">${getTimeString(data.StartTime)} ${if(City !== null &&' +
-        'City !== undefined)}, ${ City } ${/if}</div > ';
+        'City !== undefined)}, ${ City } ${/if}</div ></div> ';
     let monthEventTemplate: string = '<div class="e-subject">${Subject}</div>';
     let scheduleObj: Schedule = new Schedule({
         width: '100%',

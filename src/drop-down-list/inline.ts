@@ -19,7 +19,7 @@ import * as data from './dataSource.json';
         // set the placeholder to DropDownList input element
         placeholder: 'Select an employee',
         // set the width to component
-        width: '605x',
+        width: '65x',
         // set the width to popup element
         popupWidth: '140px',
         // set the height to popup element

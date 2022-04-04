@@ -33,7 +33,7 @@ Gantt.Inject(Selection, DayMarkers);
                 { field: 'StartDate' },
                 { field: 'Duration' },
             ],
-            treeColumnIndex: 0,
+            treeColumnIndex: 1,
             allowSelection: true,
             gridLines: 'Both',
             highlightWeekends: true,
@@ -64,8 +64,8 @@ Gantt.Inject(Selection, DayMarkers);
                 leftLabel: 'TaskName',
             },
             includeWeekend: true,
-            projectStartDate: new Date('02/24/2019'),
-            projectEndDate: new Date('06/10/2019')
+            projectStartDate: new Date('02/24/2021'),
+            projectEndDate: new Date('06/10/2021')
         });
     gantt.appendTo('#RemoteData');
 };

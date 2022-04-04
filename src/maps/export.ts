@@ -93,7 +93,7 @@ Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
     });
     layertype.appendTo('#layertype');
     let togglebtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true
+       isPrimary: true
     });
     togglebtn.appendTo('#togglebtn');
     let fileText: TextBox = new TextBox({

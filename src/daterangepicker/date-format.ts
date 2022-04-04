@@ -14,6 +14,7 @@ import { FloatLabelType } from '@syncfusion/ej2-inputs';
     ];
 
     let daterangepicker: DateRangePicker = new DateRangePicker({
+        placeholder: "Select a range",
         format: 'dd\'\/\'MMM\'\/\'yy hh:mm a',
         startDate: new Date(new Date().setDate(1)),
         endDate: new Date(new Date().setDate(20))

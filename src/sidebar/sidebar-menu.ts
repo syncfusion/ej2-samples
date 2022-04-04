@@ -1,40 +1,42 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Sidebar } from '@syncfusion/ej2-navigations';
+import { Sidebar, Toolbar, ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { Menu, MenuItemModel } from '@syncfusion/ej2-navigations';
 enableRipple(true);
 /**
- * Sidebar with menubar sample
+ * Sidebar with menubar sample.
  */
-
-// Sidebar initialization
-//tslint:disable:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
-    let sidebarMenu: Sidebar = new Sidebar({
-        width: '220px',
-        mediaQuery: '(min-width: 600px)',
-        target: '.main-content',
-        dockSize: '50px',
-        enableDock: true
+    //Toolbar component template element specification.
+    let folderEle: string = '<div class= "e-folder"><div class= "e-folder-name">Navigation Pane</div></div>';
+    //Initialization of Toolbar component.
+    let toolbarObj: Toolbar = new Toolbar({
+        clicked: ToolbarCliked,
+        items: [
+            { prefixIcon: "icon-menu", tooltipText: "Menu" },
+            { template: folderEle }
+        ]
     });
-    sidebarMenu.appendTo('#sidebar-menu');
-    // Toggle the Sidebar
-    document.getElementById('hamburger').onclick = (): void => {
-        sidebarMenu.toggle();
-    };
-    // open new tab
-    let URL: any = location.href.replace(location.search, '');
-    document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/sidebar-menu/index.html');
-    // MainMenuItems definition
+    toolbarObj.appendTo("#menuToolbar");
+    let sidebarMenu: Sidebar = new Sidebar({
+        target: ".main-content",
+        width: "220px",
+        dockSize: "50px",
+        enableDock: true,
+        isOpen: true,
+        type: 'Auto'
+    });
+    sidebarMenu.appendTo('#menuSidebar');
+    // Defines the Main Menu Items. 
     let mainMenuItems: MenuItemModel[] = [
         {
             text: 'Overview',
-            iconCss: 'icon-globe icon',
+            iconCss: 'icon-user icon',
             items: [
-                { text: 'All Data' },
-                { text: 'Category2' },
-                { text: 'Category3' }
+                { text: 'Home' },
+                { text: 'About' },
+                { text: 'Contact' }
             ]
         },
         {
@@ -47,17 +49,16 @@ enableRipple(true);
             ]
         },
         {
-            text: 'Comments',
-            iconCss: 'icon-comment-inv-alt2 icon',
+            text: 'Info',
+            iconCss: 'icon-tag icon',
             items: [
-                { text: 'Category1' },
-                { text: 'Category2' },
-                { text: 'Category3' }
+                { text: 'Personal info' },
+                { text: 'Contact info' }
             ]
         },
         {
-            text: 'Bookmarks',
-            iconCss: 'icon-bookmark icon',
+            text: 'Comments',
+            iconCss: 'icon-comment-inv-alt2 icon',
             items: [
                 { text: 'All Comments' },
                 { text: 'Add Comments' },
@@ -65,21 +66,20 @@ enableRipple(true);
             ]
         },
         {
-            text: 'Images',
-            iconCss: 'icon-picture icon',
+            text: 'Bookmarks',
+            iconCss: 'icon-bookmark icon',
             items: [
-                { text: 'Add Name' },
-                { text: 'Add Mobile Number' },
-                { text: 'Add Imaage' },
+                { text: 'Show all bookmarks' },
+                { text: 'Bookmark this item' }
             ]
         },
         {
             text: 'Users ',
             iconCss: 'icon-user icon',
             items: [
-                { text: 'Mobile1' },
-                { text: 'Mobile2' },
-                { text: 'Telephone' }
+                { text: 'Mobile User' },
+                { text: 'Laptop User' },
+                { text: 'Desktop User' }
             ]
         },
         {
@@ -90,30 +90,18 @@ enableRipple(true);
                 { text: 'Add Name' },
                 { text: 'Add Details' }
             ]
-        },
-        {
-            text: 'Info',
-            iconCss: 'icon-tag icon',
-            items: [
-                { text: 'Facebook' },
-                { text: 'Mobile' },
-            ]
         }
     ];
-    // main-menubar initialization
-    let mainMenuObj: Menu =
-        new Menu({ items: mainMenuItems, orientation: 'Vertical', cssClass: 'dock-menu' }, '#main-menubar');
-          // AccountMenuItem definition
-    let accountMenuItem: MenuItemModel[] = [
-        {
-            text: 'Account',
-            items: [
-                { text: 'Profile' },
-                { text: 'Sign out' },
-            ]
+    // Initialization of main-menubar.
+    let mainMenuObj: Menu = new Menu({ 
+        items: mainMenuItems,
+        orientation: 'Vertical',
+        cssClass: 'dock-menu',
+    }, "#dockMenu");
+    // Specifies the event handler for the Toolbar clicked event.
+    function ToolbarCliked(args: ClickEventArgs): void {
+        if(args.item.tooltipText == "Menu") {
+            sidebarMenu.toggle();
         }
-    ];
-    // horizontal-menubar initialization
-    let horizontalMenuobj: Menu =
-        new Menu({ items: accountMenuItem, orientation: 'Horizontal', cssClass: 'dock-menu' }, '#horizontal-menubar');
-    };
+    }
+};

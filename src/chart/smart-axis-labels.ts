@@ -5,7 +5,7 @@ import {
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType, Browser } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors } from './theme-color';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 Chart.Inject(ColumnSeries, Category, DataLabel, Tooltip);
 
@@ -18,6 +18,10 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = materialColors[args.point.index % 10];
     } else if (selectedTheme === 'highcontrast') {
         args.fill = highContrastColors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent') {
+        args.fill = fluentColors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent-dark') {
+        args.fill = fluentDarkColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }

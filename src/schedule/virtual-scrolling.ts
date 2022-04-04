@@ -13,7 +13,6 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     let eventData: Record<string, any>[] = generateStaticEvents(new Date(date), 300, 12);
     let scheduleObj: Schedule = new Schedule({
         height: '650px', width: '100%',
-        currentView: 'TimelineMonth',
         views: [
             { option: 'TimelineMonth', eventTemplate: '#timeline-event-template', allowVirtualScrolling: true }
         ],

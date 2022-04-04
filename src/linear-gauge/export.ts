@@ -96,7 +96,7 @@ LinearGauge.Inject(Print, ImageExport, PdfExport);
     });
     mode.appendTo('#type');
     let exportGauge: Button = new Button({
-        iconCss: 'e-icons e-play-icon1', cssClass: 'e-flat', isPrimary: true,
+        isPrimary: true
     });
     exportGauge.appendTo('#export');
     let fileText: TextBox = new TextBox({
@@ -107,7 +107,7 @@ LinearGauge.Inject(Print, ImageExport, PdfExport);
         gauge.export(<ExportType>mode.value, fileName);
     };
     let printGauge: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true,
+        isPrimary: true
     });
     printGauge.appendTo('#print');
     document.getElementById('print').onclick = () => {

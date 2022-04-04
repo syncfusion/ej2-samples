@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor Paste Cleanup sample
  */
@@ -7,7 +6,6 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, PasteCleanup);
 
 (window as any).default = (): void => {
-    loadCultureFiles();
     let defaultRTE: RichTextEditor = new RichTextEditor({
         pasteCleanupSettings: {
             prompt: true,

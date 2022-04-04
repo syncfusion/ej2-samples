@@ -97,7 +97,7 @@ Maps.Inject(Legend, MapsTooltip, Print);
     maps.appendTo('#container');
     // onclick event
     let togglebtn: Button = new Button({
-        iconCss: 'e-icons e-play-icon', cssClass: 'e-flat', isPrimary: true
+        isPrimary: true
     });
     togglebtn.appendTo('#togglebtn');
     document.getElementById('togglebtn').onclick = () => {

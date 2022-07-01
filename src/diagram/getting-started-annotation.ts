@@ -254,7 +254,7 @@ function enableOptions(arg: ISelectionChangeEventArgs): void {
     //NumericTextBox used to apply for Fontsize of the Annotation
 
     let fontSize: NumericTextBox = new NumericTextBox({
-        value: 0, min: 1, max: 8, width: '100%',
+        value: 12, min: 1, max: 16, width: '100%',
         format: '##.##', step: 2,
         change: (args: NumericChangeEventArgs) => {
             updateAnnotation('fontsize', args.value);

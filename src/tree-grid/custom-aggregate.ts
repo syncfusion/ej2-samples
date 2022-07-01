@@ -48,7 +48,7 @@ let foods:  { [key: string]: Object }[] = [
                         dataSource: foods,
                         fields: { value: 'food' },
                         placeholder: 'Select a Category',
-                        width: '150px',
+                        width: '108px',
                         value: value,
                         change: () => {
                             setTimeout(

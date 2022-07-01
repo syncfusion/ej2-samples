@@ -17,6 +17,8 @@ import { RadioButton } from '@syncfusion/ej2-buttons';
         header: 'Choose a Dialog Position',
         // The dialog shows within the target element
         target: document.getElementById('target'),
+        // Dialog width
+        width: '452px',
         open: dialogOpen,
         close: dialogClose,
         //Dialog footerTemplate

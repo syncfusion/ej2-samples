@@ -62,7 +62,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       }
     }
     function updateHtmlValue(): void {
-      defaultRTE.value = myCodeMirror.getValue();
+      textArea.innerHTML = myCodeMirror.getValue();
     }
     function updateValue(): void {
       let mirrorView: HTMLElement = document.querySelector('#src-view');

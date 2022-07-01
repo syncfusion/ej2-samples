@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Default FlowShape sample
  */
@@ -22,22 +21,6 @@ function getPorts(): PointPortModel[] {
         { id: 'port4', shape: 'Circle', offset: { x: .5, y: 0 } }
     ];
     return ports;
-}
-
-//Sets the default values of a node
-function getNodeDefaults(node: NodeModel): NodeModel {
-    let obj: NodeModel = {};
-    if (obj.width === undefined) {
-        obj.width = 145;
-    } else {
-        let ratio: number = 100 / obj.width;
-        obj.width = 100; obj.height *= ratio;
-    }
-    obj.style = { fill: '#357BD2', strokeColor: 'white' };
-    obj.annotations = [{ style: { color: 'white', fill: 'transparent' } }];
-    //Set ports
-    obj.ports = getPorts();
-    return obj;
 }
 
 //Sets the default values of a connector
@@ -91,7 +74,6 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-    loadCultureFiles();
     let bounds: ClientRect = document.getElementById('diagram-space').getBoundingClientRect();
     let centerX: number = bounds.width / 2;
     let interval: number[] = [
@@ -163,14 +145,39 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     let diagram: Diagram = new Diagram({
         width: '100%', height: '700px', nodes: nodes, connectors: connectors,
         snapSettings: { horizontalGridlines: gridlines, verticalGridlines: gridlines },
+        propertyChange: function (args) {
+            if (args.newValue.scrollSettings && args.newValue.scrollSettings.viewPortWidth) {
+                diagram.fitToPage();
+            }
+        },
+        created: function () {
+            diagram.fitToPage();
+        },
         //Sets the default values of a node
         getNodeDefaults: getNodeDefaults,
         //Sets the default values of a connector
         getConnectorDefaults: getConnectorDefaults,
         //Sets the Node style for DragEnter element.
-        dragEnter: dragEnter
+        dragEnter: dragEnter,
     });
     diagram.appendTo('#diagram');
+
+    //Sets the default values of a node
+    function getNodeDefaults(node: NodeModel): NodeModel {
+        let obj: NodeModel = {};
+        obj.offsetX = diagram.scrollSettings.viewPortWidth / 2; 
+        if (obj.width === undefined) {
+            obj.width = 145;
+        } else {
+            let ratio: number = 100 / obj.width;
+            obj.width = 100; obj.height *= ratio;
+        }
+        obj.style = { fill: '#357BD2', strokeColor: 'white' };
+        obj.annotations = [{ style: { color: 'white', fill: 'transparent' } }];
+        //Set ports
+        obj.ports = getPorts();
+        return obj;
+    }
 
     //Initialize the flowshapes for the symbol palatte
     let flowShapes: NodeModel[] = [

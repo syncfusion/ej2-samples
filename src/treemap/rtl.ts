@@ -8,22 +8,15 @@ TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
 
-// Treemap theme changes
-
-export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
-    let theme: string = location.hash.split('/')[1];
-    theme = theme ? theme : 'Material';
-    args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
-    theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
-};
-
-/**
- * Default sample
- */
-
 let prevTime: Date; let curTime: Date;
 (window as any).default = (): void => {
     loadCultureFiles();
+    let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        let theme: string = location.hash.split('/')[1];
+        theme = theme ? theme : 'Material';
+        args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
+        theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+    };
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         palette: ['#5B244D', '#6F3953', ' #87525A', '#A26F63', '#BA896B', '#D5A574', '#F1C37D'],

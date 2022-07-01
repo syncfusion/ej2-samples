@@ -150,8 +150,17 @@
 		"binding",
 		"insert-emoticons",
 		"online-html-editor",
-		"form-validator",
-		"signature",
-		"multiline-textbox"
+		"uml-class-diagram",
+		"uml-activity",
+		"tooltip-Sample",
+		"complexShapes",
+		"uml",
+		"activity",
+		"Sample",
+		"area",
+		"stock",
+		"ohlc",
+		"common",
+		"RTL"
 	]
 }

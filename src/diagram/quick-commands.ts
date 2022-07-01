@@ -64,8 +64,9 @@ function setHandleAppearance(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
     let appearanceBlock: HTMLElement = document.getElementById('appearance');
     // custom code start
-    let selectedElement: HTMLCollectionOf<Element> =
-        appearanceBlock.getElementsByClassName('e-selected-style') as HTMLCollectionOf<Element>;
+    let selectedElement: HTMLCollection = document.getElementsByClassName(
+        "e-selected-style"
+      );
     if (selectedElement.length) {
         selectedElement[0].classList.remove('e-selected-style');
     }
@@ -91,7 +92,9 @@ function setHandlePattern(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
     let patternBlock: HTMLElement = document.getElementById('pattern');
     // custom code start
-    let selectedElement: HTMLCollectionOf<Element> = patternBlock.getElementsByClassName('e-selected-style') as HTMLCollectionOf<Element>;
+    let selectedElement: HTMLCollection = document.getElementsByClassName(
+        "e-selected-style"
+      );
     if (selectedElement.length) {
         selectedElement[0].classList.remove('e-selected-style');
     }

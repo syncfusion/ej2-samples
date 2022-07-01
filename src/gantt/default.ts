@@ -13,7 +13,6 @@ Gantt.Inject(Selection);
         {
             dataSource: projectNewData,
             height: '450px',
-            treeColumnIndex: 1,
             taskFields: {
                 id: 'TaskID',
                 name: 'TaskName',
@@ -24,6 +23,7 @@ Gantt.Inject(Selection);
                 dependency: 'Predecessor',
                 child: 'subtasks'
             },
+            treeColumnIndex: 1,
             columns: [
                 { field: 'TaskID', width: 80 },
                 { field: 'TaskName',headerText: 'Name', width: 250 },

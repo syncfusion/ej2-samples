@@ -3,6 +3,7 @@
     "directory": "tree-grid",
     "category": "Grids",
     "ftName": "tree-grid",
+    "type": "update",
     "samples": [
          {  
             "url": "treegrid-overview", "name": "Overview", "category": "Tree Grid","api":{"TreeGrid":["dataSource","childMapping","height","columns","allowReordering","allowFiltering","allowSorting","filterSettings","queryCellInfo"] },
@@ -95,7 +96,7 @@
             "description": "This demo shows Tree Grid with detail template feature and also each row contains detailed information about a row."
          },
          {
-             "url":"inline-editing", "name": "Inline Editing", "category": "Editing","api":{"TreeGrid":["dataSource", "childMapping", "treeColumnIndex","height", "editSettings", "toolbar", "columns"] },
+             "url":"inline-editing", "type": "update", "name": "Inline Editing", "category": "Editing","api":{"TreeGrid":["dataSource", "childMapping", "treeColumnIndex","height", "editSettings", "toolbar", "columns"] },
              "description":"This example shows how to add and edit row or cell inline on the Syncfusion TypeScript Tree Grid control."
          },
          {
@@ -189,7 +190,7 @@
             "description": "This demo explains how to display the custom aggregate for the columns in Syncfusion TypeScript Tree Grid control."
          },
          {
-            "url":"default-context-menu", "name": "Default Context Menu", "category":"Context Menu",
+            "url":"default-context-menu", "name": "Default Context Menu", "category":"Context Menu", "type": "update",
             "description": "This demo explains the usage of context menu and the default context menu items in Syncfusion TypeScript Tree Grid control.",
             "api":{"TreeGrid":["dataSource","allowPaging","columns", "contextMenu", "hasChildMapping", "parentIdMapping"] }
         },

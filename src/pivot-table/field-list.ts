@@ -38,6 +38,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             enableSorting: true
         },
         allowCalculatedField: true,
+        enableFieldSearching: true,
         renderMode: 'Fixed',
         load: (): void => {
             if (Browser.isDevice) {

@@ -19,61 +19,7 @@ let regionColor : string[] = ['rgba(38, 46, 11, 0.3)', 'rgba(94, 203, 155, 0.3)'
     'rgba(158, 203, 8, 0.3)', 'rgba(161, 110, 229, 0.3)', 'rgba(161, 110, 229, 0.3)', 'rgba(161, 110, 229, 0.3)', 'rgba(68, 114, 196, 0.3)',
     'rgba(68, 114, 196, 0.3)', 'rgba(121, 236, 228, 0.3)'];
 
-this.renderChart = (dataSource: Object[]): void => {
-            let chart: Chart = new Chart(
-                {
-                    primaryXAxis: {
-                        valueType: 'DateTime',
-                        edgeLabelPlacement: 'Shift', majorGridLines: { width: 0 }
-                    },
-                    series: [{
-                        dataSource: dataSource, xName: 'x', yName: 'y', width: 2, name: 'Rate', type: 'Spline'
-                    }],
-                    chartArea: { border: { width: 0 } },
-                    tooltip: { enable: true, shared: true },
-                    primaryYAxis: {
-                        labelFormat: 'n1', minimum: 0.6,
-                        maximum: 1, interval: 0.1, majorTickLines: { width: 0 }, lineStyle: { width: 0 }
-                    },
-                    axisLabelRender: (args: IAxisLabelRenderEventArgs) => {
-                        if (args.axis.name === 'primaryYAxis') {
-                            args.text = '€' + args.text;
-                        }
-                    },
-                    height: '350', legendSettings: { visible: false },
-                    width: Browser.isDevice ? '100%' : '80%',
-                    theme: theme
-                }
-            );
-            chart.appendTo('#chart');
-            let range: RangeNavigator = new RangeNavigator(
-                {
-                    valueType: 'DateTime',
-                    majorTickLines: {
-                        width: 0
-                    },
-                    tooltip: { enable: true, format: 'yyyy/MM/dd', displayMode: 'Always' },
-                    value: [new Date('2011-01-01'), new Date('2013-12-31')],
-                    series: [
-                        {
-                            dataSource: dataSource, xName: 'x', yName: 'y', type: 'Area',
-                            width: 2, animation: { enable: false },
-                            fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
-                            border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
-                        }
-                    ],
-                    changed: (args: IChangedEventArgs) => {
-                        chart.primaryXAxis.zoomFactor = args.zoomFactor;
-                        chart.primaryXAxis.zoomPosition = args.zoomPosition;
-                        chart.dataBind();
-                    },
-                    width: Browser.isDevice ? '100%' : '80%',
-                    theme: theme
-                }
-            );
-            range.appendTo('#container');
-        };
-    (window as any).default = (): void => {
+(window as any).default = (): void => {
     loadCultureFiles();
     let dataSource: Object[];
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/stock-data.json', 'GET', true);
@@ -85,6 +31,57 @@ this.renderChart = (dataSource: Object[]): void => {
             // tslint:disable-next-line:no-string-literal
             data['x'] = new Date(data['x']);
         });
-        this.renderChart(dataSource);
+        let chart: Chart = new Chart(
+            {
+                primaryXAxis: {
+                    valueType: 'DateTime',
+                    edgeLabelPlacement: 'Shift', majorGridLines: { width: 0 }
+                },
+                series: [{
+                    dataSource: dataSource, xName: 'x', yName: 'y', width: 2, name: 'Rate', type: 'Spline'
+                }],
+                chartArea: { border: { width: 0 } },
+                tooltip: { enable: true, shared: true },
+                primaryYAxis: {
+                    labelFormat: 'n1', minimum: 0.6,
+                    maximum: 1, interval: 0.1, majorTickLines: { width: 0 }, lineStyle: { width: 0 }
+                },
+                axisLabelRender: (args: IAxisLabelRenderEventArgs) => {
+                    if (args.axis.name === 'primaryYAxis') {
+                        args.text = '€' + args.text;
+                    }
+                },
+                height: '350', legendSettings: { visible: false },
+                width: Browser.isDevice ? '100%' : '80%',
+                theme: theme
+            }
+        );
+        chart.appendTo('#chart');
+        let range: RangeNavigator = new RangeNavigator(
+            {
+                valueType: 'DateTime',
+                majorTickLines: {
+                    width: 0
+                },
+                tooltip: { enable: true, format: 'yyyy/MM/dd', displayMode: 'Always' },
+                value: [new Date('2011-01-01'), new Date('2013-12-31')],
+                series: [
+                    {
+                        dataSource: dataSource, xName: 'x', yName: 'y', type: 'Area',
+                        width: 2, animation: { enable: false },
+                        fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
+                        border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
+                    }
+                ],
+                changed: (args: IChangedEventArgs) => {
+                    chart.primaryXAxis.zoomFactor = args.zoomFactor;
+                    chart.primaryXAxis.zoomPosition = args.zoomPosition;
+                    chart.dataBind();
+                },
+                width: Browser.isDevice ? '100%' : '80%',
+                theme: theme
+            }
+        );
+        range.appendTo('#container');
     };
 };

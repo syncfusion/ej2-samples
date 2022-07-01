@@ -3,7 +3,6 @@
     "directory": "carousel",
     "category": "Navigation",
     "ftName": "carousel",
-    "type": "preview",
     "samples": [
         {
             "url": "default",
@@ -42,13 +41,11 @@
                     "nextButtonTemplate",
                     "indicatorsTemplate",
                     "items",
-                    "buttonsVisibility"
+                    "buttonsVisibility",
+                    "animationEffect"
                 ],
                 "CarouselItem": [
                     "template"
-                ],
-                "animation": [
-                    "effect"
                 ]
             },
             "description": "This example demonstrates the template options available in JavaScript Carousel component."

@@ -113,7 +113,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
     });
     labelMode.appendTo('#position');
     document.getElementById('Trim').onchange = () => {
-        let trim: HTMLSelectElement = <HTMLSelectElement>document.getElementById('Trim');
+        let trim: any = document.getElementById('Trim');
         if (trim.checked) {
             chart.primaryXAxis.enableTrim = (trim.value === 'true');
           } else {

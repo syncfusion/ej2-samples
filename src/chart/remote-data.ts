@@ -26,9 +26,9 @@ let loadedChart: EmitType<Object> = (args: ILoadedEventArgs): void => {
     let div: HTMLElement = document.getElementById('waitingpopup') as HTMLElement;
     div.style.display = 'none';
     if (loaded) {
+        loaded = 0;
         args.chart.refresh();
-    }
-    loaded = 0;
+    }    
 };
 let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];

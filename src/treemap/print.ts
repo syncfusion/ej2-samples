@@ -11,18 +11,16 @@ import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
 import { TextBox } from  '@syncfusion/ej2-inputs';
 TreeMap.Inject(TreeMapTooltip, Print, ImageExport, PdfExport);
-// custom code start
-export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
-    let theme: string = location.hash.split('/')[1];
-    theme = theme ? theme : 'Material';
-    args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
-    theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
-};
-// custom code end
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
     // custom code end
+    let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        let theme: string = location.hash.split('/')[1];
+        theme = theme ? theme : 'Material';
+        args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
+        theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+    };
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         titleSettings: {

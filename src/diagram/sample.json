@@ -59,7 +59,7 @@
             "category": "Getting Started"
         },
         {
-            "url": "tooltip-Sample",
+            "url": "tooltip-sample",
             "name": "Tooltip",
             "description": "This sample demonstrates how to add the extra information to the nodes and connectors and how to show the information through diagram's tooltip feature.",
             "category": "Getting Started"

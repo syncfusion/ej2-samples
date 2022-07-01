@@ -22,60 +22,6 @@ let regionColor : string[] = ['rgba(38, 46, 11, 0.3)', 'rgba(94, 203, 155, 0.3)'
     'rgba(68, 114, 196, 0.3)', 'rgba(121, 236, 228, 0.3)'];
 
 
-this.renderChart = (stockData: Object[]): void => {
-    let chart: Chart = new Chart(
-        {
-            primaryXAxis: {
-                valueType: 'DateTime', crosshairTooltip: { enable: true },
-                edgeLabelPlacement: 'Shift', majorGridLines: { width: 0 }
-            },
-            series: [{
-                dataSource: stockData, xName: 'x', yName: 'open', type: 'Area', name: 'AAPL',
-                fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
-                border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
-            }],
-            chartArea: { border: { width: 0 } },
-            primaryYAxis: {
-                labelFormat: '${value}', minimum: 40, maximum: 140, interval: 20,
-                majorTickLines: { width: 0 }, lineStyle: { width: 0 }
-            },
-            tooltip: { enable: true, shared: true },
-            height: '350', legendSettings: { visible: false },
-            width: Browser.isDevice ? '100%' : '80%',
-            theme: theme
-        }
-    );
-    chart.appendTo('#chart');
-
-    let range: RangeNavigator = new RangeNavigator(
-        {
-            labelPosition: 'Outside',
-            valueType: 'DateTime',
-            majorTickLines: {
-                width: 0
-            },
-            majorGridLines: {
-                width: 0
-            },
-            tooltip: { enable: true, displayMode: 'Always' },
-            value: [new Date('2013-12-27'), new Date('2015-03-23')],
-            navigatorBorder: { width: 0 },
-            series: [{
-                dataSource: stockData, xName: 'x', yName: 'open', type: 'Area', width: 2, animation: { enable: false },
-                fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
-                border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
-            }],
-            changed: (args: IChangedEventArgs) => {
-                chart.primaryXAxis.zoomFactor = args.zoomFactor;
-                chart.primaryXAxis.zoomPosition = args.zoomPosition;
-                chart.dataBind();
-            },
-            width: Browser.isDevice ? '100%' : '80%',
-            theme: theme
-        }
-    );
-    range.appendTo('#container');
-};
 (window as any).default = (): void => {
     loadCultureFiles();
     let dataSrc: Object[];
@@ -103,6 +49,57 @@ this.renderChart = (stockData: Object[]): void => {
                 (stockData[i] as Points).open = null;
             }
         }
-        this.renderChart(stockData);
+        let chart: Chart = new Chart(
+            {
+                primaryXAxis: {
+                    valueType: 'DateTime', crosshairTooltip: { enable: true },
+                    edgeLabelPlacement: 'Shift', majorGridLines: { width: 0 }
+                },
+                series: [{
+                    dataSource: stockData, xName: 'x', yName: 'open', type: 'Area', name: 'AAPL',
+                    fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
+                    border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
+                }],
+                chartArea: { border: { width: 0 } },
+                primaryYAxis: {
+                    labelFormat: '${value}', minimum: 40, maximum: 140, interval: 20,
+                    majorTickLines: { width: 0 }, lineStyle: { width: 0 }
+                },
+                tooltip: { enable: true, shared: true },
+                height: '350', legendSettings: { visible: false },
+                width: Browser.isDevice ? '100%' : '80%',
+                theme: theme
+            }
+        );
+        chart.appendTo('#chart');
+    
+        let range: RangeNavigator = new RangeNavigator(
+            {
+                labelPosition: 'Outside',
+                valueType: 'DateTime',
+                majorTickLines: {
+                    width: 0
+                },
+                majorGridLines: {
+                    width: 0
+                },
+                tooltip: { enable: true, displayMode: 'Always' },
+                value: [new Date('2013-12-27'), new Date('2015-03-23')],
+                navigatorBorder: { width: 0 },
+                series: [{
+                    dataSource: stockData, xName: 'x', yName: 'open', type: 'Area', width: 2, animation: { enable: false },
+                    fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
+                    border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
+                }],
+                changed: (args: IChangedEventArgs) => {
+                    chart.primaryXAxis.zoomFactor = args.zoomFactor;
+                    chart.primaryXAxis.zoomPosition = args.zoomPosition;
+                    chart.dataBind();
+                },
+                width: Browser.isDevice ? '100%' : '80%',
+                theme: theme
+            }
+        );
+        range.appendTo('#container');
     };
 };

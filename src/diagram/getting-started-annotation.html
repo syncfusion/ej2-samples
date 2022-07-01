@@ -5,7 +5,7 @@
                     background-size: contain;
                     background-repeat: no-repeat;
                     height: 50px;
-                    width: calc((100% - 18px) / 3);
+                    width: 80px;
                     cursor: pointer;
                     border: 1px solid #D5D5D5;
                     background-position: center;
@@ -26,7 +26,15 @@
                     height: 35px;
                     padding-right: 4px;
                     padding-left: 0px;
-                    width: calc((100% - 12px) / 3);
+                    width: 50px;
+                }
+                
+                .control-section {
+                    width: 76%;
+                }
+
+                .property-section {
+                    width: 22%;
                 }
             
                 .row {
@@ -175,10 +183,10 @@
                     <div class="col-xs-4 column-style">
                         <input id="fontcolor" type="color">
                     </div>
-                    <div class="col-xs-4 column-style">
+                    <div class="col-xs-4 column-style" style="width: 105px;">
                         <input type="text" id="fontSize" min="0" max="50" step="1" value="12">
                     </div>
-                    <div class="col-xs-4 column-style">
+                    <div class="col-xs-4 column-style" style="width: 180px;">
                         <input id="fontfamily" type="text">
                     </div>
                 </div>
@@ -187,7 +195,7 @@
                 <div class="row row-header">
                     Templates
                 </div>
-                <div class="row col-xs-8" style="padding-left: 0px; padding-top: 8px">
+                <div class="row col-xs-8" style="width: 220px;padding-left: 0px; padding-top: 8px">
                     <input id="template" type="text">
                 </div>
             </div>

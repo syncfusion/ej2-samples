@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, ColumnSeries, Category, Tooltip, Legend, ILoadedEventArgs, ChartTheme
+    Chart, ColumnSeries, Category, Tooltip, Legend, ILoadedEventArgs, ChartTheme, Highlight, DataLabel
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
+Chart.Inject(ColumnSeries, Category, Tooltip, Legend, Highlight, DataLabel);
 
 /**
  * Sample for Range Color Mapping
@@ -11,13 +11,12 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
 (window as any).default = (): void => {
     loadCultureFiles();
     let chart: Chart = new Chart({
-        primaryXAxis: { valueType: 'Category', majorGridLines: { width: 0 }, title: 'Months' },
+        primaryXAxis: { valueType: 'Category', majorGridLines: { width: 0 } },
         primaryYAxis: {
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 },
             minorTickLines: { width: 0 },
             labelFormat: '{value}°C',
-            title: 'Temperature'
         },
         chartArea: {
             border: {
@@ -45,6 +44,12 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
                 cornerRadius: {
                     topLeft: 10, topRight: 10
                 },
+                marker: {
+                    dataLabel: {
+                        visible: true,
+                        position: 'Outer'
+                    }
+                }
             }
         ],
         rangeColorSettings: [
@@ -52,27 +57,30 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
                 label: '1°C to 10°C',
                 start: 1,
                 end: 10,
-                colors: ['#FFFF99']
+                colors: ['#F9D422']
             },
             {
                 label: '11°C to 20°C',
                 start: 11,
                 end: 20,
-                colors: ['#FFA500']
+                colors: ['#F28F3F']
             },
             {
                 label: '21°C to 30°C',
                 start: 21,
                 end: 30,
-                colors: ['#FF4040']
+                colors: ['#E94F53']
             }
         ],
         legendSettings: {
-            mode: 'Range'
+            mode: 'Range',
+            toggleVisibility: false
         },
         tooltip: {
-            enable: true
+            enable: false
         },
+        highlightMode: 'Point',
+        highlightPattern: 'DiagonalForward',
         title: 'USA CLIMATE - WEATHER BY MONTH',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
@@ -80,7 +88,7 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend);
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         },
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '80%',
     });
     chart.appendTo('#column-container');
 };

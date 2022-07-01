@@ -357,7 +357,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         {
             id: 'flow', expanded: true, title: 'Flow Shapes', symbols: [
                 {
-                    id: 'Terminator', addInfo: { tooltip: 'Terminator' }, width: 50, height: 60, shape: { type: 'Flow', shape: 'Terminator' }, style: { strokeWidth: 1, strokeColor: "#757575" }, ports: [
+                    id: 'Terminator', addInfo: { tooltip: 'Terminator' }, width: 100, height: 60, shape: { type: 'Flow', shape: 'Terminator' }, style: { strokeWidth: 1, strokeColor: "#757575" }, ports: [
                         { offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
                         { offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
                         { offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
@@ -365,7 +365,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                     ]
                 },
                 {
-                    id: 'Process',  addInfo: { tooltip: 'Process' }, width: 50, height: 60, shape: { type: 'Flow', shape: 'Process' }, style: { strokeWidth: 1, strokeColor: "#757575" }, ports: [
+                    id: 'Process',  addInfo: { tooltip: 'Process' }, width: 100, height: 60, shape: { type: 'Flow', shape: 'Process' }, style: { strokeWidth: 1, strokeColor: "#757575" }, ports: [
                         { offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
                         { offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
                         { offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },

@@ -14,9 +14,7 @@ import { Button } from '@syncfusion/ej2-buttons';
     }
 
     const carouselObj: Carousel = new Carousel({
-        animation: {
-            effect: 'Fade'
-        },
+        animationEffect: 'Fade',
         cssClass: 'templateCarousel',
         items: [
             { template: '#itemTemplate1' },

@@ -32,6 +32,7 @@ import { Carousel } from '@syncfusion/ej2-navigations';
         }
     ];
     const carouselObj: Carousel = new Carousel({
+        animationEffect: 'Fade',
         cssClass: 'db-carousel',
         dataSource: productDetails,
         itemTemplate: '#productTemplate',

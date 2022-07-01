@@ -22,73 +22,6 @@ let regionColor: string[] = ['rgba(255, 64, 129, 0.3)', 'rgba(0, 120, 151, 0.3)'
 'rgba(66, 139, 202, 0.3)', 'rgba(255, 217, 57, 0.3)', 'rgba(255, 217, 57, 0.3)', 'rgba(79, 70, 229, 0.3)', 'rgba(79, 70, 229, 0.3)',
 'rgba(255, 64, 129, 0.3)', 'rgba(0, 120, 151, 0.3)', 'rgba(66, 139, 202, 0.3)', 'rgba(34, 211, 238, 0.3)', 'rgba(173,181,189,0.3)'];
 
-this.renderChart = (datasrc: Object[]): void => {
-    let chart: Chart = new Chart(
-        {
-            primaryXAxis: {
-                valueType: 'DateTime', crosshairTooltip: { enable: true },
-                edgeLabelPlacement: 'Shift', majorGridLines: { width: 0 }
-            },
-            series: [{
-                dataSource: datasrc, xName: 'xDate', yName: 'Close', width: 2,
-                name: 'Close',
-                fill: regionColor[themes.indexOf(theme)], type: 'SplineArea',
-                border: { width: 2, color: borderColor[themes.indexOf(theme)] }
-            }],
-            chartArea: { border: { width: 0 } },
-            primaryYAxis: {
-                minimum: 81, maximum: 87, interval: 2,
-                majorTickLines: { width: 0 }, lineStyle: { width: 0 },
-                labelFormat: '{value}M', title: 'Million in USD'
-            },
-            tooltip: { enable: true, shared: true },
-            legendSettings: { visible: false },
-            height: '350',
-            theme: theme
-        }
-    );
-    chart.appendTo('#chart');
-    let dateTimeControl: RangeNavigator = new RangeNavigator(
-        {
-            valueType: 'DateTime',
-            animationDuration: 500,
-            intervalType: 'Months',
-            labelFormat: 'MMM', theme: theme,
-            enableGrouping: true,
-            value: [new Date('2013-05-01'), new Date('2013-08-01')],
-            dataSource: datasrc,
-            xName: 'xDate', yName: 'Close',
-            changed: (args: IChangedEventArgs) => {
-                chart.primaryXAxis.zoomFactor = args.zoomFactor;
-                chart.primaryXAxis.zoomPosition = args.zoomPosition;
-                chart.dataBind();
-            }
-        }
-    );
-    dateTimeControl.appendTo('#container');
-
-    let mode: DropDownList = new DropDownList({
-        index: 0,
-        width: 90
-    });
-    mode.appendTo('#mode');
-    let togglebtn: Button = new Button({
-        iconCss: 'e-icons e-export-icon', cssClass: 'e-flat', isPrimary: true,
-    });
-    togglebtn.appendTo('#exportBtn');
-    document.getElementById('exportBtn').onclick = () => {
-        let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
-        chart.exportModule.export(<ExportType>mode.value, fileName, null, [dateTimeControl, chart]);
-    };
-
-    let printBtn: Button = new Button({
-        iconCss: 'e-icons e-print-icon', cssClass: 'e-flat', isPrimary: true,
-    });
-    printBtn.appendTo('#printBtn');
-    document.getElementById('printBtn').onclick = () => {
-        dateTimeControl.print(['container', 'chart']);
-    };
-};
 (window as any).default = (): void => {
     loadCultureFiles();
     let datasrc: Object[];
@@ -101,6 +34,70 @@ this.renderChart = (datasrc: Object[]): void => {
             // tslint:disable-next-line:no-string-literal
             data['xDate'] = new Date(data['xDate']);
         });
-        this.renderChart(datasrc);
+        let chart: Chart = new Chart(
+            {
+                primaryXAxis: {
+                    valueType: 'DateTime', crosshairTooltip: { enable: true },
+                    edgeLabelPlacement: 'Shift', majorGridLines: { width: 0 }
+                },
+                series: [{
+                    dataSource: datasrc, xName: 'xDate', yName: 'Close', width: 2,
+                    name: 'Close',
+                    fill: regionColor[themes.indexOf(theme)], type: 'SplineArea',
+                    border: { width: 2, color: borderColor[themes.indexOf(theme)] }
+                }],
+                chartArea: { border: { width: 0 } },
+                primaryYAxis: {
+                    minimum: 81, maximum: 87, interval: 2,
+                    majorTickLines: { width: 0 }, lineStyle: { width: 0 },
+                    labelFormat: '{value}M', title: 'Million in USD'
+                },
+                tooltip: { enable: true, shared: true },
+                legendSettings: { visible: false },
+                height: '350',
+                theme: theme
+            }
+        );
+        chart.appendTo('#chart');
+        let dateTimeControl: RangeNavigator = new RangeNavigator(
+            {
+                valueType: 'DateTime',
+                animationDuration: 500,
+                intervalType: 'Months',
+                labelFormat: 'MMM', theme: theme,
+                enableGrouping: true,
+                value: [new Date('2013-05-01'), new Date('2013-08-01')],
+                dataSource: datasrc,
+                xName: 'xDate', yName: 'Close',
+                changed: (args: IChangedEventArgs) => {
+                    chart.primaryXAxis.zoomFactor = args.zoomFactor;
+                    chart.primaryXAxis.zoomPosition = args.zoomPosition;
+                    chart.dataBind();
+                }
+            }
+        );
+        dateTimeControl.appendTo('#container');
+    
+        let mode: DropDownList = new DropDownList({
+            index: 0,
+            width: 90
+        });
+        mode.appendTo('#mode');
+        let togglebtn: Button = new Button({
+            iconCss: 'e-icons e-export-icon', cssClass: 'e-flat', isPrimary: true,
+        });
+        togglebtn.appendTo('#exportBtn');
+        document.getElementById('exportBtn').onclick = () => {
+            let fileName: string = (<HTMLInputElement>(document.getElementById('fileName'))).value;
+            chart.exportModule.export(<ExportType>mode.value, fileName, null, [dateTimeControl, chart]);
+        };
+    
+        let printBtn: Button = new Button({
+            iconCss: 'e-icons e-print-icon', cssClass: 'e-flat', isPrimary: true,
+        });
+        printBtn.appendTo('#printBtn');
+        document.getElementById('printBtn').onclick = () => {
+            dateTimeControl.print(['container', 'chart']);
+        };
     };
 };

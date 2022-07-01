@@ -464,33 +464,35 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         eventSettings: { dataSource: generateEvents() },
         popupOpen: (args: PopupOpenEventArgs) => {
             if (args.type === 'QuickInfo' || args.type === 'ViewEventInfo') {
-                let titleObj: TextBox = new TextBox({ placeholder: 'Title' });
-                titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
-                let typeObj: DropDownList = new DropDownList({
-                    dataSource: resourceData,
-                    placeholder: 'Choose Type',
-                    fields: { text: 'CalendarText', value: 'CalendarId' },
-                    index: 0
-                });
-                typeObj.appendTo(args.element.querySelector('#eventType') as HTMLElement);
-                let notesObj: TextBox = new TextBox({ placeholder: 'Notes' });
-                notesObj.appendTo(args.element.querySelector('#notes') as HTMLElement);
+                if (!args.target.classList.contains('e-appointment')) {
+                    const titleObj: TextBox = new TextBox({ placeholder: 'Title' });
+                    titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
+                    const typeObj: DropDownList = new DropDownList({
+                        dataSource: resourceData,
+                        placeholder: 'Choose Type',
+                        fields: { text: 'CalendarText', value: 'CalendarId' },
+                        index: args.data.CalendarId - 1 
+                    });
+                    typeObj.appendTo(args.element.querySelector('#eventType') as HTMLElement);
+                    const notesObj: TextBox = new TextBox({ placeholder: 'Notes' });
+                    notesObj.appendTo(args.element.querySelector('#notes') as HTMLElement);
+                }
 
-                let moreDetailsBtn: HTMLButtonElement = args.element.querySelector('#more-details') as HTMLButtonElement;
+                const moreDetailsBtn: HTMLButtonElement = args.element.querySelector('#more-details') as HTMLButtonElement;
                 if (moreDetailsBtn) {
-                    let moreObj: Button = new Button({
+                    const moreObj: Button = new Button({
                         content: 'More Details', cssClass: 'e-flat',
                         isPrimary: args.element.firstElementChild.classList.contains('e-event-popup')
                     });
                     moreObj.appendTo(moreDetailsBtn);
                     moreDetailsBtn.onclick = (e: Event) => { buttonClickActions(e); };
                 }
-                let addBtn: HTMLButtonElement = args.element.querySelector('#add') as HTMLButtonElement;
+                const addBtn: HTMLButtonElement = args.element.querySelector('#add') as HTMLButtonElement;
                 if (addBtn) {
                     new Button({ content: 'Add', cssClass: 'e-flat', isPrimary: true }, addBtn);
                     addBtn.onclick = (e: Event) => { buttonClickActions(e); };
                 }
-                let deleteBtn: HTMLButtonElement = args.element.querySelector('#delete') as HTMLButtonElement;
+                const deleteBtn: HTMLButtonElement = args.element.querySelector('#delete') as HTMLButtonElement;
                 if (deleteBtn) {
                     new Button({ content: 'Delete', cssClass: 'e-flat' }, deleteBtn);
                     deleteBtn.onclick = (e: Event) => { buttonClickActions(e); };

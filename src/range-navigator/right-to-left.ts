@@ -20,55 +20,7 @@ let regionColor : string[] = ['rgba(38, 46, 11, 0.3)', 'rgba(94, 203, 155, 0.3)'
     'rgba(68, 114, 196, 0.3)', 'rgba(121, 236, 228, 0.3)'];
 
 
-this.renderChart = (datasrc: Object[]): void => {
-            let chart: Chart = new Chart(
-                {
-                    primaryXAxis: {
-                        valueType: 'DateTime', crosshairTooltip: { enable: true }, edgeLabelPlacement: 'Shift',
-                        isInversed: true, majorGridLines: { width: 0 }
-                    },
-                    primaryYAxis: {
-                        majorTickLines: { width: 0 }, lineStyle: { width: 0 }, labelFormat: '{value}%',
-                        maximum: 87, minimum: 82, interval: 1
-                    },
-                    chartArea: { border: { width: 0 } },
-                    series: [{
-                        dataSource: datasrc, xName: 'xDate', yName: 'High', width: 2, type: 'Area',
-                        fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)', name: 'Profit',
-                        border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
-                    }],
-                    tooltip: { enable: true, shared: true, header: '<b>England<b>', format: '${point.x} : <b>${point.y}<b>' },
-                    height: '350',
-                    width: Browser.isDevice ? '100%' : '80%',
-                    theme: theme, legendSettings: { visible: false }
-                }
-            );
-            chart.appendTo('#chart');
-
-            let range: RangeNavigator = new RangeNavigator(
-                {
-                    width: Browser.isDevice ? '100%' : '80%',
-                    valueType: 'DateTime',
-                    tooltip: { enable: true, displayMode: 'Always' },
-                    intervalType: 'Years',
-                    value: [new Date('2014-01-01'), new Date('2015-12-31')],
-                    series: [{
-                        dataSource: datasrc, xName: 'xDate', yName: 'High', type: 'Area',
-                        fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
-                        border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
-                    }],
-                    enableRtl: true,
-                    changed: (args: IChangedEventArgs) => {
-                        chart.primaryXAxis.zoomFactor = args.zoomFactor;
-                        chart.primaryXAxis.zoomPosition = args.zoomPosition;
-                        chart.dataBind();
-                    },
-                    theme: theme
-                }
-            );
-            range.appendTo('#container');
-        };
-   (window as any).default = (): void => {
+(window as any).default = (): void => {
     loadCultureFiles();
     let datasrc: Object[];
     let ajax: Ajax = new Ajax('./src/range-navigator/data-source/axes-data.json', 'GET', true);
@@ -80,6 +32,51 @@ this.renderChart = (datasrc: Object[]): void => {
             // tslint:disable-next-line:no-string-literal
             data['xDate'] = new Date(data['xDate']);
         });
-        this.renderChart(datasrc);
+        let chart: Chart = new Chart(
+            {
+                primaryXAxis: {
+                    valueType: 'DateTime', crosshairTooltip: { enable: true }, edgeLabelPlacement: 'Shift',
+                    isInversed: true, majorGridLines: { width: 0 }
+                },
+                primaryYAxis: {
+                    majorTickLines: { width: 0 }, lineStyle: { width: 0 }, labelFormat: '{value}%',
+                    maximum: 87, minimum: 82, interval: 1
+                },
+                chartArea: { border: { width: 0 } },
+                series: [{
+                    dataSource: datasrc, xName: 'xDate', yName: 'High', width: 2, type: 'Area',
+                    fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)', name: 'Profit',
+                    border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
+                }],
+                tooltip: { enable: true, shared: true, header: '<b>England<b>', format: '${point.x} : <b>${point.y}<b>' },
+                height: '350',
+                width: Browser.isDevice ? '100%' : '80%',
+                theme: theme, legendSettings: { visible: false }
+            }
+        );
+        chart.appendTo('#chart');
+
+        let range: RangeNavigator = new RangeNavigator(
+            {
+                width: Browser.isDevice ? '100%' : '80%',
+                valueType: 'DateTime',
+                tooltip: { enable: true, displayMode: 'Always' },
+                intervalType: 'Years',
+                value: [new Date('2014-01-01'), new Date('2015-12-31')],
+                series: [{
+                    dataSource: datasrc, xName: 'xDate', yName: 'High', type: 'Area',
+                    fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
+                    border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
+                }],
+                enableRtl: true,
+                changed: (args: IChangedEventArgs) => {
+                    chart.primaryXAxis.zoomFactor = args.zoomFactor;
+                    chart.primaryXAxis.zoomPosition = args.zoomPosition;
+                    chart.dataBind();
+                },
+                theme: theme
+            }
+        );
+        range.appendTo('#container');
     };
 };

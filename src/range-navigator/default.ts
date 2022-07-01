@@ -18,33 +18,6 @@ let regionColor : string[] = ['rgba(38, 46, 11, 0.3)', 'rgba(94, 203, 155, 0.3)'
     'rgba(68, 114, 196, 0.3)', 'rgba(121, 236, 228, 0.3)'];
 
 
-this.renderChart = (datasrc: Object[]): void => {
-            let range: RangeNavigator = new RangeNavigator(
-                {
-                    valueType: 'DateTime',
-                    tooltip: { enable: true, displayMode: 'Always' },
-                    value: [new Date('2017-09-01'), new Date('2018-02-01')],
-                    labelFormat: 'MMM-yy',
-                    navigatorStyleSettings: {
-                        unselectedRegionColor: 'transparent',
-                        selectedRegionColor: regionColor[themes.indexOf(theme.toLowerCase())]
-                    },
-
-                    series: [
-                        {
-                            dataSource: datasrc,
-                            xName: 'x', yName: 'y', type: 'Area', width: 2,
-                            fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
-                            border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
-                        }
-                    ],
-                    width: Browser.isDevice ? '100%' : '80%',
-                    theme: theme
-                }
-            );
-            range.appendTo('#container');
-
-        };
 (window as any).default = (): void => {
     loadCultureFiles();
     let datasrc: Object[];
@@ -57,6 +30,29 @@ this.renderChart = (datasrc: Object[]): void => {
             // tslint:disable-next-line:no-string-literal
             data['x'] = new Date(data['x']);
         });
-        this.renderChart(datasrc);
+        let range: RangeNavigator = new RangeNavigator(
+            {
+                valueType: 'DateTime',
+                tooltip: { enable: true, displayMode: 'Always' },
+                value: [new Date('2017-09-01'), new Date('2018-02-01')],
+                labelFormat: 'MMM-yy',
+                navigatorStyleSettings: {
+                    unselectedRegionColor: 'transparent',
+                    selectedRegionColor: regionColor[themes.indexOf(theme.toLowerCase())]
+                },
+
+                series: [
+                    {
+                        dataSource: datasrc,
+                        xName: 'x', yName: 'y', type: 'Area', width: 2,
+                        fill: 'url(#' + theme.toLowerCase() + '-gradient-chart)',
+                        border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
+                    }
+                ],
+                width: Browser.isDevice ? '100%' : '80%',
+                theme: theme
+            }
+        );
+        range.appendTo('#container');
     };
 };

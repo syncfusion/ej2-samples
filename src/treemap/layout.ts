@@ -10,20 +10,17 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
-// custom code start
-// Treemap theme changes
-export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
-    let theme: string = location.hash.split('/')[1];
-    theme = theme ? theme : 'Material';
-    args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
-    theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
-};
 //tslint:disable
-// custom code end
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
     // custom code end
+    let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        let theme: string = location.hash.split('/')[1];
+        theme = theme ? theme : 'Material';
+        args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
+        theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+    };
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         // To config title for treemap 

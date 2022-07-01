@@ -38,7 +38,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="e-label">Date</td>
+                <td class="e-label">Deliver</td>
                 <td>
                     <input type="text" id="datepicker" value=${Date} />
                 </td>
@@ -107,7 +107,7 @@
                                             ${if(Category =="Delivered" || Category=="Served")}
                                             <tr>
                                                 <td colspan="2">
-                                                    <label class="e-date">Date:</label>
+                                                    <label class="e-date">Deliver:</label>
                                                     <span class="e-kanban-date">${Date}</span>
                                                 </td>
                                             </tr>
@@ -151,6 +151,9 @@
     .e-kanban .e-size {
         color: #b8860b
     }
+    .e-kanban .e-date{
+        display: contents;
+    }
 
     .e-kanban .e-mins {
         padding-left: 3px;
@@ -170,6 +173,9 @@
         content: '\ea84';
         color: #008000;
         font-size: 16px;
+    }
+    .e-kanban .e-label{
+        width:90px;
     }
 
     .fabric .e-kanban .e-clock::before {
@@ -253,7 +259,14 @@
         padding-top: 5px;
         color: #ff0000;
     }
+    .e-kanban-dialog .e-kanban-form-wrapper table .e-label {
+    padding-right: 15px;
+    }
+    .e-kanban-dialog .e-kanban-form-wrapper table .e-label, 
+    .e-kanban-dialog .e-kanban-form-container table .e-label {
+    width: 80px;
 
+    }
     @keyframes blinker {
         50% {
             opacity: 0.5;

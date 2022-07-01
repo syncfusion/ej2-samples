@@ -11,16 +11,14 @@ AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTo
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs, ITreeMapTooltipRenderEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
-// custom code start
-export let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
-    let theme: string = location.hash.split('/')[1];
-    theme = theme ? theme : 'Material';
-    args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
-    theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
-};
-// custom code end
 (window as any).default = (): void => {
     loadCultureFiles();
+    let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        let theme: string = location.hash.split('/')[1];
+        theme = theme ? theme : 'Material';
+        args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
+        theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+    };
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
         // AccumulationChart rendering

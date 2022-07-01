@@ -38,7 +38,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
             table: ['TableHeader', 'TableRows', 'TableColumns', 'TableCell', '-',
             'BackgroundColor', 'TableRemove', 'TableCellVerticalAlign', 'Styles']
         },
-        showCharCount: true, maxLength: 2000,
+        showCharCount: true,
         actionBegin: handleFullScreen, actionComplete: actionCompleteHandler
     });
     defaultRTE.appendTo('#defaultRTE');
@@ -87,21 +87,19 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
         } else {
             leftBar = document.querySelector('#left-sidebar');
             transformElement = document.querySelector('#right-pane'); }
-        if (sbCntEle && sbHdrEle && leftBar && transformElement) {
-            if (e.targetItem === 'Maximize') {
-                if (Browser.isDevice && Browser.isIos) { addClass([sbCntEle, sbHdrEle], ['hide-header']); }
-                addClass([leftBar], ['e-close']);
-                removeClass([leftBar], ['e-open']);
-                if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
-                transformElement.style.transform = 'inherit';
-            } else if (e.targetItem === 'Minimize') {
-                if (Browser.isDevice && Browser.isIos) { removeClass([sbCntEle, sbHdrEle], ['hide-header']); }
-                removeClass([leftBar], ['e-close']);
-                if (!Browser.isDevice) {
-                addClass([leftBar], ['e-open']);
-                transformElement.style.marginLeft = leftBar.offsetWidth + 'px'; }
-                transformElement.style.transform = 'translateX(0px)';
-            }
+        if (e.targetItem === 'Maximize') {
+            if (Browser.isDevice && Browser.isIos) { addClass([sbCntEle, sbHdrEle], ['hide-header']); }
+            addClass([leftBar], ['e-close']);
+            removeClass([leftBar], ['e-open']);
+            if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
+            transformElement.style.transform = 'inherit';
+        } else if (e.targetItem === 'Minimize') {
+            if (Browser.isDevice && Browser.isIos) { removeClass([sbCntEle, sbHdrEle], ['hide-header']); }
+            removeClass([leftBar], ['e-close']);
+            if (!Browser.isDevice) {
+            addClass([leftBar], ['e-open']);
+            transformElement.style.marginLeft = leftBar.offsetWidth + 'px'; }
+            transformElement.style.transform = 'translateX(0px)';
         }
     }
 

@@ -114,6 +114,7 @@ PivotView.Inject(FieldList, GroupingBar, CalculatedField, Toolbar, ConditionalFo
             'Grid', 'Chart', 'MDX', 'Export', 'SubTotal', 'GrandTotal', 'ConditionalFormatting', 'FieldList'],
         allowExcelExport: true,
         allowConditionalFormatting: true,
+        enableFieldSearching: true,
         allowPdfExport: true,
         showToolbar: true,
         showGroupingBar: true,

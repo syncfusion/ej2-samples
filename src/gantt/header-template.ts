@@ -16,6 +16,7 @@ Gantt.Inject(Selection);
         { resourceId: 5, resourceName: 'Davolio Fuller' },
         { resourceId: 6, resourceName: 'Van Jack' },
         { resourceId: 7, resourceName: 'Fuller Buchanan' },
+        { resourceId: 8, resourceName: 'Jack Davolio' }
     ];
     let gantt: Gantt = new Gantt(
         {

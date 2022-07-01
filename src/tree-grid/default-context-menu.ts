@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { TreeGrid, Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort } from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort, RowDD } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
 
-TreeGrid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort);
+TreeGrid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort, RowDD);
 
 /**
  * Context menu in grid sample
@@ -24,7 +24,7 @@ TreeGrid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort);
             contextMenuItems: ['AutoFit', 'AutoFitAll', 'SortAscending', 'SortDescending',
                  'Edit', 'Delete', 'Save', 'Cancel',
                 'PdfExport', 'ExcelExport', 'CsvExport', 'FirstPage', 'PrevPage',
-                'LastPage', 'NextPage'],
+                'LastPage', 'NextPage','Indent', 'Outdent'],
             columns: [
                 { field: 'taskID', headerText: 'Task ID', width: 80, isPrimaryKey: true, textAlign: 'Right', editType: 'numericedit' },
                 { field: 'taskName', headerText: 'Task Name', width: 190 },

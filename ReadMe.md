@@ -10,15 +10,11 @@ Add your sample order in the `src/common/sampleOrder.json` with corresponding ca
 
 Note: Do not use whitespace at any cause in folder’s name. Use “-” instead of space.
 
-[Refer here](https://bitbucket.org/syncfusion/ej2-sample-browser/src/7740ab838973c7ebb3e970acb5246ff4c89ccd67/src/?at=master)
-
 ### Configure the folder and sample
 
 Create the “sample.json” file inside of your control folder.  Create your sample html and ts file in same folder also name the html and ts files with same name.
 
 Note: Do not use whitespace at any cause in file’s name. Use “-” instead of space.
-
-[Refer here](https://bitbucket.org/syncfusion/ej2-sample-browser/src/7740ab838973c7ebb3e970acb5246ff4c89ccd67/src/button/?at=master)
 
 ### Configure Sample JSON
 
@@ -230,15 +226,15 @@ Note: Here, The mentioned IP is your local machine IP Address.
 
 1.	In import statements in html file for a sample the package subdirectory shouldn’t be mentioned. Please refer the link given below.
 
-    https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/grid/events.ts#L3 
+    https://github.com/syncfusion/ej2-samples/blob/master/src/grid/events.ts#L3
 
 2.	In Base component dom and util are not available in the customer end. So, please don’t use the same. Please refer the link below.
 
-    https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/grid/events.ts#L3 
+    https://github.com/syncfusion/ej2-samples/blob/master/src/grid/events.ts#L3 
 
 3.	To add any icon in the samples use base64 font and don’t use any font files like ttf, woff, or svg externally. Please refer the link given below.
 
-    https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/toolbar/default.html#L5 
+    https://github.com/syncfusion/ej2-samples/blob/master/src/toolbar/default.ts#L13
 
     For example:
     ```
@@ -262,10 +258,10 @@ Note: Here, The mentioned IP is your local machine IP Address.
     
 4. For loading json files in the sample use import statements instead of require. Please refer the link given below.
 
-    https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/calendar/internationalization.ts#L9
+    https://github.com/syncfusion/ej2-samples/blob/master/src/auto-complete/custom-filtering.ts#L7
     
     ( For example: import * as testJson from '../common/cldr-data/supplemental/numberingSystems.json'; )
 
 5. If a New Component is added to TypeScript Sample Browser it’s package dependency should be added to the config in src/sys.js file.
 
-    ( For example: https://gitlab.syncfusion.com/essential-studio/ej2-samples/blob/development/src/sys.js#L19 )
+    ( For example: https://github.com/syncfusion/ej2-samples/blob/master/src/sys.js#L19 )

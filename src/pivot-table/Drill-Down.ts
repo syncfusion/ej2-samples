@@ -249,4 +249,4 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             isInitial = true;
         }
     }
-}
+};

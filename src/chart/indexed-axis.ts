@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, ColumnSeries, LineSeries, Category,
-    Legend, Crosshair, Tooltip, ILoadedEventArgs, ChartTheme
+    Legend, ILoadedEventArgs, ChartTheme, DataLabel
 } from '@syncfusion/ej2-charts';
-Chart.Inject(ColumnSeries, LineSeries, Category, Legend, Crosshair, Tooltip);
+Chart.Inject(ColumnSeries, LineSeries, Category, Legend, DataLabel);
 
 /**
  * Sample for Indexed Category Axis
@@ -16,7 +16,6 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, Crosshair, Tooltip);
             valueType: 'Category',
             interval: 1,
             edgeLabelPlacement: 'Shift',
-            crosshairTooltip: { enable: true },
             isIndexed: true
         },
 
@@ -42,7 +41,7 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, Crosshair, Tooltip);
                     { x: 'Cambodia', y: 7.0 },
                     { x: 'China', y: 6.9 }
                 ],
-                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10 },
+                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10, dataLabel: { visible: true,  position: 'Top'}},
                 yName: 'y', name: '2015',
             },
             {
@@ -54,7 +53,7 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, Crosshair, Tooltip);
                     { x: 'Canada', y: 1.4 },
                     { x: 'Germany', y: 1.8 }
                 ],
-                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10 },
+                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10, dataLabel: { visible: true,  position: 'Top'}},
                 yName: 'y', name: '2016',
             },
         ],
@@ -62,8 +61,6 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, Crosshair, Tooltip);
         //Initializing Chart title
         title: 'Real GDP Growth',
         //Initializing User Interaction Tooltip and Crosshair
-        tooltip: { enable: true, shared: true },
-        crosshair: { enable: true, lineType: 'Vertical' },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -81,14 +78,16 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, Crosshair, Tooltip);
             chart.series[0].marker.visible = false;
             chart.series[1].marker.visible = false;
             chart.primaryXAxis.labelRotation = 0;
-            chart.crosshair.line.width = 1;
         } else {
             chart.series[0].type = 'Line';
             chart.series[1].type = 'Line';
             chart.series[0].marker.visible = true;
+            chart.series[0].marker.dataLabel.visible = true;
+            chart.series[0].marker.dataLabel.position = 'Top';
             chart.series[1].marker.visible = true;
+            chart.series[1].marker.dataLabel.visible = true;
+            chart.series[1].marker.dataLabel.position = 'Top';
             chart.primaryXAxis.labelRotation = 90;
-            chart.crosshair.line.width = 0;
         }
         chart.refresh();
     };

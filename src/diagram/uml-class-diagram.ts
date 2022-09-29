@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * class-diagram -  Annotation
  */
@@ -67,7 +66,6 @@ function createMethods(name: string, type: string): object {
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-    loadCultureFiles();
     let nodes: NodeModel[] = [
         {
             id: 'Patient',

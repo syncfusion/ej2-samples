@@ -13,6 +13,7 @@ import {
 } from '@syncfusion/ej2-diagrams';
 import { RadioButton, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
+import { FlowShapes } from '@syncfusion/ej2/diagrams';
 
 enableRipple(true);
 
@@ -54,7 +55,7 @@ let diagram: Diagram;
     }
 
     function CreateNodes(
-        name: string, offsetX: number, offsetY: number, shape: string, content: string,
+        name: string, offsetX: number, offsetY: number, shape: FlowShapes, content: string,
         width: number, height: number, ports?: PointPortModel[]): NodeModel {
         let node: NodeModel = {};
         node.id = name;
@@ -137,8 +138,8 @@ let diagram: Diagram;
 
 
     function buttonChange(args: ChangeEventArgs): void {
-        applyChanges(args.event.srcElement.id);
-        selectedButton = args.event.srcElement.id;
+        applyChanges((args.event.srcElement as HTMLElement).id );
+        selectedButton =(args.event.srcElement as HTMLElement).id;
     }
 
     function applyChanges(id: string): void {

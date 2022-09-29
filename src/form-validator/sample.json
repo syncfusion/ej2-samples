@@ -1,4 +1,4 @@
-{ "name": "Form Validation", "directory": "form-validator", "category":"Inputs", "ftName": "form-validator", "samples" : [
+{ "name": "Form Validation", "directory": "form-validator", "category":"Forms", "ftName": "form-validator", "samples" : [
     {"url":"default", "name": "Default Functionalities", "description": "Get started with Obtrusive form validation of Syncfusion Form Validator library and default functionalities.", "category":"Form Validation","api":{"FormValidator":["customPlacement","validate","validClass"]}},
     {"url":"html5", "name": "HTML5 Validation", "description": "Learn how to use default functionalities form validation of Syncfusion Form Validator library using HTML5 Validation.", "category":"Form Validation","api":{"FormValidator":["customPlacement","validate","validClass"]}},
     {"url":"external-submit", "name": "External Submit Form", "description": "Get started with form validator library and external form submit to handle the form validation externally.", "category":"Form Validation","api":{"FormValidator":["customPlacement","validate","validClass"]}},

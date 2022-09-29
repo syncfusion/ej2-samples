@@ -2,6 +2,7 @@
     "name": "Carousel",
     "directory": "carousel",
     "category": "Navigation",
+    "type":"update",
     "ftName": "carousel",
     "samples": [
         {
@@ -49,6 +50,23 @@
                 ]
             },
             "description": "This example demonstrates the template options available in JavaScript Carousel component."
+        },
+        {
+            "url": "partial-visible",
+            "name": "Partial Visible",
+            "category": "Carousel",
+            "type":"new",
+            "api": {
+                "Carousel": [
+                    "items",
+                    "partialVisible",
+                    "autoPlay"
+                ],
+                "CarouselItem": [
+                    "template"
+                ]
+            },
+            "description": "This example demonstrates the simple slide show of images using Syncfusion JavaScript Carousel component."
         },
         {
             "url": "keyboard-navigation",

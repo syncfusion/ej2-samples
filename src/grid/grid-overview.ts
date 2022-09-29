@@ -1,8 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-﻿import { Grid, VirtualScroll, Sort, Filter, Selection } from '@syncfusion/ej2-grids';
+import { Grid, VirtualScroll, Sort, Filter, Selection } from '@syncfusion/ej2-grids';
 import { isNullOrUndefined, closest } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { getTradeData } from './data-source';
+import { DataManager, Query, UrlAdaptor } from '@syncfusion/ej2-data';
 
 Grid.Inject(Selection, VirtualScroll, Sort, Filter);
 
@@ -129,14 +130,21 @@ function startTimer(args: any): void {
     return div.outerHTML;
 };
 
+let urlapi: DataManager = new DataManager({
+    url: "https://ej2services.syncfusion.com/production/web-services/api/UrlDataSource",
+    adaptor: new UrlAdaptor()
+});
+
 (window as any).default = (): void => {
     loadCultureFiles();
     let grid: Grid = new Grid({
-        dataSource: getTradeData(1000),
+        dataSource: urlapi,
+        query: new Query().addParams('dataCount', '1000'),
         allowSelection: true,
         allowFiltering: true,
         allowSorting: true,
         enableVirtualization: true,
+        loadingIndicator: { indicatorType: 'Shimmer' },
         filterSettings: { type: 'Menu' },
         selectionSettings: { persistSelection: true, type: 'Multiple', checkboxOnly: true },
         enableHover: false,
@@ -149,27 +157,26 @@ function startTimer(args: any): void {
             {
                 field: 'Employees', headerText: 'Employee Name', width: '200', clipMode: 'EllipsisWithTooltip',
                 template: '#empTemplate',
-                filter: { type: 'CheckBox' }
             },
             {
                 field: 'Designation', headerText: 'Designation', width: '170',
-                filter: { type: 'CheckBox' }, clipMode: 'EllipsisWithTooltip'
+                clipMode: 'EllipsisWithTooltip'
             },
-            { field: 'Mail', headerText: 'Mail', width: '230', filter: { type: 'Menu' } },
+            { field: 'Mail', headerText: 'Mail', width: '230' },
             {
-                field: 'Location', width: '140', headerText: 'Location', filter: { type: 'CheckBox' },
+                field: 'Location', width: '140', headerText: 'Location',
                 template: '#coltemplate'
             },
             {
-                field: 'Status', headerText: 'Status', filter: { type: 'CheckBox', itemTemplate: '#StatusItemTemp' },
+                field: 'Status', headerText: 'Status',
                 width: '150', template: '#statusTemplate'
             },
             {
                 field: 'Trustworthiness', headerText: 'Trustworthiness',
-                filter: { type: 'CheckBox', itemTemplate: '${ trustTemp(data)}' }, width: '160', template: '#trustTemplate'
+                width: '160', template: '#trustTemplate'
             },
             {
-                field: 'Rating', filter: { type: 'CheckBox', itemTemplate: '<div>${ratingDetail(data)}</div>' }, headerText: 'Rating',
+                field: 'Rating', headerText: 'Rating',
                 width: '160', template: '#ratingTemplate'
             },
             {
@@ -178,9 +185,9 @@ function startTimer(args: any): void {
             },
             {
                 field: 'CurrentSalary', headerText: 'Current Salary', format: 'C2',
-                filter: { type: 'Menu' }, textAlign: 'Right', width: '160'
+                textAlign: 'Right', width: '160'
             },
-            { field: 'Address', headerText: 'Address', width: '240', filter: { type: 'Menu' }, clipMode: 'EllipsisWithTooltip' },
+            { field: 'Address', headerText: 'Address', width: '240', clipMode: 'EllipsisWithTooltip' },
         ],
         queryCellInfo: queryCellInfo,
         dataBound: startTimer,
@@ -200,7 +207,6 @@ function startTimer(args: any): void {
     listObj.appendTo('#ddl');
     function valueChange(): void {
         (<any>listObj).closePopup();
-        grid.showSpinner();
         dropSlectedIndex = null;
         let index: number = listObj.value as number;
         clearTimeout(clrIntervalFun2);
@@ -213,8 +219,18 @@ function startTimer(args: any): void {
                 contentElement.scrollTop = 0;
                 grid.pageSettings.currentPage = 1;
                 stTime = performance.now();
-                grid.dataSource = getTradeData(index);
-                grid.hideSpinner();
+                if (grid.query.params.length > 1) {
+                    for (let i: number = 0; i < grid.query.params.length; i++) {
+                        if (grid.query.params[i].key === 'dataCount') {
+                            grid.query.params[i].value = index.toString();
+                            break;
+                        }
+                    }
+                }
+                else {
+                    grid.query.params[0].value = index.toString();
+                }
+                grid.setProperties({dataSource: urlapi});
             },
             100);
     }

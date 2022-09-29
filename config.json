@@ -161,6 +161,18 @@
 		"stock",
 		"ohlc",
 		"common",
-		"RTL"
+		"RTL",
+		"gridData",
+		"insert",
+		"emoticons",
+		"online",
+		"editor",
+		"dropdown-button",
+		"floating-action-button",
+		"appbar",
+		"dropdown",
+		"pdfviewer",
+		"formdesigner",
+		"workflow"
 	]
 }

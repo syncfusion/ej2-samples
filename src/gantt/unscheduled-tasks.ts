@@ -21,7 +21,8 @@ Gantt.Inject(Edit, Toolbar, Selection);
             },
             editSettings: {
                 allowAdding: true,
-                allowEditing: true
+                allowEditing: true,
+                allowDeleting: true
             },
             columns: [
                 {field: 'TaskId', width: 90 },

@@ -15,7 +15,6 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize);
             resources: resources,
             viewType: 'ResourceView',
             enableMultiTaskbar: true,
-            collapseAllParentTasks: true,
             showOverAllocation: true,
             taskFields: {
                 id: 'TaskID',

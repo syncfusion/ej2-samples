@@ -1,0 +1,33 @@
+{
+  "name": "Image Editor",
+  "directory": "image-editor",
+  "category": "File Viewers & Editors",
+  "ftName": "image-editor",
+  "type": "preview",
+  "samples": [
+    {
+      "url": "default",
+      "name": "Default Functionalities",
+      "category": "Image Editor",
+      "ftName": "image-editor",
+      "api": {
+        "ImageEditor": [
+          
+        ]
+      },
+      "description": "This sample demonstrates the default functionalities of the Image Editor component. Click the plus button to add group or conditions."
+    },
+	{
+      "url": "profile-picture",
+      "name": "Profile Picture",
+      "category": "Image Editor",
+      "ftName": "image-editor",
+      "api": {
+        "ImageEditor": [
+          
+        ]
+      },
+      "description": "This sample demonstrates the default functionalities of the Image Editor component. Click the plus button to add group or conditions."
+    }
+  ]
+}

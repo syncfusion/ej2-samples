@@ -35,7 +35,7 @@ let regionColor : string[] = ['rgba(38, 46, 11, 0.3)', 'rgba(94, 203, 155, 0.3)'
             primaryXAxis: {
                 valueType: 'Logarithmic', crosshairTooltip: { enable: false }, interval: 1,
                 edgeLabelPlacement: 'Shift', majorGridLines: { width: 0 },
-                title: 'Numers of Goods Consumers'
+                title: 'Numbers of Goods Consumers'
             },
             primaryYAxis: {
                 title: 'Inflation', minimum: 0, maximum: 100,

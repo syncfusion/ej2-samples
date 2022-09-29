@@ -40,9 +40,10 @@ Gantt.Inject(Selection, DayMarkers);
             eventMarkers: [
                 {
                     day: new Date('04/02/2019'),
-                }, {
-                    day: new Date('04/09/2019'),
-                    label: 'Research phase'
+                    label: 'Project starts'
+                    }, {
+ 					 day: new Date('04/09/2019'),
+                     label: 'Research phase'
                 }, {
                     day: new Date('04/30/2019'),
                     label: 'Design phase'
@@ -59,3 +60,4 @@ Gantt.Inject(Selection, DayMarkers);
         });
     gantt.appendTo('#EventMarkers');
 };
+                  

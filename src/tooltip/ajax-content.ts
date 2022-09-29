@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Loading ajax content sample
  */
@@ -7,8 +6,7 @@ import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
 import { Ajax } from '@syncfusion/ej2-base';
 import { ListView } from '@syncfusion/ej2-lists';
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
 
     //Initialize ListView component
     let listObj: ListView = new ListView({

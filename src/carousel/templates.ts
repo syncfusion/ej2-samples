@@ -1,9 +1,7 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Carousel } from '@syncfusion/ej2-navigations';
 import { Button } from '@syncfusion/ej2-buttons';
 
 (window as any).default = (): void => {
-    loadCultureFiles();
 
     (window as TemplateFunction).getThumpImage = (index: number) => {
         const birds: string[] = ['cardinal', 'hunei', 'costa-rica', 'kaohsiung', 'bee-eater'];

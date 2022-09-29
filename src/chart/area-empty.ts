@@ -38,7 +38,7 @@ import { Browser } from '@syncfusion/ej2-base';
                 { x: '2010', y: 2 }, { x: 2011, y: 3.1 }],
                 xName: 'x', width: 2,
                 yName: 'y', name: 'France',
-                opacity: 0.8
+                opacity: 0.5,border: { width: 2 },
             }, {
                 type: 'Area',
                 dataSource: [{ x: '2002', y: 2.2 }, { x: '2003', y: 3.4 }, { x: '2004', y: 2.8 }, { x: '2005', y: null },
@@ -46,7 +46,7 @@ import { Browser } from '@syncfusion/ej2-base';
                 { x: '2010', y: 1.4 }, { x: 2011, y: 3.1 }],
                 xName: 'x', width: 2,
                 yName: 'y', name: 'US',
-                opacity: 0.8,
+                opacity: 0.5,border: { width: 2 },
             },
         ],
         //Initializing Chart title

@@ -1,12 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Selection, Edit, Toolbar } from '@syncfusion/ej2-gantt';
+import { Gantt, Selection, Edit, Toolbar, Filter } from '@syncfusion/ej2-gantt';
 import { taskModeData } from './data-source';
 
 /**
  * Default Gantt sample
  */
 
-Gantt.Inject(Selection, Edit, Toolbar);
+Gantt.Inject(Selection, Edit, Toolbar, Filter);
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(

@@ -6,13 +6,14 @@
  import { Popup, Tooltip } from '@syncfusion/ej2-popups';
  import { Toast } from '@syncfusion/ej2-notifications';
  import { Animation, Browser, extend, setCulture, enableRipple, Ajax, closest, createElement, detach, L10n } from '@syncfusion/ej2-base';
- import { select, setCurrencyCode, loadCldr, selectAll, registerLicense } from '@syncfusion/ej2-base';
+ import { select, setCurrencyCode, loadCldr, selectAll, registerLicense, getComponent } from '@syncfusion/ej2-base';
  import { DataManager, Query } from '@syncfusion/ej2-data';
  import { DropDownList, AutoComplete } from '@syncfusion/ej2-dropdowns';
  import { Button } from '@syncfusion/ej2-buttons';
  import { Tab, TreeView, Sidebar } from '@syncfusion/ej2-navigations';
  import { ListView } from '@syncfusion/ej2-lists';
  import { Grid } from '@syncfusion/ej2-grids';
+ import { ImageEditor } from '@syncfusion/ej2-image-editor';
  import { addRoute, bypassed, parse } from 'crossroads';
  import { renderPropertyPane, renderDescription, renderActionDescription } from './propertypane';
  import { Locale } from './locale-string';
@@ -440,7 +441,7 @@
   function checkApiTableDataSource(): void {
       let hash: string[] = location.hash.split('/');
       let data: Object[] = window.apiList[hash[2] + '/' + hash[3].replace('.html', '')] || [];
-      if (!data.length) {
+      if (!data.length || (isMobile || isTablet)) {
           contentTab.hideTab(2);
       } else {
           contentTab.hideTab(2, false);
@@ -585,6 +586,11 @@
       target = closest(target, 'li');
       let themeName: string = target.id;
       switchTheme(themeName);
+      let imageEditorElem = document.querySelector(".e-image-editor") as HTMLElement;
+      if (imageEditorElem != null) {
+        let imageEditor: ImageEditor = getComponent(document.getElementById(imageEditorElem.id), 'image-editor') as ImageEditor;
+        imageEditor.theme = themeName;
+    }
       // loadTheme(themeName);
   }
   
@@ -670,9 +676,9 @@
       let footer: Element = select('.sb-footer-left');
       let pref: Element = select('#settings-popup');
       if (isTablet || isMobile) {
-          contentTab.hideTab(1);
+          contentTab.hideTab(2);
       } else {
-          contentTab.hideTab(1, false);
+          contentTab.hideTab(2, false);
       }
       if (toggle && !isPc) {
           toggleLeftPane();
@@ -732,7 +738,7 @@
   function resizeFunction(): void {
       if (!isMobile && !isTablet) {
           resizeManualTrigger = true;
-          setTimeout(cusResize(), 400);
+          setTimeout(() => cusResize(), 400);
       }
   }
   
@@ -764,7 +770,7 @@
       });
       themeList.addEventListener('click', changeTheme);
       // tslint:disable
-      document.addEventListener((Browser.isDevice ? Browser.touchStartEvent : 'click'), sbHeaderClick.bind(this, 'closePopup'));
+      document.addEventListener('click', sbHeaderClick.bind(this, 'closePopup'));
       settingElement.addEventListener('click', (e: MouseEvent) => {
           e.preventDefault();
           e.stopPropagation();
@@ -912,7 +918,7 @@
           renderSbPopups();
           bindEvents();
           if (isTablet || isMobile) {
-              contentTab.hideTab(1);
+              contentTab.hideTab(2);
           }
           // add routing
           //triggerRouting

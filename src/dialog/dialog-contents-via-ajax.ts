@@ -14,7 +14,7 @@ let innerContent: string = 'On October 17, Microsoft will release its Fall Creat
     loadCultureFiles();
     // Rendering Dialog on AJAX success
         let dialogObj: Dialog = new Dialog({
-            header: '<img class="img1" src="src/dialog/images/2.png">' + 'What’s Coming from Microsoft this Fall',
+            header: '<img class="img1" src="src/dialog/images/2.png" alt="Microsoft roadmap">' + 'What’s Coming from Microsoft this Fall',
             showCloseIcon: true,
             width: '500px',
             target: document.getElementById('target'),

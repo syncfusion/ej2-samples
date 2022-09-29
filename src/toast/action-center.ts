@@ -17,7 +17,7 @@ import { Browser, Touch, SwipeEventArgs, closest, isNullOrUndefined, Animation, 
         document.getElementsByClassName('notification_panel')[0].classList.add('e-visbile-layer'); }
     let downSwipe: boolean = false; let toastHeight: number = 0;
     let notificationPanel: HTMLElement = document.querySelector('.notification_panel') as HTMLElement;
-    this.touchModule = new Touch(notificationPanel, { swipe: touchSwipeHandler });
+    let touchModule = new Touch(notificationPanel, { swipe: touchSwipeHandler });
     function toastOpen(e: ToastOpenArgs): void {
         let toastTarget: HTMLElement = (<HTMLElement>e.toastObj.element.parentElement);
         let height: number = parseFloat((window.getComputedStyle(e.element)).marginBottom);

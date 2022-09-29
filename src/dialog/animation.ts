@@ -48,7 +48,7 @@ import { Button } from '@syncfusion/ej2-buttons';
   function dlgButtonClick(): void {
       dialog.hide();
   }
-  let list: NodeList  = document.getElementsByClassName('btn-animate');
+  let list: HTMLCollectionOf<Element> = document.getElementsByClassName('btn-animate');
 
   for (let i: number = 0 ; i < list.length; i++) {
       list[i].addEventListener('click', (e: any): void => {

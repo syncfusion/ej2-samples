@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Filter, Toolbar, IActionBeginEventArgs, Selection } from '@syncfusion/ej2-gantt';
 import { filteredData } from './data-source';
 import { getValue } from '@syncfusion/ej2-base';
+import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 /**
  * Filtering Gantt sample
@@ -10,6 +11,16 @@ import { getValue } from '@syncfusion/ej2-base';
 Gantt.Inject(Filter, Toolbar, Selection);
 (window as any).default = (): void => {
     loadCultureFiles();
+    let type: { [key: string]: Object }[] = [
+        { id: 'Menu', type: 'Menu' },
+        { id: 'Excel', type: 'Excel' }
+    ];
+    let mode: { [key: string]: Object }[] = [
+        { id: 'Parent', type: 'Parent' },
+        { id: 'Child', type: 'Child' },
+        { id: 'Both', type: 'Both' },
+        { id: 'None', type: 'None' },
+    ];
     let gantt: Gantt = new Gantt(
         {
             dataSource: filteredData,
@@ -31,8 +42,8 @@ Gantt.Inject(Filter, Toolbar, Selection);
                 { field: 'Predecessor', headerText: 'Predecessor' }
             ],
             treeColumnIndex: 0,
-            toolbar: ['Search'],
             allowFiltering: true,
+            filterSettings: { type: 'Menu',hierarchyMode:'Parent'},
             includeWeekend: true,
             height: '450px',
             timelineSettings: {
@@ -58,7 +69,8 @@ Gantt.Inject(Filter, Toolbar, Selection);
             projectEndDate: new Date('07/25/1969'),
             actionComplete: (args: IActionBeginEventArgs) => {
                 if (args.requestType === 'filterafteropen' &&
-                 (getValue('columnName', args) === 'StartDate' || getValue('columnName', args) === 'EndDate')) {
+                 (getValue('columnName', args) === 'StartDate' || getValue('columnName', args) === 'EndDate') 
+                    && gantt.filterSettings.type === "Menu") {
                     getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].min = new Date(1969, 5, 1);
                     getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].max = new Date(1969, 8, 30);
                     getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].dataBind();
@@ -66,4 +78,28 @@ Gantt.Inject(Filter, Toolbar, Selection);
             },
         });
     gantt.appendTo('#Filtering');
+    let dropDownType: DropDownList = new DropDownList({
+        dataSource: type,
+        popupWidth: '100%',
+        fields: { text: 'type', value: 'id' },
+        value: 'Menu',
+        change: (e: ChangeEventArgs) => {
+            let type: any = <string>e.value;
+            gantt.filterSettings.type = type;
+            gantt.clearFiltering();
+        }
+    });
+    dropDownType.appendTo('#filtertype');
+    let dropDownMode: DropDownList = new DropDownList({
+        dataSource: mode,
+        popupWidth: '100%',
+        fields: { text: 'type', value: 'id' },
+        value: 'Parent',
+        change: (e: ChangeEventArgs) => {
+            let mode: any = <string>e.value;
+            gantt.filterSettings.hierarchyMode = mode;
+            gantt.clearFiltering();
+        }
+    });
+    dropDownMode.appendTo('#mode');
 };

@@ -7,6 +7,13 @@
             "icon": "Icons"
         }
     },
+    "appbar": {
+        "ControlName": "AppBar",
+        "Samples": {
+            "default": "Default Functionalities",
+            "color": "Color"
+        }
+    },
     "auto-complete": {
         "ControlName": "AutoComplete",
         "Samples": {
@@ -393,7 +400,6 @@
         "ControlName": "Dialog",
         "Samples": {
             "default": "Default Functionalities",
-            "custom-dialog": "Custom Dialogs",
             "modal-dialog": "Modal",
             "template": "Template",
             "dialog-contents-via-ajax": "Ajax Content",
@@ -426,6 +432,13 @@
             "toolbar-customization": "Toolbar Customization",
             "web-layout": "Web Layout",
             "comments": "Comments"
+        }
+    },
+    "image-editor": {
+        "ControlName": "Image Editor",
+        "Samples": {
+            "default": "Default Functionalities",
+            "profile-picture": "Profile Picture"
         }
     },
     "drop-down-list": {
@@ -466,6 +479,15 @@
             "firebase": "Firebase Realtime File Provider",
             "ftp-file-provider":"FTP File Provider",
             "ibm-cos-node-file-provider": "IBM Cloud File Provider"
+        }
+    },
+    "floating-action-button": {
+        "ControlName": "Floating Action Button",
+        "Samples": {
+            "overview": "Overview",
+            "default": "Default Functionalities",
+            "position": "Position",
+            "appearance": "Appearance"
         }
     },
     "form-validator": {
@@ -712,6 +734,16 @@
             "formats": "Formats"
         }
     },
+    "message": {
+        "ControlName": "Message",
+        "Samples": {
+            "default": "Default Functionalities",
+            "variants": "Variants",
+            "icons": "Icons",
+            "customization": "Customization",
+            "template": "Template"
+        }
+    },
     "menu": {
         "ControlName": "Menu Bar",
         "Samples": {
@@ -722,6 +754,14 @@
             "hamburger-mode": "Hamburger Mode",
             "api": "API",
             "toolbar-integration": "Toolbar Integration"
+        }
+    },
+    "mention": {
+        "ControlName": "Mention",
+        "Samples": {
+            "default": "Default Functionalities",
+	    "multiple-list": "Multiple List",
+	    "template": "Template"
         }
     },
     "multi-select": {
@@ -793,6 +833,14 @@
             "exporting": "Export"
         }
     },
+    "predefined-dialogs": {
+        "ControlName": "Predefined Dialogs",
+        "Samples": {
+            "default": "Default functionality",
+            "customization": "Customization",
+            "animation": "Animation"
+        }
+    },
     "progress-bar": {
         "ControlName": "Progress Bar",
         "Samples": {
@@ -841,6 +889,7 @@
             "image": "Image",
             "inline": "Inline",
             "paste-cleanup": "Paste from MS Word",
+	    "mention-integration": "Mention Integration",
             "iframe": "IFrame",
             "print": "Print",
             "ajax-load": "Ajax Content",
@@ -856,7 +905,6 @@
             "markdown-editor": "Overview",
             "markdown-editor-preview": "Preview",
             "markdown-editor-custom-format": "Custom Format",
-            "tribute": "Tribute JS",
             "online-html-editor": "Online Html Editor"
         }
     },
@@ -937,6 +985,13 @@
 	   "keyboard-navigation": "Keyboard Navigation"
 	}
     },
+    "skeleton": {
+        "ControlName": "Skeleton",
+        "Samples": {
+           "default": "Default Functionalities",
+           "animation": "Animation"
+        }
+        },
     "slider": {
         "ControlName": "Range Slider",
         "Samples": {
@@ -997,6 +1052,17 @@
             "number-formatting": "Number Formatting",
             "sorting-and-filtering": "Sorting and Filtering",
             "cell-template": "Cell Template"
+        }
+    },
+    "speed-dial": {
+        "ControlName": "SpeedDial",
+        "Samples": {
+            "default":"Default Functionalities",
+            "linear": "Position(linear)",
+            "radial": "Radial Menu",
+            "appearance": "Appearance",
+            "template": "Template",
+            "modal": "Modal"
         }
     },
     "stock-chart": {

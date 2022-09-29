@@ -58,7 +58,7 @@ gulp.task('whole-bundle', function (done) {
 
 gulp.task('build', function(done){
     var runSequence = require('run-sequence');
-    runSequence('create-locale', 'combine-samplelists', 'scripts', 'whole-bundle', done);
+    runSequence('create-locale', 'combine-samplelists', 'styles', 'scripts', 'skip-chunks', 'whole-bundle', done);
 })
 var jsoncombine = require('gulp-jsoncombine');
 var elasticlunr = require('elasticlunr');
@@ -74,7 +74,26 @@ gulp.task('styles', function() {
     for(var i=0; i < styleFiles.length; i++) {
         shelljs.cp('-R',styleFiles[i], './styles');
     }
-})
+});
+
+gulp.task('skip-chunks', function () {
+    var skipComp = [];
+    var compPaths = glob.sync(`./src/*/`, {
+        silent: true,
+        ignore: [`./src/common/**/`, `./src`]
+    });
+    for (let compPath of compPaths) {
+        if (!fs.existsSync(`${compPath}/common.js`)) {
+            var componentName = compPath.replace('./src/', '').replace('/', '');
+            skipComp.push(componentName);
+        }
+    }
+    if (skipComp.length > 0) {
+        var skipContent = fs.readFileSync(path.resolve('./src/skipChunk.js'), 'utf-8');
+        skipContent = `${skipContent.split('[')[0]}${JSON.stringify(skipComp)}`;
+        fs.writeFileSync(path.resolve('./src/skipChunk.js'), skipContent, 'utf-8');
+    }
+});
 
 function combineSampleList(platform, done) {
     var filename = platform === 'javascript' ? 'samplelist.js' : 'sampleList.ts';

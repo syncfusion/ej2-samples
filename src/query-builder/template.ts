@@ -92,7 +92,9 @@ import { expenseData } from './data-source';
                         // Initialize tooltip with placement and showOn
                         tooltip: { isVisible: true, placement: 'Before', showOn: 'Hover' },
                         change: (e: any) => {
-                            qryBldrObj.notifyChange(e.value, args.elements);
+                            if (e.isInteracted) {
+                                qryBldrObj.notifyChange(e.value, args.elements);
+                            }
                         }
                     });
                      slider.appendTo('#' + args.elements.id);

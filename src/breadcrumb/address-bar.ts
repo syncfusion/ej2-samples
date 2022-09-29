@@ -227,5 +227,6 @@ import { BreadcrumbItemModel, Breadcrumb, Menu, MenuItemModel, MenuEventArgs, Br
         var breadcrumb = document.getElementById('address-bar');
         var breadcrumbInst = (getComponent(breadcrumb as HTMLElement, 'breadcrumb') as Breadcrumb);
         breadcrumbInst.items = initialBreadcrumbItems;
+        breadcrumbItems = initialBreadcrumbItems;
     };
 };

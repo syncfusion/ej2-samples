@@ -31,17 +31,17 @@ Grid.Inject(Sort, Page, Selection);
     });
     grid.appendTo('#Grid');
     document.getElementById('Date').onchange = (args: Event) => {
-        let column : Column = grid.getColumnByField(args.srcElement.id);
+        let column : Column = grid.getColumnByField((args.srcElement as HTMLSelectElement).id);
         column.format = (args.srcElement as HTMLSelectElement).value;
         grid.renderModule.refresh({});
     };
     document.getElementById('Currency').onchange = (args: Event) => {
-        let column : Column = grid.getColumnByField(args.srcElement.id);
+        let column : Column = grid.getColumnByField((args.srcElement as HTMLSelectElement).id);
         column.format = (args.srcElement as HTMLSelectElement).value;
         grid.renderModule.refresh({});
     };
     document.getElementById('Number').onchange = (args: Event) => {
-        let column : Column = grid.getColumnByField(args.srcElement.id);
+        let column : Column = grid.getColumnByField((args.srcElement as HTMLSelectElement).id);
         column.format = (args.srcElement as HTMLSelectElement).value;
         grid.renderModule.refresh({});
     };

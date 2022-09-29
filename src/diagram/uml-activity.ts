@@ -208,7 +208,7 @@ function openPalette(): void {
         {
             id: 'connector6', sourceID: 'node5', targetID: 'transfer_sales',
             sourcePortID: 'portLeft', targetPortID: 'portTop',
-            shape: { type: 'UmlActivity', flow: 'Object' },
+            shape: { type: 'UmlActivity', flow: 'Sequence' },
             annotations: [
                 {
                     id: 'connector6Label', content: 'type=New Customer', offset: 0.715,
@@ -219,7 +219,7 @@ function openPalette(): void {
         {
             id: 'connector7', sourceID: 'node5', targetID: 'transfer_desk',
             sourcePortID: 'portRight', targetPortID: 'portTop',
-            shape: { type: 'UmlActivity', flow: 'Object' },
+            shape: { type: 'UmlActivity', flow: 'Sequence' },
             annotations: [
                 {
                     id: 'connector7Label', content: 'type=Existing Customer', offset: 0.75,

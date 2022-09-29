@@ -41,10 +41,12 @@ RichTextEditor.Inject(Link, Image, HtmlEditor, Toolbar, QuickToolbar);
             logo.classList.remove('logos');
             if (empCount < 3) {
                 logo.classList.add(empList[empCount]);
+                logo.classList.add('blog-avatar');
                 authorName.innerHTML = nameListList[empCount];
                 empCount++;
             } else {
                 logo.classList.add('logo');
+                logo.classList.add('blog-avatar');
                 authorName.innerHTML = 'User';
             }
             let timeZone: HTMLElement = cloneAnswer.querySelector('.detailsAnswer');

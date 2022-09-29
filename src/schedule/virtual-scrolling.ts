@@ -1,20 +1,21 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Schedule, TimelineViews, TimelineMonth, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
+import { Schedule, Month, TimelineMonth, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 
 /**
  * schedule timeline views virtual scrolling sample
  */
 
-Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
+Schedule.Inject(Month, TimelineMonth, Resize, DragAndDrop);
 (window as any).default = (): void => {
     loadCultureFiles();
     let date: Date = new Date(new Date().getFullYear(), 4, 1);
     let ownerData: Record<string, any>[] = generateResourceData(1, 300, 'Resource');
     let eventData: Record<string, any>[] = generateStaticEvents(new Date(date), 300, 12);
     let scheduleObj: Schedule = new Schedule({
-        height: '650px', width: '100%',
+        height: '650px', width: '100%', currentView: 'TimelineMonth', cssClass: 'virtual-scroll',
         views: [
-            { option: 'TimelineMonth', eventTemplate: '#timeline-event-template', allowVirtualScrolling: true }
+            { option: 'TimelineMonth', eventTemplate: '#timeline-event-template', allowVirtualScrolling: true },
+            { option: 'Month', eventTemplate: '#timeline-event-template', allowVirtualScrolling: true }
         ],
         group: {
             byGroupID: false,

@@ -2,6 +2,7 @@
     "name": "File Manager",
     "directory": "file-manager",
     "category": "Navigation",
+    "type":"update",
     "ftName": "file-manager",
     "samples": [
         {
@@ -31,6 +32,14 @@
             "category": "File Manager",
             "api": { "FileManager": ["ajaxSettings", "view"] },
             "description": "This example demonstrates the how to drag and drop the files in a JavaScript (TypeScript) File Manager."
+        },
+        {
+            "url": "directory-upload",
+            "name": "Directory upload",
+            "category": "File Manager",
+            "type": "new",
+            "api": { "FileManager": ["ajaxSettings", "view"] },
+            "description": "This example demonstrates how to upload the folder (directory) in a JavaScript File Manager."
         },
         {
             "url": "usecase",

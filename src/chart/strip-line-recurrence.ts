@@ -46,7 +46,7 @@ Chart.Inject(ColumnSeries, DateTime, Category, Legend, Tooltip, StripLine);
             }
         ],
         //Initializing Chart title
-        title: 'World Pollution Report', tooltip: { enable: true, format: ' Year: ${point.x}<br> Tons Per Day: ${point.y}' },
+        title: 'World Pollution Report', tooltip: { enable: true, format: ' Year: <b>${point.x}</b><br> Tons Per Day: <b>${point.y}</b>' },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

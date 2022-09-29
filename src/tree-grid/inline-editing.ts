@@ -1,21 +1,18 @@
-import { loadCultureFiles } from '../common/culture-loader';
-import { TreeGrid, Toolbar, Edit, RowDD } from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Toolbar, Edit } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
-TreeGrid.Inject(Toolbar, Edit, RowDD);
+TreeGrid.Inject(Toolbar, Edit);
 /**
  * Auto wrap sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let grid: TreeGrid = new TreeGrid(
         {
             dataSource: sampleData,
             childMapping: 'subtasks',
             treeColumnIndex: 1,
             height: 400,
-            selectedRowIndex: 2,
             editSettings: {
                 allowAdding: true,
                 allowEditing: true,
@@ -24,7 +21,7 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
                 newRowPosition: 'Below'
 
             },
-            toolbar: ['Add', 'Delete', 'Update', 'Cancel','Indent', 'Outdent'],
+            toolbar: ['Add', 'Delete', 'Update', 'Cancel'],
             columns: [
                 {
                     field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, textAlign: 'Right',
@@ -49,10 +46,10 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
         change: (e: ChangeEventArgs) => {
             if (e.value === 'CellEditing') {
                 grid.editSettings.mode = 'Cell';
-                grid.toolbar = ['Add', 'Delete', 'Update', 'Cancel','Indent', 'Outdent'];
+                grid.toolbar = ['Add', 'Delete', 'Update', 'Cancel'];
             } else {
                 grid.editSettings.mode = 'Row';
-                grid.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel','Indent', 'Outdent'];
+                grid.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
             }
 
         }

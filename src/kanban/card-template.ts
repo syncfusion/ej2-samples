@@ -79,7 +79,7 @@ import { DatePicker } from '@syncfusion/ej2-calendars';
             function  onDialogClose(args: DialogEventArgs) {
                 if(args.element.querySelector('#datepicker') as any)
                 {
-                    args.data.Date =(args.element.querySelector('#datepicker') as any).ej2_instances[0].value.toLocaleString('es-PR').split(" ")[0];
+                    args.data.Date =(args.element.querySelector('#datepicker') as any).ej2_instances[0].value.toLocaleString('es-PR').split(",")[0];
                 }
        }
 };

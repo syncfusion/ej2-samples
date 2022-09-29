@@ -6,7 +6,7 @@ import { RichTextEditor, Toolbar, Image,  Link, HtmlEditor, QuickToolbar, NodeSe
 RichTextEditor.Inject(Toolbar, Image,  Link, HtmlEditor, QuickToolbar );
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-
+import { isNullOrUndefined } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
     loadCultureFiles();
     let defaultRTE: RichTextEditor = new RichTextEditor({
@@ -51,18 +51,20 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         let nodeObj: NodeSelection = new NodeSelection();
         let range: Range = nodeObj.getRange(defaultRTE.contentModule.getDocument());
         let imgEle: HTMLElement = nodeObj.getNodeCollection(range)[0] as HTMLElement;
-        if (e.item.tooltipText === 'Rotate Right') {
-            let transform: number = (imgEle.style.transform === '') ? 0 :
-                parseInt(imgEle.style.transform.split('(')[1].split(')')[0], 10);
-            imgEle.style.transform = 'rotate(' + (transform + 90) + 'deg)';
-            defaultRTE.formatter.saveData();
-            defaultRTE.formatter.enableUndo(defaultRTE);
-        } else if (e.item.tooltipText === 'Rotate Left') {
-            let transform: number = (imgEle.style.transform === '') ? 0 :
-                Math.abs(parseInt(imgEle.style.transform.split('(')[1].split(')')[0], 10));
-            imgEle.style.transform = 'rotate(-' + (transform + 90) + 'deg)';
-            defaultRTE.formatter.saveData();
-            defaultRTE.formatter.enableUndo(defaultRTE);
+        if (!isNullOrUndefined(e.item)) {
+            if (e.item.tooltipText === 'Rotate Right') {
+                let transform: number = (imgEle.style.transform === '') ? 0 :
+                    parseInt(imgEle.style.transform.split('(')[1].split(')')[0], 10);
+                imgEle.style.transform = 'rotate(' + (transform + 90) + 'deg)';
+                defaultRTE.formatter.saveData();
+                defaultRTE.formatter.enableUndo(defaultRTE);
+            } else if (e.item.tooltipText === 'Rotate Left') {
+                let transform: number = (imgEle.style.transform === '') ? 0 :
+                    Math.abs(parseInt(imgEle.style.transform.split('(')[1].split(')')[0], 10));
+                imgEle.style.transform = 'rotate(-' + (transform + 90) + 'deg)';
+                defaultRTE.formatter.saveData();
+                defaultRTE.formatter.enableUndo(defaultRTE);
+            }
         }
     }
 };

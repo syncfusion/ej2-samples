@@ -47,7 +47,7 @@ import { Browser } from '@syncfusion/ej2-base';
                     { x: new Date(2011, 0, 1), y: 1.38 }, { x: new Date(2012, 0, 1), y: 1.66 },
                     { x: new Date(2013, 0, 1), y: 1.66 }, { x: new Date(2014, 0, 1), y: 1.67 }
                 ],
-                xName: 'x',
+                xName: 'x',border: { width: 0.5 , color:'#666666' }, opacity: 1,
                 yName: 'y', name: 'Organic',
             }, {
                 type: 'StackingArea',
@@ -61,7 +61,7 @@ import { Browser } from '@syncfusion/ej2-base';
                     { x: new Date(2011, 0, 1), y: 1.25 }, { x: new Date(2012, 0, 1), y: 1.55 },
                     { x: new Date(2013, 0, 1), y: 1.55 }, { x: new Date(2014, 0, 1), y: 1.65 }
                 ],
-                xName: 'x',
+                xName: 'x',border: { width: 0.5 , color:'#666666' }, opacity: 1,
                 yName: 'y', name: 'Fair-trade',
             }, {
                 type: 'StackingArea',
@@ -75,7 +75,7 @@ import { Browser } from '@syncfusion/ej2-base';
                     { x: new Date(2011, 0, 1), y: 0.57 }, { x: new Date(2012, 0, 1), y: 0.61 },
                     { x: new Date(2013, 0, 1), y: 0.67 }, { x: new Date(2014, 0, 1), y: 0.67 }
                 ],
-                xName: 'x',
+                xName: 'x',border: { width: 0.5 , color:'#666666' }, opacity: 1,
                 yName: 'y', name: 'Veg Alternatives',
             }, {
                 type: 'StackingArea',
@@ -89,7 +89,7 @@ import { Browser } from '@syncfusion/ej2-base';
                     { x: new Date(2011, 0, 1), y: 1.82 }, { x: new Date(2012, 0, 1), y: 2.16 },
                     { x: new Date(2013, 0, 1), y: 2.51 }, { x: new Date(2014, 0, 1), y: 2.61 }
                 ],
-                xName: 'x',
+                xName: 'x',border: { width: 0.5 , color:'#666666' }, opacity: 1,
                 yName: 'y', name: 'Others',
             }
         ],

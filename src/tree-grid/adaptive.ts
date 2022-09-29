@@ -28,9 +28,9 @@ TreeGrid.Inject(Page, Filter, Sort, Edit, Toolbar);
             editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true, mode: 'Dialog' },
             toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Search'],
             columns: [
-                { field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, validationRules: { required: true, number: true}, width: 135, textAlign: 'Right' },
-                { field: 'taskName', headerText: 'Task Name',validationRules: { required: true}, width: 280, textAlign: 'Left' },
-                { field: 'duration', headerText: 'Duration',validationRules: {required: true}, width: 140, textAlign: 'Right' },
+                { field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, width: 135, textAlign: 'Right', validationRules: { required: true, number: true }},
+                { field: 'taskName', headerText: 'Task Name', width: 280, textAlign: 'Left', validationRules: { required: true }},
+                { field: 'duration', headerText: 'Duration', width: 140, textAlign: 'Right' },
                 { field: 'progress', headerText: 'Progress', width: 145, textAlign: 'Right' }
             ],
         });

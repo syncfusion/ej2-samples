@@ -163,9 +163,9 @@ class LeftExtendTool extends ToolBase {
                     let node: NodeModel = addNode();
                     let empInfo: EmployeeInfo = selectedObject[0].data as EmployeeInfo;
                     if (empInfo.branch === 'Root') {
-                        empInfo.branch = 'Right';
+                        (node.data as EmployeeInfo).branch = 'Right';
                     } else if (empInfo.branch === 'Right' || empInfo.branch === 'subRight') {
-                        empInfo.branch = 'subRight';
+                        (node.data as EmployeeInfo).branch = 'subRight';
                     }
                     let connector: ConnectorModel = addConnector(selectedObject[0], node);
                     diagram.clearSelection();
@@ -314,7 +314,7 @@ export interface EmployeeInfo {
         width: '100%', height: '550px',
         snapSettings: { constraints: SnapConstraints.None }, tool: DiagramTools.SingleSelect,
         layout: {
-            type: 'MindMap', getBranch: (node: Node) => {
+            type: 'MindMap',orientation:'LeftToRight', getBranch: (node: Node) => {
                 return ((node as Node).data as EmployeeInfo).branch;
             }, horizontalSpacing: 50
         },

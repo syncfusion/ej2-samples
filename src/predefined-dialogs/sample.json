@@ -1,0 +1,66 @@
+{ 
+   "name": "Predefined Dialogs",
+   "directory": "predefined-dialogs",
+   "type": "new",
+   "category":"Layout",
+   "ftName": "predefined-dialogs",
+   "samples" : [
+      {"url":"default", 
+      "name": "Default functionalities", 
+      "description":"The example demonstrates the default rendering of the JavaScript perdefined dialog, which supports modal and non-modal (modeless), built-in buttons, and more.", 
+      "category":"Predefined Dialogs",
+      "api":{
+         "Predefined Dialogs":[
+            "title",
+            "content",
+            "okButton",
+            "showCloseIcon",
+            "closeOnEscape",
+            "animationSettings",
+            "position",
+            "isDraggable",
+            "width",
+            "height"]
+         }
+      }  ,
+      {"url":"customization", 
+      "name": "Customization", 
+      "description":"This example demonstrates how to create custom dialogs such as alert dialogs, confirmation dialogs, and prompt dialogs using the JavaScript dialog control.", 
+      "category":"Predefined Dialogs",
+      "api":{
+         "Predefined Dialogs":[
+            "title",
+            "content",
+            "okButton",
+            "cancelButton",
+            "showCloseIcon",
+            "closeOnEscape",
+            "animationSettings",
+            "position",
+            "isDraggable",
+            "width",
+            "height"]
+         }
+      },
+      {
+         "url":"animation", 
+         "name": "Animation", 
+         "description":"This example demonstrates how to open or close the JavaScript dialog with various animation effects, and how to customize the animation duration and delay.", 
+         "category":"Predefined Dialogs",
+         "api":{
+          "Predefined Dialogs":[
+            "title",
+            "content",
+            "okButton",
+            "cancelButton",
+            "showCloseIcon",
+            "closeOnEscape",
+            "animationSettings",
+            "position",
+            "width",
+            "height"
+            ] 
+         } 
+      } 
+   ]
+}

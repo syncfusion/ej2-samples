@@ -56,13 +56,13 @@ let chartData: any[] = [
                 name: 'Organic',
             }, {
                 dataSource: chartData, xName: 'x', yName: 'y1',
-                type: 'StackingArea100', name: 'Fair-trade',
+                type: 'StackingArea100', name: 'Fair-trade',border: {width: 1 , color: '#ffffff ' }, opacity: 1,
             }, {
                 dataSource: chartData, xName: 'x', yName: 'y2',
-                type: 'StackingArea100', name: 'Veg Alternatives',
+                type: 'StackingArea100', name: 'Veg Alternatives',border: { width: 1 , color: '#ffffff '}, opacity: 1,
             }, {
                 dataSource: chartData, xName: 'x', yName: 'y3',
-                type: 'StackingArea100', name: 'Others',
+                type: 'StackingArea100', name: 'Others',border: {width: 1 , color: '#ffffff '}, opacity: 1,
             }
         ],
         width : Browser.isDevice ? '100%' : '60%',

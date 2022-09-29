@@ -38,7 +38,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
         ],
         enableAnimation: false,
         //Initializing Tooltip
-        tooltip: { enable: true, format: '${point.x} : <b>${point.y}%</b>' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>' },
         legendSettings: {
             visible: false,
         },
@@ -48,7 +48,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
     });
     pie.appendTo('#container');

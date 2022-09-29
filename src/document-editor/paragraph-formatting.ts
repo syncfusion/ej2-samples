@@ -16,6 +16,7 @@ import * as data from './data-paragraph-formatting.json';
     DocumentEditorContainer.Inject(Toolbar);
     container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
+    container.documentEditorSettings.showHiddenMarks = true;
 
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
     container.documentEditor.open(JSON.stringify((<any>data)));

@@ -18,7 +18,6 @@ import { Browser } from '@syncfusion/ej2-base';
             textAlignment: 'Far'
         },
         titleStyle: {
-            fontFamily: 'Roboto',
             fontStyle: 'medium', size: '14px'
         },
         chartArea: { border: { width: 0 } },

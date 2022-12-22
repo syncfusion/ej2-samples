@@ -36,9 +36,10 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Countries',
             valueType: 'Category',
-            majorGridLines: { width: 0 }
+            majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
 
         },
         chartArea: {
@@ -55,7 +56,9 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             minimum: 0,
             maximum: 40,
             interval: 10,
-            majorGridLines: { width: 0 }
+            lineStyle: { width: 0 },
+            minorTickLines: { width: 0 },
+            majorTickLines: { width: 0 },
         },
         //Initializing Chart Series
         series: [

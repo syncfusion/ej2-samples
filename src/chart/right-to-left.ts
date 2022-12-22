@@ -18,7 +18,8 @@ import { Browser, EmitType } from '@syncfusion/ej2-base';
         //Initializing Primary X and Y Axis
         primaryXAxis: {
             valueType: 'Double', majorGridLines: { width: 0 },
-            minimum: 2015, maximum: 2020, interval: 1
+            minimum: 2015, maximum: 2020, interval: 1, majorTickLines: {width : 0},
+            minorTickLines: {width: 0}
         },
         primaryYAxis:
         {
@@ -42,7 +43,7 @@ import { Browser, EmitType } from '@syncfusion/ej2-base';
             }
         ],
         //Initializing Chart title
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         enableRtl: true,
         title: 'Company Performance', tooltip: { enable: true },
         axisLabelRender: labelRender,

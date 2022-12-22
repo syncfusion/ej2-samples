@@ -89,7 +89,7 @@ Chart.Inject(
             crosshair: { enable: true, lineType: 'Vertical' },
             chartArea: { border: { width: 0 } },
             title: 'AAPL 2012-2017',
-            width: Browser.isDevice ? '100%' : '80%',
+            width: Browser.isDevice ? '100%' : '75%',
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];
                 selectedTheme = selectedTheme ? selectedTheme : 'Material';

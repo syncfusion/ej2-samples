@@ -47,7 +47,7 @@ import { Query, DataManager } from '@syncfusion/ej2-data';
         });
     grid.appendTo('#container5');
 
-    this.toolTipInterval1 = setInterval(
+    let toolTipInterval1: any = setInterval(
         (): void => {
             if (document.getElementById('container5')) {
                 let value1: number = Math.round(Math.random() * (90 - 55) + 55);
@@ -91,7 +91,7 @@ import { Query, DataManager } from '@syncfusion/ej2-data';
 
 
             } else {
-                clearInterval(this.toolTipInterval1);
+                clearInterval(toolTipInterval1);
             }
         },
         2000);

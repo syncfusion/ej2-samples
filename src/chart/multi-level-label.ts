@@ -29,9 +29,11 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'Category', labelRotation: 90,
+            valueType: 'Category', labelRotation: 90, labelIntersectAction : Browser.isDevice ? 'Rotate90' : 'Trim',
             border: { width: 1, type: 'Rectangle' },
             isIndexed: true, interval: 1, majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 },
             multiLevelLabels : (Browser.isDevice ? ([
                 {
                     border: { type: 'Rectangle' },
@@ -109,7 +111,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         title: 'Fruits and Vegetables - Season',
         pointRender: labelRender,
         legendSettings: { visible: false },
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

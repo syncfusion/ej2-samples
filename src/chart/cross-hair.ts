@@ -66,7 +66,7 @@ import { Browser } from '@syncfusion/ej2-base';
          */
         crosshair: { enable: true },
         legendSettings: { visible: false },
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
         //Initializing Chart title
         title: 'Conns,Inc Stock Details',
         load: (args: ILoadedEventArgs) => {

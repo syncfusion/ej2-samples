@@ -23,23 +23,13 @@ Chart.Inject(DateTime, Tooltip, MultiColoredLineSeries);
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'DateTime',
-            labelFormat: 'y',
-            intervalType: 'Years',
-            edgeLabelPlacement: 'Shift',
-            majorGridLines: { width: 0 }
+            valueType: 'DateTime',labelFormat: 'y',intervalType: 'Years',edgeLabelPlacement: 'Shift',majorGridLines: { width: 0 } ,
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
             {
-                rangePadding: 'None',
-                minimum: 4,
-                maximum: 10,
-                title: 'Particulate Matter(PM)',
-                lineStyle: { width: 0 },
-                majorTickLines: { width: 0 },
-                minorTickLines: { width: 0 }
+                rangePadding: 'None',minimum: 4,maximum: 10,title: 'Particulate Matter(PM)',lineStyle: { width: 0 },majorTickLines: { width: 0 },minorTickLines: { width: 0 }
             },
         chartArea: {
             border: {
@@ -61,9 +51,9 @@ Chart.Inject(DateTime, Tooltip, MultiColoredLineSeries);
         title: 'Particulate Levels in Rainfall',
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true, shared: true
+            enable: true, shared: true, enableAnimation: false, header:'<b>Rainfall</b>', format: '${point.x} : <b>${point.y}'
         },
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

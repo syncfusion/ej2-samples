@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, Category, Tooltip, ILoadedEventArgs, ChartTheme, Legend,
+    Chart, Category, ILoadedEventArgs, ChartTheme, Legend,
     Trendlines, ScatterSeries, SplineSeries, LineSeries, TrendlineTypes
 } from '@syncfusion/ej2-charts';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
-Chart.Inject(Category, Tooltip, ScatterSeries, SplineSeries, LineSeries, Trendlines, Legend);
+Chart.Inject(Category, ScatterSeries, SplineSeries, LineSeries, Trendlines, Legend);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**

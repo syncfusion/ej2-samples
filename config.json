@@ -173,6 +173,9 @@
 		"dropdown",
 		"pdfviewer",
 		"formdesigner",
-		"workflow"
+		"workflow",
+		"form-validator",
+		"signature",
+		"multiline-textbox"
 	]
 }

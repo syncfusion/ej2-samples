@@ -467,6 +467,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 if (!args.target.classList.contains('e-appointment')) {
                     const titleObj: TextBox = new TextBox({ placeholder: 'Title' });
                     titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
+                    titleObj.focusIn();
                     const typeObj: DropDownList = new DropDownList({
                         dataSource: resourceData,
                         placeholder: 'Choose Type',
@@ -536,6 +537,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 remove(newEventElement);
                 removeClass([document.querySelector('.e-selected-cell')], 'e-selected-cell');
             }
+            scheduleObj.closeQuickInfoPopup();
             targetElement = <HTMLElement>args.event.target;
             if (closest(targetElement, '.e-contextmenu')) {
                 return;

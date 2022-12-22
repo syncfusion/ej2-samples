@@ -34,10 +34,8 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Years',
             valueType: 'DateTime',
             skeleton: 'yMMM',
-            edgeLabelPlacement: 'Shift',
             majorGridLines : { width : 0 }
         },
 
@@ -59,8 +57,8 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
                 xName: 'x',
                 yName: 'y',
                 fill: fill,
-                border: { width: 0.5, color: borderColor[themes.indexOf(theme)]},
-                animation: { enable: false }
+                animation: { enable: false },
+                border: { width: 0.5, color: borderColor[themes.indexOf(theme)] }
             },
         ],
         //Initializing Zooming
@@ -75,13 +73,12 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
         //Initializing Chart title
         title: 'Sales History of Product X',
         legendSettings: { visible: false },
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
-            args.chart.series[0].border = { width: 0.5, color: borderColor[themes.indexOf(args.chart.theme.toLowerCase())] }
         }
     });
     chart.appendTo('#container');

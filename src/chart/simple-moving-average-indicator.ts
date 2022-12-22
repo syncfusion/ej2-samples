@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, CandleSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic, ChartTheme,
+    Chart, CandleSeries, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic, ChartTheme,
     Crosshair, LineSeries, SmaIndicator
 } from '@syncfusion/ej2-charts';
 import { Browser, Ajax } from '@syncfusion/ej2-base';
 Chart.Inject(
-    CandleSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, LineSeries,
+    CandleSeries, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, LineSeries,
     SmaIndicator
 );
 
@@ -71,7 +71,7 @@ Chart.Inject(
             },
             //Initializing Chart Title
             title: 'AAPL - 2012-2017',
-            width: Browser.isDevice ? '100%' : '80%',
+            width: Browser.isDevice ? '100%' : '75%',
             // custom code start
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];

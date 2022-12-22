@@ -16,7 +16,7 @@ CircularGauge.Inject(Annotations);
     // custom code end
     let circulargauge: CircularGauge = new CircularGauge(gauge6());
     circulargauge.appendTo('#container');
-    this.gauge5Interval1 = setInterval(
+    let gauge5Interval1: any = setInterval(
         (): void => {
             let newVal: number = circulargauge.axes[0].pointers[0].value + (Math.floor(Math.random() * (10 - (-10))) - 10);
             if (newVal <= 0) {
@@ -29,7 +29,7 @@ CircularGauge.Inject(Annotations);
                     document.getElementById('pointerannotation').innerHTML = newVal.toString() + ' km/h';
                 }
             } else {
-                clearInterval(this.gauge5Interval1);
+                clearInterval(gauge5Interval1);
             }
         },
         1000

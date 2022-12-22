@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, Month, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
-
+import { extend } from '@syncfusion/ej2-base';
 Schedule.Inject(Month, Resize, DragAndDrop);
 
 /**
@@ -9,6 +9,7 @@ Schedule.Inject(Month, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], null, true);
     // custom code start
     (window as TemplateFunction).getCellContent = (date: Date) => {
         if (date.getMonth() === 10 && date.getDate() === 23) {
@@ -41,6 +42,7 @@ Schedule.Inject(Month, Resize, DragAndDrop);
         cellTemplate: '${if(type === "monthCells")}<div class="templatewrap">${getCellContent(data.date)}</div>${/if}',
         views: ['Month'],
         currentView: 'Month',
+        eventSettings: { dataSource: data },
         selectedDate: new Date(2021, 11, 15)
     });
     scheduleObj.appendTo('#Schedule');

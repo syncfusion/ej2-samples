@@ -25,6 +25,7 @@ import { Dialog } from '@syncfusion/ej2-popups';
     function onFileSelect(args: any): void {
         let inputElement: HTMLInputElement  = document.getElementById('upload') as HTMLInputElement;
         inputElement.value = args.filesData[0].name;
+        formObj.validate('upload');
     }
 
     let options: any  = {
@@ -70,7 +71,8 @@ import { Dialog } from '@syncfusion/ej2-popups';
     });
     confirm.appendTo('#confirmationDialog');
 
-    document.getElementById('submit-btn').onclick = () => {
+    document.getElementById('submit-btn').onclick = (args) => {
         onFormSubmit();
+        args.preventDefault();
     };
 };

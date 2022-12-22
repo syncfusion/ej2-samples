@@ -28,7 +28,6 @@ import { Browser } from '@syncfusion/ej2-base';
             minimum: 0,
             maximum: 100000,
             interval: 1,
-            title: Browser.isDevice ? '' : 'Profit',
             labelFormat: '${value}'
         },
 

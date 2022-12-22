@@ -29,7 +29,7 @@ import * as dataSource from './datasource.json';
     sortBy.appendTo('#sortBy');
     let field: DropDownList = new DropDownList({ enabled: false });
     field.appendTo('#field');
-    let direction: DropDownList = new DropDownList();
+    let direction: DropDownList = new DropDownList({ change: onChange });
     direction.appendTo('#direction');
     document.getElementById('sort').onclick = (): void => {
         setKanbanProperties();
@@ -55,6 +55,16 @@ import * as dataSource from './datasource.json';
             field.value = 'Priority';
             field.enabled = true;
         }
+      if (args.value === 'Ascending') {
+        let data: string = sortBy.value === 'Index' ? 'RankId' : 'None';
+        setFieldValue(data);
+        direction.value = 'Ascending';
+      }
+      if (args.value === 'Descending') {
+        let data: string = sortBy.value === 'Index' ? 'RankId' : 'None';
+        setFieldValue(data);
+        direction.value = 'Descending';
+      }
     }
     function setFieldValue(data: string): void {
         field.dataSource = [data];

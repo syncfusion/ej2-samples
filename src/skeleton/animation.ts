@@ -51,7 +51,7 @@ import { ListView } from "@syncfusion/ej2-lists";
                 dataSource: data['list-data'],
                 fields: { text: "text" },
                 height: '420px',
-                cssClass: 'e-list-template e-card',
+                cssClass: 'e-list-template',
                 template: template,
                 sortOrder: "Ascending"
             });

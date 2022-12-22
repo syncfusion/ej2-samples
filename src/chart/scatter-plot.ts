@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, ScatterSeries, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
+import { Chart, ScatterSeries, Legend, Tooltip, ILoadedEventArgs, ChartTheme, Highlight } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { scatterData } from './scatter-data';
-Chart.Inject(ScatterSeries, Legend, Tooltip);
+Chart.Inject(ScatterSeries, Legend, Tooltip, Highlight );
 
 /**
  * Sample for Scatter Series
@@ -13,11 +13,11 @@ Chart.Inject(ScatterSeries, Legend, Tooltip);
 
         //Initializing Primary X Axis
         primaryXAxis: {
+            minimum: 40,
+            maximum: 56,
             majorGridLines: { width: 0 },
-            minimum: 100,
-            maximum: 220,
             edgeLabelPlacement: 'Shift',
-            title: 'Height (cm)'
+            title: 'Shoulder Breadth (cm)'
         },
         chartArea: {
             border: {
@@ -30,12 +30,13 @@ Chart.Inject(ScatterSeries, Legend, Tooltip);
             majorTickLines: {
                 width: 0
             },
-            minimum: 50,
-            maximum: 80,
+            minimum: 70,
+            maximum: 140,
+            interval: 10,
             lineStyle: {
                 width: 0
             },
-            title: 'Weight (kg)',
+            title: 'Bust Chest Circumference (cm)',
             rangePadding: 'None'
         },
 
@@ -43,36 +44,67 @@ Chart.Inject(ScatterSeries, Legend, Tooltip);
         series: [
             {
                 type: 'Scatter',
-                dataSource: scatterData.getMaleData,
-                xName: 'x', width: 2, marker: {
+                dataSource: scatterData.getCluster1Value,
+                xName: 'Breadth', width: 2, marker: {
                     visible: false,
-                    width: 12,
-                    height: 12,
+                    width: 10,
+                    height: 10,
                     shape: 'Circle'
                 },
-                yName: 'y', name: 'Male', opacity: 0.6
+                yName: 'Circumference', name: '18-20 Years'
             },
             {
                 type: 'Scatter',
-                dataSource: scatterData.getFemaleData,
-                xName: 'x', width: 2, marker: {
+                dataSource: scatterData. getCluster2Value,
+                xName: 'Breadth', width: 2, marker: {
                     visible: false,
-                    width: 12,
-                    height: 12,
-                    shape: 'Diamond'
+                    width: 10,
+                    height: 10,
+                    shape: 'Circle'
                 },
-                yName: 'y', name: 'Female', opacity: 0.6
+                yName: 'Circumference', name: '21-25 Years'
+            },
+            {
+                type: 'Scatter',
+                dataSource: scatterData.getCluster3Value,
+                xName: 'Breadth', width: 2, marker: {
+                    visible: false,
+                    width: 10,
+                    height: 10,
+                    shape: 'Circle'
+                },
+                yName: 'Circumference', name: '26-30 Years'
+            },
+            {
+                type: 'Scatter',
+                dataSource: scatterData.getCluster4Value,
+                xName: 'Breadth', width: 2, marker: {
+                    visible: false,
+                    width: 10,
+                    height: 10,
+                    shape: 'Circle'
+                },
+                yName: 'Circumference', name: '31-35 years'
+            },
+            {
+                type: 'Scatter',
+                dataSource: scatterData.getCluster5Value,
+                xName: 'Breadth', width: 2, marker: {
+                    visible: false,
+                    width: 10,
+                    height: 10,
+                    shape: 'Circle'
+                },
+                yName: 'Circumference', name: '36+ Years'
             }
         ],
-
-        //Initializing Chart title
-        title: 'Height vs Weight',
+        legendSettings:{enableHighlight:true},
         //Initializing User Interaction Tooltip
         tooltip: {
             enable: true,
-            format: 'Weight: <b>${point.y} kg</b> <br/> Height: <b>${point.x}cm</b>'
+           
         },
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

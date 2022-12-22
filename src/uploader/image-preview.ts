@@ -28,6 +28,7 @@ import { detach, Browser, createElement, isNullOrUndefined, EventHandler } from 
             (<any>uploadObj).filesData = [];
             (<any>uploadObj).fileList = [];
             filesName = [];
+            uploadObj.element.value = '';
         }
     };
     document.getElementById('uploadbtn').onclick = () => {
@@ -152,7 +153,7 @@ import { detach, Browser, createElement, isNullOrUndefined, EventHandler } from 
     function readURL(li: HTMLElement, args: any): void {
         let preview: HTMLImageElement = li.querySelector('.upload-image');
         let file: File = args.rawFile; let reader: FileReader = new FileReader();
-        reader.addEventListener('load', () => { preview.src = reader.result; }, false);
+        reader.addEventListener('load', () => { preview.src = reader.result as string; }, false);
         if (file) { reader.readAsDataURL(file); }
     }
 };

@@ -1,7 +1,6 @@
 ﻿<div class="col-lg-9 control-section">
     <div id="Schedule"></div>
 </div>
-<!-- custom code start -->
 <div class="col-lg-3 property-section">
     <table id="property" title="Properties">
         <tbody>
@@ -59,13 +58,12 @@
         </tbody>
     </table>
 </div>
-<!-- custom code end -->
 
 <script id="majorSlotTemplate" type="text/x-template">
     <div>${majorSlotTemplate(data.date)}</div>
 </script>
 <script id="minorSlotTemplate" type="text/x-template">
-    <div style="text-align: right; margin-right: 15px">${minorSlotTemplate(data.date)}</div>
+    <div style="text-align: center">${minorSlotTemplate(data.date)}</div>
 </script>
 
 <div id="action-description">
@@ -88,3 +86,16 @@
         <code>minorSlotTemplate</code> properties.
     </p>
 </div>
+
+<style type="text/css">
+    .time-scale.e-schedule.e-device .e-vertical-view .e-left-indent,
+    .time-scale.e-schedule.e-device .e-vertical-view .e-time-cells-wrap {
+        width: 50px;
+    }
+
+    .time-scale.e-schedule .e-timeline-view .e-date-header-wrap table col,
+    .time-scale.e-schedule .e-timeline-view .e-content-wrap table col {
+        width: 75px;
+    }
+
+</style>

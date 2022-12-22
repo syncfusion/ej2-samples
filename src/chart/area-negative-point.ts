@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 
-import { Chart, Category, AreaSeries, Legend, ILoadedEventArgs, ChartTheme, Tooltip } from '@syncfusion/ej2-charts';
-Chart.Inject(AreaSeries, Category, Legend, Tooltip);
+import { Chart, DateTime, AreaSeries, Legend, ILoadedEventArgs, ChartTheme, Tooltip, Highlight } from '@syncfusion/ej2-charts';
+Chart.Inject(AreaSeries, DateTime, Legend, Tooltip, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -12,10 +12,10 @@ import { Browser } from '@syncfusion/ej2-base';
     let chart: Chart = new Chart({
     //Initializing Primary Axes
     primaryXAxis: {
-        valueType: 'Category',
-        interval: 1,
+        valueType: 'DateTime',
         majorGridLines: { width: 0 },
         edgeLabelPlacement: 'Shift',
+        minimum:new Date(2017, 0, 1), maximum: new Date(2021, 0, 1), intervalType: 'Years'
     },
     primaryYAxis: {
         labelFormat: '${value}', interval: 2000, maximum: 8000, minimum: -4000,
@@ -32,11 +32,9 @@ import { Browser } from '@syncfusion/ej2-base';
         {
             type: 'Area',
             dataSource: [
-                { x: 'Onion', y: 3000 },
-                { x: 'Potato', y: 4000 },
-                { x: 'Tomato', y: -4000 },
-                { x: 'Corn', y: -2000 },
-                { x: 'Carrot', y: 5000 },
+                { x: new Date(2017, 0, 1), y: 3000 }, { x: new Date(2018, 0, 1), y: 4000 },
+                { x: new Date(2019, 0, 1), y: -4000 }, { x: new Date(2020, 0, 1), y: -2000 },
+                { x: new Date(2021, 0, 1), y: 5000 }
             ],
             xName: 'x',
             width: 2,
@@ -47,11 +45,9 @@ import { Browser } from '@syncfusion/ej2-base';
         {
             type: 'Area',
             dataSource: [
-                { x: 'Onion', y: 2000 },
-                { x: 'Potato', y: 3000 },
-                { x: 'Tomato', y: 4000 },
-                { x: 'Corn', y: 2000 },
-                { x: 'Carrot', y: 3000 },
+                { x: new Date(2017, 0, 1), y: 2000 }, { x: new Date(2018, 0, 1), y: 3000 },
+                { x: new Date(2019, 0, 1), y: 4000 }, { x: new Date(2020, 0, 1), y: 2000 },
+                { x: new Date(2021, 0, 1), y: 3000 }
             ],
             xName: 'x',
             width: 2,
@@ -62,11 +58,9 @@ import { Browser } from '@syncfusion/ej2-base';
         {
             type: 'Area',
             dataSource: [
-                { x: 'Onion', y: 2000 },
-                { x: 'Potato', y: -1000 },
-                { x: 'Tomato', y: -3000 },
-                { x: 'Corn', y: 4000 },
-                { x: 'Carrot', y: 1000 },
+                { x: new Date(2017, 0, 1), y: 2000 }, { x: new Date(2018, 0, 1), y: -1000 },
+                { x: new Date(2019, 0, 1), y: -3000 }, { x: new Date(2020, 0, 1), y: 4000 },
+                { x: new Date(2021, 0, 1), y: 1000 }
             ],
             xName: 'x', border: { width: 2 },
             width: 2,
@@ -78,8 +72,8 @@ import { Browser } from '@syncfusion/ej2-base';
     //Initializing Chart title
     title: 'Profit and Loss',
     tooltip:{ enable:true },
-    width: Browser.isDevice ? '100%' : '60%',
-    margin : {left : Browser.isDevice ? 2 : 10, right : Browser.isDevice ? 2 : 10, top : Browser.isDevice ? 2 : 10, bottom : Browser.isDevice ? 2 : 10},
+    width: Browser.isDevice ? '100%' : '75%',
+    legendSettings: {enableHighlight:true},
     load: (args: ILoadedEventArgs) => {
         let selectedTheme: string = location.hash.split('/')[1];
         selectedTheme = selectedTheme ? selectedTheme : 'Material';

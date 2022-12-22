@@ -77,7 +77,7 @@ import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
     tabObj.appendTo('#tab_adaptive');
 
     let overflowModes: DropDownList = new DropDownList({
-        width: '100%',
+        width: '90%',
         change: changeOverFlowMode
     });
     overflowModes.appendTo('#adaptive');

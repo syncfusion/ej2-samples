@@ -62,11 +62,11 @@ import { Browser } from '@syncfusion/ej2-base';
                 yName: 'y', name: 'Coldest',
                 marker: {
                     visible: true, height: 10, width: 10, shape: 'Diamond',
-                    dataLabel: { visible: true, position: 'Bottom' }
+                    dataLabel: { visible: true, position: 'Top' }
                 }
             }
         ],
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         //Initializing Chart title
         title: 'Alaska Weather Statistics - 2016',
         load: (args: ILoadedEventArgs) => {

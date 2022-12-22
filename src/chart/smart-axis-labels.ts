@@ -37,7 +37,9 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             valueType: 'Category',
             interval: 1,
             majorGridLines: { width: 0 },
-            labelIntersectAction: 'Hide'
+            labelIntersectAction: 'Hide',
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
         chartArea: {
             border: {

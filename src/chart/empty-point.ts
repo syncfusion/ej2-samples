@@ -4,6 +4,7 @@ import {
     EmptyPointMode, Category, Legend, Tooltip, ILoadedEventArgs
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { Browser } from '@syncfusion/ej2/base';
 Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
 
 /**
@@ -14,11 +15,12 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
     let chart: Chart = new Chart({
         //Initializing Primary X and Y Axis
         primaryXAxis: {
-            title: 'Product', valueType: 'Category', interval: 1
+            valueType: 'Category', interval: 1, labelIntersectAction: Browser.isDevice ? 'None' : 'Rotate45', labelRotation: Browser.isDevice ? -45 : 0, majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
         primaryYAxis:
         {
-            title: 'Profit', minimum: 0, maximum: 100, interval: 20, labelFormat: '{value}%'
+           minimum: 0, maximum: 100, interval: 20, labelFormat: '{value}%'
         },
         //Initializing Chart Series
         series: [

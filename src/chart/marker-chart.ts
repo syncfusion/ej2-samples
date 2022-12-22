@@ -15,14 +15,17 @@ import { Browser } from '@syncfusion/ej2-base';
             title: 'Countries', valueType: 'Category',
             interval: 1, labelIntersectAction: 'Rotate45',
             majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 },
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Penetration', rangePadding: 'None',
+            title: 'Penetration',
+            rangePadding: 'None',
             labelFormat: '{value}%', minimum: 0,
-            lineStyle: { width: 0},
+            lineStyle: { width: 0 },
             maximum: 75, interval: 15
         },
         chartArea: {
@@ -88,7 +91,7 @@ import { Browser } from '@syncfusion/ej2-base';
         tooltip: {
             enable: true
         },
-        width : Browser.isDevice ? '100%' : '60%',
+        width : Browser.isDevice ? '100%' : '75%',
         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

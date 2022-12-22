@@ -35,8 +35,8 @@ export function getValue(series: Series[], pointIndex: number, y: number): strin
     let chart: Chart = new Chart({
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Years', valueType: 'Category', majorGridLines: { width: 0 }, minorGridLines: { width: 1 },
-            minorTickLines: { width: 1 }, interval: 1, labelIntersectAction: 'Rotate45',
+             valueType: 'Category', majorGridLines: { width: 0 }, minorGridLines: { width: 1 },
+            minorTickLines: { width: 0 }, interval: 1, labelIntersectAction: 'Rotate45',majorTickLines: {width : 0},
         },
         //Initializing Primary Y Axis
         primaryYAxis:
@@ -55,7 +55,7 @@ export function getValue(series: Series[], pointIndex: number, y: number): strin
         chartArea: { border: { width: 0 } }, title: 'Mobile Game Market by Country',
         //Initializing Selection
         selectionMode: 'Cluster', selectedDataIndexes: [{ series: 0, point: 0 }],
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

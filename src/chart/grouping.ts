@@ -1,11 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    AccumulationChart, AccumulationLegend, PieSeries, AccumulationTooltip,
+    AccumulationChart, AccumulationLegend, PieSeries, 
     IAccTextRenderEventArgs, AccumulationTheme
 } from '@syncfusion/ej2-charts';
-import { IAccPointRenderEventArgs, IAccLoadedEventArgs, AccumulationDataLabel, GroupModes } from '@syncfusion/ej2-charts';
+import { IAccPointRenderEventArgs, IAccLoadedEventArgs,AccumulationTooltip, AccumulationDataLabel, GroupModes } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { Browser } from '@syncfusion/ej2/base';
 
 /**
  * Sample for grouping in Pie chart
@@ -17,32 +18,32 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         series: [
             {
                 dataSource: [
-                    { 'x': 'China', y: 26, text: 'China: 26' },
+                    { 'x': 'Australia', y: 26, text: 'Australia: 26' },
                     { 'x': 'Russia', y: 19, text: 'Russia: 19' },
                     { 'x': 'Germany', y: 17, text: 'Germany: 17' },
                     { 'x': 'Japan', y: 12, text: 'Japan: 12' },
-                    { 'x': 'France', y: 10, text: 'France: 10' },
+                    { 'x': 'China', y: 10, text: 'China: 10' },
                     { 'x': 'South Korea', y: 9, text: 'South Korea: 9' },
                     { 'x': 'Great Britain', y: 27, text: 'Great Britain: 27' },
                     { 'x': 'Italy', y: 8, text: 'Italy: 8' },
-                    { 'x': 'Australia', y: 8, text: 'Australia: 8' },
-                    { 'x': 'Netherlands', y: 8, text: 'Netherlands: 8' },
+                    { 'x': 'France', y: 8, text: 'France: 8' },
+                    { 'x': 'Spain', y: 7, text: 'Spain: 7' },
                     { 'x': 'Hungary', y: 8, text: 'Hungary: 8' },
                     { 'x': 'Brazil', y: 7, text: 'Brazil: 7' },
-                    { 'x': 'Spain', y: 7, text: 'Spain: 7' },
+                    { 'x': 'Netherlands', y: 8, text: 'Netherlands: 8' },
                     { 'x': 'Kenya', y: 6, text: 'Kenya: 6' },
                 ],
-                animation: { enable: true }, name: 'RIO',
+                animation: { enable: true }, 
                 explode: true,
                 dataLabel: {
                     visible: true,
                     position: 'Outside',
-                    connectorStyle: { type: 'Line', length: '5%' },
+                    connectorStyle: { type: 'Curve', length: '20px' },
                     font: {
-                        size: '14px'
+                         fontWeight: "600"
                     }
                 },
-                radius: '70%',
+                radius:Browser.isDevice ? '40%'  : '70%' ,
                 xName: 'x',
                 yName: 'y',
                 groupTo: '9',
@@ -65,9 +66,10 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             args.text = args.point.x + ' ' + args.point.y;
         },
         //Initializing tooltip
-        tooltip: { enable: false },
+        tooltip: {enable: true ,format:"<b>${point.x}</b><br> Gold Medals: <b>${point.y}</b>" , header:""},
+        enableBorderOnMouseMove:false,
         //Initializing title
-        title: 'RIO Olympics Gold',
+        title: 'Rio Olympic Gold Medals',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

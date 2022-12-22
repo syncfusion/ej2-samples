@@ -71,7 +71,7 @@ Chart.Inject(
                 mode: 'XY',
                 enablePan: true
             },
-            width: Browser.isDevice ? '100%' : '80%',
+            width: Browser.isDevice ? '100%' : '75%',
             title: 'AAPL - 2012-2017',
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];

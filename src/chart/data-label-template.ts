@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, LineSeries, DataLabel, Legend, ILoadedEventArgs,
+    Chart, ColumnSeries, DataLabel, Legend, ILoadedEventArgs,
     ChartTheme, Category, ITextRenderEventArgs
 } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, DataLabel, Category, Legend);
+Chart.Inject(ColumnSeries, DataLabel, Category, Legend);
 import { Browser } from '@syncfusion/ej2-base';
 /**
  * Sample for DataLabel template
@@ -12,8 +12,7 @@ import { Browser } from '@syncfusion/ej2-base';
     loadCultureFiles();
     let theme: ChartTheme;
     let chart: Chart = new Chart({
-        title: 'Population of India Statistics',
-        subTitle: '(2010 - 2016)',
+        title: 'Athletes in Popular School',
         subTitleStyle: {
             textAlignment: 'Far'
         },
@@ -23,68 +22,57 @@ import { Browser } from '@syncfusion/ej2-base';
         chartArea: { border: { width: 0 } },
         // Initialize the chart axes
         primaryXAxis: {
-            minimum: 2010, maximum: 2016,
-            interval: Browser.isDevice ? 2 : 1,
+            valueType: 'Category',
             edgeLabelPlacement: 'Shift',
-            labelStyle: {
-                fontFamily: 'Roboto',
-                fontStyle: 'medium',
-                size: '14px'
-            },
             majorGridLines: { width: 0 },
-            lineStyle: { color: '#eaeaea', width: 1 }
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 },
         },
         primaryYAxis: {
-            minimum: 900, maximum: 1300,
-            labelFormat: '{value}M',
-            title: Browser.isDevice ? '' : 'Population',
-            labelStyle: {
-                fontFamily: 'Roboto',
-                fontStyle: 'medium', size: '14px'
-            },
-            majorGridLines: {
-                color: '#eaeaea', width: 1
-            },
-            lineStyle: {
-                color: '#eaeaea', width: 1
-            }
+            minimum: 0,
+            maximum: 70,
+            lineStyle:{width:0},
+            majorGridLines:{ color:'#eaeaea', width:1}
         },
+        
         // Initialize the chart series
         series: [
             {
-                name: 'Male',
+                name: 'Boys',type:'Column',
                 dataSource: [
-                    { x: 2010, y: 1014 }, { x: 2011, y: 1040 },
-                    { x: 2012, y: 1065 }, { x: 2013, y: 1110 },
-                    { x: 2014, y: 1130 }, { x: 2015, y: 1153 },
-                    { x: 2016, y: 1175 }
-                ], xName: 'x', yName: 'y',
+                    { sports : "Tennis", boys : 50, girls : 38 },
+                    { sports : "Badminton", boys : 30, girls : 40 },
+                    { sports : "Cycling", boys : 37, girls : 20 },
+                    { sports : "Football", boys : 60, girls : 21 },
+                    { sports : "Hockey", boys : 15, girls : 8 },
+                ], xName: 'sports', yName: 'boys',columnSpacing:0.5 , columnWidth:0.75,
                 marker: {
-                    visible: true,
+                    visible: false,
                     shape: 'Circle',
                     dataLabel: {
                         visible: true,
-                        position: 'Top',
-                        margin: { right: 30 },
-                        template: '#Male-Material'
+                        position: 'Outer',
+                        margin: { top: 70 },
+                        template: '#Boys-Material'
                     }
                 }, width: 2
             }, {
-                name: 'Female',
+                name: 'Girls', type:'Column',
                 dataSource: [
-                    { x: 2010, y: 990 }, { x: 2011, y: 1010 },
-                    { x: 2012, y: 1030 }, { x: 2013, y: 1070 },
-                    { x: 2014, y: 1105 }, { x: 2015, y: 1138 },
-                    { x: 2016, y: 1155 }
-                ], xName: 'x', yName: 'y',
+                    { sports : "Tennis", boys : 50, girls : 38 },
+                    { sports : "Badminton", boys : 30, girls : 40 },
+                    { sports : "Cycling", boys : 37, girls : 20 },
+                    { sports : "Football", boys : 60, girls : 21 },
+                    { sports : "Hockey", boys : 15, girls : 8 },
+                ], xName: 'sports', yName: 'girls',columnSpacing:0.5 , columnWidth:0.75,
                 marker: {
-                    visible: true,
+                    visible: false,
                     shape: 'Rectangle',
                     dataLabel: {
                         visible: true,
-                        position: 'Bottom',
-                        margin: { right: 15 },
-                        template: '#Female-Material'
+                        position: 'Outer',
+                        margin: { top: 70 },
+                        template: '#Girls-Material'
                     }
                 }, width: 2
             }
@@ -100,7 +88,7 @@ import { Browser } from '@syncfusion/ej2-base';
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             args.chart.theme = theme;
         },
-        width: Browser.isDevice ? '100%' : '80%'
+        width: Browser.isDevice ? '100%' : '75%'
     });
     chart.appendTo('#container');
 };

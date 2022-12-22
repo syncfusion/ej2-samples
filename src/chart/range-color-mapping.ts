@@ -11,7 +11,10 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend, Highlight, DataLabel);
 (window as any).default = (): void => {
     loadCultureFiles();
     let chart: Chart = new Chart({
-        primaryXAxis: { valueType: 'Category', majorGridLines: { width: 0 } },
+        primaryXAxis: {
+            valueType: 'Category', majorGridLines: { width: 0 }, majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
+        },
         primaryYAxis: {
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 },
@@ -26,7 +29,7 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend, Highlight, DataLabel);
         series: [
             {
                 dataSource: [
-                    { x: 'Jan', y: 6.96 },
+                    { x: 'Jan', y: 6 },
                     { x: 'Feb', y: 8.9 },
                     { x: 'Mar', y: 12 },
                     { x: 'Apr', y: 17.5 },
@@ -88,7 +91,7 @@ Chart.Inject(ColumnSeries, Category, Tooltip, Legend, Highlight, DataLabel);
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         },
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
     });
     chart.appendTo('#column-container');
 };

@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, DataLabel, ITooltipRenderEventArgs,
-    StackingBarSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme
+    StackingBarSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme, Highlight
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(StackingBarSeries, DataLabel, Category, Legend, Tooltip);
+Chart.Inject(StackingBarSeries, DataLabel, Category, Legend, Tooltip, Highlight);
 
 /**
  * Sample for Tornado sample
@@ -17,22 +17,18 @@ Chart.Inject(StackingBarSeries, DataLabel, Category, Legend, Tooltip);
         primaryXAxis: {
             valueType: 'Category',
             title: 'Height in Inches',
-            minorGridLines: { width: 0 },
-            minorTickLines: { width: 0 },
             interval: 1,
-            majorGridLines: { width: 0 }
+            majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+          
         },
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            labelFormat: '{value} KG',
-            edgeLabelPlacement: 'Shift',
-            majorGridLines: { width: 0 },
-            majorTickLines: { width: 0 },
+            labelFormat: '{value}',
+            title: 'Weight (kg)',
             lineStyle: { width: 0 },
-            labelStyle: {
-                color: 'transparent'
-            }
+            edgeLabelPlacement: 'Shift'
         },
         chartArea: {
             border: {
@@ -44,13 +40,14 @@ Chart.Inject(StackingBarSeries, DataLabel, Category, Legend, Tooltip);
             {
                 type: 'StackingBar',
                 dataSource: [
-                    { x: '4.5', y: 31 }, { x: '4.8', y: 37 },
-                    { x: '5.1', y: 49 }, { x: '5.4', y: 57 },
-                    { x: '5.7', y: 63 }, { x: '6', y: 69 }
+                    { x: '4.5', y: 31, text: '31 KG'}, { x: '4.8', y: 37, text: '37 KG' },
+                    { x: '5.1', y: 49, text: '49 KG' }, { x: '5.4', y: 57, text: '57 KG' },
+                    { x: '5.7', y: 63, text: '63 KG' }, { x: '6', y: 69, text: '69 KG' }
                 ],
-                xName: 'x', width: 2,
+                xName: 'x', width: 2, columnWidth:0.5,
                 yName: 'y', name: 'Female', marker: {
                     dataLabel: {
+                        name: 'text',
                         visible: true,
                         position: 'Top',
                         font: {
@@ -66,7 +63,7 @@ Chart.Inject(StackingBarSeries, DataLabel, Category, Legend, Tooltip);
                     { x: '5.1', y: -52, text: '52 KG' }, { x: '5.4', y: -64, text: '64 KG' },
                     { x: '5.7', y: -70, text: '70 KG' }, { x: '6', y: -74, text: '74 KG' }
                 ],
-                xName: 'x', width: 2,
+                xName: 'x', width: 2, columnWidth:0.5,
                 yName: 'y', name: 'Male', marker: {
                     dataLabel: {
                         name: 'text',
@@ -85,11 +82,13 @@ Chart.Inject(StackingBarSeries, DataLabel, Category, Legend, Tooltip);
         },
         tooltipRender: (args: ITooltipRenderEventArgs) => {
             args.text = args.text.indexOf('-') > 0 ? args.text.replace('-', '') : args.text;
+            args.text = args.text + " " + "<b>kg</b>";
         },
         legendSettings: {
-            position: Browser.isDevice ? 'Auto' : 'Right'
+            position: Browser.isDevice ? 'Bottom' : 'Right',
+            enableHighlight :true
         },
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
         //Initializing Chart title
         title: 'Height vs Weight',
         load: (args: ILoadedEventArgs) => {

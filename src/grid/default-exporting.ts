@@ -1,13 +1,13 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Grid, Toolbar, ExcelExport, PdfExport, Group,
+    Grid, Toolbar, ExcelExport, PdfExport, Group, Sort,
     PdfQueryCellInfoEventArgs, ExcelQueryCellInfoEventArgs
 } from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { employeeDetails } from './data-source';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 
-Grid.Inject(Toolbar, ExcelExport, PdfExport, Group);
+Grid.Inject(Toolbar, ExcelExport, PdfExport, Group, Sort);
 /**
  * Excel,PDF, CSV export sample
  */
@@ -18,6 +18,7 @@ Grid.Inject(Toolbar, ExcelExport, PdfExport, Group);
         {
             dataSource: employeeDetails,
             allowExcelExport: true,
+            allowSorting: true,
             allowPdfExport: true,
             allowGrouping: true,
             toolbar: ['ExcelExport', 'PdfExport', 'CsvExport'],

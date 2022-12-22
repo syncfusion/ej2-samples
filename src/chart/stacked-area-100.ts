@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, StackingAreaSeries, DateTime, ILoadedEventArgs, Legend, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(StackingAreaSeries, DateTime, Legend);
+import { Chart, StackingAreaSeries, DateTime, ILoadedEventArgs, Legend, ChartTheme, Highlight, Tooltip } from '@syncfusion/ej2-charts';
+Chart.Inject(StackingAreaSeries, DateTime, Legend, Highlight, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 let chartData: any[] = [
     { x: new Date(2000, 0, 1), y: 0.61, y1: 0.03, y2: 0.48, y3: 0.23 },
@@ -29,10 +29,12 @@ let chartData: any[] = [
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'DateTime',
-            majorGridLines: { width: 0 },
-            intervalType: 'Years',
-            labelFormat: 'y',
-            edgeLabelPlacement: 'Shift'
+              intervalType: 'Years',
+              majorGridLines: { width: 0 },
+              labelFormat: 'y',
+              edgeLabelPlacement: 'Shift',
+              lineStyle: { width: 0 },
+              minimum: new Date(1999, 0, 1), maximum: new Date(2015, 0, 1)
         },
         chartArea: {
             border: {
@@ -42,10 +44,7 @@ let chartData: any[] = [
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Spends',
-            majorGridLines: { width: 0 },
-            rangePadding: 'None',
-            interval: 20
+            majorTickLines: { width: 0 }, rangePadding: 'None', interval: 20, lineStyle: {width : 0}
         },
         //Initializing Chart Series
         series: [
@@ -53,19 +52,21 @@ let chartData: any[] = [
                 dataSource: chartData, xName: 'x', yName: 'y',
                 //Series type as 100% stacked area series
                 type: 'StackingArea100',
-                name: 'Organic',
+                name: 'Bank-Transfer',
+                border: {width: 0.5 , color: '#ffffff ' }, opacity: 1,
             }, {
                 dataSource: chartData, xName: 'x', yName: 'y1',
-                type: 'StackingArea100', name: 'Fair-trade',border: {width: 1 , color: '#ffffff ' }, opacity: 1,
+                type: 'StackingArea100', name: 'Credit Card',border: {width: 0.5 , color: '#ffffff ' }, opacity: 1,
             }, {
                 dataSource: chartData, xName: 'x', yName: 'y2',
-                type: 'StackingArea100', name: 'Veg Alternatives',border: { width: 1 , color: '#ffffff '}, opacity: 1,
+                type: 'StackingArea100', name: 'Debit Card',border: { width: 0.5 , color: '#ffffff '}, opacity: 1,
             }, {
-                dataSource: chartData, xName: 'x', yName: 'y3',
-                type: 'StackingArea100', name: 'Others',border: {width: 1 , color: '#ffffff '}, opacity: 1,
+                dataSource: chartData, xName: 'x', yName: 'y3', 
+                type: 'StackingArea100', name: 'Cash',border: {width: 0.5 , color: '#ffffff '}, opacity: 1,
             }
         ],
-        width : Browser.isDevice ? '100%' : '60%',
+        width : Browser.isDevice ? '100%' : '75%',tooltip:{enable:true},
+        legendSettings: {enableHighlight:true}, 
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -73,7 +74,7 @@ let chartData: any[] = [
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         //Initializing Chart Title
-        title: 'Trend in Sales of Ethical Produce'
+        title: 'Sales by Payment Mode'
     });
     chart.appendTo('#container');
 };

@@ -15,16 +15,19 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         primaryXAxis: {
             minimum: 1970,
             maximum: 2016,
-            majorGridLines: { width: 0 }
+            majorGridLines: { width: 0 },
+            majorTickLines: {width : 0},
+            minorTickLines: {width: 0}
         },
         //Initializing Primary Y Axis
         primaryYAxis: {
-            title: 'Sales',
             labelFormat: '{value}%',
             interval: 25,
             minimum: 0,
             maximum: 100,
-            majorGridLines: { width: 0 }
+            lineStyle: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 },
         },
         chartArea: { border: { width: 0 } },
         //Initializing Chart Series

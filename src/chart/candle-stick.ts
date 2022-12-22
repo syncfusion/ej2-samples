@@ -77,7 +77,7 @@ let getLabelText: Function = (value: number): string => {
                     selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
             },
              // custom code end
-            width: Browser.isDevice ? '100%' : '80%', chartArea: { border: { width: 0 } },
+            width: Browser.isDevice ? '100%' : '75%', chartArea: { border: { width: 0 } },
             crosshair: { enable: true, lineType: 'Vertical' }
         });
         chart.appendTo('#container');

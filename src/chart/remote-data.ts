@@ -57,6 +57,8 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             valueType: 'Category',
             title: 'Assignee',
             majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: {width: 0}
         },
 
         //Initializing Primary Y Axis
@@ -96,7 +98,7 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         pointRender: pointRender,
         axisLabelRender: labelRender,
         loaded: loadedChart,
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs): void => {
             let div: HTMLElement = document.getElementById('waitingpopup');
             div.style.display = 'block';

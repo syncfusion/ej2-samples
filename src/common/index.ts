@@ -193,7 +193,7 @@
   let breadCrumbSample: Element = document.querySelector('.sb-bread-crumb-text>.crumb-sample');
   let hsplitter: string = '<div class="sb-toolbar-splitter sb-custom-item"></div>';
   // tslint:disable-next-line:no-multiline-string
-  let openNewTemplate: string = `<div class="sb-custom-item sb-open-new-wrapper"><a id="openNew" target="_blank">
+  let openNewTemplate: string = `<div class="sb-custom-item sb-open-new-wrapper"><a id="openNew" target="_blank" aria-label="Open new sample">
   <div class="sb-icons sb-icon-Popout"></div></a></div>`;
   // tslint:disable-next-line:no-multiline-string
   let sampleNavigation: string = `<div class="sb-custom-item sample-navigation"><button id='prev-sample' class="sb-navigation-prev" 
@@ -303,7 +303,7 @@
               },
               placeholder: 'Search here...',
               noRecordsTemplate: '<div class="search-no-record">We’re sorry. We cannot find any matches for your search term.</div>',
-              fields: { groupBy: 'doc.component', value: 'doc.name', text: 'doc.name' },
+              fields: { groupBy: 'doc.component', value: 'doc.uid', text: 'doc.name' },
               popupHeight: 'auto',
               suggestionCount: 10,
               highlight: true,

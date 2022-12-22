@@ -34,7 +34,9 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
     let chart: Chart = new Chart({
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'Category', interval: 1, majorGridLines: { width: 0 }
+            valueType: 'Category', interval: 1, majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 },
+            majorGridLines: { width: 0 }
         },
         chartArea: {
             border: { width: 0 }
@@ -55,7 +57,7 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
                     { x: 'UK', y: 41 }, { x: 'RUS', y: 26 }
                 ],
                 xName: 'x', width: 2, yName: 'y', marker: { height: 10, width: 10 },
-                errorBar: { visible: true, verticalError: 3, horizontalError: 3 }, name: 'Sales'
+                errorBar: { visible: true, verticalError: 3, horizontalError: 3 }
             },
         ],
         //Initializing Chart title

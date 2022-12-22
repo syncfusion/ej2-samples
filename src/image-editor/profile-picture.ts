@@ -40,7 +40,9 @@ import { loadCultureFiles } from '../common/culture-loader';
                 },
                 created: () => {
                     const imageEditor: ImageEditor = getComponent(document.getElementById('image-editor'), 'image-editor') as ImageEditor;
-                    imageEditor.theme = window.location.href.split('#')[1].split('/')[1];
+                    if (imageEditor.theme && window.location.href.split('#')[1]) {
+                        imageEditor.theme = window.location.href.split('#')[1].split('/')[1];
+                    }
                 },
                 toolbar: []
             }, '#image-editor');
@@ -104,11 +106,15 @@ import { loadCultureFiles } from '../common/culture-loader';
         (document.getElementById('img-upload') as HTMLInputElement).value = null;
     };
 	
-	(document.getElementsByClassName('sb-desktop-wrapper')[0] as HTMLElement).onclick = function (args) {
-        const target: HTMLElement = args.target as HTMLElement;
-		if (target.className.indexOf('e-img-editor-sample') > -1 || target.className.indexOf('sb-content') > -1) {
-			dialogObj.hide();
-		}
-	};
+    var imageHide = document.getElementsByClassName('sb-desktop-wrapper')[0] as HTMLElement;
+    if (imageHide) {
+        (document.getElementsByClassName('sb-desktop-wrapper')[0] as HTMLElement).onclick = function (args) {
+            const target: HTMLElement = args.target as HTMLElement;
+            if (target.className.indexOf('e-img-editor-sample') > -1 || target.className.indexOf('sb-content') > -1) {
+                dialogObj.hide();
+            }
+        };
+    }
+	
 }
 

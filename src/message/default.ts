@@ -30,7 +30,7 @@ import { Message } from '@syncfusion/ej2-notifications';
     msgWarning.appendTo('#msg_warning');
 
     let msgError: Message = new Message({
-        content: "A problem has been occurred while submitting your data",
+        content: "A problem occurred while submitting your data",
         severity: "Error"
     });
     msgError.appendTo('#msg_error');

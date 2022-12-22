@@ -34,7 +34,9 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             valueType: 'Category',
             opposedPosition: true,
             isInversed: true,
-            majorGridLines: { width: 0 }
+            majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 },
         },
 
         //Initializing Primary Y Axis
@@ -78,7 +80,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         legendSettings: { visible: false },
         //Initializing Chart Title
         title: 'Exchange Rate (INR per USD)',
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

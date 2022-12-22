@@ -17,7 +17,9 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             } else {
                 imageEditorObj.open('src/image-editor/images/bridge.png');
             }
-            imageEditorObj.theme = window.location.href.split('#')[1].split('/')[1];
+            if (imageEditorObj.theme && window.location.href.split('#')[1]) {
+                imageEditorObj.theme = window.location.href.split('#')[1].split('/')[1];
+            }
         }
     });
     imageEditorObj.appendTo('#imageeditor');

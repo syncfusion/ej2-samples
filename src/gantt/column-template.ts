@@ -6,6 +6,14 @@ import { templateData, editingResources } from './data-source';
  *  Column template Gantt sample
  */
 Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
+(<{ isRtl?: Function }>window).isRtl = () => {
+    let gantt = (document.getElementsByClassName('e-gantt')[0] as any).ej2_instances[0];
+    if (gantt.enableRtl) {
+      return 'right:30px;';
+    } else {
+      return 'left:30px;';
+    }
+  };
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(

@@ -2,7 +2,8 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toolbar sample to demonstrate default functionalities.
  */
-import { Toolbar } from '@syncfusion/ej2-navigations';
+import { Toolbar, ItemModel } from '@syncfusion/ej2-navigations';
+import { extend } from '@syncfusion/ej2-base';
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -24,8 +25,6 @@ import { Toolbar } from '@syncfusion/ej2-navigations';
             {
                 prefixIcon: 'e-icons e-italic', tooltipText: 'Italic' },
             {
-                prefixIcon: 'e-icons e-paint-bucket', tooltipText: 'Color-Picker' },
-            {
                 type: 'Separator' },
             {
                 prefixIcon: 'e-icons e-align-left', tooltipText: 'Align-Left' },
@@ -46,29 +45,102 @@ import { Toolbar } from '@syncfusion/ej2-navigations';
             {
                 prefixIcon: 'e-icons e-undo', tooltipText: 'Undo' },
             {
-                prefixIcon: 'e-icons e-redo', tooltipText: 'Redo' },
-            {
-                type: 'Separator' },
-            {
-                prefixIcon: 'e-icons e-upload-1', tooltipText: 'Upload' },
-            {
-                prefixIcon: 'e-icons e-download', tooltipText: 'Download' },
-            {
-                type: 'Separator' },
-            {
-                prefixIcon: 'e-icons e-increase-indent', tooltipText: 'Text Indent' },
-            {
-                prefixIcon: 'e-icons e-decrease-indent', tooltipText: 'Text Outdent' },
-            {
-                type: 'Separator' },
-            {
-                prefixIcon: 'e-icons e-erase', tooltipText: 'Clear' },
-            {
-                prefixIcon: 'e-icons e-refresh', tooltipText: 'Reload' },
-            {
-                prefixIcon: 'e-icons e-export', tooltipText: 'Export'
-            }]
+                prefixIcon: 'e-icons e-redo', tooltipText: 'Redo' }
+            ]
     });
     //Render initialized Toolbar component
     toolbarObj.appendTo('#toolbar_default');
+
+    let items: ItemModel[] = [
+        {
+            prefixIcon: 'e-icons e-cut', tooltipText: 'Cut', text: 'Cut'
+        },
+        {
+            prefixIcon: 'e-icons e-copy', tooltipText: 'Copy', text: 'Copy'
+        },
+        {
+            prefixIcon: 'e-icons e-paste', tooltipText: 'Paste', text: 'Paste'
+        },
+        {
+            type: 'Separator'
+        },
+        {
+            prefixIcon: 'e-icons e-bold', tooltipText: 'Bold', text: 'Bold'
+        },
+        {
+            prefixIcon: 'e-icons e-underline', tooltipText: 'Underline', text: 'Underline'
+        },
+        {
+            prefixIcon: 'e-icons e-italic', tooltipText: 'Italic', text: 'Italic'
+        },
+        {
+            type: 'Separator'
+        },
+        {
+            prefixIcon: 'e-icons e-list-unordered', text: 'Bullets', tooltipText: 'Bullets'
+        },
+        {
+            prefixIcon: 'e-icons e-list-ordered', text: 'Numbering', tooltipText: 'Numbering'
+        },
+        {
+            type: 'Separator'
+        },
+        {
+            prefixIcon: 'e-icons e-undo', tooltipText: 'Undo', text: 'Undo'
+        },
+        {
+            prefixIcon: 'e-icons e-redo', tooltipText: 'Redo', text: 'Redo'
+        },
+        {
+            type: 'Separator'
+        },
+        {
+            prefixIcon: 'e-icons e-align-left', tooltipText: 'Align-Left', text: 'Left'
+        },
+        {
+            prefixIcon: 'e-icons e-align-right', tooltipText: 'Align-Right', text: 'Right'
+        },
+        {
+            prefixIcon: 'e-icons e-align-center', tooltipText: 'Align-Center', text: 'Center'
+        },
+        {
+            prefixIcon: 'e-icons e-justify', tooltipText: 'Align-Justify', text: 'Justify'
+        },
+        {
+            type: 'Separator'
+        },
+        {
+            prefixIcon: 'e-icons e-increase-indent', tooltipText: 'Text-Indent', text: 'Indent'
+        },
+        {
+            prefixIcon: 'e-icons e-decrease-indent', text: 'Outdent', tooltipText: 'Text-Outdent'
+        },
+        {
+            prefixIcon: 'e-icons e-erase', text: 'Clear', tooltipText: 'Clear'
+        },
+    ]
+    
+    let toolbarObj1: Toolbar = new Toolbar({
+        overflowMode: 'Scrollable',
+        items: extend([], items, null, true) as ItemModel[]
+    });
+    toolbarObj1.appendTo('#toolbar_Scrollable');
+    
+    let toolbarObj2: Toolbar = new Toolbar({
+        overflowMode: 'Popup',
+        items: extend([], items, null, true) as ItemModel[]
+    });
+    toolbarObj2.appendTo('#toolbar_popup');
+    
+    let toolbarObj3: Toolbar = new Toolbar({
+        overflowMode: 'Extended',
+        items: extend([], items, null, true) as ItemModel[]
+    });
+    toolbarObj3.appendTo('#toolbar_Extended');
+    
+    let toolbarObj4: Toolbar = new Toolbar({
+        overflowMode: 'MultiRow',
+        items: extend([], items, null, true) as ItemModel[]
+    });
+    toolbarObj4.appendTo('#toolbar_MultiRow');
 };

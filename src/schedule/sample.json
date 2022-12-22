@@ -13,9 +13,18 @@
             "hideOnDevice": true,
             "api": {
                 "Schedule": [
-                    "height",
+                    "cssClass",
+                    "Views",
+                    "timezone",
+                    "group",
+                    "resources",
+                    "dateHeaderTemplate",
                     "eventSettings",
-                    "selectedDate"
+                    "selectedDate",
+                    "timeScale",
+                    "firstDayOfWeek",
+                    "rowAutoHeight",
+                    "enableTooltip"
                 ]
             }
         },
@@ -39,8 +48,9 @@
             "description": "This demo shows how to populate appointments in the JavaScript Scheduler through local data sources like JSON data types with the proper date format.",
             "api": {
                 "Schedule": [
+                    "selectedDate",
                     "eventSettings",
-                    "selectedDate"
+                    "eventRendered"
                 ]
             }
         },
@@ -51,8 +61,9 @@
             "description": "This demo shows how to populate appointments or events in the JS Scheduler through remote data sources such as web services, web API, URL, and OData.",
             "api": {
                 "Schedule": [
-                    "eventSettings",
-                    "selectedDate"
+                    "selectedDate",
+                    "currentView",
+                    "eventSettings"
                 ]
             }
         },
@@ -63,9 +74,9 @@
             "description": "This example shows how to synchronously work with JavaScript Scheduler and Google Calendar by converting Scheduler events to the required format.",
             "api": {
                 "Schedule": [
+                    "selectedDate",
                     "eventSettings",
-                    "dataBinding",
-                    "selectedDate"
+                    "dataBinding"
                 ]
             }
         },
@@ -76,8 +87,13 @@
             "description": "This demo showcases the way of binding signalR services to Scheduler component. Here, the SignalR is used to bind the data with Scheduler.",
             "api": {
                 "Schedule": [
+                    "height",
+                    "selectedDate",
                     "eventSettings",
-                    "dataBinding"
+                    "dataBinding",
+                    "created",
+                    "navigating",
+                    "actionComplete"
                 ]
             }
         },
@@ -88,11 +104,10 @@
             "description": "This demo shows how to define recurring events (appointments) with different patterns and rules that meet iCalendar specifications in the JS Scheduler.",
             "api": {
                 "Schedule": [
-                    "width",
-                    "height",
-                    "currentView",
+                    "views",
                     "selectedDate",
-                    "eventSettings"
+                    "eventSettings",
+                    "eventRendered"
                 ]
             }
         },
@@ -103,9 +118,11 @@
             "description": "This example shows how to block specific days or time intervals on the JS Scheduler that helps to mark unavailable time or days in Calendar.",
             "api": {
                 "Schedule": [
-                    "width",
-                    "height",
                     "currentView",
+                    "Views",
+                    "resourceHeaderTemplate",
+                    "group",
+                    "resources",
                     "selectedDate",
                     "eventSettings"
                 ]
@@ -118,8 +135,6 @@
             "description": "This example shows how to filter the appointments or events of the JS Scheduler based on a search string in a particular field or all fields.",
             "api": {
                 "Schedule": [
-                    "width",
-                    "height",
                     "currentView",
                     "selectedDate",
                     "eventSettings"
@@ -134,6 +149,7 @@
             "api": {
                 "Schedule": [
                     "timezone",
+                    "workHours",
                     "selectedDate",
                     "eventSettings",
                     "eventRendered"
@@ -147,6 +163,7 @@
             "description": "This demo shows the ability to drag and drop appointments from an external source (such as the DataGrid, ListView, etc.)  into the JavaScript Scheduler.",
             "api": {
                 "Schedule": [
+                    "selectedDate",
                     "currentView",
                     "eventSettings",
                     "resourceHeaderTemplate",
@@ -155,7 +172,9 @@
                     "views",
                     "group",
                     "resources",
-                    "actionBegin"
+                    "actionBegin",
+                    "drag"
+                
                 ]
             }
         },
@@ -167,8 +186,11 @@
             "api": {
                 "Schedule": [
                     "allowMultiDrag",
+                    "showQuickInfo",
                     "currentView",
                     "views",
+                    "group",
+                    "resources",
                     "selectedDate",
                     "eventSettings"
                 ]
@@ -181,9 +203,14 @@
             "description": "The example showcases the inline mode of the JS Scheduler that is used to create an appointment or edit an existing appointment's subject easily and quickly.",
             "api": {
                 "Schedule": [
+                    "selectedDate",
+                    "Views",
                     "currentView",
                     "eventSettings",
-                    "allowInline"
+                    "allowInline",
+                    "workDays",
+                    "group",
+                    "resources"
                 ]
             }
         },
@@ -192,14 +219,14 @@
             "name": "Virtual Scrolling ",
             "category": "Scrolling",
             "hideOnDevice": true,
-            "type": "update",
             "description": "This example illustrates how to achieve high performance in the JavaScript Scheduler using virtual scrolling to load resources and events on demand.",
             "api": {
                 "Schedule": [
                     "views",
                     "group",
                     "resources",
-                    "eventSettings"
+                    "eventSettings",
+                    "selectedDate"
                 ]
             }
         },
@@ -210,10 +237,12 @@
             "description": "This example demonstrates the basic views (day, week, workweek, and month) of the JavaScript Scheduler control with their default configurations.",
             "api": {
                 "Schedule": [
-                    "currentView",
+                    "width",
+                    "height",
                     "views",
                     "selectedDate",
-                    "eventSettings"
+                    "eventSettings",
+                    "eventRendered"
                 ]
             }
         },
@@ -226,7 +255,10 @@
                 "Schedule": [
                     "height",
                     "eventSettings",
-                    "selectedDate"
+                    "selectedDate",
+                    "currentView",
+                    "workDays",
+                    "views"
                 ]
             }
         },
@@ -253,7 +285,8 @@
             "description": "This demo presents the JavaScript Scheduler month-agenda view, which follows the month-view layout while displaying events for a selected date.",
             "api": {
                 "Schedule": [
-                    "currentView",
+                    "width",
+                    "height",
                     "views",
                     "selectedDate",
                     "eventSettings"
@@ -267,7 +300,9 @@
             "description": "The example showcases the year view and Timeline year view of the JavaScript Scheduler. The views are helpful to view the events in an annual calendar view.",
             "api": {
                 "Schedule": [
+                    "cssClass",
                     "views",
+                    "resources",
                     "eventSettings"
                 ]
             }
@@ -279,6 +314,7 @@
             "description": "This example showcases how to customize the starting week of the month and also customize the number of weeks to be rendered in month view with JavaScript Scheduler.",
             "api": {
                 "Schedule": [
+                    "height",
                     "eventSettings",
                     "Views"
                 ]
@@ -294,7 +330,8 @@
                     "currentView",
                     "views",
                     "selectedDate",
-                    "eventSettings"
+                    "eventSettings",
+                    "resources"
                 ]
             }
         },
@@ -319,11 +356,20 @@
             "description": "This demo shows how to design a meeting room calendar, conference room calendar, and cabin room manager using our JavaScript event calendar control.",
             "api": {
                 "Schedule": [
+                    "cssClass",
                     "currentView",
                     "views",
                     "selectedDate",
                     "resourceHeaderTemplate",
-                    "eventSettings"
+                    "eventSettings",
+                    "workHours",
+                    "timeScale",
+                    "group",
+                    "resources",
+                    "popupOpen",
+                    "renderCell",
+                    "eventRendered",
+                    "actionBegin"
                 ]
             }
         },
@@ -334,10 +380,16 @@
             "description": "This demo is a real-time airfare calendar showcase application with flight and airfare details using the JavaScript Scheduler control.",
             "api": {
                 "Schedule": [
-                    "currentView",
                     "views",
+                    "currentView",
                     "selectedDate",
-                    "eventSettings"
+                    "eventSettings",
+                    "resources",
+                    "eventSettings",
+                    "actionBegin",
+                    "dataBinding",
+                    "dataBound",
+                    "popupOpen"
                 ]
             }
         },
@@ -363,8 +415,11 @@
             "description": "This demo presents event (appointment) sharing, which enables a single event to be shared by multiple resources in the JS Scheduler event calendar.",
             "api": {
                 "Schedule": [
+                    "currentView",
+                    "selectedDate",
                     "resourceHeaderTemplate",
                     "group",
+                    "Views",
                     "resources",
                     "eventSettings"
                 ]
@@ -377,10 +432,18 @@
             "description": "This demo shows how to set different workdays for each resource in a group to build a doctor availability application in the JS event calendar.",
             "api": {
                 "Schedule": [
+                    "width",
+                    "height",
+                    "selectedDate",
+                    "currentView",
                     "resourceHeaderTemplate",
                     "group",
                     "resources",
-                    "eventSettings"
+                    "eventSettings",
+                    "Views",
+                    "actionBegin",
+                    "popupOpen",
+                    "renderCell"
                 ]
             }
         },
@@ -393,6 +456,7 @@
                 "Schedule": [
                     "currentView",
                     "views",
+                    "group",
                     "selectedDate",
                     "eventSettings"
                 ]
@@ -408,7 +472,10 @@
                     "rowAutoHeight",
                     "currentView",
                     "views",
+                    "group",
                     "selectedDate",
+                    "eventSettings",
+                    "resources",
                     "eventSettings"
                 ]
             }
@@ -420,6 +487,8 @@
             "description": "This demo shows how to group multiple resources (e.g., airlines) in the JS Scheduler. The resource header can be customized using a template.",
             "api": {
                 "Schedule": [
+                    "selectedDate",
+                    "Views",
                     "resourceHeaderTemplate",
                     "group",
                     "resources",
@@ -434,6 +503,10 @@
             "description": "This demo shows how to group multiple resources with timeline views in the JS Schedule and how to display resources with expanded and collapsed headers.",
             "api": {
                 "Schedule": [
+                    "selectedDate",
+                    "Views",
+                    "currentView",
+                    "workDays",
                     "group",
                     "resources",
                     "eventSettings"
@@ -445,10 +518,15 @@
             "name": "Date-wise Grouping  ",
             "category": "Resource Grouping",
             "description": "This demo shows how to group multiple resources by date in the JS Scheduler. The resource row is rendered under each date in the header.",
+            "type": "update",
             "api": {
                 "Schedule": [
+                    "width",
+                    "height",
+                    "selectedDate",
                     "group",
                     "resources",
+                    "views",
                     "eventSettings"
                 ]
             }
@@ -460,6 +538,8 @@
             "description": "This demo shows how to group resources in a hierarchical structure for parent-child resources in the JavaScript Scheduler control.",
             "api": {
                 "Schedule": [
+                    "currentView",
+                    "selectedDate",
                     "startHour",
                     "endHour",
                     "group",
@@ -475,6 +555,9 @@
             "description": "This demo shows how to change the mode of the Schedule to Adaptive mode in the JavaScript Scheduler control.",
             "api": {
                 "Schedule": [
+                    "view",
+                    "currentView",
+                    "selectedDate",
                     "enableAdaptiveUI",
                     "group",
                     "resources",
@@ -494,6 +577,7 @@
                     "cellTemplate",
                     "views",
                     "eventSettings",
+                    "currentView",
                     "selectedDate"
                 ]
             }
@@ -507,6 +591,8 @@
                 "Schedule": [
                     "cssClass",
                     "dateHeaderTemplate",
+                    "views",
+                    "selectedDate",
                     "eventSettings",
                     "eventRendered",
                     "renderCell"
@@ -523,6 +609,9 @@
                     "width",
                     "height",
                     "cellTemplate",
+                    "startHour",
+                    "endHour",
+                    "workHours",
                     "views",
                     "eventSettings",
                     "selectedDate"
@@ -539,7 +628,8 @@
                     "width",
                     "height",
                     "eventSettings",
-                    "selectedDate"
+                    "selectedDate",
+                    "eventRendered"
                 ]
             }
         },
@@ -553,7 +643,10 @@
                     "width",
                     "height",
                     "eventSettings",
-                    "selectedDate"
+                    "selectedDate",
+                    "resources",
+                    "eventRendered",
+                    "popupOpen"
                 ]
             }
         },
@@ -567,7 +660,8 @@
                     "width",
                     "height",
                     "eventSettings",
-                    "selectedDate"
+                    "selectedDate",
+                    "eventRendered"
                 ]
             }
         },
@@ -580,6 +674,7 @@
                 "Schedule": [
                     "selectedDate",
                     "eventSettings",
+                    "eventRendered",
                     "popupOpen"
                 ]
             }
@@ -591,11 +686,13 @@
             "description": "This demo shows how to design custom appointment (event) editor windows by adding or removing fields from the JavaScript Scheduler appointment window.",
             "api": {
                 "Schedule": [
+                    "Views",
                     "editorTemplate",
                     "showQuickInfo",
                     "eventRendered",
                     "popupOpen",
-                    "actionBegin"
+                    "actionBegin",
+                    "editorTemplate"
                 ]
             }
         },
@@ -606,10 +703,10 @@
             "description": "This demo shows how to include additional header rows like week number and month number on the timeline view in the JS event calendar.",
             "api": {
                 "Schedule": [
-                    "height",
                     "eventSettings",
                     "selectedDate",
-                    "headerRows"
+                    "headerRows",
+                    "Views"
                 ]
             }
         },

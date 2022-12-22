@@ -17,6 +17,10 @@
             "url": "adaptive", "name": "Adaptive Layout ", "category":"Tree Grid","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","height","columns","enableAdaptiveUI","allowSorting","allowFiltering","editSettings","toolbar","allowPaging"] },
             "description": "This example demonstrates the adaptive rendering behavior of Tree Grid features."
          },
+         { 
+            "url": "loading-animation","name": "Loading Animation", "type": "new", "category": "Tree Grid","api":{"TreeGrid": ["columns", "dataSource","allowSorting","allowPaging", "allowFiltering", "loadingIndicator", "pageSettings"] },
+            "description": "This example shows the loading indicator when tree grid loading and refreshing."
+         },
          {  
             "url":"localdata", "name": "Local Data", "category":"Data Binding","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","allowPaging","columns"] },
             "description": "This example shows the binding of an array of list objects in the Syncfusion TypeScript Tree Grid control."

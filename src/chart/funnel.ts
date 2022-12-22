@@ -3,46 +3,40 @@ import {
     AccumulationChart, AccumulationLegend, FunnelSeries, AccumulationTooltip, IAccLoadedEventArgs,
     AccumulationDataLabel, IAccResizeEventArgs, AccumulationTheme
 } from '@syncfusion/ej2-charts';
+import { Browser } from '@syncfusion/ej2/base';
 AccumulationChart.Inject(AccumulationLegend, FunnelSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
  * Sample for Funnel chart
  */
-(window as any).default = (): void => {
+(window as any).default = (): void => { 
     loadCultureFiles();
     let data: object[] = [
-        { 'x': 'China', y: 1409517397, text: 'China' },
-        { 'x': 'India', y: 1339180127, text: 'India' },
-        { 'x': 'United States', y: 324459463, text: 'United States' },
-        { 'x': 'Indonesia', y: 263991379, text: 'Indonesia' },
-        { 'x': 'Brazil', y: 209288278, text: 'Brazil' },
-        { 'x': 'Pakistan', y: 197015955, text: 'Pakistan' },
-        { 'x': 'Nigeria', y: 190886311, text: 'Nigeria' },
-        { 'x': 'Bangladesh', y: 164669751, text: 'Bangladesh' },
-        { 'x': 'Russia', y: 143989754, text: 'Russia' },
-        { 'x': 'Mexico', y: 129163276, text: 'Mexico' },
-        { 'x': 'Japan', y: 127484450, text: ' Japan' },
-        { 'x': 'Ethiopia', y: 104957438, text: 'Ethiopia' },
-        { 'x': 'Philippines', y: 104918090, text: 'Philippines' },
-        { 'x': 'Egypt', y: 97553151, text: 'Egypt' },
-        { 'x': 'Vietnam', y: 95540800, text: 'Vietnam' },
-        { 'x': 'Germany', y: 82114224, text: 'Germany' }];
+        { x: "Hired", y: 50, text: "Hired: 50" },
+        { x: "Personal Interview", y: 58, text: Browser.isDevice ? "Personal <br> Interview: 58" :  "Personal Interview: 58" },
+        { x: "Telephonic Interview", y: 85, text: "Telephonic <br> Interview: 85" },
+        { x: "Screening", y: 105, text: "Screening: 105" },
+        { x: "Initial Validation", y: 145, text: Browser.isDevice ? "Initial <br> Validation: 145" : "Initial Validation: 145" },
+        { x: "Candidates Applied", y: 250, text: "Candidates Applied: 250" },];
     let chart: AccumulationChart = new AccumulationChart({
         //Initializing Chart Series
         series: [{
             type: 'Funnel', dataSource: data, xName: 'x', yName: 'y',
-            neckWidth: '10%',
+            neckWidth: '15%',
             neckHeight: '18%',
+            gapRatio:0.03,
+            width:'45%',
+            height:'80%',
             name: '2017 Population',
             dataLabel: {
-                visible: true, position: 'Outside',
-                connectorStyle: { length: '6%' }, name: 'text',
+                visible: true, position: 'Inside',
+                name: 'text', font: { fontWeight: '600' }, connectorStyle: {length:'20px'}
             },
             explode: false,
         }],
         legendSettings: {visible: false},
         //Initializing tooltip
-        tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>' },
+        tooltip: { enable: false, format: '${point.x} : <b>${point.y}</b>' },
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -53,40 +47,9 @@ AccumulationChart.Inject(AccumulationLegend, FunnelSeries, AccumulationTooltip, 
                 args.accumulation.series[0].height = '70%';
             }
         },
-        resized: (args: IAccResizeEventArgs) => {
-            let bounds: ClientRect = document.getElementById('container').getBoundingClientRect();
-            if (bounds.width < bounds.height) {
-                args.accumulation.series[0].width = '80%';
-                args.accumulation.series[0].height = '70%';
-            } else {
-                args.accumulation.series[0].width = '60%';
-                args.accumulation.series[0].height = '80%';
-            }
-        },
         //Initializing Chart title
-        title: 'Top population countries in the world 2017',
+        title:'Recruitment Process' ,
     });
     chart.appendTo('#container');
-    function neckWidth(value: number): void {
-        chart.series[0].neckWidth = value + '%';
-        document.getElementById('neckWidth').innerHTML = value + '%';
-        chart.removeSvg();
-        chart.refreshSeries();
-        chart.refreshChart();
-    }
-    document.getElementById('chartneckwidth').onpointermove = document.getElementById('chartneckwidth').ontouchmove =
-        document.getElementById('chartneckwidth').onchange = (e: Event) => {
-            neckWidth(+(document.getElementById('chartneckwidth') as HTMLInputElement).value);
-        };
-    function neckHeight(value: number): void {
-        chart.series[0].neckHeight = value + '%';
-        document.getElementById('neckHeight').innerHTML = value + '%';
-        chart.removeSvg();
-        chart.refreshSeries();
-        chart.refreshChart();
-    }
-    document.getElementById('chartneckheight').onpointermove = document.getElementById('chartneckheight').ontouchmove =
-        document.getElementById('chartneckheight').onchange = (e: Event) => {
-            neckHeight(+(document.getElementById('chartneckheight') as HTMLInputElement).value);
-        };
+   
 };

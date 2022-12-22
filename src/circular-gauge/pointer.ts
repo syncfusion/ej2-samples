@@ -13,8 +13,8 @@ CircularGauge.Inject(Annotations);
     loadCultureFiles();
     // custom code end
     let firstgauge: CircularGauge = new CircularGauge(gauge1());
-    let gauge5Interval1: number;
-    let gauge6Interval1: number;
+    let gauge5Interval1: any;
+    let gauge6Interval1: any;
     firstgauge.appendTo('#container2');
     let secondgauge: CircularGauge = new CircularGauge(gauge2());
     secondgauge.appendTo('#container1');
@@ -95,26 +95,26 @@ CircularGauge.Inject(Annotations);
     let sixthGauge: CircularGauge = new CircularGauge(gauge5());
     sixthGauge.appendTo('#container6');
 
-    this.gauge5Interval1 = setInterval(
+    gauge5Interval1 = setInterval(
         (): void => {
             let newVal: number = Math.random() * (90 - 20) + 20;
             if (document.getElementById('container3')) {
                 fifthGauge.setPointerValue(0, 0, newVal);
             } else {
-                clearInterval(this.gauge5Interval1);
+                clearInterval(gauge5Interval1);
             }
         },
         1000
     );
 
-    this.gauge6Interval1 = setInterval(
+    gauge6Interval1 = setInterval(
         (): void => {
             let newVal: number = Math.random() * (80 - 30) + 30;
             if (document.getElementById('container6')) {
                 sixthGauge.setPointerValue(0, 0, newVal);
                 sixthGauge.setPointerValue(0, 1, newVal);
             } else {
-                clearInterval(this.gauge6Interval1);
+                clearInterval(gauge6Interval1);
             }
         },
         1000

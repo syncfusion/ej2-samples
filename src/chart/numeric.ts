@@ -86,7 +86,7 @@ let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEv
             }
         ],
         axisLabelRender: labelRender,
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

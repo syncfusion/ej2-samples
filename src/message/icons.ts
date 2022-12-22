@@ -77,7 +77,7 @@ import { getComponent } from '@syncfusion/ej2-base';
     msgWarningIcon.appendTo('#msg_warning_icon');
 
     let msgErrorIcon: Message = new Message({
-        content: "A problem has been occurred while submitting your data",
+        content: "A problem occurred while submitting your data",
         severity: "Error",
         showCloseIcon: true,
         closed: () => {

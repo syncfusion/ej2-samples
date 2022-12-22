@@ -61,6 +61,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
             remove(newEventElement);
             removeClass([document.querySelector('.e-selected-cell')], 'e-selected-cell');
         }
+        scheduleObj.closeQuickInfoPopup();
         let targetElement: HTMLElement = <HTMLElement>args.event.target;
         if (closest(targetElement, '.e-contextmenu')) {
             return;

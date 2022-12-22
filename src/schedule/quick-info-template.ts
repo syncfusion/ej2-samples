@@ -51,18 +51,14 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     let buttonClickActions: Function = (e: Event) => {
         let quickPopup: HTMLElement = closest(e.target as HTMLElement, '.e-quick-popup-wrapper') as HTMLElement;
         let getSlotData: Function = (): Record<string, any> => {
-            let cellDetails: CellClickEventArgs = scheduleObj.getCellDetails(scheduleObj.getSelectedElements());
-            if (isNullOrUndefined(cellDetails)) {
-                cellDetails = scheduleObj.getCellDetails(scheduleObj.activeCellsData.element);
-            }
             let subject = ((quickPopup.querySelector('#title') as EJ2Instance).ej2_instances[0] as TextBox).value;
             let notes = ((quickPopup.querySelector('#notes') as EJ2Instance).ej2_instances[0] as TextBox).value;
             let addObj: Record<string, any> = {};
             addObj.Id = scheduleObj.getEventMaxID();
             addObj.Subject = isNullOrUndefined(subject) ? 'Add title' : subject;
-            addObj.StartTime = new Date(+cellDetails.startTime);
-            addObj.EndTime = new Date(+cellDetails.endTime);
-            addObj.IsAllDay = cellDetails.isAllDay;
+            addObj.StartTime = new Date(scheduleObj.activeCellsData.startTime);
+            addObj.EndTime = new Date(scheduleObj.activeCellsData.endTime);
+            addObj.IsAllDay = scheduleObj.activeCellsData.isAllDay;
             addObj.Description = isNullOrUndefined(notes) ? 'Add notes' : notes;
             addObj.RoomId = ((quickPopup.querySelector('#eventType') as EJ2Instance).ej2_instances[0] as DropDownList).value;
             return addObj;
@@ -134,20 +130,20 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         },
         popupOpen: (args: PopupOpenEventArgs) => {
             if (args.type === 'QuickInfo' || args.type === 'ViewEventInfo') {
-                let titleObj: TextBox = new TextBox({ placeholder: 'Title' });
-                titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
                 if (!args.target.classList.contains('e-appointment')) {
+                    let titleObj: TextBox = new TextBox({ placeholder: 'Title' });
+                    titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
                     titleObj.focusIn();
+                    let typeObj: DropDownList = new DropDownList({
+                        dataSource: scheduleObj.getResourceCollections().slice(-1)[0].dataSource as Record<string, any>[],
+                        placeholder: 'Choose Type',
+                        fields: { text: 'Name', value: 'Id' },
+                        index: 0
+                    });
+                    typeObj.appendTo(args.element.querySelector('#eventType') as HTMLElement);
+                    let notesObj: TextBox = new TextBox({ placeholder: 'Notes' });
+                    notesObj.appendTo(args.element.querySelector('#notes') as HTMLElement);
                 }
-                let typeObj: DropDownList = new DropDownList({
-                    dataSource: scheduleObj.getResourceCollections().slice(-1)[0].dataSource as Record<string, any>[],
-                    placeholder: 'Choose Type',
-                    fields: { text: 'Name', value: 'Id' },
-                    index: 0
-                });
-                typeObj.appendTo(args.element.querySelector('#eventType') as HTMLElement);
-                let notesObj: TextBox = new TextBox({ placeholder: 'Notes' });
-                notesObj.appendTo(args.element.querySelector('#notes') as HTMLElement);
 
                 let moreDetailsBtn: HTMLButtonElement = args.element.querySelector('#more-details') as HTMLButtonElement;
                 if (moreDetailsBtn) {

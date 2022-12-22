@@ -28,7 +28,6 @@ import { Browser } from '@syncfusion/ej2-base';
             minimum: 0,
             maximum: 100000,
             interval: 1,
-            title: Browser.isDevice ? '' : 'Profit',
             labelFormat: '${value}'
         },
 
@@ -60,7 +59,7 @@ import { Browser } from '@syncfusion/ej2-base';
         title: 'Product X Growth [1995-2005]', legendSettings: { visible: false },
         //Initializing User Interaction Tooltip
         tooltip: { enable: true, header: 'Profit' },
-        width : Browser.isDevice ? '100%' : '60%',
+        width : Browser.isDevice ? '100%' : '75%',
         // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

@@ -92,9 +92,8 @@ import { Browser } from '@syncfusion/ej2-base';
             labelStyle: {
                 size: "0px"
             },
-            majorTickLines: {
-                width: 0
-            }
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
         primaryYAxis: {
             title: "Sales in Percentage",
@@ -137,7 +136,7 @@ import { Browser } from '@syncfusion/ej2-base';
         enableSideBySidePlacement: false,
         selectionMode: "Point",
         selectionPattern: "DiagonalForward",
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
         zoomSettings: {
             enableSelectionZooming: true
         },

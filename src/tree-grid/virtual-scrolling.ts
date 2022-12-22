@@ -15,6 +15,7 @@ TreeGrid.Inject(VirtualScroll, Toolbar, Edit, RowDD);
         {
             dataSource: virtualData,
             enableVirtualization: true,
+            enableVirtualMaskRow: true,
             treeColumnIndex: 1,
             childMapping: 'Crew',
             editSettings: {

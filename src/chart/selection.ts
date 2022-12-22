@@ -15,10 +15,11 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Countries',
             valueType: 'Category',
-             interval: 1,
-            labelIntersectAction : 'Rotate90'
+            interval: 1,
+            labelIntersectAction: 'Rotate90',
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis

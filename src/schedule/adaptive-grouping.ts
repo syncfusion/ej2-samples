@@ -15,7 +15,7 @@ Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
         width: '100%', height: '555px',
         views: ['Day', 'Week', 'Month'],
         currentView: 'Month',
-        selectedDate: new Date(2021, 3, 4),
+        selectedDate: new Date(2023, 0, 4),
         enableAdaptiveUI: true,
         group: {
             resources: ['Projects', 'Categories']

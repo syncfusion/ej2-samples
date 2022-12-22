@@ -160,14 +160,14 @@ function renderComponents(): void {
                     content = tabContent.id;
                     document.querySelector('#external').appendChild(tabContent);
                     renderGrid();
-                    document.querySelector('#external #Grid').classList.add('Grid');
+                    document.querySelector('#Grid').classList.add('Grid');
                     break;
                 case 'Chart':
                     tabContent = createElement('div', { id: 'Chart' });
                     content = tabContent.id;
                     document.querySelector('#external').appendChild(tabContent);
                     renderChart();
-                    document.querySelector('#external #Chart').classList.add('Chart');
+                    document.querySelector('#Chart').classList.add('Chart');
                     break;
                 case 'Schedule':
                     tabContent = createElement('div', { id: 'Schedule' });

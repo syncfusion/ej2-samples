@@ -19,6 +19,8 @@ import { Browser } from '@syncfusion/ej2-base';
             interval: 1,
             labelIntersectAction: 'Rotate90',
             majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis
@@ -86,7 +88,7 @@ import { Browser } from '@syncfusion/ej2-base';
         legendSettings: {
             visible: false
         },
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

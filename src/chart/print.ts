@@ -34,10 +34,10 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Manager',
             valueType: 'Category',
-            majorGridLines: { width: 0 }
-
+            majorGridLines: { width: 0 },
+            majorTickLines: {width : 0},
+            minorTickLines: {width: 0}
         },
         chartArea: {
             border: {
@@ -49,9 +49,12 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         primaryYAxis:
         {
             title: 'Sales',
+            labelFormat: '${value}',
             minimum: 0,
             maximum: 20000,
-            majorGridLines: { width: 0 }
+            lineStyle: { width: 0 },
+            minorTickLines: { width: 0 },
+            majorTickLines: { width: 0 },
         },
         chartMouseClick: (args: IMouseEventArgs) => {
             if (args.target.indexOf('print') > -1) {

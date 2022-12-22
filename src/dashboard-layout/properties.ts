@@ -52,10 +52,10 @@ import { NumericTextBox } from '@syncfusion/ej2-inputs';
         dashboardObject.cellSpacing = [parseInt(args.value, 10), parseInt(args.value, 10)];
     }
     function onChange(args: any): void {
-        if (args.event.currentTarget.id === 'floating') {
+        if (args.event.target.previousElementSibling.id === 'floating') {
             dashboardObject.allowFloating = args.checked;
         }
-        if (args.event.currentTarget.id === 'resizing') {
+        if (args.event.target.previousElementSibling.id === 'resizing') {
             dashboardObject.allowResizing = args.checked;
         }
     }

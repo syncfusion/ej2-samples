@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, StackingBarSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(StackingBarSeries, Category, Legend, Tooltip);
+import { Chart, StackingBarSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme, Highlight } from '@syncfusion/ej2-charts';
+Chart.Inject(StackingBarSeries, Category, Legend, Tooltip, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -13,7 +13,8 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'Category',
-            majorGridLines: { width: 0 }
+            majorGridLines: { width: 0 },
+            majorTickLines: { width: 0 },
         },
         chartArea: {
             border: {
@@ -23,8 +24,8 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            lineStyle: { width: 0},
-            majorTickLines: {width: 0},
+            lineStyle: { width: 0 },
+            majorTickLines: { width: 0 },
             labelFormat: '{value}%',
             edgeLabelPlacement: 'Shift'
         },
@@ -36,7 +37,8 @@ import { Browser } from '@syncfusion/ej2-base';
                 { x: 'May', y: 20 }, { x: 'Jun', y: 24 }],
                 name: 'Apple',
                 xName: 'x', width: 2,
-                yName: 'y'
+                yName: 'y',
+                border:{ width: 1, color: "white" } ,columnWidth:0.6 
             },
             {
                 type: 'StackingBar',
@@ -44,7 +46,8 @@ import { Browser } from '@syncfusion/ej2-base';
                 { x: 'May', y: 21 }, { x: 'Jun', y: 25 }],
                 name: 'Orange',
                 xName: 'x', width: 2,
-                yName: 'y'
+                yName: 'y',
+                border:{ width: 1, color: "white" } ,columnWidth:0.6 
             },
             {
                 type: 'StackingBar',
@@ -52,7 +55,8 @@ import { Browser } from '@syncfusion/ej2-base';
                 { x: 'May', y: -3 }, { x: 'Jun', y: -3.5 }],
                 name: 'Wastage', width: 2,
                 xName: 'x',
-                yName: 'y'
+                yName: 'y',
+                border:{ width: 1, color: "white" } ,columnWidth:0.6 
 
             }
         ],
@@ -62,7 +66,10 @@ import { Browser } from '@syncfusion/ej2-base';
         tooltip: {
             enable: true
         },
-        width : Browser.isDevice ? '100%' : '60%',
+        width : Browser.isDevice ? '100%' : '75%',
+        legendSettings: {
+            enableHighlight :true
+        },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

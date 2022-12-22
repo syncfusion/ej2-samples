@@ -27,6 +27,7 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
+        cssClass: 'time-scale',
         selectedDate: new Date(2021, 0, 10),
         currentView: 'TimelineWeek',
         views: ['Day', 'Week', 'TimelineDay', 'TimelineWeek'],

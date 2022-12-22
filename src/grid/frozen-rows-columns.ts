@@ -42,6 +42,9 @@ Grid.Inject(Selection, Freeze, Sort, Resize);
     let rows: NumericTextBox = new NumericTextBox({
         min: 0,
         max: 5,
+        validateDecimalOnType: true,
+        decimals: 0,
+        format: 'n',
         value: 2
     });
     rows.appendTo('#rows');
@@ -50,6 +53,9 @@ Grid.Inject(Selection, Freeze, Sort, Resize);
     let columns: NumericTextBox = new NumericTextBox({
         min: 0,
         max: 2,
+        validateDecimalOnType: true,
+        decimals: 0,
+        format: 'n',
         value: 1
     });
     columns.appendTo('#columns');

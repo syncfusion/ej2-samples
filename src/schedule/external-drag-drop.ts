@@ -97,8 +97,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
                 description: { title: 'Reason', name: 'Description' }
             }
         },
-        actionBegin: onActionBegin,
-        drag: onItemDrag
+        actionBegin: onActionBegin
     });
     scheduleObj.appendTo('#Schedule');
 
@@ -106,7 +105,8 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         fields: { dataSource: (dataSource as Record<string, any>).waitingList, id: 'Id', text: 'Name' },
         allowDragAndDrop: true,
         nodeDragStop: onTreeDragStop,
-        nodeDragging: onItemDrag,
+        nodeDragging: onTreeDrag,
+        nodeDragStart: onTreeDragStart,
         nodeTemplate: '#treeTemplate',
         cssClass: 'treeview-external-drag',
         dragArea: '.content-wrapper'
@@ -116,24 +116,14 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     let isTreeItemDropped: boolean = false;
     let draggedItemId: string = '';
 
-    function onItemDrag(event: any): void {
+    function onTreeDrag(event: any): void {
         if (scheduleObj.isAdaptive) {
             let classElement: HTMLElement = scheduleObj.element.querySelector('.e-device-hover');
             if (classElement) {
                 classElement.classList.remove('e-device-hover');
             }
-            if (event.event.target.classList.contains('e-work-cells')) {
-                addClass([event.event.target], 'e-device-hover');
-            }
-        }
-        if (document.body.style.cursor === 'not-allowed') {
-            document.body.style.cursor = '';
-        }
-        if (event.name === 'nodeDragging') {
-            let dragElementIcon: NodeListOf<HTMLElement> =
-                document.querySelectorAll('.e-drag-item.treeview-external-drag .e-icon-expandable');
-            for (let i: number = 0; i < dragElementIcon.length; i++) {
-                dragElementIcon[i].style.display = 'none';
+            if (event.target.classList.contains('e-work-cells')) {
+                addClass([event.target], 'e-device-hover');
             }
         }
     }
@@ -184,5 +174,9 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
                 }
             }
         }
+        document.body.classList.remove('e-disble-not-allowed');
     }
+    function onTreeDragStart() {
+        document.body.classList.add('e-disble-not-allowed');
+      }
 };

@@ -80,10 +80,16 @@ enableRipple(false);
     //Specifies the click event for sidebar close.
     document.getElementById('close').onclick = (): void => {
         sidebarObj.hide();
+        if (sidebarObj.showBackdrop == true){
+            sidebarObj.showBackdrop = false;
+        }
     };
     //Specifies the click event for sidebar close.
     document.getElementById('togglesidebar').onclick = (): void => {
         sidebarObj.toggle();
+        if (backDropElement.content == "True") {
+            sidebarObj.showBackdrop = true;
+        }
     };
     function BackBtnClick(): void {
         if (backDropElement.content == "True") {

@@ -16,7 +16,7 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
         //Initializing Series
         series: [
             {
-                type: 'Pie', xName: 'x', yName: 'y', name: 'Profit',
+                type: 'Pie', xName: 'x', yName: 'y', 
                 dataSource: [
                     { x: 'Rice', y: 80 }, { x: 'Wheat', y: null }, { x: 'Oil', y: 70 },
                     { x: 'Corn', y: 60 }, { x: 'Gram', y: null },
@@ -24,9 +24,8 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
                     { x: 'Fruit', y: 60 }, { x: 'Butter', y: null }
                 ],
                 dataLabel: {
-                    visible: true, position: 'Inside', font: {
+                    visible: true, position: 'Inside', enableRotation: true, font: {
                         fontWeight: '600',
-                        color: '#ffffff'
                     }
                 },
                 emptyPointSettings: {
@@ -37,13 +36,18 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
         //Initializing title
         title: 'Annual Product-Wise Profit Analysis',
         legendSettings: { visible: false },
-        tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>' },
+        tooltip: { enable: true, format: '<b>${point.x}</b><br> Profit: <b>$${point.y}K</b>' , header:""},
+        enableBorderOnMouseMove:false,
         //Initializing User Interaction Tooltip
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+        },
+        textRender(args: { text: string; point: { x: string; y: string; }; })
+        {
+            args.text = args.point.x + ": $" + args.point.y + "K";
         }
     });
     chart.appendTo('#container');

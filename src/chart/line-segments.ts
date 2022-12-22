@@ -7,6 +7,7 @@ Chart.Inject(DateTime, Tooltip, ChartAnnotation, MultiColoredLineSeries);
 /**
  * Sample for Line series
  */
+ 
 (window as any).default = (): void => {
     loadCultureFiles();
     let dataValues: Object[] = [];
@@ -24,24 +25,14 @@ Chart.Inject(DateTime, Tooltip, ChartAnnotation, MultiColoredLineSeries);
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'DateTime',
-            labelFormat: 'y',
-            intervalType: 'Years',
+            valueType: 'DateTime', minimum : new Date(1910, 0, 1), maximum : new Date(2010, 0, 1), majorGridLines: {width : 0},
             edgeLabelPlacement: 'Shift',
-            majorGridLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
             {
-                labelFormat: '{value}mm',
-                rangePadding: 'None',
-                minimum: 200,
-                maximum: 800,
-                interval: 100,
-                lineStyle: { width: 0 },
-                majorTickLines: { width: 0 },
-                minorTickLines: { width: 0 }
+                labelFormat: '{value}mm', rangePadding: 'None', minimum: 200, maximum: 800, interval: 100, lineStyle: { width: 0 }, majorTickLines: { width: 0 }, minorTickLines: { width: 0 }
             },
         chartArea: {
             border: {
@@ -50,10 +41,22 @@ Chart.Inject(DateTime, Tooltip, ChartAnnotation, MultiColoredLineSeries);
         },
         annotations: [
             {
-                content: '#templateWrap',
+                content: "<div style='color:green; font-weight:bold; font-size:14px'>Medium</div>",
                 region: 'Series',
-                x: '90%',
-                y: '12%'
+                x: Browser.isDevice ? '21%' : '19%',
+                y: Browser.isDevice ? '42%' : '47%'
+            },
+            {
+                content:  "<div style='color:blue; font-weight:bold;font-size:14px'>High</div>",
+                region: 'Series',
+                x: Browser.isDevice ? '68%' : '69%',
+                y: '10%'
+            },
+            {
+                content: "<div style='color:red; font-weight:bold; font-size:14px'>Low</div>",
+                region: 'Series',
+                x: '95%',
+                y: '84%'
             }
         ],
         legendSettings: { visible: false },
@@ -76,12 +79,12 @@ Chart.Inject(DateTime, Tooltip, ChartAnnotation, MultiColoredLineSeries);
         ],
 
         //Initializing Chart title
-        title: 'Annual Mean Rainfall for Australia',
+        title: 'Annual Mean Rainfall in Australia',
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true, shared: true
+            enable: true, shared: true, enableAnimation: false,header:'<b>Rainfall</b>', format: '${point.x} : <b>${point.y}'
         },
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

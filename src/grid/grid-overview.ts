@@ -34,65 +34,17 @@ function complete(args: any): void {
         }
     }
 }
-function queryCellInfo(args: any): void {
-    if (args.column.field === 'Employees') {
-        if (args.data.EmployeeImg === 'usermale') {
-            args.cell.querySelector('.e-userimg').classList.add('sf-icon-Male');
-        } else {
-            args.cell.querySelector('.e-userimg').classList.add('sf-icon-FeMale');
-        }
-    }
-    if (args.column.field === 'Status') {
-        if (args.cell.textContent === 'Active') {
-            args.cell.querySelector('.statustxt').classList.add('e-activecolor');
-            args.cell.querySelector('.statustemp').classList.add('e-activecolor');
-        }
-        if (args.cell.textContent === 'Inactive') {
-            args.cell.querySelector('.statustxt').classList.add('e-inactivecolor');
-            args.cell.querySelector('.statustemp').classList.add('e-inactivecolor');
-        }
-    }
-    if (args.column.field === 'Rating') {
-        if (args.column.field === 'Rating') {
-            for (let i: number = 0; i < args.data.Rating; i++) {
-                args.cell.querySelectorAll('span')[i].classList.add('checked');
-            }
-        }
-    }
-    if (args.column.field === 'Software') {
-        if (args.data.Software <= 20) {
-            args.data.Software = args.data.Software + 30;
-        }
-        args.cell.querySelector('.bar').style.width = args.data.Software + '%';
-        args.cell.querySelector('.barlabel').textContent = args.data.Software + '%';
-        if (args.data.Status === 'Inactive') {
-            args.cell.querySelector('.bar').classList.add('progressdisable');
-        }
-    }
-}
+
 function startTimer(args: any): void {
     clearTimeout(clrIntervalFun);
     clearInterval(intervalFun);
     dtTime = true;
 }
 
-
-(<{trustTemp?: Function}>window).trustTemp = (e: any): any => {
-    if (e.Trustworthiness === 'Select All') {
-        return '';
-    }
-    /* tslint:disable-next-line:max-line-length */
-    return '<img style="width: 31px; height: 24px" src="src/grid/images/' + e.Trustworthiness + '.png" /> <span id="Trusttext">' + e.Trustworthiness + '</span>';
-};
-
 (<{ratingDetail?: Function}>window).ratingDetail = (e: any): any => {
-    let grid: any = (<any>document.querySelector('.e-grid')).ej2_instances[0];
-    let div: Element = document.createElement('div');
+    const div: Element = document.createElement('div');
     div.className = 'rating';
     let span: Element;
-    if (e.Rating === 'Select All') {
-        return '';
-    }
     for (let i: number = 0; i < 5; i++) {
         if (i < e.Rating) {
             span = document.createElement('span');
@@ -107,21 +59,57 @@ function startTimer(args: any): void {
     return div.outerHTML;
 };
 
-(<{statusDetail?: Function}>window).statusDetail = (e: any): any => {
-    let grid: any = (<any>document.querySelector('.e-grid')).ej2_instances[0];
-    let div: Element = document.createElement('div');
-    let span: Element;
-    if (e.Status === 'Select All') {
-        return 'Select All';
+(<{progessDetail?: Function}>window).progessDetail = (e: any): any => {
+    const myProgress: Element = document.createElement('div');
+    myProgress.id = 'myProgress';
+    myProgress.className = 'pbar';
+    const myBar: Element = document.createElement('div');
+    myBar.id = 'myBar';
+    myBar.className = 'bar';
+    if (e.Status === 'Inactive') {
+        myBar.classList.add('progressdisable');
     }
-    span = document.createElement('span');
+    if (e.Software <= 20) {
+        e.Software = e.Software + 30;
+    }
+    (myBar as HTMLElement).style.width = e[e.column.field] + '%';
+    const pbarlabel: Element = document.createElement('div');
+    pbarlabel.id = 'pbarlabel';
+    pbarlabel.className = 'barlabel';
+    pbarlabel.textContent = e.Software + '%';
+    myBar.appendChild(pbarlabel);
+    myProgress.appendChild(myBar);
+    return myProgress.outerHTML;
+};
+
+(<{empDetail?: Function}>window).empDetail = (e: any): any => {
+    const div: Element = document.createElement('div');
+    const empImg: Element = document.createElement('div');
+    empImg.className = 'empimg';
+    const span: Element = document.createElement('span');
+    span.className = 'e-userimg';
+    if (e.EmployeeImg === 'usermale') {
+        span.classList.add('sf-icon-Male');
+    } else {
+        span.classList.add('sf-icon-FeMale');
+    }
+    empImg.appendChild(span);
+    const Emptext: Element = document.createElement('span');
+    Emptext.id = 'Emptext';
+    Emptext.textContent = e.Employees;
+    div.appendChild(empImg);
+    div.appendChild(Emptext);
+    return div.outerHTML;
+};
+
+(<{statusDetail?: Function}>window).statusDetail = (e: any): any => {
+    const div: Element = document.createElement('div');
+    const span: Element = document.createElement('span');
     if (e.Status === 'Active') {
         span.className = 'statustxt e-activecolor';
         span.textContent = 'Active';
         div.className = 'statustemp e-activecolor';
-    }
-    if (e.Status === 'Inactive') {
-        span = document.createElement('span');
+    } else {
         span.className = 'statustxt e-inactivecolor';
         span.textContent = 'Inactive';
         div.className = 'statustemp e-inactivecolor';
@@ -189,7 +177,6 @@ let urlapi: DataManager = new DataManager({
             },
             { field: 'Address', headerText: 'Address', width: '240', clipMode: 'EllipsisWithTooltip' },
         ],
-        queryCellInfo: queryCellInfo,
         dataBound: startTimer,
         actionComplete: complete
     });

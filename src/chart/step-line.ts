@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, StepLineSeries, DateTime, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(StepLineSeries, DateTime, Legend, Tooltip);
+import { Chart, StepLineSeries, DateTime, Legend, Tooltip, ILoadedEventArgs, ChartTheme, Highlight } from '@syncfusion/ej2-charts';
+Chart.Inject(StepLineSeries, DateTime, Legend, Tooltip, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -12,19 +12,23 @@ import { Browser } from '@syncfusion/ej2-base';
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            labelFormat: 'y',
-            intervalType: 'Years',
             majorGridLines: { width: 0 },
             valueType: 'DateTime',
-            edgeLabelPlacement: 'Shift'
+            edgeLabelPlacement: 'Shift',
+            minimum : new Date(1971,6,11),
+            maximum : new Date(2012,6,11),
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            lineStyle: { width: 0 }, interval: 5,
+            lineStyle: { width: 0 }, interval: 10,
             majorTickLines: { width: 0 },
-            labelFormat: '{value}%'
+            labelFormat: '{value}%',
+            minimum:0,
+          
+            maximum:80,
+            title:'Production (In Percentage)',
         },
         chartArea: {
             border: {
@@ -36,50 +40,28 @@ import { Browser } from '@syncfusion/ej2-base';
             {
                 type: 'StepLine',
                 dataSource: [
-                    { x: new Date(1975, 0, 1), y: 16 },
-                    { x: new Date(1980, 0, 1), y: 12.5 },
-                    { x: new Date(1985, 0, 1), y: 19 },
-                    { x: new Date(1990, 0, 1), y: 14.4 },
-                    { x: new Date(1995, 0, 1), y: 11.5 },
-                    { x: new Date(2000, 0, 1), y: 14 },
-                    { x: new Date(2005, 0, 1), y: 10 },
-                    { x: new Date(2010, 0, 1), y: 16 }],
-                xName: 'x', width: 2,
+                    { x: new Date(1975, 6, 11),y: 35 }, { x: new Date(1978, 6, 11), y: 45 }, { x: new Date(1981, 6, 11), y: 55 },
+                    { x: new Date(1984, 6, 11), y: 20 }, { x: new Date(1987, 6, 11), y: 10 }, { x: new Date(1990, 6, 11), y: 42 },
+                    { x: new Date(1993, 6, 11), y: 35 }, { x: new Date(1996, 6, 11), y: 22 }, { x: new Date(2000, 6, 11), y: 65 },
+                    { x: new Date(2005, 6, 11), y: 65 }, { x: new Date(2010, 6, 11), y: 58 },
+                ],
+                xName: 'x', width: 5,
                 yName: 'y', name: 'China',
                 marker: {
-                    visible: true,
-                    width: 10,
-                    height: 10
+                     visible: true, width: 7, height: 7 
                 },
             },
-            {
-                type: 'StepLine',
-                dataSource: [
-                    { x: new Date(1975, 0, 1), y: 10 },
-                    { x: new Date(1980, 0, 1), y: 7.5 },
-                    { x: new Date(1985, 0, 1), y: 11 },
-                    { x: new Date(1990, 0, 1), y: 7 },
-                    { x: new Date(1995, 0, 1), y: 8 },
-                    { x: new Date(2000, 0, 1), y: 6 },
-                    { x: new Date(2005, 0, 1), y: 3.5 },
-                    { x: new Date(2010, 0, 1), y: 7 }],
-                xName: 'x', width: 2,
-                yName: 'y', name: 'Australia',
-                marker: {
-                    visible: true,
-                    width: 10,
-                    height: 10
-                },
-            }
         ],
 
         //Initializing Chart title
-        title: 'Unemployment Rates 1975-2010',
+        title: 'Fruit Production Statistics',
         //Initializing Usr Interaction Tooltip
         tooltip: {
             enable: true
+            , shared:true , header:"<b>Fruit Production</b>" , format:"${point.x} : <b>${point.y}"
         },
-        width : Browser.isDevice ? '100%' : '60%',
+        width : Browser.isDevice ? '100%' : '75%',
+        legendSettings:{visible : false },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

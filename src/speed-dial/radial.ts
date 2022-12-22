@@ -28,6 +28,7 @@ import { RadialSettings, RadialSettingsModel, SpeedDial, SpeedDialItemModel } fr
     ]
 
     let radialSetting: RadialSettingsModel = { offset: '70px' };
+    let radialSetting1: RadialSettingsModel = { offset: '110px' };
 
     let topLeft: SpeedDial = new SpeedDial(
         {
@@ -35,6 +36,7 @@ import { RadialSettings, RadialSettingsModel, SpeedDial, SpeedDialItemModel } fr
             items: items,
             target: '#target',
             cssClass:"e-success",
+            radialSettings:radialSetting1,
             position: 'TopLeft',
             mode: 'Radial'
         });
@@ -60,6 +62,7 @@ import { RadialSettings, RadialSettingsModel, SpeedDial, SpeedDialItemModel } fr
             items: items,
             target: '#target',
             cssClass:"e-success",
+            radialSettings:radialSetting1,
             position: 'TopRight',
             mode: 'Radial'
         });
@@ -106,6 +109,7 @@ import { RadialSettings, RadialSettingsModel, SpeedDial, SpeedDialItemModel } fr
             items: items,
             target: '#target',
             cssClass:"e-success",
+            radialSettings:radialSetting1,
             position: 'BottomLeft',
             mode: 'Radial'
         });
@@ -129,6 +133,7 @@ import { RadialSettings, RadialSettingsModel, SpeedDial, SpeedDialItemModel } fr
             items: items,
             target: '#target',
             cssClass:"e-success",
+            radialSettings:radialSetting1,
             position: 'BottomRight',
             mode: 'Radial'
         });

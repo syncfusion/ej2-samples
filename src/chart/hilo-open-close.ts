@@ -52,7 +52,7 @@ import { Browser, Ajax } from '@syncfusion/ej2-base';
             crosshair: {
                 enable: true, lineType: 'Vertical', line: { width: 0 }
             },
-            legendSettings: { visible: false }, width: Browser.isDevice ? '100%' : '80%',
+            legendSettings: { visible: false }, width: Browser.isDevice ? '100%' : '75%',
             axisLabelRender: (args: IAxisLabelRenderEventArgs) => {
                 if (args.axis.title === 'Price') {
                     args.text = '$' + args.text;

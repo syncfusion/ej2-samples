@@ -92,7 +92,7 @@ Chart.Inject(StackingColumnSeries, LineSeries, Category, ColumnSeries, Tooltip, 
                 },
             }
         ],
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         //Initializing Chart title
         title: 'Annual Growth GDP in France',
         // Enable Legend

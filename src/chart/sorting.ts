@@ -30,7 +30,7 @@ Chart.Inject(StackingColumnSeries, Category, Legend, Tooltip);
                 title: 'Sales', lineStyle: { width: 0 },
                 majorTickLines: { width: 0 }, majorGridLines: { width: 1 },
                 minorGridLines: { width: 1 }, minorTickLines: { width: 0 },
-                labelFormat: '{value}K',
+                labelFormat: '{value}K'
             },
         chartArea: {
             border: {

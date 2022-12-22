@@ -3,6 +3,7 @@ import {
     Chart, ColumnSeries, LineSeries, Category,
     Legend, ILoadedEventArgs, ChartTheme, DataLabel
 } from '@syncfusion/ej2-charts';
+import { Browser } from '@syncfusion/ej2/base';
 Chart.Inject(ColumnSeries, LineSeries, Category, Legend, DataLabel);
 
 /**
@@ -15,14 +16,17 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, DataLabel);
         primaryXAxis: {
             valueType: 'Category',
             interval: 1,
-            edgeLabelPlacement: 'Shift',
-            isIndexed: true
+            isIndexed: true,
+            labelRotation: Browser.isDevice ? -45 : 0,
+            labelIntersectAction: Browser.isDevice ? 'None' : 'Rotate45',
+            majorTickLines: {width : 0},
+            minorTickLines: {width: 0}
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'GDP Growth Rate',
+            
             labelFormat: '{value}%'
         },
         chartArea: {
@@ -41,7 +45,7 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, DataLabel);
                     { x: 'Cambodia', y: 7.0 },
                     { x: 'China', y: 6.9 }
                 ],
-                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10, dataLabel: { visible: true,  position: 'Top'}},
+                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10, dataLabel: { visible: true,  position: 'Top', font: { size : Browser.isDevice ? '8px' : '11px'}}},
                 yName: 'y', name: '2015',
             },
             {
@@ -53,7 +57,7 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, DataLabel);
                     { x: 'Canada', y: 1.4 },
                     { x: 'Germany', y: 1.8 }
                 ],
-                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10, dataLabel: { visible: true,  position: 'Top'}},
+                xName: 'x', width: 2, marker: { visible: false, height: 10, width: 10, dataLabel: { visible: true,  position: 'Top', font: { size : Browser.isDevice ? '8px' : '11px'}}},
                 yName: 'y', name: '2016',
             },
         ],

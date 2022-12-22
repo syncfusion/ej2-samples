@@ -51,6 +51,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor);
             isModal: true,
             width: '45%',
             height: 'auto',
+            visible: false,
             overlayClick: dialogOverlay,
             buttons: [
                 { buttonModel: { content: 'Insert', isPrimary: true }, click: onInsert },

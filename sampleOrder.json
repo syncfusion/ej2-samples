@@ -26,6 +26,15 @@
             "diacritics-filtering": "Diacritics Filtering"
         }
     },
+    "arc-gauge": {
+       "ControlName": "Arc Gauge",
+        "Samples": {
+	    "default": "Default Functionalities",
+	    "customer-satisfaction-score": "Customer Satisfaction Score",
+	    "key-performance-indicator": "Key Performance Indicator",
+	    "patterns": "Patterns"
+	}
+    },
     "avatar": {
         "ControlName": "Avatar",
         "Samples": {
@@ -881,6 +890,19 @@
             "right-to-left": "RTL"
         }
     },
+    "rating": {
+        "ControlName": "Rating",
+        "Samples": {
+            "overview":"Overview",
+            "default":"Default Functionalities",
+            "precision": "Precision",
+            "tooltip": "Tooltip",
+            "label": "Label",
+            "template": "Template",
+            "customization": "Customization",
+            "navigation": "Keyboard Navigations"
+        }
+    },
     "rich-text-editor": {
         "ControlName": "Rich Text Editor",
         "Samples": {
@@ -1124,7 +1146,9 @@
         "Samples": {
             "default": "Default Functionalities",
             "popup": "Popup",
-            "alignment": "Alignment"
+            "alignment": "Alignment",
+            "template": "Template",
+            "keyboard-interaction": "Keyboard Interaction"
         }
     },
     "tooltip": {

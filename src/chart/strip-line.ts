@@ -49,7 +49,8 @@ let xAxisStripLine: StripLineSettingsModel[] = [
         primaryXAxis: {
             valueType: 'Category', majorGridLines: { width: 0 },
             //Initializing Striplines
-            stripLines: xAxisStripLine
+            stripLines: xAxisStripLine, majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
         //Initializing Primary Y Axis
         primaryYAxis:

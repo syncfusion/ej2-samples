@@ -24,22 +24,25 @@ Chart.Inject(WaterfallSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Cr
         primaryXAxis: {
             valueType: 'Category',
             majorGridLines: { width: 0 },
-            plotOffset: 20
+            labelRotation: Browser.isDevice ? -45 : 0,
+            labelIntersectAction: Browser.isDevice ? 'None' : 'Rotate45', majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
         //Initializing Primary Y Axis
         primaryYAxis: {
             minimum: 0, maximum: 5000, interval: 1000,
-            majorGridLines: { width: 0 },
+            majorGridLines: { width: 1 }, lineStyle: { width: 0 }, majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 },
             title: 'Expenditure'
         },
         //Initializing Chart Series
         series: [{
             dataSource: chartData, width: 2, negativeFillColor: '#e56590',
             xName: 'x', yName: 'y', intermediateSumIndexes: [4], sumIndexes: [7],
-            columnWidth: 0.9,
+            columnWidth: 0.9,border:{color:'black' , width: 1},
             type: 'Waterfall', animation: { enable: true },
             marker: {
-                dataLabel: { visible: true, font: { color: '#ffffff' } }
+                dataLabel: { visible: true }
             }, connector: { color: '#5F6A6A', width: 2 }
         }],
         chartArea: { border: { width: 0 } },
@@ -55,11 +58,11 @@ Chart.Inject(WaterfallSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Cr
                 args.text = '$' + Number(args.text) / 1000 + 'B';
             }
         },
-        width: Browser.isDevice ? '100%' : '80%',
+        width: Browser.isDevice ? '100%' : '75%',
         textRender: (args: ITextRenderEventArgs) => {
             let value: number = Number(args.text) / 1000;
             value = Math.round((value * 100)) / 100;
-            args.text = value.toString();
+            args.text = value.toString() + 'B';
         },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

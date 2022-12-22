@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, StepAreaSeries, Legend, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(StepAreaSeries, Legend);
+import { Chart, StepAreaSeries, Legend, ILoadedEventArgs, ChartTheme, Highlight} from '@syncfusion/ej2-charts';
+Chart.Inject(StepAreaSeries, Legend, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -12,9 +12,7 @@ import { Browser } from '@syncfusion/ej2-base';
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'Double',
-            majorGridLines: { width: 0 },
-            edgeLabelPlacement: 'Shift'
+            valueType: 'Double', majorGridLines: { width: 0 }, edgeLabelPlacement: 'Shift',
         },
 
         //Initializing Primary Y Axis
@@ -55,7 +53,8 @@ import { Browser } from '@syncfusion/ej2-base';
 
         //Initializing Chart title
         title: 'Electricity- Production',
-        width : Browser.isDevice ? '100%' : '60%',
+        width : Browser.isDevice ? '100%' : '75%',
+        legendSettings: {enableHighlight:true},
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

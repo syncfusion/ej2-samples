@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, StackingStepAreaSeries, Legend, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(StackingStepAreaSeries, Legend);
+import { Chart, StackingStepAreaSeries, Legend, ILoadedEventArgs, ChartTheme, Highlight } from '@syncfusion/ej2-charts';
+Chart.Inject(StackingStepAreaSeries, Legend, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -10,16 +10,17 @@ import { Browser } from '@syncfusion/ej2-base';
     loadCultureFiles();
     let chart: Chart = new Chart({
         primaryXAxis: {
-            valueType: 'Double',
+            valueType: 'Double', 
             majorGridLines: { width: 0 },
-            edgeLabelPlacement: 'Shift',
+            edgeLabelPlacement: 'Shift'
         },
         primaryYAxis: {
             title: 'Production (Billion as kWh)',
             valueType: 'Double',
             labelFormat: '{value}B',
             lineStyle: { width: 0 },
-            majorTickLines: { width: 0 }
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 },
         },
         chartArea: {
             border: {
@@ -35,7 +36,7 @@ import { Browser } from '@syncfusion/ej2-base';
                 name: 'Renewable',
                 xName: 'x',
                 yName: 'y',
-                fill: '#56CCF2',border:{ width : 1.5 },
+                fill: '#56CCF2',border:{ width : 2.5 },
                 opacity: 0.5
             },
             {
@@ -46,13 +47,14 @@ import { Browser } from '@syncfusion/ej2-base';
                 name: 'Non-Renewable',
                 xName: 'x',
                 yName: 'y',
-                fill: '#2F80ED',border:{ width : 1.5 },
+                fill: '#2F80ED',border:{ width : 2.5 },
                 opacity: 0.5
             },
         ],
         //Initializing Chart title
         title: 'Electricity- Production',
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
+        legendSettings:{enableHighlight: true},
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

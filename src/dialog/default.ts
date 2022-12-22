@@ -1,10 +1,12 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Button } from '@syncfusion/ej2-buttons';
 import { Dialog } from '@syncfusion/ej2-popups';
 
 /**
  * Default Dialog sample
  */
- (window as any).default = () => {
+ (window as any).default = (): void => {
+    loadCultureFiles();
 
     let dialogObj: Dialog = new Dialog({
         header: 'About SYNCFUSION Succinctly Series',

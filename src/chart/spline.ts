@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, SplineSeries, ChartAnnotation, Category,
-    Legend, Tooltip, ILoadedEventArgs, ChartTheme
+    Legend, Tooltip, ILoadedEventArgs, ChartTheme, Highlight
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation);
+Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation, Highlight);
 
 /**
  * Sample for Spline Series
@@ -17,7 +17,7 @@ Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation);
         primaryXAxis: {
             valueType: 'Category',
             interval: 1, majorGridLines: { width: 0 },
-            labelIntersectAction: 'Rotate90'
+            labelIntersectAction: 'Rotate90', majorTickLines: {width: 0}, minorTickLines: {width : 0}
         },
         chartArea: {
             border: {
@@ -95,9 +95,10 @@ Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation);
 
         //Initializing Chart title
         title: 'NC Weather Report - 2016',
+        legendSettings: {enableHighlight:true},
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

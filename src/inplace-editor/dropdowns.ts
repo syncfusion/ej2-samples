@@ -7,7 +7,6 @@ import { InPlaceEditor, AutoComplete, MultiSelect, ComboBox, RenderMode } from '
 import { DropDownList, ChangeEventArgs as DropDownChangeArgs } from '@syncfusion/ej2-dropdowns';
 
 InPlaceEditor.Inject(AutoComplete, MultiSelect, ComboBox);
-
 (window as any).default = (): void => {
     loadCultureFiles();
     let autocompleteData: string[] = ['Australia', 'Bermuda', 'Canada', 'Cameroon', 'Denmark', 'Finland', 'Greenland', 'Poland'];

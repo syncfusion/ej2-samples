@@ -13,7 +13,7 @@ CircularGauge.Inject(Annotations);
     loadCultureFiles();
     // custom code end
     let toolTipInterval: Function;
-    let toolTipInterval1: Function;
+    let toolTipInterval1: any;
     let GEARS: number[] = [0.14, 0.06, 0.035, 0.027, 0.019];
     let speed: number = 0;
     let skip: number = 0;
@@ -28,7 +28,7 @@ CircularGauge.Inject(Annotations);
     circulargauge3.appendTo('#fuel');
     let circulargauge4: CircularGauge = new CircularGauge(gauge3());
     circulargauge4.appendTo('#battery');
-    this.toolTipInterval1 = setInterval(
+    toolTipInterval1 = setInterval(
         (): void => {
             if (document.getElementById('dynamic-container')) {
                 if (speed < 200 && start) {
@@ -66,7 +66,7 @@ CircularGauge.Inject(Annotations);
                     }
                 }
             } else {
-                clearInterval(this.toolTipInterval1);
+                clearInterval(toolTipInterval1);
             }
         },
         50

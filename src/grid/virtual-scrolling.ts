@@ -22,7 +22,7 @@ Grid.Inject(VirtualScroll, Edit, Toolbar);
             editSettings: { allowEditing: true, allowDeleting: true, mode: 'Normal', newRowPosition: 'Top' },
             toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
             columns: [
-                { field: 'SNo', headerText: 'S.No', width: 140, isPrimaryKey: true, validationRules: { required: true } },
+                { field: 'SNo', headerText: 'S.No', width: 140, isPrimaryKey: true, validationRules: { required: true, digits: true } },
                 { field: 'FIELD1', headerText: 'Player Name', width: 140, validationRules: { required: true } },
                 { field: 'FIELD2', headerText: 'Year', width: 120, textAlign: 'Right' },
                 { field: 'FIELD3', headerText: 'Sports', width: 160, textAlign: 'Right', editType: 'dropdownedit', validationRules: { required: true } },

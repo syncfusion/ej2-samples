@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, DataLabel, BarSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
+import { Chart, DataLabel, BarSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme, Highlight} from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(BarSeries, DataLabel, Category, Legend, Tooltip);
+Chart.Inject(BarSeries, DataLabel, Category, Legend, Tooltip, Highlight);
 
 /**
  * Sample for bar series
@@ -13,20 +13,15 @@ Chart.Inject(BarSeries, DataLabel, Category, Legend, Tooltip);
         //Initializing Primary X and Y Axis
         primaryXAxis: {
             valueType: 'Category',
-            title: 'Food',
-            interval: 1,
             majorGridLines: { width: 0 }
         },
         primaryYAxis:
         {
-            labelFormat: '{value}B',
+            labelFormat: '{value}%',
+            title: 'GDP (In Percentage)',
             edgeLabelPlacement: 'Shift',
-            majorGridLines: { width: 0 },
             majorTickLines: { width: 0 },
             lineStyle: { width: 0 },
-            labelStyle: {
-                color: 'transparent'
-            }
         },
         chartArea: {
             border: {
@@ -38,45 +33,30 @@ Chart.Inject(BarSeries, DataLabel, Category, Legend, Tooltip);
             {
                 type: 'Bar',
                 dataSource: [
-                    { x: 'Egg', y: 2.2 }, { x: 'Fish', y: 2.4 },
-                    { x: 'Misc', y: 3 }, { x: 'Tea', y: 3.1 }
+                    { x: 'Japan', y: 1.71 }, { x: 'France', y: 1.82 },
+                    { x: 'India', y: 6.68 }, { x: 'Germany', y: 2.22 }, { x: 'Italy', y: 1.50 }, { x: 'Canada', y: 3.05 }
                 ],
                 xName: 'x', width: 2,
-                yName: 'y', name: 'Imports', marker: {
-                    dataLabel: {
-                        visible: true,
-                        position: 'Top',
-                        font: {
-                            fontWeight: '600', color: '#ffffff'
-                        }
-                    }
-                }
+                yName: 'y', name: 'GDP', columnSpacing: 0.1,
             },
             {
                 type: 'Bar',
                 dataSource: [
-                    { x: 'Egg', y: 1.2 }, { x: 'Fish', y: 1.3 },
-                    { x: 'Misc', y: 1.5 }, { x: 'Tea', y: 2.2 }
+                    { x: 'Japan', y: 6.02 }, { x: 'France', y: 3.19 },
+                    { x: 'India', y: 3.28 }, { x: 'Germany', y: 4.56 }, { x: 'Italy', y: 2.40 }, { x: 'Canada', y: 2.04 }
                 ],
                 xName: 'x', width: 2,
-                yName: 'y', name: 'Exports', marker: {
-                    dataLabel: {
-                        visible: true,
-                        position: 'Top',
-                        font: {
-                            fontWeight: '600', color: '#ffffff'
-                        }
-                    }
-                }
+                yName: 'y', name: "Share in World's GDP" , columnSpacing: 0.1,
             }
         ],
         // Initializing the tooltip
         tooltip: {
             enable: true
         },
-        width: Browser.isDevice ? '100%' : '60%',
+        width: Browser.isDevice ? '100%' : '75%',
+        legendSettings: { enableHighlight :true },
         //Initializing Chart title
-        title: 'UK Trade in Food Groups - 2015',
+        title: 'GDP by Country in 2017',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

@@ -14,7 +14,8 @@ import { Browser } from '@syncfusion/ej2-base';
         primaryXAxis: {
             title: 'Countries', valueType: 'Category',
             interval: 1, labelIntersectAction: 'Rotate45',
-            majorGridLines: { width: 0 },
+            majorGridLines: { width: 0 }, majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis
@@ -88,7 +89,7 @@ import { Browser } from '@syncfusion/ej2-base';
         tooltip: {
             enable: true
         },
-        width : Browser.isDevice ? '100%' : '60%',
+        width : Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

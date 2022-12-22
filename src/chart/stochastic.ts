@@ -87,7 +87,7 @@ Chart.Inject(
             chartArea: { border: { width: 0 } },
             //Initializing Chart Title
             title: 'AAPL 2012-2017',
-            width: Browser.isDevice ? '100%' : '80%',
+            width: Browser.isDevice ? '100%' : '75%',
             // custom code start
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];

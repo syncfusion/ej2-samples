@@ -1,8 +1,8 @@
-import { TreeGrid, Toolbar, Edit } from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Toolbar, Edit, RowDD } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
-TreeGrid.Inject(Toolbar, Edit);
+TreeGrid.Inject(Toolbar, Edit, RowDD);
 /**
  * Auto wrap sample
  */
@@ -46,10 +46,10 @@ TreeGrid.Inject(Toolbar, Edit);
         change: (e: ChangeEventArgs) => {
             if (e.value === 'CellEditing') {
                 grid.editSettings.mode = 'Cell';
-                grid.toolbar = ['Add', 'Delete', 'Update', 'Cancel'];
+                grid.toolbar = ['Add', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'];
             } else {
                 grid.editSettings.mode = 'Row';
-                grid.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel'];
+                grid.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'];
             }
 
         }

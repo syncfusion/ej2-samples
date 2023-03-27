@@ -52,12 +52,15 @@ import { NumericTextBox } from '@syncfusion/ej2-inputs';
         dashboardObject.cellSpacing = [parseInt(args.value, 10), parseInt(args.value, 10)];
     }
     function onChange(args: any): void {
-        if (args.event.target.previousElementSibling.id === 'floating') {
+        let targetElement = args.event.target;
+        let previousElement = targetElement.previousElementSibling;
+        let nextElement = targetElement.nextElementSibling;
+        if ((previousElement !== null && previousElement.id === 'floating') || nextElement !== null && nextElement.previousElementSibling.id === 'floating') {
             dashboardObject.allowFloating = args.checked;
-        }
-        if (args.event.target.previousElementSibling.id === 'resizing') {
+         }
+         if ((previousElement !== null && previousElement.id === 'resizing') || nextElement !== null && nextElement.previousElementSibling.id === 'resizing') {
             dashboardObject.allowResizing = args.checked;
-        }
+         }
     }
 
     document.getElementById('remove').onclick = () => {

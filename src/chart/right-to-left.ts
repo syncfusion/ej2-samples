@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip,
+import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip, Highlight,
     ILoadedEventArgs, IAxisLabelRenderEventArgs, } from '@syncfusion/ej2-charts';
-Chart.Inject(ColumnSeries, DataLabel, Category, Legend, Tooltip);
+Chart.Inject(ColumnSeries, DataLabel, Category, Legend, Tooltip, Highlight);
 import { Browser, EmitType } from '@syncfusion/ej2-base';
 
 /**
@@ -30,20 +30,21 @@ import { Browser, EmitType } from '@syncfusion/ej2-base';
         //Initializing Chart Series
         series: [
             {
-                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Sales',
+                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Sales', columnSpacing: 0.1,
                 dataSource: [{ x: 2016, y: 1000 }, { x: 2017, y: 1170}, { x: 2018, y: 660 }, { x: 2019, y: 1030 }]
             },
             {
-                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Expense',
+                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Expense', columnSpacing: 0.1,
                 dataSource: [{ x: 2016, y: 400 }, { x: 2017, y: 460 }, { x: 2018, y: 1120 }, { x: 2019, y: 540 }]
             },
             {
-                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Profit',
+                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Profit', columnSpacing: 0.1,
                 dataSource: [{ x: 2016, y: 200 }, { x: 2017, y: 250 }, { x: 2018, y: 300 }, { x: 2019, y: 350 }]
             }
         ],
         //Initializing Chart title
         width: Browser.isDevice ? '100%' : '75%',
+        legendSettings: { visible: true, enableHighlight: true},
         enableRtl: true,
         title: 'Company Performance', tooltip: { enable: true },
         axisLabelRender: labelRender,

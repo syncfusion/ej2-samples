@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, Tooltip, Legend, PolarSeries, RadarSeries, Category, AreaSeries, ChartDrawType, ILoadedEventArgs, ChartTheme
+    Chart, Tooltip, Legend, PolarSeries, RadarSeries, Category, AreaSeries, ChartDrawType, ILoadedEventArgs, ChartTheme, Highlight
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(Tooltip, Legend, PolarSeries, Category, AreaSeries, RadarSeries);
+Chart.Inject(Tooltip, Legend, PolarSeries, Category, AreaSeries, RadarSeries, Highlight);
 
 /**
  * Sample for Polar Series with DrawType Area
@@ -64,6 +64,8 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, AreaSeries, RadarSeries);
         ],
         //Initializing Chart title
         title: 'Average Sales Comparison',
+        tooltip: { enable: true },
+        legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -80,9 +82,9 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, AreaSeries, RadarSeries);
             chart.series[0].type = <ChartDrawType>polarType.value;
             chart.series[1].type = <ChartDrawType>polarType.value;
             chart.series[2].type = <ChartDrawType>polarType.value;
-            chart.series[0].animation.enable = true;
-            chart.series[1].animation.enable = true;
-            chart.series[2].animation.enable = true;
+            chart.series[0].animation.enable = false;
+            chart.series[1].animation.enable = false;
+            chart.series[2].animation.enable = false;
             chart.refresh();
         }
     });

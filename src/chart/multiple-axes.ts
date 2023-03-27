@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, LineSeries, ChartAnnotation, ColumnSeries,
-    Category, Tooltip, ILoadedEventArgs, ChartTheme
+    Category, Tooltip, ILoadedEventArgs, ChartTheme, SplineSeries
 } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, ColumnSeries, Category, Tooltip, ChartAnnotation);
+Chart.Inject(SplineSeries, ColumnSeries, Category, Tooltip, ChartAnnotation);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -16,11 +16,9 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'Category',
-            interval: 1,
-            labelIntersectAction: 'Rotate90',
             majorGridLines: { width: 0 },
-            majorTickLines: { width: 0 },
-            minorTickLines: { width: 0 }
+            minorGridLines: { width: 0 },
+            majorTickLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis
@@ -28,7 +26,7 @@ import { Browser } from '@syncfusion/ej2-base';
         {
             minimum: 0, maximum: 100, interval: 20,
             lineStyle: { width: 0 },
-            labelFormat: '{value}°F'
+            labelFormat: '{value}°F', majorTickLines: { width: 0 }  
         },
         chartArea: {
             border: {
@@ -41,7 +39,7 @@ import { Browser } from '@syncfusion/ej2-base';
             {
                 majorGridLines: { width: 0 },
                 rowIndex: 0, opposedPosition: true,
-                lineStyle: { width: 0 }, majorTickLines: { width: 0 },
+                lineStyle: { width: 0 },
                 minimum: 24, maximum: 36, interval: 2,
                 name: 'yAxis', minorTickLines: { width: 0 },
                 labelFormat: '{value}°C'
@@ -49,10 +47,10 @@ import { Browser } from '@syncfusion/ej2-base';
         ],
         annotations: [{
             content: '<div id="chart_cloud"><img src="src/chart/images/cloud.png"  style="width: 41px; height: 41px"/></div>',
-            x: 'Sun', y: 35, coordinateUnits: 'Point', verticalAlignment: 'Top'
+            x: 'Sun', y: 70, coordinateUnits: 'Point', verticalAlignment: 'Top'
         }, {
             content: '<div id="chart_cloud"><img src="src/chart/images/sunny.png"  style="width: 41px; height: 41px"/></div>',
-            x: 'Sat', y: 34, coordinateUnits: 'Point', yAxisName: 'yAxis'
+            x: 'Sat', y: 35, coordinateUnits: 'Point', yAxisName: 'yAxis'
         }],
         //Initializing Chart Series
         series: [
@@ -60,29 +58,31 @@ import { Browser } from '@syncfusion/ej2-base';
                 type: 'Column',
                 dataSource: [
                     { x: 'Sun', y: 35 }, { x: 'Mon', y: 40 },
-                    { x: 'Tue', y: 80 }, { x: 'Wed', y: 70 }, { x: 'Thu', y: 65 }, { x: 'Fri', y: 55 },
+                    { x: 'Tue', y: 80 }, { x: 'Wed', y: 70 },
+                    { x: 'Thu', y: 65 }, { x: 'Fri', y: 55 },
                     { x: 'Sat', y: 50 }
                 ],
                 width: 2,
                 xName: 'x', yName: 'y',
-                name: 'Germany',
+                name: 'Germany', marker: { visible: true, height: 7, width: 7 }
             },
             {
-                type: 'Line',
+                type: 'Spline',
                 dataSource: [
                     { x: 'Sun', y: 30 }, { x: 'Mon', y: 28 },
-                    { x: 'Tue', y: 29 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 33 }, { x: 'Fri', y: 32 },
+                    { x: 'Tue', y: 29 }, { x: 'Wed', y: 30 },
+                    { x: 'Thu', y: 33 }, { x: 'Fri', y: 32 },
                     { x: 'Sat', y: 34 }
                 ],
                 xName: 'x', yName: 'y',
                 width: 2, yAxisName: 'yAxis',
                 name: 'Japan',
-                marker: { visible: true, width: 10, height: 10, border: { width: 2, color: '#F8AB1D' } }
+                marker: { visible: true, width: 7, height: 7, isFilled: true }
             }
         ],
 
         //Initializing Chart title
-        title: 'Weather Condition JPN vs DEU',
+        title: 'Weather Data',
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },
         legendSettings: {

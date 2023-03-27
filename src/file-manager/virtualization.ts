@@ -17,17 +17,22 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu, Virtualiza
             downloadUrl: hostUrl + 'api/FileManager/Download'
         },
         view: 'Details',
-        virtualizationSettings: {
-            enable: true,
-            detailsViewItemsCount: 30,
-            largeIconsViewItemsCount: 50
+        toolbarSettings: { items: ['NewFolder', 'SortBy', 'Cut', 'Copy', 'Paste', 'Delete', 'Refresh', 'Download', 'Rename', 'View', 'Details'] },
+        contextMenuSettings: {
+                layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
+                visible: true
         },
+        enableVirtualization: true,
         beforeSend: function(args) {
-            var data = JSON.parse(args.ajaxSettings.data);  
-            // Add custom parameter rootFolderName  
-             data["rootFolderName"] = "FileBrowser"; 
-            // Add custom parameter in ajax settings  
-             args.ajaxSettings.data = JSON.stringify(data);  
+            args.ajaxSettings.beforeSend = function (args: any) {
+                args.httpRequest.setRequestHeader('Authorization', 'FileBrowser');
+            };
+        },
+        beforeImageLoad: function(args) {
+            args.imageUrl = args.imageUrl + '&rootName=' + 'FileBrowser';
+        },
+        beforeDownload: function(args) {
+            args.data['rootFolderName'] = 'FileBrowser';
         },
     });
     fileObject.appendTo('#filemanager');

@@ -17,6 +17,8 @@ Grid.Inject(Page, Selection, Sort, Group, Filter, Reorder, Edit, Toolbar);
             allowGrouping: true,
             allowSorting: true,
             height: 365,
+            allowSelection: true,
+            selectionSettings: { type: 'Multiple' },
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' },
             allowFiltering: true,
             filterSettings: { type: 'Menu' },

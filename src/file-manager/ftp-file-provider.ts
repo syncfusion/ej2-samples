@@ -15,6 +15,11 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
             getImageUrl: hostUrl + 'api/FTPProvider/FTPGetImage',
             uploadUrl: hostUrl + 'api/FTPProvider/FTPUpload',
             downloadUrl: hostUrl + 'api/FTPProvider/FTPDownload'
+        },
+        toolbarSettings: { items: ['NewFolder', 'SortBy', 'Cut', 'Copy', 'Paste', 'Delete', 'Refresh', 'Download', 'Rename', 'Selection', 'View', 'Details'] },
+        contextMenuSettings: {
+                layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
+                visible: true
         }
     });
     fileObject.appendTo('#ftpFilemanager');

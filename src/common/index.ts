@@ -1274,7 +1274,7 @@
           detach(prevForm);
       }
       let form: HTMLFormElement = <HTMLFormElement>createElement('form');
-      let res: string = ((location.href as any).indexOf('ej2.syncfusion.com') !== -1 ? 'https:' : 'http:') + '//stackblitz.com/run';
+      let res: string = 'https://stackblitz.com/run';
       form.setAttribute('action', res);
       form.setAttribute('method', 'post');
       form.setAttribute('target', '_blank');
@@ -1283,12 +1283,11 @@
       document.body.appendChild(form);
       let plunks: string[] = Object.keys(plnkr);
       for (let x: number = 0; x < plunks.length; x++) {
-          createStackInput('project[files][' + plunks[x] + ']', <string>plnkr[plunks[x]], form);
+        createStackInput((plunks[x] === 'package.json' ? 'project[dependencies]' : 'project[files][' + plunks[x] + ']'), plnkr[plunks[x]] as string, form);
       }
       createStackInput('project[template]', 'typescript', form);
       createStackInput('project[description]', 'Essential JS 2 Sample', form);
       createStackInput('project[settings]', '{"compile":{"clearConsole":true}}', form);
-      createStackInput('project[dependencies]', packages, form);
   }
   
   function createStackInput(name: string, value: string, form: HTMLFormElement): void {

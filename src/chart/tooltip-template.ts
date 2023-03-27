@@ -14,11 +14,13 @@ Chart.Inject(LineSeries, Category, Legend, Tooltip);
         //Initializing Primary X Axis
         primaryXAxis: {
                 labelStyle: { color: 'white'},
+                intervalType: 'Years',
+                labelFormat: 'y',
                 valueType: 'Category',
                 edgeLabelPlacement: 'Shift',
                 majorGridLines: { width: 0 },
                 majorTickLines: { width: 0 },
-                lineStyle: { color: '#EFEFEF' },
+                lineStyle: { color: '#EFEFEF', width: 3 },
         },
 
         //Initializing Primary Y Axis
@@ -26,7 +28,7 @@ Chart.Inject(LineSeries, Category, Legend, Tooltip);
         {
             rangePadding: 'None',
             labelStyle: { color: 'white'},
-            majorGridLines: { color: '#EFEFEF' },
+            majorGridLines: { color: '#EFEFEF', width: 2 },
             majorTickLines: { width: 0},
             title: 'Billion Bushels',
             titleStyle: { color: 'white'},

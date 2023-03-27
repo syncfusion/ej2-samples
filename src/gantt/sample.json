@@ -57,7 +57,6 @@
          "url": "virtual-scroll",
          "name": "Virtual Scrolling",
          "category": "Gantt",
-         "type": "update",
          "api": {
             "Gantt": [
                "dataSource",
@@ -89,7 +88,6 @@
          "url": "loading-animation",
          "name": "Loading Animation",
          "category": "Gantt",
-         "type": "new",
          "api": {
             "Gantt": [
                "dataSource",
@@ -616,6 +614,7 @@
          "url": "resource-multi-taskbar",
          "name": "Resource Multi Taskbar",
          "category": "Resources",
+         "type": "update",
          "api": {
             "Gantt": [
                "dataSource",

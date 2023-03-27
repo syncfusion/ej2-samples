@@ -16,7 +16,6 @@ Chart.Inject(ScatterSeries, Legend, Tooltip, Highlight );
             minimum: 40,
             maximum: 56,
             majorGridLines: { width: 0 },
-            edgeLabelPlacement: 'Shift',
             title: 'Shoulder Breadth (cm)'
         },
         chartArea: {
@@ -102,7 +101,6 @@ Chart.Inject(ScatterSeries, Legend, Tooltip, Highlight );
         //Initializing User Interaction Tooltip
         tooltip: {
             enable: true,
-           
         },
         width: Browser.isDevice ? '100%' : '75%',
         // custom code start

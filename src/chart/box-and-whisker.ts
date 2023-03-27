@@ -3,6 +3,7 @@ import {
     ChartTheme, Chart, getSaturationColor, Category, ILoadedEventArgs,
     IPointRenderEventArgs, BoxAndWhiskerSeries, Tooltip, getElement, BoxPlotMode
 } from '@syncfusion/ej2-charts';
+import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors } from './theme-color';
 Chart.Inject(Category, BoxAndWhiskerSeries, Tooltip);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -27,28 +28,41 @@ import { Browser } from '@syncfusion/ej2/base';
         let selectedTheme: string = location.hash.split('/')[1];
         selectedTheme = selectedTheme ? selectedTheme : 'Material';
         if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
-            args.fill = fabricColors[args.point.index % 10];
+            args.fill = pointFabricColors[args.point.index % 10];
+        } else if (selectedTheme === 'material-dark') {
+            args.fill = pointMaterialDarkColors[args.point.index % 10];
         } else if (selectedTheme === 'material') {
-            args.fill = materialColors[args.point.index % 10];
-        } else if (selectedTheme === 'fluent') {
-            args.fill = fluentColors[args.point.index % 10];
+            args.fill = pointMaterialColors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap5-dark') {
+            args.fill = pointBootstrap5DarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap5') {
+            args.fill = pointBootstrap5Colors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap') {
+            args.fill = pointBootstrapColors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap4') {
+            args.fill = pointBootstrapColors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap-dark') {
+            args.fill = pointBootstrapColors[args.point.index % 10];
+        } else if (selectedTheme === 'highcontrast') {
+            args.fill = pointHighContrastColors[args.point.index % 10];
         } else if (selectedTheme === 'fluent-dark') {
-            args.fill = fluentDarkColors[args.point.index % 10];
-        } else {
-            args.fill = bootstrapColors[args.point.index % 10];
+            args.fill = pointFluentDarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'fluent') {
+            args.fill = pointFluentColors[args.point.index % 10];
+        } else if (selectedTheme === 'tailwind-dark') {
+            args.fill = pointTailwindDarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'tailwind') {
+            args.fill = pointTailwindColors[args.point.index % 10];
         }
-        args.border.color = getSaturationColor(args.fill, -0.6);
     };
     let chart: Chart = new Chart({
         //Initializing Primary X and Y Axis
         primaryXAxis: {
-            valueType: 'Category', interval: 1,
+            valueType: 'Category', 
             majorGridLines: { width: 0 },
-            edgeLabelPlacement: 'Shift',
             labelIntersectAction: Browser.isDevice ? 'None' : 'Rotate45',
             labelRotation: Browser.isDevice ? -45 : 0,
             majorTickLines: { width: 0 },
-            minorTickLines: { width: 0 }
         },
         chartArea: {
             border: {
@@ -59,8 +73,9 @@ import { Browser } from '@syncfusion/ej2/base';
         {
             minimum: 10, maximum: 60,
             interval: 10, title: 'Age',
-            majorGridLines: { width: 0 },
-            majorTickLines: { width: 0 }
+            majorGridLines: { width: 1 },
+            majorTickLines: { width: 0 },
+            lineStyle: { width: 0 }
         },
         pointRender: labelRender,
         //Initializing Chart Series
@@ -70,28 +85,28 @@ import { Browser } from '@syncfusion/ej2/base';
                 dataSource: [
                     { x: 'Development', y: [22, 22, 23, 25, 25, 25, 26, 27, 27, 28, 28, 29, 30, 32, 34, 32, 34, 36, 35, 38] },
                     { x: 'Testing', y: [22, 33, 23, 25, 26, 28, 29, 30, 34, 33, 32, 31, 50] },
-                    { x: 'Training', y: [22, 24, 25, 30, 32, 34, 36, 38, 39, 41, 35, 36, 40, 56] },
                     { x: 'Finance', y: [26, 27, 28, 30, 32, 34, 35, 37, 35, 37, 45] },
                     { x: 'R&D', y: [26, 27, 29, 32, 34, 35, 36, 37, 38, 39, 41, 43, 58] },
                     { x: 'Sales', y: [27, 26, 28, 29, 29, 29, 32, 35, 32, 38, 53] },
                     { x: 'Inventory', y: [21, 23, 24, 25, 26, 27, 28, 30, 34, 36, 38] },
                     { x: 'Graphics', y: [26, 28, 29, 30, 32, 33, 35, 36, 52] },
-                    { x: 'HR', y: [28, 29, 30, 31, 32, 34, 35, 36] }
+                    { x: 'Training', y: [28, 29, 30, 31, 32, 34, 35, 36] },
+                    { x: 'HR', y: [22, 24, 25, 30, 32, 34, 36, 38, 39, 41, 35, 36, 40, 56] }
                 ],
                 xName: 'x',
                 yName: 'y',
                 marker: {
                     visible: true,
-                    width: 10,
-                    height: 10
-                },
-                name: 'Department'
+                    width: 7,
+                    height: 7
+                }, boxPlotMode: "Normal", showMean: true,
             }
         ],
         // Initializing the tooltip
         tooltip: {
             enable: true
         }, //Initializing Chart title
+        width: Browser.isDevice ? '100%' : '70%',
         title: 'Employee Age Group in Various Department',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
@@ -104,22 +119,4 @@ import { Browser } from '@syncfusion/ej2/base';
         }
     });
     chart.appendTo('#container');
-
-    let mode: DropDownList = new DropDownList({
-        index: 0,
-        placeholder: 'Select Range Bar Color',
-        width: 120,
-        change: () => {
-            chart.series[0].boxPlotMode = <BoxPlotMode>mode.value;
-            chart.series[0].animation.enable = false;
-            chart.refresh();
-        }
-    });
-    mode.appendTo('#mode');
-    document.getElementById('mean').onchange = () => {
-        let element: HTMLInputElement = <HTMLInputElement>getElement('mean');
-        chart.series[0].showMean = element.checked;
-        chart.series[0].animation.enable = false;
-        chart.refresh();
-    };
 };

@@ -12,15 +12,16 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
  * Sample for Remote Data bind in chart
  */
 let dataManager: DataManager = new DataManager({
-    url: 'https://ej2services.syncfusion.com/production/web-services/api/Orders'
+    url: 'https://services.syncfusion.com/js/production/api/orders'
 });
 import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors } from './theme-color';
-let query: Query = new Query().take(5).where('Estimate', 'lessThan', 3, false);
+let query: Query = new Query().take(5);
 let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEventArgs): void => {
-    if (args.axis.orientation === 'Horizontal') {
-        args.text = args.text.split(' ')[0];
-    }
+    if (args.axis.name === 'primaryYAxis') {
+        args.text =  ''+args.value * 1000;
+        }
 };
+
 let loaded: number = 1;
 let loadedChart: EmitType<Object> = (args: ILoadedEventArgs): void => {
     let div: HTMLElement = document.getElementById('waitingpopup') as HTMLElement;
@@ -54,22 +55,21 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         //Initializing Primary X Axis
         primaryXAxis: {
             rangePadding: 'Additional',
+            labelRotation: Browser.isDevice ? -45 : 0,
+            labelIntersectAction: Browser.isDevice ? 'None':'Trim',
             valueType: 'Category',
-            title: 'Assignee',
             majorGridLines: { width: 0 },
-            majorTickLines: { width: 0 },
-            minorTickLines: {width: 0}
+            majorTickLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
             {
-                majorGridLines: { width: 0 },
+                majorGridLines: { width: 1 },
                 majorTickLines: { width: 0 },
                 lineStyle: { width: 0 },
-                labelStyle: {
-                    color: 'transparent'
-                }
+                title: 'Freight rate in U.S dollars',
+                labelFormat:'{value}00'
             },
         chartArea: {
             border: {
@@ -88,6 +88,7 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
                     dataLabel: {
                         visible: true,
                         position: 'Top',
+                        format: '{value}K',
                         font: {
                             fontWeight: '600', color: '#ffffff'
                         }
@@ -96,6 +97,9 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             }
         ],
         pointRender: pointRender,
+        tooltipRender: (args) => {
+            args.text = '<b>' + args.data.pointX + ': ' + '$' + args.data.pointY * 1000;
+        },
         axisLabelRender: labelRender,
         loaded: loadedChart,
         width: Browser.isDevice ? '100%' : '75%',
@@ -113,10 +117,11 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
         },
         //Initializing Chart title
-        title: 'Sprint Task Analysis', legendSettings: { visible: false },
+        title: "Container freight rate", legendSettings: { visible: false },
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true
+            enable: true,
+            header: 'Freight rate'
         }
 
     });

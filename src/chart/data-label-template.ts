@@ -81,6 +81,7 @@ import { Browser } from '@syncfusion/ej2-base';
         textRender: (args: ITextRenderEventArgs) => {
             args.template = '#' + args.series.name + '-' + theme;
         },
+        legendSettings: { visible: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

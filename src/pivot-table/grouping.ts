@@ -3,7 +3,7 @@ import { PivotView, GroupingBar, IDataSet, ColumnRenderEventArgs, DateGroup } fr
 import { enableRipple, extend } from '@syncfusion/ej2-base';
 import { MultiSelect, SelectEventArgs, RemoveEventArgs, CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
-import { GroupSettingsModel } from '@syncfusion/ej2-pivotview/src/pivotview/model/datasourcesettings-model';
+import { GroupSettingsModel } from '@syncfusion/ej2-pivotview/src/model/datasourcesettings-model';
 import { Button } from '@syncfusion/ej2-buttons';
 import * as gData from './pivot-data/gData.json';
 enableRipple(false);

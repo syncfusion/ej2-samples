@@ -3,7 +3,6 @@
     "directory": "schedule",
     "category": "Calendars",
     "ftName": "scheduler",
-    "type": "update",
     "samples": [
         {
             "url": "overview",
@@ -518,7 +517,6 @@
             "name": "Date-wise Grouping  ",
             "category": "Resource Grouping",
             "description": "This demo shows how to group multiple resources by date in the JS Scheduler. The resource row is rendered under each date in the header.",
-            "type": "update",
             "api": {
                 "Schedule": [
                     "width",

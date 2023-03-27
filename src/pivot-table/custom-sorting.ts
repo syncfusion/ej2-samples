@@ -4,7 +4,7 @@ import { DropDownList, MultiSelect, ChangeEventArgs, SelectEventArgs, RemoveEven
 import { Button, CheckBox, ChangeEventArgs as CheckChange } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
 import * as pivotData from './pivot-data/Pivot_Data.json';
-import { SortModel } from '@syncfusion/ej2-pivotview/src/pivotview/model/datasourcesettings-model';
+import { SortModel } from '@syncfusion/ej2-pivotview/src/model/datasourcesettings-model';
 enableRipple(false);
 MultiSelect.Inject(CheckBoxSelection);
 PivotView.Inject(GroupingBar);

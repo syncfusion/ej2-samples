@@ -6,7 +6,7 @@ import { Kanban, DialogEventArgs } from '@syncfusion/ej2-kanban';
  */
 
 let dataManger: DataManager = new DataManager({
-    url: 'https://js.syncfusion.com/ejServices/wcf/Northwind.svc/Tasks',
+    url: 'https://services.syncfusion.com/js/production/api/Kanban',
     crossDomain: true
 });
 

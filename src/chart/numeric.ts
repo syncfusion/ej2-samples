@@ -1,27 +1,22 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, ColumnSeries, IAxisLabelRenderEventArgs, DataLabel,
-    ILoadedEventArgs, Tooltip, Legend, ChartTheme
+    ILoadedEventArgs, Tooltip, Legend, ChartTheme, Highlight
 } from '@syncfusion/ej2-charts';
-Chart.Inject(ColumnSeries, DataLabel, Tooltip, Legend);
+Chart.Inject(ColumnSeries, DataLabel, Tooltip, Legend, Highlight);
 import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
  * Sample for Numeric Axis
  */
-let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEventArgs): void => {
-    if (args.axis.orientation === 'Horizontal') {
-        args.cancel = args.value === 15 || args.value === 21;
-    }
-};
+
 (window as any).default = (): void => {
     loadCultureFiles();
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Death Overs',
             minimum: 15,
             maximum: 21,
             interval: 1,
@@ -53,7 +48,7 @@ let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEv
                     { x: 18, y: 7 }, { x: 19, y: 7 },
                     { x: 20, y: 10 }
                 ],
-                xName: 'x', width: 2,
+                xName: 'x', width: 2, columnSpacing: 0.1,
                 yName: 'y', name: 'England', fill: '#1e90ff',
                 marker: {
                     dataLabel: {
@@ -72,7 +67,7 @@ let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEv
                     { x: 18, y: 11 }, { x: 19, y: 8 },
                     { x: 20, y: 24 }
                 ],
-                xName: 'x', width: 2,
+                xName: 'x', width: 2, columnSpacing: 0.1,
                 yName: 'y', name: 'West Indies', fill: '#b22222',
                 marker: {
                     dataLabel: {
@@ -85,8 +80,8 @@ let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEv
                 }
             }
         ],
-        axisLabelRender: labelRender,
         width: Browser.isDevice ? '100%' : '75%',
+        legendSettings:{ enableHighlight: true, visible: true},
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

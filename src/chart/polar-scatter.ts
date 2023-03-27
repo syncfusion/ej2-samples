@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries, ChartDrawType, ILoadedEventArgs,
-    ChartTheme
+    ChartTheme, Highlight
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries);
+Chart.Inject(Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries, Highlight);
 
 /**
  * Sample for Polar Series with DrawType Scatter
@@ -52,29 +52,30 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries)
             {
                 type: 'Polar', drawType: 'Scatter', dataSource: data,
                 animation: { enable: true },
-                marker: { height: 10, width: 10, dataLabel: { name: 'text' } },
-                xName: 'x', yName: 'y', name: '2015'
+                marker: { height: 7, width: 7, dataLabel: { name: 'text' } },
+                xName: 'text', yName: 'y', name: '2015'
             },
             {
                 type: 'Polar', drawType: 'Scatter', dataSource: data,
                 animation: { enable: true },
-                marker: { height: 10, width: 10, shape: 'Diamond', dataLabel: { name: 'text' } },
-                xName: 'x', yName: 'y1', name: '2016'
+                marker: { height: 7, width: 7, shape: 'Diamond', dataLabel: { name: 'text' } },
+                xName: 'text', yName: 'y1', name: '2016'
             },
             {
                 type: 'Polar', drawType: 'Scatter', dataSource: data,
                 animation: { enable: true },
-                marker: { height: 10, width: 10, shape: 'Triangle', dataLabel: { name: 'text' } },
-                xName: 'x', yName: 'y2', name: '2017'
+                marker: { height: 7, width: 7, shape: 'Triangle', dataLabel: { name: 'text' } },
+                xName: 'text', yName: 'y2', name: '2017'
             },
         ],
         //Initializing Chart Title
         title: 'Real GDP Growth',
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true,
-            format: '${point.text} : <b>${point.y}%</b>'
+            enable: true, header: '',
+            format: '<b>${point.x}</b> <br>GDP: <b>${point.y}%</b>'
         },
+        legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -91,9 +92,9 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries)
             chart.series[0].type = <ChartDrawType>polarType.value;
             chart.series[1].type = <ChartDrawType>polarType.value;
             chart.series[2].type = <ChartDrawType>polarType.value;
-            chart.series[0].animation.enable = true;
-            chart.series[1].animation.enable = true;
-            chart.series[2].animation.enable = true;
+            chart.series[0].animation.enable = false;
+            chart.series[1].animation.enable = false;
+            chart.series[2].animation.enable = false;
             chart.refresh();
         }
     });

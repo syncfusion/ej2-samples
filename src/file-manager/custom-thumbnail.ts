@@ -17,6 +17,11 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
             uploadUrl: hostUrl + 'api/FileManager/Upload',
             downloadUrl: hostUrl + 'api/FileManager/Download'
         },
+        toolbarSettings: { items: ['NewFolder', 'SortBy', 'Cut', 'Copy', 'Paste', 'Delete', 'Refresh', 'Download', 'Rename', 'Selection', 'View', 'Details'] },
+        contextMenuSettings: {
+                layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
+                visible: true
+        },
         showThumbnail: false,
         view: 'LargeIcons'
     });

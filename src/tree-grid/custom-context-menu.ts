@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { getValue, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { TreeGrid, Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
@@ -11,7 +10,6 @@ TreeGrid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort);
  * Context menu in grid sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: sampleData,

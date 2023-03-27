@@ -2,11 +2,12 @@ import { loadCultureFiles } from '../common/culture-loader';
 
 import { multiTaskbarData, resources } from './data-source';
 
-import { Gantt, Selection, DayMarkers, Toolbar, Edit, Resize } from '@syncfusion/ej2-gantt';
+import { Gantt, Selection, DayMarkers, Toolbar, Edit, Resize, RowDD } from '@syncfusion/ej2-gantt';
+import { CheckBox, Switch } from '@syncfusion/ej2-buttons';
 /**
  *  ResourceView Gantt sample
  */
-Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize);
+Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize, RowDD);
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
@@ -67,4 +68,27 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize);
             projectEndDate: new Date('05/18/2019')
         });
     gantt.appendTo('#ResourceMultiTaskbar');
+
+    let taskbarDragDrop: Switch = new Switch({ value: 'allowTaskbarDragAndDrop', change: dragDropChange});
+    taskbarDragDrop.appendTo('#checked');
+
+    let taskbarOverlap: Switch = new Switch({ value: 'allowTaskbarOverlap',checked: true, change: overlapChange });
+    taskbarOverlap.appendTo('#unchecked');
+
+    function dragDropChange(args: any) {
+        let gantt = (document.getElementsByClassName('e-gantt')[0] as any).ej2_instances[0];
+        if (args.checked) {
+            gantt.allowTaskbarDragAndDrop = true;
+        } else {
+            gantt.allowTaskbarDragAndDrop = false;
+        }
+    }
+    function overlapChange(args: any) {
+        let gantt = (document.getElementsByClassName('e-gantt')[0] as any).ej2_instances[0];
+        if (args.checked) {
+            gantt.allowTaskbarOverlap = true;
+        } else {
+            gantt.allowTaskbarOverlap = false;
+        }
+    }
 };

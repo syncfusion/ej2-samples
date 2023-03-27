@@ -57,13 +57,13 @@ import { Browser } from '@syncfusion/ej2-base';
                 y: '98%'
             },
             {
-                content: Browser.isDevice ? '<div style="font-weight: bold; color: white; font-size: 7px;">DOWNLOAD</div>' : '<div style="font-weight: bold; color: white; font-size: 9px;">DOWNLOAD</div>',
+                content: Browser.isDevice ? '<div style="font-weight: bold; color: white; font-size: 7px;">DOWNLOAD</div>' : '<div style="font-weight: bold; color: white; font-size: 11px;">DOWNLOAD</div>',
                 region: 'Series',
                 x: '85%',
-                y: '93%'
+                y: '92%'
             },
             {
-                content:  Browser.isDevice ? '<div style="font-weight: bold; color: white;font-size: 7px;">STREAMING</div>' : '<div style="font-weight: bold; color: white;font-size: 11px;">STREAMING</div>',
+                content:  Browser.isDevice ? '<div style="font-weight: bold; color: white;font-size: 7px;"></div>' : '<div style="font-weight: bold; color: white;font-size: 11px;">STREAMING</div>',
                 region: 'Series',
                 x: '93%',
                 y: '96%'

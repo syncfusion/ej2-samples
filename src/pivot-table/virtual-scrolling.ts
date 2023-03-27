@@ -65,7 +65,7 @@ let data: Function = (count: number) => {
             columns: [{ name: 'Year' }],
             values: [{ name: 'Price', caption: 'Unit Price' }, { name: 'Sold', caption: 'Unit Sold' }],
         },
-        width: 860,
+        width: Browser.isDevice ? '100%' : 860,
         height: 300,
         enableVirtualization: true,
         gridSettings: { columnWidth: 140 },

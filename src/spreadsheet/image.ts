@@ -102,8 +102,8 @@ import { Spreadsheet, SheetModel } from '@syncfusion/ej2-spreadsheet';
         sheets: sheet,
         showRibbon: false,
         showFormulaBar: false,
-        openUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/open',
-        saveUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/save',
+        openUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/open',
+        saveUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/save',
         //Application level customization
         created: (): void => {
             spreadsheet.merge('B2:F2');

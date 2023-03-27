@@ -82,6 +82,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
                 menuObj.hideItems(['Add', 'AddRecurrence', 'Today', 'EditRecurrenceEvent', 'DeleteRecurrenceEvent'], true);
             }
             return;
+        } else if ((selectedTarget.classList.contains('e-work-cells') || selectedTarget.classList.contains('e-all-day-cells')) &&
+            !selectedTarget.classList.contains('e-selected-cell')) {
+            removeClass([].slice.call(scheduleObj.element.querySelectorAll('.e-selected-cell')), 'e-selected-cell');
+            selectedTarget.classList.add('e-selected-cell');
+            selectedTarget.setAttribute('aria-selected', 'true');
         }
         menuObj.hideItems(['Save', 'Delete', 'EditRecurrenceEvent', 'DeleteRecurrenceEvent'], true);
         menuObj.showItems(['Add', 'AddRecurrence', 'Today'], true);

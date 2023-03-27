@@ -3,7 +3,8 @@ import {
     Chart, CandleSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic,
     Crosshair, LineSeries, AtrIndicator, StripLine, ChartTheme
 } from '@syncfusion/ej2-charts';
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { Browser } from '@syncfusion/ej2-base';
+import { chartValue } from './financial-data';
 Chart.Inject(
     CandleSeries, Category, Tooltip, StripLine, DateTime, Zoom, Logarithmic, Crosshair, LineSeries,
     AtrIndicator
@@ -15,16 +16,7 @@ Chart.Inject(
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let chartData: Object[];
-    let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        chartData = JSON.parse(data);
-        chartData.map((data: Object) => {
-            // tslint:disable-next-line:no-string-literal
-            data['x'] = new Date(data['x']);
-        });
+   
         let chart: Chart = new Chart({
             // Initiazlizing the axes
             primaryXAxis: {
@@ -39,13 +31,13 @@ Chart.Inject(
                 minimum: 50, maximum: 170,
                 interval: 30, rowIndex: 1,
                 plotOffset: 25,
-                majorGridLines: { width: 1 }, opposedPosition: true, lineStyle: { width: 0 }
+                majorGridLines: { width: 1 }, opposedPosition: true, lineStyle: { width: 0 }, majorTickLines: { width: 0 }
             },
             axes: [{
                 name: 'secondary',
                 opposedPosition: true, rowIndex: 0,
                 majorGridLines: { width: 0 }, lineStyle: { width: 0 }, majorTickLines: { width: 0 },
-                maximum: 14, minimum: 0, interval: 7, title: 'ATR',
+                title: 'ATR',
                 stripLines: [
                     {
                         start: 0, end: 14, text: '', color: '#6063ff', visible: true,
@@ -62,15 +54,15 @@ Chart.Inject(
             ],
             // Initializing the chart series
             series: [{
-                dataSource: chartData, width: 2,
-                xName: 'x', yName: 'y', low: 'low', high: 'high', close: 'close', volume: 'volume', open: 'open',
+                dataSource: chartValue, width: 2,
+                xName: 'period', yName: 'y', low: 'low', high: 'high', close: 'close', volume: 'volume', open: 'open',
                 name: 'Apple Inc', bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
-                type: 'Candle', animation: { enable: true }
+                type: 'Candle'
             }],
             // Initializing the indicators
             indicators: [{
                 type: 'Atr', field: 'Close', seriesName: 'Apple Inc', yAxisName: 'secondary', fill: '#6063ff',
-                period: 3, animation: { enable: true }
+                period: 3
             }],
             /**
              * User interaction initialized zooming, tooltip and crosshair
@@ -88,7 +80,7 @@ Chart.Inject(
             },
             crosshair: { enable: true, lineType: 'Vertical' },
             chartArea: { border: { width: 0 } },
-            title: 'AAPL 2012-2017',
+            title: 'AAPL Stock Price 2012-2017',
             width: Browser.isDevice ? '100%' : '75%',
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];
@@ -102,4 +94,4 @@ Chart.Inject(
         });
         chart.appendTo('#container');
     };
-};
+

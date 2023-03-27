@@ -11,7 +11,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, FormDesigner, LinkAnnotatio
  (window as any).default = (): void => {
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer();
-    viewer.serviceUrl = "https://ej2services.syncfusion.com/production/web-services/api/pdfviewer"; 
+    viewer.serviceUrl = "https://services.syncfusion.com/js/production/api/pdfviewer"; 
     viewer.appendTo("#pdfViewer");
     viewer.load('FormDesigner.pdf', null);
     viewer.documentLoad = function (args) {

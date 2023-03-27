@@ -509,7 +509,7 @@
         }
     },
     "gantt": {
-        "ControlName": "Gantt",
+        "ControlName": "Gantt Chart",
         "Samples": {
             "default": "Default Functionalities",
             "local-data": "Local Data",
@@ -901,6 +901,14 @@
             "template": "Template",
             "customization": "Customization",
             "navigation": "Keyboard Navigations"
+        }
+    },
+    "ribbon": {
+        "ControlName": "Ribbon",
+        "Samples": {
+            "default":"Default Functionalities",
+            "simplified": "Simplified Mode",
+            "resize": "Ribbon Resizing"            
         }
     },
     "rich-text-editor": {

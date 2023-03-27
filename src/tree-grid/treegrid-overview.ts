@@ -24,7 +24,7 @@ TreeGrid.Inject(Filter, Sort, Reorder);
                 field: 'name', headerText: 'Province', template: '#flagtemplate',
                 filter: { type: 'Excel', itemTemplate: '#flagtemplate' }, width: 195
             },
-            { field: 'population', headerText: 'Population (Million)', valueAccessor: populationValue, textAlign: 'Right', width: 250 },
+            { field: 'population', headerText: 'Population (Million)', valueAccessor: populationValue, textAlign: 'Right', width: 188 },
             { field: 'gdp', headerText: 'GDP Rate %', template: '#gdptemplate', allowFiltering: false, width: 120 },
             {
                 field: 'rating', headerText: 'Credit Rating', customAttributes: { class: 'ratingCircle' },

@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
-import { Chart, LineSeries, ScatterSeries, SplineSeries, Tooltip, Legend, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, ScatterSeries, SplineSeries, Tooltip, Legend);
+import { Chart, LineSeries, ScatterSeries, SplineSeries, Tooltip, Legend, ILoadedEventArgs, ChartTheme, Highlight } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, ScatterSeries, SplineSeries, Tooltip, Legend, Highlight);
 
 /**
  * Axes Crossing Sample
@@ -56,7 +56,7 @@ Chart.Inject(LineSeries, ScatterSeries, SplineSeries, Tooltip, Legend);
                     { x: -6, y: 2 }, { x: -3, y: -4 }, { x: 1.5, y: 3.5 }, { x: 6, y: 4.5 },
                 ],
                 fill: 'Red', name: 'Data Points', xName: 'x', width: 2,
-                yName: 'y', marker: { visible: false, width: 12, height: 12 }
+                yName: 'y', marker: { visible: false, width: 7, height: 7 }
             }
         ],
         load: (args: ILoadedEventArgs) => {
@@ -66,6 +66,7 @@ Chart.Inject(LineSeries, ScatterSeries, SplineSeries, Tooltip, Legend);
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
         tooltip: { enable: true },
+        legendSettings: { enableHighlight: true },
         title: 'Spline Interpolation',
     });
     chart.appendTo('#container');

@@ -25,14 +25,14 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
         //Initializing Chart Series
         series: [
             {
-                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Profit',
+                type: 'Column', xName: 'x', width: 2, yName: 'y',
                 dataSource: [
                     { x: 'Rice', y: 80 }, { x: 'Wheat', y: null }, { x: 'Oil', y: 70 },
                     { x: 'Corn', y: 60 }, { x: 'Gram', y: null },
                     { x: 'Milk', y: 70 }, { x: 'Peas', y: 80 },
                     { x: 'Fruit', y: 60 }, { x: 'Butter', y: null }
                 ],
-                marker: { visible: true, height: 10, width: 10 },
+                marker: { visible: false, height: 7, width: 7 },
                 emptyPointSettings: {
                     fill: '#e6e6e6',
                 }
@@ -42,7 +42,7 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
         //Initializing Chart title
         title: 'Annual Product-Wise Profit Analysis',
         // Tooltip initialized
-        tooltip: { enable: true },
+        tooltip: { enable: true, enableMarker: false },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -67,6 +67,9 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
         width: 120,
         change: () => {
             chart.series[0].type = <ChartSeriesType>edgeMode.value;
+            if(edgeMode.value === 'Spline'){
+                chart.series[0].marker.visible = true;
+            }
             chart.refresh();
         }
     });

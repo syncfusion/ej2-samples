@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, ColumnSeries, DateTimeCategory, Tooltip, ILoadedEventArgs, ChartTheme,
-    StripLine, ChartAnnotation
+    StripLine, ChartAnnotation, DataLabel
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(ColumnSeries, DateTimeCategory, Tooltip, StripLine, ChartAnnotation);
+Chart.Inject(ColumnSeries, DateTimeCategory, Tooltip, StripLine, ChartAnnotation, DataLabel);
 
 /**
  * Sample for Date time category axis
@@ -46,13 +46,13 @@ Chart.Inject(ColumnSeries, DateTimeCategory, Tooltip, StripLine, ChartAnnotation
             {
                 type: 'Column',
                 dataSource: [
-                    { x: new Date(2017, 11, 20), y: 21 }, { x: new Date(2017, 11, 21), y: 24 },
-                    { x: new Date(2017, 11, 22), y: 24 }, { x: new Date(2017, 11, 26), y: 70 },
-                    { x: new Date(2017, 11, 27), y: 75 }, { x: new Date(2018, 0, 2), y: 82 },
-                    { x: new Date(2018, 0, 3), y: 53 }, { x: new Date(2018, 0, 4), y: 54 },
-                    { x: new Date(2018, 0, 5), y: 53 }, { x: new Date(2018, 0, 8), y: 45 }
+                    { x: new Date(2017, 11, 20), y: 21, text: '21M' }, { x: new Date(2017, 11, 21), y: 24, text: '24M'},
+                    { x: new Date(2017, 11, 22), y: 24, text: '24M' }, { x: new Date(2017, 11, 26), y: 70, text: '70M' },
+                    { x: new Date(2017, 11, 27), y: 75, text: '74M' }, { x: new Date(2018, 0, 2), y: 82, text: '82M' },
+                    { x: new Date(2018, 0, 3), y: 53, text: '53M' }, { x: new Date(2018, 0, 4), y: 54, text: '54M' },
+                    { x: new Date(2018, 0, 5), y: 53, text: '53M' }, { x: new Date(2018, 0, 8), y: 45, text: '45M' }
                 ],
-                xName: 'x', yName: 'y', name: 'Product',
+                xName: 'x', yName: 'y', name: 'Product',marker: { dataLabel: { name: 'text', enableRotation: Browser.isDevice? true : false, angle: Browser.isDevice ? -90 : 0, position:'Top', visible: true}}
             },
         ],
         width: Browser.isDevice ? '100%' : '75%',
@@ -64,11 +64,11 @@ Chart.Inject(ColumnSeries, DateTimeCategory, Tooltip, StripLine, ChartAnnotation
         annotations: [
             {
                 x: new Date(2017, 11, 22), y: 90, coordinateUnits: 'Point',
-                content: '<div style="color:#FF0000;font-family: bold; font-weight: 600">Christmas Offer<br> Dec 2017</div>',
+                content: '<div style="color:#0000FF;font-family: bold; font-weight: 600">Christmas Offer<br> Dec 2017</div>',
             },
             {
                 x: new Date(2018, 0, 4), y: 90, coordinateUnits: 'Point',
-                content: '<div style="color:#FF0000;font-family: bold; font-weight: 800">New Year Offer<br> Jan 2018</div>',
+                content: '<div style="color:#0000FF;font-family: bold; font-weight: 800">New Year Offer<br> Jan 2018</div>',
             }
         ],
         load: (args: ILoadedEventArgs) => {

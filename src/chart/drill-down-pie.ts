@@ -37,6 +37,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
                 let tooltip: Element = document.getElementsByClassName('e-tooltip-wrap')[0];
                 if (tooltip) { tooltip.remove(); }
                 pie.destroy(); pie.removeSvg(); pie = null; pie = new AccumulationChart(instance);
+                pie.series[0].animation.enable = false;
                 pie.appendTo('#container');
                 (getElement('category') as HTMLButtonElement).style.visibility = 'hidden';
                 (getElement('symbol') as HTMLElement).style.visibility = 'hidden';
@@ -85,7 +86,9 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
                     clickInstance.title = 'Automobile Sales in the Minivan Segment';
                     break;
             }
-            pie = new AccumulationChart(clickInstance); pie.appendTo('#container');
+            pie = new AccumulationChart(clickInstance); 
+            pie.series[0].animation.enable = false;
+            pie.appendTo('#container');
             (<HTMLElement>getElement('symbol')).style.visibility = 'visible';
             (<HTMLElement>getElement('category')).style.visibility = 'visible';
             (<HTMLElement>getElement('text')).style.visibility = 'visible';
@@ -117,6 +120,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         let tooltip: Element = document.getElementsByClassName('e-tooltip-wrap')[0];
         if (tooltip) { tooltip.remove(); }
         pie.destroy(); pie.removeSvg(); pie = null; pie = new AccumulationChart(instance);
+        pie.series[0].animation.enable = false;
         pie.appendTo('#container');
         (e.target as HTMLButtonElement).style.visibility = 'hidden';
         (getElement('symbol') as HTMLElement).style.visibility = 'hidden';

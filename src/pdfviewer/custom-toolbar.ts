@@ -341,7 +341,7 @@ function updateSearchInputIcon(isEnable: boolean): void {
         enableNavigationToolbar: false,
         enableThumbnail: false,
         documentPath: 'Hive_Succinctly.pdf',
-        serviceUrl: 'https://ej2services.syncfusion.com/production/web-services/api/pdfviewer'
+        serviceUrl: 'https://services.syncfusion.com/js/production/api/pdfviewer'
     });
     viewer.appendTo('#pdfViewer');
     isBookmarkView = false;

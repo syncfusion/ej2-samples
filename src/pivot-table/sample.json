@@ -2,13 +2,11 @@
     "name": "Pivot Table",
     "directory": "pivot-table",
     "category": "Grids",
-    "type": "update",
     "samples": [{
             "url": "overview",
             "name": "Overview",
             "category": "Pivot Table",
-            "description": "This sample shows an overview of Essential JS2 Pivot Table that allows to organize and summarize the pivot data in a detailed or abstract view and displays it as a grid and chart.",
-            "type": "new"
+            "description": "This sample shows an overview of Essential JS2 Pivot Table that allows to organize and summarize the pivot data in a detailed or abstract view and displays it as a grid and chart."
         },
         {
             "url": "default",
@@ -49,8 +47,7 @@
             "url": "olap",
             "name": "OLAP",
             "category": "Data Binding",
-            "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivot table with olap datasource",
-            "type": "update"
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivot table with olap datasource"
         },
         {
             "url": "pivot-chart",
@@ -98,8 +95,7 @@
             "url": "summary-customization",
             "name": "Show/Hide Totals",
             "category": "User Interaction",
-            "description": "This demo for Essential JS2 Pivot Table control demonstrate the summary customization feature of the pivot table",
-            "type": "update"
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the summary customization feature of the pivot table"
         },
         {
             "url": "grouping",
@@ -111,8 +107,7 @@
             "url": "toolbar",
             "name": "Toolbar",
             "category": "User Interaction",
-            "description": "This demo for Essential JS2 Pivot Table control demonstrate the toolbar feature with pivot table and pivot chart",
-            "type": "update"
+            "description": "This demo for Essential JS2 Pivot Table control demonstrate the toolbar feature with pivot table and pivot chart"
         },
         {
             "url": "keyboard-navigation",

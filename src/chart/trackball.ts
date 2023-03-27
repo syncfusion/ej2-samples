@@ -14,10 +14,9 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            minimum: new Date(2000, 1, 1), maximum: new Date(2006, 2, 11),
             valueType: 'DateTime',
-            skeleton: 'y',
-            lineStyle: { width: 0 },
+            labelFormat: 'yyyy',
+            intervalType: 'Years',
             majorGridLines: { width: 0 },
             edgeLabelPlacement: 'Shift'
         },
@@ -25,7 +24,9 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Revenue',
+            title: 'Revenue (in Million)',
+            rangePadding: 'None',
+            edgeLabelPlacement: 'Shift',
             labelFormat: '{value}M',
             majorTickLines: { width: 0 },
             minimum: 10, maximum: 80,
@@ -44,7 +45,7 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
                 name: 'John',
                 xName: 'x', width: 2,
                 yName: 'y',
-                marker: { visible: true }
+                marker: { visible: true , height : 7, width: 7, isFilled: true}
             },
             {
                 type: 'Line',
@@ -52,7 +53,7 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
                 name: 'Andrew',
                 xName: 'x', width: 2,
                 yName: 'y',
-                marker: { visible: true }
+                marker: { visible: true , height : 7, width: 7, isFilled: true}
             },
             {
                 type: 'Line',
@@ -60,7 +61,7 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
                 name: 'Thomas',
                 xName: 'x', width: 2,
                 yName: 'y',
-                marker: { visible: true }
+                marker: { visible: true , height : 7, width: 7, isFilled: true}
             }
         ],
         //Initializing User Interaction Tooltip and Crosshair

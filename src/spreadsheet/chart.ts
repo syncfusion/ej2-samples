@@ -41,8 +41,8 @@ import * as dataSource from './chart-data.json';
                 ]
             }
         ],
-        openUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/open',
-        saveUrl: 'https://ej2services.syncfusion.com/production/web-services/api/spreadsheet/save',
+        openUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/open',
+        saveUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/save',
         created: () => {
              // Formatting cells dynamically using cellFormat method
              spreadsheet.cellFormat({ backgroundColor: '#e56590', color: '#fff', fontWeight: 'bold', textAlign: 'center' }, 'A3:E3');

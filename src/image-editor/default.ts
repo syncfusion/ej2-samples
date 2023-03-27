@@ -22,5 +22,15 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             }
         }
     });
+    if (document.getElementById('right-pane')) {
+        document.getElementById('right-pane').addEventListener('scroll', onScroll);
+    }
+    // Handler used to reposition the tooltip on page scroll
+    function onScroll(): void {
+        if (document.getElementById('imageeditor_sliderWrapper')) {
+            let slider: any = getComponent(document.getElementById('imageeditor_sliderWrapper'), 'slider');
+            slider.refreshTooltip(slider.tooltipTarget);
+        }
+    }
     imageEditorObj.appendTo('#imageeditor');
 };

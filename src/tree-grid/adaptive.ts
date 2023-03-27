@@ -30,7 +30,7 @@ TreeGrid.Inject(Page, Filter, Sort, Edit, Toolbar);
             columns: [
                 { field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, width: 135, textAlign: 'Right', validationRules: { required: true, number: true }},
                 { field: 'taskName', headerText: 'Task Name', width: 280, textAlign: 'Left', validationRules: { required: true }},
-                { field: 'duration', headerText: 'Duration', width: 150, textAlign: 'Right' },
+                { field: 'duration', headerText: 'Duration', width: 140, textAlign: 'Right' },
                 { field: 'progress', headerText: 'Progress', width: 145, textAlign: 'Right' }
             ],
         });

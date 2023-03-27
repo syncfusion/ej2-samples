@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, LineSeries, ChartAnnotation, ColumnSeries,
-    Category, Tooltip, ILoadedEventArgs, ChartTheme
+    Category, Tooltip, ILoadedEventArgs, ChartTheme, SplineSeries
 } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, ColumnSeries, Category, Tooltip, ChartAnnotation);
+Chart.Inject(LineSeries, ColumnSeries, Category, Tooltip, ChartAnnotation, SplineSeries);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -18,6 +18,7 @@ import { Browser } from '@syncfusion/ej2-base';
             valueType: 'Category',
             interval: 1,
             labelIntersectAction: 'Rotate90',
+            lineStyle: { width: 0 },
             majorGridLines: { width: 0 },
             majorTickLines: { width: 0 },
             minorTickLines: { width: 0 }
@@ -65,10 +66,10 @@ import { Browser } from '@syncfusion/ej2-base';
                 ],
                 width: 2,
                 xName: 'x', yName: 'y',
-                name: 'Germany',
+                name: 'Germany', marker: { visible: true, height: 7, width: 7}
             },
             {
-                type: 'Line',
+                type: 'Spline',
                 dataSource: [
                     { x: 'Sun', y: 30 }, { x: 'Mon', y: 28 },
                     { x: 'Tue', y: 29 }, { x: 'Wed', y: 30 }, { x: 'Thu', y: 33 }, { x: 'Fri', y: 32 },
@@ -77,12 +78,11 @@ import { Browser } from '@syncfusion/ej2-base';
                 xName: 'x', yName: 'y',
                 width: 2, yAxisName: 'yAxis',
                 name: 'Japan',
-                marker: { visible: true, width: 10, height: 10, border: { width: 2, color: '#F8AB1D' } }
+                marker: { visible: true, width: 7, height: 7, isFilled: true }
             }
         ],
 
         //Initializing Chart title
-        title: 'Weather Condition JPN vs DEU',
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },
         legendSettings: {

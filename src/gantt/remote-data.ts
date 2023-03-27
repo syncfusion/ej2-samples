@@ -9,7 +9,7 @@ Gantt.Inject(Selection, DayMarkers);
 (window as any).default = (): void => {
     loadCultureFiles();
     let dataSource: DataManager = new DataManager({
-        url: 'https://ej2services.syncfusion.com/production/web-services/api/GanttData',
+        url: 'https://services.syncfusion.com/js/production/api/GanttData',
         adaptor: new WebApiAdaptor,
         crossDomain: true
     });

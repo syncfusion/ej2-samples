@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * RichTextEditor Online Html Editor sample
  */
-import { createElement } from '@syncfusion/ej2-base';
+import { createElement, Browser } from '@syncfusion/ej2-base';
 import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, ToolbarType, Table } from '@syncfusion/ej2-richtexteditor';
 RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table);
 import { Splitter } from '@syncfusion/ej2-layouts';
@@ -22,7 +22,8 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
     splitObj = new Splitter({
       height: '450px', width: '100%',
       resizing: onResizing,
-      paneSettings: [{ resizable: true, size: '50%',min: '60px' }, {}],
+      paneSettings: [{ resizable: true, size: '50%',min: '200px' }, {min: '60px'}],
+      created: updateOrientation,
     });
     splitObj.appendTo('#horizontal');
 
@@ -92,6 +93,12 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
         mode: 'text/html',
         lineWrapping: true,
       });
+    }
+    function updateOrientation(): void {
+      if (Browser.isDevice) {
+        splitObj.orientation = 'Vertical';
+        (document.body.querySelector('.heading') as HTMLElement).style.width = 'auto';
+      }
     }
   };
 

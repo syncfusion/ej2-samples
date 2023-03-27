@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { ChartTheme, Chart, ColumnSeries, Legend, Tooltip, ILoadedEventArgs, DateTime, StripLine } from '@syncfusion/ej2-charts';
-Chart.Inject(ColumnSeries, DateTime, Legend, Tooltip, StripLine);
+import { ChartTheme, Chart, ColumnSeries, Legend, Tooltip, ILoadedEventArgs, DateTime, StripLine, Highlight } from '@syncfusion/ej2-charts';
+Chart.Inject(ColumnSeries, DateTime, Legend, Tooltip, StripLine, Highlight);
 
 /**
  * Sample for Column Series
@@ -32,14 +32,14 @@ Chart.Inject(ColumnSeries, DateTime, Legend, Tooltip, StripLine);
         //Initializing Chart Series
         series: [
             {
-                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'All sources',
+                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'All sources', columnSpacing: 0.1,
                 dataSource: [{ x: new Date(1970, 1, 1), y: 16500 }, { x: new Date(1975, 1, 1), y: 16000 },
                 { x: new Date(1980, 1, 1), y: 15400 }, { x: new Date(1985, 1, 1), y: 15800 },
                 { x: new Date(1990, 1, 1), y: 14000 }, { x: new Date(1995, 1, 1), y: 10500 },
                 { x: new Date(2000, 1, 1), y: 13300 }, { x: new Date(2005, 1, 1), y: 12800 }]
             },
             {
-                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Autos & Light Trucks',
+                type: 'Column', xName: 'x', width: 2, yName: 'y', name: 'Autos & Light Trucks', columnSpacing: 0.1,
                 dataSource: [{ x: new Date(1970, 1, 1), y: 8000 }, { x: new Date(1975, 1, 1), y: 7600 },
                 { x: new Date(1980, 1, 1), y: 6400 }, { x: new Date(1985, 1, 1), y: 3700 },
                 { x: new Date(1990, 1, 1), y: 7200 }, { x: new Date(1995, 1, 1), y: 2300 },
@@ -48,6 +48,7 @@ Chart.Inject(ColumnSeries, DateTime, Legend, Tooltip, StripLine);
         ],
         //Initializing Chart title
         title: 'World Pollution Report', tooltip: { enable: true, format: ' Year: <b>${point.x}</b><br> Tons Per Day: <b>${point.y}</b>' },
+        legendSettings:{ enableHighlight: true},
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

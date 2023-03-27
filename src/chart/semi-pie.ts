@@ -34,7 +34,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
                 yName: 'y',
                 startAngle: 270,
                 endAngle: 90,
-                explode: true,radius : Browser.isDevice ? '85%' : '100%',
+                explode: false,radius : Browser.isDevice ? '85%' : '100%',
                 innerRadius: '40%', tooltipMappingName: 'tooltipMappingName',
                 dataLabel: {
                     visible: true, position: 'Inside' ,

@@ -3,28 +3,70 @@ import {
     AccumulationTheme, AccumulationChart, AccumulationLegend, PieSeries, IAccLoadedEventArgs,
     AccumulationDataLabel, AccumulationTooltip
 } from '@syncfusion/ej2-charts';
-import { Browser } from '@syncfusion/ej2/base';
+import { Browser, EmitType } from '@syncfusion/ej2/base';
+import { IPointRenderEventArgs } from '@syncfusion/ej2/charts';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip);
 /**
  * Sample for Doughnut chart
  */
 (window as any).default = (): void => {
     loadCultureFiles();
+    let seriesColor : string[] = ['#FFE066', "#FAB666", "#F68F6A", "#F3646A", "#CC555A", "#9C4649"];
+    let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
+        let selectedTheme = location.hash.split('/')[1];
+        selectedTheme = selectedTheme ? selectedTheme : 'Material';
+        if (selectedTheme==='fluent')
+        {
+          args.fill = seriesColor[args.point.index % 10];
+        }
+        else if(selectedTheme==='bootstrap5')
+        {
+          args.fill = seriesColor[args.point.index % 10];
+        }
+        if (selectedTheme.indexOf('dark') > -1) {
+            if (selectedTheme.indexOf('material') > -1) {
+                args.border.color = '#303030';
+            }
+            else if (selectedTheme.indexOf('bootstrap5') > -1) {
+                args.border.color = '#212529';
+            }
+            else if (selectedTheme.indexOf('bootstrap') > -1) {
+                args.border.color = '#1A1A1A';
+            }
+            else if (selectedTheme.indexOf('fabric') > -1) {
+                args.border.color = '#201f1f';
+            }
+            else if (selectedTheme.indexOf('fluent') > -1) {
+                args.border.color = '#252423';
+            }
+            else if (selectedTheme.indexOf('bootstrap') > -1) {
+                args.border.color = '#1A1A1A';
+            }
+            else if (selectedTheme.indexOf('tailwind') > -1) {
+                args.border.color = '#1F2937';
+            }
+            else {
+                args.border.color = '#222222';
+            }
+        }
+        else if (selectedTheme.indexOf('highcontrast') > -1) {
+            args.border.color = '#000000';
+        }
+        else {
+            args.border.color = '#FFFFFF';
+        }
+    };
     let pie: AccumulationChart = new AccumulationChart({
         // Initialize the chart series
         series: [
             {
-                dataSource: Browser.isDevice ?
-                [{ x: 'Chrome', y: 59.28, text: ' Chrome: 59.28%' }, { x: 'Safari', y: 5.73, text: Browser.isDevice ? 'Safari: <br> 5.73%'  : 'Safari: 5.73%' },
-                { x: 'Opera', y: 6.12, text: 'Opera: 6.12%' },
-                { x: 'Edge', y: 7.48, text: 'Edge: 7.48%' },
-                { x: 'Others', y: 22.41, text: 'Others: 22.41%' }] : 
-                [{ x: 'Chrome', y: 59.28, text: ' Chrome: 59.28%' }, { x: 'UC Browser', y: 4.37, text: 'UC Browser: 4.37%' },
-                { x: 'Opera', y: 2.12, text: 'Opera: 2.12%' }, { x: 'Sogou Explorer', y: 1.73, text: 'Sogou Explorer: 1.73%' },
-                { x: 'QQ', y: 3.96, text: 'QQ: 3.96%' }, { x: 'Safari', y: 5.73, text: 'Safari: 5.73%' },
-                { x: 'Internet Explorer', y: 6.12, text: 'Internet Explorer: 6.12%' },
-                { x: 'Edge', y: 7.48, text: 'Edge: 7.48%' },
-                { x: 'Others', y: 9.21, text: 'Others: 9.21%' }],
+                dataSource: [{ x: 'Chrome', y: 61.3, text: Browser.isDevice? 'Chrome:<br> 61.3%' : 'Chrome: 61.3%' },
+                { x: 'Safari', y: 24.6, text: Browser.isDevice? 'Safari:<br> 24.6%' : 'Safari: 24.6%' },
+                { x: 'Edge', y: 5.0, text: 'Edge: 5.00%' },
+                { x: 'Samsung Internet', y: 2.7, text: Browser.isDevice? 'Samsung<br> Internet: 2.7%' : 'Samsung Internet: 2.7%' },
+                { x: 'Firefox', y: 2.6, text: Browser.isDevice? 'Firefox:<br> 2.6%' : 'Firefox: 2.6%' },
+                { x: 'Others', y: 3.6, text: Browser.isDevice? 'Others:<br> 3.6%' : 'Others: 3.6%' }
+                ], border: { width: 1 },
                 dataLabel: {
                     visible: true,
                     name: 'text',
@@ -35,19 +77,24 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
                     connectorStyle:{length:'20px', type: 'Curve'}
                 },
                 xName: 'x',
-                yName: 'y', startAngle: Browser.isDevice ? 62 : 0, radius: Browser.isDevice ? '40%' : '75%',
-                innerRadius: '40%', name: 'Project',
-                explode: true, explodeOffset: '10%', explodeIndex: 0,
+                yName: 'y', startAngle: Browser.isDevice ? 30 : 62, radius: Browser.isDevice ? '40%' : '75%',
+                innerRadius: '65%', name: 'Project'
             }
         ],
         enableSmartLabels: true,
+        centerLabel:{
+            text : 'Mobile<br>Browsers<br>Statistics',
+            hoverTextFormat: '${point.x} <br> Browser Share <br> ${point.y}%',
+            textStyle: {
+                fontWeight: '600',
+                size: Browser.isDevice ? '8px' : '15px'
+            },
+          },
         enableBorderOnMouseMove:false,
         legendSettings: {
             visible: false, position: 'Top'
         },
-        // Initialize the tooltip
-        tooltip: { enable: true,format:'<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>',header:"" },
-        title: 'Mobile Browsers Statistics',
+        pointRender: pointRender,
          // custom code start
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

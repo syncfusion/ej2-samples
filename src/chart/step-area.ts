@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, StepAreaSeries, Legend, ILoadedEventArgs, ChartTheme, Highlight} from '@syncfusion/ej2-charts';
-Chart.Inject(StepAreaSeries, Legend, Highlight);
+import { Chart, StepAreaSeries, Legend, ILoadedEventArgs, ChartTheme, Highlight, Tooltip} from '@syncfusion/ej2-charts';
+Chart.Inject(StepAreaSeries, Legend, Highlight, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -55,6 +55,7 @@ import { Browser } from '@syncfusion/ej2-base';
         title: 'Electricity- Production',
         width : Browser.isDevice ? '100%' : '75%',
         legendSettings: {enableHighlight:true},
+        tooltip: { enable: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

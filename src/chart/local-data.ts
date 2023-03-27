@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs, ChartTheme, Tooltip, Crosshair } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Crosshair);
+import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs, ChartTheme, Tooltip, Crosshair, Highlight } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Crosshair, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -35,8 +35,6 @@ for (i = 1; i < 500; i++) {
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Years',
-            skeleton: 'y',
             majorGridLines: { width: 0 },
             valueType: 'DateTime',
             edgeLabelPlacement: 'Shift'
@@ -65,14 +63,12 @@ for (i = 1; i < 500; i++) {
                 dataSource: series1,
                 xName: 'x', yName: 'y', marker: { visible: false },
                 width: 2, name: 'Product X',
-                animation: { enable: true }
             },
             {
                 type: 'Line',
                 dataSource: series2, marker: { visible: false },
                 xName: 'x', yName: 'y',
-                width: 2, name: 'Product Y',
-                animation: { enable: true }
+                width: 2, name: 'Product Y'
             }
         ],
         // Initializing the crosshair
@@ -89,7 +85,7 @@ for (i = 1; i < 500; i++) {
         //Initializing User Interaction Tooltip and Crosshair
         tooltip: {
             enable: true, shared: true
-        },
+        }, legendSettings: { enableHighlight: true },
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

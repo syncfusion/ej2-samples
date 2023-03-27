@@ -46,11 +46,6 @@ let regionColor : string[] = ['rgba(38, 46, 11, 0.3)', 'rgba(94, 203, 155, 0.3)'
                     labelFormat: 'n1', minimum: 0.6,
                     maximum: 1, interval: 0.1, majorTickLines: { width: 0 }, lineStyle: { width: 0 }
                 },
-                axisLabelRender: (args: IAxisLabelRenderEventArgs) => {
-                    if (args.axis.name === 'primaryYAxis') {
-                        args.text = '€' + args.text;
-                    }
-                },
                 height: '350', legendSettings: { visible: false },
                 width: Browser.isDevice ? '100%' : '80%',
                 theme: theme

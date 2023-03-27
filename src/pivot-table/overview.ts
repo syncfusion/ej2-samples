@@ -7,6 +7,7 @@ import {
 import { enableRipple, select, createElement } from '@syncfusion/ej2-base';
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import * as data from './pivot-data/universitydata.json';
+import { ExcelQueryCellInfoEventArgs } from '@syncfusion/ej2-grids';
 enableRipple(false);
 
 PivotView.Inject(FieldList, CalculatedField, Toolbar, ConditionalFormatting, NumberFormatting, VirtualScroll, Grouping, GroupingBar, DrillThrough, PDFExport, ExcelExport);
@@ -105,6 +106,10 @@ let Universitydata: IDataSet[] = (data as any).data;
                 reports = JSON.parse(localStorage.pivotviewReports);
             }
             if (args.report && args.reportName && args.reportName !== '') {
+                let report = JSON.parse(args.report);
+                report.dataSourceSettings.dataSource = [];
+                report.pivotValues = [];
+                args.report = JSON.stringify(report);
                 reports.map(function (item: any): any {
                     if (args.reportName === item.reportName) {
                         item.report = args.report; isSaved = true;
@@ -136,7 +141,9 @@ let Universitydata: IDataSet[] = (data as any).data;
                 }
             });
             if (args.report) {
-                pivotObj.dataSourceSettings = JSON.parse(args.report).dataSourceSettings;
+                let report = JSON.parse(args.report);
+                report.dataSourceSettings.dataSource = pivotObj.dataSourceSettings.dataSource;
+                pivotObj.dataSourceSettings = report.dataSourceSettings;
             }
         },
         removeReport: function (args: RemoveReportArgs): void {
@@ -214,7 +221,12 @@ let Universitydata: IDataSet[] = (data as any).data;
         showFieldList: true,
         gridSettings: {
             columnWidth: 120, rowHeight: 36, allowSelection: true,
-            selectionSettings: { mode: 'Cell', type: 'Single', cellSelectionMode: 'Box' }
+            selectionSettings: { mode: 'Cell', type: 'Single', cellSelectionMode: 'Box' },
+            excelQueryCellInfo: function (args: ExcelQueryCellInfoEventArgs): void {
+                if ((args.cell as IAxisSet).axis === 'value' && (args.cell as IAxisSet).value === undefined) {
+                    args.style.numberFormat = undefined;
+                }
+            }
         },
         cellTemplate: '${getCellContent(data)}',
     });

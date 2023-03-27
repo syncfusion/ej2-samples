@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, PolarSeries, Category, ILoadedEventArgs, RadarSeries, ChartDrawType  } from '@syncfusion/ej2-charts';
+import { Chart, PolarSeries, Category, ILoadedEventArgs, RadarSeries, ChartDrawType, Tooltip  } from '@syncfusion/ej2-charts';
 import { RangeColumnSeries, DataLabel, ITextRenderEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(PolarSeries, Category, RadarSeries, RangeColumnSeries, DataLabel);
+Chart.Inject(PolarSeries, Category, RadarSeries, RangeColumnSeries, DataLabel, Tooltip);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
 
@@ -17,15 +17,14 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'Category',
-            title: 'Months', interval: 1,
+            interval: 1,
             labelPlacement: 'OnTicks',
-            startAngle: 90,
             coefficient: Browser.isDevice ? 80 : 100
         },
 
         //Initializing Primary Y Axis
         primaryYAxis: {
-            labelFormat: '{value}˚C',
+            labelFormat: '{value}',
             minimum: 0, maximum: 15, interval: 5
         },
 
@@ -52,9 +51,10 @@ import { Browser } from '@syncfusion/ej2-base';
         textRender: (args: ITextRenderEventArgs) => {
             args.text = args.text.replace('˚C', '');
         },
+        tooltip: { enable: true, header: '', format: '<b>${point.x}</b> <br> Low : <b>${point.low}°C</b> <br> High : <b>${point.high}°C'},
         legendSettings: { visible: false },
         //Initializing Chart Title
-        title: 'Maximum and Minimum Temperature',
+        title: 'Temperatures of Germany',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

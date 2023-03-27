@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, Tooltip, Legend, PolarSeries, Category,
-    RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme
+    RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme, Highlight
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries);
+Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries, Highlight);
 
 /**
  * Sample for Polar Series with DrawType Column
@@ -47,19 +47,19 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries);
             {
                 type: 'Polar', drawType: 'Column', dataSource: data,
                 animation: { enable: true }, border: { width: 1, color: 'white' },
-                xName: 'x', yName: 'y', name: 'Mobile Subscriptions',
+                xName: 'text', yName: 'y', name: 'Mobile Subscriptions',
                 marker: { dataLabel: { name: 'text' } }
             },
             {
                 type: 'Polar', drawType: 'Column', dataSource: data,
                 animation: { enable: true }, border: { width: 1, color: 'white' },
-                xName: 'x', yName: 'y1', name: 'Population in Millions',
+                xName: 'text', yName: 'y1', name: 'Population in Millions',
                 marker: { dataLabel: { name: 'text' } }
             },
             {
                 type: 'Polar', drawType: 'Column', dataSource: data,
                 animation: { enable: true }, border: { width: 1, color: 'white' },
-                xName: 'x', yName: 'y2', name: '3G/4G Subscriptions',
+                xName: 'text', yName: 'y2', name: '3G/4G Subscriptions',
                 marker: { dataLabel: { name: 'text' } }
             },
         ],
@@ -67,9 +67,10 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries);
         title: 'Top 10 Mobile Markets by Number of Subscriptions',
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true,
-            format: '${point.text} : <b>${point.y}%</b>'
+            enable: true, header: '',
+            format: '<b>${point.text}</b> <br> ${series.name} : <b>${point.y}</b>'
         },
+        legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -86,9 +87,9 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries);
             chart.series[0].type = <ChartDrawType>polarType.value;
             chart.series[1].type = <ChartDrawType>polarType.value;
             chart.series[2].type = <ChartDrawType>polarType.value;
-            chart.series[0].animation.enable = true;
-            chart.series[1].animation.enable = true;
-            chart.series[2].animation.enable = true;
+            chart.series[0].animation.enable = false;
+            chart.series[1].animation.enable = false;
+            chart.series[2].animation.enable = false;
             chart.refresh();
         }
     });

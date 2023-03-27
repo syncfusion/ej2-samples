@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme
+    Chart, Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme, Highlight
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries);
+Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries, Highlight);
 
 /**
  * Sample for Polar Series with DrawType StackingColumn
@@ -42,38 +42,38 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries);
         series: [
             {
                 type: 'Polar', drawType: 'StackingColumn', dataSource: data,
-                animation: { enable: true }, border: { color: 'white', width: 1 },
+                animation: { enable: true },
                 xName: 'x', yName: 'y', name: '6-9',
             },
             {
                 type: 'Polar', drawType: 'StackingColumn', dataSource: data,
-                animation: { enable: true }, border: { color: 'white', width: 1 },
+                animation: { enable: true },
                 xName: 'x', yName: 'y1', name: '9 -11',
             },
             {
                 type: 'Polar', drawType: 'StackingColumn', dataSource: data,
-                animation: { enable: true }, border: { color: 'white', width: 1 },
+                animation: { enable: true },
                 xName: 'x', yName: 'y2', name: '11-14',
             },
             {
                 type: 'Polar', drawType: 'StackingColumn', dataSource: data,
-                animation: { enable: true }, border: { color: 'white', width: 1 },
+                animation: { enable: true },
                 xName: 'x', yName: 'y3', name: '14-17',
             },
             {
                 type: 'Polar', drawType: 'StackingColumn', dataSource: data,
-                animation: { enable: true }, border: { color: 'white', width: 1 },
+                animation: { enable: true },
                 xName: 'x', yName: 'y4', name: '17 - 20',
             },
             {
                 type: 'Polar', drawType: 'StackingColumn', dataSource: data,
-                animation: { enable: true }, border: { color: 'white', width: 1 },
+                animation: { enable: true },
                 xName: 'x', yName: 'y5', name: '23 Above',
             },
         ],
         //Initializing Chart Title
         title: 'Wind Rose Chart',
-        legendSettings: { visible: true },
+        legendSettings: { visible: true, enableHighlight: true },
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },
         load: (args: ILoadedEventArgs) => {
@@ -84,25 +84,4 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries);
         }
     });
     chart.appendTo('#container');
-    let polarType: DropDownList = new DropDownList({
-        index: 0,
-        placeholder: 'Select Range Bar Color',
-        width: 120,
-        change: () => {
-            chart.series[0].type = <ChartDrawType>polarType.value;
-            chart.series[1].type = <ChartDrawType>polarType.value;
-            chart.series[2].type = <ChartDrawType>polarType.value;
-            chart.series[3].type = <ChartDrawType>polarType.value;
-            chart.series[4].type = <ChartDrawType>polarType.value;
-            chart.series[5].type = <ChartDrawType>polarType.value;
-            chart.series[0].animation.enable = true;
-            chart.series[1].animation.enable = true;
-            chart.series[2].animation.enable = true;
-            chart.series[3].animation.enable = true;
-            chart.series[4].animation.enable = true;
-            chart.series[5].animation.enable = true;
-            chart.refresh();
-        }
-    });
-    polarType.appendTo('#SelectSeriesType');
 };

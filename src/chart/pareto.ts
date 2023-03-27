@@ -23,8 +23,8 @@ Chart.Inject(ColumnSeries, Category, ParetoSeries, LineSeries, Legend, Tooltip);
         {
             title: 'Frequency of Occurence',
             minimum: 0,
-            maximum: 150,
-            interval: 30,
+            maximum: 25,
+            interval: 5,
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 }, majorGridLines: { width: 1 },
             minorGridLines: { width: 1 }, minorTickLines: { width: 0 }
@@ -41,15 +41,13 @@ Chart.Inject(ColumnSeries, Category, ParetoSeries, LineSeries, Legend, Tooltip);
             {
                 type: 'Pareto',
                 dataSource: [
-                    { x: 'Button Defect', y: 56 }, { x: 'Pocket Defect', y: 44.8 },
-                    { x: 'Coller Defect', y: 27.2 }, { x: 'Cuff Defect', y: 19.6 },
-                    { x: 'Sleeve Defect', y: 6.6 }
+                    { x: 'Button Defect', y: 23 }, { x: 'Pocket Defect', y: 16 },
+                    { x: 'Coller Defect', y: 10 }, { x: 'Cuff Defect', y: 7 },
+                    { x: 'Sleeve Defect', y: 6 }
                 ],
                 xName: 'x', yName: 'y', name: 'Defect', width: 2,
                 marker: {
-                    visible: true,
-                    width: 10,
-                    height: 10
+                    visible: true
                 },
             }
         ],
@@ -60,7 +58,7 @@ Chart.Inject(ColumnSeries, Category, ParetoSeries, LineSeries, Legend, Tooltip);
         //Initializing User Interaction
         tooltip: {
             enable: true,
-            shared: true
+            shared: false
         },
         // custom code start
         load: (args: ILoadedEventArgs) => {

@@ -16,4 +16,14 @@ import { loadCultureFiles } from '../common/culture-loader';
      });
      // tslint:enable:max-line-length
      acrdnObj.appendTo('#Accordion_keyboard_interaction');      //Render initialized Accordion component
+
+     //Focus the Accordion header (alt+j) key combination
+    document.body.addEventListener('keydown', (e: KeyboardEvent) => {
+        let accordionElement: HTMLElement = document.querySelector(
+            '#Accordion_keyboard_interaction .e-acrdn-header'
+        );
+        if (e.altKey && e.keyCode === 74 && accordionElement) {
+            accordionElement.focus();
+        }
+    });
  };

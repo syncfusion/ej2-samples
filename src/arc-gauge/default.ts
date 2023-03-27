@@ -137,7 +137,7 @@ let circulargauge: CircularGauge = new CircularGauge({
             color: '#7a7f82',
             startWidth: 1,
             endWidth: 1,
-            radius: '90%',
+            radius: '89%',
           },
           {
             start: 0,
@@ -153,7 +153,7 @@ let circulargauge: CircularGauge = new CircularGauge({
             color: '#7a7f82',
             startWidth: 1,
             endWidth: 1,
-            radius: '76%',
+            radius: '75%',
           },
           {
             start: 0,
@@ -169,7 +169,7 @@ let circulargauge: CircularGauge = new CircularGauge({
             color: '#7a7f82',
             startWidth: 1,
             endWidth: 1,
-            radius: '63%',
+            radius: '61%',
           },
           {
             start: 0,
@@ -185,7 +185,7 @@ let circulargauge: CircularGauge = new CircularGauge({
             color: '#7a7f82',
             startWidth: 1,
             endWidth: 1,
-            radius: '49%',
+            radius: '47%',
           },
           {
             start: 0,
@@ -201,7 +201,7 @@ let circulargauge: CircularGauge = new CircularGauge({
             color: '#7a7f82',
             startWidth: 1,
             endWidth: 1,
-            radius: '35%',
+            radius: '34%',
           },
         ],
         pointers: [],

@@ -12,7 +12,7 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary X and Y Axis
         primaryXAxis: {
             valueType: 'DateTime',
-            labelFormat: 'MMM',
+            labelFormat: 'MMM d',
             edgeLabelPlacement: 'Shift',
             majorGridLines: { width: 0 }
         },
@@ -46,8 +46,8 @@ import { Browser } from '@syncfusion/ej2-base';
                 yName: 'y', name: 'Warmest',
                 marker: {
                     visible: true,
-                    height: 10, width: 10,
-                    shape: 'Pentagon',
+                    height: 8, width: 8,
+                    shape: 'Pentagon',isFilled: true,
                     dataLabel: { visible: true, position: 'Top' }
                 }
             }, {
@@ -61,7 +61,7 @@ import { Browser } from '@syncfusion/ej2-base';
                 xName: 'x', width: 2,
                 yName: 'y', name: 'Coldest',
                 marker: {
-                    visible: true, height: 10, width: 10, shape: 'Diamond',
+                    visible: true, height: 8, width: 8, shape: 'Diamond',isFilled: true,
                     dataLabel: { visible: true, position: 'Top' }
                 }
             }

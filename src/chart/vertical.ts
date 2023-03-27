@@ -1,22 +1,40 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, LineSeries, ILoadedEventArgs, Series, ChartTheme, getElement } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries);
+import { Chart, LineSeries, ILoadedEventArgs, Series, ChartTheme, getElement, ColumnSeries, Category, Tooltip } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, ColumnSeries, Category, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 /**
  * Sample for vertical chart
  */
 (window as any).default = (): void => {
     loadCultureFiles();
+    let chartData: Object[] = [
+          { x:"2016", y:13600, y1:0.5},
+          { x:"2017", y:12900, y1:1.5},
+          { x:"2018", y:12500, y1:3.5},
+          { x:"2019", y:14500, y1:1.5},
+          { x:"2020", y:14500, y1:3},
+          { x:"2021", y:12000, y1:2.5},
+    ];
     let interval: number;
     let chart: Chart = new Chart({
         //Initializing Primary X Axis
-        primaryXAxis: { title: 'Time (s)', majorGridLines: { width: 0 } },
+        primaryXAxis: { valueType: 'Category', majorGridLines: { width: 0 }, majorTickLines: { width: 0 } },
         //Initializing Primary Y Axis
-        primaryYAxis: { title: 'Velocity (m/s)', majorGridLines: { width: 0 }, minimum: -15, maximum: 15, interval: 5 },
+        primaryYAxis: { title: 'Sales in Billion', majorGridLines: { width: 0 }, lineStyle: { width: 0 }, majorTickLines: { width: 0 }, minimum: 11000, maximum: 15000, interval: 1000, edgeLabelPlacement: 'Shift' },
+        axes: [
+            {
+                minimum: 0, maximum: 4, interval: 0.5, opposedPosition: true, name: 'yAxis2', title: 'Profit(In Percentage)',
+                labelFormat: '{value}%', edgeLabelPlacement: 'Shift', lineStyle: { width: 0 }, majorGridLines: { width: 0 }, majorTickLines: { width: 0 }
+            }
+        ],
         series: [
             {
-                type: 'Line', xName: 'x', yName: 'y', dataSource: [{ x: 0, y: 0 }],
-                animation: { enable: false }, width: 2
+                type: 'Column', xName: 'x', yName: 'y', dataSource: chartData, name: 'Sales',
+                width: 2
+            },
+            {
+                dataSource: chartData, type: 'Line', yAxisName: 'yAxis2', name: 'Profit Margin', xName: 'x', yName: 'y1', width: 2,
+                marker: { isFilled: true, visible: true, width: 7, height: 7 }
             }
         ],
         chartArea: {
@@ -27,9 +45,9 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Vertical Mode
         isTransposed: true,
         //Initializing Chart Title
-        title: 'Indonesia - Seismograph Analysis',
+        title: 'Sales Vs Profit Margin',
         //Initializing User Interaction Tooltip
-        tooltip: { enable: false },
+        tooltip: { enable: true },
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
@@ -37,44 +55,6 @@ import { Browser } from '@syncfusion/ej2-base';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
-        loaded: (args: ILoadedEventArgs) => {
-            chart.loaded = null;
-            interval =
-                window.setInterval(
-                    () => {
-                        chart.series[0].dataSource = liveData(chart.series[0].dataSource as any[], <Series>chart.series[0]);
-                        chart.refresh();
-                    },
-                    10
-                );
-        }
     });
     chart.appendTo('#container-vertical');
-    let count: number = 0;
-    function liveData(data: any[], series: Series): any[] {
-        count = count + 1;
-        let newData: any[] = data;
-        if (count > 350 || getElement('container-vertical') === null) {
-            clearInterval(interval);
-        } else if (count > 300) {
-            newData.push({ x: getXValue(data), y: getRandomArbitrary(0, 0) });
-        } else if (count > 250) {
-            newData.push({ x: getXValue(data), y: getRandomArbitrary(-2, 1) });
-        } else if (count > 180) {
-            newData.push({ x: getXValue(data), y: getRandomArbitrary(-3, 2) });
-        } else if (count > 100) {
-            newData.push({ x: getXValue(data), y: getRandomArbitrary(-7, 6) });
-        } else if (count < 50) {
-            newData.push({ x: getXValue(data), y: getRandomArbitrary(-3, 3) });
-        } else {
-            newData.push({ x: getXValue(data), y: getRandomArbitrary(-9, 9) });
-        }
-        return newData;
-    }
-    function getRandomArbitrary(min: number, max: number): number {
-        return Math.random() * (max - min) + min;
-    }
-    function getXValue(data: any[]): number {
-        return data.length;
-    }
 };

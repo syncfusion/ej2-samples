@@ -21,6 +21,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         },
         //Initializing Primary Y Axis
         primaryYAxis: {
+            title: 'Sales',
             labelFormat: '{value}%',
             interval: 25,
             minimum: 0,

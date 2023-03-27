@@ -33,8 +33,8 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
                 layoutColor = '#303030';
             }
             else if (selectedTheme.indexOf('bootstrap5') > -1) {
-                args.border.color = '#343a40';
-                layoutColor = '#343a40';
+                args.border.color = '#212529';
+                layoutColor = '#212529';
             }
             else if (selectedTheme.indexOf('bootstrap') > -1) {
                 args.border.color = '#1A1A1A';
@@ -81,10 +81,16 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         }
         let element = document.getElementById('layout_0template');
         element.style.setProperty('background', layoutColor);
+        let elementBody = document.getElementById('linechart');
+        elementBody.style.setProperty('background', layoutColor);
         let element1 = document.getElementById('layout_1template');
         element1.style.setProperty('background', layoutColor);
+        let element1Body = document.getElementById('pie');
+        element1Body.style.setProperty('background', layoutColor);
         let element2 = document.getElementById('layout_2template');
         element2.style.setProperty('background', layoutColor);
+        let element2Body = document.getElementById('chart');
+        element2Body.style.setProperty('background', layoutColor);
     };
     let dashboardObject: DashboardLayout = new DashboardLayout({
 

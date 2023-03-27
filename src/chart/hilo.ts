@@ -5,31 +5,21 @@ import {
 } from '@syncfusion/ej2-charts';
 Chart.Inject(HiloSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair);
 import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { chartValue } from './financial-data';
+
 
 /**
  * Sample for Hilo series
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let chartData: Object[];
-    let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        chartData = JSON.parse(data);
-        chartData.map((data: Object) => {
-            // tslint:disable-next-line:no-string-literal
-            data['x'] = new Date(data['x']);
-        });
+
         let chart: Chart = new Chart({
             //Initializing Primary X Axis
             primaryXAxis: {
                 valueType: 'DateTime',
-                crosshairTooltip: { enable: true },
-                minimum: new Date('2016-12-31'),
-                maximum: new Date('2017-09-30'),
+                crosshairTooltip: { enable: false },
                 majorGridLines: { width: 0 }
-    
             },
             chartArea: {
                 border: {
@@ -39,7 +29,7 @@ import { Browser, Ajax } from '@syncfusion/ej2-base';
             //Initializing Primary Y Axis
             primaryYAxis: {
                 title: 'Price',
-                minimum: 100,
+                minimum: 10,
                 maximum: 180,
                 interval: 20,
                 labelFormat: '${value}',
@@ -51,15 +41,15 @@ import { Browser, Ajax } from '@syncfusion/ej2-base';
             series: [
                 {
                     type: 'Hilo',
-                    dataSource: chartData, animation: { enable: true },
-                    xName: 'x', low: 'low', high: 'high', name: 'Apple Inc'
+                    dataSource: chartValue, animation: { enable: true },
+                    xName: 'period', low: 'low', high: 'high', name: 'Apple Inc'
                 }
             ],
             //Initializing Chart title
             title: 'AAPL Historical',
             //Initializing User Interaction Tooltip, Crosshair and Zoom
             tooltip: {
-                enable: true, shared: true
+                enable: true, shared: true, header:'', format:'<b>Apple Inc.(AAPL)</b> <br> High : <b>${point.high}</b> <br> Low : <b>${point.low}</b>', enableMarker: false
             },
             crosshair: {
                 enable: true, lineType: 'Vertical', line: {
@@ -77,4 +67,3 @@ import { Browser, Ajax } from '@syncfusion/ej2-base';
         });
         chart.appendTo('#container');
     };
-};

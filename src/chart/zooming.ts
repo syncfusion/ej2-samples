@@ -26,26 +26,25 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
         } else {
             value -= Math.random();
         }
-        point1 = { x: new Date(1950, i + 2, i), y: value.toFixed(1) };
+        point1 = { x: new Date(1960, i + 2, i), y: Math.round(value) };
         series1.push(point1);
-    }
+    }   
     let chart: Chart = new Chart({
          chartArea : {border : {width : 0}},
-
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'DateTime',
-            skeleton: 'yMMM',
-            majorGridLines : { width : 0 }
+            edgeLabelPlacement: 'Shift',
+            majorGridLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Profit ($)',
+            title: 'Profit ($)', labelFormat: '${value}k',
             rangePadding: 'None',
-            lineStyle : { width: 0 },
-            majorTickLines : {width : 0}
+            lineStyle: { width: 0 },
+            majorTickLines: { width: 0 }
         },
 
         //Initializing Chart Series
@@ -68,7 +67,6 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
             enablePinchZooming: true,
             enableSelectionZooming: true,
             mode: 'X',
-            enableScrollbar: true
         },
         //Initializing Chart title
         title: 'Sales History of Product X',

@@ -11,7 +11,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda);
 (window as any).default = (): void => {
     loadCultureFiles();
     let dataManager: DataManager = new DataManager({
-        url: 'https://ej2services.syncfusion.com/production/web-services/api/Schedule',
+        url: 'https://services.syncfusion.com/js/production/api/schedule',
         adaptor: new WebApiAdaptor,
         crossDomain: true
     });

@@ -107,6 +107,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         nodeDragStop: onTreeDragStop,
         nodeDragging: onTreeDrag,
         nodeDragStart: onTreeDragStart,
+        nodeSelecting: onItemSelecting,
         nodeTemplate: '#treeTemplate',
         cssClass: 'treeview-external-drag',
         dragArea: '.content-wrapper'
@@ -115,6 +116,10 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
     let isTreeItemDropped: boolean = false;
     let draggedItemId: string = '';
+
+    function onItemSelecting(args: any): void {
+        args.cancel = true;
+    } 
 
     function onTreeDrag(event: any): void {
         if (scheduleObj.isAdaptive) {

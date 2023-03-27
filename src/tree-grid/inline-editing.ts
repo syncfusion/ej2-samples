@@ -21,7 +21,7 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
                 newRowPosition: 'Below'
 
             },
-            toolbar: ['Add', 'Delete', 'Update', 'Cancel'],
+            toolbar: ['Add', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'],
             columns: [
                 {
                     field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, textAlign: 'Right',

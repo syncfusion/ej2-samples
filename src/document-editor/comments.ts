@@ -10,14 +10,13 @@ import { DialogUtility } from '@syncfusion/ej2-popups';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
-    let container: DocumentEditorContainer = new DocumentEditorContainer({
+    let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
+    let container: DocumentEditorContainer = new DocumentEditorContainer({ serviceUrl:hostUrl,
         enableToolbar: true, showPropertiesPane: false,
         height: '590px',
         userColor: '#b70f34', commentDelete: commentDelete
     });
     DocumentEditorContainer.Inject(Toolbar);
-    container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
     container.documentEditor.currentUser = 'Nancy Davolio';
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);

@@ -3,7 +3,8 @@ import {
     Chart, CandleSeries, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic, ChartTheme,
     Crosshair, LineSeries, SmaIndicator
 } from '@syncfusion/ej2-charts';
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { chartValue } from './financial-data';
+import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(
     CandleSeries, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, LineSeries,
     SmaIndicator
@@ -14,20 +15,10 @@ Chart.Inject(
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let chartData: Object[];
-    let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        chartData = JSON.parse(data);
-        chartData.map((data: Object) => {
-            // tslint:disable-next-line:no-string-literal
-            data['x'] = new Date(data['x']);
-        });
         let chart: Chart = new Chart({
             //Initializing Primary X Axis
             primaryXAxis: {
-                valueType: 'DateTime',
+                valueType: 'DateTime', intervalType: 'Months',
                 majorGridLines: { width: 0 },
                 zoomFactor: 0.2, zoomPosition: 0.6,
                 crosshairTooltip: { enable: true },
@@ -39,7 +30,7 @@ Chart.Inject(
             },
             //Initializing Primary Y Axis
             primaryYAxis: {
-                title: 'Price',
+                title: 'Price (in Million)',
                 labelFormat: '${value}M',
                 minimum: 50, maximum: 170, interval: 30,
                 majorGridLines: { width: 1 },
@@ -47,15 +38,15 @@ Chart.Inject(
             },
             //Initializing Chart Series
             series: [{
-                dataSource: chartData, width: 2,
-                xName: 'x', yName: 'y', low: 'low', high: 'high', close: 'close', volume: 'volume', open: 'open',
+                dataSource: chartValue, width: 2,
+                xName: 'period', low: 'low', high: 'high', close: 'close', volume: 'volume', open: 'open',
                 name: 'Apple Inc', bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
                 type: 'Candle', animation: { enable: false }
             }],
             //Initializing Technical Indicator
             indicators: [{
-                type: 'Sma', field: 'Close', seriesName: 'Apple Inc', fill: '#6063ff',
-                period: 14, animation: { enable: true }
+                type: 'Sma', field: 'Close', seriesName: 'Apple Inc', fill: '#6063ff', xName: 'period',
+                period: 14
             }],
             //Initializing User Interaction Tooltip, Crosshair and Zoom
             tooltip: {
@@ -84,4 +75,3 @@ Chart.Inject(
         });
         chart.appendTo('#container');
     };
-};

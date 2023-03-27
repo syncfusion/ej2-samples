@@ -4,7 +4,8 @@ import {
     Crosshair, LineSeries, AccumulationDistributionIndicator, IAxisLabelRenderEventArgs,
     StripLine, ChartTheme
 } from '@syncfusion/ej2-charts';
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { chartValue } from './financial-data';
+import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(
     CandleSeries, Category, Tooltip, StripLine, DateTime, Zoom, Logarithmic, Crosshair, LineSeries,
     AccumulationDistributionIndicator
@@ -16,20 +17,10 @@ Chart.Inject(
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let chartData: Object[];
-    let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        chartData = JSON.parse(data);
-        chartData.map((data: Object) => {
-            // tslint:disable-next-line:no-string-literal
-            data['x'] = new Date(data['x']);
-        });
         let chart: Chart = new Chart({
             // Initializing the axes
             primaryXAxis: {
-                valueType: 'DateTime',
+                valueType: 'DateTime', intervalType: "Months",
                 majorGridLines: { width: 0 },
                 zoomFactor: 0.2, zoomPosition: 0.6,
                 crosshairTooltip: { enable: true }
@@ -39,13 +30,14 @@ Chart.Inject(
                 labelFormat: '${value}',
                 minimum: 50, maximum: 170,
                 plotOffset: 25,
-                interval: 30, rowIndex: 1, opposedPosition: true, lineStyle: { width: 0 }
+                interval: 30, rowIndex: 1, opposedPosition: true, lineStyle: { width: 0 },
+                majorTickLines: { width: 0 }
             },
             axes: [{
                 name: 'secondary',
                 opposedPosition: true, rowIndex: 0,
                 majorGridLines: { width: 0 }, lineStyle: { width: 0 }, minimum: -7000000000, maximum: 5000000000,
-                interval: 6000000000, majorTickLines: { width: 0 }, title: 'Accumulation Distribution',
+                interval: 6000000000, majorTickLines: { width: 0 }, title: 'Accumulation Distribution (in Billion)',
                 stripLines: [
                     {
                         start: -7000000000, end: 6000000000, text: '', color: '#6063ff', visible: true,
@@ -62,8 +54,8 @@ Chart.Inject(
             ],
             // Initializing the series
             series: [{
-                dataSource: chartData, width: 2,
-                xName: 'x', yName: 'y', low: 'low', high: 'high', close: 'close', volume: 'volume', open: 'open',
+                dataSource: chartValue, width: 2,
+                xName: 'period', yName: 'y', low: 'low', high: 'high', close: 'close', volume: 'volume', open: 'open',
                 name: 'Apple Inc', bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
                 type: 'Candle', animation: { enable: true }
             }],
@@ -71,7 +63,7 @@ Chart.Inject(
             // Initializing the indicators
             indicators: [{
                 type: 'AccumulationDistribution', field: 'Close', seriesName: 'Apple Inc', yAxisName: 'secondary', fill: '#6063ff',
-                period: 3, animation: { enable: true }
+                period: 3
             }],
             /**
              * Initializing the zooming, crosshair and tooltip
@@ -93,11 +85,11 @@ Chart.Inject(
             axisLabelRender: (args: IAxisLabelRenderEventArgs) => {
                 if (args.axis.name === 'secondary') {
                     let value: number = Number(args.text) / 1000000000;
-                    args.text = String(value) + 'bn';
+                    args.text = String(value) + 'B';
                 }
             },
             chartArea: { border: { width: 0 } },
-            title: 'AAPL 2012-2017',
+            title: 'AAPL Stock Price 2012 - 2017',
             width: Browser.isDevice ? '100%' : '75%',
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];
@@ -112,4 +104,3 @@ Chart.Inject(
         chart.appendTo('#container');
     };
 
-};

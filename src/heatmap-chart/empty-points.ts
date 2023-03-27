@@ -47,7 +47,7 @@ HeatMap.Inject(Tooltip, Legend);
             showLabel: true,
         },
         tooltipRender: (args: ITooltipEventArgs) => {
-            args.content = [args.yLabel + ' | ' + args.xLabel + ' : ' + args.value + ' deffective units'];
+            args.content = [args.yLabel + ' | ' + args.xLabel + ' : ' + args.value + ' defective units'];
         },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

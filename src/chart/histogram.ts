@@ -29,21 +29,21 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary X and Y Axis
         primaryXAxis: {
             majorGridLines: { width: 0 }, title: 'Score of Final Examination',
-            minimum: 0, maximum: 100, edgeLabelPlacement: 'Shift'
+            minimum: 0, maximum: 100, edgeLabelPlacement: 'Shift', interval: Browser.isDevice ? 10 : 5, 
         },
         chartArea: { border: { width: 0 } },
         legendSettings: { visible: false },
         primaryYAxis: {
             title: 'Number of Students',
             minimum: 0, maximum: 50, interval: 10,
-            majorTickLines: { width: 0 }, lineStyle: { width: 0 }
+            lineStyle: { width: 0 }
         },
         //Initializing Chart Series
         series: [
             {
-                type: 'Histogram', width: 2, yName: 'y', name: 'Score',
+                type: 'Histogram', width: 2, yName: 'y',
                 dataSource: chartData, binInterval: 20,
-                marker: { dataLabel: { visible: true, position: 'Top', font: { fontWeight: '600', color: '#ffffff' } } },
+                marker: { visible: true, height: 7, width: 7, dataLabel: { visible: true, position: 'Top', font: { fontWeight: '600', color: '#ffffff' } } },
                 showNormalDistribution: true, columnWidth: 0.99
             }
         ],

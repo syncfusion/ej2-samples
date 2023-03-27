@@ -15,6 +15,11 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
             getImageUrl: hostUrl + 'GetImage',
             uploadUrl: hostUrl + 'Upload',
             downloadUrl: hostUrl + 'Download'
+        },
+        toolbarSettings: { items: ['NewFolder', 'SortBy', 'Cut', 'Copy', 'Paste', 'Delete', 'Refresh', 'Download', 'Rename', 'Selection', 'View', 'Details'] },
+        contextMenuSettings: {
+                layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
+                visible: true
         }
     });
     fileObject.appendTo('#filemanager');

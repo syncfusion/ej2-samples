@@ -10,7 +10,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
 (window as any).default = (): void => {
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer();
-    viewer.serviceUrl = 'https://ej2services.syncfusion.com/production/web-services/api/pdfviewer';
+    viewer.serviceUrl = 'https://services.syncfusion.com/js/production/api/pdfviewer';
     viewer.appendTo('#pdfViewer');
     viewer.load('PDF_Succinctly.pdf', null);
 };

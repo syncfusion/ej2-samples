@@ -11,8 +11,8 @@ import { Dialog, DialogUtility } from '@syncfusion/ej2-popups';
 // tslint:disable:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
-    let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
-    let container: DocumentEditorContainer = new DocumentEditorContainer({enableToolbar: true, height: '590px',
+    let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
+    let container: DocumentEditorContainer = new DocumentEditorContainer({ serviceUrl:hostUrl,enableToolbar: true, height: '590px',
      toolbarItems: [
             'New', 'Open', 'Separator', 'Undo',
             'Redo',
@@ -55,7 +55,6 @@ import { Dialog, DialogUtility } from '@syncfusion/ej2-popups';
         ]
     });
     DocumentEditorContainer.Inject(Toolbar);
-    container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
     container.documentEditor.open(JSON.stringify((<any>data)));
@@ -258,7 +257,7 @@ import { Dialog, DialogUtility } from '@syncfusion/ej2-popups';
                 waitingPopUp = document.getElementById('waiting-popup');
                 inActiveDiv = document.getElementById('popup-overlay');
                 showHideWaitingIndicator(true);
-                let baseUrl: string = hostUrl + 'api/documenteditor/MailMerge';
+                let baseUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/MailMerge';
                 let httpRequest: XMLHttpRequest = new XMLHttpRequest();
                 httpRequest.open('POST', baseUrl, true);
                 httpRequest.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');

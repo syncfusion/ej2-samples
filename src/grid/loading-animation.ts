@@ -15,7 +15,7 @@ Grid.Inject(Page, Selection, Sort, Filter);
         { id: 'Spinner', type: 'Spinner' }
     ];
     let data: Object = new DataManager({
-        url: 'https://ej2services.syncfusion.com/production/web-services/api/UrlDataSource',
+        url: 'https://services.syncfusion.com/js/production/api/UrlDataSource',
         adaptor: new UrlAdaptor,
     });
     let grid: Grid = new Grid(

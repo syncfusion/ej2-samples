@@ -41,9 +41,10 @@ let foods:  { [key: string]: Object }[] = [
             height: 400,
             treeColumnIndex: 1,
             dataBound: () => {
-                  if (!isNullOrUndefined(listObj)) {
+                if (!isNullOrUndefined(listObj) && listObj.element.classList.contains('e-' + listObj.getModuleName()))
+                {
                     listObj.destroy();
-                  }
+                }
                   listObj = new DropDownList({
                         dataSource: foods,
                         fields: { value: 'food' },

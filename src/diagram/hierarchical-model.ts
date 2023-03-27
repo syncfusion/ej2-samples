@@ -11,6 +11,7 @@ import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { DataManager } from '@syncfusion/ej2-data';
 Diagram.Inject(DataBinding, HierarchicalTree, LayoutAnimation);
 import * as Data from './diagram-data.json';
+import { ChangeEventArgs, CheckBox } from '@syncfusion/ej2/buttons';
 
 export interface EmployeeInfo {
     Name: string;
@@ -109,4 +110,19 @@ function connectorDefaults(connector: ConnectorModel, diagram: Diagram): Connect
         }
     });
     vSpacing.appendTo('#vSpacing');
+    let checkBoxObj: CheckBox = new CheckBox({ change: onChange });
+    checkBoxObj.appendTo('#expand');
+        function onChange (args : ChangeEventArgs): void {
+            for (let node of diagram.nodes) {
+                if (args.checked) {
+                    node.expandIcon.shape = 'Minus';
+                    node.collapseIcon.shape = 'Plus';
+                } else {
+                    node.expandIcon.shape = 'None';
+                    node.collapseIcon.shape = 'None';
+                }
+            }
+        diagram.dataBind();
+        diagram.doLayout();
+    }; 
 };

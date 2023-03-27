@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, ChartDrawType, ILoadedEventArgs,
-    ChartTheme
+    ChartTheme, Highlight
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries);
+Chart.Inject(Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, Highlight);
 
 /**
  * Sample for Polar Series with DrawType Spline
@@ -76,6 +76,7 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries);
         tooltip: {
             enable: true
         },
+        legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

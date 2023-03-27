@@ -176,6 +176,7 @@
 		"workflow",
 		"form-validator",
 		"signature",
-		"multiline-textbox"
+		"multiline-textbox",
+		null
 	]
 }

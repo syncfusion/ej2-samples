@@ -1,11 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, Tooltip, Legend, PolarSeries, RadarSeries, Category, LineSeries, ChartDrawType, ILoadedEventArgs,
-    ChartTheme
+    ChartTheme,
+    Highlight
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries);
+Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries, Highlight);
 
 /**
  * Sample for Polar Series with DrawType Line
@@ -40,11 +41,12 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries);
                     { x: 'Sep', y: 13.1 }, { x: 'Oct', y: 4.1 },
                     { x: 'Nov', y: -3.8 }, { x: 'Dec', y: -6.8 },
                 ],
-                xName: 'x', width: 2, yName: 'y', name: 'Warmest', type: 'Polar',
+                xName: 'x', width: 2, yName: 'y', name: 'Germany', type: 'Polar',opacity: 1,
                 marker: {
                     visible: true,
-                    height: 10, width: 10,
+                    height: 7, width: 7,
                     shape: 'Pentagon',
+                    isFilled: true
                 }
             }, {
                 dataSource: [
@@ -55,14 +57,15 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries);
                     { x: 'Sep', y: 2.6 }, { x: 'Oct', y: -4.9 },
                     { x: 'Nov', y: -13.4 }, { x: 'Dec', y: -16.4 },
                 ],
-                xName: 'x', width: 2, yName: 'y', name: 'Coldest', type: 'Polar',
+                xName: 'x', width: 2, yName: 'y', name: 'England', type: 'Polar',
                 marker: {
-                    visible: true, height: 10, width: 10, shape: 'Diamond',
+                    visible: true, height: 7, width: 7, shape: 'Diamond', isFilled: true
                 }
             }
         ],
         //Initializing Chart title
         title: 'Alaska Weather Statistics - 2016',
+        legendSettings: { enableHighlight: true },
         //Initializing User Interaction Tooltip
         tooltip: {
             enable: true
@@ -89,8 +92,8 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries);
         change: () => {
             chart.series[0].type = <ChartDrawType>polarType.value;
             chart.series[1].type = <ChartDrawType>polarType.value;
-            chart.series[0].animation.enable = true;
-            chart.series[1].animation.enable = true;
+            chart.series[0].animation.enable = false;
+            chart.series[1].animation.enable = false;
             chart.refresh();
         }
     });

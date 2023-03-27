@@ -9,14 +9,13 @@ import * as data from './data-web-layout.json';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let hostUrl: string = 'https://ej2services.syncfusion.com/production/web-services/';
+    let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
 
     let container: DocumentEditorContainer = new DocumentEditorContainer({
-        enableToolbar: true,
+        serviceUrl:hostUrl,enableToolbar: true,
         height: '590px', layoutType: 'Continuous'
     });
     DocumentEditorContainer.Inject(Toolbar);
-    container.serviceUrl = hostUrl + 'api/documenteditor/';
     container.appendTo('#container');
 
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);

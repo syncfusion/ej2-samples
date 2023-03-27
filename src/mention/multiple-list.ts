@@ -14,7 +14,7 @@ import { WebApiAdaptor } from '@syncfusion/ej2/data';
     let mentionOdataObj: Mention = new Mention({
         mentionChar: '@',
         dataSource: new DataManager({
-            url: 'https://ej2services.syncfusion.com/production/web-services/api/Employees',
+            url: 'https://ej2services.syncfusion.com/js/development/api/Employees',
             adaptor: new WebApiAdaptor ,
             crossDomain: true
         }),

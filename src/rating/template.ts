@@ -6,7 +6,6 @@ loadCultureFiles();
 
 let fontIcon: Rating = new Rating({
     emptyTemplate: '<span class="custom-font sf-icon-heart"></span>',
-    fullTemplate: '<span class="custom-font sf-icon-heart"></span>',
     value: 3.0
 });
 fontIcon.appendTo('#rating1');

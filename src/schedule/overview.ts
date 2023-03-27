@@ -2,17 +2,17 @@ import { loadCultureFiles } from '../common/culture-loader';
 import {
     addClass, closest, extend, isNullOrUndefined, remove, removeClass, Browser, Internationalization, compile
 } from '@syncfusion/ej2-base';
-import { Button, Switch, ChangeEventArgs as SwitchEventArgs } from '@syncfusion/ej2-buttons';
+import { Button, Switch,CheckBox, ChangeEventArgs as SwitchEventArgs } from '@syncfusion/ej2-buttons';
 import { TimePicker, ChangeEventArgs as TimeEventArgs } from '@syncfusion/ej2-calendars';
 import { DataManager, Predicate, Query } from '@syncfusion/ej2-data';
 import { DropDownList, MultiSelect, ChangeEventArgs, CheckBoxSelection, MultiSelectChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { TextBox, Uploader, SelectedEventArgs } from '@syncfusion/ej2-inputs';
+import { Uploader, SelectedEventArgs } from '@syncfusion/ej2-inputs';
 import {
-    ContextMenu, BeforeOpenCloseMenuEventArgs, Toolbar, ClickEventArgs, MenuEventArgs as ContextMenuEventArgs
+    ContextMenu, BeforeOpenCloseMenuEventArgs, Toolbar, ClickEventArgs, MenuEventArgs as ContextMenuEventArgs, AppBar
 } from '@syncfusion/ej2-navigations';
 import {
-    Schedule, Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, TimelineMonth, TimelineYear, EJ2Instance, Resize, DragAndDrop,
-    ICalendarExport, ICalendarImport, Print, ExcelExport, ResourcesModel, CurrentAction, CellClickEventArgs, PopupOpenEventArgs, Timezone
+    Schedule, Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, TimelineMonth, TimelineYear, Resize, DragAndDrop,
+    ICalendarExport, ICalendarImport, Print, ExcelExport, ResourcesModel, CellClickEventArgs, Timezone
 } from '@syncfusion/ej2-schedule';
 import { DropDownButton, MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 import { tz } from 'moment-timezone';
@@ -30,88 +30,63 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     loadCultureFiles();
 
     interface TemplateFunction extends Window {
-        getHeaderDetails?: Function;
-        getHeaderStyles?: Function;
-        getEventType?: Function;
-        getResourceData?: Function;
-        getDateHeaderText?: Function;
+        getDateHeaderDate?: Function;
+        getDateHeaderDay?: Function;
         getWeather?: Function;
     }
 
     let intlObj: Internationalization = new Internationalization();
-    (window as TemplateFunction).getDateHeaderText = (value: Date) => {
-        return intlObj.formatDate(value, { skeleton: 'Ed' });
+    (window as TemplateFunction).getDateHeaderDay = (value: Date) => {
+        return intlObj.formatDate(value, { skeleton: 'E' });
+    };
+    (window as TemplateFunction).getDateHeaderDate = (value: Date) => {
+        return intlObj.formatDate(value, { skeleton: 'd' });
     };
     (window as TemplateFunction).getWeather = (value: Date) => {
         switch (value.getDay()) {
             case 0:
-                return '<img class="weather-image" src="src/schedule/images/weather-clear.svg"/><div class="weather-text">25°C</div>';
+                return '<img class="weather-image" src="src/schedule/images/weather-clear.svg"/>';
             case 1:
-                return '<img class="weather-image" src="src/schedule/images/weather-clouds.svg"/><div class="weather-text">18°C</div>';
+                return '<img class="weather-image" src="src/schedule/images/weather-clouds.svg"/>';
             case 2:
-                return '<img class="weather-image" src="src/schedule/images/weather-rain.svg"/><div class="weather-text">10°C</div>';
+                return '<img class="weather-image" src="src/schedule/images/weather-rain.svg"/>';
             case 3:
-                return '<img class="weather-image" src="src/schedule/images/weather-clouds.svg"/><div class="weather-text">16°C</div>';
+                return '<img class="weather-image" src="src/schedule/images/weather-clouds.svg"/>';
             case 4:
-                return '<img class="weather-image" src="src/schedule/images/weather-rain.svg"/><div class="weather-text">8°C</div>';
+                return '<img class="weather-image" src="src/schedule/images/weather-rain.svg"/>';
             case 5:
-                return '<img class="weather-image" src="src/schedule/images/weather-clear.svg"/><div class="weather-text">27°C</div>';
+                return '<img class="weather-image" src="src/schedule/images/weather-clear.svg"/>';
             case 6:
-                return '<img class="weather-image" src="src/schedule/images/weather-clouds.svg"/><div class="weather-text">17°C</div>';
+                return '<img class="weather-image" src="src/schedule/images/weather-clouds.svg"/>';
             default:
                 return null;
         }
     };
 
-    (window as TemplateFunction).getResourceData = (data: Record<string, any>) => {
-        let resources: ResourcesModel = scheduleObj.getResourceCollections().slice(-1)[0];
-        let resourceData: Record<string, any> =
-            (resources.dataSource as Record<string, any>[]).filter((resource: Record<string, any>) =>
-                resource.CalendarId === data.CalendarId)[0] as Record<string, any>;
-        return resourceData;
-    };
+    const defaultAppBarObj: AppBar = new AppBar({
+        colorMode: 'Primary'
+    });
+    defaultAppBarObj.appendTo('#defaultAppBar');
 
-    (window as TemplateFunction).getHeaderDetails = (eventObj: { [key: string]: Date }) => {
-        return intlObj.formatDate(eventObj.StartTime, { type: 'date', skeleton: 'full' }) + ' (' +
-            intlObj.formatDate(eventObj.StartTime, { skeleton: 'hm' }) + ' - ' +
-            intlObj.formatDate(eventObj.EndTime, { skeleton: 'hm' }) + ')';
-    };
-
-    (window as TemplateFunction).getHeaderStyles = (data: Record<string, any>) => {
-        if (data.elementType === 'event') {
-            let resourceData: Record<string, any> = (window as TemplateFunction).getResourceData(data);
-            let calendarColor: string = '#3f51b5';
-            if (resourceData) {
-                calendarColor = (resourceData.CalendarColor).toString();
-            }
-            return 'background:' + calendarColor + '; color: #FFFFFF;';
-        } else {
-            return 'align-items: center; color: #919191;';
-        }
-    };
-
-    (window as TemplateFunction).getEventType = (data: { [key: string]: Date }) => {
-        let resourceData: Record<string, any> = (window as TemplateFunction).getResourceData(data);
-        let calendarText: string = '';
-        if (resourceData) {
-            calendarText = resourceData.CalendarText.toString();
-        }
-        return calendarText;
-    };
-
+    let liveTimeInterval: NodeJS.Timeout | number;
     let updateLiveTime: Function = (): void => {
         let scheduleTimezone: string = scheduleObj ? scheduleObj.timezone : 'Etc/GMT';
-        let timeBtn: Element = document.querySelector('.schedule-overview #timeBtn');
-        if (timeBtn) {
-            timeBtn.innerHTML = '<span class="e-btn-icon e-icons e-clock e-icon-left"></span>' +
-                new Date().toLocaleTimeString('en-US', { timeZone: scheduleTimezone });
+        let timeBtn: Element = document.querySelector('.current-time');
+        if (!timeBtn) {
+            return;
+        }
+        if (scheduleObj.isAdaptive) {
+            timeBtn.innerHTML = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: scheduleTimezone });
+        }
+        else {
+            timeBtn.innerHTML = new Date().toLocaleTimeString('en-US', { timeZone: scheduleTimezone });
         }
     };
 
     let generateEvents: Function = (): Object[] => {
         let eventData: Object[] = [];
         let eventSubjects: string[] = [
-            'Bering Sea Gold', 'Technology', 'Maintenance', 'Meeting', 'Travelling', 'Annual Conference', 'Birthday Celebration',
+            'Bering Sea Gold', 'Technology', 'Maintenance', 'Meeting', 'Traveling', 'Annual Conference', 'Birthday Celebration',
             'Farewell Celebration', 'Wedding Anniversary', 'Alaska: The Last Frontier', 'Deadliest Catch', 'Sports Day', 'MoonShiners',
             'Close Encounters', 'HighWay Thru Hell', 'Daily Planet', 'Cash Cab', 'Basketball Practice', 'Rugby Match', 'Guitar Class',
             'Music Lessons', 'Doctor checkup', 'Brazil - Mexico', 'Opening ceremony', 'Final presentation'
@@ -167,55 +142,9 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         return overviewEvents;
     };
 
-    let buttonClickActions: Function = (e: Event) => {
-        let quickPopup: HTMLElement = closest(e.target as HTMLElement, '.e-quick-popup-wrapper') as HTMLElement;
-        let getSlotData: Function = (): Record<string, any> => {
-            let cellDetails: CellClickEventArgs = scheduleObj.getCellDetails(scheduleObj.getSelectedElements());
-            if (isNullOrUndefined(cellDetails)) {
-                cellDetails = scheduleObj.getCellDetails(scheduleObj.activeCellsData.element);
-            }
-            let subject = ((quickPopup.querySelector('#title') as EJ2Instance).ej2_instances[0] as TextBox).value;
-            let notes = ((quickPopup.querySelector('#notes') as EJ2Instance).ej2_instances[0] as TextBox).value;
-            let eventObj: Record<string, any> = {};
-            eventObj.Id = scheduleObj.getEventMaxID();
-            eventObj.Subject = isNullOrUndefined(subject) ? 'Add title' : subject;
-            eventObj.StartTime = new Date(+cellDetails.startTime);
-            eventObj.EndTime = new Date(+cellDetails.endTime);
-            eventObj.IsAllDay = cellDetails.isAllDay;
-            eventObj.Description = isNullOrUndefined(notes) ? 'Add notes' : notes;
-            eventObj.CalendarId = ((quickPopup.querySelector('#eventType') as EJ2Instance).ej2_instances[0] as DropDownList).value;
-            return eventObj;
-        };
-        if ((e.target as HTMLElement).id === 'add') {
-            scheduleObj.addEvent(getSlotData());
-        } else if ((e.target as HTMLElement).id === 'delete') {
-            let currentAction: CurrentAction;
-            if ((scheduleObj.activeEventData.event as { [key: string]: string }).RecurrenceRule) {
-                currentAction = 'DeleteOccurrence';
-            }
-            scheduleObj.deleteEvent(scheduleObj.activeEventData.event as Record<string, any>, currentAction);
-        } else {
-            let isCellPopup: boolean = quickPopup.firstElementChild.classList.contains('e-cell-popup');
-            let eventDetails: Record<string, any> = isCellPopup ? getSlotData() :
-                scheduleObj.activeEventData.event as Record<string, any>;
-            let currentAction: CurrentAction = isCellPopup ? 'Add' : 'Save';
-            if (eventDetails.RecurrenceRule) {
-                currentAction = 'EditOccurrence';
-            }
-            scheduleObj.openEditor(eventDetails, currentAction, true);
-        }
-        scheduleObj.closeQuickInfoPopup();
-    };
-
     let isTimelineView: boolean = false;
 
-    let timezoneBtn: Button = new Button({ iconCss: 'e-icons e-time-zone', cssClass: 'title-bar-btn', disabled: true });
-    timezoneBtn.appendTo('#timezoneBtn');
-
-    let timeBtn: Button = new Button({ iconCss: 'e-icons e-clock', cssClass: 'title-bar-btn', disabled: true });
-    timeBtn.appendTo('#timeBtn');
-
-    let printBtn: Button = new Button({ iconCss: 'e-icons e-print', cssClass: 'title-bar-btn' });
+    let printBtn: Button = new Button({ iconCss: 'e-icons e-print', cssClass: 'e-inherit' });
     printBtn.appendTo('#printBtn');
     printBtn.element.onclick = () => { scheduleObj.print(); };
 
@@ -233,12 +162,14 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         selected: (args: SelectedEventArgs) => scheduleObj.importICalendar((<HTMLInputElement>args.event.target).files[0])
     });
     importObj.appendTo('#icalendar');
+    document.querySelector('.calendar-import .e-btn').classList.add('e-inherit');
 
     let exportObj: DropDownButton = new DropDownButton({
         items: [
             { text: 'iCalendar', iconCss: 'e-icons e-export' },
             { text: 'Excel', iconCss: 'e-icons e-export-excel' }
         ],
+        cssClass: 'e-inherit',
         select: (args: MenuEventArgs) => {
             if (args.item.text === 'Excel') {
                 let exportDatas: Record<string, any>[] = [];
@@ -258,49 +189,43 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             }
         }
     });
-    exportObj.appendTo('#exporting');
+    exportObj.appendTo('#exportBtn');
 
-    let timelineTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
-        '<button id="timeline_views"></button></div><div class="text-child" style="font-size: 14px;">Timeline Views</div></div>';
-    let allowMultiDrag: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
-        '<button id="multi_drag"></button></div><div class="text-child" style="font-size: 14px;">Allow Multi Drag</div></div>';
-    let groupTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
-        '<button id="grouping"></button></div><div class="text-child" style="font-size: 14px;">Grouping</div></div>';
-    let gridlineTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
-        '<button id="gridlines"></button></div><div class="text-child" style="font-size: 14px;">Gridlines</div></div>';
-    let autoHeightTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
-        '<button id="row_auto_height"></button></div><div class="text-child" style="font-size: 14px;">Row Auto Height</div></div>';
-    let tooltipTemplate: string = '<div style="height: 46px; line-height: 23px;"><div class="icon-child" style="text-align: center;">' +
-        '<button id="tooltip"></button></div><div class="text-child" style="font-size: 14px;">Tooltip</div></div>';
-
+    let timelineTemplate: string = '<div class="template"><div class="icon-child">' +
+        '<input id="timeline-views" aria-label="Timeline Views"></input></div><div class="text-child">Timeline Views</div></div>';
+    let groupTemplate: string = '<div class="template"><div class="icon-child">' +
+        '<input id="grouping" aria-label="Grouping"></input></div><div class="text-child">Grouping</div></div>';
+    let gridlineTemplate: string = '<div class="template"><div class="icon-child">' +
+        '<input id="timeSlot" aria-label="Time Slots"></input></div><div class="text-child">Time Slots</div></div>';
+    let autoHeightTemplate: string = '<div class="template"><div class="icon-child">' +
+        '<input id="row_auto_height" aria-label="Auto Fit Rows"></input></div><div class="text-child">Auto Fit Rows</div></div>';
     let toolbarObj: Toolbar = new Toolbar({
         height: 70,
         overflowMode: 'Scrollable',
         scrollStep: 100,
+        cssClass: 'overview-toolbar',
         items: [
-            { prefixIcon: 'e-icons e-plus', tooltipText: 'New Event', text: 'New Event' },
-            { prefixIcon: 'e-icons e-repeat', tooltipText: 'New Recurring Event', text: 'New Recurring Event' },
+            { prefixIcon: 'e-icons e-plus', tooltipText: 'New Event', text: 'New Event', tabIndex: 0 },
+            { prefixIcon: 'e-icons e-repeat', tooltipText: 'New Recurring Event', text: 'New Recurring Event', tabIndex: 0 },
             { type: 'Separator' },
-            { prefixIcon: 'e-icons e-day', tooltipText: 'Day', text: 'Day' },
-            { prefixIcon: 'e-icons e-week', tooltipText: 'Week', text: 'Week' },
-            { prefixIcon: 'e-icons e-week', tooltipText: 'WorkWeek', text: 'WorkWeek' },
-            { prefixIcon: 'e-icons e-month', tooltipText: 'Month', text: 'Month' },
-            { prefixIcon: 'e-icons e-month', tooltipText: 'Year', text: 'Year' },
-            { prefixIcon: 'e-icons e-agenda-date-range', tooltipText: 'Agenda', text: 'Agenda' },
+            { prefixIcon: 'e-icons e-day', tooltipText: 'Day', text: 'Day', tabIndex: 0 },
+            { prefixIcon: 'e-icons e-week', tooltipText: 'Week', text: 'Week', tabIndex: 0 },
+            { prefixIcon: 'e-icons e-week', tooltipText: 'Work Week', text: 'WorkWeek', tabIndex: 0 },
+            { prefixIcon: 'e-icons e-month', tooltipText: 'Month', text: 'Month', tabIndex: 0 },
+            { prefixIcon: 'e-icons e-month', tooltipText: 'Year', text: 'Year', tabIndex: 0 },
+            { prefixIcon: 'e-icons e-agenda-date-range', tooltipText: 'Agenda', text: 'Agenda', tabIndex: 0 },
             { tooltipText: 'Timeline Views', text: 'Timeline Views', template: timelineTemplate },
             { type: 'Separator' },
             { tooltipText: 'Grouping', text: 'Grouping', template: groupTemplate },
-            { tooltipText: 'Gridlines', text: 'Gridlines', template: gridlineTemplate },
-            { tooltipText: 'Row Auto Height', text: 'Row Auto Height', template: autoHeightTemplate },
-            { tooltipText: 'Tooltip', text: 'Tooltip', template: tooltipTemplate },
-            { tooltipText: 'Allow Multi Drag', text: 'Allow Multi Drag', template: allowMultiDrag },
+            { tooltipText: 'Time Slots', text: 'Time Slots', template: gridlineTemplate },
+            { tooltipText: 'Auto Fit Rows', text: 'Auto Fit Rows', template: autoHeightTemplate },
         ],
         created: () => {
-            setInterval(() => { updateLiveTime(); }, 1000);
+            liveTimeInterval = setInterval(() => { updateLiveTime(); }, 1000);
 
-            let timelineView: Switch = new Switch({
+            let timelineView: CheckBox = new CheckBox({
                 checked: false,
-                created: () => { timelineView.element.setAttribute('tabindex', '-1'); },
+                created: () => { timelineView.element.setAttribute('tabindex', '0'); },
                 change: (args: SwitchEventArgs) => {
                     isTimelineView = args.checked;
                     switch (scheduleObj.currentView) {
@@ -330,38 +255,25 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                     }
                 }
             });
-            timelineView.appendTo('#timeline_views');
-            let multiDrag: Switch = new Switch({
-                checked: false,
-                created: () => { multiDrag.element.setAttribute('tabindex', '-1'); },
-                change: (args: SwitchEventArgs) => { scheduleObj.allowMultiDrag = args.checked; }
-            });
-            multiDrag.appendTo('#multi_drag');
-            let grouping: Switch = new Switch({
+            timelineView.appendTo('#timeline-views');
+            let grouping: CheckBox = new CheckBox({
                 checked: true,
-                created: () => { grouping.element.setAttribute('tabindex', '-1'); },
+                created: () => { grouping.element.setAttribute('tabindex', '0'); },
                 change: (args: SwitchEventArgs) => { scheduleObj.group.resources = args.checked ? ['Calendars'] : []; }
             });
             grouping.appendTo('#grouping');
-            let gridlines: Switch = new Switch({
+            let timeSlot: CheckBox = new CheckBox({
                 checked: true,
-                created: () => { gridlines.element.setAttribute('tabindex', '-1'); },
+                created: () => { timeSlot.element.setAttribute('tabindex', '0'); },
                 change: (args: SwitchEventArgs) => { scheduleObj.timeScale.enable = args.checked; }
             });
-            gridlines.appendTo('#gridlines');
-            let rowAutoHeight: Switch = new Switch({
+            timeSlot.appendTo('#timeSlot');
+            let rowAutoHeight: CheckBox = new CheckBox({
                 checked: false,
-                created: () => { rowAutoHeight.element.setAttribute('tabindex', '-1'); },
+                created: () => { rowAutoHeight.element.setAttribute('tabindex', '0'); },
                 change: (args: SwitchEventArgs) => { scheduleObj.rowAutoHeight = args.checked; }
             });
             rowAutoHeight.appendTo('#row_auto_height');
-            let tooltip: Switch = new Switch({
-                checked: false,
-                created: () => { tooltip.element.setAttribute('tabindex', '-1'); },
-                change: (args: SwitchEventArgs) => { scheduleObj.eventSettings.enableTooltip = args.checked; }
-            });
-            tooltip.appendTo('#tooltip');
-
             (document.querySelector('#settingsBtn') as HTMLButtonElement).onclick = () => {
                 let settingsPanel: Element = document.querySelector('.overview-content .right-panel');
                 if (settingsPanel.classList.contains('hide')) {
@@ -425,11 +337,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             }
         }
     });
-    toolbarObj.appendTo('#toolbar_options');
+    toolbarObj.appendTo('#toolbarOptions');
 
     let settingsBtn: Button = new Button({
         iconCss: 'e-icons e-settings',
-        cssClass: 'overview-toolbar-settings', iconPosition: 'Top'
+        cssClass: 'e-inherit'
     });
     settingsBtn.appendTo('#settingsBtn');
 
@@ -439,7 +351,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         { CalendarText: 'Birthday', CalendarId: 3, CalendarColor: '#AF27CD' },
         { CalendarText: 'Holiday', CalendarId: 4, CalendarColor: '#808000' }
     ];
-
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '100%',
@@ -455,53 +366,14 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             textField: 'CalendarText', idField: 'CalendarId', colorField: 'CalendarColor',
             dataSource: resourceData, query: new Query().where('CalendarId', 'equal', 1)
         }],
-        dateHeaderTemplate: '<div class="date-text">${getDateHeaderText(data.date)}</div>${getWeather(data.date)}',
-        quickInfoTemplates: {
-            header: '#header-template',
-            content: '#content-template',
-            footer: '#footer-template'
-        },
+        dateHeaderTemplate: '<div class="date-text">${getDateHeaderDay(data.date)}</div><div class="date-text">' +
+            '${getDateHeaderDate(data.date)}</div>${getWeather(data.date)}',
         eventSettings: { dataSource: generateEvents() },
-        popupOpen: (args: PopupOpenEventArgs) => {
-            if (args.type === 'QuickInfo' || args.type === 'ViewEventInfo') {
-                if (!args.target.classList.contains('e-appointment')) {
-                    const titleObj: TextBox = new TextBox({ placeholder: 'Title' });
-                    titleObj.appendTo(args.element.querySelector('#title') as HTMLElement);
-                    titleObj.focusIn();
-                    const typeObj: DropDownList = new DropDownList({
-                        dataSource: resourceData,
-                        placeholder: 'Choose Type',
-                        fields: { text: 'CalendarText', value: 'CalendarId' },
-                        index: args.data.CalendarId - 1 
-                    });
-                    typeObj.appendTo(args.element.querySelector('#eventType') as HTMLElement);
-                    const notesObj: TextBox = new TextBox({ placeholder: 'Notes' });
-                    notesObj.appendTo(args.element.querySelector('#notes') as HTMLElement);
-                }
-
-                const moreDetailsBtn: HTMLButtonElement = args.element.querySelector('#more-details') as HTMLButtonElement;
-                if (moreDetailsBtn) {
-                    const moreObj: Button = new Button({
-                        content: 'More Details', cssClass: 'e-flat',
-                        isPrimary: args.element.firstElementChild.classList.contains('e-event-popup')
-                    });
-                    moreObj.appendTo(moreDetailsBtn);
-                    moreDetailsBtn.onclick = (e: Event) => { buttonClickActions(e); };
-                }
-                const addBtn: HTMLButtonElement = args.element.querySelector('#add') as HTMLButtonElement;
-                if (addBtn) {
-                    new Button({ content: 'Add', cssClass: 'e-flat', isPrimary: true }, addBtn);
-                    addBtn.onclick = (e: Event) => { buttonClickActions(e); };
-                }
-                const deleteBtn: HTMLButtonElement = args.element.querySelector('#delete') as HTMLButtonElement;
-                if (deleteBtn) {
-                    new Button({ content: 'Delete', cssClass: 'e-flat' }, deleteBtn);
-                    deleteBtn.onclick = (e: Event) => { buttonClickActions(e); };
-                }
-            }
-        },
         destroyed: () => {
             menuObj.destroy();
+            if (liveTimeInterval) {
+                clearInterval(liveTimeInterval as number);
+            }
         }
     });
     scheduleObj.appendTo('#scheduler');
@@ -558,6 +430,11 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                     menuObj.hideItems(['Add', 'AddRecurrence', 'Today', 'EditRecurrenceEvent', 'DeleteRecurrenceEvent'], true);
                 }
                 return;
+            } else if ((selectedTarget.classList.contains('e-work-cells') || selectedTarget.classList.contains('e-all-day-cells')) &&
+                !selectedTarget.classList.contains('e-selected-cell')) {
+                removeClass([].slice.call(scheduleObj.element.querySelectorAll('.e-selected-cell')), 'e-selected-cell');
+                selectedTarget.setAttribute('aria-selected', 'true');
+                selectedTarget.classList.add('e-selected-cell');
             }
             menuObj.hideItems(['Save', 'Delete', 'EditRecurrenceEvent', 'DeleteRecurrenceEvent'], true);
             menuObj.showItems(['Add', 'AddRecurrence', 'Today'], true);
@@ -603,7 +480,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         },
         cssClass: 'schedule-context-menu'
     });
-    menuObj.appendTo('#OverViewContextMenu');
+    menuObj.appendTo('#overviewContextMenu');
 
     let weekDays: Record<string, any>[] = [
         { text: 'Sunday', value: 0 },
@@ -632,7 +509,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         enableSelectionOrder: false,
         showClearButton: false,
         showDropDownIcon: true,
-        popupHeight: 150,
         value: [1, 2, 3, 4, 5],
         change: (args: MultiSelectChangeEventArgs) => scheduleObj.workDays = args.value as number[]
     });
@@ -645,7 +521,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         mode: 'CheckBox',
         showClearButton: false,
         showDropDownIcon: true,
-        popupHeight: 150,
         value: [1],
         change: (args: MultiSelectChangeEventArgs) => {
             let resourcePredicate: Predicate;
@@ -699,8 +574,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         change: (args: ChangeEventArgs) => {
             scheduleObj.timezone = args.value as string;
             updateLiveTime();
-            document.querySelector('.schedule-overview #timezoneBtn').innerHTML =
-                '<span class="e-btn-icon e-icons e-time-zone e-icon-left"></span>' + args.itemData.text;
+            document.querySelector('.schedule-overview #timezoneBtn').innerHTML = args.itemData.text;
         }
     });
     timezone.appendTo('#timezone');
@@ -806,6 +680,23 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
             }
         },
     });
-    weekNumber.appendTo('#week_number');
+    weekNumber.appendTo('#weekNumber');
 
+    let tooltip: DropDownList = new DropDownList({
+        dataSource: [
+            { Name: 'Off', Value: 'Off' },
+            { Name: 'On', Value: 'On' },
+        ],
+        fields: { text: 'Name', value: 'Value' },
+        popupHeight: 150,
+        value: 'Off',
+        change: (args: ChangeEventArgs) => {
+            if (args.value === 'Off') {
+                scheduleObj.eventSettings.enableTooltip = false;
+            } else {
+                scheduleObj.eventSettings.enableTooltip = true;
+            }
+        },
+    });
+    tooltip.appendTo('#tooltip');
 };

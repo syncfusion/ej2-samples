@@ -234,9 +234,7 @@ L10n.load({
             'Up': 'فوق',
             'Down': 'تحت',
             'Multiline': 'متعدد الأسطر',
-            'Initial': 'أولي',
-            'Export XFDF': 'تصدير التعليق التوضيحي إلى ملف XFDF',
-            'Import XFDF': 'استيراد التعليقات التوضيحية من ملف XFDF'
+            'Initial': 'أولي'
         }
     }
 });
@@ -246,7 +244,7 @@ L10n.load({
 (window as any).default = (): void => {
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer({ enableRtl: true, locale: 'ar-AE' });
-    viewer.serviceUrl = 'https://ej2services.syncfusion.com/production/web-services/api/pdfviewer';
+    viewer.serviceUrl = 'https://services.syncfusion.com/js/production/api/pdfviewer';
     viewer.appendTo('#pdfViewer');
     viewer.load('RTLText.pdf', null);
     viewer.annotationSettings.author = 'مقبول'; 

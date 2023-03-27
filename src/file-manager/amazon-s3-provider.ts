@@ -16,6 +16,11 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
             uploadUrl: hostUrl + 'AmazonS3Upload',
             downloadUrl: hostUrl + 'AmazonS3Download'
         },
+        toolbarSettings: { items: ['NewFolder', 'SortBy', 'Cut', 'Copy', 'Paste', 'Delete', 'Refresh', 'Download', 'Rename', 'Selection', 'View', 'Details'] },
+        contextMenuSettings: {
+                layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
+                visible: true
+        },
         searchSettings: {allowSearchOnTyping: false}
     });
     fileObject.appendTo('#filemanager');

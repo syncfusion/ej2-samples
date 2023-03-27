@@ -67,9 +67,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
                 xName: 'x', width: 2,
                 yName: 'y', marker: {
                     dataLabel: {
-                        visible: true,
-                        position: Browser.isDevice ? 'Outer' : 'Top',
-                        font: { fontWeight: '600', color: Browser.isDevice ? '#404041' : '#ffffff' }
+                        visible: true, enableRotation: Browser.isDevice ? true : false, angle: -90, position: 'Top', format: "{value}M", font: { fontWeight: '600' } 
                     }
                 }
             },
@@ -77,7 +75,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         //Initializing Chart title
         title: 'Internet Users in Millions',
         //Initializing User Interaction Tooltip
-        tooltip: { enable: true }, pointRender: labelRender,
+        tooltip: { enable: true, header: '', format: '<b>${point.x}</b> <br> Internet Users : <b>${point.y}M</b>' }, pointRender: labelRender,
         legendSettings: { visible: false },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

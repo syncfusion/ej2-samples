@@ -1,5 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { ProgressBar, ILoadedEventArgs, ProgressTheme, ProgressAnnotation } from '@syncfusion/ej2-progressbar';
+import { Browser } from '@syncfusion/ej2/base';
 ProgressBar.Inject(ProgressAnnotation);
 
 /**
@@ -13,7 +14,7 @@ ProgressBar.Inject(ProgressAnnotation);
         height: '30',
         width: '70%',
         value: 40,
-        segmentCount: 50,
+        segmentCount: Browser.isDevice? 25 : 50,
         gapWidth: 5,
         trackThickness: 15,
         progressThickness: 15,

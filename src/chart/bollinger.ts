@@ -3,6 +3,7 @@ import {
     Chart, CandleSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic,
     Crosshair, LineSeries, BollingerBands, ChartTheme, RangeAreaSeries
 } from '@syncfusion/ej2-charts';
+import { chartValue } from './financial-data';
 import { Browser, Ajax } from '@syncfusion/ej2-base';
 Chart.Inject(
     CandleSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, LineSeries, RangeAreaSeries,
@@ -14,21 +15,11 @@ Chart.Inject(
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let chartData: Object[];
-    let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        chartData = JSON.parse(data);
-        chartData.map((data: Object) => {
-            // tslint:disable-next-line:no-string-literal
-            data['x'] = new Date(data['x']);
-        });
         // tslint:disable
         let chart: Chart = new Chart({
             // Initializing the axes
             primaryXAxis: {
-                valueType: 'DateTime',
+                valueType: 'DateTime',intervalType: "Months",
                 majorGridLines: { width: 0 },
                 zoomFactor: 0.2, zoomPosition: 0.6,
                 crosshairTooltip: { enable: true }
@@ -39,18 +30,18 @@ Chart.Inject(
                 }
             },
             primaryYAxis: {
-                title: 'Price',
+                title: 'Price (in Million)',
                 labelFormat: '${value}M',
                 minimum: 50, maximum: 170, interval: 30,
-                majorGridLines: { width: 1 },
+                majorTickLines: { width: 0 },
                 lineStyle: { width: 0 }
             },
             // Initializing the chart series
             series: [{
-                dataSource: chartData, width: 2,
-                xName: 'x', yName: 'y', low: 'low', high: 'high', close: 'close', volume: 'volume', open: 'open',
+                dataSource: chartValue, width: 2,
+                xName: 'period', low: 'low', high: 'high', close: 'close', volume: 'volume', open: 'open',
                 name: 'Apple Inc', bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
-                type: 'Candle', animation: { enable: false }
+                type: 'Candle'
             }],
             // Initializing the indicators
             indicators: [{
@@ -72,7 +63,7 @@ Chart.Inject(
                 enablePan: true
             },
             width: Browser.isDevice ? '100%' : '75%',
-            title: 'AAPL - 2012-2017',
+            title: 'AAPL Stock Price 2012-2017',
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];
                 selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -83,4 +74,3 @@ Chart.Inject(
         });
         chart.appendTo('#container');
     };
-};

@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, LineSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, Category, Legend, Tooltip);
+import { Chart, LineSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme, Highlight } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, Category, Legend, Tooltip, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 
 /**
@@ -8,24 +8,29 @@ import { Browser } from '@syncfusion/ej2-base';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
+    let chartData: Object[] = [
+        { x: "World Wide", y1: 12, y2: 22, y3: 38.3, text: "World Wide" },
+        { x: "Europe",     y1: 9.9, y2: 26, y3: 45.2, text: "Europe" },
+        { x: "Asia Pacific", y1: 6.4, y2: 9.6, y3: 18.2, text: "Asia Pacific" },
+        { x: "Latin America", y1: 4.4, y2: 28, y3: 46.7, text: "Latin America" },
+        { x: "Middle East Africa", y1: 30, y2: 45.7, y3: 61.5, text: "Middle East Africa" },
+        { x: "North America", y1: 25.3, y2: 35.9, y3: 64, text: "North America" }];
     let chart: Chart = new Chart({
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            title: 'Countries', valueType: 'Category',
-            interval: 1, labelIntersectAction: 'Rotate45',
+            valueType: 'Category', labelRotation: Browser.isDevice ? -45 : 0,
+            interval: 1, labelIntersectAction: Browser.isDevice ? 'None' : 'Rotate45',
             majorGridLines: { width: 0 },
-            majorTickLines: { width: 0 },
-            minorTickLines: { width: 0 },
+            majorTickLines: { width: 0 }
         },
 
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Penetration',
             rangePadding: 'None',
             labelFormat: '{value}%', minimum: 0,
-            lineStyle: { width: 0 },
+            lineStyle: { width: 0 },majorTickLines: { width: 0 },
             maximum: 75, interval: 15
         },
         chartArea: {
@@ -37,59 +42,44 @@ import { Browser } from '@syncfusion/ej2-base';
         series: [
             {
                 type: 'Line',
-                dataSource: [{ x: 'WW', y: 12, text: 'World Wide' },
-                { x: 'EU', y: 9.9, text: 'Europe' },
-                { x: 'APAC', y: 4.4, text: 'Asia Pacific' },
-                { x: 'LATAM', y: 6.4, text: 'Latin America' },
-                { x: 'MEA', y: 30, text: 'Middle East Africa' },
-                { x: 'NA', y: 25.3, text: 'North America' }],
-                name: 'December 2007',
+                dataSource: chartData,
+                name: '2007',
                 marker: {
-                    visible: true, width: 10, height: 10,
+                    visible: true, width: 8, height: 8, isFilled: true, 
                     shape: 'Diamond', dataLabel: { name: 'text' }
                 },
                 xName: 'x', width: 2,
-                yName: 'y',
+                yName: 'y1',
             },
             {
                 type: 'Line',
-                dataSource: [{ x: 'WW', y: 22, text: 'World Wide' },
-                { x: 'EU', y: 26, text: 'Europe' },
-                { x: 'APAC', y: 9.3, text: 'Asia Pacific' },
-                { x: 'LATAM', y: 28, text: 'Latin America' },
-                { x: 'MEA', y: 45.7, text: 'Middle East Africa' },
-                { x: 'NA', y: 35.9, text: 'North America' }],
+                dataSource: chartData,
                 xName: 'x', width: 2,
                 marker: {
-                    visible: true, width: 10, height: 10,
+                    visible: true, width: 8, height: 8, isFilled: true,
                     shape: 'Pentagon', dataLabel: { name: 'text' }
                 },
-                yName: 'y', name: 'December 2008',
+                yName: 'y2', name: '2008',
             },
             {
                 type: 'Line',
-                dataSource: [{ x: 'WW', y: 38.3, text: 'World Wide' },
-                { x: 'EU', y: 45.2, text: 'Europe' },
-                { x: 'APAC', y: 18.2, text: 'Asia Pacific' },
-                { x: 'LATAM', y: 46.7, text: 'Latin America' },
-                { x: 'MEA', y: 61.5, text: 'Middle East Africa' },
-                { x: 'NA', y: 64, text: 'North America' }],
+                dataSource: chartData,
                 xName: 'x', width: 2,
                 marker: {
                     visible: true,
-                    width: 10, height: 10,
-                    shape: 'Triangle',
+                    width: 8, height: 8,
+                    shape: 'Triangle', isFilled: true, 
                     dataLabel: { name: 'text' }
                 },
-                yName: 'y', name: 'December 2009',
+                yName: 'y3', name: '2009',
             }
         ],
-        //Initializing Chart title
+        //Initializing Chart title  
         title: 'FB Penetration of Internet Audience',
-        legendSettings: { visible: false },
+        legendSettings: { visible: true, enableHighlight: true },
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true
+            enable: true, header: '', format: '<b>${point.x}</b> <br> ${series.name} : <b>${point.y}</b>'
         },
         width : Browser.isDevice ? '100%' : '75%',
         // custom code start

@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, VirtualScroll, Sort, Filter, Selection } from '@syncfusion/ej2-grids';
 import { isNullOrUndefined, closest } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { Rating } from '@syncfusion/ej2-inputs';
 import { getTradeData } from './data-source';
 import { DataManager, Query, UrlAdaptor } from '@syncfusion/ej2-data';
 
@@ -42,21 +43,16 @@ function startTimer(args: any): void {
 }
 
 (<{ratingDetail?: Function}>window).ratingDetail = (e: any): any => {
-    const div: Element = document.createElement('div');
-    div.className = 'rating';
-    let span: Element;
-    for (let i: number = 0; i < 5; i++) {
-        if (i < e.Rating) {
-            span = document.createElement('span');
-            span.className = 'star checked';
-            div.appendChild(span);
-        } else {
-            span = document.createElement('span');
-            span.className = 'star';
-            div.appendChild(span);
-        }
-    }
-    return div.outerHTML;
+    let temp: HTMLTemplateElement = document.getElementsByTagName("template")[0];
+    var cloneTemplate: any = temp.content.cloneNode(true);
+    let ratingElement: HTMLElement = cloneTemplate.querySelector(".rating");
+    const rating: Rating = new Rating({
+        value: e.Rating, 
+        readOnly: true,
+        cssClass: 'custom-rating'
+    });
+    rating.appendTo(ratingElement);
+    return (ratingElement as any).ej2_instances[0].wrapper.outerHTML;
 };
 
 (<{progessDetail?: Function}>window).progessDetail = (e: any): any => {
@@ -119,7 +115,7 @@ function startTimer(args: any): void {
 };
 
 let urlapi: DataManager = new DataManager({
-    url: "https://ej2services.syncfusion.com/production/web-services/api/UrlDataSource",
+    url: "https://services.syncfusion.com/js/production/api/UrlDataSource",
     adaptor: new UrlAdaptor()
 });
 
@@ -137,7 +133,7 @@ let urlapi: DataManager = new DataManager({
         selectionSettings: { persistSelection: true, type: 'Multiple', checkboxOnly: true },
         enableHover: false,
 		enableHeaderFocus: true,
-        height: 600,
+        height: 400,
         rowHeight: 38,
         columns: [
             { type: 'checkbox', allowFiltering: false, allowSorting: false, width: '60' },

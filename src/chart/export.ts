@@ -2,13 +2,14 @@ import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, ColumnSeries, IPointRenderEventArgs,
     Category, Legend, ILoadedEventArgs, ChartTheme,
-    ExportType, Export
+    ExportType, Export, DataLabel
 } from '@syncfusion/ej2-charts';
-Chart.Inject(ColumnSeries, Category, Legend, Export);
+Chart.Inject(ColumnSeries, Category, Legend, Export, DataLabel);
 import { Button } from '@syncfusion/ej2-buttons';
 import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors } from './theme-color';
 import { EmitType } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { Browser } from '@syncfusion/ej2/base';
 
 /**
  * Sample for chart export
@@ -36,10 +37,11 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'Category',
+            valueType: 'Category', interval: 1,
+            labelIntersectAction: Browser.isDevice ? 'None' : 'Trim',
+            labelRotation: -45,
             majorGridLines: { width: 0 },
             majorTickLines: { width: 0 },
-            minorTickLines: { width: 0 }
 
         },
         chartArea: {
@@ -51,30 +53,38 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Measurements',
-            labelFormat: '{value}GW',
+            title: 'Measurements (in Gigawatt)',
+            labelFormat: Browser.isDevice ? '{value}' : '{value}GW',
             minimum: 0,
             maximum: 40,
             interval: 10,
             lineStyle: { width: 0 },
+            majorGridLines: { width: 2 },
             minorTickLines: { width: 0 },
-            majorTickLines: { width: 0 },
         },
         //Initializing Chart Series
         series: [
             {
                 type: 'Column',
                 dataSource: [
-                    { x: 'DEU', y: 35.5 }, { x: 'CHN', y: 18.3 }, { x: 'ITA', y: 17.6 }, { x: 'JPN', y: 13.6 },
-                    { x: 'US', y: 12 }, { x: 'ESP', y: 5.6 }, { x: 'FRA', y: 4.6 }, { x: 'AUS', y: 3.3 },
-                    { x: 'BEL', y: 3 }, { x: 'UK', y: 2.9 }
+                    { x: "India", y: 35.5, text: Browser.isDevice ? "35.5" : "35.5GW" },
+                    { x: "China", y: 18.3, text: Browser.isDevice ? "18.3" : "18.3GW" },
+                    { x: "Italy", y: 17.6, text: Browser.isDevice ? " 17.6" : " 17.6GW" },
+                    { x: "Japan", y: 13.6, text: Browser.isDevice ? "13.6" : "13.6GW" },
+                    { x: "United state", y: 12, text: Browser.isDevice ? "12" : "12GW" },
+                    { x: "Spain", y: 5.6, text: Browser.isDevice ? "5.6" : "5.6GW" },
+                    { x: "France", y: 4.6, text: Browser.isDevice ? "4.6" : "4.6GW" },
+                    { x: "Australia", y: 3.3, text: Browser.isDevice ? "3.3" : "3.3GW" },
+                    { x: "Belgium", y: 3, text: Browser.isDevice ? "3" : "3GW" },
+                    { x: "United Kingdom", y: 2.9, text: Browser.isDevice ? "2.9" : "2.9GW" }
                 ],
                 xName: 'x', width: 2,
-                yName: 'y'
+                yName: 'y', marker: { dataLabel: { visible: true, name: 'text', position: 'Top', enableRotation: Browser.isDevice ? true : false, angle: Browser.isDevice ? -90 : 0, font: { fontWeight: '600', color: '#ffffff', size: '9px' } } }
             }
         ],
         //Initializing Chart title
         title: 'Top 10 Countries Using Solar Power',
+        width: '95%',
          // custom code start
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

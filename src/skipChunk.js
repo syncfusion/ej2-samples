@@ -1,1 +1,1 @@
-window.sampleSkip = []
+window.sampleSkip = ["grid","images"]

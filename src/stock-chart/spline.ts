@@ -19,7 +19,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
         primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 }, crosshairTooltip: { enable: true }},
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
-            majorTickLines: { color: 'transparent', width: 0 },
+            majorTickLines: { color: 'transparent', height: 0 },
         },
         chartArea: { border: { width: 0 } },
         series: [

@@ -6,7 +6,7 @@ import { RangeTooltip, IRangeLoadedEventArgs, Zoom, getElement, ITooltipRenderEv
 import { Switch, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 Chart.Inject(AreaSeries, DateTime, LineSeries, Crosshair, ChartAnnotation, CandleSeries, MomentumIndicator, Tooltip, Zoom);
 RangeNavigator.Inject(AreaSeries, DateTime, PeriodSelector, RangeTooltip);
-import { Browser, remove, Ajax } from '@syncfusion/ej2-base';
+import { Browser, remove, Fetch } from '@syncfusion/ej2-base';
 
 /**
  * Sample for period selector
@@ -25,11 +25,11 @@ let data1: object[] = [];
     loadCultureFiles();
     let value: object;
     let j: number = 2100;
-    let ajax: Ajax = new Ajax('./src/range-navigator/data-source/period-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        datasrc = JSON.parse(data);
+    let fetchApi: Fetch = new Fetch('./src/range-navigator/data-source/period-data.json', 'GET');
+    fetchApi.send().then();
+    // Rendering Dialog on FETCH success
+    fetchApi.onSuccess = (data: Object[]): void => {
+        datasrc = data;
         for (let i: number = 0; i < datasrc.length; i++) {
             value = datasrc[i];
             /* tslint:disable:no-string-literal */

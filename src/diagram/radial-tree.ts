@@ -104,7 +104,7 @@ function onItemClick(args: ClickEventArgs): void {
                 type: 'Separator'
             },
             {
-                type: 'Button', tooltipText: 'Reset', text: 'Reset', prefixIcon: 'e-ddb-icons e-reset',
+                type: 'Button', tooltipText: 'Reset', text: 'Reset', prefixIcon: 'e-diagram-icons e-diagram-reset',
             }
         ]
     });

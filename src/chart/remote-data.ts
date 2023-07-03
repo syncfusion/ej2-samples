@@ -98,7 +98,7 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         ],
         pointRender: pointRender,
         tooltipRender: (args) => {
-            args.text = '<b>' + args.data.pointX + ': ' + '$' + args.data.pointY * 1000;
+            args.text = args.data.pointX + ': ' + '<b>$' +args.data.pointY * 1000;
         },
         axisLabelRender: labelRender,
         loaded: loadedChart,
@@ -114,14 +114,14 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');;
         },
         //Initializing Chart title
         title: "Container freight rate", legendSettings: { visible: false },
         //Initializing User Interaction Tooltip
         tooltip: {
             enable: true,
-            header: 'Freight rate'
+            header: '<b>Freight rate</b>'
         }
 
     });

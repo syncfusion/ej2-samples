@@ -65,7 +65,7 @@ import { Browser } from '@syncfusion/ej2-base';
             xName: 'x', border: { width: 2 },
             width: 2,
             yName: 'y',
-            name: 'Company c',marker: { visible:true, isFilled : true , width : 5 , height : 5 , shape : "Rectangle"},
+            name: 'Company C',marker: { visible:true, isFilled : true , width : 5 , height : 5 , shape : "Rectangle"},
             opacity: 0.75,
         },
     ],

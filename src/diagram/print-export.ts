@@ -176,7 +176,7 @@ function toolbarClick(args: ClickEventArgs): void {
                 type: 'Input', text: 'Export', template: '<button id="custombtn" style="width:100%;"></button>'
             },
             {
-                type: 'Button', text: 'Print', prefixIcon: 'e-ddb-icons  e-print',
+                type: 'Button', text: 'Print', prefixIcon: 'e-diagram-icons e-diagram-print',
             },
             {
                 type: 'Input', template: checkBoxObj

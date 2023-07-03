@@ -187,7 +187,7 @@
         },
         {
             "url": "range-step-area",
-            "name": "Range Step Area", "type":"new",
+            "name": "Range Step Area",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the range step area series.",
             "category": "Area Charts",
             "api": {
@@ -546,7 +546,7 @@
         },
         {
             "url": "donut",
-            "name": "Donut","type":"update",
+            "name": "Donut",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the doughnut charts.",
             "category": "Accumulation Charts",        
             "api": {
@@ -709,7 +709,7 @@
         },
         {
             "url": "error-bar",
-            "name": "Error Bar","type":"update",
+            "name": "Error Bar",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the error bars in charts.",
             "category": "Other Types",
             "api": {
@@ -950,6 +950,7 @@
             "name": "Pareto Chart",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure pareto charts.",
             "category": "Other Types",
+            "type":"update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1109,6 +1110,7 @@
             "name": "Lazy Loading",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates the Lazy Loading behavior in chart.",
             "category": "Data Binding",
+            "type":"update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1224,7 +1226,8 @@
         },
         {
             "url": "strip-line",
-            "name": "Strip Line",
+            "name": "Stripline",
+            "type": "update",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the strip lines in charts.",
             "category": "Chart Axes",
             "api": {
@@ -1533,6 +1536,7 @@
             "name": "Zooming and Panning",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates the zooming and panning behavior in chart.",
             "category": "User Interaction",
+            "type":"update",
             "api": {
                 "Chart": [
                     "primaryXAxis",

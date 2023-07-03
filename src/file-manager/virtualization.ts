@@ -11,10 +11,10 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu, Virtualiza
     let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
     let fileObject: FileManager = new FileManager({
         ajaxSettings: {
-            url: hostUrl + 'api/FileManager/FileOperations',
-            getImageUrl: hostUrl + 'api/FileManager/GetImage',
-            uploadUrl: hostUrl + 'api/FileManager/Upload',
-            downloadUrl: hostUrl + 'api/FileManager/Download'
+            url: hostUrl + 'api/Virtualization/FileOperations',
+            getImageUrl: hostUrl + 'api/Virtualization/GetImage',
+            uploadUrl: hostUrl + 'api/Virtualization/Upload',
+            downloadUrl: hostUrl + 'api/Virtualization/Download'
         },
         view: 'Details',
         toolbarSettings: { items: ['NewFolder', 'SortBy', 'Cut', 'Copy', 'Paste', 'Delete', 'Refresh', 'Download', 'Rename', 'View', 'Details'] },
@@ -22,18 +22,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu, Virtualiza
                 layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
                 visible: true
         },
-        enableVirtualization: true,
-        beforeSend: function(args) {
-            args.ajaxSettings.beforeSend = function (args: any) {
-                args.httpRequest.setRequestHeader('Authorization', 'FileBrowser');
-            };
-        },
-        beforeImageLoad: function(args) {
-            args.imageUrl = args.imageUrl + '&rootName=' + 'FileBrowser';
-        },
-        beforeDownload: function(args) {
-            args.data['rootFolderName'] = 'FileBrowser';
-        },
+        enableVirtualization: true
     });
     fileObject.appendTo('#filemanager');
 };

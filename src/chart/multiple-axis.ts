@@ -84,6 +84,7 @@ import { Browser } from '@syncfusion/ej2-base';
 
         //Initializing Chart title
         //Initializing User Interaction Tooltip
+        title: 'Weather Data',
         tooltip: { enable: true },
         legendSettings: {
             visible: false

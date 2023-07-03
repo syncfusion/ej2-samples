@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Selection, RowDD } from '@syncfusion/ej2-grids';
+import { Grid, Selection, RowDD, Group, Sort } from '@syncfusion/ej2-grids';
 import { orderDetails } from './data-source';
 
-Grid.Inject(Selection, RowDD);
+Grid.Inject(Selection, RowDD, Group, Sort);
 
 /**
  * DragAndDrop Grid sample
@@ -13,6 +13,8 @@ Grid.Inject(Selection, RowDD);
         {
             dataSource: orderDetails,
             allowRowDragAndDrop: true,
+            allowGrouping: true,
+            allowSorting: true,
             selectionSettings: { type: 'Multiple' },
             height: 400,
             columns: [

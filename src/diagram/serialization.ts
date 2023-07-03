@@ -152,7 +152,7 @@ let items: ItemModel[] = [
         type: 'Separator'
     },
     {
-        text: 'Save', tooltipText: 'Save', prefixIcon: 'e-ddb-icons e-save'
+        text: 'Save', tooltipText: 'Save', prefixIcon: 'e-diagram-icons e-diagram-save'
     },
     {
         type: 'Separator'

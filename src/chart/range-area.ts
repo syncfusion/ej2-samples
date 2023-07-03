@@ -56,8 +56,8 @@ import { chartDataValues } from './financial-data';
         title: 'Temperature Variation by Month',
         tooltip: { enableMarker:true, enable: true, shared: false, format: 'Temperature : <b>${point.low} - ${point.high}</b>',  header :'<b>${point.x}</b>'},
         seriesRender: (args: ISeriesRenderEventArgs) => {
-            let areathemes: string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast'];
-            let borderColor: string[] = ['#262E0B', '#5ECB9B', '#5A61F6', '#8B5CF6', '#00bdae', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4'];
+            let areathemes: string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast','fluent', 'fluentdark',];
+            let borderColor: string[] = ['#6355C7', '#8F80F4', '#5A61F6', '#8B5CF6', '#00bdae', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4','#1AC9E6','#1AC9E6'];
             args.series.border.color = borderColor[areathemes.indexOf(args.series.chart.theme.toLowerCase())];
         },
         load: (args: ILoadedEventArgs) => {

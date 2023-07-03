@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Tooltip, Crosshair, DateTime, ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-import { Chart, LineSeries, Legend } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, Legend, Highlight } from '@syncfusion/ej2-charts';
 import { john, andrew, thomas } from './trackball-data';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
+Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend ,Highlight);
 
 /**
  * Sample for TrackBall in chart
@@ -66,6 +66,7 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend);
         ],
         //Initializing User Interaction Tooltip and Crosshair
         tooltip: { enable: true, shared: true },
+        legendSettings: { enableHighlight: true },
         crosshair: { enable: true, lineType: 'Vertical' },
         //Initializing Chart title
         title: 'Average Sales per Person',

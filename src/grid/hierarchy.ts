@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Selection, DetailRow, Sort } from '@syncfusion/ej2-grids';
-import { DataManager, ODataAdaptor } from '@syncfusion/ej2-data';
+import { DataManager, ODataV4Adaptor } from '@syncfusion/ej2-data';
 import { employeeData } from './data-source';
 
 Grid.Inject(Page, Selection, DetailRow, Sort);
@@ -10,13 +10,13 @@ Grid.Inject(Page, Selection, DetailRow, Sort);
 (window as any).default = (): void => {
     loadCultureFiles();
     let dataManger: Object = new DataManager({
-        url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Orders',
-        adaptor: new ODataAdaptor,
+        url: 'https://services.odata.org/V4/Northwind/Northwind.svc/Orders',
+        adaptor: new ODataV4Adaptor,
         crossDomain: true
     });
     let dataManger2: Object = new DataManager({
-        url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Customers',
-        adaptor: new ODataAdaptor,
+        url: 'https://services.odata.org/V4/Northwind/Northwind.svc/Customers',
+        adaptor: new ODataV4Adaptor,
         crossDomain: true
     });
 

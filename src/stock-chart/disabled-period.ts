@@ -22,7 +22,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
                       },
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
-            majorTickLines: { color: 'transparent', width: 0 }
+            majorTickLines: { color: 'transparent', height: 0 }
         },
         series: [
             {

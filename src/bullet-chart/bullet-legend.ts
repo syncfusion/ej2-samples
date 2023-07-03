@@ -15,7 +15,7 @@ let targetValue: number;
     let chart: BulletChart = new BulletChart({
         width: Browser.isDevice ? '100%' : '70%',
         height: '160',
-        tooltip: { enable: false },
+        tooltip: { enable: true },
         dataSource: [{ value: 25, target: [20, 26, 28] }],
         valueField: 'value',
         targetField: 'target',

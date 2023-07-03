@@ -57,10 +57,10 @@ import { NumericTextBox } from '@syncfusion/ej2-inputs';
         let nextElement = targetElement.nextElementSibling;
         if ((previousElement !== null && previousElement.id === 'floating') || nextElement !== null && nextElement.previousElementSibling.id === 'floating') {
             dashboardObject.allowFloating = args.checked;
-         }
-         if ((previousElement !== null && previousElement.id === 'resizing') || nextElement !== null && nextElement.previousElementSibling.id === 'resizing') {
+        }
+        if ((previousElement !== null && previousElement.id === 'resizing') || nextElement !== null && nextElement.previousElementSibling.id === 'resizing') {
             dashboardObject.allowResizing = args.checked;
-         }
+        }
     }
 
     document.getElementById('remove').onclick = () => {

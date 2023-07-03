@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, ColumnSeries, DateTimeCategory, Tooltip, ILoadedEventArgs, ChartTheme,
+    Chart, ColumnSeries, DateTimeCategory, ILoadedEventArgs, ChartTheme,
     StripLine, ChartAnnotation, DataLabel
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(ColumnSeries, DateTimeCategory, Tooltip, StripLine, ChartAnnotation, DataLabel);
+Chart.Inject(ColumnSeries, DateTimeCategory, StripLine, ChartAnnotation, DataLabel);
 
 /**
  * Sample for Date time category axis
@@ -58,9 +58,6 @@ Chart.Inject(ColumnSeries, DateTimeCategory, Tooltip, StripLine, ChartAnnotation
         width: Browser.isDevice ? '100%' : '75%',
         legendSettings: { visible: false },
         title: 'Sales Comparison of a Product',
-        tooltip: {
-            enable: true
-        },
         annotations: [
             {
                 x: new Date(2017, 11, 22), y: 90, coordinateUnits: 'Point',

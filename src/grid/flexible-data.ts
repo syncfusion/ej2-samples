@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Filter, Page, Selection, ColumnModel, CheckBoxChangeEventArgs, DataStateChangeEventArgs, Sorts } from '@syncfusion/ej2-grids';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { ChangeEventArgs, DropDownList } from '@syncfusion/ej2-dropdowns';
-import { AdaptorOptions, DataManager, DataResult, ODataAdaptor, ODataV4Adaptor, Query, UrlAdaptor, WebApiAdaptor } from '@syncfusion/ej2/data';
+import { AdaptorOptions, DataManager, DataResult, ODataV4Adaptor, Query, UrlAdaptor, WebApiAdaptor } from '@syncfusion/ej2/data';
 import { addClass, Ajax, removeClass } from '@syncfusion/ej2/base';
 import { TextBox } from '@syncfusion/ej2/inputs';
 
@@ -18,10 +18,9 @@ Grid.Inject(Filter, Page, Selection);
     let params: [string];
     const serviceURL: { [key: string]: Object }[] = [
         { text: 'https://services.odata.org/V4/Northwind/Northwind.svc/Orders/', value: 'ODataV4Adaptor' },
-        { text: 'https://js.syncfusion.com/ejServices/Wcf/Northwind.svc/Orders/', value: 'ODataAdaptor' },
         { text: 'https://services.syncfusion.com/js/production/api/Orders', value: 'WebApiAdaptor' },
         { text: 'https://services.syncfusion.com/js/production/api/UrlDataSource', value: 'UrlAdaptor' },
-        { text: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Orders', value: 'Custom Binding' }
+        { text: 'https://services.odata.org/V4/Northwind/Northwind.svc/Orders', value: 'Custom Binding' }
     ];
     let defaultColumns: ColumnModel[] = [
         { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120, type: 'number' },
@@ -48,9 +47,6 @@ Grid.Inject(Filter, Page, Selection);
             let headerElements = document.querySelectorAll('.header_show_hide');
             removeClass(paramElements, 'hide_elem');
             removeClass(headerElements, 'hide_elem');
-            if (changedAdaptor === 'ODataAdaptor') {
-                addClass(headerElements, 'hide_elem');
-            }
             if (changedAdaptor === 'Custom Binding') {
                 addClass(paramElements, 'hide_elem');
                 addClass(headerElements, 'hide_elem');
@@ -99,7 +95,7 @@ Grid.Inject(Filter, Page, Selection);
         return result;
     }
 
-    const BASE_URL = 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Orders';
+    const BASE_URL = 'https://services.odata.org/V4/Northwind/Northwind.svc/Orders';
     const ajax: Ajax = new Ajax({
         type: 'GET', mode: true,
         onFailure: (e: Error) => { return false; }
@@ -115,15 +111,14 @@ Grid.Inject(Filter, Page, Selection);
         params = defaultParam ? createObjectArray(defaultParam) : [];
         const pageQuery = `$skip=${state.skip}&$top=${state.take}`;
         if (document.getElementById("pageCheckbox")['ej2_instances'][0].checked) {
-            ajax.url = BASE_URL + "?" + pageQuery + "&$inlinecount=allpages&$format=json";
+            ajax.url = BASE_URL + "?" + pageQuery + "&$count=true";
         }
         else {
-            ajax.url = BASE_URL + "?" + "&$inlinecount=allpages&$format=json";
+            ajax.url = BASE_URL + "?" + "&$count=true";
         }
-        ajax.data = Object.assign({}, ...params);
         return ajax.send().then((response: any) => {
             let data: any = JSON.parse(response);
-            return { result: data['d']['results'], count: parseInt(data['d']['__count'], 10) };
+            return { result: data['value'], count: parseInt(data['@odata.count'], 10) };
         });
     }
 
@@ -188,21 +183,11 @@ Grid.Inject(Filter, Page, Selection);
                     crossDomain: true
                 });
             }
-            else if (changedAdaptor === 'ODataAdaptor') {
-                newDataSource = new DataManager({
-                    url: 'https://js.syncfusion.com/demos/ejServices/Wcf/Northwind.svc/Orders',
-                    adaptor: new ODataAdaptor(),
-                    crossDomain: true
-                });
-            }
             grid.changeDataSource(newDataSource, col)
         }
         let payloadInfo: string;
         if (changedAdaptor === 'Custom Binding') {
             payloadInfo = `<b><u>Payload Information</u></b><br> Custom Binding <br> Service URL: ${selectedService}`;
-        }
-        else if (changedAdaptor === 'ODataAdaptor') {
-            payloadInfo = `<b><u>Payload Information</u></b><br> Service URL: ${selectedService} <br> Adaptor Type: ${changedAdaptor} <br> Additional Parameters: ${defaultParam}`;
         }
         else {
             payloadInfo = `<b><u>Payload Information</u></b><br> Service URL: ${selectedService} <br> Adaptor Type: ${changedAdaptor} <br> Additional Parameters: ${defaultParam} <br> Headers: ${defaultHeader}`;

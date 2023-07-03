@@ -7,7 +7,7 @@ Chart.Inject(SplineAreaSeries, DateTime, Crosshair, Tooltip, Export);
 RangeNavigator.Inject(DateTime, StepLineSeries);
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import { Ajax } from '@syncfusion/ej2-base';
+import { Fetch } from '@syncfusion/ej2-base';
 
 /**
  * Sample for range navigator with print and export functionalities.
@@ -16,20 +16,20 @@ let selectedTheme: string = location.hash.split('/')[1];
 selectedTheme = selectedTheme ? selectedTheme : 'Material';
 let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
-let themes: string[] = ['Material', 'Fabric', 'Bootstrap', 'Bootstrap4', 'HighContrast', 'Bootstrap5', 'Tailwind','MaterialDark', 'FabricDark', 'BootstrapDark', 'TailwindDark', 'Bootstrap5Dark', 'Fluent', 'FluentDark'];
-let borderColor: string[] = ['#FF4081', '#007897', '#428BCA', '#FFD939', '#FFD939', '#4F46E5', '#4F46E5','#FF4081', '#007897', '#428BCA', '#22D3EE', '#ADB5BD', '#614570', '#8AB113'];
+let themes: string[] = ['Material', 'Fabric', 'Bootstrap', 'Bootstrap4', 'HighContrast', 'Bootstrap5', 'Tailwind','MaterialDark', 'FabricDark', 'BootstrapDark', 'TailwindDark', 'Bootstrap5Dark', 'Fluent', 'FluentDark', 'Material3', 'Material3Dark'];
+let borderColor: string[] = ['#FF4081', '#007897', '#428BCA', '#FFD939', '#FFD939', '#4F46E5', '#4F46E5','#FF4081', '#007897', '#428BCA', '#22D3EE', '#8F80F4', '#1AC9E6', '#1AC9E6', '#6355C7', '#4EAAFF'];
 let regionColor: string[] = ['rgba(255, 64, 129, 0.3)', 'rgba(0, 120, 151, 0.3)',
-'rgba(66, 139, 202, 0.3)', 'rgba(255, 217, 57, 0.3)', 'rgba(255, 217, 57, 0.3)', 'rgba(79, 70, 229, 0.3)', 'rgba(79, 70, 229, 0.3)',
-'rgba(255, 64, 129, 0.3)', 'rgba(0, 120, 151, 0.3)', 'rgba(66, 139, 202, 0.3)', 'rgba(34, 211, 238, 0.3)', 'rgba(173,181,189,0.3)'];
+'rgba(66, 139, 202, 0.3)', 'rgba(255, 217, 57, 0.3)', 'rgba(255, 217, 57, 0.3)', 'rgba(99, 85, 199, 0.3)', 'rgba(79, 70, 229, 0.3)',
+'rgba(255, 64, 129, 0.3)', 'rgba(0, 120, 151, 0.3)', 'rgba(66, 139, 202, 0.3)', 'rgba(34, 211, 238, 0.3)', 'rgba(143, 128, 244, 0.3)', 'rgba(26, 201, 230, 0.3)', 'rgba(26, 201, 230, 0.3)', 'rgba(99, 85, 199, 0.3)', 'rgba(78, 170, 255, 0.3)'];
 
 (window as any).default = (): void => {
     loadCultureFiles();
     let datasrc: Object[];
-    let ajax: Ajax = new Ajax('./src/range-navigator/data-source/export-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        datasrc = JSON.parse(data);
+    let fetchApi: Fetch = new Fetch('./src/range-navigator/data-source/export-data.json', 'GET');
+    fetchApi.send().then();
+    // Rendering Dialog on FETCH success
+    fetchApi.onSuccess = (data: Object[]): void => {
+        datasrc = data;
         datasrc.map((data: Object) => {
             // tslint:disable-next-line:no-string-literal
             data['xDate'] = new Date(data['xDate']);

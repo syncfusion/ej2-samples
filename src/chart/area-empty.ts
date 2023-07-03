@@ -50,7 +50,7 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Chart title
         title: 'Data Consumption',
         width: Browser.isDevice ? '100%' : '75%',
-        tooltip: { enable: true, format: '${point.x} : <b>${point.y}' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>' },
         legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

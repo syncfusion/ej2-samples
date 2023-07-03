@@ -3,9 +3,8 @@ import { Chart, BubbleSeries, Tooltip, IPointRenderEventArgs, DataLabel } from '
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors } from './theme-color';
+import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, bubbleMaterial3Colors, pointMaterial3Colors, bubbleMaterial3DarkColors, pointMaterial3DarkColors} from './theme-color';
 Chart.Inject(BubbleSeries, Tooltip, DataLabel);
-
 let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];
     selectedTheme = selectedTheme ? selectedTheme : 'material';
@@ -48,6 +47,14 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
     } else if (selectedTheme === 'tailwind') {
         args.fill = bubbleTailwindColors[args.point.index % 10];
         args.border.color = pointTailwindColors[args.point.index % 10];
+    }
+    else if (selectedTheme === 'material3') {
+        args.fill = bubbleMaterial3Colors[args.point.index % 10];
+        args.border.color = pointMaterial3Colors[args.point.index % 10];
+    }
+    else if (selectedTheme === 'material3-dark') {
+        args.fill = bubbleMaterial3DarkColors[args.point.index % 10];
+        args.border.color = pointMaterial3DarkColors[args.point.index % 10];
     }
 };
 

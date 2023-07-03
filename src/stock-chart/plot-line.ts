@@ -20,7 +20,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, St
             stripLines: [{ start: 320, sizeType: 'Pixel', size: 1, color: 'green', dashArray: '10,5' },
             { start: 380, sizeType: 'Pixel', size: 1, color: 'red', dashArray: '10,5' }],
             lineStyle: { color: 'transparent' },
-            majorTickLines: { color: 'transparent', width: 0 }
+            majorTickLines: { color: 'transparent', height: 0 }
         },
 
         chartArea: { border: { width: 0 } },
@@ -32,6 +32,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, St
         ],
         seriesType : [],
         indicatorType : [],
+        trendlineType : ['Linear', 'Exponential', 'Polynomial', 'Logarithmic', 'MovingAverage'],
         title: 'Plot line on Y axis',
         load: (args: IStockChartEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

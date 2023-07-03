@@ -57,8 +57,7 @@ import { Browser } from '@syncfusion/ej2-base';
         title: 'Fruit Production Statistics',
         //Initializing Usr Interaction Tooltip
         tooltip: {
-            enable: true
-            , shared:true , header:"<b>Fruit Production</b>" , format:"${point.x} : <b>${point.y}"
+            enable: true, shared:true , header:"<b>Fruit Production</b>" , format:"${point.x} : <b>${point.y}</b>"
         },
         width : Browser.isDevice ? '100%' : '75%',
         legendSettings:{visible : false },

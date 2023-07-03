@@ -13,7 +13,11 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         // Set the value for slider
         value: 30,
         // Set the slider orientation
-        orientation: 'Vertical'
+        orientation: 'Vertical',
+        // Set the slider ticks
+        ticks: { placement: 'Before', largeStep: 20, smallStep: 5, showSmallTicks: true },
+        // Set the slider tooltip
+        tooltip:  { isVisible : true, placement: 'Before' }
     });
     defaultObj.appendTo('#default');
 
@@ -24,7 +28,11 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         // Set the type to render minRange slider
         type: 'MinRange',
         // Set the slider orientation
-        orientation: 'Vertical'
+        orientation: 'Vertical',
+        // Set the slider ticks
+        ticks: { placement: 'Before', largeStep: 20, smallStep: 5, showSmallTicks: true },
+        // Set the slider tooltip
+        tooltip:  { isVisible : true, placement: 'Before' }
     });
     minRangeObj.appendTo('#minrange');
 
@@ -35,34 +43,55 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         // Set the type to render range slider
         type: 'Range',
         // Set the slider orientation
-        orientation: 'Vertical'
+        orientation: 'Vertical',
+        // Set the slider ticks
+        ticks: { placement: 'Before', largeStep: 20, smallStep: 5, showSmallTicks: true },
+        // Set the slider tooltip
+        tooltip:  { isVisible : true, placement: 'Before' }
     });
     rangeObj.appendTo('#range');
 
+    // Initialize Slider component
+    let reverseObj : Slider = new Slider({
+        // Set the values for slider
+        value: [30, 70],
+        // Set maximum value to min property
+        min:100,
+        // Set Minimum value to max property
+        max:0,
+        // Set the type to render range slider
+        type: 'Range',
+        // Set the slider orientation
+        orientation: 'Vertical',
+        // Set the slider ticks
+        ticks: { placement: 'Before', largeStep: 20, smallStep: 5, showSmallTicks: true },
+        // Set the slider tooltip
+        tooltip:  { isVisible : true, placement: 'Before' }
+    });
+    reverseObj.appendTo('#reversible');
+
     // Initialize Checkbox components
-    let enableTicks: CheckBox = new CheckBox({ checked: false, change: enableDisableTicks });
+    let enableTicks: CheckBox = new CheckBox({ checked: true, change: enableDisableTicks });
     enableTicks.appendTo('#ticks');
 
-    let enableTooltip: CheckBox = new CheckBox({ checked: false, change: enableDisableTooltip });
+    let enableTooltip: CheckBox = new CheckBox({ checked: true, change: enableDisableTooltip });
     enableTooltip.appendTo('#tooltip');
 
     // Array of slider objects
-    let sliders : Slider[] = [defaultObj, minRangeObj, rangeObj];
+    let sliders : Slider[] = [defaultObj, minRangeObj, rangeObj, reverseObj];
 
     // Checkbox change handlers
     function enableDisableTicks(args: ChangeEventArgs): void {
-        let ticks: TicksDataModel = { placement: args.checked ? 'Before' : 'None', largeStep: 20, smallStep: 5, showSmallTicks: true };
         sliders.forEach((slider: Slider) => {
             // Assigning ticks values to each slider
-            slider.ticks = ticks;
+            slider.ticks.placement = args.checked ? 'Before' : 'None';
         });
     }
 
     function enableDisableTooltip(args: ChangeEventArgs): void {
-        let tooltip: TooltipDataModel = { isVisible : args.checked, placement: 'Before' };
         sliders.forEach((slider: Slider) => {
             // Assigning tooltip values to each slider
-            slider.tooltip = tooltip;
+            slider.tooltip.isVisible = args.checked;
         });
     }
 

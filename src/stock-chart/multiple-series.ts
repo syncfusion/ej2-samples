@@ -20,12 +20,13 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
         primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 }, crosshairTooltip: { enable: true } },
         primaryYAxis: {
             interval: 40, lineStyle: { color: 'transparent' },
-            majorTickLines: { color: 'transparent', width: 0 },
+            majorTickLines: { color: 'transparent', height: 0 },
             crosshairTooltip: { enable: true }
         },
         chartArea: { border: { width: 0 } },
         indicatorType : [],
         trendlineType : [],
+        seriesType : ['Line', 'Hilo', 'HiloOpenClose', 'Spline', 'Candle'],
         series: [
             {
                 dataSource: goog, xName: 'x', yName: 'close', type: 'Spline', name: 'GOOG'
@@ -35,7 +36,8 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
             },
         ],
         crosshair: {
-            enable: true
+            enable: true,
+            lineType: 'Both'
         },
         legendSettings: {
             visible: true

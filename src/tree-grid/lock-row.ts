@@ -50,7 +50,7 @@ TreeGrid.Inject(Toolbar, Edit, Page);
                 { field: 'startDate', headerText: 'Start Date', textAlign: 'Right', width: 130, editType: 'datepickeredit',
                   format: 'yMd', validationRules: { date: true }  },
                 {
-                    field: 'duration', headerText: 'Duration', textAlign: 'Right', width: 100, editType: 'numericedit',
+                    field: 'duration', headerText: 'Duration', textAlign: 'Right', width: 140, editType: 'numericedit',
                     validationRules: { number: true, min: 0}, edit: { params: {  format: 'n'}}
                 }
             ]

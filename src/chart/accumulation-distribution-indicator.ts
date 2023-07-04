@@ -14,7 +14,7 @@ Chart.Inject(
 /**
  * Sample for Accumulation Distribution Indicator
  */
-
+ 
 (window as any).default = (): void => {
     loadCultureFiles();
         let chart: Chart = new Chart({

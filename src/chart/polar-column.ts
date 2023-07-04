@@ -34,7 +34,8 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries, Highlight);
         primaryXAxis: {
             valueType: 'Category',
             labelPlacement: 'OnTicks', interval: 1,
-            coefficient: Browser.isDevice ? 80 : 100
+            coefficient: Browser.isDevice ? 80 : 100,
+            labelIntersectAction: Browser.isDevice ? 'Trim' : 'None',
         },
 
         //Initializing Primary Y Axis

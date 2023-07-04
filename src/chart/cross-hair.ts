@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { ChartTheme, Chart, LineSeries, HiloOpenCloseSeries, Crosshair, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
-Chart.Inject(LineSeries, DateTime, Crosshair, HiloOpenCloseSeries);
+import { ChartTheme, Chart, LineSeries, HiloOpenCloseSeries, Zoom, Crosshair, DateTime, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+Chart.Inject(LineSeries, DateTime, Crosshair, HiloOpenCloseSeries, Zoom);
 import { axesData } from './financial-data';
 import { Browser } from '@syncfusion/ej2-base';
 
@@ -65,6 +65,11 @@ import { Browser } from '@syncfusion/ej2-base';
          * Initialize the crosshair
          */
         crosshair: { enable: true },
+        zoomSettings: {
+            enablePinchZooming: true,
+            enableSelectionZooming: true,
+            mode: 'X'
+        },
         legendSettings: { visible: false },
         width: Browser.isDevice ? '100%' : '75%',
         //Initializing Chart title

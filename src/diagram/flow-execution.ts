@@ -138,7 +138,7 @@ let diagram: Diagram;
 
 
     function buttonChange(args: ChangeEventArgs): void {
-        applyChanges((args.event.srcElement as HTMLElement).id );
+        applyChanges((args.event.srcElement as HTMLElement).id );	
         selectedButton =(args.event.srcElement as HTMLElement).id;
     }
 

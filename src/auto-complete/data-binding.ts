@@ -14,7 +14,7 @@ import * as data from './dataSource.json';
     let atcObj1: AutoComplete = new AutoComplete({
         // bind the DataManager instance to dataSource property
         dataSource: new DataManager({
-            url: 'https://ej2services.syncfusion.com/js/development/api/Employees',
+            url: 'https://services.syncfusion.com/js/production/api/Employees',
             adaptor: new WebApiAdaptor,
             crossDomain: true
         }),

@@ -158,7 +158,7 @@
             "url":"default-scrolling", "name": "Default Scrolling", "description":"This demo for Essential JS 2 Tree Grid control shows the usage of horizontal and vertical scrollbars to view Tree Grid content that exceeds the Tree Grid area.", "category":"Scrolling","api":{"TreeGrid":["dataSource","height","width","columns"] } 
          },
          {
-            "url":"frozen-column", "name": "Frozen Columns", "category":"Scrolling","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
+            "url":"frozen-column", "name": "Frozen Columns", "category":"Scrolling", "hideOnDevice": true, "api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
             "description": "This demo for Essential JS 2 Tree Grid control shows frozen columns feature of Tree Grid. Scroll the movable content to view the frozen columns."
          },
          {

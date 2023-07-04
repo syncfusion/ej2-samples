@@ -65,7 +65,7 @@ Chart.Inject(
             //Initializing UserInteraction Zoom, Tooltip and Crosshair
             zoomSettings:
                 {
-
+                    enablePan: true,
                     enableSelectionZooming: true,
                     enablePinchZooming: true,
                     mode: 'XY',

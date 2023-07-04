@@ -70,6 +70,9 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
             if(edgeMode.value === 'Spline'){
                 chart.series[0].marker.visible = true;
             }
+            else {
+                chart.series[0].marker.visible = false;
+            }
             chart.refresh();
         }
     });

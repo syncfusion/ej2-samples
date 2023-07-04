@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor Image sample
  */
@@ -8,7 +7,6 @@ import { CheckBox } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
-    loadCultureFiles();
     let defaultRTE: RichTextEditor = new RichTextEditor({
         quickToolbarSettings: {
             image: [

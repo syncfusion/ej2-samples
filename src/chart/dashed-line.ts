@@ -91,7 +91,7 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Category,Crosshair, ChartAnn
         tooltip: {
             enable: true,
             shared: true,
-            format: '${point.x} : <b>${point.y}',
+            format: '${point.x} : <b>${point.y}</b>',
             header: '<b>Fruits Production</b>'
         },
         crosshair: {
@@ -108,9 +108,9 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Category,Crosshair, ChartAnn
         args.chart.annotations[0].content = '<div style="color:black; font-weight:bold;">Actual</div>';
         args.chart.annotations[1].content = '<div style="color:black; font-weight:bold;">Forecast</div>';
         let selectedTheme = location.hash.split('/')[1];
-        selectedTheme = selectedTheme ? selectedTheme : 'material';
-        args.chart.theme = (selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).
-        replace(/-dark/i, "Dark") as ChartTheme;
+        selectedTheme = selectedTheme ? selectedTheme : 'Material';
+        args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         if (selectedTheme && selectedTheme.indexOf('fabric-dark') > -1) {
           annotationColor = 'dark'
         } else if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
@@ -137,6 +137,12 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Category,Crosshair, ChartAnn
           annotationColor = 'dark'
         } else if (selectedTheme === 'tailwind') {
           annotationColor = 'light'
+        }
+        else if (selectedTheme === 'material3-dark') {
+          annotationColor = 'dark';
+        }
+        else if (selectedTheme === 'material3') {
+          annotationColor = 'light';
         } else {
           annotationColor = 'light'
         }

@@ -7,7 +7,7 @@ import {
 import { SplineSeries, ChartAnnotation, ILoadedEventArgs, ChartAnnotationSettingsModel, getSeriesColor } from '@syncfusion/ej2-charts';
 Chart.Inject(SplineSeries, Crosshair, ChartAnnotation, Tooltip);
 RangeNavigator.Inject(StepLineSeries, RangeTooltip);
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { Browser, Fetch } from '@syncfusion/ej2-base';
 
 /**
  * Sample for range navigator with numeric axis
@@ -26,11 +26,11 @@ let sl: object[]; let aus: object[] = [];
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let ajax: Ajax = new Ajax('./src/range-navigator/data-source/double.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        datasrc = JSON.parse(data);
+    let fetchApi: Fetch = new Fetch('./src/range-navigator/data-source/double.json', 'GET');
+    fetchApi.send().then();
+    // Rendering Dialog on FETCH success
+    fetchApi.onSuccess = (data: Object[]): void => {
+        datasrc = data;
         // tslint:disable-next-line:no-string-literal
         sl = datasrc['srilanka']; aus = datasrc['aus'];
         getAnnotaiton(aus, getSeriesColor(theme)[0]);

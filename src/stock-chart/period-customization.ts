@@ -32,7 +32,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
                         crosshairTooltip: { enable: true } },
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
-            majorTickLines: { color: 'transparent', width: 0 },
+            majorTickLines: { color: 'transparent', height: 0 },
             crosshairTooltip: { enable: true }
         },
         chartArea: { border: { width: 0 } },
@@ -54,7 +54,8 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
         ],
         title: 'AAPL stock price by minutes',
         crosshair: {
-            enable: true
+            enable: true,
+            lineType:'Both'
         },
         load: (args: IStockChartEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

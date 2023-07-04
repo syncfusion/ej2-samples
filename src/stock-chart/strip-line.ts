@@ -20,7 +20,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, St
         primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 } },
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
-            majorTickLines: { color: 'transparent', width: 0 },
+            majorTickLines: { color: 'transparent', height: 0 },
             stripLines: [{ start: 340, end: 380, color: '#3CB371', opacity: 0.1 }]
         },
         series: [
@@ -30,6 +30,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, St
         ],
         seriesType : [],
         indicatorType : [],
+        trendlineType : ['Linear', 'Exponential', 'Polynomial', 'Logarithmic', 'MovingAverage'],
         title: 'AAPL Historical',
         load: (args: IStockChartEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

@@ -4,7 +4,7 @@ import { Button } from '@syncfusion/ej2-buttons';
 import { TimePicker } from '@syncfusion/ej2-calendars';
 import { applyCategoryColor } from './helper';
 import * as dataSource from './datasource.json';
-import { extend } from '@syncfusion/ej2-base';
+import { extend , Internationalization} from '@syncfusion/ej2-base';
 
 Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
 
@@ -14,6 +14,7 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
+    const globalize:Internationalization = new Internationalization();
     let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).employeeEventData, null, true);
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
@@ -45,10 +46,9 @@ Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
     let button: Button = new Button();
     button.appendTo('#submit');
     document.getElementById('submit').onclick = () => {
-        let start: HTMLInputElement = document.getElementById('startTime') as HTMLInputElement;
-        let end: HTMLInputElement = document.getElementById('endTime') as HTMLInputElement;
-        scheduleObj.startHour = start.value;
-        scheduleObj.endHour = end.value;
+        scheduleObj.startHour = globalize.formatDate(start.value, { skeleton: 'Hm' });
+        scheduleObj.endHour = globalize.formatDate(end.value, { skeleton: 'Hm' });
+        scheduleObj.dataBind();
     };
     // custom code end
 };

@@ -4,7 +4,7 @@ import {
     Crosshair, StripLine, IAxisLabelRenderEventArgs, ITooltipRenderEventArgs
 } from '@syncfusion/ej2-charts';
 import { IPointRenderEventArgs } from '@syncfusion/ej2-charts';
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { Browser, Fetch } from '@syncfusion/ej2-base';
 Chart.Inject(CandleSeries, StripLine, Category, Tooltip, DateTime, Zoom, ColumnSeries, Logarithmic, Crosshair);
 let pointColors: string[] = [];
 
@@ -18,10 +18,10 @@ let getLabelText: Function = (value: number): string => {
 (window as any).default = (): void => {
     loadCultureFiles();
     let chartData: Object[];
-    let ajax: Ajax = new Ajax('./src/chart/data-source/financial-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
+    let fetchApi: Fetch = new Fetch('./src/chart/data-source/financial-data.json', 'GET');
+    fetchApi.send().then();
+    // Rendering Dialog on Fetch success
+    fetchApi.onSuccess = (data: string): void => {
         chartData = JSON.parse(data);
         chartData.map((data: Object) => {
             // tslint:disable-next-line:no-string-literal

@@ -26,7 +26,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
             labelFormat: 'n0',
             rangePadding: 'None',
             lineStyle: { color: 'transparent' },
-            majorTickLines: { color: 'transparent' },
+            majorTickLines: { color: 'transparent', height: 0 },
         },
         chartArea: { border: { width: 0 } },
         series: [
@@ -37,7 +37,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
                 bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
             }
         ],
-        tooltip: { enable: true, shared: true },
+        tooltip: { enable: true, shared: true, position: 'Nearest' },
         crosshair: {
             enable: true
         },

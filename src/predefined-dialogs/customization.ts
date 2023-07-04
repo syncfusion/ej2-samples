@@ -19,6 +19,7 @@ import{DialogUtility} from '@syncfusion/ej2-popups';
             okButton: {  text: 'OK',click:alertBtnClick.bind(this)},
             position: { X: 'center', Y: 'center' },
             width:'240px',
+            closeOnEscape: true
         });
     }; 
     function alertBtnClick () {
@@ -37,7 +38,8 @@ import{DialogUtility} from '@syncfusion/ej2-popups';
             okButton: {text: 'YES', click:confirmOkAction.bind(this)},
             cancelButton: {text: 'No',click:confirmCancelAction.bind(this)},
             position: { X: 'center', Y: 'center' },
-            width:'420px'
+            width:'420px',
+            closeOnEscape: true
         });
     };
     let confirmOkAction = () => {
@@ -60,13 +62,24 @@ import{DialogUtility} from '@syncfusion/ej2-popups';
             okButton: { text: 'OK',click:promptOkAction.bind(this)},
             cancelButton: { click:promptCancelAction.bind(this)},
             position: { X: 'center', Y: 'center' },
-            width: '240px'
+            width: '240px',
+            closeOnEscape: true
         });
     };
     function promptOkAction (){
-        dialogObj.hide();
-        document.getElementById("statusText").innerHTML = " The user confirmed the dialog box";
-        document.getElementById("statusText").style.display="block";
+        let value:string ;
+        value = (document.getElementById("password")as any).value;
+        if (value==""){
+            dialogObj.hide();
+            document.getElementById("statusText").innerHTML = "	The user's input is returned as \" \" ";
+            document.getElementById("statusText").style.display="block";
+
+        }
+        else{
+            dialogObj.hide();
+            document.getElementById("statusText").innerHTML="The user's input is returned as"+" "+value;
+            document.getElementById("statusText").style.display="block";
+        }
     }
     function promptCancelAction (){
         dialogObj.hide();

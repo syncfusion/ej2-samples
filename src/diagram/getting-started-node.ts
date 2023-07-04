@@ -32,23 +32,31 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
 function setNodeConstraints(args: CheckBoxChangeEventArgs): void {
     for (let i: number = 0; i < diagram.nodes.length; i++) {
         let node: NodeModel = diagram.nodes[i];
-        if ((args.event.target as HTMLElement).id === 'lock') {
-            if (args.checked) {
-                node.constraints &= ~(NodeConstraints.Resize | NodeConstraints.Rotate | NodeConstraints.Drag);
-                node.constraints |= NodeConstraints.ReadOnly;
-            } else {
-                node.constraints |= NodeConstraints.Default & ~(NodeConstraints.ReadOnly);
-            }
-        } else {
             if (element.checked) {
                 node.constraints |= NodeConstraints.AspectRatio;
             } else {
                 node.constraints &= ~NodeConstraints.AspectRatio;
             }
-        }
         diagram.dataBind();
     }
 }
+
+function setLockConstraints(args: CheckBoxChangeEventArgs): void {
+    for (let i: number = 0; i < diagram.nodes.length; i++) {
+      let node: NodeModel = diagram.nodes[i];
+      if (args.checked) {
+        node.constraints &= ~(
+          NodeConstraints.Resize |
+          NodeConstraints.Rotate |
+          NodeConstraints.Drag
+        );
+        node.constraints |= NodeConstraints.ReadOnly;
+      } else {
+        node.constraints |= NodeConstraints.Default & ~NodeConstraints.ReadOnly;
+      }
+      diagram.dataBind();
+    }
+  }
 
 //Set customStyle for Node.
 function applyNodeStyle(
@@ -151,6 +159,6 @@ function applyNodeStyle(
     element = new CheckBox({ checked: false, label: 'Aspect ratio', change: setNodeConstraints });
     element.appendTo('#aspectRatio');
     //Enable or disable the Interaction for Node.
-    let lockElement: CheckBox = new CheckBox({ checked: false, label: 'Lock', change: setNodeConstraints });
+    let lockElement: CheckBox = new CheckBox({ checked: false, label: 'Lock', change: setLockConstraints });
     lockElement.appendTo('#lock');
 };

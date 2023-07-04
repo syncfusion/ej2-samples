@@ -4,7 +4,7 @@ import {
     Crosshair, StripLine, IAxisLabelRenderEventArgs, ISharedTooltipRenderEventArgs
 } from '@syncfusion/ej2-charts';
 import { IPointRenderEventArgs } from '@syncfusion/ej2-charts';
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { Browser } from '@syncfusion/ej2-base';
 import { chartValue } from './financial-data';
 Chart.Inject(CandleSeries, StripLine, Category, Tooltip, DateTime, Zoom, ColumnSeries, Logarithmic, Crosshair);
 let pointColors: string[] = [];
@@ -64,6 +64,7 @@ let getLabelText: Function = (value: number): string => {
             },
              // custom code end
             width: Browser.isDevice ? '100%' : '75%', chartArea: { border: { width: 0 } },
+            title: 'AAPL Historical',
             crosshair: { enable: true, lineType: "None" }
         });
         chart.appendTo('#container');

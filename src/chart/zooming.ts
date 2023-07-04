@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DateTime, ILoadedEventArgs, ChartTheme, ScrollBar } from '@syncfusion/ej2-charts';
-import { Chart, AreaSeries, Legend, Zoom } from '@syncfusion/ej2-charts';
+import { Chart, SplineAreaSeries, Legend, Zoom } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
+Chart.Inject(SplineAreaSeries, DateTime, Legend, Zoom, ScrollBar);
 
 /**
  * Sample for Zooming in chart
@@ -11,8 +11,8 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
  selectedTheme = selectedTheme ? selectedTheme : 'Material';
  let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
  selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
- let themes : string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'materialdark', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast', 'Fluent', 'FluentDark'];
- let borderColor : string[] = ['#262E0B', '#5ECB9B', '#5A61F6', '#8B5CF6', '#00bdae', '#9ECB08', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4', '#614570', '#8AB113'];
+ let themes : string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'materialdark', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast', 'fluent', 'fluentdark', 'material3', 'material3dark'];
+ let borderColor : string[] = ['#6355C7', '#8F80F4', '#5A61F6', '#8B5CF6', '#00bdae', '#9ECB08', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4', '#1AC9E6', '#1AC9E6', '#6355C7', '#4EAAFF'];
  let fill : string = 'url(#' + selectedTheme + '-gradient-chart)';
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -50,14 +50,14 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
         //Initializing Chart Series
         series: [
             {
-                type: 'Area',
+                type: 'SplineArea',
                 dataSource: series1,
                 name: 'Product X',
                 xName: 'x',
                 yName: 'y',
                 fill: fill,
                 animation: { enable: false },
-                border: { width: 0.5, color: borderColor[themes.indexOf(theme)] }
+                border: { width: 2, color: borderColor[themes.indexOf(theme)] }
             },
         ],
         //Initializing Zooming
@@ -67,6 +67,7 @@ Chart.Inject(AreaSeries, DateTime, Legend, Zoom, ScrollBar);
             enablePinchZooming: true,
             enableSelectionZooming: true,
             mode: 'X',
+            showToolbar: true
         },
         //Initializing Chart title
         title: 'Sales History of Product X',

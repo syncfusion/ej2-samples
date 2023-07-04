@@ -15,7 +15,8 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         content: "Are you sure you want to permanently delete these items?",
         position: { X: 'center', Y: 'center' },
         animationSettings: { effect: 'Zoom',duration: 400},
-        width:'420px'
+        width:'420px',
+        closeOnEscape: true
     }
 
     let confirmbtn: Button = new Button({cssClass: 'e-success'});

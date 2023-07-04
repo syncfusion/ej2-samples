@@ -41,10 +41,10 @@ TreeGrid.Inject(Toolbar, Edit);
                     type: 'boolean', displayAsCheckBox: true
                 },
                 {
-                    field: 'progress', headerText: 'Progress', textAlign: 'Right', width: 85,
+                    field: 'progress', headerText: 'Progress', textAlign: 'Right', width: 150,
                     editType: 'numericedit', validationRules: { number: true, min: 0 }, edit: { params: { format: 'n' } }
                 },
-                { field: 'priority', headerText: 'Priority', width: 95, editType: 'dropdownedit', validationRules: { required: true } }
+                { field: 'priority', headerText: 'Priority', width: 150, editType: 'dropdownedit', validationRules: { required: true } }
             ]
         });
     grid.appendTo('#Grid');

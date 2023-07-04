@@ -84,6 +84,7 @@ Ribbon.Inject(RibbonFileMenu);
                         dataSource: fontSize,
                         index: 3,
                         width: '65px',
+                        popupWidth: '85px',
                         allowFiltering: true,
                         change:(args: SelectEventArgs) => {updateContent( "Font Size -> " + args.itemData.text)}
                     }
@@ -92,7 +93,7 @@ Ribbon.Inject(RibbonFileMenu);
                 items: [{
                     type: RibbonItemType.ColorPicker,
                     allowedSizes: RibbonItemSize.Small,
-                    displayOptions: DisplayMode.Simplified,
+                    displayOptions: DisplayMode.Simplified | DisplayMode.Classic,
                     colorPickerSettings: {
                         value: '#123456',
                         change:(args: ColorPickerEventArgs) => {updateContent( args.currentValue.hex + ' color')}

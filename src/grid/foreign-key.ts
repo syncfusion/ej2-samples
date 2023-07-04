@@ -27,7 +27,7 @@ Grid.Inject(Page, Sort, Filter, Edit, Toolbar, ForeignKey);
                     width: 150, headerText: 'Customer Name', validationRules: { required: true }
                 },
                 {
-                    field: 'Freight', textAlign: 'Right', width: 100, editType: 'numericedit', format: 'C2'
+                    field: 'Freight', textAlign: 'Right', width: 150, editType: 'numericedit', format: 'C2'
                 },
                 { field: 'ShipName', headerText: 'Ship Name', width: 170 },
                 { field: 'ShipCountry', headerText: 'Ship Country', editType: 'dropdownedit', width: 150 }

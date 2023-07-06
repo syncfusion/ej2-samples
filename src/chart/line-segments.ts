@@ -82,7 +82,7 @@ Chart.Inject(DateTime, Tooltip, ChartAnnotation, MultiColoredLineSeries);
         title: 'Annual Mean Rainfall in Australia',
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true, shared: true, enableAnimation: false,header:'<b>Rainfall</b>', format: '${point.x} : <b>${point.y}'
+            enable: true, shared: true, enableAnimation: false,header:'<b>Rainfall</b>', format: '${point.x} : <b>${point.y}</b>'
         },
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {

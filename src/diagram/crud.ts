@@ -73,8 +73,8 @@ let items: ItemModel[] = [
 
 // custom code start
 function dlgButtonClick(evt: Event): void {
-    let dialogHeader: string | HTMLElement = dialog.header;
-    let description: string = (document.getElementById('Description') as HTMLInputElement).value;
+    let dialogHeader: any = dialog.header;
+    let description: any = (document.getElementById('Description') as HTMLInputElement).value;
     let color: string = (document.getElementById('Color') as HTMLInputElement).value;
     let selectedItem: NodeModel | ConnectorModel;
     if (diagram.selectedItems.nodes.length > 0) {

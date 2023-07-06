@@ -3,7 +3,7 @@
  */
 
 import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
-import { Ajax } from '@syncfusion/ej2-base';
+import { Fetch } from '@syncfusion/ej2-base';
 import { ListView } from '@syncfusion/ej2-lists';
 
 (window as any).default = () => {
@@ -56,10 +56,9 @@ import { ListView } from '@syncfusion/ej2-lists';
 function onBeforeRender(args: TooltipEventArgs): void {
     this.content = 'Loading...';
     this.dataBind();
-    let ajax: Ajax = new Ajax('./src/tooltip/tooltipdata.json', 'GET', true);
-    ajax.send().then(
+    let fetchApi: Fetch = new Fetch('./src/tooltip/tooltipdata.json', 'GET');
+    fetchApi.send().then(
         (result: any) => {
-            result = JSON.parse(result);
             for (let i: number = 0; i < result.length; i++) {
                 if (result[i].Id === args.target.getAttribute('data-content')) {
                     /* tslint:disable */

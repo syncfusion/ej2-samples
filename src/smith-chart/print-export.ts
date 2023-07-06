@@ -58,7 +58,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                     { resistance: 0.25, reactance: 0 },
                 ],
                 name: 'Transmission',
-                enableAnimation: true,
+                enableAnimation: false,
                 tooltip: { visible: true },
                 marker: {
                     shape: 'Circle',

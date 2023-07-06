@@ -48,10 +48,11 @@ function customDates(args: RenderDayCellEventArgs): void {
     }
 }
 function valueChange(args: ChangedEventArgs): void {
-    let title: string = '';
+    let title: string | null = '';
     /*Displays selected date in the label*/
     if (args.event) {
-        title = (<HTMLElement>args.event.currentTarget).getAttribute('data-val');
+        title = (<HTMLElement>args.event.currentTarget).classList.contains('e-selected') ? (<HTMLElement>args.event.currentTarget).getAttribute('data-val') : (<HTMLElement>args.event.currentTarget).getElementsByClassName('e-selected').length > 0 
+                ? (<HTMLElement>args.event.currentTarget).getElementsByClassName('e-selected')[0].getAttribute('data-val') : null;
         title = title === null ? '' : ' ( ' + title + ' )';
     }
     (<HTMLInputElement>document.getElementById('date_label')).textContent = 'Selected Value: ' + args.value.toLocaleDateString() + title;

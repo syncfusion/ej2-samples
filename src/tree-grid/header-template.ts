@@ -18,10 +18,10 @@ TreeGrid.Inject(Page);
             allowPaging: true,
             columns: [
                 { field: 'taskName', headerTemplate: '#projectName', width: 220 },
-                { field: 'startDate', headerTemplate: '#dateTemplate', format: 'yMd',textAlign: 'Center'},
-                { field: 'resourceId', headerTemplate: '#resource', textAlign: 'Center' },
-                { field: 'duration', headerTemplate: '#durationTemplate', textAlign: 'Center' },
-                { field: 'progress', headerTemplate: '#progressTemplate', textAlign: 'Center' }
+                { field: 'startDate', headerTemplate: '#dateTemplate', format: 'yMd', width: 120, textAlign: 'Center' },
+                { field: 'resourceId', headerTemplate: '#resource', width: 120, textAlign: 'Center' },
+                { field: 'duration', headerTemplate: '#durationTemplate', width: 110, textAlign: 'Center' },
+                { field: 'progress', headerTemplate: '#progressTemplate', width: 150, textAlign: 'Center' }
             ]
         });
     grid.appendTo('#TreeGrid');

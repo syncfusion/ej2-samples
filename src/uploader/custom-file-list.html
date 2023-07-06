@@ -132,7 +132,7 @@
         left: 7px;
         position: inherit;
         top: 7px;
-        content: '\e932';
+        content: '\e7e7';
     }
 
     .bootstrap4 .close-icon-container.e-icons::before {
@@ -144,6 +144,38 @@
     .bootstrap4 .file-lists {
         background: #fff;
     }
+
+    .tailwind .close-icon-container.e-icons::before,
+    .tailwind-dark .close-icon-container.e-icons::before {
+        content: '\e7e7';
+    }
+
+    .fabric .close-icon-container.e-icons::before,
+    .fabric-dark .close-icon-container.e-icons::before,
+    .highcontrast .close-icon-container.e-icons::before {
+        content: '\e953';
+    }
+
+    .bootstrap5 .close-icon-container.e-icons::before,
+    .bootstrap5-dark .close-icon-container.e-icons::before {
+        content: '\e7e7';
+    }
+
+    .material .close-icon-container.e-icons::before,
+    .material-dark .close-icon-container.e-icons::before {
+        content: '\e932';
+    }
+
+    .bootstrap .close-icon-container.e-icons::before,
+    .bootstrap-dark .close-icon-container.e-icons::before {
+        content: '\e7fc';
+    }
+
+
+    .tailwind .close-icon-container.e-icons {
+        top: 10px;
+    }
+
     .close-icon-container.delete-icon::before {
         content: '\e94a';
     }
@@ -162,39 +194,17 @@
     }
 
     .highcontrast .close-icon-container.delete-icon::before {
-        content: '\e84e';
+        content: '\e965';
     }
 
     .fluent .close-icon-container.delete-icon::before,
     .fluent-dark .close-icon-container.delete-icon::before {
-        content: '\e7e7';
-    }
-
-    .tailwind .close-icon-container.e-icons::before,
-    .tailwind-dark .close-icon-container.e-icons::before {
-        content: '\e771';
-    }
-
-    .fabric .close-icon-container.e-icons::before,
-    .fabric-dark .close-icon-container.e-icons::before,
-    .bootstrap .close-icon-container.e-icons::before,
-    .bootstrap-dark .close-icon-container.e-icons::before,
-    .highcontrast .close-icon-container.e-icons::before {
-        content: '\e7fc';
-    }
-
-    .bootstrap5 .close-icon-container.e-icons::before,
-    .bootstrap5-dark .close-icon-container.e-icons::before {
-        content: '\e7e7';
-    }
-
-    .tailwind .close-icon-container.e-icons {
-        top: 10px;
+        content: '\e820';
     }
 
     .tailwind .close-icon-container.delete-icon::before,
     .tailwind-dark .close-icon-container.delete-icon::before {
-        content: '\e78d';
+        content: '\e820';
     }
 
     .tailwind .close-icon-container.delete-icon {
@@ -302,6 +312,7 @@
     .highcontrast #dropArea span a {
         color: #ffd939;
     }
+    .material3-dark #dropArea span a,
     .material-dark #dropArea span a {
         color:#56a4fd;
     }

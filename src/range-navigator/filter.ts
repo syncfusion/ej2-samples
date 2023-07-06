@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, AreaSeries, DateTime, IChangedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 RangeNavigator.Inject(AreaSeries, DateTime);
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { Browser, Fetch } from '@syncfusion/ej2-base';
 import { Grid } from '@syncfusion/ej2-grids';
 
 /**
@@ -16,11 +16,11 @@ selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast
 (window as any).default = (): void => {
     loadCultureFiles();
     let datasrc: Object[];
-    let ajax: Ajax = new Ajax('./src/range-navigator/data-source/grid-data.json', 'GET', true);
-    ajax.send().then();
-    // Rendering Dialog on AJAX success
-    ajax.onSuccess = (data: string): void => {
-        datasrc = JSON.parse(data);
+    let fetchApi: Fetch = new Fetch('./src/range-navigator/data-source/grid-data.json', 'GET');
+    fetchApi.send().then();
+    // Rendering Dialog on FETCH success
+    fetchApi.onSuccess = (data: Object[]): void => {
+        datasrc = data;
         datasrc.map((data: Object) => {
             // tslint:disable-next-line:no-string-literal
             data['HireDate'] = new Date(data['HireDate']);

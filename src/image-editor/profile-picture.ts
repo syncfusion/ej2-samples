@@ -10,12 +10,15 @@ import { loadCultureFiles } from '../common/culture-loader';
 (window as any).default = (): void => {
     loadCultureFiles();
     const img: HTMLImageElement = document.querySelector('#custom-img');
-
+    let imgSrc: string = '';
     img.onload = function() {
-        const canvas: HTMLCanvasElement = document.querySelector('#img-canvas');
-        const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
-        canvas.width = img.width < img.height ? img.width : img.height; canvas.height = canvas.width;
-        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+	if (imgSrc === '') {
+           const canvas: HTMLCanvasElement = document.querySelector('#img-canvas');
+           const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
+           canvas.width = img.width < img.height ? img.width : img.height; canvas.height = canvas.width;
+           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+	   document.querySelector('.e-profile').classList.remove('e-hide');
+	}
     }
 
     const dialogObj: Dialog = new Dialog({
@@ -33,7 +36,7 @@ import { loadCultureFiles } from '../common/culture-loader';
             document.getElementById('image-editor').className = '';
         },
         open: () => {
-            new ImageEditor({
+            const imageEditor: ImageEditor = new ImageEditor({
                 fileOpened: () => {
                     const imageEditor: ImageEditor = getComponent(document.getElementById('image-editor'), 'image-editor') as ImageEditor;
                     imageEditor.select('circle');
@@ -45,7 +48,8 @@ import { loadCultureFiles } from '../common/culture-loader';
                     }
                 },
                 toolbar: []
-            }, '#image-editor');
+            });
+	    imageEditor.appendTo('#image-editor');
         },
         buttons: [
         {
@@ -85,6 +89,10 @@ import { loadCultureFiles } from '../common/culture-loader';
                 tempCanvas.remove();
                 parentDiv.style.borderRadius = '100%'; canvas.style.backgroundColor = '#fff';
                 dialogObj.hide();
+		if (imgSrc !== '') {
+		   const img: HTMLImageElement = document.querySelector('#custom-img');
+                   img.src = imgSrc;
+		}
             },
             buttonModel: { content: 'Apply', isPrimary: true, cssClass: 'e-custom-img-btn e-img-custom-apply' }
         }]
@@ -95,8 +103,8 @@ import { loadCultureFiles } from '../common/culture-loader';
     document.getElementById('custom-edit').onclick = (): void => {
         dialogObj.show();
         const imageEditor: ImageEditor = getComponent(document.getElementById('image-editor'), 'image-editor') as ImageEditor;
-        const canvas: HTMLCanvasElement = document.querySelector('#img-canvas');
-        imageEditor.open(canvas.toDataURL());
+        const img: HTMLImageElement = document.querySelector('#custom-img');
+        imageEditor.open(img.src);
     };
 
     document.getElementById('img-upload').onchange = (args: any): void => {
@@ -104,6 +112,7 @@ import { loadCultureFiles } from '../common/culture-loader';
         const imageEditor: ImageEditor = getComponent(document.getElementById('image-editor'), 'image-editor');
         imageEditor.open(url.toString());
         (document.getElementById('img-upload') as HTMLInputElement).value = null;
+	imgSrc = url.toString();
     };
 	
     var imageHide = document.getElementsByClassName('sb-desktop-wrapper')[0] as HTMLElement;

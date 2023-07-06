@@ -4,7 +4,7 @@ import {
     Crosshair, LineSeries, BollingerBands, ChartTheme, RangeAreaSeries
 } from '@syncfusion/ej2-charts';
 import { chartValue } from './financial-data';
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { Browser} from '@syncfusion/ej2-base';
 Chart.Inject(
     CandleSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, LineSeries, RangeAreaSeries,
     BollingerBands

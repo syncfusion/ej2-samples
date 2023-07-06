@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Sort, Page, Selection, Group } from '@syncfusion/ej2-grids';
-import { inventoryData } from './data-source';
+import { Grid, Sort, Page, Selection, Group, Edit, Toolbar } from '@syncfusion/ej2-grids';
+import { inventoryData, orderDataSource } from './data-source';
 import { Dialog } from '@syncfusion/ej2-popups';
 
-Grid.Inject(Sort, Page, Selection, Group);
+Grid.Inject(Sort, Page, Selection, Group, Edit, Toolbar);
 
 /**
  * Grouping sample
@@ -28,18 +28,35 @@ Grid.Inject(Sort, Page, Selection, Group);
         alertDialogObj.hide();
     }
     let grid: Grid = new Grid({
-        dataSource: inventoryData,
+        dataSource: orderDataSource,
+        editSettings: { allowEditing: true },
+        toolbar: ['Edit', 'Update', 'Cancel'],
         allowPaging: true,
         allowSorting: true,
         allowGrouping: true,
-        groupSettings: {columns: ['Country']},
+        groupSettings: {columns: ['ShipCountry']},
         height: 400,
         columns: [
-            { field: 'Inventor', headerText: 'Inventor Name', width: 160 },
-            { field: 'NumberofPatentFamilies', headerText: 'No of Patent Families', width: 195, textAlign: 'Right' },
-            { field: 'Country', headerText: 'Country', width: 120 },
-            { field: 'Active', headerText: 'Active', width: 120 },
-            { field: 'Mainfieldsofinvention', headerText: 'Main fields of invention', allowGrouping: false, width: 200 },
+            {
+                field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right',
+                validationRules: { required: true, number: true }, width: 140
+            },
+            {
+                field: 'CustomerID', headerText: 'Customer ID',
+                validationRules: { required: true }, width: 140
+            },
+            {
+                field: 'Freight', headerText: 'Freight', textAlign: 'Right', editType: 'numericedit',
+                width: 140, format: 'C2', validationRules: { required: true }
+            },
+            {
+                field: 'OrderDate', headerText: 'Order Date', editType: 'datetimepickeredit', format: { type: 'dateTime', format: 'M/d/y hh:mm a' },
+                width: 160, allowGrouping: false
+            },
+            {
+                field: 'ShipCountry', headerText: 'Ship Country', editType: 'dropdownedit', width: 150,
+                edit: { params: { popupHeight: '300px' } }
+            }
         ],
         pageSettings: { pageCount: 5 },
         load: () => {
@@ -47,7 +64,7 @@ Grid.Inject(Sort, Page, Selection, Group);
         },
         dataBound: () => {
             if (refresh) {
-                grid.groupColumn('Country');
+                grid.groupColumn('ShipCountry');
                 refresh = false;
             }
         },
@@ -57,7 +74,7 @@ Grid.Inject(Sort, Page, Selection, Group);
     });
     grid.appendTo('#Grid');
     function columnDragStart(args: any): void {
-        if (args.column.field === 'Mainfieldsofinvention') {
+        if (args.column.field === 'OrderDate') {
             alertDialogObj.show();
        }
     }

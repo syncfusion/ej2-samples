@@ -4,7 +4,7 @@ import {
     Crosshair, LineSeries, StripLine, MacdIndicator, ColumnSeries, ChartTheme,
 } from '@syncfusion/ej2-charts';
 import { chartValue } from './financial-data';
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(
     CandleSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, LineSeries,
     MacdIndicator, StripLine, ColumnSeries
@@ -74,7 +74,7 @@ Chart.Inject(
             //Initializing User Interaction Zoom, Tooltip and Crosshair
             zoomSettings:
                 {
-
+                    enablePan: true,
                     enableSelectionZooming: true,
                     enablePinchZooming: true,
                     mode: 'XY',

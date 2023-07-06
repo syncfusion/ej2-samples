@@ -10,7 +10,7 @@
  import { DataManager, Query } from '@syncfusion/ej2-data';
  import { DropDownList, AutoComplete } from '@syncfusion/ej2-dropdowns';
  import { Button } from '@syncfusion/ej2-buttons';
- import { Tab, TreeView, Sidebar } from '@syncfusion/ej2-navigations';
+ import { Tab, TreeView, Sidebar, EventArgs } from '@syncfusion/ej2-navigations';
  import { ListView } from '@syncfusion/ej2-lists';
  import { Grid } from '@syncfusion/ej2-grids';
  import { ImageEditor } from '@syncfusion/ej2-image-editor';
@@ -27,7 +27,7 @@
  import * as deCultureData from '../common/cldr-data/main/de/all.json';
  import * as arCultureData from '../common/cldr-data/main/ar/all.json';
  import * as swissCultureDate from '../common/cldr-data/main/fr-CH/all.json';
- import * as enCultureData from '../common/cldr-data/main/fr-CH/all.json';
+ import * as enCultureData from '../common/cldr-data/main/en/all.json';
  import * as chinaCultureData from '../common/cldr-data/main/zh/all.json';
  import * as packageJson from '../common/pack.json';
  let packages: string = JSON.stringify((<any>packageJson).dependencies);
@@ -66,6 +66,8 @@
      ej2_instances: Object[];
      enableRtl: Boolean;
      setProperties: Function;
+     getModuleName : Function;
+     model :Object[];
  }
  
  interface HighlightJS {
@@ -97,7 +99,7 @@
  let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
  let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
  let themeList: HTMLElement = document.getElementById('themelist');
- var themeCollection = ['fluent', 'fluent-dark', 'bootstrap5', 'bootstrap5-dark', 'tailwind', 'tailwind-dark', 'material', 'material-dark', 'fabric', 'fabric-dark', 'bootstrap4', 'bootstrap', 'bootstrap-dark', 'highcontrast'];
+ var themeCollection = ['fluent', 'fluent-dark', 'bootstrap5', 'bootstrap5-dark', 'tailwind', 'tailwind-dark', 'material', 'material-dark', 'material3', 'material3-dark', 'fabric', 'fabric-dark', 'bootstrap4', 'bootstrap', 'bootstrap-dark', 'highcontrast'];
  let themeDropDown: DropDownList;
   let cultureDropDown: DropDownList;
   let currencyDropDown: DropDownList;
@@ -148,7 +150,7 @@
   /**
    * default theme on sample loaded
    */
-  let selectedTheme: string = location.hash.split('/')[1] || 'bootstrap5';
+  let selectedTheme: string = location.hash.split('/')[1] || 'material3';
   /**
    * Toggle Pane Animation
    */
@@ -179,9 +181,13 @@
   }
   settingsidebar = new Sidebar({
       position: 'Right', width: '282', zIndex: '1003', showBackdrop: true, type: 'Over', enableGestures: false,
-      closeOnDocumentClick: false
+      closeOnDocumentClick: true, close: closeRightSidebar
   });
   settingsidebar.appendTo('#right-sidebar');
+  function closeRightSidebar(args: EventArgs): void {
+    let targetEle: HTMLElement | null = args.event ? args.event.target as HTMLElement : null;
+    if (targetEle && targetEle.closest('.e-popup')) args.cancel = true;
+  }
   /**
    * Right pane
    */
@@ -469,8 +475,14 @@
       for (let control of elementlist) {
           let eleinstance: Object[] = (<DestroyMethod>control).ej2_instances;
           if (eleinstance) {
-              for (let instance of eleinstance) {
-                  (<DestroyMethod>instance).setProperties(args);
+              for (let instance of eleinstance) {                 
+                  if((<DestroyMethod>instance).getModuleName()==="inplaceeditor" && args.currencyCode){
+                    extend(args,(<DestroyMethod>instance).model,{currency : args.currencyCode});
+                    (<DestroyMethod>instance).setProperties({model :args});
+                  }
+                  else{
+                    (<DestroyMethod>instance).setProperties(args);
+                  }
               }
           }
       }
@@ -1105,7 +1117,7 @@
           controlListRefresh(arg.node || arg.item);
           if (path !== curHashCollection) {
               sampleOverlay();
-              let theme: string = location.hash.split('/')[1] || 'bootstrap5';
+              let theme: string = location.hash.split('/')[1] || 'material3';
               if (arg.item && ((isMobile && !select('#left-sidebar').classList.contains('sb-hide')) ||
                   ((isTablet || (Browser.isDevice && isPc)) && isLeftPaneOpen()))) {
                   toggleLeftPane();
@@ -1312,7 +1324,7 @@
               samplePath = samplePath.concat(control + '/' + sample);
               let sampleName: string = node.name + ' / ' + ((node.name !== subNode.category) ?
                   (subNode.category + ' / ') : '') + subNode.name;
-              let selectedTheme: string = location.hash.split('/')[1] ? location.hash.split('/')[1] : 'bootstrap5';
+              let selectedTheme: string = location.hash.split('/')[1] ? location.hash.split('/')[1] : 'material3';
               let urlString: string = '/' + selectedTheme + '/' + control + '/' + sample + '.html';
               samplesAr.push('#' + urlString);
               // tslint:disable-next-line:max-func-body-length
@@ -1654,6 +1666,7 @@
       }
       overlay();
       changeMouseOrTouch(switchText);
+      enableRipple(selectedTheme.indexOf('material') !== -1|| !selectedTheme);
       localStorage.removeItem('ej2-switch');
       loadTheme(selectedTheme);
   }

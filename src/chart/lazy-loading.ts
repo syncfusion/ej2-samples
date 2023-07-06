@@ -16,7 +16,6 @@ Chart.Inject(DateTime, ScrollBar, Zoom, LineSeries, Tooltip);
     let intl: Internationalization = new Internationalization();
     let chart: Chart = new Chart({
         primaryXAxis: {
-            title: 'Day',
             valueType: 'DateTime',
             edgeLabelPlacement: 'Shift',
             skeleton: 'yMMM',
@@ -27,7 +26,9 @@ Chart.Inject(DateTime, ScrollBar, Zoom, LineSeries, Tooltip);
                     maximum: new Date(2014, 0, 1)
                 },
                 enable: true,
-                pointsLength: 1000
+                pointsLength: 1000,
+                enableZoom: false,
+                height: 14
             }
         },
         primaryYAxis: {
@@ -37,12 +38,12 @@ Chart.Inject(DateTime, ScrollBar, Zoom, LineSeries, Tooltip);
         series: [{
             dataSource: GetDateTimeData(new Date(2009, 0, 1), new Date(2009, 8, 1)),
             xName: 'x', yName: 'y',
-            type: 'Line', animation: { enable: false },
+            type: 'Line', animation: { enable: false }
         }],
         height: '450',
         title: 'Network Load',
         tooltip: { enable: true, shared: true , header : '<b>${point.x}</b>', format : 'Server load : <b>${point.y}</b>'},
-        legendSettings: { visible: true },
+        legendSettings: { visible: true }, 
         scrollEnd: (args: IScrollEventArgs) => {
             if (lazymode.value === 'Range') {
                 chart.series[0].dataSource = GetDateTimeData(args.currentRange.minimum as Date, args.currentRange.maximum as Date);

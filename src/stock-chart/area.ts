@@ -20,7 +20,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
         primaryXAxis: { valueType: 'DateTime', majorGridLines: { color: 'transparent' }, crosshairTooltip: { enable: true } },
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
-            majorTickLines: { color: 'transparent' },
+            majorTickLines: { color: 'transparent', height: 0 },
             crosshairTooltip: { enable: true }
         },
         series: [
@@ -31,7 +31,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
         seriesType : [],
         indicatorType : [],
         title: 'AAPL Stock Price',
-        crosshair: { enable: true },
+        crosshair: { enable: true, lineType:'Both'},
         load: (args: IStockChartEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

@@ -4,7 +4,7 @@ import {
     Crosshair, ChartTheme
 } from '@syncfusion/ej2-charts';
 Chart.Inject(HiloSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair);
-import { Browser, Ajax } from '@syncfusion/ej2-base';
+import { Browser } from '@syncfusion/ej2-base';
 import { chartValue } from './financial-data';
 
 

@@ -160,7 +160,17 @@
     #rteEmoticons-smiley {
         padding: 15px 0 15px 15px;
     }
-
+    
+    .e-bigger #emojiDialog .e-footer-content {
+        padding: 5px;
+    }
+    .e-bigger #rteEmoticons-smiley {
+        padding: 15px 0 15px 15px;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto;
+        height: 246px;
+    }
     .material .e-rte-mention-format-section .char_block.e-active {
         outline: 1px solid #e3165b;
         border-color: #e3165b;
@@ -192,6 +202,11 @@
     .fluent-dark .e-rte-mention-format-section .char_block.e-active {
         outline: 1px solid #0078DE;
         border-color: #0078DE;
+    }
+    .material3 .e-rte-mention-format-section .char_block.e-active,
+    .material3-dark .e-rte-mention-format-section .char_block.e-active {
+        outline: 1px solid #7D69B1;
+        border-color: #7D69B1;
     }
     .highcontrast .e-rte-mention-format-section .char_block.e-active {
         outline: 1px solid #ffd939;
@@ -248,7 +263,11 @@
         }
 		
 		#rteEmoticons-smiley {
-        padding: 15px 0 15px 20px;
+            padding: 15px 0 15px 15px;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: auto;
+            height: 246px;
 		}
 
         .fabric #emojiDialog {
@@ -272,9 +291,11 @@
         .material.e-bigger #emojiDialog {
             min-width: 236px;
         }
-        #rteEmoticons-smiley {
-        padding: 15px 0 15px 0px;
-        }
+
+    }
+    
+    .e-bigger #MentionInlineFormat {
+        z-index: 1002;
     }
 </style>
 <!-- custom code end -->

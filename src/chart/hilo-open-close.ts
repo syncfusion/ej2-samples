@@ -44,6 +44,7 @@ import { Browser } from '@syncfusion/ej2-base';
             crosshair: {
                 enable: true, lineType: 'Vertical', 
             },
+            title: 'AAPL Historical',
             legendSettings: { visible: false }, width: Browser.isDevice ? '100%' : '75%',
              // custom code start
             load: (args: ILoadedEventArgs) => {

@@ -173,7 +173,8 @@ class LeftExtendTool extends ToolBase {
                     diagram.add(connector);
                     diagram.doLayout();
                     diagram.bringIntoView(nd.wrapper.bounds);
-                    diagram.startTextEdit(nd);
+                    diagram.select([diagram.nameTable[nd.id]]);
+                    diagram.startTextEdit(diagram.selectedItems.nodes[0]);
                 }
             }
         }
@@ -205,7 +206,8 @@ class RightExtendTool extends ToolBase {
                     diagram.add(connector);
                     diagram.doLayout();
                     diagram.bringIntoView(nd.wrapper.bounds);
-                    diagram.startTextEdit(nd);
+                    diagram.select([diagram.nameTable[nd.id]]);
+                    diagram.startTextEdit(diagram.selectedItems.nodes[0]);
                 }
             }
         }
@@ -224,7 +226,9 @@ class DeleteClick extends ToolBase {
             if (selectedObject[0]) {
                 if (selectedObject[0] instanceof Node) {
                     let node: Node = selectedObject[0] as Node;
+                    diagram.startGroupAction();
                     this.removeSubChild(node);
+                    diagram.endGroupAction();
                 }
                 diagram.doLayout();
             }
@@ -314,7 +318,7 @@ export interface EmployeeInfo {
         width: '100%', height: '550px',
         snapSettings: { constraints: SnapConstraints.None }, tool: DiagramTools.SingleSelect,
         layout: {
-            type: 'MindMap',orientation:'LeftToRight', getBranch: (node: Node) => {
+            type: 'MindMap',orientation:'Horizontal', getBranch: (node: Node) => {
                 return ((node as Node).data as EmployeeInfo).branch;
             }, horizontalSpacing: 50
         },

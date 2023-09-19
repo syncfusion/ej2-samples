@@ -3,13 +3,13 @@
     "directory": "schedule",
     "category": "Calendars",
     "ftName": "scheduler",
+    "type": "update",
     "samples": [
         {
             "url": "overview",
             "name": "Overview",
             "category": "Scheduler",
             "description": "This demo shows for Javascript Scheduler features such as Multiple views, Templates, Resources, Grouping, Timezone, Timescale, etc...",
-            "hideOnDevice": true,
             "api": {
                 "Schedule": [
                     "cssClass",
@@ -219,6 +219,23 @@
             "category": "Scrolling",
             "hideOnDevice": true,
             "description": "This example illustrates how to achieve high performance in the JavaScript Scheduler using virtual scrolling to load resources and events on demand.",
+            "api": {
+                "Schedule": [
+                    "views",
+                    "group",
+                    "resources",
+                    "eventSettings",
+                    "selectedDate"
+                ]
+            }
+        },
+        {
+            "url": "data-virtualization",
+            "name": "Data Virtualization",
+            "category": "Scrolling",
+            "hideOnDevice": true,
+            "type": "new",
+            "description": "This example illustrates how to load events on demand in JavaScript Scheduler.",
             "api": {
                 "Schedule": [
                     "views",
@@ -681,6 +698,7 @@
             "url": "editor-template",
             "name": "Editor Template",
             "category": "Editor Window",
+            "type": "update",
             "description": "This demo shows how to design custom appointment (event) editor windows by adding or removing fields from the JavaScript Scheduler appointment window.",
             "api": {
                 "Schedule": [

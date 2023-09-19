@@ -25,7 +25,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
     let clickInstance: AccumulationChartModel = {
         series: [{
             type: 'Pie', dataSource: suvs, xName: 'x', yName: 'y',
-            dataLabel: { visible: true, position: Browser.isDevice ? 'Inside' : 'Outside', enableRotation:true, connectorStyle: { type: 'Curve' , length: '20px'}}, innerRadius: '30%', 
+            dataLabel: { visible: true, font: { fontWeight: '600' }, position: Browser.isDevice ? 'Inside' : 'Outside', enableRotation:true, connectorStyle: { type: 'Curve' , length: '20px'}}, innerRadius: '30%', 
         }
         ], textRender: (args: IAccTextRenderEventArgs) => {
             args.text = args.point.x + ' ' + args.point.y + ' %';

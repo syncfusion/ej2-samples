@@ -5,14 +5,16 @@ import { loadCultureFiles } from '../common/culture-loader';
 
 import {
     Diagram, NodeModel, TextElement, HierarchicalTree, ConnectorConstraints, Segments, StackPanel, randomId,
-    SelectorConstraints, PointPortModel, ConnectorModel, PortVisibility
+    SelectorConstraints, PointPortModel, ConnectorModel, PortVisibility, ConnectorEditing
 } from '@syncfusion/ej2-diagrams';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEventArgs } from '@syncfusion/ej2-buttons';
+import { ColorPicker } from '@syncfusion/ej2/inputs';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { DecoratorShapes, SegmentThumbShapes } from '@syncfusion/ej2/diagrams';
 
-Diagram.Inject(HierarchicalTree);
+Diagram.Inject(HierarchicalTree,ConnectorEditing);
 
 let diagram: Diagram;
-
 function created(): void {
     diagram.updateViewPort();
 }
@@ -43,13 +45,19 @@ function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
             strokeColor: '#6f409f',
             fill: '#6f409f',
         }
-    };
+    },
+    obj.segments = [
+        {
+            type: 'Bezier',
+        }
+    ],
+    obj.constraints = ConnectorConstraints.Default | ConnectorConstraints.DragSegmentThumb 
     return obj;
 }
 
 function setNodeTemplate(obj: NodeModel): StackPanel {
     if (obj.id === 'node6') {
-        let canvas: StackPanel = new StackPanel();
+        let canvas = new StackPanel();
         canvas.id = randomId();
         canvas.children = [];
         canvas.style.strokeWidth = 0;
@@ -101,22 +109,6 @@ function getPorts(obj: NodeModel): PointPortModel[] {
             { id: 'portOut', offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Hidden },
         ];
         return ports;
-    }
-}
-
-function constraintsChange(args: CheckBoxChangeEventArgs): void {
-    let connector: ConnectorModel;
-    for (let i: number = 0; i < diagram.connectors.length; i++) {
-        connector = diagram.connectors[i];
-        if (args.checked) {
-            connector.constraints &= ~(ConnectorConstraints.DragSourceEnd
-                | ConnectorConstraints.DragTargetEnd | ConnectorConstraints.DragSegmentThumb);
-            connector.constraints |= ConnectorConstraints.ReadOnly;
-        } else {
-            connector.constraints |= ConnectorConstraints.Default & ~(ConnectorConstraints.ReadOnly);
-        }
-
-        diagram.dataBind();
     }
 }
 
@@ -185,24 +177,62 @@ function applyConnectorStyle(
         if (sourceDec) {
             connector.sourceDecorator = {
                 style: {
-                    strokeColor: '#6f409f',
-                    fill: '#6f409f', strokeWidth: 2
+                    strokeColor: connector.style.strokeColor,
+                    fill: connector.style.strokeColor, strokeWidth: 2
                 }, shape: 'Circle'
             };
+            (document.getElementById('sourceDecorator2') as any).value='Circle';
         } else {
             connector.sourceDecorator = { shape: 'None' };
+            (document.getElementById('sourceDecorator2') as any).value='Circle';
         }
         connector.targetDecorator = {
             style: {
-                strokeColor: '#6f409f',
-                fill: '#6f409f', strokeWidth: 2
+                strokeColor: connector.style.strokeColor,
+                fill: connector.style.strokeColor, strokeWidth: 2
             }, shape: 'Arrow'
         };
+        (document.getElementById('targetDecorator') as any).value='Circle'
         diagram.dataBind();
     }
     // custom code start
     target.classList.add('e-selected-style');
     // custom code end
+}
+
+function srcDecShapeChange(args:any)
+{
+    for (let i = 0; i < diagram.connectors.length; i++) {
+        diagram.connectors[i].sourceDecorator = {
+         shape: args.itemData.shape,
+         style:{
+                strokeColor:  diagram.connectors[i].style.strokeColor,
+                fill:  diagram.connectors[i].style.strokeColor,
+         }
+        };
+    }
+    diagram.dataBind();
+   
+}
+function tarDecShapeChange(args:any)
+{
+    for (let i = 0; i < diagram.connectors.length; i++) {
+        diagram.connectors[i].targetDecorator = {
+            shape: args.itemData.shape,
+            style: {
+                strokeColor: diagram.connectors[i].style.strokeColor,
+                fill:  diagram.connectors[i].style.strokeColor,
+            }
+        };
+        diagram.dataBind();
+    }   
+}
+function segDecShapeChange(args:any)
+{
+    for (let i = 0; i < diagram.connectors.length; i++) {
+        diagram.segmentThumbShape = args.itemData.shape;
+    } 
+    diagram.dataBind();  
 }
 
 // tslint:disable-next-line:max-func-body-length
@@ -254,15 +284,66 @@ function applyConnectorStyle(
     });
     diagram.appendTo('#diagram');
 
-    //checkbox is used to enable or disable the connector interaction.
-    let checkBoxObj: CheckBox = new CheckBox({
-        checked: false,
-        label: 'Lock',
-        change: constraintsChange
-    });
-    checkBoxObj.appendTo('#checked');
-
     //Click Event for Appearance of the layout.
     document.getElementById('appearance').onclick = changeConnectorPattern;
+
+    //set appearance color
+    let objectColor: ColorPicker = new ColorPicker({
+        mode: 'Palette',
+        showButtons:false,
+        modeSwitcher: true,
+        value: '#6F409F',
+        change: function(args) {
+            for(let i=0;i<diagram.connectors.length;i++)
+            {
+                diagram.connectors[i].style.strokeColor=args.currentValue.hex;
+                diagram.connectors[i].targetDecorator.style.strokeColor= args.currentValue.hex;
+                diagram.connectors[i].targetDecorator.style.fill= args.currentValue.hex;
+                diagram.connectors[i].sourceDecorator.style.strokeColor= args.currentValue.hex;
+                diagram.connectors[i].sourceDecorator.style.fill= args.currentValue.hex;
+            }
+            diagram.dataBind();
+        }
+    });
+    objectColor.appendTo('#color');
+    //Shape collection of the decorators.
+    let decoratorshape = [
+        { shape: 'None', text: 'None' },
+        { shape: 'Square', text: 'Square' },
+        { shape: 'Circle', text: 'Circle' },
+        { shape: 'Diamond', text: 'Diamond' },
+        { shape: 'Arrow', text: 'Arrow' },
+        { shape: 'OpenArrow', text: 'Open Arrow' },
+        { shape: 'Fletch', text: 'Fletch' },
+        { shape: 'OpenFetch', text: 'OpenFetch' },
+        { shape: 'IndentedArrow', text: 'Indented Arrow' },
+        { shape: 'OutdentedArrow', text: 'Outdented Arrow' },
+        { shape: 'DoubleArrow', text: 'Double Arrow' }
+    ];
+
+    //DropDownList is used to apply the decorator shape of the connector.
+    let srcDecoratorShape = new DropDownList({
+        enabled: true, value: 'None',
+        dataSource: decoratorshape, fields: { value: 'shape', text: 'text' },
+        change: srcDecShapeChange
+    });
+    srcDecoratorShape.appendTo('#sourceDecorator2');
+
+    //DropDownList is used to apply the decorator shape of the connector.
+    let tarDecoratorShape = new DropDownList({
+        enabled: true, 
+        value: 'Arrow',
+        dataSource: decoratorshape, fields: { value: 'shape', text: 'text' },
+        change: tarDecShapeChange
+    });
+    tarDecoratorShape.appendTo('#targetDecorator');
+
+    //DropDownList is used to apply the  decorator shape of the connector.
+    let segDecoratorshape = new DropDownList({
+        enabled: true, value: 'Circle',
+        dataSource: decoratorshape, fields: { value: 'shape', text: 'text' },
+        change: segDecShapeChange
+    });
+    segDecoratorshape.appendTo('#segmentDecorator');
 };
 

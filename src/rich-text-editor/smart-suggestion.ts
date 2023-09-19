@@ -2,10 +2,10 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor smart suggestion
  */
-import { RichTextEditor, Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, NodeSelection, DialogType } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, NodeSelection, DialogType,EmojiPicker } from '@syncfusion/ej2-richtexteditor';
 import { Mention, SelectEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Dialog } from '@syncfusion/ej2-popups';
-RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar);
+RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, EmojiPicker);
  
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -20,7 +20,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
         { formatName: "Numbered list", command: "OL", formatType: "Basic blocks", icon: "e-icons e-list-ordered icon", description: "Create an ordered list"},
         { formatName: "Bulleted list", command: "UL", formatType: "Basic blocks", icon: "e-icons e-list-unordered icon", description: "Create an unordered list"},
         { formatName: "Table", command: "CreateTable", formatType: "Basic blocks",icon: "e-icons e-table icon", description: "Insert a table"},
-        { formatName: "Emoji", command: "Emoji", formatType: "Inline", icon: "e-icons emoji",description: "Use emojis to express ideas and emoticons"},
+        { formatName: "Emoji picker", command: "EmojiPicker", formatType: "Inline", icon: "e-icons e-emoji icon",description: "Use emojis to express ideas and emoticons"},
         { formatName: "Image", command: "Image", formatType: "Media", icon: "e-icons e-image icon", description: "Add image to your page"},
         { formatName: "Audio", command: "Audio", formatType: "Media", icon: "e-icons e-audio icon", description: "Add audio to your page"},
         { formatName: "Video", command: "Video", formatType: "Media", icon: "e-icons e-video icon", description: "Add video to your page"},
@@ -36,7 +36,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
                 'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', '|',
                 'Formats', 'Alignments', 'NumberFormatList', 'BulletFormatList',
-                'Outdent', 'Indent', '|', 'CreateTable', 'CreateLink', 'Image',
+                'Outdent', 'Indent','EmojiPicker', '|', 'CreateTable', 'CreateLink', 'Image',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
         },
         placeholder: 'Type "/" and choose format.',
@@ -50,40 +50,6 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
     });
     formatRTE.appendTo('#MentionInlineFormat');
 
-    // begins the process of inserting emoticons.
-
-    let dialogContent: string = '<div id="emoji"></div>';
-    let dialog: Dialog = new Dialog({
-        header: 'Custom Emoticons',
-        content: dialogContent,
-        target: document.getElementById('mentionFormatIntegration'),
-        isModal: true,
-        width: '43%',
-        visible: false,
-        overlayClick: dialogOverlay,
-        buttons: [
-            { buttonModel: { content: 'Insert', isPrimary: true }, click: onInsert },
-            { buttonModel: { content: 'Cancel' }, click: dialogOverlay }
-        ],
-        created: onDialogCreate,
-        open: onOpen
-    });
-    dialog.appendTo('#emojiDialog');
-
-    function dialogOverlay(): void {
-        let activeElement: HTMLElement = dialog.element.querySelector('.char_block.e-active');
-        if (activeElement) {
-            activeElement.classList.remove('e-active');
-        }
-        dialog.hide();
-    }
-
-    function onOpen() {
-        let emojiElement : HTMLElement = document.getElementById("rteEmoticons-smiley");
-        if(!emojiElement.children[0].classList.contains('e-active')){
-            emojiElement.children[0].classList.add('e-active');
-        }
-    }
 
     function beforeApplyFormat(isBlockFormat: boolean) {      
         let range1: Range = formatRTE.getRange();
@@ -105,49 +71,15 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
         let range2: Range = formatRTE.getRange();
         let node2: Node = formatRTE.formatter.editorManager.nodeCutter.GetSpliceNode(range2, node as HTMLElement);
         let previouNode: Node = node2.previousSibling;
+        const brTag: HTMLElement = document.createElement('br');
+        if ( node2.parentElement && node2.parentElement.innerHTML.length === 1) {
+            node2.parentElement.appendChild(brTag);
+        }
         node2.parentNode.removeChild(node2);
-        if(blockNewLine && isBlockFormat){
-            let defaultTag: HTMLElement = document.createElement('p');
-            defaultTag.innerHTML = '</br>';
-            blockNode.parentNode.insertBefore(defaultTag, blockNode.nextSibling);
-            selection.setCursorPoint(document, blockNode.nextSibling as Element, 0);
-        } else if(previouNode) {
+        if(previouNode) {
             selection.setCursorPoint(document, previouNode as Element, previouNode.textContent.length);
         }
     }
-
-    function onInsert(): void {
-        let activeElement: HTMLElement = dialog.element.querySelector('.char_block.e-active');
-        if (activeElement) {
-            if (formatRTE.formatter.getUndoRedoStack().length === 0) {
-                formatRTE.formatter.saveData();
-            }
-            beforeApplyFormat(false);
-            let range: Range =formatRTE.getRange();
-            selection.setCursorPoint(document, range.startContainer as Element, range.startOffset);
-            formatRTE.executeCommand('insertText', activeElement.textContent);
-            formatRTE.formatter.saveData();
-            formatRTE.formatter.enableUndo(formatRTE);
-        }
-        dialogOverlay();
-    }
-
-    function onDialogCreate(): void {
-        let dialogContent: HTMLElement = document.getElementById('emojiDialog');
-        dialogContent.onclick = (e: MouseEvent) => {
-            let target: Element = e.target as Element;
-            let activeElement: HTMLElement = dialog.element.querySelector('.char_block.e-active');
-            if (target.classList.contains('char_block')) {
-                target.classList.add('e-active');
-                if (activeElement) {
-                    activeElement.classList.remove('e-active');
-                }
-            }
-        };
-    }
-
-    // End the process of inserting emoticons.
-
 
     // Initialize Mention control.
     
@@ -199,13 +131,13 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
             mentionObj.hidePopup();
             formatRTE.showDialog(DialogType.InsertVideo);
         }
-        else if ((args.itemData as  { [key: string]: Object }).command == 'Emoji') {
-            dialog.element.style.display = 'block';
+        else if ((args.itemData as  { [key: string]: Object }).command == 'EmojiPicker') {
+            beforeApplyFormat(false);
             mentionObj.hidePopup();
-            dialog.show();
+            formatRTE.showEmojiPicker();
         }
         else {
             formatRTE.executeCommand('formatBlock', (args.itemData as  { [key: string]: Object }).command);
         }
     } 
-}
+};

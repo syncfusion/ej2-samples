@@ -1,11 +1,9 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Tab Keyboard Interaction sample
  */
 import { Tab } from '@syncfusion/ej2-navigations';
 
 (window as any).default = (): void => {
-    loadCultureFiles();
     //Initialize Tab component
     let tabObj: Tab = new Tab({
         overflowMode: 'Popup',
@@ -72,4 +70,10 @@ import { Tab } from '@syncfusion/ej2-navigations';
     });
     //Render initialized Tab component
     tabObj.appendTo('#tab_keyboard_interaction');
+    document.body.addEventListener('keydown', (e: KeyboardEvent) => {
+        let tabElement: HTMLElement = document.querySelector('#tab_keyboard_interaction .e-tab-header .e-toolbar-item .e-tab-wrap') as HTMLElement;
+        if (e.altKey && e.keyCode === 74 && tabElement) {
+            tabElement.focus();
+        }
+    });
 };

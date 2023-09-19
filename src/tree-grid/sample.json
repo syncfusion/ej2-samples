@@ -2,12 +2,15 @@
     "name": "Tree Grid",
     "directory": "tree-grid",
     "category": "Grids",
+    "type":"update",
     "ftName": "tree-grid",
     "samples": [
          {  
             "url": "treegrid-overview", "name": "Overview", "category":"Tree Grid","api":{"TreeGrid":["dataSource","childMapping","height","columns","allowReordering","allowFiltering","allowSorting","filterSettings","queryCellInfo"] },
          "description": "This JavaScript Tree Grid example demonstrates the overview in JavaScript Tree Grid Component. Explore here for more details."
          },
+         { "url": "live-data", "type": "new", "name": "Live Data", "category": "Tree Grid","api": { "TreeGrid": ["dataSource","childMapping", "columns", "enableVirtualization", "enableVirtualMaskRow", "allowSelection", "height", "rowHeight", "queryCellInfo"]},
+         "description":"This demo for Essential JS 2 Tree Grid component shows the grid Local Live Data Update"},
         {  
             "url": "default", "name": "Default Functionalities", "category":"Tree Grid","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","height","columns"] },
             "description": "This example shows how the Syncfusion TypeScript Tree Grid control looks with its default configuration."

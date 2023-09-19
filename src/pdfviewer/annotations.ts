@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
 ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, HighlightSettings, UnderlineSettings, StrikethroughSettings, LineSettings, ArrowSettings, RectangleSettings, CircleSettings, PolygonSettings, DistanceSettings, PerimeterSettings, AreaSettings, RadiusSettings, VolumeSettings, FreeTextSettings, DynamicStampItem, SignStampItem, StandardBusinessStampItem, CustomStampSettings, InkAnnotationSettings, StickyNotesSettings, StampSettings } from '@syncfusion/ej2-pdfviewer';
+import { Switch } from '@syncfusion/ej2-buttons';
 // tslint:disable-next-line:max-line-length
 PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner);
 
@@ -10,9 +11,25 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
 (window as any).default = (): void => {
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer();
-    viewer.serviceUrl = 'https://services.syncfusion.com/js/production/api/pdfviewer';
-	viewer.documentLoad = function (args) {
-        if(args.documentName === 'Annotations.pdf')
+
+	viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/annotations.pdf";
+
+    var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
+    switchObj.appendTo('#checked');
+
+    switchObj.change = function (args) {
+        if (args.checked) {
+            viewer.serviceUrl = '';
+        }
+        else {
+            viewer.serviceUrl = 'https://ej2services.syncfusion.com/js/development/api/pdfviewer';
+        }
+        viewer.dataBind();
+        viewer.load(viewer.documentPath, null);
+    }
+    
+    viewer.documentLoad = function (args) {
+        if(args.documentName === 'annotations.pdf')
         {
             viewer.annotation.addAnnotation("Highlight", {
                 bounds: [{x: 97, y: 610, width: 350, height: 14}], 
@@ -130,5 +147,4 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
         }
     };
     viewer.appendTo('#pdfViewer');
-    viewer.load('Annotations.pdf', null);
 };

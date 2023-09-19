@@ -1,23 +1,24 @@
 <div>
     <div class="col-md-8 control-section">
         <div class="content-wrapper">
-            <div id="boxContainer" style="width:92%;"></div>
+            <div id="boxContainer" style="width:100%;"></div>
         </div>
     </div>
-    <!-- propeety panel -->
+    <br>
+    <!-- property panel -->
     <div class="col-md-4 property-section">
         <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
             <colgroup>
                 <col span="1" style="width: 30%;">
                 <col span="1" style="width: 70%;">
-             </colgroup>
-             <tbody>
-             <tr style="height: 50px">
+            </colgroup>
+            <tbody>
+                <tr style="height: 50px">
                     <td>
-                        <div>Orientation</div>
+                        <div style="font-size:14px">Orientation</div>
                     </td>
                     <td>
-                        <div style="margin-left: -20px">
+                        <div style="margin-left: 0px">
                             <select name="selectIndex" autocomplete="off" id="orientationMode" class="form-control"
                                 style="width:90%">
                                 <option value="Vertical" selected>Vertical</option>
@@ -28,11 +29,12 @@
                 </tr>
                 <tr style="height: 50px">
                     <td>
-                        <div style="width: 70%">Container Type</div>
+                        <div style="width: 70%;font-size:14px">Container Type</div>
                     </td>
                     <td>
-                        <div style="margin-left: -20px">
-                            <select name="selectIndex" autocomplete="off" id="containerMode" class="form-control" style="width:90%">
+                        <div style="margin-left: 0px">
+                            <select name="selectIndex" autocomplete="off" id="containerMode" class="form-control"
+                                style="width:90%">
                                 <option value="Thermometer" selected>Thermometer</option>
                                 <option value="Normal">Normal</option>
                                 <option value="RoundedRectangle">RoundedRectangle</option>
@@ -46,22 +48,25 @@
 </div>
 <div id="action-description">
     <p>
-        This sample demonstrates the type of containers used in linear gauge. Orientation and container type of linear
-        gauge can be changed by using <code>Orientation</code> and <code>Container Type</code> options
+        This sample shows the different types of containers, such as normal, thermometer, and rounded rectangle. The
+        linear
+        gauge's orientation can also be changed from vertical to horizontal.
     </p>
 </div>
 <div id="description">
     <p>
-        This sample demonstrates the orientation and container customization in linear gauge. The gauge can be rendered
-        either in
-        vertical or horizontal orientation. And you can use <code>type</code> property in container to change the
-        type of the container.
+        The linear gauge can be rendered vertically or horizontally depending on the option selected in the
+        <b>Orientation</b> drop-down list. You can also select the container type from the <b>Container Type</b>
+        drop-down list.
+    </p>
+    <p>
+        More information on the containers can be found in this <a target="_blank"
+            href="https://ej2.syncfusion.com/documentation/linear-gauge/linear-gauge-appearance#customizing-the-linear-gauge-container">documentation
+            section</a>. Likewise, information about orientation can be found in this <a target="_blank"
+            href="https://ej2.syncfusion.com/documentation/linear-gauge/axis#orientation">documentation
+            section</a>.
     </p>
     <br>
-    <p>
-        More information about container can be found in this
-        <a target="_blank" href="https://ej2.syncfusion.com/documentation/linear-gauge/getting-started/">documentation section</a>.
-    </p>
 </div>
 <!-- custom code start -->
 <style>

@@ -71,4 +71,10 @@ import { Toolbar } from '@syncfusion/ej2-navigations';
     });
     //Render initialized Toolbar component
     toolbarObj.appendTo('#toolbar_keyboard_interaction');
+    document.body.addEventListener('keydown', (e: KeyboardEvent) => {
+        let toolbarElement: HTMLElement = document.querySelector('#toolbar_keyboard_interaction .e-toolbar-items .e-toolbar-item .e-tbar-btn') as HTMLElement;
+        if (e.altKey && e.keyCode === 74 && toolbarElement) {
+            toolbarElement.focus();
+        }
+    });
 };

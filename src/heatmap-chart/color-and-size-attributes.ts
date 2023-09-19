@@ -1,15 +1,10 @@
-import { loadCultureFiles } from '../common/culture-loader';
-import {
-    HeatMap, Legend, Tooltip, Adaptor, BubbleTooltipData, ITooltipEventArgs,
-    ILoadedEventArgs, HeatMapTheme
-} from '@syncfusion/ej2-heatmap';
+import { HeatMap, Legend, Tooltip, Adaptor, BubbleTooltipData, ITooltipEventArgs, ILoadedEventArgs, HeatMapTheme} from '@syncfusion/ej2-heatmap';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
-
-/**
- * Sample for Line serie
- */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let jsonCellBubbleData: Object = [
             { Year: '2017', Months: 'Jan-Feb', Accidents: 4, Fatalities: 39 },
             { Year: '2017', Months: 'Mar-Apr', Accidents: 3, Fatalities: 8 },
@@ -55,14 +50,20 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
                 size: '15px',
                 fontWeight: '500',
                 fontStyle: 'Normal',
-                fontFamily: 'Segoe UI'
+                fontFamily: 'inherit'
             }
         },
         xAxis: {
             labels: ['2017', '2016', '2015', '2014', '2013', '2012'],
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         yAxis: {
             labels:  ['Jan-Feb', 'Mar-Apr', 'May-Jun', 'Jul-Aug', 'Sep-Oct', 'Nov-Dec'],
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         dataSource: jsonCellBubbleData,
         dataSourceSettings: {
@@ -78,7 +79,10 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
             },
             showLabel: false,
             tileType: 'Bubble',
-            bubbleType: 'SizeAndColor'
+            bubbleType: 'SizeAndColor',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         paletteSettings: {
             palette: [{ color: '#C06C84' },
@@ -86,19 +90,30 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
             ],
             type: 'Gradient'
         },
+        tooltipSettings:{
+            textStyle: {
+                fontFamily: 'inherit'
+            }
+        },
         tooltipRender: (args: ITooltipEventArgs) => {
             args.content = ['Year ' + ' : ' + args.xLabel + '<br/>' + 'Months ' + ' : ' + args.yLabel + '<br/>'
                 + 'Accidents ' + ' : ' + (args.value as BubbleTooltipData[])[0].bubbleData + '<br/>' + 'Fatalities ' + ' : '
                 + (args.value as BubbleTooltipData[])[1].bubbleData];
         },
         legendSettings: {
-            visible: true
+            visible: true,
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
-        },
+            args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, "Dark");
+            // custom code end
+        }
     });
     heatmap.appendTo('#container');
 };

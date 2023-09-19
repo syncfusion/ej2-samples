@@ -16,11 +16,11 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
         //Initializing Primary X and Y Axis
         primaryXAxis: {
             valueType: 'Category', interval: 1, labelIntersectAction: Browser.isDevice ? 'None' : 'Rotate45', labelRotation: Browser.isDevice ? -45 : 0, majorTickLines: { width: 0 },
-            minorTickLines: { width: 0 }
+            minorTickLines: { width: 0 }, title: 'Product'
         },
         primaryYAxis:
         {
-           minimum: 0, maximum: 100, interval: 20, labelFormat: '{value}%'
+           minimum: 0, maximum: 100, interval: 20, labelFormat: '{value}%', title: 'Profit'
         },
         //Initializing Chart Series
         series: [

@@ -3,7 +3,7 @@ import { Pager } from '@syncfusion/ej2-grids';
 /**
  * Pager API sample
  */
-this.default = (): void => {
+(this as any).default = (): void => {
     let pager: Pager = new Pager({
         pageSize: 1,
         pageCount: 5,

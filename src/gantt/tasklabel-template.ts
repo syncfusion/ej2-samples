@@ -62,7 +62,7 @@ Gantt.Inject(DayMarkers, Selection);
                 taskLabel: '${Progress}%'
             },
             splitterSettings: {
-                columnIndex: 2
+                position: "35%"
             },
             projectStartDate: new Date('03/24/2019'),
             projectEndDate: new Date('05/04/2019')

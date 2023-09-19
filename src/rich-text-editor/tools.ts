@@ -3,8 +3,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Rich Text Editor overview sample
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager , EmojiPicker} from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager , EmojiPicker);
+import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager , EmojiPicker, Audio ,Video, FormatPainter} from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager , EmojiPicker, Audio, Video, FormatPainter);
 import { createElement } from '@syncfusion/ej2-base';
 import * as CodeMirror from 'codemirror';
 
@@ -17,11 +17,11 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
     let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
+            items: ['FormatPainter', 'Bold', 'Italic', 'Underline', 'StrikeThrough',
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
                 'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', 'EmojiPicker', '|',
                 'Formats', 'Alignments', 'NumberFormatList', 'BulletFormatList',
-                'Outdent', 'Indent', '|', 'CreateTable', 'CreateLink', 'Image', 'FileManager', '|', 'ClearFormat', 'Print',
+                'Outdent', 'Indent', '|', 'CreateTable', 'CreateLink', 'Image', 'Audio', 'Video', 'FileManager', '|', 'ClearFormat', 'Print',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo'
             ]
         },

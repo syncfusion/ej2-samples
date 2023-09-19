@@ -1,43 +1,36 @@
+import { CircularGauge, Annotations, Legend, Alignment, GaugeShape, LegendPosition, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
+import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { EmitType } from '@syncfusion/ej2-base';
+CircularGauge.Inject(Annotations, Legend);
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
-//tslint:disable
+loadCultureFiles();
 // custom code end
-import { CircularGauge, Annotations, Legend, Alignment, GaugeShape, LegendPosition, ILoadedEventArgs, GaugeTheme  } from '@syncfusion/ej2-circulargauge';
-CircularGauge.Inject(Annotations, Legend);
-
 (window as any).default = (): void => {
-    // custom code start
-    loadCultureFiles();
-    // custom code end
     let circulargauge: CircularGauge = new CircularGauge({
-         // custom code start
-         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
-        },
-        // custom code end
         title: 'Measure of wind speed in Km/h',
+        background:'transparent',
         titleStyle: {
-            fontFamily: 'Segoe UI'
+            fontFamily: 'inherit'
         },
         legendSettings: {
             visible: true,
             position: 'Bottom',
             textStyle: {
-                fontFamily: 'Segoe UI'
+                fontFamily: 'inherit',
+                size: '12px'
             }
         },
         axes: [{
             lineStyle: { width: 2 },
             labelStyle: {
                 position: 'Inside', useRangeColor: false,
-                font: { fontFamily: 'Segoe UI' }
+                font: { fontFamily: 'inherit' }
             }, majorTicks: { height: 16, color: '#9E9E9E', interval: 20 }, minorTicks: { height: 8, interval: 10 },
             startAngle: 210, endAngle: 150, minimum: 0, maximum: 120, radius: '80%',
             ranges: [
-                { start: 0, end: 5, color: '#ccffff', radius: '110%', legendText: 'Light air'},
+                { start: 0, end: 5, color: '#ccffff', radius: '110%', legendText: 'Light air' },
                 { start: 5, end: 11, color: '#99ffff', radius: '110%', legendText: 'Light breeze' },
                 { start: 11, end: 19, color: '#99ff99', radius: '110%', legendText: 'Gentle breeze' },
                 { start: 19, end: 28, color: '#79ff4d', radius: '110%', legendText: 'Moderate breeze' },
@@ -51,19 +44,31 @@ CircularGauge.Inject(Annotations, Legend);
                 value: 70, radius: '60%', pointerWidth: 8,
                 cap: { radius: 7 }, needleTail: { length: '18%' }
             }]
-        }]
+        }],
+        load: (args: ILoadedEventArgs) => {
+            // custom code start
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // custom code end
+        }
     });
     circulargauge.appendTo('#legend-container');
 
-    document.getElementById('enable').onchange = () => {
-        let enableLegend: boolean = (<HTMLInputElement>document.getElementById('enable')).checked;
-        circulargauge.legendSettings.visible = enableLegend;
+    let showLegendVisible: EmitType<CheckBoxChangeEvents>;
+    let showLegendVisibleCheckBox: CheckBox = new CheckBox(
+        {
+            change: showLegendVisible,
+            checked: true
+        },
+        '#enable');
+
+        showLegendVisibleCheckBox.change = showLegendVisible = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        circulargauge.legendSettings.visible = boolean;
         circulargauge.refresh();
-    };
-    document.getElementById('toggle').onchange = () => {
-        let toggle: boolean = (<HTMLInputElement>document.getElementById('toggle')).checked;
-        circulargauge.legendSettings.toggleVisibility = toggle;
-    };
+    }
     document.getElementById('alignment').onchange = (e: Event) => {
         let alignment: string = (e.target as HTMLSelectElement).value;
         circulargauge.legendSettings.alignment = alignment as Alignment;
@@ -76,4 +81,45 @@ CircularGauge.Inject(Annotations, Legend);
         let position: string = (e.target as HTMLSelectElement).value;
         circulargauge.legendSettings.position = position as LegendPosition;
     };
+
+    let toggelLegend: EmitType<CheckBoxChangeEvents>;
+    let toggelLegendCheckBox: CheckBox = new CheckBox(
+        {
+            change: toggelLegend,
+            checked: true
+        },
+        '#toggle');
+
+        toggelLegendCheckBox.change = toggelLegend = (e: CheckBoxChangeEvents) => {
+        let boolean: boolean = e.checked;
+        circulargauge.legendSettings.toggleVisibility = boolean;
+        circulargauge.refresh();
+    }
+
+    let labelPosition = new DropDownList({
+        index: 0, width: '100%',
+        change: () => {
+            circulargauge.legendSettings.alignment = <Alignment>labelPosition.value.toString();
+            circulargauge.refresh();
+        }
+    });
+    labelPosition.appendTo('#alignment');
+
+    let labelPosition1 = new DropDownList({
+        index: 0, width: '100%',
+        change: () => {
+            circulargauge.legendSettings.shape = <GaugeShape>labelPosition1.value.toString();
+            circulargauge.refresh();
+        }
+    });
+    labelPosition1.appendTo('#shape');
+
+    let labelPosition2 = new DropDownList({
+        index: 2, width: '100%',
+        change: () => {
+            circulargauge.legendSettings.position = <LegendPosition>labelPosition2.value.toString();
+            circulargauge.refresh();
+        }
+    });
+    labelPosition2.appendTo('#position');
 }

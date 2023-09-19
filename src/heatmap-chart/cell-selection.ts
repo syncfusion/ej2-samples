@@ -1,28 +1,35 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Tooltip, ILoadedEventArgs, HeatMapTheme, ISelectedEventArgs, SelectedCellDetails } from '@syncfusion/ej2-heatmap';
-import {
-    ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel,
-    Tooltip as chartTooltip, ILoadedEventArgs as IChartLoadedEventsArgs
-} from '@syncfusion/ej2-charts';
+import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip as chartTooltip, ILoadedEventArgs as IChartLoadedEventsArgs } from '@syncfusion/ej2-charts';
 import { Button } from '@syncfusion/ej2-buttons';
 import * as data from './cell-seletion-data.json';
 HeatMap.Inject(Tooltip);
 Chart.Inject(ColumnSeries, DataLabel, Category, Legend, chartTooltip);
-
-/**
- * Sample for Line serie
- */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
-            text: 'Top export products 2014-2018, Value in USD million'
+            text: 'Top export products 2014-2018, Value in USD million',
+            textStyle: {
+                size: '15px',
+                fontWeight: '500',
+                fontStyle: 'Normal',
+                fontFamily: 'inherit'
+            }
         },
         xAxis: {
             labels: ['Cereals', 'Meat', 'Spices', 'Tea', 'Edible Oil', 'Dairy Products', 'Wheat'],
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         yAxis: {
-            labels: ['2014', '2015', '2016', '2017', '2018']
+            labels: ['2014', '2015', '2016', '2017', '2018'],
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         allowSelection: true,
         dataSource: (data as any).cellSeletionData,
@@ -34,9 +41,21 @@ Chart.Inject(ColumnSeries, DataLabel, Category, Legend, chartTooltip);
         },
         showTooltip: true,
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
+            // custom code end
+        },
+        cellSettings:{
+            textStyle: {
+                fontFamily: 'inherit'
+            }
+        },
+        tooltipSettings:{
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         cellSelected: (args: ISelectedEventArgs) => {
             let data: SelectedCellDetails[] = args.data;
@@ -94,9 +113,11 @@ Chart.Inject(ColumnSeries, DataLabel, Category, Legend, chartTooltip);
             enable: true
         },
         load: (args: IChartLoadedEventsArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
+            // custom code end
         }
     });
     chart.appendTo('#container1');

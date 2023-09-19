@@ -1,14 +1,12 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
 import { RadioButton } from '@syncfusion/ej2-buttons';
 import * as data from './render-mode-data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
-
-/**
- * Sample for Line serie
- */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Net Migration Rate of Northern Europe From 1965 to 2015',
@@ -16,7 +14,7 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
                 size: '15px',
                 fontWeight: '500',
                 fontStyle: 'Normal',
-                fontFamily: 'Segoe UI'
+                fontFamily: 'inherit'
             }
         },
         xAxis: {
@@ -24,10 +22,16 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
                 'Iceland', 'Ireland', 'Latvia', 'Lithuania', 'Norway', 'Sweden', 'UK'],
             labelRotation: -90,
             labelIntersectAction: 'None',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         yAxis: {
             labels: ['1965-1970', '1970-1975', '1975-1980', '1980-1985', '1985-1990',
-                '1990-1995', '1995-2000', '2000-2005', '2005-2010', '2010-2015']
+                '1990-1995', '1995-2000', '2000-2005', '2005-2010', '2010-2015'],
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         dataSource: (data as any).renderModeData,
         paletteSettings: {
@@ -45,12 +49,22 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
         },
         legendSettings: {
             position: 'Bottom',
-            width: '200px'
+            width: '200px',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
+        },
+        tooltipSettings:{
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
+            // custom code end
         },
     });
     heatmap.appendTo('#container');

@@ -10,7 +10,6 @@ import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
     //Initialize Tab component
     let tabObj: Tab = new Tab({
         cssClass: 'responsive-mode',
-        heightAdjustMode: 'None',
         height: 250,
         items: [
             {

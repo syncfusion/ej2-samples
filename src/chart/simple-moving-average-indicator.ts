@@ -57,7 +57,7 @@ Chart.Inject(
 
                 enableSelectionZooming: true,
                 enablePinchZooming: true,
-                mode: 'XY',
+                mode: 'X',
                 enablePan: true
             },
             //Initializing Chart Title

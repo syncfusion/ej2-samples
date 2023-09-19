@@ -1,23 +1,22 @@
-/**
- * Default sample
- */
 import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
 // custom code start
-//tslint:disable:max-func-body-length
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
 // custom code end
 (window as any).default = (): void => {
     let circulargauge1: CircularGauge = new CircularGauge({
-        // custom code start
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // custom code end
         },
-        // custom code end
         width: '400px',
         height: '400px',
+        background:'transparent',
         axes: [{
             annotations: [{
                 angle: 8, radius: '80%', zIndex: '1',
@@ -86,18 +85,18 @@ CircularGauge.Inject(Annotations);
     circulargauge1.appendTo('#gauge1');
 
     let circulargauge2: CircularGauge = new CircularGauge({
-        // custom code start
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             if (selectedTheme === 'highcontrast') {
                 args.gauge.axes[0].annotations[0].content =
                     '<div class="annotation4"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image4.svg" /></div>';
             }
+            // custom code end
         },
-        // custom code end
         height: '65px',
         width: '65px',
         axes: [{
@@ -133,18 +132,18 @@ CircularGauge.Inject(Annotations);
     circulargauge2.appendTo('#gauge2');
 
     let circulargauge3: CircularGauge = new CircularGauge({
-        // custom code start
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             if (selectedTheme === 'highcontrast') {
                 args.gauge.axes[0].annotations[0].content =
                     '<div class="annotation5"><img style="width:15px;height:15px;" src="src/circular-gauge/images/image5.svg" /></div>';
             }
+            // custom code end
         },
-        // custom code end
         height: '65px',
         width: '65px',
         axes: [{
@@ -180,18 +179,18 @@ CircularGauge.Inject(Annotations);
     circulargauge3.appendTo('#gauge3');
 
     let circulargauge4: CircularGauge = new CircularGauge({
-        // custom code start
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             if (selectedTheme === 'highcontrast') {
                 args.gauge.axes[0].annotations[0].content =
                     '<div class="annotation6"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image6.svg" /></div>';
             }
+            // custom code end
         },
-        // custom code end
         height: '65px',
         width: '65px',
         axes: [{

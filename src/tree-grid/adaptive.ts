@@ -18,6 +18,7 @@ TreeGrid.Inject(Page, Filter, Sort, Edit, Toolbar);
             childMapping: 'subtasks',
             allowSorting: true,
             allowFiltering: true,
+            treeColumnIndex: 1,
             filterSettings: { type: 'Excel' },
             height: '100%',
             load: () => {

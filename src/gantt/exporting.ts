@@ -1,7 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, ExcelExport, Selection, Toolbar, PdfExport } from '@syncfusion/ej2-gantt';
+import { Gantt, ExcelExport, Selection, Toolbar, PdfExport, PdfExportProperties } from '@syncfusion/ej2-gantt';
 import { editingData, editingResources } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
+import { Switch } from '@syncfusion/ej2-buttons';
 
 /**
  * Editing Gantt sample
@@ -9,6 +10,7 @@ import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport);
 (window as any).default = (): void => {
     loadCultureFiles();
+    let isFitToWidth: boolean;
     let gantt: Gantt = new Gantt(
         {
             dataSource: editingData,
@@ -26,16 +28,10 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport);
             },
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName', width: 250 },
-                { field: 'StartDate' },
-                { field: 'EndDate' },
-                { field: 'Duration' },
-                { field: 'Predecessor' },
-                { field: 'resources' },
-                { field: 'Progress' }
+                { field: 'TaskName', width: 250 }
             ],
             splitterSettings: {
-                columnIndex: 2
+                columnIndex: 2,
             },
             allowExcelExport: true,
             allowPdfExport: true,
@@ -46,12 +42,17 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport);
                 } else if (args.item.id === 'GanttExport_csvexport') {
                     gantt.csvExport();
                 } else if (args.item.id === 'GanttExport_pdfexport') {
-                    gantt.pdfExport();
+                    let exportProperties: PdfExportProperties = {
+                        fitToWidthSettings: {       
+                            isFitToWidth: isFitToWidth,       
+                        }       
+                    };
+                    gantt.pdfExport(exportProperties);
                 }
             },
             allowSelection: true,
             gridLines: 'Both',
-            height: '450px',
+            height: '445px',
             treeColumnIndex: 1,
             resourceFields: {
                 id: 'resourceId',
@@ -69,11 +70,21 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport);
                 },
             },
             labelSettings: {
-                leftLabel: 'TaskName',
-                rightLabel: 'resources'
+                leftLabel: 'TaskName'
             },
             projectStartDate: new Date('03/25/2019'),
             projectEndDate: new Date('07/28/2019')
         });
     gantt.appendTo('#GanttExport');
+
+    let taskbarDragDrop: Switch = new Switch({ value: 'fitToWidth', change: dragDropChange});
+    taskbarDragDrop.appendTo('#checked');
+
+    function dragDropChange(args: any) {
+        if (args.checked) {
+            isFitToWidth = true;
+        } else {
+            isFitToWidth = false;
+        }
+    }
 };

@@ -44,11 +44,13 @@ let liElement: HTMLElement;
     });
 
     // Define customized template
-    let template: string = '<div class="e-list-wrapper e-list-avatar">' +
-        '<span class="e-avatar e-avatar-circle ${icon} ${$imgUrl ? \'hideUI\' : \'showUI\' }">' +
-        '${icon}</span> <img class="e-avatar e-avatar-circle ${$imgUrl ? \'showUI\' : \'hideUI\' }" ' +
-        'src="${$imgUrl ?  $imgUrl : \' \' }" />' +
-        '<span class="e-list-content">${name}</span></div>';
+    var template: Function = (data: any) => {
+        var result = `<div class="e-list-wrapper e-list-avatar" >`+
+        `<span class="e-avatar e-avatar-circle ${data.icon} ${data.imgUrl ? 'hideUI' : 'showUI'  }">${data.icon}</span> <img class="e-avatar e-avatar-circle ${data.imgUrl ? 'showUI' : 'hideUI' }" ` +
+        `src="${data.imgUrl ?  data.imgUrl : ' ' }" />` +
+        `<span class="e-list-content">${data.name}</span></div>`;
+        return result;
+    }; 
 
     listObj = new ListView({
 

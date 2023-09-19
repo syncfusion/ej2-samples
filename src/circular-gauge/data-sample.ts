@@ -1,18 +1,12 @@
-// custom code start
-import { loadCultureFiles } from '../common/culture-loader';
-// custom code end
-/**
- * Data sample
- */
 import { CircularGauge } from '@syncfusion/ej2-circulargauge';
 import { gauge1, gauge2, gauge3 } from './data-sample-gauge';
 import { Grid } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
-
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    // custom code start
-    loadCultureFiles();
-    // custom code end
     let orderData: Object[] = [
         {
             'Country': 'Germany',
@@ -46,7 +40,6 @@ import { Query, DataManager } from '@syncfusion/ej2-data';
             ]
         });
     grid.appendTo('#container5');
-
     let toolTipInterval1: any = setInterval(
         (): void => {
             if (document.getElementById('container5')) {
@@ -75,10 +68,8 @@ import { Query, DataManager } from '@syncfusion/ej2-data';
                     }
                 ];
                 let data: Object = new DataManager(orderData as JSON[]).executeLocal(new Query().take(3));
-
                 grid.dataSource = data;
                 grid.refresh();
-
                 germany.axes[0].pointers[0].animation.enable = true;
                 usa.axes[0].pointers[0].animation.enable = true;
                 uk.axes[0].pointers[0].animation.enable = true;
@@ -88,8 +79,6 @@ import { Query, DataManager } from '@syncfusion/ej2-data';
                 germany.setAnnotationValue(0, 0, '#germany');
                 usa.setAnnotationValue(0, 0, '#usa');
                 uk.setAnnotationValue(0, 0, '#uk');
-
-
             } else {
                 clearInterval(toolTipInterval1);
             }

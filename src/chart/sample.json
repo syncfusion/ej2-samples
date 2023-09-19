@@ -1,7 +1,7 @@
 {
     "name": "Chart",
     "directory": "chart",
-    "type":"update",
+    "type": "update",
     "category": "Data Visualization",
     "ftName": "chart",
     "samples": [
@@ -399,6 +399,22 @@
             }
         },
         {
+            "url": "cylindrical-column",
+            "name": "Cylindrical Column",
+            "type": "new",
+            "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the cylindrical column series.",
+            "category": "Bar Charts",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "tooltip",
+                    "legendSettings"
+                ]
+            }
+        },
+        {
             "url": "bar",
             "name": "Bar",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the bar series.",
@@ -474,7 +490,7 @@
             }
         },
         {
-            "url": "tornado",
+            "url": "negative-stack",
             "name": "Negative Stack",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the bar charts.",
             "category": "Bar Charts",
@@ -950,7 +966,6 @@
             "name": "Pareto Chart",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure pareto charts.",
             "category": "Other Types",
-            "type":"update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1110,7 +1125,6 @@
             "name": "Lazy Loading",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates the Lazy Loading behavior in chart.",
             "category": "Data Binding",
-            "type":"update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1227,7 +1241,6 @@
         {
             "url": "strip-line",
             "name": "Stripline",
-            "type": "update",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the strip lines in charts.",
             "category": "Chart Axes",
             "api": {
@@ -1354,6 +1367,22 @@
             }
         },
         {
+            "url": "synchronized-chart",
+            "name": "Synchronized Charts",
+            "type": "new",
+            "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the synchronized chart.",
+            "category": "Chart Customization",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "tooltip",
+                    "legendSettings"
+                ]
+            }
+        },
+        {
             "url": "data-label-template",
             "name": "DataLabel Template",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the data label template.",
@@ -1448,6 +1477,7 @@
         {
             "url": "export",
             "name": "Export",
+            "type": "update",
             "description": "This demo for Essential JS2 Chart control shows how to export the charts to Excel, PDF, and image formats such as SVG, JPEG, and PNG at client-side.",
             "category": "Print and Export",
             "api": {
@@ -1536,7 +1566,6 @@
             "name": "Zooming and Panning",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates the zooming and panning behavior in chart.",
             "category": "User Interaction",
-            "type":"update",
             "api": {
                 "Chart": [
                     "primaryXAxis",

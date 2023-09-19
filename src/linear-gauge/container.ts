@@ -1,24 +1,16 @@
-import { loadCultureFiles } from '../common/culture-loader';
-/**
- * Container Sample
- */
 import { LinearGauge, ContainerType, Orientation, ILoadEventArgs, LinearGaugeTheme } from '@syncfusion/ej2-lineargauge';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let gauge: LinearGauge = new LinearGauge({
-        // custom code start
-        load: (args: ILoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(theme.charAt(0).toUpperCase() +
-            theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
-        },
-        // custom code start
         title: 'Temperature Measure',
         titleStyle: {
-            fontFamily: 'Segoe UI'
+            fontFamily: "inherit",
         },
+        background:'transparent',  
         container: {
             width: 13,
             roundedCornerRadius: 5,
@@ -37,6 +29,11 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             minorTicks: {
                 color: '#9e9e9e'
             },
+            labelStyle: {
+                font: {
+                    fontFamily: "inherit",
+                }
+            },
             pointers: [
                 {
                     value: 90,
@@ -54,11 +51,11 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             line: {
                 width: 0
             },
-            labelStyle:{
+            labelStyle: {
                 font: {
-                    fontFamily: 'Segoe UI'
+                    fontFamily: "inherit",
                 }
-           },
+            },
             majorTicks: {
                 interval: 20
             },
@@ -68,10 +65,17 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
                     width: 0
                 }
             ]
-        }]
+        }],
+        load: (args: ILoadEventArgs) => {
+            // custom code start
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // custom code end
+        }
     });
     gauge.appendTo('#boxContainer');
-    // code for property panel
     let containerMode: DropDownList = new DropDownList({
         index: 0,
         placeholder: 'Select Range Bar Color',
@@ -94,8 +98,3 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
     });
     orientationMode.appendTo('#orientationMode');
 };
-
-
-
-
-

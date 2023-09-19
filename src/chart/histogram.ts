@@ -29,7 +29,7 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary X and Y Axis
         primaryXAxis: {
             majorGridLines: { width: 0 }, title: 'Score of Final Examination',
-            minimum: 0, maximum: 100, edgeLabelPlacement: 'Shift', interval: Browser.isDevice ? 10 : 5, 
+            minimum: 0, maximum: 100, edgeLabelPlacement: 'Shift' 
         },
         chartArea: { border: { width: 0 } },
         legendSettings: { visible: false },

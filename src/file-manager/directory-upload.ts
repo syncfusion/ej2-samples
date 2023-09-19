@@ -8,6 +8,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
  */
 (window as any).default = (): void => {
     loadCultureFiles();
+    var buttonTemplate = '<button id="dropButton" class="e-tbar-btn e-tbtn-txt">Upload</button>';
     let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
     let fileObject: FileManager = new FileManager({
         ajaxSettings: {
@@ -16,31 +17,43 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
             uploadUrl: hostUrl + 'api/FileManager/Upload',
             downloadUrl: hostUrl + 'api/FileManager/Download'
         },
-        success : onSuccess,
+        toolbarItems: [{ name: 'NewFolder' },
+            { template: buttonTemplate, name: 'Upload' },
+            { name: 'SortBy' },
+            { name: 'Refresh' },
+            { name: 'Cut' },
+            { name: 'Copy' },
+            { name: 'Paste' },
+            { name: 'Delete' },
+            { name: 'Download' },
+            { name: 'Rename' },
+            { name: 'Selection' },
+            { name: 'View' },
+            { name: 'Details' }],
+            success: onSuccess
     });
     fileObject.appendTo('#file');
-
-function onSuccess() {
-  if (!document.getElementById('file_tb_upload').classList.contains('e-dropdown-btn')) {
-    let items: ItemModel[] = [{ text: 'Folder' }, { text: 'Files' }];
-    let drpDownBtn: DropDownButton = new DropDownButton({
-        items: items,
-        select: (args) => {
-            if (args.item.text === 'Folder') {
-                fileObject.uploadSettings.directoryUpload = true;
-            } else {
-                fileObject.uploadSettings.directoryUpload = false;
-            }
-            setTimeout(function () {
-                let uploadBtn: HTMLElement = document.querySelector('.e-file-select-wrap button');
-                uploadBtn.click();
-            }, 100);
-        }
-    });
-    drpDownBtn.appendTo('#file_tb_upload');
-    document.getElementById('file_tb_upload').onclick = function (args) {
-        args.stopPropagation();
-    };
+    function onSuccess() {
+        if (!document.getElementById('dropButton').classList.contains('e-dropdown-btn')) {
+            let items: ItemModel[] = [{ text: 'Folder' }, { text: 'Files' }];
+            let drpDownBtn: DropDownButton = new DropDownButton({
+                    items: items,
+                    iconCss: 'e-icons e-fe-upload',
+                    select: (args) => {
+                        if (args.item.text === 'Folder') {
+                            fileObject.uploadSettings.directoryUpload = true;
+                        } else {
+                            fileObject.uploadSettings.directoryUpload = false;
+                        }
+                        setTimeout(function () {
+                            let uploadBtn: HTMLElement = document.querySelector('.e-file-select-wrap button');
+                            uploadBtn.click();
+                        }, 100);
+                    }
+            },'#dropButton');
+            document.getElementById('dropButton').onclick = function (args) {
+            args.stopPropagation();
+        };
     }
-  }
+    }
 };

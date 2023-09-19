@@ -67,7 +67,7 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                 showDeleteConfirmDialog: true
             },
             splitterSettings: {
-                columnIndex: 2
+                position: "35%"
             },
             allowResizing: true,
             allowSorting: true,

@@ -1,14 +1,11 @@
-import { loadCultureFiles } from '../common/culture-loader';
-
 import { HeatMap, Legend, Tooltip, Adaptor, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
 import * as data from './default-table-data-source.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
-
-/**
- * Sample for Line serie
- */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Crude Oil Production of Non-OPEC Countries (in Million barrels per day)',
@@ -16,23 +13,32 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
                 size: '15px',
                 fontWeight: '500',
                 fontStyle: 'Normal',
-                fontFamily: 'Segoe UI'
+                fontFamily: 'inherit'
             }
         },
         xAxis: {
             labels: ['Canada', 'China', 'Egypt', 'Mexico', 'Norway', 'Russia', 'UK', 'USA'],
             labelRotation: 45,
             labelIntersectAction: 'None',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         yAxis: {
             labels: ['2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010'],
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         dataSource: (data as any).defaultTableDataSource,
         cellSettings: {
             border: {
                 width: 0
             },
-            format: '{value} M'
+            format: '{value} M',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         legendSettings: {
             visible: false,
@@ -41,12 +47,14 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
             fill: '#265259',
             textStyle: {
                 color: '#FFFFFF',
-                size: '12px'
+                size: '12px',
+                fontFamily: 'inherit'
             },
             border: {
                 width: 1,
                 color: '#98BABF'
-            }
+            },
+            template: '<div style=" border-radius: 5px;fontFamily: inherit; padding-left: 10px;padding-right: 10px;padding-bottom: 6px;padding-top: 6px;background:#000000; border: 1px #919191;" ><span style="color:white">In ${yLabel}, the ${xLabel} produced ${value} million barrels per day.<span></div>'   
         },
         paletteSettings: {
             palette: [{ value: 0, color: '#C2E7EC' },
@@ -67,14 +75,13 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
             ],
             type: 'Fixed'
         },
-        tooltipRender: (args: ITooltipEventArgs) => {
-            args.content = ['In ' + args.yLabel + ', the ' + args.xLabel + ' produced ' + args.value + ' million barrels per day'];
-        },
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
-        },
+            // custom code end
+        }
     });
     heatmap.appendTo('#container');
 };

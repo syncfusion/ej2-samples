@@ -11,8 +11,8 @@ import { detach, Browser, createElement, isNullOrUndefined, EventHandler } from 
     let dropElement: HTMLElement = document.getElementById('dropArea');
     let filesName: string[] = [];
     let uploadObj: Uploader = new Uploader({
-        asyncSettings: { saveUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Save',
-            removeUrl: 'https://ej2.syncfusion.com/services/api/uploadbox/Remove' },
+        asyncSettings: { saveUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Save',
+            removeUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Remove' },
         dropArea: dropElement, selected: onSelect, progress: onFileUpload, success: onUploadSuccess, removing: onFileRemove,
         failure: onUploadFailed, allowedExtensions: '.png, .jpg, .jpeg', template: 'template'
     });

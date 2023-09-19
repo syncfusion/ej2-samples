@@ -18,6 +18,7 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
     let spreadsheet: Spreadsheet = new Spreadsheet({
         showRibbon: false,
         showFormulaBar: false,
+        cssClass: 'e-custom-spreadsheet',
         allowOpen: false,
         allowSave: false,
         allowEditing: false,

@@ -1,20 +1,14 @@
-// custom code start
-import { loadCultureFiles } from '../common/culture-loader';
-//tslint:disable
-// custom code end
-/**
- * Pointer sample
- */
 import { CircularGauge, IAxisLabelRenderEventArgs, Annotations } from '@syncfusion/ej2-circulargauge';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 import { EmitType, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { gauge6 } from './pointer-gauge';
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 CircularGauge.Inject(Annotations);
 (window as any).default = (): void => {
-    // custom code start
-    loadCultureFiles();
-    // custom code end
-    let circulargauge: CircularGauge = new CircularGauge(gauge6());
+    let circulargauge: CircularGauge = gauge6();
     circulargauge.appendTo('#container');
     let gauge5Interval1: any = setInterval(
         (): void => {
@@ -34,25 +28,18 @@ CircularGauge.Inject(Annotations);
         },
         1000
     );
-    // code for property panel
-    let showText: EmitType<CheckBoxChangeEvents>;
-    let interval: CheckBox = new CheckBox(
-        {
-            change: showText, checked: false
-        },
-        '#showText');
     let combineRange: EmitType<CheckBoxChangeEvents>;
     let rangeSet: CheckBox = new CheckBox(
         {
             change: combineRange, checked: false
         },
         '#combineRange');
-    let range: EmitType<CheckBoxChangeEvents>;
+    let gapRanges: EmitType<CheckBoxChangeEvents>;
     let showCheckBox: CheckBox = new CheckBox(
-    {
-        change: range, checked: false
-    },
-    '#range');
+        {
+            change: gapRanges, checked: false
+        },
+        '#range');
     rangeSet.change = combineRange = (e: CheckBoxChangeEvents) => {
         let element: HTMLInputElement = document.getElementById('range') as HTMLInputElement;
         if (e.checked === true) {
@@ -125,50 +112,8 @@ CircularGauge.Inject(Annotations);
             circulargauge.refresh();
         }
     };
-    interval.change = range = (e: CheckBoxChangeEvents) => {
-        if (e.checked === true) {
-            circulargauge.axes[0].majorTicks.interval = 10;
-            circulargauge.axisLabelRender = (args: IAxisLabelRenderEventArgs ) => {
-                let text: string;
-                switch (parseInt(args.text)) {
-                    case 10:
-                        text = 'Ideal';
-                        break;
-                    case 30:
-                        text = 'Safe';
-                        break;
-                    case 50:
-                        text = 'Good';
-                        break;
-                    case 70:
-                        text = 'Ok';
-                        break;
-                    case 90:
-                        text = 'Risk';
-                        break;
-                    case 110:
-                        text = 'Danger';
-                        break;
 
-                    default:
-                        text = '';
-                        break;
-                }
-                args.text = text;
-            };
-            circulargauge.axes[0].pointers[0].animation.enable = false;
-            circulargauge.refresh();
-        } else {
-            circulargauge.axes[0].majorTicks.interval = 20;
-            circulargauge.axes[0].minimum = 0;
-            circulargauge.axes[0].maximum = 120;
-            circulargauge.axisLabelRender = (args: IAxisLabelRenderEventArgs ) => {};
-            circulargauge.axes[0].pointers[0].animation.enable = false;
-            circulargauge.refresh();
-        }
-    };
-
-    showCheckBox.change = range = (e: CheckBoxChangeEvents) => {
+    showCheckBox.change = gapRanges = (e: CheckBoxChangeEvents) => {
         if (e.checked) {
             circulargauge.axes[0].rangeGap = 5;
         } else {

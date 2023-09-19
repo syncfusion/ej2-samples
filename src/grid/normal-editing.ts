@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Edit, Toolbar, Page, NewRowPosition } from '@syncfusion/ej2-grids';
 import { orderDataSource } from './data-source';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
@@ -9,7 +8,6 @@ import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 Grid.Inject(Edit, Toolbar, Page);
 
 (window as any).default = (): void => {
-    loadCultureFiles();
     let newRowPosition: { [key: string]: Object }[] = [
         { id: 'Top', newRowPosition: 'Top' },
         { id: 'Bottom', newRowPosition: 'Bottom' }

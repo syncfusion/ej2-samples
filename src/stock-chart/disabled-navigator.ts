@@ -18,7 +18,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
     let stockChart: StockChart = new StockChart({
     chartArea : {border : {width : 0}},
     primaryXAxis: { valueType: 'DateTime',  majorGridLines: { width: 0 }, crosshairTooltip: { enable: true }},
-    primaryYAxis: { lineStyle: {  color : 'transparent' },
+    primaryYAxis: { lineStyle: {  color : 'transparent' }, crosshairTooltip: { enable: true },
                     majorTickLines: { color : 'transparent', height: 0 }},
     series: [
         {
@@ -28,7 +28,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
     enableSelector : false,
     tooltip: { enable: true },
     crosshair: {
-        enable: true
+        enable: true, lineType:'Both'
     },
     load: (args: IStockChartEventArgs) => {
         let selectedTheme: string = location.hash.split('/')[1];

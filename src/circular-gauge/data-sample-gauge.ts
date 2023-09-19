@@ -1,27 +1,16 @@
-/**
- * Data Sample Gauge
- */
 import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { Annotations } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(Annotations);
-
 export function gauge1(): CircularGauge {
     let gauge1: CircularGauge = new CircularGauge({
-        // custom code start
-        load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
-        },
-        // custom code end
+        background:'transparent',
         axes: [{
             annotations: [{
                 content: '#germany',
                 angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
-                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Segoe UI">Germany</div>',
+                content: '<div style="color:#9E9E9E;font-size:16px;font-family:inherit">Germany</div>',
                 angle: 180, zIndex: '1',
                 radius: '65%'
             }],
@@ -54,27 +43,28 @@ export function gauge1(): CircularGauge {
                     color: '#777777'
                 }
             }]
-        }]
+        }],
+        load: (args: ILoadedEventArgs) => {
+            // custom code start
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // custom code end
+        }
     });
     return gauge1;
 }
 export function gauge2(): CircularGauge {
     let gauge2: CircularGauge = new CircularGauge({
-        // custom code start
-        load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
-        },
-        // custom code end
+        background:'transparent',
         axes: [{
             annotations: [{
                 content: '#usa',
                 angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
-                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Segoe UI">USA</div>',
+                content: '<div style="color:#9E9E9E;font-size:16px;font-family:inherit">USA</div>',
                 angle: 180, zIndex: '1',
                 radius: '65%'
             }],
@@ -107,27 +97,28 @@ export function gauge2(): CircularGauge {
                     color: '#777777'
                 }
             }]
-        }]
+        }],
+        load: (args: ILoadedEventArgs) => {
+            // custom code start
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // custom code end
+        }
     });
     return gauge2;
 }
 export function gauge3(): CircularGauge {
     let gauge3: CircularGauge = new CircularGauge({
-        // custom code start
-        load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
-        },
-        // custom code end
+        background:'transparent',
         axes: [{
             annotations: [{
                 content: '#uk',
                 angle: 180, zIndex: '1',
                 radius: '30%'
             }, {
-                content: '<div style="color:#9E9E9E;font-size:16px;font-family:Segoe UI">UK</div>',
+                content: '<div style="color:#9E9E9E;font-size:16px;font-family:inherit">UK</div>',
                 angle: 180, zIndex: '1',
                 radius: '65%'
             }],
@@ -160,7 +151,15 @@ export function gauge3(): CircularGauge {
                     color: '#777777'
                 }
             }]
-        }]
+        }],
+        load: (args: ILoadedEventArgs) => {
+            // custom code start
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // custom code end
+        }
     });
     return gauge3;
 }

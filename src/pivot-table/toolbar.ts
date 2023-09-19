@@ -1,14 +1,15 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     PivotView, FieldList, CalculatedField, Toolbar, RemoveReportArgs, ToolbarArgs,
-    ConditionalFormatting, IDataSet, RenameReportArgs, SaveReportArgs, FetchReportArgs, LoadReportArgs, NumberFormatting
+    ConditionalFormatting, IDataSet, RenameReportArgs, SaveReportArgs, FetchReportArgs,
+    LoadReportArgs, NumberFormatting, PDFExport, ExcelExport
 } from '@syncfusion/ej2-pivotview';
 import { enableRipple } from '@syncfusion/ej2-base';
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
 
-PivotView.Inject(FieldList, CalculatedField, Toolbar, ConditionalFormatting, NumberFormatting);
+PivotView.Inject(FieldList, CalculatedField, Toolbar, ConditionalFormatting, NumberFormatting, PDFExport, ExcelExport);
 
 /**
  * PivotView Toolbar Sample

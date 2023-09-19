@@ -40,29 +40,31 @@ TreeGrid.Inject( Page );
             ]
         });
     treegrid.appendTo('#TreeGrid');
-    let dropDownColumn: DropDownList = new DropDownList({
-        dataSource: columnNames,
-        popupWidth: '100%',
-        fields: { text: 'name', value: 'id' },
-        value: 'taskID',
-        change: (e: ChangeEventArgs) => {
-            let columnName: string = <string>e.value;
-            let alignment: any = treegrid.getColumnByField(columnName).textAlign;
-            dropDownAlign.value = alignment;
-        }
-    });
-    dropDownColumn.appendTo('#columns');
+    setTimeout(() => {
+        let dropDownColumn: DropDownList = new DropDownList({
+            dataSource: columnNames,
+            popupWidth: '100%',
+            fields: { text: 'name', value: 'id' },
+            value: 'taskID',
+            change: (e: ChangeEventArgs) => {
+                let columnName: string = <string>e.value;
+                let alignment: any = treegrid.getColumnByField(columnName).textAlign;
+                dropDownAlign.value = alignment;
+            }
+        });
+        dropDownColumn.appendTo('#columns');
 
-    let dropDownAlign: DropDownList = new DropDownList({
-        dataSource: alignment,
-        fields: { text: 'name', value: 'id' },
-        value: 'Right',
-        change: (e: ChangeEventArgs) => {
-            let alignment: any = e.value;
-            let columnName: string = <string>dropDownColumn.value;
-            treegrid.getColumnByField(columnName).textAlign = alignment;
-            treegrid.refreshColumns();
-        }
-    });
-    dropDownAlign.appendTo('#alignment');
+        let dropDownAlign: DropDownList = new DropDownList({
+            dataSource: alignment,
+            fields: { text: 'name', value: 'id' },
+            value: 'Right',
+            change: (e: ChangeEventArgs) => {
+                let alignment: any = e.value;
+                let columnName: string = <string>dropDownColumn.value;
+                treegrid.getColumnByField(columnName).textAlign = alignment;
+                treegrid.refreshColumns();
+            }
+        });
+        dropDownAlign.appendTo('#alignment');
+    }, 2);
 };

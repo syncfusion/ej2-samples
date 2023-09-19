@@ -59,7 +59,7 @@ Chart.Inject(
             zoomSettings: {
                 enableSelectionZooming: true,
                 enablePinchZooming: true,
-                mode: 'XY',
+                mode: 'X',
                 enablePan: true
             },
             width: Browser.isDevice ? '100%' : '75%',

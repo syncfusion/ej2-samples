@@ -5,12 +5,12 @@
     "category": "Data Visualization",
     "samples": [
         {
-            "url": "default",
+            "url": "default-functionalities",
             "name": "Default Functionalities",
             "category": "HeatMap Chart",
             "description": "This demo for Essential JS2 Heatmap control shows the heat map control displayed with minimum configuration.",
-            "sourceFiles": [{"displayName": "default.ts", "path": "./src/heatmap-chart/default.ts"},
-                {"displayName": "default.html", "path": "./src/heatmap-chart/default.html"},
+            "sourceFiles": [{"displayName": "default.ts", "path": "./src/heatmap-chart/default-functionalities.ts"},
+                {"displayName": "default-functionalities.html", "path": "./src/heatmap-chart/default-functionalities.html"},
                 {"displayName": "default-data.json", "path": "./src/heatmap-chart/default-data.json"}],
             "api": {
                 "HeatMap": [
@@ -79,7 +79,7 @@
             }
         },
         {
-            "url": "array-row",
+            "url": "row",
             "name": "Row",
             "category": "Data Binding",
             "description": "This demo for Essential JS2 Heatmap control demonstrates how to bind the data to heat map with series of array for each columns.",
@@ -95,7 +95,7 @@
             }
         },
         {
-            "url": "array-cell",
+            "url": "cell",
             "name": "Cell",
             "category": "Data Binding",
             "description": "This demo for Essential JS2 Heatmap control demonstrates how to bind the array data with values for each cell to heatmap.",
@@ -112,7 +112,7 @@
             }
         },
         {
-            "url": "row-json-binding",
+            "url": "json-row",
             "name": "JSON Row",
             "category": "Data Binding",
             "description": "This demo for Essential JS2 Heatmap control demonstrates how to bind the JSON object with data for each columns to heatmap.",
@@ -128,7 +128,7 @@
             }
         },
         {
-            "url": "cell-json-binding",
+            "url": "json-cell",
             "name": "JSON Cell",
             "category": "Data Binding",
             "description": "This demo for Essential JS2 Heatmap control demonstrates how to bind the JSON object with data for each cell to heat map.",
@@ -164,12 +164,12 @@
             }
         },
         {
-            "url": "inversed",
+            "url": "inversed-axis",
             "name": "Inversed Axis",
             "category": "Features",
             "description": "This demo for Essential JS2 Heatmap control shows how to inverse the both x-axis and y-axis in heat map.",
-            "sourceFiles": [{"displayName": "inversed.ts", "path": "./src/heatmap-chart/inversed.ts"},
-                {"displayName": "inversed.html", "path": "./src/heatmap-chart/inversed.html"},
+            "sourceFiles": [{"displayName": "inversed-axis.ts", "path": "./src/heatmap-chart/inversed-axis.ts"},
+                {"displayName": "inversed-axis.html", "path": "./src/heatmap-chart/inversed-axis.html"},
                 {"displayName": "invered-axis-data.json", "path": "./src/heatmap-chart/invered-axis-data.json"}],
             "api": {
                 "HeatMap": [
@@ -184,12 +184,12 @@
             }
         },
         {
-            "url": "opposed",
+            "url": "opposed-axis",
             "name": "Opposed Axis",
             "category": "Features",
             "description": "This demo for Essential JS2 Heatmap control shows how to place the axis opposite to the default position in heatmap.",
-            "sourceFiles": [{"displayName": "opposed.ts", "path": "./src/heatmap-chart/opposed.ts"},
-                {"displayName": "opposed.html", "path": "./src/heatmap-chart/opposed.html"},
+            "sourceFiles": [{"displayName": "opposed-axis.ts", "path": "./src/heatmap-chart/opposed-axis.ts"},
+                {"displayName": "opposed-axis.html", "path": "./src/heatmap-chart/opposed-axis.html"},
                 {"displayName": "opposed-axis-data.json", "path": "./src/heatmap-chart/opposed-axis-data.json"}],
             "api": {
                 "HeatMap": [
@@ -241,12 +241,12 @@
             }
         },
         {
-            "url": "legend",
+            "url": "legend-placement",
             "name": "Legend Placement",
             "category": "Features",
             "description": "This demo for Essential JS2 Heatmap control shows how to place the heatmap legend in different positions.",
-            "sourceFiles": [{"displayName": "legend.ts", "path": "./src/heatmap-chart/legend.ts"},
-                {"displayName": "legend.html", "path": "./src/heatmap-chart/legend.html"},
+            "sourceFiles": [{"displayName": "legend-placement.ts", "path": "./src/heatmap-chart/legend-placement.ts"},
+                {"displayName": "legend-placement.html", "path": "./src/heatmap-chart/legend-placement.html"},
                 {"displayName": "legend-sample-data.json", "path": "./src/heatmap-chart/legend-sample-data.json"}],
             "api": {
                 "HeatMap": [
@@ -282,12 +282,12 @@
             }
         },
         {
-            "url": "palette",
+            "url": "palette-mode",
             "name": "Palette Mode",
             "category": "Features",
             "description": "This demo for Essential JS2 Heatmap control demonstrates applying gradient colors or solid colors for the heatmap cells.",
-            "sourceFiles": [{"displayName": "palette.ts", "path": "./src/heatmap-chart/palette.ts"},
-                {"displayName": "palette.html", "path": "./src/heatmap-chart/palette.html"},
+            "sourceFiles": [{"displayName": "palette-mode.ts", "path": "./src/heatmap-chart/palette-mode.ts"},
+                {"displayName": "palette-mode.html", "path": "./src/heatmap-chart/palette-mode.html"},
                 {"displayName": "palatte-sample-data.json", "path": "./src/heatmap-chart/palatte-sample-data.json"}],
             "api": {
                 "HeatMap": [

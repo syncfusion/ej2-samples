@@ -85,11 +85,11 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
     });
     chart.appendTo('#container');
 
-    let togglebtn: Button = new Button({
+    let printtogglebutton: Button = new Button({
         iconCss: 'e-icons e-print-icon', cssClass: 'e-flat', isPrimary: true,
     });
-    togglebtn.appendTo('#togglebtn');
-    document.getElementById('togglebtn').onclick = () => {
+    printtogglebutton.appendTo('#printtogglebtn');
+    document.getElementById('printtogglebtn').onclick = () => {
         chart.print();
     };
 };

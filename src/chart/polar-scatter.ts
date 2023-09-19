@@ -72,8 +72,7 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries,
         title: 'Real GDP Growth',
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true, header: '',
-            format: '<b>${point.x}</b> <br>GDP: <b>${point.y}%</b>'
+            enable: true, format: '${point.text} : <b>${point.y}%</b>'
         },
         legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {

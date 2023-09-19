@@ -49,7 +49,7 @@ let regionColor : string[] = ['rgba(38, 46, 11, 0.3)', 'rgba(94, 203, 155, 0.3)'
                     border: { width: 2, color: borderColor[themes.indexOf(theme.toLowerCase())] }
                 }],
                 tooltip: { enable: true, shared: true, header: '<b>England</b>', format: '${point.x} : <b>${point.y}</b>' },
-                height: '350',
+                height: '350', enableRtl: true,
                 width: Browser.isDevice ? '100%' : '80%',
                 theme: theme, legendSettings: { visible: false }
             }

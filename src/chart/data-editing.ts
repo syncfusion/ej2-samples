@@ -80,10 +80,6 @@ Chart.Inject(LineSeries, ColumnSeries, Category, Legend, Tooltip, DateTime, Data
         ],
         //Initializing Chart title
         title: 'Electricity - Production',
-        //Initializing User Interaction Tooltip
-        tooltip: {
-            enable: true
-        },
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 
 import { Grid, Page, Selection, DetailRow } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
@@ -21,7 +20,6 @@ interface DateFormat extends Window {
 }
 
 (window as any).default = (): void => {
-    loadCultureFiles();
     let grid: Grid = new Grid({
         dataSource: employeeData,
         detailTemplate: '#detailtemplate',

@@ -1,14 +1,12 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, ITooltipEventArgs, Tooltip, Adaptor, ILoadedEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import * as data from './table-bubble-data.json';
 HeatMap.Inject(Tooltip, Legend, Adaptor);
-
-/**
- * Sample for Line serie
- */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Female Participation Rate in Labor Force for the Countries',
@@ -16,16 +14,22 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
                 size: '15px',
                 fontWeight: '500',
                 fontStyle: 'Normal',
-                fontFamily: 'Segoe UI'
+                fontFamily: 'inherit'
             }
         },
         xAxis: {
             labels: ['Singapore', 'Spain', 'Australia', 'Germany', 'Belgium', 'USA', 'France', 'UK'],
             labelRotation: 45,
-            labelIntersectAction: 'None'
+            labelIntersectAction: 'None',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         yAxis: {
-            labels: ['1995', '2000', '2005', '2010', '2015']
+            labels: ['1995', '2000', '2005', '2010', '2015'],
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         dataSource: (data as any).tableBubbleData,
         cellSettings: {
@@ -34,7 +38,10 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
             },
             showLabel: false,
             tileType: 'Bubble',
-            bubbleType: 'Size'
+            bubbleType: 'Size',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         tooltipRender: (args: ITooltipEventArgs) => {
             args.content = [args.yLabel + ' | ' + args.xLabel + ' : ' + args.value + ' %'];
@@ -48,14 +55,24 @@ HeatMap.Inject(Tooltip, Legend, Adaptor);
             ],
         },
         legendSettings: {
-            visible: true
+            visible: true,
+            textStyle: {
+                fontFamily: 'inherit'
+            }
+        },
+        tooltipSettings:{
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() +
                 selectedTheme.slice(1)).replace(/-dark/i, "Dark");
-        },
+            // custom code end
+        }
     });
     heatmap.appendTo('#container');
 

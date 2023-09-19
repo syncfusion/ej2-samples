@@ -27,7 +27,7 @@ Chart.Inject(
             primaryYAxis: {
                 title: 'Price',
                 labelFormat: '${value}',
-                plotOffset: 25,
+                plotOffset: 25, minimum: 50,
                 maximum: 170, majorTickLines: { width: 0 },
                 interval: 30, rowIndex: 1, opposedPosition: true, lineStyle: { width: 0 }
             },
@@ -43,7 +43,7 @@ Chart.Inject(
             axes: [{
                 name: 'secondary',
                 opposedPosition: true, rowIndex: 0,
-                majorGridLines: { width: 0 }, lineStyle: { width: 0 }, minimum: -3.5, maximum: 3.5, interval: 3,
+                majorGridLines: { width: 0 }, lineStyle: { width: 0 }, minimum: -3.5, maximum: 3.5, interval: 3.5,
                 majorTickLines: { width: 0 }, title: 'MACD', stripLines: [
                     {
                         start: -3.5, end: 3.5, text: '', color: '#000000', visible: true,
@@ -77,7 +77,7 @@ Chart.Inject(
                     enablePan: true,
                     enableSelectionZooming: true,
                     enablePinchZooming: true,
-                    mode: 'XY',
+                    mode: 'X',
                 },
             tooltip: {
                 enable: true, shared: true

@@ -91,7 +91,6 @@ export let getSparkData: Function = (type: string, count: number) => {
     let grid: Grid = new Grid({
         dataSource: new DataManager(orderdata as JSON[]).executeLocal(new Query().take(20)),
         allowSelection: false,
-        enableColumnVirtualization: true,
         enableHover: true,
         height: 400,
         columns: [

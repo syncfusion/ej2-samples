@@ -22,7 +22,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
     splitObj = new Splitter({
       height: '450px', width: '100%',
       resizing: onResizing,
-      paneSettings: [{ resizable: true, size: '50%',min: '200px' }, {min: '60px'}],
+      paneSettings: [{ resizable: true, size: '50%',min: '40%' }, {min: '40%'}],
       created: updateOrientation,
     });
     splitObj.appendTo('#horizontal');

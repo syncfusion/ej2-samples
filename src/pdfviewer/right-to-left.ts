@@ -4,7 +4,7 @@ ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDes
 // tslint:disable-next-line:max-line-length
 PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner);
 import { L10n } from '@syncfusion/ej2-base';
-
+import { Switch } from '@syncfusion/ej2-buttons';
 
 //PDF Viewer Arabic Sample Locale
 L10n.load({
@@ -244,8 +244,22 @@ L10n.load({
 (window as any).default = (): void => {
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer({ enableRtl: true, locale: 'ar-AE' });
-    viewer.serviceUrl = 'https://services.syncfusion.com/js/production/api/pdfviewer';
+    viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/rtl-text.pdf";
+
+    var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
+    switchObj.appendTo('#checked');
+
+    switchObj.change = function (args) {
+        if (args.checked) {
+            viewer.serviceUrl = '';
+        }
+        else {
+            viewer.serviceUrl = 'https://ej2services.syncfusion.com/js/development/api/pdfviewer';
+        }
+        viewer.dataBind();
+        viewer.load(viewer.documentPath, null);
+    }
+    
     viewer.appendTo('#pdfViewer');
-    viewer.load('RTLText.pdf', null);
     viewer.annotationSettings.author = 'مقبول'; 
 };

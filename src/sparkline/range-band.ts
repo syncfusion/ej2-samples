@@ -50,7 +50,6 @@ export let lineData: Object[] = [
     let grid: Grid = new Grid({
         dataSource: new DataManager(products as JSON[]).executeLocal(new Query()),
         allowSelection: false,
-        enableColumnVirtualization: true,
         enableHover: true,
         height: 400,
         columns: [

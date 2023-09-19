@@ -1,32 +1,19 @@
-// custom code start
-import { loadCultureFiles } from '../common/culture-loader';
-// custom code end
-/**
- * Tooltip sample
- */
 import { CircularGauge, ITooltipRenderEventArgs, IPointerDragEventArgs, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { GaugeTooltip } from '@syncfusion/ej2-circulargauge';
 CircularGauge.Inject(GaugeTooltip);
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    // custom code start
-    loadCultureFiles();
-    // custom code end
     let circulargauge: CircularGauge = new CircularGauge({
-        // custom code start
-        load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
-        },
-        // custom code end
-        title: 'Tooltip Customization',
-        titleStyle: { size: '15px', color: 'grey', fontFamily: 'Segoe UI' },
+        background:'transparent',
         axes: [{
             radius: '90%',
             minimum: 0,
             maximum: 120,
             startAngle: 240,
+            background:'transparent',
             endAngle: 120,
             lineStyle: { width: 0 },
             majorTicks: { color: 'white', offset: -5, height: 12 },
@@ -56,38 +43,17 @@ CircularGauge.Inject(GaugeTooltip);
         tooltip: {
             type: ['Pointer', 'Range'],
             enable: true,
-            enableAnimation: false
-        },
-        tooltipRender: (args: ITooltipRenderEventArgs) => {
-            let imageName: string; let borderColor: string; let textColor: string;
-            if (args.pointer) {
-                imageName = ((args.pointer.currentValue >= 0 && args.pointer.currentValue <= 50) ? 'range1' : 'range3');
-                borderColor = ((args.pointer.currentValue >= 0 && args.pointer.currentValue <= 50) ?
-                    '#3A5DC8' : '#33BCBD');
-                textColor = circulargauge.theme.toLowerCase() === 'highcontrast' ? 'White' : borderColor;
-                if (circulargauge.theme.toLowerCase() === 'highcontrast') {
-                    args.tooltip.template = '<div id="templateWrap" style="border:2px solid ' + borderColor +
-                        ';background-color:black"><img src="src/circular-gauge/images/' + imageName
-                        + '.png"/><div class="des" style="color: ' +
-                        textColor + '"><span>${value} MPH</span></div></div>';
-                } else {
-                    args.tooltip.template = '<div id="templateWrap" style="border:2px solid ' + borderColor +
-                        '"><img src="src/circular-gauge/images/' + imageName + '.png"/><div class="des" style="color: ' +
-                        borderColor + '"><span>${value} MPH</span></div></div>';
-                }
-            } else if (args.range) {
-                imageName = ((args.range.start >= 0 && args.range.end <= 50)) ? 'range1' : 'range3';
-                borderColor = ((args.range.start >= 0 && args.range.end <= 50)) ? '#3A5DC8' : '#33BCBD';
-                textColor = circulargauge.theme.toLowerCase() === 'highcontrast' ? 'White' : borderColor;
-                let start: number = args.range.start; let end: number = args.range.end;
-                if (circulargauge.theme.toLowerCase() === 'highcontrast') {
-                    args.tooltip.rangeSettings.template = '<div id=templateWrap style="padding:5px;border:2px solid'
-                        + borderColor + ';color: ' + textColor + ';background-color:black"><img src="src/circular-gauge/images/'
-                        + imageName + '.png"/> <span>' + start + ' - ' + end + ' MPH  </span> </div>';
-                } else {
-                    args.tooltip.rangeSettings.template = '<div id=templateWrap style="padding:5px;border:2px solid'
-                        + borderColor + ';color: ' + borderColor + '"><img src="src/circular-gauge/images/'
-                        + imageName + '.png"/> <span>' + start + ' - ' + end + ' MPH  </span> </div>';
+            showAtMousePosition: true,
+            format: 'Current Value:  {value}',
+            enableAnimation: false,
+            textStyle: {
+                size: '13px',
+                fontFamily: 'inherit'
+            },
+            rangeSettings: {
+                showAtMousePosition: true, format: "Start Value: {start} <br/> End Value: {end}", textStyle: {
+                    size: '13px',
+                    fontFamily: 'inherit'
                 }
             }
         },
@@ -105,7 +71,15 @@ CircularGauge.Inject(GaugeTooltip);
             }
             circulargauge.refresh();
         },
-        enablePointerDrag: true
+        enablePointerDrag: true,
+        load: (args: ILoadedEventArgs) => {
+            // custom code start
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // custom code end
+        }
     });
     circulargauge.appendTo('#tooltip-container');
 };

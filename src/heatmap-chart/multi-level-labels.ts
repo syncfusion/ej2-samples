@@ -1,18 +1,16 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Tooltip, ILoadedEventArgs, ICellEventArgs, HeatMapTheme, ITooltipEventArgs } from '@syncfusion/ej2-heatmap';
 import * as data from './multi-level-label-data.json';
 HeatMap.Inject(Tooltip);
-
-/**
- * Sample for Line serie
- */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Product wise Monthly sales revenue for a e-commerce website',
             textStyle: {
-                size: '15px', fontWeight: '500', fontStyle: 'Normal', fontFamily: 'Segoe UI'
+                size: '15px', fontWeight: '500', fontStyle: 'Normal', fontFamily: 'inherit'
             }
         },
         xAxis: {
@@ -25,14 +23,15 @@ HeatMap.Inject(Tooltip);
             },
             textStyle: {
                 color: 'black',
-
+                fontFamily: 'inherit'
             },
             multiLevelLabels: [
                 {
                     border: { type: 'Rectangle', color: '#a19d9d' },
                     textStyle: {
                         color: 'black',
-                        fontWeight: 'Bold'
+                        fontWeight: 'Bold',
+                        fontFamily: 'inherit'
                     },
                     categories: [
                         { start: 0, end: 2, text: 'Electronics', },
@@ -49,7 +48,8 @@ HeatMap.Inject(Tooltip);
                 width: 0
             },
             textStyle: {
-                color: 'black'
+                color: 'black',
+                fontFamily: 'inherit'
             },
             isInversed: true,
             multiLevelLabels: [
@@ -57,7 +57,8 @@ HeatMap.Inject(Tooltip);
                     border: { type: 'Brace', color: '#a19d9d' },
                     textStyle: {
                         color: 'black',
-                        fontWeight: 'Bold'
+                        fontWeight: 'Bold',
+                        fontFamily: 'inherit'
                     },
                     categories: [
                         { start: 0, end: 2, text: 'Q1' },
@@ -81,17 +82,27 @@ HeatMap.Inject(Tooltip);
         tooltipRender: (args: ITooltipEventArgs) => {
             args.content = [args.xLabel + ' | ' + args.yLabel + ' : $ ' + (args.value as number / 10) + 'K'];
         },
+        tooltipSettings:{
+            textStyle: {
+                fontFamily: 'inherit'
+            }
+        },
         cellSettings: {
             border: {
                 width: 0
+            },
+            textStyle: {
+                fontFamily: 'inherit'
             }
         },
         dataSource: (data as any).multiLevelLabelData,
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
             selectedTheme = selectedTheme.toLowerCase();
+            // custom code end
             if (selectedTheme === 'highcontrast' || selectedTheme === 'bootstrap5-dark' || selectedTheme === 'material-dark' || selectedTheme === 'fabric-dark' || selectedTheme === 'bootstrap-dark' || selectedTheme === 'tailwind-dark' || selectedTheme === 'material3-dark' || selectedTheme === 'fluent-dark') {
                 args.heatmap.xAxis.textStyle.color = 'White';
                 args.heatmap.yAxis.textStyle.color = 'White';

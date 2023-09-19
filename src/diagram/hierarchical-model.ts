@@ -110,7 +110,6 @@ function connectorDefaults(connector: ConnectorModel, diagram: Diagram): Connect
         }
     });
     vSpacing.appendTo('#vSpacing');
-
     let checkBoxObj: CheckBox = new CheckBox({ change: onChange });
     checkBoxObj.appendTo('#expand');
         function onChange (args : ChangeEventArgs): void {

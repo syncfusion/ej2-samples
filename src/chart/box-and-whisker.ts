@@ -3,7 +3,7 @@ import {
     ChartTheme, Chart, getSaturationColor, Category, ILoadedEventArgs,
     IPointRenderEventArgs, BoxAndWhiskerSeries, Tooltip, getElement, BoxPlotMode
 } from '@syncfusion/ej2-charts';
-import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors } from './theme-color';
+import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors } from './theme-color';
 Chart.Inject(Category, BoxAndWhiskerSeries, Tooltip);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -53,6 +53,11 @@ import { Browser } from '@syncfusion/ej2/base';
             args.fill = pointTailwindDarkColors[args.point.index % 10];
         } else if (selectedTheme === 'tailwind') {
             args.fill = pointTailwindColors[args.point.index % 10];
+        } else if (selectedTheme === 'material3') {
+            args.fill = pointMaterial3Colors[args.point.index % 10];
+        }
+        else if (selectedTheme === 'material3-dark') {
+            args.fill = pointMaterial3DarkColors[args.point.index % 10];
         }
     };
     let chart: Chart = new Chart({

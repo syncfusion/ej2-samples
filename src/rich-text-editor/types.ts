@@ -61,6 +61,10 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
                 defaultRTE.toolbarSettings.type = ToolbarType.MultiRow;
                 defaultRTE.toolbarSettings.enableFloating = float.checked;
                 break;
+            case '3':
+                defaultRTE.toolbarSettings.type = ToolbarType.Scrollable;
+                defaultRTE.toolbarSettings.enableFloating = float.checked;
+                break;
         }
         defaultRTE.dataBind();
     }

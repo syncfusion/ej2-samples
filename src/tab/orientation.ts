@@ -45,7 +45,6 @@ let listObj3: ListView = new ListView({
     loadCultureFiles();
     //Initialize Tab component
     let tabObj: Tab = new Tab({
-        heightAdjustMode: 'None',
         height: 320,
         showCloseButton: true
     });

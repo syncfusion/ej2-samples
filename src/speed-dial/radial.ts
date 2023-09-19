@@ -21,10 +21,6 @@ import { RadialSettings, RadialSettingsModel, SpeedDial, SpeedDialItemModel } fr
             title: 'Delete',
             iconCss: 'speeddial-icons speeddial-icon-delete'
         },
-        {
-            title: 'Save',
-            iconCss: 'speeddial-icons speeddial-icon-save'
-        }
     ]
 
     let radialSetting: RadialSettingsModel = { offset: '70px' };

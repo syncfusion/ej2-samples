@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { TreeGrid, Page, Selection, Sort } from '@syncfusion/ej2-treegrid';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
@@ -9,7 +8,6 @@ TreeGrid.Inject(Page, Selection, Sort);
  * Loading animation sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let loadingeffects: { [key: string]: Object }[] = [
         { id: 'Shimmer', type: 'Shimmer' },
         { id: 'Spinner', type: 'Spinner' }

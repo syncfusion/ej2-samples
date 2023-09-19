@@ -53,8 +53,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            title: 'Measurements (in Gigawatt)',
-            labelFormat: Browser.isDevice ? '{value}' : '{value}GW',
+            labelFormat: '{value}GW',
             minimum: 0,
             maximum: 40,
             interval: 10,
@@ -66,6 +65,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         series: [
             {
                 type: 'Column',
+                name: 'Measurements (in Gigawatt)',
                 dataSource: [
                     { x: "India", y: 35.5, text: Browser.isDevice ? "35.5" : "35.5GW" },
                     { x: "China", y: 18.3, text: Browser.isDevice ? "18.3" : "18.3GW" },
@@ -84,6 +84,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         ],
         //Initializing Chart title
         title: 'Top 10 Countries Using Solar Power',
+        legendSettings: { visible: false },
         width: '95%',
          // custom code start
         load: (args: ILoadedEventArgs) => {
@@ -101,7 +102,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
     });
     mode.appendTo('#mode');
     let togglebtn: Button = new Button({
-        iconCss: 'e-icons e-export-icon', cssClass: 'e-flat', isPrimary: true,
+        iconCss: 'e-icons e-export icon', isPrimary: true,
     });
     togglebtn.appendTo('#togglebtn');
     document.getElementById('togglebtn').onclick = () => {

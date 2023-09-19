@@ -1,6 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
 ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner } from '@syncfusion/ej2-pdfviewer';
+import { Switch } from '@syncfusion/ej2-buttons';
+
 // tslint:disable-next-line:max-line-length
 PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner);
 
@@ -10,9 +12,23 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
 (window as any).default = (): void => {
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer();
-    viewer.serviceUrl = 'https://services.syncfusion.com/js/production/api/pdfviewer';
+    viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/form-filling-document.pdf"; 
+
+    var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
+    switchObj.appendTo('#checked');
+    
+    switchObj.change = function (args) {
+        if (args.checked) {
+            viewer.serviceUrl = '';
+        }
+        else {
+            viewer.serviceUrl = 'https://ej2services.syncfusion.com/js/development/api/pdfviewer';
+        }
+        viewer.dataBind();
+        viewer.load(viewer.documentPath, null);
+    }
+
     viewer.appendTo('#pdfViewer');
-    viewer.load('FormFillingDocument.pdf', null);
     viewer.enableFormFieldsValidation = true;
     viewer.showNotificationDialog = false;
     viewer.validateFormFields = function(args) {

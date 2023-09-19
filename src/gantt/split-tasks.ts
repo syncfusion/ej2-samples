@@ -49,7 +49,7 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, ContextMenu);
             treeColumnIndex: 1,
             highlightWeekends: true,
             splitterSettings: {
-                columnIndex: 2
+                position: "35%"
             },
             labelSettings: {
                 leftLabel: 'TaskName',

@@ -23,6 +23,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
         showQuickInfo: false,
         selectedDate: new Date(2021, 1, 15),
         eventSettings: { dataSource: data },
+        editorHeaderTemplate: '#EventEditorHeaderTemplate',
         editorTemplate: '#EventEditorTemplate',
         popupOpen: (args: PopupOpenEventArgs) => {
             if (args.type === 'Editor') {

@@ -50,7 +50,8 @@ TreeGrid.Inject(Page);
         });
     treegrid.appendTo('#TreeGrid');
 
-    let dropDownColumn: DropDownList = new DropDownList({
+    setTimeout(() => {
+        let dropDownColumn: DropDownList = new DropDownList({
         dataSource: columnNames,
         popupWidth: '100%',
         fields: { text: 'name', value: 'id' },
@@ -85,4 +86,5 @@ TreeGrid.Inject(Page);
         }
     });
     dropDownFormat.appendTo('#format');
+    }, 2);
 };

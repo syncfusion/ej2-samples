@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
 ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormDesigner, FormFields, TextFieldSettings, RadioButtonFieldSettings, SignatureFieldSettings, CheckBoxFieldSettings, InitialFieldSettings} from '@syncfusion/ej2-pdfviewer';
 // tslint:disable-next-line:max-line-length
+import { Switch } from '@syncfusion/ej2-buttons';
 PdfViewer.Inject(Toolbar, Magnification, Navigation, FormDesigner, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields);
 
 /**
@@ -11,11 +12,25 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, FormDesigner, LinkAnnotatio
  (window as any).default = (): void => {
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer();
-    viewer.serviceUrl = "https://services.syncfusion.com/js/production/api/pdfviewer"; 
+    viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/form-designer.pdf";
+
+    var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
+    switchObj.appendTo('#checked');
+
+    switchObj.change = function (args) {
+        if (args.checked) {
+            viewer.serviceUrl = '';
+        }
+        else {
+            viewer.serviceUrl = 'https://ej2services.syncfusion.com/js/development/api/pdfviewer';
+        }
+        viewer.dataBind();
+        viewer.load(viewer.documentPath, null);
+    }
+
     viewer.appendTo("#pdfViewer");
-    viewer.load('FormDesigner.pdf', null);
     viewer.documentLoad = function (args) {
-        if(args.documentName === 'FormDesigner.pdf')
+        if(args.documentName === 'form-designer.pdf')
         {
             viewer.formDesignerModule.addFormField("Textbox", {name: "First Name", bounds: { X: 146, Y: 229, Width: 150, Height: 24 } } as TextFieldSettings);
             viewer.formDesignerModule.addFormField("Textbox", {name: "Middle Name", bounds: { X: 338, Y: 229, Width: 150, Height: 24 } } as TextFieldSettings);
@@ -84,4 +99,4 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, FormDesigner, LinkAnnotatio
             viewer.showNotificationPopup(errorMessage);
         }
     }
- };
+};

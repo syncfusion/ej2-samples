@@ -77,7 +77,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 { type: 'Notes' },
             ],
             splitterSettings: {
-                columnIndex: 2
+                position: "35%"
             },
             projectStartDate: new Date('03/25/2019'),
             projectEndDate: new Date('07/28/2019')

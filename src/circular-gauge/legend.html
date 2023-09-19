@@ -1,24 +1,24 @@
-
 <div id="range-main-container">
     <div class="col-md-8 control-section">
         <div class="content-wrapper">
             <div id="legend-container"></div>
         </div>
     </div>
+    <br>
     <div class="col-md-4 property-section">
         <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
             <colgroup>
                 <col span="1" style="width: 60%;">
                 <col span="1" style="width: 40%;">
-             </colgroup>    
-             <tbody>
+            </colgroup>
+            <tbody>
                 <tr style="height: 50px">
                     <td>
                         <div id="enablelegend">Show legend </div>
                     </td>
                     <td>
-                        <div style="margin-top: 2px;">
-                            <input type="checkbox" id="enable" checked="true">
+                        <div style="padding-top: 0px;margin-left: -8px;">
+                            <input type="checkbox" id="enable">
                         </div>
                     </td>
                 </tr>
@@ -27,8 +27,8 @@
                         <div id="togglelegend" style="width: 90%">Show range when the legend item is toggled</div>
                     </td>
                     <td>
-                        <div style="margin-top: 2px;">
-                            <input type="checkbox" id="toggle" checked="true">
+                        <div style="padding-top: 0px;margin-left: -8px;">
+                            <input type="checkbox" id="toggle">
                         </div>
                     </td>
                 </tr>
@@ -79,26 +79,28 @@
                         </div>
                     </td>
                 </tr>
-                </tbody>
+            </tbody>
         </table>
     </div>
 </div>
 <div id="action-description">
     <p>
-        This sample visualizes moving air types in the legend based on their speed. The visibility, shape, alignment and position of the legend can be changed using the properties panel options.
-   </p>
+        This sample directs the visualization of moving wind types based on their speed via the legend of the circular
+        gauge component. The visibility, shape, alignment, and position of the legend can all be customized.
+    </p>
 </div>
 <div id="description">
     <p>
-       In this example, you can see how to render a legend in circular gauge. A legend item denotes the axis ranges. Any number of legend items can be added to a legend. You can bind the desired colors and legend text to the corresponding ranges. 
-    </p>
-    <br>
-    <p style="font-weight: 500">Injecting Module</p>
-    <p>The circular gauge component features are segregated into individual modules by feature. To use a legend, inject the Legend module using the <code>CircularGauge.Inject(Legend)</code> method.
+        The legend provides useful information for interpreting what the circular gauge's axis range displays,
+        and it can be represented in a variety of colors, shapes, and other identifiers depending on the data.
+        To do so, use the <a target="_blank"
+            href="https://ej2.syncfusion.com/documentation/api/circular-gauge/legendSettingsModel/">legendSettings</a>
+        and its properties.
     </p>
     <p>
-        More information on the annotation can be found in this
-        <a target="_blank" href="https://ej2.syncfusion.com/documentation/circular-gauge/gauge-legend/">documentation section</a>.
+        More information on the legend can be found in this <a target="_blank"
+            href="https://ej2.syncfusion.com/documentation/circular-gauge/gauge-legend/">documentation
+            section</a>.
     </p>
 </div>
 <style>

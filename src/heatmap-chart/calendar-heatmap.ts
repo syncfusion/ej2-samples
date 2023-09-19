@@ -1,14 +1,12 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, ILoadedEventArgs, ITooltipEventArgs, HeatMapTheme } from '@syncfusion/ej2-heatmap';
 import { Internationalization } from '@syncfusion/ej2-base';
 import * as data from './calendar-data-source.json';
 HeatMap.Inject(Tooltip, Legend);
-
-/**
- * Sample for Line serie
- */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Annual Summary of User Activities in GitLab',
@@ -16,7 +14,7 @@ HeatMap.Inject(Tooltip, Legend);
                 size: '15px',
                 fontWeight: '500',
                 fontStyle: 'Normal',
-                fontFamily: 'Segoe UI'
+                fontFamily: 'inherit'
             }
         },
         height: '300px',
@@ -29,16 +27,25 @@ HeatMap.Inject(Tooltip, Legend);
             showLabelOn: 'Months',
             labelFormat: 'MMM',
             increment: 7,
-            labelIntersectAction: 'Rotate45'
+            labelIntersectAction: 'Rotate45',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         yAxis: {
             labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             isInversed: true,
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         cellSettings: {
             showLabel: false,
             border: {
                 color: 'white'
+            },
+            textStyle: {
+                fontFamily: 'inherit'
             }
         },
         paletteSettings: {
@@ -58,7 +65,15 @@ HeatMap.Inject(Tooltip, Legend);
             alignment: 'Near',
             showLabel: true,
             labelDisplayType: 'None',
-            enableSmartLegend: true
+            enableSmartLegend: true,
+            textStyle: {
+                fontFamily: 'inherit'
+            }
+        },
+        tooltipSettings:{
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         tooltipRender: (args: ITooltipEventArgs) => {
             let intl: Internationalization = new Internationalization();
@@ -72,9 +87,11 @@ HeatMap.Inject(Tooltip, Legend);
             args.content = [(args.value === 0 ? 'No' : args.value) + ' ' + 'contributions' + '<br>' + value];
         },
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
+            // custom code end
         },
         dataSource: (data as any).calendarDataSource,
     });

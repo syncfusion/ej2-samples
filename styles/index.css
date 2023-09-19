@@ -1896,27 +1896,6 @@ propertye pane
     .sb-icon-API {
         display: none;
     }
-    .fluent.e-bigger .sb-mobile-setting {
-        line-height: 20px;
-    }
-    .fluent-dark.e-bigger .sb-mobile-setting {
-        line-height: 20px;
-    }
-    .bootstrap5.e-bigger .sb-mobile-setting {
-        line-height: 25px;
-    }
-    .bootstrap5-dark.e-bigger .sb-mobile-setting {
-        line-height: 23px;
-    }
-    .tailwind.e-bigger .sb-mobile-setting {
-        line-height: 30px;
-    }
-    .tailwind-dark.e-bigger .sb-mobile-setting {
-        line-height: 30px;
-    }
-    .bootstrap4.e-bigger .sb-mobile-setting {
-        line-height: 25px;
-    }
     /*sb-right-pane*/
     .sb-right-pane {
         left: 0px;
@@ -4147,7 +4126,7 @@ color:white;
 }
 
 .e-samplestatus.new, .e-samplestatus.update, .e-samplestatus.preview {
-    margin: 8px 0;
+    margin: 8px 0 0;
     height: 22px;
 }
 .bootstrap4 .e-samplestatus.new,.bootstrap4 .e-samplestatus.update,.bootstrap4 .e-samplestatus.preview,

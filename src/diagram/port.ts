@@ -257,14 +257,10 @@ export interface CustomPort extends PointPortModel {
         { PortVisibility: PortVisibility.Connect, text: 'Connect' }
     ];
     //Enable or disable the visibility of the Port
-    let portVisibilityDrop: MultiSelect = new MultiSelect({
+    let portVisibilityDrop: DropDownList = new DropDownList({
         enabled: true, dataSource: visibility,
         fields: { value: 'PortVisibility', text: 'text' },
-        mode: 'CheckBox',
-        showSelectAll: true,
-        showDropDownIcon: true,
-        popupHeight: '280px',
-        popupWidth: '180px',
+        value: 'Visible',
         change: portVisibilityChange,
     });
     portVisibilityDrop.appendTo('#portsVisiblity');
@@ -343,22 +339,7 @@ export interface CustomPort extends PointPortModel {
                 if (args.newValue[0] instanceof Node && selectedElement.length) {
                     selectedElement[0].classList.remove('e-remove-selection');
                     let port: PointPortModel = getPort()[0];
-                    portVisibilityDrop.value = [] as number[];
-                    if (PortVisibility.Visible & port.visibility) {
-                        portVisibilityDrop.value.push(PortVisibility.Visible);
-                    }
-                    if (PortVisibility.Hidden & port.visibility) {
-                        portVisibilityDrop.value.push(PortVisibility.Hidden);
-                    }
-                    if (PortVisibility.Hover & port.visibility) {
-                        portVisibilityDrop.value.push(PortVisibility.Hover);
-                    }
-                    if (PortVisibility.Connect & port.visibility) {
-                        portVisibilityDrop.value.push(PortVisibility.Connect);
-                    }
-                    if (portVisibilityDrop.value.length === 0) {
-                        portVisibilityDrop.placeholder = 'Select Visibility';
-                    }
+                    portVisibilityDrop.value = port.visibility;
                     portVisibilityDrop.dataBind();
                     portFillColor.value = port.style.fill;
                     portFillColor.dataBind();
@@ -392,10 +373,7 @@ export interface CustomPort extends PointPortModel {
         let port: PointPortModel[] = getPort();
         if (port) {
             for (let j: number = 0; j < port.length; j++) {
-                port[j].visibility = 0;
-                for (let i: number = 0; i < args.value.length; i++) {
-                    port[j].visibility += args.value[i] as PortVisibility;
-                }
+                    port[j].visibility =  portVisibilityDrop.value as PortVisibility;
                 diagram.dataBind();
             }
         }

@@ -6,6 +6,7 @@ import {
 import { Toolbar as Tool, TreeView, NodeSelectEventArgs } from '@syncfusion/ej2-navigations';
 import { ClickEventArgs, Button, CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { Dialog } from '@syncfusion/ej2-popups';
+import { Switch } from '@syncfusion/ej2-buttons';
 
 PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSearch, TextSelection);
 
@@ -340,9 +341,10 @@ function updateSearchInputIcon(isEnable: boolean): void {
         enableToolbar: false,
         enableNavigationToolbar: false,
         enableThumbnail: false,
-        documentPath: 'Hive_Succinctly.pdf',
-        serviceUrl: 'https://services.syncfusion.com/js/production/api/pdfviewer'
+        documentPath: 'https://cdn.syncfusion.com/content/pdf/hive-succinctly.pdf'
     });
+
+    
     viewer.appendTo('#pdfViewer');
     isBookmarkView = false;
     document.getElementById('fileUpload').addEventListener('change', readFile, false);
@@ -386,6 +388,21 @@ function updateSearchInputIcon(isEnable: boolean): void {
         document.getElementById('totalPage').textContent = 'of ' + viewer.pageCount;
         updatePageNavigation();
     };
+
+    var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
+    switchObj.appendTo('#checked');
+
+    switchObj.change = function (args) {
+        if (args.checked) {
+            viewer.serviceUrl = '';
+        }
+        else {
+            viewer.serviceUrl = 'https://ej2services.syncfusion.com/js/development/api/pdfviewer';
+        }
+        viewer.dataBind();
+        viewer.load(viewer.documentPath, null);
+    }
+
     searchButton = document.getElementById('searchBtn');
     searchInput.addEventListener('focus', () => { searchInput.parentElement.classList.add('e-input-focus'); });
     searchInput.addEventListener('blur', () => { searchInput.parentElement.classList.remove('e-input-focus'); });

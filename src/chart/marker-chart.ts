@@ -28,7 +28,7 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            rangePadding: 'None',
+            rangePadding: 'None', title: 'Penetration',
             labelFormat: '{value}%', minimum: 0,
             lineStyle: { width: 0 },majorTickLines: { width: 0 },
             maximum: 75, interval: 15

@@ -110,6 +110,7 @@
   let defaultTree: boolean = false;
   let intialLoadCompleted: boolean = false;
   let resizeManualTrigger: boolean = false;
+  let reloadPageForRedirection: boolean =false;
   let leftToggle: Element = select('#sb-toggle-left');
   let sbRightPane: HTMLElement = <any>select('.sb-right-pane');
   let sbContentOverlay: HTMLElement = <any>select('.sb-content-overlay');
@@ -469,6 +470,20 @@
           renderCopyCode();
           dynamicTabCreation(sourceTab);
       }
+      if (args.selectedItem && args.selectedItem.innerText === 'DEMO') {
+        let demoSection = document.getElementsByClassName('sb-demo-section')[0];
+        if (demoSection) {
+            let elementList = demoSection.getElementsByClassName('e-control e-lib');
+            for (let i = 0; i < elementList.length; i++) {
+                let instance = (elementList[i] as any).ej2_instances;
+                if (instance && instance[0] && typeof instance[0].refresh === 'function') {
+                    instance[0].refresh();
+                }
+                if (instance && instance[0] && instance[0].getModuleName() !== 'DashboardLayout')
+                    break;
+            }
+        }
+     }
   }
   function changeRtl(args: any): void {
       let elementlist: HTMLElement[] = selectAll('.e-control', document.getElementById('control-content'));
@@ -936,6 +951,7 @@
           //triggerRouting
           processDeviceDependables();
           addRoutes(<Controls[]>samplesList);
+          routeDefault();
           //setSbLink();
           //bindEvents();
           /**
@@ -949,6 +965,10 @@
           hasher.initialized.add(parseHash);
           hasher.changed.add(parseHash);
           hasher.init();
+          if(reloadPageForRedirection)
+          {
+            window.location.reload();
+          }
       });
   }
   /**
@@ -1232,6 +1252,7 @@
           if (samplePath.indexOf(hash.slice(1).join('/')) === -1) {
               location.hash = '#/' + hash[0] + '/' + (defaultSamples[hash[1]] || 'grid/grid-overview.html');
               isInitRedirected = true;
+               reloadPageForRedirection=true;
           }
       });
   }
@@ -1396,6 +1417,11 @@
                    * sample header
                    */
                   sampleNameElement.innerHTML = node.name;
+                  if (node.name === 'PDF Viewer') {
+                      (document.querySelector('.sb-desktop-setting') as any).style.display = 'none';
+                  } else {
+                      (document.querySelector('.sb-desktop-setting') as any).style.display = '';
+                  }
                   /**
                    * BreadCrumb
                    */

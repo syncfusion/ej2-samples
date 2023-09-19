@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Ribbon, ItemOrientation, RibbonItemSize, RibbonItemType, RibbonTabModel, DisplayMode, FileMenuSettingsModel, RibbonFileMenu, LauncherClickEventArgs, RibbonColorPicker } from '@syncfusion/ej2-ribbon';
+import { Ribbon, ItemOrientation, RibbonItemSize, RibbonItemType, RibbonTabModel, DisplayMode, FileMenuSettingsModel, RibbonGroupButtonSelection, RibbonFileMenu, LauncherClickEventArgs, RibbonColorPicker } from '@syncfusion/ej2-ribbon';
 import { FilteringEventArgs, SelectEventArgs } from "@syncfusion/ej2-dropdowns";
 import { Query } from '@syncfusion/ej2-data';
 import { ListView, SelectEventArgs as SelectListEventArgs } from "@syncfusion/ej2-lists";
@@ -34,7 +34,7 @@ Ribbon.Inject(RibbonFileMenu);
                     splitButtonSettings: {
                         content: 'Paste',
                         iconCss: 'e-icons e-paste',
-                        items: [{ text: 'Keep Source Format' }, { text: 'Merge format' }, { text: 'Keep text only' }],
+                        items: [{ text: 'Keep Source Format' }, { text: 'Merge Format' }, { text: 'Keep Text Only' }],
                         select:(args: MenuEventArgs) => {updateContent( "Paste -> " + args.item.text)},
                         click: () => { updateContent("Paste"); }
                     }
@@ -78,7 +78,11 @@ Ribbon.Inject(RibbonFileMenu);
                         allowFiltering: true,
                         dataSource: fontStyle,
                         index: 2,
-                        change:(args: SelectEventArgs) => {updateContent( "Font Style -> " + args.itemData.text)}
+                        change:(args: SelectEventArgs) => {
+                            if (args.itemData) {
+                                updateContent( "Font Style -> " + args.itemData.text)
+                            }
+                        }
                     }
                 }, {
                     type: RibbonItemType.ComboBox,
@@ -87,12 +91,49 @@ Ribbon.Inject(RibbonFileMenu);
                         index: 4,
                         width: '65px',
                         popupWidth: '85px',
-                        change:(args: SelectEventArgs) => {updateContent( "Font Size -> " + args.itemData.text)},
+                        change:(args: SelectEventArgs) => {
+                            if (args.itemData) {
+                                updateContent( "Font Size -> " + args.itemData.text)
+                            }
+                        },
                         allowFiltering: true,
                     }
                 }]
             }, {
                 items: [{
+                        type: RibbonItemType.GroupButton,
+                        allowedSizes: RibbonItemSize.Small,
+                        groupButtonSettings: {
+                            selection: RibbonGroupButtonSelection.Multiple,
+                            items: [{
+                                iconCss: 'e-icons e-bold',
+                                content: 'Bold',
+                                selected: true,
+                                click: () =>  { updateContent("Bold") }
+                            },
+                            {
+                                iconCss: 'e-icons e-italic',
+                                content: 'Italic',
+                                click: () =>  { updateContent("Italic") }
+                            },
+                            {
+                                iconCss: 'e-icons e-underline',
+                                content: 'Underline',
+                                click: () =>  { updateContent("Underline") }
+        
+                            },
+                            {
+                                iconCss: 'e-icons e-strikethrough',
+                                content: 'Strikethrough',
+                                click: () =>  { updateContent("Strikethrough") }
+                            },
+                            {
+                                iconCss: 'e-icons e-change-case',
+                                content: 'Change Case',
+                                click: () =>  { updateContent("Change Case") }
+                            }]
+                        }
+                    }, {
                         type: RibbonItemType.ColorPicker,
                         allowedSizes: RibbonItemSize.Small,
                         displayOptions: DisplayMode.Simplified | DisplayMode.Classic,
@@ -100,55 +141,65 @@ Ribbon.Inject(RibbonFileMenu);
                             value: '#123456',
                             change:(args: ColorPickerEventArgs) => {updateContent( args.currentValue.hex + ' color' )}
                         }
-                    }, {
-                        type: RibbonItemType.Button,
-                        allowedSizes: RibbonItemSize.Small,
-                        buttonSettings: {
-                            content: 'Bold',
-                            iconCss: 'e-icons e-bold',
-                            isToggle: true,
-                            clicked: () => { updateContent("Bold") }
-                        }
-                    }, {
-                        type: RibbonItemType.Button,
-                        allowedSizes: RibbonItemSize.Small,
-                        buttonSettings: {
-                            content: 'Italic',
-                            iconCss: 'e-icons e-italic',
-                            isToggle: true,
-                            clicked: () => { updateContent("Italic") }
-                        }
-                    }, {
-                        type: RibbonItemType.Button,
-                        allowedSizes: RibbonItemSize.Small,
-                        buttonSettings: {
-                            content: 'Underline',
-                            iconCss: 'e-icons e-underline',
-                            isToggle: true,
-                            clicked: () => { updateContent("Underline") }
-                        }
-                    },{
-                        type: RibbonItemType.Button,
-                        allowedSizes: RibbonItemSize.Small,
-                        buttonSettings: {
-                            content: 'Strikethrough',
-                            iconCss: 'e-icons e-strikethrough',
-                            isToggle: true,
-                            clicked: () => { updateContent("Strikethrough") }
-                        }
-                    }, {
-                        type: RibbonItemType.Button,
-                        allowedSizes: RibbonItemSize.Small,
-                        buttonSettings: {
-                            content: 'Change Case',
-                            iconCss: 'e-icons e-change-case',
-                            isToggle: true,
-                            clicked: () => { updateContent("Change Case") }
-                        }
                     }
                 ]
             }]
         }, {
+            id: 'paragraph',
+            header: "Paragraph",
+            orientation: ItemOrientation.Row,
+            groupIconCss: 'e-icons e-align-center',
+            collections: [{
+                items: [{
+                    type: RibbonItemType.Button,
+                    allowedSizes: RibbonItemSize.Small,
+                    buttonSettings: {
+                        iconCss: 'e-icons e-decrease-indent',
+                        clicked: () =>  { updateContent("Decrease Indent") }
+                    }
+                }, {
+                    type: RibbonItemType.Button,
+                    allowedSizes: RibbonItemSize.Small,
+                    buttonSettings: {
+                        iconCss: 'e-icons e-increase-indent',
+                        clicked: () =>  { updateContent("Increase Indent") }
+                    }
+                }, {
+                    type: RibbonItemType.Button,
+                    allowedSizes: RibbonItemSize.Small,
+                    buttonSettings: {
+                        iconCss: 'e-icons e-paragraph',
+                        clicked: () =>  { updateContent("Paragraph Mark") }
+                    }
+                }]
+            }, {
+                items: [{
+                    type: RibbonItemType.GroupButton,
+                    allowedSizes: RibbonItemSize.Small,
+                    groupButtonSettings: {
+                        selection: RibbonGroupButtonSelection.Single,
+                        items: [{
+                            iconCss: 'e-icons e-align-left',
+                            selected: true,
+                            click: () =>  { updateContent("Align Left") }
+                        },
+                        {
+                            iconCss: 'e-icons e-align-center',
+                            click: () =>  { updateContent("Align Center") }
+                        },
+                        {
+                            iconCss: 'e-icons e-align-right',
+                            click: () =>  { updateContent("Align Right") }
+                        },
+                        {
+                            iconCss: 'e-icons e-justify',
+                            click: () =>  { updateContent("Justify") }
+                        }]
+                    }
+                }]
+            }]
+        }, 
+        {
             header: "Editing",
             orientation: ItemOrientation.Column,
             groupIconCss: 'e-icons e-edit',

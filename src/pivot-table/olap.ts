@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     PivotView, FieldList, GroupingBar, CalculatedField, Toolbar, RemoveReportArgs, ToolbarArgs,
-    ConditionalFormatting, RenameReportArgs, SaveReportArgs, FetchReportArgs, LoadReportArgs
+    ConditionalFormatting, RenameReportArgs, SaveReportArgs, FetchReportArgs, LoadReportArgs, PDFExport, ExcelExport
 } from '@syncfusion/ej2-pivotview';
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { enableRipple } from '@syncfusion/ej2-base';
@@ -10,7 +10,7 @@ enableRipple(false);
  * PivotView sample for Olap data source.
  */
 /* tslint:disable */
-PivotView.Inject(FieldList, GroupingBar, CalculatedField, Toolbar, ConditionalFormatting);
+PivotView.Inject(FieldList, GroupingBar, CalculatedField, Toolbar, ConditionalFormatting, PDFExport, ExcelExport);
 (window as any).default = (): void => {
     loadCultureFiles();
     let pivotObj: PivotView = new PivotView({

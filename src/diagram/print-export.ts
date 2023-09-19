@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Print and Export
  */
@@ -47,7 +46,6 @@ function toolbarClick(args: ClickEventArgs): void {
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-    loadCultureFiles();
 
     let nodes: NodeModel[] = [
         {

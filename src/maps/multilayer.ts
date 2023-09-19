@@ -49,7 +49,8 @@ import { loadCultureFiles } from '../common/culture-loader';
                     labelPath: 'iso_3166_2',
                     smartLabelMode: 'Hide',
                     textStyle: {
-                        fontFamily: 'Segoe UI'
+                        fontFamily: 'Segoe UI',
+                        color: 'black'
                     }
                 }
             },

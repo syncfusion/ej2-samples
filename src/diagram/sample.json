@@ -10,8 +10,7 @@
             "url": "default-functionalities",
             "name": "Flow Chart",
             "description": "This sample visualizes the processing of an order placed using credit card with built-in flow shapes.",
-            "category": "Getting Started",
-            "type":"update"
+            "category": "Getting Started"
         },
         {
             "url": "getting-started-node",
@@ -35,7 +34,8 @@
             "url": "connector",
             "name": "Connectors",
             "description": "This sample visualizes the data flow in a marketing process using predefined diagram shapes and connectors.",
-            "category": "Getting Started"
+            "category": "Getting Started",
+            "type":"update"
         },
         {
             "url": "line-routing",
@@ -65,8 +65,7 @@
             "url": "grouping-and-ordering",
             "name": "Grouping and Ordering",
             "description": "This sample illustrates how to group, ungroup, and order commands with the diagram.",
-            "category": "Getting Started",
-            "type": "new"
+            "category": "Getting Started"
         },
         {
             "url": "diagram-events",
@@ -84,15 +83,13 @@
             "url": "commands",
             "name": "Commands",
             "description": "This example illustrates the various commands supported in the diagram control.",
-            "category": "Getting Started", 
-            "type": "new"
+            "category": "Getting Started"
         },
         {
             "url": "constraints",
             "name": "Constraints",
             "description": "This sample illustrates how node constraints are used to restrict end-users from performing certain operations on nodes and connector constraints are used to restrict end-users from performing certain operation on connectors.",
-            "category": "Getting Started",
-            "type": "new"
+            "category": "Getting Started"
         },
         {
             "url": "tooltip-sample",
@@ -110,22 +107,19 @@
             "url": "zoom-and-pan",
             "name": "Zooming and Panning",
             "description": "This sample illustrates how to zoom and pan in the diagram.",
-            "category": "Interactive Features",
-            "type": "new"
+            "category": "Interactive Features"
         },
         {
             "url": "snapping",
             "name": "Snapping",
             "description": "This sample shows how diagram objects snap to the nearest intersection of gridlines or objects while being dragged or resized.",
-            "category": "Interactive Features",
-            "type": "new"
+            "category": "Interactive Features"
         },
         {
             "url": "scrolling",
             "name": "Scrolling",
             "description": "This example illustrates how to scroll a diagram using vertical and horizontal scrollbars. The scroll limit property helps limit the scrolling area.",
-            "category": "Interactive Features",
-            "type": "new"
+            "category": "Interactive Features"
         },
         {
             "url": "drawing-tool",
@@ -203,8 +197,7 @@
             "url": "layout-with-multiple-roots",
             "name": "Hierarchical Layout with multiple roots",
             "description": "This sample illustrates the structure of an Electricity Sector using complex hierarchical layout with multiple roots. ",
-            "category": "Automatic Layouts",
-            "type": "new"
+            "category": "Automatic Layouts"
         },
         {
             "url": "local-data",
@@ -258,8 +251,7 @@
             "url": "sequence-diagram",
             "name": "UML Sequence Diagram",
             "description": "This sample illustrates an employee’s leave request sequence using a UML sequence diagram. The shapes for the sequence were designed with the port feature for Diagram's nodes.",
-            "category": "Use Case Diagram",
-            "type":"new"
+            "category": "Use Case Diagram"
         },
         {
             "url": "uml-class-diagram",
@@ -289,8 +281,7 @@
             "url": "tree-view",
             "name": "Diagram Binding with TreeView",
             "description": "This example illustrates how to create a tree view and a diagram with a datasource. It provides support for selecting, adding, deleting, dragging and dropping, and editing annotations of the nodes during runtime. These actions will be reflected in the corresponding nodes of the tree view component.",
-            "category": "Real-time Diagrams",
-            "type": "new"
+            "category": "Real-time Diagrams"
         },
         {
             "url": "flow-execution",

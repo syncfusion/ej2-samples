@@ -72,7 +72,7 @@
 		"ajax",
 		"popup",
 		"treeview",
-		null,
+		"null",
 		"api",
 		"maskedtextbox",
 		"numerictextbox",
@@ -176,6 +176,7 @@
 		"workflow",
 		"form-validator",
 		"signature",
-		"multiline-textbox"
+		"multiline-textbox",
+		null
 	]
 }

@@ -1,14 +1,12 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { HeatMap, Legend, Tooltip, ILoadedEventArgs, HeatMapTheme, ITooltipEventArgs } from '@syncfusion/ej2-heatmap';
 import { Internationalization } from '@syncfusion/ej2-base';
 import * as data from './large-data.json';
 HeatMap.Inject(Tooltip, Legend);
-
-/**
- * Sample for Large data
- */
+// custom code start
+import { loadCultureFiles } from '../common/culture-loader';
+loadCultureFiles();
+// custom code end
 (window as any).default = (): void => {
-    loadCultureFiles();
     let heatmap: HeatMap = new HeatMap({
         titleSettings: {
             text: 'Annual Flight Traffic Report',
@@ -16,7 +14,7 @@ HeatMap.Inject(Tooltip, Legend);
                 size: '15px',
                 fontWeight: '500',
                 fontStyle: 'Normal',
-                fontFamily: 'Segoe UI'
+                fontFamily: 'inherit'
             }
         },
         xAxis: {
@@ -25,12 +23,18 @@ HeatMap.Inject(Tooltip, Legend);
             intervalType: 'Days',
             valueType: 'DateTime',
             labelFormat: 'MMM',
-            showLabelOn: 'Months'
+            showLabelOn: 'Months',
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         yAxis: {
             labels: ['1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00',
                 '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00',
-                '22:00', '23:00', '24:00']
+                '22:00', '23:00', '24:00'],
+                textStyle: {
+                    fontFamily: 'inherit'
+                }
         },
         renderingMode: 'Canvas',
         dataSource: (data as any).largeData,
@@ -45,10 +49,18 @@ HeatMap.Inject(Tooltip, Legend);
         legendSettings: {
             visible: false
         },
+        tooltipSettings:{
+            textStyle: {
+                fontFamily: 'inherit'
+            }
+        },
         cellSettings: {
             border: {
                 width: 0
             },
+            textStyle: {
+                fontFamily: 'inherit'
+            }
         },
         tooltipRender: (args: ITooltipEventArgs) => {
             let intl: Internationalization = new Internationalization();
@@ -57,10 +69,12 @@ HeatMap.Inject(Tooltip, Legend);
             args.content = [value + ' ' + args.yLabel + ' : ' + args.value + ' flight arrivals'];
         },
         load: (args: ILoadedEventArgs) => {
+            // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
-        },
+            // custom code end
+        }
     });
     heatmap.appendTo('#container');
 };

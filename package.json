@@ -52,7 +52,7 @@
     "@types/es6-promise": "0.0.28",
     "@types/node": "12.12.25",
     "hasher": "^1.2.0",
-    "moment-timezone": "0.5.13",
+    "moment-timezone": "0.5.35",
     "tributejs": "^3.7.3"
   },
   "devDependencies": {

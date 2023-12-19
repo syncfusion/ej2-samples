@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, ColumnSeries, ChartTheme, SplineSeries, AreaSeries, ChartSeriesType,
+    Chart, ColumnSeries, ChartTheme, SplineSeries, SplineAreaSeries, ChartSeriesType,
     EmptyPointMode, Category, Legend, Tooltip, ILoadedEventArgs
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2/base';
-Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, AreaSeries);
+Chart.Inject(ColumnSeries, Category, Legend, Tooltip, SplineSeries, SplineAreaSeries);
 
 /**
  * Sample for Empty Points

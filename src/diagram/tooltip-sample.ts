@@ -8,7 +8,10 @@ import {
     BpmnDiagrams
 } from '@syncfusion/ej2-diagrams';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { CheckBoxChangeEventArgs } from '@syncfusion/ej2-grids';
 import { NumericTextBox, TextBox } from '@syncfusion/ej2-inputs';
+import { CheckBox } from '@syncfusion/ej2/buttons';
+import { Tooltip } from '@syncfusion/ej2/popups';
 
 Diagram.Inject(BpmnDiagrams);
 
@@ -183,16 +186,16 @@ let diagram: Diagram;
     let effectValue: { [key: string]: Object }[] = [
         { type: 'FadeIn', text: 'Fade In' },
         { type: 'FadeOut', text: 'Fade Out' },
-        { type: 'FadeZoomIn', text: 'Fade ZoomIn' },
-        { type: 'FadeZoomOut', text: 'Fade ZoomOut' },
-        { type: 'FlipXDownIn', text: 'FlipX DownIn' },
-        { type: 'FlipXDownOut', text: 'FlipX DownOut' },
-        { type: 'FlipXUpIn', text: 'FlipX UpIn' },
-        { type: 'FlipXUpOut', text: 'FlipX UpOut' },
-        { type: 'FlipYLeftIn', text: 'FlipY LeftIn' },
-        { type: 'FlipYLeftOut', text: 'FlipY LeftOut' },
-        { type: 'FlipYRightIn', text: 'FlipY RightIn' },
-        { type: 'FlipYRightOut', text: 'FlipY RightOut' },
+        { type: 'FadeZoomIn', text: 'Fade Zoom In' },
+        { type: 'FadeZoomOut', text: 'Fade Zoom Out' },
+        { type: 'FlipXDownIn', text: 'FlipX Down In' },
+        { type: 'FlipXDownOut', text: 'FlipX Down Out' },
+        { type: 'FlipXUpIn', text: 'FlipX Up In' },
+        { type: 'FlipXUpOut', text: 'FlipX Up Out' },
+        { type: 'FlipYLeftIn', text: 'FlipY Left In' },
+        { type: 'FlipYLeftOut', text: 'FlipY Left Out' },
+        { type: 'FlipYRightIn', text: 'FlipY Right In' },
+        { type: 'FlipYRightOut', text: 'FlipY Right Out' },
         { type: 'ZoomIn', text: 'Zoom In' },
         { type: 'ZoomOut', text: 'Zoom Out' },
         { type: 'None', text: 'None' },
@@ -279,4 +282,23 @@ let diagram: Diagram;
         ' <span style="margin: 10px;">';
 
     diagram.fitToPage({ mode: 'Width' });
+
+    //checkbox is used to enable or disable the isSticky Tooltip Property.
+    let checkBoxObj: CheckBox = new CheckBox({
+        checked: false,
+        change: isStickyChange
+    });
+    checkBoxObj.appendTo('#checked');
+    function isStickyChange(args: CheckBoxChangeEventArgs): void {
+        for (let i: number = 0; i < diagram.nodes.length; i++) {
+            if (args.checked) {
+                (diagram.tooltipObject as Tooltip).isSticky = true;
+                // diagram.nodes[i].tooltip.isSticky = true;
+            } else {
+                (diagram.tooltipObject as Tooltip).isSticky = false;
+                // diagram.nodes[i].tooltip.isSticky = true;
+            }
+            diagram.dataBind();
+        }
+    }
 };

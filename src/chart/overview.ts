@@ -158,6 +158,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
     });
     linechartObj.appendTo('#linechart');
     let pie: AccumulationChart = new AccumulationChart({
+        enableSmartLabels: false,
         series: [
             {
                 dataSource: [
@@ -174,7 +175,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
                     position: 'Outside', name: 'r',
                     connectorStyle: { length: '10px', type: 'Curve' }
                 },
-                xName: "Product", yName: "Percentage", innerRadius: "40%", tooltipMappingName: 'Product',
+                xName: "Product", yName: "Percentage", radius: "75%", startAngle: 270, endAngle: 270, innerRadius: "40%", tooltipMappingName: 'Product',
             }
 
         ],

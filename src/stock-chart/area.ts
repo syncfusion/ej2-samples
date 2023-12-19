@@ -17,7 +17,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
     loadCultureFiles();
     let stockChart: StockChart = new StockChart({
         chartArea: { border: { width: 0 } },
-        primaryXAxis: { valueType: 'DateTime', majorGridLines: { color: 'transparent' }, crosshairTooltip: { enable: true } },
+        primaryXAxis: { valueType: 'DateTime', majorGridLines: { color: 'transparent' }, crosshairTooltip: { enable: true }},
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
             majorTickLines: { color: 'transparent', height: 0 },

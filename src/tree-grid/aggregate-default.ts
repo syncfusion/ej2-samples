@@ -1,17 +1,21 @@
-import { TreeGrid, Page, Aggregate } from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Page, Aggregate, ExcelExport, PdfExport, Toolbar } from '@syncfusion/ej2-treegrid';
 import { summaryRowData } from './data-source';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 
-TreeGrid.Inject(Page, Aggregate);
+TreeGrid.Inject(Page, Aggregate, ExcelExport, PdfExport, Toolbar);
+import { DialogUtility } from '@syncfusion/ej2-popups';
 /**
  * Aggregates
  */
 (window as any).default = (): void => {
-    let grid: TreeGrid = new TreeGrid(
+    let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: summaryRowData,
             childMapping: 'children',
             treeColumnIndex: 0,
+            allowExcelExport: true,
+            allowPdfExport: true,
+            toolbar: ['PdfExport', 'ExcelExport', 'CsvExport'],
             height: 400,
             columns: [
                 { field: 'FreightID', headerText: 'Freight ID', width: 130 },
@@ -35,20 +39,38 @@ TreeGrid.Inject(Page, Aggregate);
                     }]
             }]
         });
-    grid.appendTo('#Grid');
+    treegrid.appendTo('#Grid');
 
     let checkBoxObj: CheckBox = new CheckBox({ checked: true, change: onChange });
     checkBoxObj.appendTo('#checked');
 
     function onChange( args: ChangeEventArgs): void {
         if (args.checked) {
-            grid.aggregates[0].showChildSummary = true;
-            grid.refresh();
+            treegrid.aggregates[0].showChildSummary = true;
+            treegrid.refresh();
          } else {
-            grid.aggregates[0].showChildSummary = false;
-            grid.refresh();
+            treegrid.aggregates[0].showChildSummary = false;
+            treegrid.refresh();
         }
     }
+
+    treegrid.toolbarClick = function (args) {
+        if (args.item.id === treegrid.grid.element.id + '_excelexport') {
+            treegrid.excelExport();
+        } else if (args.item.id === treegrid.grid.element.id + '_pdfexport') {
+            if (treegrid.enableRtl === true && treegrid.locale === 'ar') {
+                let innercontent: any = 'You need custom fonts to export Arabic characters, refer this'
+                    + '<a target="_blank" href="https://ej2.syncfusion.com/documentation/treegrid/pdf-export/#add-custom-font-for-pdf-exporting">'
+                    + 'documentation section</a>';
+                DialogUtility.alert({ content: innercontent });
+            }
+            else{
+                treegrid.pdfExport();
+            } 
+        } else if (args.item.id === treegrid.grid.element.id + '_csvexport') {
+            treegrid.csvExport();
+        }
+    };
 };
 
 

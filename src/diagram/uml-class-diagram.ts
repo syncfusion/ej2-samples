@@ -3,8 +3,10 @@
  */
 
 import {
-    Diagram, NodeModel, ConnectorModel, UmlClassifierShapeModel
+    Diagram, NodeModel, ConnectorModel, UmlClassifierShapeModel,IDragEnterEventArgs
 } from '@syncfusion/ej2-diagrams';
+import { Connector, PaletteModel, SymbolInfo, SymbolPalette } from '@syncfusion/ej2/diagrams';
+import { addEvents } from './script/diagram-common';
 
 let diagram: Diagram;
 
@@ -211,7 +213,7 @@ function createMethods(name: string, type: string): object {
 
     diagram = new Diagram({
         width: '100%',
-        height: 800,
+      height: '100%',
         nodes: nodes,
         connectors: connectors,
         //Sets the default values of nodes
@@ -219,9 +221,319 @@ function createMethods(name: string, type: string): object {
         //Sets the default values of connectors
         getConnectorDefaults: getConnectorDefaults,
         //Customize the content of the node
-        setNodeTemplate: setNodeTemplate
+        setNodeTemplate: setNodeTemplate,
+        dragEnter:function(args: IDragEnterEventArgs): void{
+            if(args.element instanceof Connector){
+              args.element.targetPoint.x += 100;
+              args.element.targetPoint.y += 20
+            }
+        },
     });
     diagram.appendTo('#diagram');
     diagram.fitToPage();
+
+      // Initializes the palettes to be displayed in the symbol palette.
+    let palettes: PaletteModel[] = [
+        {
+            id: 'UmlActivity', expanded: true, title: 'UML Classifier Nodes', symbols: [
+            {
+                id: 'class',
+                style: {
+                    fill: '#26A0DA',
+                },
+                borderColor: 'white',
+                shape: {
+                    type: 'UmlClassifier',
+                    classShape: {
+                        attributes: [
+                            { name: 'accepted', type: 'Date', style: { color: "red", fontFamily: "Arial", textDecoration: 'Underline',  italic: true },isSeparator: true },
+                            { name: 'sickness', type: 'History' },
+                            { name: 'prescription', type: 'String[*]' },
+                            { name: 'allergies', type: 'String[*]' }
+                        ],
+                        methods: [{ name: 'getHistory', style: {}, parameters: [{ name: 'Date', style: {} }], type: 'History' }],
+                        name: 'Patient'
+                    },
+                    classifier: 'Class'
+                },
+            },
+            {
+                id: 'Interface',
+                style: {
+                    fill: '#26A0DA',
+                }, borderColor: 'white',
+                shape: {
+                    type: 'UmlClassifier',
+                    interfaceShape: {
+                        name: "Bank Account",
+                        attributes: [{
+                                name: "owner",
+                                type: "String[*]", style: {}
+                            },
+                            {
+                                name: "balance",
+                                type: "Dollars"
+                            }],
+                        methods: [{
+                                name: "deposit", style: {},
+                                parameters: [{
+                                        name: "amount",
+                                        type: "Dollars",
+                                        style: {}
+                                    }],
+                            }]
+                    },
+                    classifier: 'Interface'
+                },
+            },
+            {
+                id: 'Enumeration',
+                style: {
+                    fill: '#26A0DA',
+                }, borderColor: 'white',
+                shape: {
+                    type: 'UmlClassifier',
+                    enumerationShape: {
+                        name: 'AccountType',
+                        members: [
+                            {
+                                name: 'Checking Account', style: {}
+                            },
+                            {
+                                name: 'Savings Account'
+                            },
+                            {
+                                name: 'Credit Account'
+                            }
+                        ]
+                    },
+                    classifier: 'Enumeration'
+                },
+            },
+            ]
+        },
+        {
+          id: 'umlConnectorrs', expanded: true, title: 'UML Classifier Connectors', symbols: [
+            {
+              id: 'Composition',
+              sourcePoint: { x: 100, y: 200 },
+              targetPoint: { x: 200, y: 300 },
+              type: 'Straight',
+              shape: { type: 'UmlClassifier', relationship: 'Composition' }
+          },
+          {
+              id: 'BiDirectional',
+              type: 'Straight',
+              sourcePoint: { x: 300, y: 200 },
+              targetPoint: { x: 400, y: 300 },
+              shape: { type: 'UmlClassifier', relationship: 'Aggregation', associationType: 'BiDirectional' }
+          },
+          {
+              id: 'Directional',
+              type: 'Straight',
+              sourcePoint: { x: 500, y: 200 },
+              targetPoint: { x: 600, y: 300 },
+              shape: { type: 'UmlClassifier', relationship: 'Association', associationType: 'Directional' }
+          },
+          {
+              id: 'Association',
+              type: 'Straight',
+              sourcePoint: { x: 700, y: 200 },
+              targetPoint: { x: 800, y: 300 },
+              shape: { type: 'UmlClassifier', relationship: 'Association' }
+          },
+          {
+              id: 'Inheritance',
+              type: 'Straight',
+              sourcePoint: { x: 900, y: 200 },
+              targetPoint: { x: 1000, y: 300 },
+              shape: { type: 'UmlClassifier', relationship: 'Inheritance' }
+          },
+          {
+              id: 'Interfaces',
+              type: 'Straight',
+              sourcePoint: { x: 100, y: 400 },
+              targetPoint: { x: 200, y: 500 },
+              shape: { type: 'UmlClassifier', relationship: 'Interface' }
+          },
+          {
+              id: 'Dependency',
+              type: 'Straight',
+              sourcePoint: { x: 300, y: 400 },
+              targetPoint: { x: 400, y: 500 },
+              shape: { type: 'UmlClassifier', relationship: 'Dependency' }
+          },
+          {
+              id: 'Realization',
+              type: 'Straight',
+              sourcePoint: { x: 500, y: 400 },
+              targetPoint: { x: 600, y: 500 },
+              shape: { type: 'UmlClassifier', relationship: 'Realization' }
+          },
+          {
+              id: "OneToMany",
+              type: 'Straight',
+              sourcePoint: {
+                  x: 700,
+                  y: 400
+              },
+              targetPoint: {
+                  x: 800,
+                  y: 500
+              },
+              annotations: [{
+                      margin: {
+                          top: 10,
+                          left: 10,
+                          right: 10,
+                          bottom: 20
+                      }
+                  }
+              ],
+              shape: {
+                  type: "UmlClassifier",
+                  relationship: 'Dependency',
+                  multiplicity: {
+                      type: 'OneToMany',
+                      source: {
+                          optional: true,
+                          lowerBounds: '89',
+                          upperBounds: '67'
+                      },
+                      target: { optional: true, lowerBounds: '78', upperBounds: '90' }
+                  }
+              }
+          },
+          {
+              id: "ManyToMany",
+              sourcePoint: {
+                  x: 900,
+                  y: 400
+              },
+              targetPoint: {
+                  x: 1000,
+                  y: 500
+              },
+              annotations: [{
+                      margin: {
+                          top: 10,
+                          left: 10,
+                          right: 10,
+                          bottom: 20
+                      }
+                  }
+              ],
+              shape: {
+                  type: "UmlClassifier",
+                  relationship: 'Dependency',
+                  multiplicity: {
+                      type: 'ManyToMany',
+                      source: {
+                          optional: true,
+                          lowerBounds: '89',
+                          upperBounds: '67'
+                      },
+                      target: { optional: true, lowerBounds: '78', upperBounds: '90' }
+                  }
+              }
+          },
+          {
+              id: "OneToOne",
+              sourcePoint: { x: 100, y: 600 },
+              targetPoint: { x: 200, y: 700 },
+              annotations: [{
+                      margin: {
+                          top: 10,
+                          left: 10,
+                          right: 10,
+                          bottom: 20
+                      }
+                  }
+              ],
+              shape: {
+                  type: "UmlClassifier",
+                  relationship: 'Dependency',
+                  multiplicity: {
+                      type: 'OneToOne',
+                      source: {
+                          optional: true,
+                          lowerBounds: '89',
+                          upperBounds: '67'
+                      },
+                      target: { optional: true, lowerBounds: '78', upperBounds: '90' }
+                  }
+              }
+          },
+          {
+              id: "ManyToOne",
+              sourcePoint: { x: 300, y: 600 },
+              targetPoint: { x: 400, y: 700 },
+              annotations: [{
+                      margin: {
+                          top: 10,
+                          left: 10,
+                          right: 10,
+                          bottom: 20
+                      }
+                  }
+              ],
+              shape: {
+                  type: "UmlClassifier",
+                  relationship: 'Dependency',
+                  multiplicity: {
+                      type: 'ManyToOne',
+                      source: {
+                          optional: true,
+                          lowerBounds: '89',
+                          upperBounds: '67'
+                      },
+                      target: { optional: true, lowerBounds: '78', upperBounds: '90' }
+                  }
+              }
+          },
+          {
+              id: "OneToMany",
+              sourcePoint: { x: 500, y: 600 },
+              targetPoint: { x: 600, y: 700 },
+              annotations: [{
+                      margin: {
+                          top: 10,
+                          left: 10,
+                          right: 10,
+                          bottom: 20
+                      }
+                  }
+              ],
+              shape: {
+                  type: "UmlClassifier",
+                  relationship: 'Dependency',
+                  multiplicity: {
+                      type: 'OneToMany',
+                  }
+              }
+          }
+          ]
+        }
+    ];
+    function setPaletteNodeDefaults(node:any) {
+        node.width = 100;
+        node.height = 100;
+    }
+    // Initializes symbol palette.
+    let palette: SymbolPalette = new SymbolPalette({
+        // sets the expandable mode of the symbol palette.
+        expandMode: 'Multiple',
+        // sets the palettes to be displayed in the symbol palette.
+        palettes: palettes,
+        getNodeDefaults: setPaletteNodeDefaults, 
+        // sets the width and height of the palette.
+        width: '100%', height: '100%',
+        symbolMargin: { left: 12, right: 12, top: 12, bottom: 12 },
+        symbolHeight: 90, symbolWidth: 90,
+        getSymbolInfo: (symbol: NodeModel): SymbolInfo => {
+            return { fit: true,description: { text: symbol.id, } ,tooltip: symbol.addInfo ? symbol.addInfo['tooltip'] : symbol.id };
+        },
+    });
+    palette.appendTo('#symbolpalette');
 };
 

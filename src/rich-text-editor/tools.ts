@@ -17,13 +17,13 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
     let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
-            items: ['FormatPainter', 'Bold', 'Italic', 'Underline', 'StrikeThrough',
-                'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
-                'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', 'EmojiPicker', '|',
-                'Formats', 'Alignments', 'NumberFormatList', 'BulletFormatList',
-                'Outdent', 'Indent', '|', 'CreateTable', 'CreateLink', 'Image', 'Audio', 'Video', 'FileManager', '|', 'ClearFormat', 'Print',
-                'SourceCode', 'FullScreen', '|', 'Undo', 'Redo'
-            ]
+            items: ['Bold', 'Italic', 'Underline', 'StrikeThrough', 'SuperScript', 'SubScript', '|',
+                'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
+                'LowerCase', 'UpperCase', '|',
+                'Formats', 'Alignments', '|', 'NumberFormatList', 'BulletFormatList', '|',
+                'Outdent', 'Indent', '|', 'CreateLink', 'Image', 'FileManager', 'Video', 'Audio', 'CreateTable', '|', 'FormatPainter', 'ClearFormat',
+                '|', 'EmojiPicker', 'Print', '|',
+                'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
         },
         fileManagerSettings: {
             enable: true, path: '/Pictures/Food',

@@ -30,7 +30,8 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             dataSource: Pivot_Data,
             expandAll: true,
             values: [{ name: 'Sold', caption: 'Units Sold' }],
-            filters: []
+            filters: [],
+            formatSettings: [{ name: 'Sold', format: 'N0' }],
         },
         showTooltip: false,
         width: '100%',
@@ -98,12 +99,13 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                     text: 'Sales Analysis'
                 },
                 legendSettings: {
+                    visible: false,
                     position: 'Top'
                 },
                 xAxis: {
                     title: { text: pivotObj.dataSourceSettings.rows.map(function (args) { return args.caption || args.name; }).join(' ~ ') },
                     labels: xLabels,
-                    labelRotation: 315
+                    labelIntersectAction: "Trim"
                 },
                 yAxis: {
                     title: { text: pivotObj.dataSourceSettings.values.map(function (args) { return args.caption || args.name; }).join(' ~ ') },
@@ -127,7 +129,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             heatmap.xAxis = {
                 title: { text: pivotObj.dataSourceSettings.rows.map(function (args) { return args.caption || args.name; }).join(' ~ ') },
                 labels: xLabels,
-                labelRotation: 315
+                labelIntersectAction: "Trim"
             };
             heatmap.yAxis = {
                 title: { text: pivotObj.dataSourceSettings.values.map(function (args) { return args.caption || args.name; }).join(' ~ ') },

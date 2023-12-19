@@ -48,7 +48,7 @@ let mdsource: HTMLElement;
         if (mdsource.classList.contains('e-active')) {
             let id: string = defaultRTE.getID() + 'html-view';
             let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
-            htmlPreview.innerHTML = Marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+            htmlPreview.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
         }
     }
     function fullPreview(): void {
@@ -74,7 +74,7 @@ let mdsource: HTMLElement;
             }
             textArea.style.display = 'none';
             htmlPreview.style.display = 'block';
-            htmlPreview.innerHTML = Marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+            htmlPreview.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
             mdsource.parentElement.title = 'Code View';
         }
     }

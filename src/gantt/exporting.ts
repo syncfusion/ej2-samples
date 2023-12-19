@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, ExcelExport, Selection, Toolbar, PdfExport, PdfExportProperties } from '@syncfusion/ej2-gantt';
+import { Gantt, ExcelExport, Selection, Toolbar, PdfExport, PdfExportProperties,DayMarkers } from '@syncfusion/ej2-gantt';
 import { editingData, editingResources } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { Switch } from '@syncfusion/ej2-buttons';
@@ -7,7 +7,7 @@ import { Switch } from '@syncfusion/ej2-buttons';
 /**
  * Editing Gantt sample
  */
-Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport);
+Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers);
 (window as any).default = (): void => {
     loadCultureFiles();
     let isFitToWidth: boolean;
@@ -26,6 +26,38 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport);
                 child: 'subtasks',
                 resourceInfo: 'resources'
             },
+            eventMarkers: [
+                {
+                    day: new Date('04/02/2019'),
+                }, {
+                    day: new Date('04/09/2019'),
+                    label: 'Research phase'
+                }, {
+                    day: new Date('04/30/2019'),
+                    label: 'Design phase'
+                }, {
+                    day: new Date('05/23/2019'),
+                    label: 'Production phase'
+                }, {
+                    day: new Date('06/20/2019'),
+                    label: 'Sales and marketing phase'
+                }
+            ],
+            holidays: [
+                {
+                    from: new Date('04/04/2019'),
+                    to: new Date('04/04/2019'),
+                    label: 'Local Holiday'
+                }, {
+                    from: new Date('04/19/2019'),
+                    to: new Date('04/19/2019'),
+                    label: 'Good Friday'
+                }, {
+                    from: new Date('04/30/2019'),
+                    to: new Date('04/30/2019'),
+                    label: 'Release Holiday'
+                },
+            ],
             columns: [
                 { field: 'TaskID', width: 80 },
                 { field: 'TaskName', width: 250 }

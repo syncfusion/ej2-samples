@@ -242,6 +242,20 @@
             "tooltip-template": "Tooltip Template"
         }
     },
+    "three-dimension-chart": {
+        "ControlName": "3D Chart",
+        "Samples": {
+          "column": "Column",
+	  "back-to-back-column": "Back to Back Column",
+	  "cylinder": "Cylinder",
+	  "bar": "Bar",
+	  "stacked-column": "Stacking Column with grouping",
+	  "stacked-column-100": "100% Stacked Column",
+	  "stacked-bar": "Stacked Bar",
+	  "staked-bar-100": "100% Stacked Bar",
+	  "empty-point": "Column With null and 0 values"
+        }
+    },
     "chips": {
         "ControlName": "Chips",
         "Samples": {
@@ -882,8 +896,7 @@
             "double": "Numeric Axis",
             "logarithmic": "Logarithmic Axis",
             "multilevel": "Multilevel Labels",
-            "period-selector": "Default",
-            "period-selector-stocks": "Stock Chart",
+            "period-selector": "Period Selector",
             "empty-data": "Empty Points",
             "filter": "Filter",
             "export": "Print and Export",
@@ -1095,6 +1108,16 @@
             "template": "Template",
             "modal": "Modal"
         }
+    },
+    "stepper": {
+	"ControlName" : "Stepper",
+	"Samples": {
+	    "default":"Default Functionalities",
+            "orientation": "Orientation",
+            "validation": "Validation",
+            "linear": "Linear Flow",
+	    "template": "Template and Customization"
+	}
     },
     "stock-chart": {
         "ControlName": "Stock Chart",

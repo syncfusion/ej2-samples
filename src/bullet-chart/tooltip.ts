@@ -11,7 +11,6 @@ BulletChart.Inject(BulletTooltip);
     loadCultureFiles();
     let chart: BulletChart = new BulletChart({
         width: Browser.isDevice ? '100%' : '70%',
-        height: '110px',
         tooltip: { enable: true, template : '#Tooltip' },
         dataSource: [{ value: 70, target: 50 }],
         valueField: 'value',
@@ -29,6 +28,7 @@ BulletChart.Inject(BulletTooltip);
         },
         minimum: 0, maximum: 100, interval: 10,
         title: 'Revenue YTD',
+        subtitle: 'US $ in Thousands',
         labelFormat: '${value}K',
     });
     chart.appendTo('#tooltip');

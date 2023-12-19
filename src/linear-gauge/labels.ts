@@ -40,6 +40,7 @@ loadCultureFiles();
         width:'150px',
         height:'350px',
         background:'transparent',
+        animationDuration: 1500,
         axes: [{
             line: {
                 width: 5
@@ -174,6 +175,7 @@ loadCultureFiles();
             fontWeight: '499'
         },
         background:'transparent',
+        animationDuration: 1500,
         width:'150px',
         height:'350px',
         axes: [{
@@ -214,6 +216,7 @@ loadCultureFiles();
             fontWeight: '499'
         },
         background:'transparent',
+        animationDuration: 1500,
         width:'150px',
         height:'350px',
         axes: [{

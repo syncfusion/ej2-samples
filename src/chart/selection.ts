@@ -18,6 +18,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
             valueType: 'Category',
             interval: 1,
             labelIntersectAction: 'Rotate90',
+            majorGridLines: { width: 0 },
             majorTickLines: { width: 0 },
             minorTickLines: { width: 0 }
         },
@@ -27,9 +28,14 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
         {
             title: 'Distribution',
             labelFormat: '{value}%',
-            interval: 20
+            interval: 20,
+            lineStyle : {width : 0}
         },
-
+        chartArea: {
+            border: {
+                width: 0
+            }
+        },
         //Initializing Chart Series
         series: [
             {

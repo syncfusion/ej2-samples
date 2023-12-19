@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Loading html template sample
  */
-
+import { Browser } from '@syncfusion/ej2-base'
 import { Tooltip } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 /* tslint:disable */
@@ -42,6 +42,11 @@ import { Button } from '@syncfusion/ej2-buttons';
 				</p>
 			</div>
 		</div>`,
+    //Set tooltip position
+    position: 'BottomCenter',
+    //Set tooltip height
+    height: Browser.isDevice ? '60%' : 'Auto',
+    windowCollision: true
   });
   //Render initialized Tooltip component
   tooltip.appendTo('#content');

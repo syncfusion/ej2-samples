@@ -140,7 +140,7 @@ let zoomPosition: number = 0;
             }
         },
         chartMouseMove: (args: IMouseEventArgs) => {
-            if ((!Browser.isDevice && !chartobj.isTouch && !chart.isChartDrag) || chartobj.startMove) {
+            if ((!Browser.isDevice && !chartobj.isTouch && !chartobj.isChartDrag) || chartobj.startMove) {
                 chart.startMove = chart3.startMove = chart4.startMove = chartobj.startMove;
                 chart.showTooltip(args.x, args.y);
                 chart3.showTooltip(args.x, args.y);
@@ -298,7 +298,7 @@ let zoomPosition: number = 0;
             }
         },
         chartMouseMove: (args: IMouseEventArgs) => {
-           if (!Browser.isDevice || chart4.startMove) {
+           if ((!Browser.isDevice && !chart4.isTouch && !chart4.isChartDrag)|| chart4.startMove) {
                 chart.startMove = chartobj.startMove = chart3.startMove = chart4.startMove;
                 chart.showTooltip(args.x, args.y);
                 chartobj.showTooltip(args.x, args.y);
@@ -317,7 +317,7 @@ let zoomPosition: number = 0;
             chart.hideTooltip();
         },
         chartMouseUp: function (args: IMouseEventArgs) {
-            if ((!Browser.isDevice && !chart4.isTouch && !chart4.isChartDrag) || chart4.startMove) {
+            if (Browser.isDevice && chart4.startMove) {
                 chart.hideCrosshair();
                 chartobj.hideCrosshair();
                 chart3.hideCrosshair();

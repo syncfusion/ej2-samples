@@ -65,7 +65,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         dataSourceSettings: {
             id: 'Id', parentId: 'ParentId',
             dataSource: new DataManager(
-                { url: 'https://ej2services.syncfusion.com/js/development/api/RemoteData', crossDomain: true },
+                { url: 'https://services.syncfusion.com/js/production/api/RemoteData', crossDomain: true },
             ),
             //binds the external data with node
             doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {

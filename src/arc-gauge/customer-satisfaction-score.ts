@@ -28,7 +28,6 @@ CircularGauge.Inject(Annotations, GaugeTooltip, Legend);
         },
         tooltip: {
             enable: true,
-            showAtMousePosition:true,
             template:
                 '<div style="font-size:18px;background:white;width:180px;color:#595959;border:1px solid #e8e8e8">Current Score: ${value} </div>',
         },

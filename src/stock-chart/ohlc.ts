@@ -20,7 +20,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
         primaryXAxis: {
             valueType: 'DateTime',
             majorGridLines: { width: 0 },
-            crosshairTooltip: { enable: true },
+            crosshairTooltip: { enable: true }
         },
         primaryYAxis: {
             labelFormat: 'n0',

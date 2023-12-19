@@ -43,8 +43,19 @@
         .content-wrapper {
             border: 1px solid #D7D7D7;
         }
+
         .sb-property-border {
             width: 70%;
+        }
+
+        .e-checkbox-wrapper .e-label {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .e-checkbox-wrapper {
+            margin-left: 0px;
+            margin-top: 0px;
         }
     </style>
     <div id="tooltipDiagramSection" class="content-wrapper" style="width: 100%">
@@ -101,19 +112,36 @@
                 </div>
             </td>
         </tr>
+        <tr>
+            <td>
+                <div>
+                    Sticky Mode
+                </div>
+            </td>
+            <td>
+                <div>
+                    <input type="checkbox" id="checked" unchecked="false">
+                </div>
+            </td>
+        </tr>
     </table>
 </div>
+
 <div id="action-description">
     <p>
-        This sample demonstrates how to add the extra information to the nodes and connectors and how to show the information through
+        This sample demonstrates how to add the extra information to the nodes and connectors and how to show the
+        information through
         the common graphical user interface element.
     </p>
 </div>
 <div id="description">
     <p>
-        Using diagram’s <code>tooltip</code> we can define the tooltip for the diagram nodes as well as connector. We can control the <code>animation</code>,
-        <code>position</code>, <code>effects</code> of the tooltip using <code>tooltip</code> property of the diagram. Also, we can define the custom tooltip
-        as either text or HTML element using <code>content</code> property of the tooltip. We can control the different tooltip settings
+        Using diagram’s <code>tooltip</code> we can define the tooltip for the diagram nodes as well as connector. We
+        can control the <code>animation</code>,
+        <code>position</code>, <code>effects</code> of the tooltip using <code>tooltip</code> property of the diagram.
+        Also, we can define the custom tooltip
+        as either text or HTML element using <code>content</code> property of the tooltip. We can control the different
+        tooltip settings
         to each connector and node.
     </p>
     <br>

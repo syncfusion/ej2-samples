@@ -18,8 +18,8 @@ import { Carousel } from '@syncfusion/ej2-navigations';
     carouselObj.appendTo('#carousel');
     //Focus the Carousel Control (alt+j) key combination
     document.body.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.altKey && e.keyCode === 74 && carouselObj.element) {
-            carouselObj.element.focus();
+        if (e.altKey && e.keyCode === 74 && carouselObj.element.firstElementChild) {
+            (carouselObj.element.firstElementChild as HTMLElement).focus();
         }
     });
 };

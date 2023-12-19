@@ -70,8 +70,8 @@ loadCultureFiles();
             annotations: [
                 {
                     angle: 180, zIndex: '1',
-                    radius: '25%',
-                    content: '<div style="font-size:14px; padding-top:20px">Multiple pointers</div>'
+                    radius: '32%',
+                    content: '<div style="font-size:14px; padding-top:22px">Multiple pointers</div>'
                 }
             ]
         }],

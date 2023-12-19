@@ -6,68 +6,77 @@
     </div>
     <!-- property panel -->
     <br>
-    <div class="col-md-4 property-section">
-        <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
-            <colgroup>
-                <col span="1" style="width: 40%;">
-                <col span="1" style="width: 30%;">
-                <col span="1" style="width: 30%;">
-            </colgroup>
-            <tbody>
-                <tr style="height: 50px">
-                    <td>
-                        <div> Axis </div>
-                    </td>
-                    <td>
-                        <div>
-                            <select id="axisIndex" class="form-control">
-                                <option value="0" selected=true>Axis 1</option>
-                                <option value="1">Axis 2</option>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-                <tr style="height: 50px">
-                    <td>
-                        <div> Direction </div>
-                    </td>
-                    <td>
-                        <div>
-                            <select id="axisDirection" class="form-control">
-                                <option value="ClockWise" selected=true>ClockWise</option>
-                                <option value="AntiClockWise">AntiClockWise</option>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-                <tr style="height: 50px">
-                    <td>
-                        <div>Start Angle</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="range" id="startAngle" value="220" min="0" max="360" style="width: 70%" />
-                        </div>
-                    </td>
-                    <td style="padding-top: 10px; text-align: center;">
-                        <span id='start' style="margin-left: -30px;">220</span>
-                    </td>
-                </tr>
-                <tr style="height: 50px">
-                    <td>
-                        <div>End Angle</div>
-                    </td>
-                    <td>
-                        <div>
-                            <input type="range" id="endAngle" value="140" min="0" max="360" style="width: 70%" />
-                        </div>
-                    </td>
-                    <td style="padding-top: 10px; text-align: center;">
-                        <span id='end' style="margin-left: -30px;">140</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div id="property-panel" class="col-md-4 property-section">
+        <div class="property-panel-section">
+            <div class="property-panel-content">
+                <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
+                    <colgroup>
+                        <col span="1" style="width: 45%;">
+                        <col span="1" style="width: 40%;">
+                        <col span="1" style="width: 10%;">
+                    </colgroup>
+                    <tbody>
+                        <tr style="height: 50px">
+                            <td>
+                                <div style="font-size: 14px;"> Axis </div>
+                            </td>
+                            <td colspan="2">
+                                <div>
+                                    <select id="axisIndex" class="form-control">
+                                        <option value="0" selected=true>Axis 1</option>
+                                        <option value="1">Axis 2</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td>
+                                <div style="font-size: 14px;"> Direction </div>
+                            </td>
+                            <td colspan="2">
+                                <div>
+                                    <select id="axisDirection" class="form-control">
+                                        <option value="ClockWise" selected=true>Clockwise</option>
+                                        <option value="AntiClockWise">Anti-clockwise</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td>
+                                <div style="font-size: 14px;">Start Angle</div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="range" id="startAngle" value="220" min="0" max="360" />
+                                </div>
+                            </td>
+                            <td style="text-align: center;">
+                                <div>
+                                    <span id='start'>220</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="height: 50px">
+                            <td>
+                                <div style="font-size: 14px;">End Angle</div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="range" id="endAngle" value="140" min="0" max="360" />
+                                </div>
+                            </td>
+                            <td style="text-align: center;">
+                                <div>
+                                    <span id='end'>140</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 </div>
 <div id="action-description">

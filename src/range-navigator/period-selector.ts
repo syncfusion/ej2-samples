@@ -30,7 +30,7 @@ let data1: object[] = [];
     // Rendering Dialog on FETCH success
     fetchApi.onSuccess = (data: Object[]): void => {
         datasrc = data;
-        for (let i: number = 0; i < datasrc.length; i++) {
+        for (let i: number = 0; i < datasrc.length - 20; i++) {
             value = datasrc[i];
             /* tslint:disable:no-string-literal */
             data1.push({
@@ -93,8 +93,8 @@ let data1: object[] = [];
             }, labelPosition: 'Outside', valueType: 'DateTime', dataSource: data1, xName: 'date', yName: 'Close', theme: theme,
             periodSelectorSettings: {
                 periods: [{ text: '1M', interval: 1, intervalType: 'Months' }, { text: '3M', interval: 3, intervalType: 'Months' },
-                { text: '6M', interval: 6, intervalType: 'Months' }, { text: '1Y', interval: 1, intervalType: 'Years' },
-                { text: '2Y', interval: 2, intervalType: 'Years', selected: true }, { text: 'ALL' }], position: 'Top',
+                { text: '6M', interval: 6, intervalType: 'Months' }, { text: '1Y', interval: 1, intervalType: 'Years', selected: true },
+                { text: '2Y', interval: 2, intervalType: 'Years' }, { text: 'ALL' }], position: 'Top',
             }
         });
         rangeTop.appendTo('#container');
@@ -117,7 +117,7 @@ let data1: object[] = [];
                 });
                 chart.series[0].animation.enable = false;
                 chart.series[0].dataSource = filterData; chart.setAnnotationValue(0, '<div id="annotation"></div>'); chart.refresh();
-            }, width: Browser.isDevice ? '100%' : '80%', value: [new Date('2016-05-15'), new Date('2018-05-15')], theme: theme,
+            }, width: Browser.isDevice ? '100%' : '80%', value: [new Date('2017-04-30'), new Date('2018-04-30')], theme: theme,
         });
         rangeBottom.appendTo('#range');
         rangeTop.changed = (args: IChangedEventArgs) => {

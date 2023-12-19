@@ -19,7 +19,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Co
     let stockChart: StockChart = new StockChart({
         rows: [{ height: '30%' }, { height: '70%' }],
         chartArea: { border: { width: 0 } },
-        primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 }, crosshairTooltip: { enable: true } },
+        primaryXAxis: { valueType: 'DateTime', majorGridLines: { width: 0 }, crosshairTooltip: { enable: true }},
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
             majorTickLines: { color: 'transparent', height: 0 }

@@ -10,6 +10,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer();
      viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/handwritten-signature.pdf";
+     viewer.resourceUrl ="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib";
 
     var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
     switchObj.appendTo('#checked');
@@ -19,7 +20,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
             viewer.serviceUrl = '';
         }
         else {
-            viewer.serviceUrl = 'https://ej2services.syncfusion.com/js/development/api/pdfviewer';
+            viewer.serviceUrl = 'https://services.syncfusion.com/js/production/api/pdfviewer';
         }
         viewer.dataBind();
         viewer.load(viewer.documentPath, null);

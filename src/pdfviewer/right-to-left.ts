@@ -245,6 +245,7 @@ L10n.load({
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer({ enableRtl: true, locale: 'ar-AE' });
     viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/rtl-text.pdf";
+    viewer.resourceUrl ="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib";
 
     var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
     switchObj.appendTo('#checked');
@@ -254,7 +255,7 @@ L10n.load({
             viewer.serviceUrl = '';
         }
         else {
-            viewer.serviceUrl = 'https://ej2services.syncfusion.com/js/development/api/pdfviewer';
+            viewer.serviceUrl = 'https://services.syncfusion.com/js/production/api/pdfviewer';
         }
         viewer.dataBind();
         viewer.load(viewer.documentPath, null);

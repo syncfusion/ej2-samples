@@ -94,9 +94,9 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, SplineSeries, RadarSeries, 
             chart.series[0].type = <ChartDrawType>polarType.value;
             chart.series[1].type = <ChartDrawType>polarType.value;
             chart.series[2].type = <ChartDrawType>polarType.value;
-            chart.series[0].animation.enable = true;
-            chart.series[1].animation.enable = true;
-            chart.series[2].animation.enable = true;
+            chart.series[0].animation.enable = false;
+            chart.series[1].animation.enable = false;
+            chart.series[2].animation.enable = false;
             chart.refresh();
         }
     });

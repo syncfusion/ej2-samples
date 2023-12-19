@@ -66,6 +66,7 @@ Ribbon.Inject(RibbonFileMenu);
             isCollapsible: false,
             enableGroupOverflow: true,
             orientation: ItemOrientation.Row,
+            overflowHeader: 'More Font Options',
             groupIconCss: 'e-icons e-bold',
             cssClass: 'font-group',
             collections: [{
@@ -73,9 +74,11 @@ Ribbon.Inject(RibbonFileMenu);
                     type: RibbonItemType.ComboBox,
                     comboBoxSettings: {
                         dataSource: fontStyle,
+                        label: 'Font Style',
                         index: 3,
                         allowFiltering: true,
-                        width: '150px',
+                        width: '115px',
+                        popupWidth: '150px',
                         change:(args: SelectEventArgs ) => {
                             if (args.itemData) {
                                 updateContent( "Font Style -> " + args.itemData.text)
@@ -86,6 +89,7 @@ Ribbon.Inject(RibbonFileMenu);
                     type: RibbonItemType.ComboBox,
                     comboBoxSettings: {
                         dataSource: fontSize,
+                        label: 'Font Size',
                         index: 3,
                         width: '65px',
                         popupWidth: '85px',
@@ -103,6 +107,7 @@ Ribbon.Inject(RibbonFileMenu);
                     allowedSizes: RibbonItemSize.Small,
                     groupButtonSettings: {
                         selection: RibbonGroupButtonSelection.Multiple,
+                        header: 'Format Styles',
                         items: [{
                             iconCss: 'e-icons e-bold',
                             content: 'Bold',
@@ -152,6 +157,7 @@ Ribbon.Inject(RibbonFileMenu);
                     allowedSizes: RibbonItemSize.Small,
                     buttonSettings: {
                         iconCss: 'e-icons e-decrease-indent',
+                        content: 'Decrease Indent',
                         clicked: () =>  { updateContent("Decrease Indent") }
                     }
                 }, {
@@ -159,6 +165,7 @@ Ribbon.Inject(RibbonFileMenu);
                     allowedSizes: RibbonItemSize.Small,
                     buttonSettings: {
                         iconCss: 'e-icons e-increase-indent',
+                        content: 'Increase Indent',
                         clicked: () =>  { updateContent("Increase Indent") }
                     }
                 }, {
@@ -166,6 +173,7 @@ Ribbon.Inject(RibbonFileMenu);
                     allowedSizes: RibbonItemSize.Small,
                     buttonSettings: {
                         iconCss: 'e-icons e-paragraph',
+                        content: 'Paragraph',
                         clicked: () =>  { updateContent("Paragraph Mark") }
                     }
                 }]
@@ -175,6 +183,7 @@ Ribbon.Inject(RibbonFileMenu);
                     allowedSizes: RibbonItemSize.Small,
                     groupButtonSettings: {
                         selection: RibbonGroupButtonSelection.Single,
+                        header: 'Alignment',
                         items: [{
                             iconCss: 'e-icons e-align-left',
                             selected: true,
@@ -307,6 +316,7 @@ Ribbon.Inject(RibbonFileMenu);
             showLauncherIcon: true,
             orientation: ItemOrientation.Row,
             enableGroupOverflow: true,
+            overflowHeader: 'Illustrations',
             groupIconCss: 'e-icons e-image',
             collections: [{
                 items: [{
@@ -404,7 +414,7 @@ Ribbon.Inject(RibbonFileMenu);
                 }]
             }]
         }, {
-            header: 'Link',
+            header: 'Links',
             groupIconCss: 'e-icons e-link',
             isCollapsible: false,
             collections: [{
@@ -520,7 +530,7 @@ Ribbon.Inject(RibbonFileMenu);
     let list: ListView = new ListView({
         showHeader: true,
         headerTitle: 'Insert Picture From',
-        dataSource: ['This device', 'Stock Images', 'Online Images'],
+        dataSource: ['This Device', 'Stock Images', 'Online Images'],
         select:(args: SelectListEventArgs) => {updateContent( "Pictures -> " + args.text)}
     });
     list.appendTo('#pictureList');

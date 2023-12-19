@@ -6,6 +6,7 @@ CircularGauge.Inject(Annotations);
 export function gauge1(): CircularGauge {
     let gauge1: CircularGauge = new CircularGauge({
         background:'transparent',
+        centerY: '40%',
         axes: [{
             startAngle: 270,
             endAngle: 90,
@@ -35,8 +36,8 @@ export function gauge1(): CircularGauge {
             annotations: [
                 {
                     angle: 180, zIndex: '1',
-                    radius: '20%',
-                    content: '<div style="font-size:14px;">Range bar pointer</div>'
+                    radius: '28%',
+                    content: '<div style="font-size:14px;margin-top:11px;">Range bar pointer</div>'
                 }
             ]
         }],
@@ -55,6 +56,7 @@ export function gauge1(): CircularGauge {
 export function gauge2(): CircularGauge {
     let gauge2: CircularGauge = new CircularGauge({
         background:'transparent',
+        centerY: '40%',
         axes: [{
             startAngle: 270,
             endAngle: 90,
@@ -85,8 +87,8 @@ export function gauge2(): CircularGauge {
             annotations: [
                 {
                     angle: 180, zIndex: '1',
-                    radius: '20%',
-                    content: '<div style="font-size:14px;">Marker pointer</div>'
+                    radius: '28%',
+                    content: '<div style="font-size:14px;margin-top:10px;">Marker pointer</div>'
                 }
             ]
         }],
@@ -105,6 +107,7 @@ export function gauge2(): CircularGauge {
 export function gauge4(): CircularGauge {
     let gauge4: CircularGauge = new CircularGauge({
         background:'transparent',
+        centerY: '40%',
         axes: [{
             startAngle: 270,
             endAngle: 90,
@@ -142,8 +145,8 @@ export function gauge4(): CircularGauge {
             annotations: [
                 {
                     angle: 180, zIndex: '1',
-                    radius: '20%',
-                    content: '<div style="font-size:14px; padding-top: 26px">Customized pointer</div>'
+                    radius: '28%',
+                    content: '<div style="font-size:14px; padding-top: 29px">Customized pointer</div>'
                 }
             ]
         }],
@@ -193,8 +196,8 @@ export function gauge3(): CircularGauge {
             annotations: [
                 {
                     angle: 180, zIndex: '1',
-                    radius: '20%',
-                    content: '<div style="font-size:14px;">Needle pointer</div>'
+                    radius: '28%',
+                    content: '<div style="font-size:14px;margin-top:11px;">Needle pointer</div>'
                 }
             ]
         }],
@@ -331,7 +334,7 @@ export function gauge5(): CircularGauge {
             maximum: 100,
             pointers: [{
                 radius: '100%',
-                animation: { enable: true, duration: 900 },
+                animation: { enable: false, duration: 100 },
                 value: 40,
                 color: '#067bc2',
                 pointerWidth: 6,
@@ -340,7 +343,7 @@ export function gauge5(): CircularGauge {
             }, {
                 radius: '100%',
                 type: 'RangeBar',
-                animation: { enable: true, duration: 900 },
+                animation: { enable: false, duration: 100 },
                 value: 40,
                 color: '#067bc2',
                 pointerWidth: 5
@@ -348,8 +351,8 @@ export function gauge5(): CircularGauge {
             annotations: [
                 {
                     angle: 180, zIndex: '1',
-                    radius: '20%',
-                    content: '<div style="font-size:14px; padding-top:26px">Live update</div>'
+                    radius: '32%',
+                    content: '<div style="font-size:14px; margin-top:22px">Live update</div>'
                 }
             ]
         }],

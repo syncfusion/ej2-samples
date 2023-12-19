@@ -3,7 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * AutoComplete Custom Filtering Sample
  */
 import { AutoComplete, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
-import * as Fuse from 'fuse.js';
+import Fuse from 'fuse.js';
 import * as booksData from './dataSource.json';
 
 (window as any).default = (): void => {
@@ -24,7 +24,7 @@ import * as booksData from './dataSource.json';
                 findAllMatches: true
             };
             // create object from Fuse constructor
-            let fuse: Fuse = new Fuse((booksData as any).booksData, options);
+            let fuse: Fuse <any>= new Fuse((booksData as any).booksData, options);
             // store the search result data based on typed characters
             let result: any = fuse.search(e.text);
             // declare  object array for storing filtering results

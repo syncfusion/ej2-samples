@@ -36,7 +36,7 @@ let regionColor : string[] = ['rgba(38, 46, 11, 0.3)', 'rgba(94, 203, 155, 0.3)'
             {
                 primaryXAxis: {
                     valueType: 'DateTime', crosshairTooltip: { enable: true }, edgeLabelPlacement: 'Shift',
-                    isInversed: true, majorGridLines: { width: 0 }
+                    majorGridLines: { width: 0 }
                 },
                 primaryYAxis: {
                     majorTickLines: { width: 0 }, lineStyle: { width: 0 }, labelFormat: '{value}%',

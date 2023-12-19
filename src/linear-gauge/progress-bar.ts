@@ -17,6 +17,7 @@ loadCultureFiles();
             }
         },
         background:'transparent',
+        animationDuration: 2000,
         orientation: 'Horizontal',
         axes: [{
             minimum: 0,

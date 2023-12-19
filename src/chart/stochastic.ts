@@ -28,7 +28,7 @@ Chart.Inject(
                 title: 'Price (in Million)',
                 labelFormat: '${value}M',
                 minimum: 50, maximum: 170,
-                plotOffset: 25, majorGridLines: { width: 0 },
+                plotOffset: 25,
                 interval: 30, rowIndex: 1, opposedPosition: true, lineStyle: { width: 0 }
             },
             //Initializing Rows

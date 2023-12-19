@@ -48,7 +48,10 @@ import { closest } from '@syncfusion/ej2-base';
     //Set tooltip cssClass
     cssClass: 'e-tooltip-menu-settings',
     //Set tooltip open mode
-    opensOn: 'Click'
+    opensOn: 'Click',
+    //Set tooltip position
+    position: 'BottomCenter',
+    windowCollision: true
   });
   //Render initialized Tooltip component
   tip.appendTo('#tooltip-menu');

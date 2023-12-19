@@ -2,6 +2,7 @@ import { CircularGauge, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-cir
 (window as any).default = (): void => {
     let circulargauge: CircularGauge = new CircularGauge({
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             radius: '80%',
             startAngle: 230,

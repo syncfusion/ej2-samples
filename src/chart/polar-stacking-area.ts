@@ -57,13 +57,13 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, StackingAreaSeries, RadarSe
             },
         ],
         //Initializing Chart Sample
-        title: 'GDP, Current Prices (in Billions)',
+        title: 'GDP in Current Prices (USD Billions)',
         legendSettings: {
             visible: true, enableHighlight: true
         },
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true, header: '', format: '<b>${point.x}</b><br>GDP: <b>${point.y}USD</b>'
+            enable: true
         },
         // custom code start
         load: (args: ILoadedEventArgs) => {

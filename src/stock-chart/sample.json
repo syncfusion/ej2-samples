@@ -1,7 +1,6 @@
 {
     "name": "Stock Chart",
     "directory": "stock-chart",
-    "type": "update",
     "category": "Data Visualization",
     "ftName": "stock-chart",
     "samples": [
@@ -177,7 +176,6 @@
         {
             "url": "datetime-category",
             "name": "DateTime Category Axis",
-            "type": "new",
             "description":"This demo for Essential JS2 Stock Chart control shows the default rendering of Stock with DateTime Category Axis.",
             "category": "Stock Chart",
             "api": {

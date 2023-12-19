@@ -1,11 +1,9 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Tab default sample
  */
 import { Tab } from '@syncfusion/ej2-navigations';
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     //Initialize Tab component
     let tabObj: Tab = new Tab({
         items: [

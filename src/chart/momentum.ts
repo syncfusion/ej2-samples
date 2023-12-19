@@ -29,7 +29,7 @@ Chart.Inject(
                 title: 'Price',
                 labelFormat: '${value}',
                 plotOffset: 25,
-                minimum: 50, maximum: 170, majorGridLines: { width: 0 },
+                minimum: 50, maximum: 170,
                 interval: 30, rowIndex: 1, opposedPosition: true, lineStyle: { width: 0 },
             },
             //Initializing Rows

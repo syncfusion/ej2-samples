@@ -5,20 +5,32 @@ var path = require('path');
 var shelljs = global.shelljs || require('shelljs');
 var webpackGulp = require('webpack-stream');
 var webpack = require('webpack');
+var runSequence = require('gulp4-run-sequence');
 var platform = 'typescript';
 var sampleList;
 var commonConfig = require('./config.json');
+var defRegex = /(this.|export |\(window as any\).)default (= |)\(\)(: void|) => {/g;
+var loadRegex = /loadCultureFiles\(\);/
+var impCultureRegex = /import \{ loadCultureFiles \} from \'\.\.\/common\/culture-loader\';/;
+var imgRegex = /(<img([\w\W])+src\=\"src)|(imageUrl)|((\'|\")(\.\/|)src\/[^\'\"]+.(png|jpg)(\'|\"))/;
+var bgRegex = /background-image: url\((\'|\"|)(\.\/|)src/g;
+var srcRegex = /(|\.\/)src\//;
+var dSrc = 'demos/src/';
+var impCulture = "import { loadCultureFiles } from '../common/culture-loader';";
 
 gulp.task('scripts', function (done) {
     var ts = require('gulp-typescript');
     var tsProject = ts.createProject('tsconfig.json', {
         typescript: require('typescript')
     });
-    var srcLocation = ["./src/**/*.ts", "./spec/**/*.ts", "!./src/*/samples/**/*.ts", "!./src/node_modules/**/*.d.ts", "!./src/node_modules/**/*.ts"];
+    var srcLocation = commonConfig.ts;
+    if (sampleList && sampleList.length) {
+        srcLocation = getTsFiles();
+    }
     var tsResult = gulp.src(srcLocation, {
         base: '.'
     })
-        .pipe(ts(tsProject))
+        .pipe(tsProject())
         .on('error', function (e) {
             done(e);
             process.exit(1);
@@ -34,9 +46,29 @@ gulp.task('scripts', function (done) {
         });
 });
 
+function getTsFiles() {
+    var srcLocation = ['./src/common/**/*.ts', './spec/**/*.ts'];
+    var samples = JSON.parse(fs.readFileSync('./sampleList.json', 'utf8'));
+    for (var i = 0; i < samples.length; i++) {
+        srcLocation.push('./src/' + samples[i] + '/**/*.ts');
+    }
+    return srcLocation;
+}
+
+
 gulp.task('bundle', function (done) {
+    if (commonConfig.platform === 'javascript') {
+        runSequence('ship-deps', function () {
+            bundle(commonConfig.platform, done);
+        });
+    } else {
+        bundle(commonConfig.platform, done);
+    }
+});
+
+function bundle(platform, done) {
     var webpackConfig = require(fs.realpathSync('./webpack.config.js'));
-    gulp.src('')
+    return gulp.src('.')
         .pipe(webpackGulp(webpackConfig, webpack))
         .pipe(gulp.dest('.'))
         .on('end', function () {
@@ -46,59 +78,266 @@ gulp.task('bundle', function (done) {
             done(e);
             process.exit(1);
         });
+
+}
+
+gulp.task('ship-deps', function (done) {
+    gulp.src(['./node_modules/@syncfusion/ej2/*.css',
+        './node_modules/@syncfusion/ej2/dist/*{.js,.map}', './node_modules/fuse.js/dist/fuse.min.js'
+    ])
+        .pipe(gulp.dest('./dist/'))
+        .on('end', function () {
+            done();
+        });
 });
 
-gulp.task('whole-bundle', function (done) {
-    if (shelljs.exec('node --max-old-space-size=7168 ./node_modules/gulp/bin/gulp.js bundle').code !== 0) {
+gulp.task('ship-deps-ts', function (done) {
+    gulp.src(['./node_modules/@syncfusion/ej2/*.css',
+        './node_modules/@syncfusion/ej2/dist/*{.js,.map}', './node_modules/fuse.js/dist/fuse.min.js'
+    ])
+        .pipe(gulp.dest('./styles/'))
+        .on('end', function () {
+            done();
+        });
+});
+
+gulp.task('pdfium-wasm', function (done) {
+    const filePath = process.cwd() + '/package.json';
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const jsonData = JSON.parse(fileContent)
+    var platformName = jsonData.name;
+    let Folder = glob.sync('./node_modules/@syncfusion/ej2-pdfviewer/dist/ej2-pdfviewer-lib/*.{js,wasm}')
+    if (platformName == '@syncfusion/ej2-javascript-samples') {
+        return gulp.src(Folder)
+            .pipe(gulp.dest('./dist/ej2-pdfviewer-lib'));
+    } else if (platformName == '@syncfusion/ej2-samples') {
+        return gulp.src(Folder)
+            .pipe(gulp.dest('./src/ej2-pdfviewer-lib'));
+    } else if (platformName == '@syncfusion/ej2-react-samples') {
+        return gulp.src(Folder)
+            .pipe(gulp.dest('./ej2-pdfviewer-lib'));
+    } else if (platformName === 'ej2-vue-samples') {
+        const sourcePath = './node_modules/@syncfusion/ej2-pdfviewer/dist/ej2-pdfviewer-lib';
+        const destpath = './public/js/ej2-pdfviewer-lib';
+        if (!fs.existsSync(destpath)) {
+            shelljs.mkdir('-p', destpath);
+        }
+        shelljs.cp('-R', sourcePath + '/*', destpath);
+        console.log("File moved to Destination")
+    }
+    done();
+});
+
+function preProcess() {
+    var googleAnalyticsScript = `
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W8WD8WN');</script>
+    <!-- End Google Tag Manager -->`
+    var bodyScript = "ej2-samples" ? `
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8WD8WN"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div hidden id="sync-analytics" data-queue="EJ2 - Javascript - Demos"></div>
+    ` : `
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W8WD8WN"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div hidden id="sync-analytics" data-queue="EJ2 - react - Demos"></div>
+    `
+    var hFiles = glob.sync('./samples/**/index.html');
+    for (var hFile of hFiles) {
+        var htmlCont = fs.readFileSync(hFile, 'utf8');
+        var $ = cheerio.load(htmlCont);
+        var headContent = $('head').html();
+        if (headContent.indexOf('gtm.start') === -1) {
+            var nHtml = `<!DOCTYPE html>\n<html lang="en">\n<head> ${googleAnalyticsScript}   ${headContent}    \n</head>\n<body class="ej2-new">\n        ${bodyScript + $('body').html()}\n</body>\n</html>`;
+            fs.writeFileSync(hFile, nHtml, 'utf8');
+        }
+    }
+}
+exports.preProcess = preProcess;
+
+gulp.task('ts-pre-build', function (done) {
+    console.log('moved samples');
+    shelljs.cp('-R', './samples/*', './');
+    var eCode = shelljs.exec('gulp create-locale && gulp combine-samplelist && gulp combine-seo-list && gulp replace-this && gulp scripts && gulp ship-deps-ts && gulp bundle && gulp skip-chunks').code;
+    if (eCode !== 0) {
         process.exit(1);
     } else {
         done();
     }
 });
 
+
+// replace-this
+gulp.task('replace-this', function (done) {
+    if (shelljs.exec('node --max-old-space-size=7168 ./node_modules/gulp/bin/gulp.js replace-this-files').code !== 0) {
+        process.exit(1);
+    }
+    done();
+});
+
+gulp.task('replace-this-files', function (done) {
+    var glob = require('glob');
+    var fs = require('fs');
+    var files = glob.sync('./src/**/*.ts');
+    for (let file of files) {
+        var content = fs.readFileSync(file, 'utf-8').replace(/this.default/, '(window as any).default');
+        if (defRegex.test(content)) {
+            if (!loadRegex.test(content)) {
+                content = content.replace(defRegex, '(window as any).default = (): void => {\n    loadCultureFiles();');
+            }
+            if (!impCultureRegex.test(content)) {
+                content = impCulture + '\n' + content;
+            }
+        }
+        fs.writeFileSync(file, content);
+
+    }
+    done();
+});
+
 gulp.task('build', function(done){
-    var runSequence = require('run-sequence');
-    runSequence('create-locale', 'combine-samplelists', 'styles', 'scripts', 'skip-chunks', 'whole-bundle', done);
-})
+    preProcess();
+    if (shelljs.exec('gulp pdfium-wasm && gulp ts-pre-build &&  gulp tsbundle-new-window && gulp next-prev').code !== 0) {
+        process.exit(1);
+    } else {
+        done();
+    }
+});
+
+gulp.task('next-prev', function (done) {
+        var files = glob.sync('./*/*', {
+            silent: true,
+            ignore: ['./src/**', './.vscode/**', './node_modules/**', './samples/**', './spec/**', './styles/**']
+        });
+        var samplesAr = require(fs.realpathSync('./src/common/sampleListSeo.js'));
+        var samplePathArray = getSamplePathArray(samplesAr.samplesList);
+        var next = "";
+        var prev = "";
+        var anchorPrev = "";
+        var anchorNext = "";
+        var disablenext = "";
+        var disableprev = "";
+        var platform;
+        for (var i = 0; i < files.length; i++) {
+            var url = files[i].split('/')[2];
+            var currentComp = files[i].split('/')[1];
+            var curlocation = currentComp + '/' + url;
+            var inx = samplePathArray.indexOf(curlocation);
+            if (inx == 0) {
+                next = samplePathArray[inx + 1];
+                platform = common.currentRepo == "ej2-samples" ? '' : '/javascript';
+                anchorNext = `href="https://ej2.syncfusion.com${platform}/demos/${next}/"`;
+                anchorPrev = '';
+                disableprev = 'e-disabled';
+                disablenext = '';
+
+            } else if (inx == samplePathArray.length - 1) {
+                prev = samplePathArray[inx - 1];
+                platform = common.currentRepo == "ej2-samples" ? '' : '/javascript';
+                anchorPrev = `href="https://ej2.syncfusion.com/${platform}demos/${prev}/"`;
+                anchorNext = '';
+                disablenext = 'e-disabled';
+                disableprev = '';
+            } else if (inx !== 0 || samplePathArray.length - 1) {
+                if (inx !== -1) {
+                    next = samplePathArray[inx + 1];
+                    prev = samplePathArray[inx - 1];
+                    platform = common.currentRepo == "ej2-samples" ? '' : '/javascript';
+                    anchorNext = `href="https://ej2.syncfusion.com${platform}/demos/${next}/"`;
+                    anchorPrev = `href="https://ej2.syncfusion.com${platform}/demos/${prev}/"`;
+                    disablenext = '';
+                    disableprev = '';
+                }
+            }
+            if (fs.existsSync('./' + curlocation + '/index.html')) {
+                var pHtml = fs.readFileSync('./' + curlocation + '/index.html', 'utf8');
+                pHtml = pHtml.replace(/{{:anchor-next}}/g, anchorNext);
+                pHtml = pHtml.replace(/{{:anchor-prev}}/g, anchorPrev);
+                pHtml = pHtml.replace(/{{:disabled-next}}/g, disablenext);
+                pHtml = pHtml.replace(/{{:disabled-prev}}/, disableprev);
+                pHtml = pHtml.replace(/<link rel="canonical" href=.+/, '');
+                fs.writeFileSync('./' + curlocation + '/index.html', pHtml, 'utf-8');
+            }
+
+        }
+    done();
+});
+
+function getSamplePathArray(samplesAr) {
+    var samplesPathArray = [];
+    for (var sampleList of samplesAr) {
+        var dir = sampleList.directory;
+        for (var sample of sampleList.samples) {
+            samplesPathArray.push(dir + '/' + sample.url);
+        }
+    }
+    return samplesPathArray;
+}
+
+gulp.task('tsbundle-new-window', function (done) {
+    var code = shelljs.exec('node --max-old-space-size=7168 ./node_modules/gulp/bin/gulp.js tsbundle');
+    if (code.code !== 0 || code.stderr) {
+        process.exit(1);
+    }
+    done();
+});
+
+gulp.task('tsbundle', function (done) {
+    bundles(commonConfig.platform, done);
+});
+
+
+function bundles(platform, done) {
+    var webpackConfig = require(fs.realpathSync('./webpack.config.js'));
+    return gulp.src('.')
+        .pipe(webpackGulp(webpackConfig, webpack))
+        .pipe(gulp.dest('.'))
+        .on('end', function () {
+            done();
+        })
+        .on('error', function (e) {
+            process.exit(1);
+            done(e);
+        });
+
+}
+
 var jsoncombine = require('gulp-jsoncombine');
 var elasticlunr = require('elasticlunr');
 var sampleOrder = '';
 var sampleList;
 
-gulp.task('combine-samplelists', function () {
-    combineSampleList(platform, false);
+gulp.task('combine-samplelist', function (done) {
+    if (shelljs.exec('node --max-old-space-size=7168 ./node_modules/gulp/bin/gulp.js combine-samplelists').code !== 0) {
+        process.exit(1);
+    }
+    done();
 });
 
-gulp.task('styles', function() {
-    var styleFiles = glob.sync('./node_modules/@syncfusion/ej2/*.css');
-    for(var i=0; i < styleFiles.length; i++) {
-        shelljs.cp('-R',styleFiles[i], './styles');
-    }
+gulp.task('combine-samplelists', function (done) {
+    combineSampleList(commonConfig.platform, false, done);
 });
 
-gulp.task('skip-chunks', function () {
-    var skipComp = [];
-    var compPaths = glob.sync(`./src/*/`, {
-        silent: true,
-        ignore: [`./src/common/**/`, `./src`]
-    });
-    for (let compPath of compPaths) {
-        if (!fs.existsSync(`${compPath}/common.js`)) {
-            var componentName = compPath.replace('./src/', '').replace('/', '');
-            skipComp.push(componentName);
-        }
-    }
-    if (skipComp.length > 0) {
-        var skipContent = fs.readFileSync(path.resolve('./src/skipChunk.js'), 'utf-8');
-        skipContent = `${skipContent.split('[')[0]}${JSON.stringify(skipComp)}`;
-        fs.writeFileSync(path.resolve('./src/skipChunk.js'), skipContent, 'utf-8');
-    }
+gulp.task('combine-seo-list', function (done) {
+    combineSampleList(commonConfig.platform, isCompSample, true, done);
 });
 
-function combineSampleList(platform, done) {
+function combineSampleList(platform, seo, done) {
     var filename = platform === 'javascript' ? 'samplelist.js' : 'sampleList.ts';
+    if (seo) {
+        filename = 'sampleListSeo.js';
+    }
     sampleOrder = JSON.parse(fs.readFileSync(`./src/common/sampleOrder.json`));
     var sampleListPath = `./src/common/`;
+    var apiReference = {};
     if (sampleList && sampleList.length) {
         var controls = getControls();
         sampleOrder = getSampleOrder(controls);
@@ -145,12 +384,45 @@ function combineSampleList(platform, done) {
             var commonChunkSkip = configProps.cssComponent || [];
             var sList = `${platform === 'javascript' ?
                 'window.samplesList  =' : 'export let samplesList : any ='}` + JSON.stringify(result) + ';\n\n' +
+                `${platform === 'javascript' ? 'window.apiList =' : 'export let apiList:any='}` + JSON.stringify(apiReference) +
                 `${platform === 'typescript' ? `\n\n export let skipCommonChunk: string[] = ${JSON.stringify(commonChunkSkip)};` : ''}`;
+            var seoList = 'var samplesList =' + JSON.stringify(result) + ';\nexports.samplesList = samplesList;';
+            if (seo) {
+                return new Buffer(seoList);
+            }
             return new Buffer(sList);
 
         }))
         .pipe(gulp.dest(sampleListPath))
+        .on('end', function () {
+            done();
+        })
+        .on('error', function (e) {
+            done(e);
+            process.exit(1);
+        });
 }
+
+gulp.task('skip-chunks', function (done) {
+    var skipComp = [];
+    var compPaths = glob.sync(`./src/*/`, {
+        silent: true,
+        ignore: [`./src/common/**/`, `./src`]
+    });
+    for (let compPath of compPaths) {
+        if (!fs.existsSync(`${compPath}/common.js`)) {
+            var componentName = compPath.replace('./src/', '').replace('/', '');
+            skipComp.push(componentName);
+        }
+    }
+    if (skipComp.length > 0) {
+        var skipContent = fs.readFileSync(path.resolve('./src/skipChunk.js'), 'utf-8');
+        skipContent = `${skipContent.split('[')[0]}${JSON.stringify(skipComp)}`;
+        fs.writeFileSync(path.resolve('./src/skipChunk.js'), skipContent, 'utf-8');
+    }
+    done();
+});
+
 
 function getSamples(data, component) {
     var dataList = Object.keys(data);
@@ -180,7 +452,7 @@ function generateSearchIndex(sampleArray, samplelistpath, platform) {
             sample.component = component;
             sample.dir = directory;
             sample.parentId = puid;
-            sample.hideOnDevice = hideOnDevice;
+            sample.hideOnDevice = hideOnDevice ? hideOnDevice : sample.hideOnDevice;
             instance.addDoc(sample);
         }
     }
@@ -257,14 +529,16 @@ function isObject(obj) {
     return value === undefined || value === null;
 }
 
-gulp.task('serve', ['build'], function (done) {
-    var browserSync = require('browser-sync');
-    var bs = browserSync.create('Essential TypeScript');
-    var options = {
-        server: {
-            baseDir: './'
-        },
-        ui: false
-    };
-    bs.init(options, done);
+gulp.task('serve', function(done) {
+    runSequence('build',function() {
+        var browserSync = require('browser-sync');
+        var bs = browserSync.create('Essential TypeScript');
+        var options = {
+            server: {
+                baseDir: './'
+            },
+            ui: false
+        };
+        bs.init(options, done);
+    });
 });

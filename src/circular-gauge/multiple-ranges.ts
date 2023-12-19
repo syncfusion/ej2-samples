@@ -7,6 +7,7 @@ loadCultureFiles();
 (window as any).default = (): void => {
     let circulargauge: CircularGauge = new CircularGauge({
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             radius: '90%',
             startAngle: 230,

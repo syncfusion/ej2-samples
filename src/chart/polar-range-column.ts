@@ -69,7 +69,7 @@ import { Browser } from '@syncfusion/ej2-base';
         width: 120,
         change: () => {
             chart.series[0].type = <ChartDrawType>polarType.value;
-            chart.series[0].animation.enable = true;
+            chart.series[0].animation.enable = false;
             chart.refresh();
         }
     });

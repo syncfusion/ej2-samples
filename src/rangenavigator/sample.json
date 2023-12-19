@@ -1,0 +1,158 @@
+{
+    "name": "Range Navigator",
+    "directory": "rangenavigator",
+    "category": "Data Visualization",
+    "type": "preview",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default",
+            "category": "Range Navigator",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType"
+                ]
+            }
+        },
+        {
+            "url": "light-weight",
+            "name": "Lightweight",
+            "category": "Range Navigator",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType",
+                    "enableGrouping"
+                ]
+            }
+        },
+        {
+            "url": "date-time",
+            "name": "DateTime",
+            "category": "Axis",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType"
+                ]
+            }
+        },
+        {
+            "url": "double",
+            "name": "Numeric Axis",
+            "category": "Axis",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType",
+                    "enableGrouping"
+                ]
+            }
+        },   
+        {
+            "url": "logarithmic",
+            "name": "Logarithmic Axis",
+            "category": "Axis",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType",
+                    "enableGrouping"
+                ]
+            }
+        },
+        {
+            "url": "multilevel",
+            "name": "Multilevel Labels",
+            "category": "Axis",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType",
+                    "enableGrouping"
+                ]
+            }
+        },
+        {
+            "url": "period-selector",
+            "name": "Default",
+            "category": "Period Selector",
+            "api": {
+                "RangeNavigator": [
+                    "PeriodSelector",                    
+                    "series",
+                    "intervalType"                    
+                ]
+            }
+        },
+        {
+            "url": "period-selector-stocks",
+            "name": "Stock Chart",
+            "category": "Period Selector",
+            "api": {
+                "RangeNavigator": [
+                    "PeriodSelector",                    
+                    "series",
+                    "intervalType"                    
+                ]
+            }
+        },
+        {
+            "url": "emptydata",
+            "name": "Empty Points",
+            "category": "Customization",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType",
+                    "enableGrouping"
+                ]
+            }
+        },
+        {
+            "url": "filter",
+            "name": "Filter",
+            "category": "Customization",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType"
+                ]
+            }
+        },
+        {
+            "url": "export",
+            "name": "Print and Export",
+            "category": "Export",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "export"
+                ]
+            }
+        },
+        {
+            "url": "rtl",
+            "name": "RTL",
+            "category": "RTL",
+            "api": {
+                "RangeNavigator": [
+                    "valueType",                    
+                    "series",
+                    "intervalType",
+                    "enableGrouping"
+                ]
+            }
+        }            
+    ]
+}

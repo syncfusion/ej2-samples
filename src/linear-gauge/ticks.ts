@@ -41,6 +41,7 @@ loadCultureFiles();
         width:'150px',
         height:'350px',
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             line: {
                 width: 5
@@ -81,6 +82,7 @@ loadCultureFiles();
             size: '15px'
         },
         background:'transparent',
+        animationDuration: 2000,
         width:'150px',
         height:'350px',
         axes: [{
@@ -122,6 +124,7 @@ loadCultureFiles();
             size: '15px'
         },
         background:'transparent',
+        animationDuration: 2000,
         width:'150px',
         height:'350px',
         axes: [{
@@ -167,6 +170,7 @@ loadCultureFiles();
             size: '15px'
         },
         background:'transparent',
+        animationDuration: 2000,
         width:'150px',
         height:'350px',
         axes: [{

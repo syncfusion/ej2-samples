@@ -8,7 +8,8 @@ loadCultureFiles();
     let textColor = '#000000';
     let gauge: LinearGauge = new LinearGauge({ 
         orientation: 'Horizontal',
-        background:'transparent',  
+        background:'transparent',
+        animationDuration: 3000,
         axes: [{
             minimum: 0,
             maximum: 12000,

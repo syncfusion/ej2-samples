@@ -50,7 +50,7 @@ let splitObj: Splitter;
         updateValue();
     }
     function updateValue(): void {
-        srcArea.innerHTML = Marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+        srcArea.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
     }
     function updateOrientation(): void {
         if (Browser.isDevice) {

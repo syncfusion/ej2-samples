@@ -68,7 +68,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     });
     defaultAppBarObj.appendTo('#defaultAppBar');
 
-    let liveTimeInterval: NodeJS.Timeout | number;
+    let liveTimeInterval: number;
     let updateLiveTime: Function = (): void => {
         let scheduleTimezone: string = scheduleObj ? scheduleObj.timezone : 'Etc/GMT';
         let timeBtn: Element = document.querySelector('.current-time');

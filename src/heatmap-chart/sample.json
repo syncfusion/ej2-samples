@@ -3,6 +3,7 @@
     "directory": "heatmap-chart",
     "ftName": "heatmap-chart",
     "category": "Data Visualization",
+    "type": "update",
     "samples": [
         {
             "url": "default-functionalities",
@@ -201,6 +202,25 @@
                     "legendSettings"
                 ]
             }
+        },
+        {
+            "url": "label-template",
+            "name": "Label Template",
+            "category": "Features",
+            "description": "This demo for Essential JS2 Heatmap control shows how to place the label template in heatmap.",
+            "sourceFiles": [{"displayName": "label-template.ts", "path": "./src/heatmap-chart/label-template.ts"},
+                {"displayName": "label-templatehtml", "path": "./src/heatmap-chart/label-template.html"}],
+            "api": {
+                "HeatMap": [
+                    "titleSettings",
+                    "xAxis",
+                    "yAxis",
+                    "dataSource",
+                    "cellSettings",
+                    "legendSettings"
+                ]
+            },
+            "type": "new"
         },
         {
             "url": "multi-level-labels",

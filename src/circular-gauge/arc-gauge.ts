@@ -1,4 +1,4 @@
-import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme , IResizeEventArgs} from '@syncfusion/ej2-circulargauge';
+import { CircularGauge, Annotations, ILoadedEventArgs, GaugeTheme } from '@syncfusion/ej2-circulargauge';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 CircularGauge.Inject(Annotations);
 // custom code start
@@ -9,7 +9,7 @@ let sliderValue: number = 60;
 (window as any).default = (): void => {
     let circulargauge: CircularGauge = new CircularGauge({
         title: 'Progress Tracker',
-        titleStyle: { size: '16px', fontFamily: 'inherit' },
+        titleStyle: { fontFamily: 'inherit' },
         background:'transparent',
         axes: [{
             annotations: [{
@@ -57,10 +57,6 @@ let sliderValue: number = 60;
                 pointerWidth: 30
             }]
         }],
-        resized: (args: IResizeEventArgs) => {
-            args.gauge.axes[0].annotations[0].content = '<div id="pointervalue" style="font-size:35px;width:120px;text-align:center">' +
-            circulargauge.axes[0].pointers[0].value.toString() + '/100</div>';
-        },
         load: (args: ILoadedEventArgs) => {
             // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
@@ -73,6 +69,9 @@ let sliderValue: number = 60;
             let annotation: Element = document.getElementById(args.gauge.element.id + '_Annotations_0');
             if (annotation) {
                 annotationRender('slider', circulargauge.axes[0].pointers[0].value);
+                if (document.getElementById('pointervalue')) {
+                    document.getElementById('pointervalue').innerHTML = circulargauge.axes[0].pointers[0].value.toString() + '/100';
+                }
             }
         }
     });

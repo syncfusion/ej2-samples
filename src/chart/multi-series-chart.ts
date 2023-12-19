@@ -74,7 +74,7 @@ Chart.Inject(StackingColumnSeries, LineSeries, Category, ColumnSeries, Tooltip, 
                 dataSource: [
                     { x: '2005', y: -0.8 }, { x: '2006', y: 0 },
                     { x: '2007', y: -1 }, { x: '2008', y: -0.35 },
-                    { x: '2009', y: -0.3 }, { x: '2010', y: 0.5 },
+                    { x: '2009', y: -0.3 }, { x: '2010', y: -0.5 },
                     { x: '2011', y: 0 }, { x: '2012', y: -0.4 },
                     { x: '2013', y: 0 }, { x: '2014', y: -0.6 }, { x: '2015', y: -0.3 }
                 ],

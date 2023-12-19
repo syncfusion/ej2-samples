@@ -9,7 +9,7 @@
             "url": "treegrid-overview", "name": "Overview", "category":"Tree Grid","api":{"TreeGrid":["dataSource","childMapping","height","columns","allowReordering","allowFiltering","allowSorting","filterSettings","queryCellInfo"] },
          "description": "This JavaScript Tree Grid example demonstrates the overview in JavaScript Tree Grid Component. Explore here for more details."
          },
-         { "url": "live-data", "type": "new", "name": "Live Data", "category": "Tree Grid","api": { "TreeGrid": ["dataSource","childMapping", "columns", "enableVirtualization", "enableVirtualMaskRow", "allowSelection", "height", "rowHeight", "queryCellInfo"]},
+         { "url": "live-data", "name": "Live Data", "category": "Tree Grid","api": { "TreeGrid": ["dataSource","childMapping", "columns", "enableVirtualization", "enableVirtualMaskRow", "allowSelection", "height", "rowHeight", "queryCellInfo"]},
          "description":"This demo for Essential JS 2 Tree Grid component shows the grid Local Live Data Update"},
         {  
             "url": "default", "name": "Default Functionalities", "category":"Tree Grid","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","height","columns"] },
@@ -174,7 +174,7 @@
          {
             "url":"infinite-scrolling", "name": "Infinite Scrolling", "description":"This sample demonstrates the Tree Grid component with infinite scrolling feature.", "category":"Scrolling","api":{"TreeGrid":["dataSource","enableInfiniteScrolling","dataBound","height","columns"] }
          },
-         {"url":"aggregate-default", "name": "Default Aggregate", "category": "Aggregates","api":{"TreeGrid":["dataSource","childMapping", "treeColumnIndex","height","columns","aggregates"] },
+         {"url":"aggregate-default", "type": "update", "name": "Default Aggregate", "category": "Aggregates","api":{"TreeGrid":["dataSource","childMapping", "treeColumnIndex","height","columns","aggregates", "toolbar", "toolbarClick", "allowPdfExport", "allowExcelExport"] },
             "description": "This demo explains how to display the summary values such as average, minimum, etc., for the columns in Syncfusion TypeScript Tree Grid control."
          },
          {"url":"custom-aggregate", "name": "Custom Aggregate", "category": "Aggregates","api":{"TreeGrid":["dataSource","width","childMapping", "treeColumnIndex","height","columns","aggregates"] },

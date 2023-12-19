@@ -10,7 +10,7 @@ loadCultureFiles();
         axes: [{
             lineStyle: { width: 1.5 },
             background:'transparent',
-            radius: '93%',
+            radius: '95%',
             labelStyle: {
                 position: 'Inside', autoAngle: true,
                 hiddenLabel: 'None',

@@ -6,40 +6,42 @@
     </div>
 </div>
 <!-- property panel -->
-<div class="col-lg-3 property-section">
-    <table id="property" title="Properties" style="width: 100%;">
+<div class="col-md-4 property-section">
+    <div class="property-panel-section">
+    <table id="property" title="Properties" style="width: 100%; margin-left: -10px;">
         <colgroup>
-            <col span="1" style="width: 70%;">
-            <col span="1" style="width: 30%;">
+            <col span="1" style="width: 60%;">
+            <col span="1" style="width: 40%;">
         </colgroup>
         <tbody>
             <tr style="height: 45px">
-                <td>
-                    <div class="property-text" style="width: 110%;"> Combine Ranges</div>
+                <td style="width: 40%">
+                    <div id="checkbox1" class="property-text" style="width: 110%;font-size: 14px;"> Combine Ranges</div>
                 </td>
                 <td>
-                    <div style="margin-left: 30px; margin-top:-10px;" class="property-text">
+                    <div style="margin-top:-10px;" class="property-text">
                         <input type="checkbox" id="combineRange" checked />
                     </div>
                 </td>
             </tr>
             <tr style="height: 45px">
-                <td>
-                    <div style="width: 116%;" class="property-text"> Gap Between Ranges</div>
+                <td style="width: 40%">
+                    <div id="checkbox2" style="width: 116%;font-size: 14px;" class="property-text"> Gap Between Ranges</div>
                 </td>
                 <td>
-                    <div style="margin-left: 30px; margin-top:-10px;" class="property-text">
+                    <div style="margin-top:-10px;" class="property-text">
                         <input type="checkbox" id="range" checked />
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+    </div>
 </div>
 <style>
-    div.property-text {
-        padding-left: 0px;
-        padding-top: 0px;
+    .e-view.fluent #checkbox1, .e-view.fluent-dark #checkbox1,
+    .e-view.fluent #checkbox2, .e-view.fluent-dark #checkbox2 {
+        margin-top: -4px;
     }
 </style>
 <script id='pointerValue' type="text/x-template">

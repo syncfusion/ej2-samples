@@ -27,7 +27,7 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, DataLabel, Tooltip);
         primaryYAxis:
         {
             
-            labelFormat: '{value}%', majorTickLines: { width: 0 }
+            labelFormat: '{value}%', majorTickLines: { width: 0 }, title: 'GDP Growth Rate'
         },
         chartArea: {
             border: {   
@@ -63,7 +63,7 @@ Chart.Inject(ColumnSeries, LineSeries, Category, Legend, DataLabel, Tooltip);
         ],
 
         //Initializing Chart title
-        title: 'Real GDP Growth',
+        title: 'GDP by Countries',
         //Initializing User Interaction Tooltip and Crosshair
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

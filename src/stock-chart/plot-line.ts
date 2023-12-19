@@ -24,7 +24,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, St
         },
 
         chartArea: { border: { width: 0 } },
-        primaryXAxis: { majorGridLines: { color: 'transparent' } },
+        primaryXAxis: { majorGridLines: { color: 'transparent' }},
         series: [
             {
                 dataSource: amzn, xName: 'x', yName: 'close', type: 'Line', name: 'google'

@@ -22,11 +22,12 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
             lineStyle: { color: 'transparent' },
             majorTickLines: { color: 'transparent', height: 0 },
         },
-        primaryXAxis: { valueType: 'DateTimeCategory', majorGridLines: { color: 'transparent' }, crosshairTooltip: { enable: true } },
+        primaryXAxis: { valueType: 'DateTimeCategory', majorGridLines: { color: 'transparent' }, crosshairTooltip: { enable: true }},
         series: [
             {
                 dataSource: datetimeCategoryData,
                 type: 'Spline'
+
             },
         ],
         tooltip: {

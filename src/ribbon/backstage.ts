@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Ribbon, ItemOrientation, RibbonItemSize, RibbonItemType, RibbonTabModel, RibbonColorPicker, DisplayMode, FileMenuSettingsModel, RibbonFileMenu, BackstageItemModel, RibbonBackstage, LauncherClickEventArgs } from '@syncfusion/ej2-ribbon';
+import { Ribbon, ItemOrientation, RibbonItemSize, RibbonItemType, RibbonTabModel, RibbonColorPicker, DisplayMode, RibbonGroupButtonSelection, RibbonFileMenu, BackstageItemModel, RibbonBackstage, LauncherClickEventArgs } from '@syncfusion/ej2-ribbon';
 import { ListView, SelectEventArgs as SelectListEventArgs } from "@syncfusion/ej2-lists";
 import { MenuEventArgs } from "@syncfusion/ej2-navigations";
 import { SelectEventArgs } from "@syncfusion/ej2-dropdowns";
@@ -64,6 +64,7 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
             isCollapsible: false,
             enableGroupOverflow: true,
             orientation: ItemOrientation.Row,
+            overflowHeader: 'More Font Options',
             groupIconCss: 'e-icons e-bold',
             cssClass: 'font-group',
             collections: [{
@@ -71,9 +72,11 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
                     type: RibbonItemType.ComboBox,
                     comboBoxSettings: {
                         dataSource: fontStyle,
+                        label: 'Font Style',
                         index: 3,
                         allowFiltering: true,
-                        width: '150px',
+                        width: '115px',
+                        popupWidth: '150px',
                         change: (args: SelectEventArgs) => {
                             if (args.itemData) {
                                 updateContent("Font Style -> " + args.itemData.text)
@@ -84,6 +87,7 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
                     type: RibbonItemType.ComboBox,
                     comboBoxSettings: {
                         dataSource: fontSize,
+                        label: 'Font Size',
                         index: 3,
                         width: '65px',
                         popupWidth: '85px',
@@ -148,6 +152,64 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
                         iconCss: 'e-icons e-change-case',
                         isToggle: true,
                         clicked: () => { updateContent("Change Case") }
+                    }
+                }]
+            }]
+        }, {
+            id: 'paragraph',
+            header: "Paragraph",
+            orientation: ItemOrientation.Row,
+            groupIconCss: 'e-icons e-align-center',
+            collections: [{
+                items: [{
+                    type: RibbonItemType.Button,
+                    allowedSizes: RibbonItemSize.Small,
+                    buttonSettings: {
+                        iconCss: 'e-icons e-decrease-indent',
+                        content: 'Decrease Indent',
+                        clicked: () =>  { updateContent("Decrease Indent") }
+                    }
+                }, {
+                    type: RibbonItemType.Button,
+                    allowedSizes: RibbonItemSize.Small,
+                    buttonSettings: {
+                        iconCss: 'e-icons e-increase-indent',
+                        content: 'Increase Indent',
+                        clicked: () =>  { updateContent("Increase Indent") }
+                    }
+                }, {
+                    type: RibbonItemType.Button,
+                    allowedSizes: RibbonItemSize.Small,
+                    buttonSettings: {
+                        iconCss: 'e-icons e-paragraph',
+                        content: 'Paragraph',
+                        clicked: () =>  { updateContent("Paragraph Mark") }
+                    }
+                }]
+            }, {
+                items: [{
+                    type: RibbonItemType.GroupButton,
+                    allowedSizes: RibbonItemSize.Small,
+                    groupButtonSettings: {
+                        selection: RibbonGroupButtonSelection.Single,
+                        header: 'Alignment',
+                        items: [{
+                            iconCss: 'e-icons e-align-left',
+                            selected: true,
+                            click: () =>  { updateContent("Align Left") }
+                        },
+                        {
+                            iconCss: 'e-icons e-align-center',
+                            click: () =>  { updateContent("Align Center") }
+                        },
+                        {
+                            iconCss: 'e-icons e-align-right',
+                            click: () =>  { updateContent("Align Right") }
+                        },
+                        {
+                            iconCss: 'e-icons e-justify',
+                            click: () =>  { updateContent("Justify") }
+                        }]
                     }
                 }]
             }]
@@ -263,6 +325,7 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
             showLauncherIcon: true,
             orientation: ItemOrientation.Row,
             enableGroupOverflow: true,
+            overflowHeader: 'Illustrations',
             groupIconCss: 'e-icons e-image',
             collections: [{
                 items: [{
@@ -360,7 +423,7 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
                 }]
             }]
         }, {
-            header: 'Link',
+            header: 'Links',
             groupIconCss: 'e-icons e-link',
             isCollapsible: false,
             collections: [{
@@ -476,7 +539,7 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
     let list: ListView = new ListView({
         showHeader: true,
         headerTitle: 'Insert Picture From',
-        dataSource: ['This device', 'Stock Images', 'Online Images'],
+        dataSource: ['This Device', 'Stock Images', 'Online Images'],
         select: (args: SelectListEventArgs) => { updateContent("Pictures -> " + args.text) }
     });
     list.appendTo('#pictureList');
@@ -566,19 +629,19 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
     }
     function getBackstageContent(item: string): string {
         let homeContentTemplate = `
-        <div id="home-wrapper">
+        <div class="home-wrapper">
             {{newSection}}
             {{recentSection}}
         </div>`;
         let newSection = `
-        <div id="new-section" class='new-wrapper'>
+        <div class='new-wrapper'>
             <div class="section-title"> New </div>
             <div class="category_container">
                 <div class="doc_category_image"></div> <span class="doc_category_text"> New document </span>
             </div>
         </div>`;
         let recentSection = `
-        <div id="block-wrapper">
+        <div class="block-wrapper">
             <div class="section-title"> Recent </div>
             {{recentWrapper}}
         </div>`;
@@ -596,7 +659,7 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonBackstage);
                 </tbody>
             </table>
         </div>`;
-        let blockSection = "<div id='block-wrapper'> <div class='section-title'> {{blockTitle}} </div> {{blockSection}} </div>";
+        let blockSection = "<div class='block-wrapper'> <div class='section-title'> {{blockTitle}} </div> {{blockSection}} </div>";
         let content = "";
         switch (item) {
             case 'home': {

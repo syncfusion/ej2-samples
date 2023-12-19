@@ -14,7 +14,15 @@ Gantt.Inject(Selection, RowDD, Edit);
             dataSource: projectNewData,
             height: '450px',
             allowRowDragAndDrop: true,
+            allowTaskbarDragAndDrop: true,
             treeColumnIndex: 1,
+            editSettings: {
+                allowAdding: true,
+                allowEditing: true,
+                allowDeleting: true,
+                allowTaskbarEditing: true,
+                showDeleteConfirmDialog: true
+            },
             splitterSettings: {
                 columnIndex: 3
             },

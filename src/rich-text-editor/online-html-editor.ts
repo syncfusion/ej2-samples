@@ -37,8 +37,8 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
           'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
           'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
           'Outdent', 'Indent',
-          'CreateTable', 'CreateLink', 'Image', '|', 'ClearFormat',
-          '|', 'Undo', 'Redo'
+          'CreateLink', 'Image', 'Video', 'Audio', 'CreateTable', '|', 'FormatPainter', 'ClearFormat',
+          '|', 'EmojiPicker', 'SourceCode', '|', 'Undo', 'Redo'
         ]
       },
       saveInterval: 1, actionComplete: updateValue, change: onChange,

@@ -110,6 +110,7 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             }
         ],
         pointRender: pointRender,
+        highlightColor: 'transparent',
         legendSettings: { visible: false },
         //Initializing Chart title
         title: 'Literacy rate by Country in 2015', tooltip: { enable: true, header:"<b>${point.x}</b>", format: "Rate : <b>${point.text}</b>"  },

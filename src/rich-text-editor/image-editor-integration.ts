@@ -2,10 +2,11 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor Image Editor integration sample
  */
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, NodeSelection } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, NodeSelection, ToolbarClickEventArgs } from '@syncfusion/ej2-richtexteditor';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
 import { Dialog } from '@syncfusion/ej2-popups';
 import { ImageEditor } from '@syncfusion/ej2-image-editor';
+import { isNullOrUndefined  as isNOU } from '@syncfusion/ej2-base';
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -42,9 +43,8 @@ import { ImageEditor } from '@syncfusion/ej2-image-editor';
               },
             ],
           },
-        
           toolbarClick: onToolbarClick,
-     });
+    });
     defaultRTE.appendTo('#defaultRTE');
 
       let dialogObj: Dialog = new Dialog({
@@ -59,11 +59,12 @@ import { ImageEditor } from '@syncfusion/ej2-image-editor';
       });
       dialogObj.appendTo('#defaultDialog');
 
-    function onToolbarClick(args: any){
+    function onToolbarClick(args: ToolbarClickEventArgs){
         if (args.item.tooltipText === 'Image Editor') {
             range = selection.getRange(document);
             saveSelection = selection.save(range, document);
             dialogObj.show();
+            defaultRTE.quickToolbarModule.imageQTBar.hidePopup();
           }
     }
 
@@ -72,8 +73,8 @@ import { ImageEditor } from '@syncfusion/ej2-image-editor';
           defaultRTE.formatter.saveData();
         }
         saveSelection.restore();
-        let canvas: any = document.createElement('CANVAS');
-        let ctx: any = canvas.getContext('2d');
+        let canvas = document.createElement('CANVAS') as HTMLCanvasElement;
+        let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
         const imgData = imageEditorObj.getImageData();
         canvas.height = imgData.height;
         canvas.width = imgData.width;
@@ -93,20 +94,24 @@ import { ImageEditor } from '@syncfusion/ej2-image-editor';
       
       function onCancel() {
         dialogObj.hide();
+        imageEditorObj.reset();
       }
       
       function OnOpen() {
-        imageEditorObj = new ImageEditor({
-          height: '450px',
-        });
-        imageEditorObj.appendTo('#imageeditor');
-        let imageELement: any;
-        let selectNodes: any =
-          defaultRTE.formatter.editorManager.nodeSelection.getNodeCollection(range);
-        if (selectNodes.length == 1 && selectNodes[0].tagName == 'IMG') {
-          imageELement = selectNodes[0];
+        if (isNOU(imageEditorObj)) {
+          imageEditorObj = new ImageEditor({
+            height: '450px',
+          });
+          imageEditorObj.appendTo('#imageeditor');
+        }
+        let imageELement: HTMLImageElement;
+        let selectNodes: Node[] = defaultRTE.formatter.editorManager.nodeSelection.getNodeCollection(range);
+        if (selectNodes.length == 1 && (selectNodes[0] as HTMLElement).tagName == 'IMG') {
+          imageELement = selectNodes[0] as HTMLImageElement;
           imageELement.crossOrigin = 'anonymous';
-          let canvas: any = document.createElement('CANVAS');
+          let imageUrl = imageELement.src + '?timestamp=' + Date.now();
+          imageELement.src = imageUrl;
+          let canvas = document.createElement('CANVAS') as HTMLCanvasElement;
           let ctx = canvas.getContext('2d');
           canvas.height = imageELement.offsetHeight;
           canvas.width = imageELement.offsetWidth;

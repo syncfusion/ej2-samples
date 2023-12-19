@@ -8,7 +8,7 @@ Chart.Inject(SplineAreaSeries, DateTime, Legend, Zoom, ScrollBar);
  * Sample for Zooming in chart
  */
  let selectedTheme: string = location.hash.split('/')[1];
- selectedTheme = selectedTheme ? selectedTheme : 'Material';
+ selectedTheme = selectedTheme ? selectedTheme : 'material';
  let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
  selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
  let themes : string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'materialdark', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast', 'fluent', 'fluentdark', 'material3', 'material3dark'];
@@ -75,7 +75,7 @@ Chart.Inject(SplineAreaSeries, DateTime, Legend, Zoom, ScrollBar);
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         }

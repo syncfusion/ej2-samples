@@ -61,10 +61,13 @@ loadCultureFiles();
         },
         resized: (args: IResizeEventArgs) => {
             window.location.reload();
+        },
+        loaded: (args: ILoadedEventArgs) => {
+            updateGauge();
         }
     });
     circulargauge.appendTo('#gauge');
-    updateGauge();
+    
 };
 function updateGauge() {
     let annotationGauge: CircularGauge = new CircularGauge({
@@ -81,7 +84,7 @@ function updateGauge() {
                 value: 90,
                 radius: '45%', markerWidth: 12, markerHeight: 12,
                 type: 'Marker', markerShape: 'Triangle', color: 'Orange',
-                animation: { enable: false }
+                animation: { enable: true, duration: 500 }
             }], startAngle: 0, endAngle: 0, radius: '60%', lineStyle: { width: 0 }
         }],
         load: (args: ILoadedEventArgs) => {

@@ -32,8 +32,6 @@ BulletChart.Inject(BulletTooltip);
         height: '400',
         minimum: 0, maximum: 30, interval: 5,
         labelFormat: '{value}%',
-        title: 'Profit in Percent',
-        titlePosition: 'Top',
         orientation: 'Vertical'
     });
     chart.appendTo('#orientation');

@@ -22,7 +22,7 @@ import { Browser } from '@syncfusion/ej2-base';
         {
             minimum: 83, maximum: 87, interval: 1,
             title: 'Millions in USD',
-            labelFormat: '{value}M',
+            labelFormat: '{value} M',
             rowIndex: 0,
             crosshairTooltip: {
                 enable: true
@@ -73,7 +73,7 @@ import { Browser } from '@syncfusion/ej2-base';
         legendSettings: { visible: false },
         width: Browser.isDevice ? '100%' : '75%',
         //Initializing Chart title
-        title: 'Conns,Inc Stock Details',
+        title: 'Conns, Inc Stock Details',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';

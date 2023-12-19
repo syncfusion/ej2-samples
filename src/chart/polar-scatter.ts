@@ -44,7 +44,7 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries,
 
         //Initializing Primary Y Axis
         primaryYAxis: {
-            minimum: 0, maximum: 8, interval: 2
+            minimum: 0, maximum: 8, interval: 2, labelFormat: '{value}%'
         },
 
         //Initializing Chart Series
@@ -69,10 +69,10 @@ Chart.Inject(Tooltip, Legend, PolarSeries, Category, ScatterSeries, RadarSeries,
             },
         ],
         //Initializing Chart Title
-        title: 'Real GDP Growth',
+        title: 'GDP by Countries',
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true, format: '${point.text} : <b>${point.y}%</b>'
+            enable: true, format: '${point.text} : <b>${point.y}</b>'
         },
         legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {

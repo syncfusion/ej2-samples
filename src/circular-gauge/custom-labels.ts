@@ -5,6 +5,7 @@ let textValues: string[] = ['0', '2', '5', '10', '20', '50', '100', '150', '200'
 (window as any).default = (): void => {
     let circulargauge: CircularGauge = new CircularGauge({
         background: 'transparent',
+        animationDuration: 2000,
         axes: [{
             lineStyle: { width: 0 },
             startAngle: 210, endAngle: 150, minimum: 0, maximum: 8, radius: '80%',

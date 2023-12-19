@@ -11,7 +11,6 @@ loadCultureFiles();
         title: 'Shot Put Distance',
         background:'transparent',
         titleStyle: {
-            size: '16px',
             fontFamily: 'inherit'
         },
         centerY: '57%',

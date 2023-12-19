@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ListView Template Sample
  */
@@ -19,8 +18,7 @@ let template: string = '<div ${if(category!==null)} class = "clearfix desc e-lis
 '<span class="share"></span></div> <div class="timeStamp">' +
 '${timeStamp} </div> ${/if} </div>';
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     //Initialize ListView component
     let listviewInstance: ListView = new ListView({
         //Set defined data to dataSource property

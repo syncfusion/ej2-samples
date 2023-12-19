@@ -13,7 +13,7 @@ Schedule.Inject(Month, TimelineMonth, Resize, DragAndDrop);
     let date: Date = new Date(2023, 3, 1);
     let resourceData: Record<string, any>[] = generateResourceData(1, 1000, 'Resource');
     let dataManager: DataManager = new DataManager({
-        url: 'https://ej2services.syncfusion.com/js/development/api/VirtualEventData',
+        url: 'https://services.syncfusion.com/js/production/api/VirtualEventData',
         adaptor: new WebApiAdaptor,
         crossDomain: true
     });

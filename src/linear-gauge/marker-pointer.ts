@@ -30,6 +30,7 @@ loadCultureFiles();
         height: '350px',
         width:'150px',
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             line: {
                 width: 5
@@ -38,7 +39,6 @@ loadCultureFiles();
                 width: 5,
                 value: 40,
                 height: 5,
-                enableDrag: true,
                 placement: 'Near',
                 type: 'Bar',
                 offset: 12,
@@ -98,6 +98,7 @@ loadCultureFiles();
         width:'150px',
         title: 'Circle',
         background:'transparent',
+        animationDuration: 2000,
         titleStyle: {
             fontFamily: "inherit",
             fontWeight: '499'
@@ -110,7 +111,6 @@ loadCultureFiles();
                 width: 5,
                 value: 20,
                 height: 5,
-                enableDrag: true,
                 placement: 'Near',
                 type: 'Bar',
                 offset: 12,
@@ -166,79 +166,8 @@ loadCultureFiles();
                 gauge3.setPointerValue(0, 0, args.currentValue);
             }
         },
-        height: '350px',
-        width:'150px',
-        title: 'Diamond',
         background:'transparent',
-        titleStyle: {
-            fontFamily: "inherit",
-            fontWeight: '499'
-        },
-        axes: [{
-            line: {
-                width: 5
-            },
-            pointers: [{
-                width: 5,
-                value: 50,
-                height: 5,
-                enableDrag: true,
-                placement: 'Near',
-                type: 'Bar',
-                offset: 12,
-                color: '#0074E3',
-                animationDuration: 1500
-            }, {
-                width: 15,
-                value: 50,
-                height: 15,
-                enableDrag: true,
-                placement: 'Near',
-                markerType: 'Diamond',
-                animationDuration: 1500
-            }
-            ],
-            minimum: 0,
-            maximum: 100,
-            opposedPosition: true,
-            majorTicks: {
-                interval: 20, height: 7, width: 1
-            },
-            minorTicks: {
-                interval: 10, height: 3
-            },
-            labelStyle: { font: { fontFamily: 'inherit' } }
-        }],
-        load: (args: ILoadEventArgs) => {
-            // custom code start
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
-            // custom code end
-        }
-    });
-    gauge3.appendTo('#gaugeDiamond');
-
-    let gauge4: LinearGauge = new LinearGauge({
-        dragStart: function (args) {
-            if (args.pointerIndex == 1) {
-                gauge4.axes[0].pointers[0].animationDuration = 0;
-                gauge4.axes[0].pointers[1].animationDuration = 0;
-            }
-        },
-        dragEnd: function (args) {
-            if (args.pointerIndex == 1) {
-                gauge4.axes[0].pointers[0].animationDuration = 1500;
-                gauge4.axes[0].pointers[1].animationDuration = 1500;
-            }
-        },
-        dragMove(args: IPointerDragEventArgs): void {
-            if (args.pointerIndex == 1) {
-                gauge4.setPointerValue(0, 0, args.currentValue);
-            }
-        },
-        background:'transparent',
+        animationDuration: 2000,
         height: '350px',
         width:'150px',
         title: 'Rectangle',
@@ -266,7 +195,6 @@ loadCultureFiles();
                 width: 5,
                 value: 30,
                 height: 5,
-                enableDrag: true,
                 placement: 'Near',
                 type: 'Bar',
                 offset: 12,
@@ -285,6 +213,82 @@ loadCultureFiles();
             minimum: 0,
             maximum: 100,
             opposedPosition: true
+        }],
+        load: (args: ILoadEventArgs) => {
+            // custom code start
+            let selectedTheme: string = location.hash.split('/')[1];
+            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            // custom code end
+        }
+    });
+    gauge3.appendTo('#gaugeDiamond');
+
+    let gauge4: LinearGauge = new LinearGauge({
+        dragStart: function (args) {
+            if (args.pointerIndex == 1) {
+                gauge4.axes[0].pointers[0].animationDuration = 0;
+                gauge4.axes[0].pointers[1].animationDuration = 0;
+            }
+        },
+        dragEnd: function (args) {
+            if (args.pointerIndex == 1) {
+                gauge4.axes[0].pointers[0].animationDuration = 1500;
+                gauge4.axes[0].pointers[1].animationDuration = 1500;
+            }
+        },
+        dragMove(args: IPointerDragEventArgs): void {
+            if (args.pointerIndex == 1) {
+                gauge4.axes[0].pointers[1].text = Math.round(args.currentValue).toString() + " Points";
+                gauge4.setPointerValue(0, 0, args.currentValue);
+            }
+        },
+        height: '350px',
+        width:'168px',
+        title: 'Text',
+        background:'transparent',
+        animationDuration: 2000,
+        titleStyle: {
+            fontFamily: "inherit",
+            fontWeight: '499'
+        },
+        axes: [{
+            line: {
+                width: 5
+            },
+            pointers: [{
+                width: 5,
+                value: 50,
+                height: 5,
+                placement: 'Near',
+                type: 'Bar',
+                offset: 12,
+                color: '#0074E3',
+                animationDuration: 1500
+            }, {
+                width: 15,
+                value: 50,
+                height: 15,
+                enableDrag: true,
+                placement: 'Near',
+                markerType: 'Text',
+                text:'50 Points',
+                textStyle:{ fontFamily: 'inherit' },
+                animationDuration: 1500,
+                offset:-10
+            }
+            ],
+            minimum: 0,
+            maximum: 100,
+            opposedPosition: true,
+            majorTicks: {
+                interval: 20, height: 7, width: 1
+            },
+            minorTicks: {
+                interval: 10, height: 3
+            },
+            labelStyle: { font: { fontFamily: 'inherit' } }
         }],
         load: (args: ILoadEventArgs) => {
             // custom code start
@@ -319,6 +323,7 @@ loadCultureFiles();
         width:'150px',
         title: 'Multiple pointers',
         background:'transparent',
+        animationDuration: 2000,
         titleStyle: {
             fontFamily: "inherit",
             fontWeight: '499'
@@ -343,7 +348,6 @@ loadCultureFiles();
                 width: 5,
                 value: 10,
                 height: 5,
-                enableDrag: true,
                 placement: 'Near',
                 type: 'Bar',
                 offset: 12,

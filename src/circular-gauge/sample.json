@@ -10,7 +10,8 @@
             "name": "Default Functionalities",
             "description": "This demo for Essential JS2 Circular Gauge control illustrates the default rendering of circular gauge.",
             "category": "Circular Gauge",
-            "api":{"CircularGauge": [ "axes"]}
+            "api":{"CircularGauge": [ "axes"]},
+            "type": "update"
         },
         {
             "url": "ticks-and-labels",
@@ -32,7 +33,7 @@
             "description": "This demo for Essential JS2 Circular Gauge control illustrates the custom labels in the circular gauge.",
             "category": "Axis",
             "api":{"CircularGauge": ["axes"]},
-            "type": "new"
+            "type": "update"
         },
         {
             "url": "range-color-for-axis",
@@ -40,15 +41,14 @@
             "description": "This demo for Essential JS2 Circular Gauge control demonstrate the range color for axis in the circular gauge..",
             "category": "Axis",
             "api":{"CircularGauge": ["axes"]},
-            "type": "new"
+            "type": "update"
         },
         {
             "url": "axis-background",
             "name": "Axis Background",
             "description": "This demo for Essential JS2 Circular Gauge control demonstrate the axis background in the circular gauge..",
             "category": "Axis",
-            "api":{"CircularGauge": ["axes"]},
-            "type": "new"
+            "api":{"CircularGauge": ["axes"]}
         },
         {
             "url": "pointer-types",
@@ -62,8 +62,7 @@
             "name": "Text Pointer",
             "description": "This demo for Essential JS2 Circular Gauge control visualizes the text pointer in the circular gauge.",
             "category": "Pointer",
-            "api":{"CircularGauge": [ "axes", "centerY"]},
-            "type": "new"
+            "api":{"CircularGauge": [ "axes", "centerY"]}
         },
         {
             "url": "image-pointer",
@@ -85,7 +84,7 @@
             "description": "This demo for Essential JS2 Circular Gauge control illustrates the multiple ranges in the circular gauge.",
             "category": "Range",
             "api":{"CircularGauge": [ "axes"]},
-            "type": "new"
+            "type": "update"
         },
         {
             "url": "legend",
@@ -118,7 +117,8 @@
             "name": "Tooltip",
             "description": "This demo for Essential JS2 Circular Gauge control visualizes the tooltip for circular gauge pointer and ranges.",
             "category": "User Interaction",
-            "api":{"CircularGauge": ["axes", "tooltip", "tooltipRender"]}
+            "api":{"CircularGauge": ["axes", "tooltip", "tooltipRender"]},
+            "type": "update"
         },
         {
             "url": "print-export",
@@ -131,16 +131,14 @@
             "name": "Clock",
             "description": "This demo for Essential JS2 Circular Gauge control illustrates a clock by using annotation feature in the gauge.",
             "category": "Use Cases",
-            "api":{"CircularGauge": ["axes", "axisLabelRender"]},
-            "type": "new"
+            "api":{"CircularGauge": ["axes", "axisLabelRender"]}
         },
         {
             "url": "radial-slider",
             "name": "Radial Slider",
             "description": "Thhis demo for Essential JS2 Circular Gauge control to design the radial slider by using the circular gauge.",
             "category": "Use Cases",
-            "api":{"CircularGauge": ["axes", "axisLabelRender"]},
-            "type": "new"
+            "api":{"CircularGauge": ["axes", "axisLabelRender"]}
         },
         {
             "url": "direction-compass",
@@ -161,8 +159,7 @@
             "name": "Sleep Tracker",
             "category": "Use Cases",
             "description": "This demo for Essential JS2 Circular Gauge control to design sleep tracker by using circular gauge.",
-            "api":{"CircularGauge": ["axes"]},
-            "type": "new"
+            "api":{"CircularGauge": ["axes"]}
         },
         {
             "url": "data-sample",

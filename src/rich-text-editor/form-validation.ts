@@ -13,4 +13,10 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar);
     defaultRTE.appendTo('#defaultRTE');
 
     new FormValidator('#form-element');
+    (document.querySelector('.form-vertical') as HTMLElement).addEventListener('submit', function (e) {
+        if(((document.querySelector('.e-rte-content .e-content') as HTMLElement).textContent as string).trim() === '' ) {
+            e.preventDefault();
+        }
+    });
 };
+

@@ -1,12 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { TreeGrid, Freeze } from '@syncfusion/ej2-treegrid';
+import { TreeGrid, Freeze, Sort } from '@syncfusion/ej2-treegrid';
 import { freezeDirection, Column} from '@syncfusion/ej2-grids'
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { sampleData } from './data-source';
 
 
-TreeGrid.Inject(Freeze);
+TreeGrid.Inject(Freeze, Sort);
 
 /**
  * Grid frozen rows and columns sample

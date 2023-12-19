@@ -37,7 +37,6 @@
             "url": "directory-upload",
             "name": "Directory upload",
             "category": "File Manager",
-            "type": "update",
             "api": { "FileManager": ["ajaxSettings", "view"] },
             "description": "This example demonstrates how to upload the folder (directory) in a JavaScript File Manager."
         },
@@ -56,18 +55,19 @@
             "description": "Example shows how to render the File Manager component inside the Dialog component in a JavaScript (TypeScript) File Manager."
         },
         {
+            "url": "access-control",
+            "name": "Access Control",
+            "category": "Use Case",
+            "type": "new",
+            "api": { "FileManager": ["ajaxSettings"] },
+            "description": "This example of File Manager component shows how to restrict the file operations."
+        },
+        {
             "url": "azure-service",
             "name": "Azure Blob Provider",
             "category": "Cloud Service Providers",
             "api": { "FileManager": ["ajaxSettings", "view"] },
             "description": "This example demonstrates how to configure and use the azure service in a JavaScript (TypeScript) File Manager."
-        },
-        {
-            "url": "sql-server-provider",
-            "name": "SQL Database Provider",
-            "category": "Cloud Service Providers",
-            "api": { "FileManager": ["ajaxSettings", "view"] },
-            "description": "This example demonstrates how to configure and use the sql server database service in a JavaScript (TypeScript) File Manager."
         },
         {
             "url": "nodejs-file-provider",

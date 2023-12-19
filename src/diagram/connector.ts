@@ -184,7 +184,7 @@ function applyConnectorStyle(
             (document.getElementById('sourceDecorator2') as any).value='Circle';
         } else {
             connector.sourceDecorator = { shape: 'None' };
-            (document.getElementById('sourceDecorator2') as any).value='Circle';
+            (document.getElementById('sourceDecorator2') as any).value='None';
         }
         connector.targetDecorator = {
             style: {
@@ -192,7 +192,7 @@ function applyConnectorStyle(
                 fill: connector.style.strokeColor, strokeWidth: 2
             }, shape: 'Arrow'
         };
-        (document.getElementById('targetDecorator') as any).value='Circle'
+        (document.getElementById('targetDecorator') as any).value='Arrow'
         diagram.dataBind();
     }
     // custom code start

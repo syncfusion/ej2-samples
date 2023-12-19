@@ -14,7 +14,7 @@
  import { ListView } from '@syncfusion/ej2-lists';
  import { Grid } from '@syncfusion/ej2-grids';
  import { ImageEditor } from '@syncfusion/ej2-image-editor';
- import { addRoute, bypassed, parse } from 'crossroads';
+ import { create } from 'crossroads';
  import { renderPropertyPane, renderDescription, renderActionDescription } from './propertypane';
  import { Locale } from './locale-string';
  import * as samplesJSON from './sampleList';
@@ -32,6 +32,7 @@
  import * as packageJson from '../common/pack.json';
  let packages: string = JSON.stringify((<any>packageJson).dependencies);
  let cBlock: string[] = ['ts-src-tab', 'html-src-tab'];
+ let crossRoads: any = create();
  const matchedCurrency: { [key: string]: string } = {
      'en': 'USD',
      'de': 'EUR',
@@ -358,16 +359,31 @@
                   enableRtl: value === 'ar'
               });
               currencyDropDown.value = matchedCurrency[value];
-              setCulture(e.value);
+              loadCulture(value);
           }
       });
+      function loadCulture(cul: string) {
+        let inputElement = document.getElementById('cultureID') as HTMLInputElement;
+        inputElement.value = cul;
+        if ('oninput' in inputElement) {
+            inputElement.dispatchEvent(new Event('input'));
+        }
+       }
       currencyDropDown = new DropDownList({
           index: 0,
           change: (e: any) => {
+              loadCurrency(e.value);
               changeRtl({ currencyCode: e.value });
               //  setCurrencyCode(e.value);
           }
       });
+      function loadCurrency(cul: string) {
+        let inputElement = document.getElementById('currencyID') as HTMLInputElement;
+        inputElement.value = cul;
+        if ('oninput' in inputElement) {
+            inputElement.dispatchEvent(new Event('input'));
+        }
+      }
       cultureDropDown.appendTo('#sb-setting-culture');
       currencyDropDown.appendTo('#sb-setting-currency');
       themeDropDown.appendTo('#sb-setting-theme');
@@ -1243,11 +1259,11 @@
   }
   
   function routeDefault(): void {
-      addRoute('', () => {
+    crossRoads.addRoute('', () => {
           window.location.href = '#/' + selectedTheme + '/grid/grid-overview.html';
           isInitRedirected = true;
       });
-      bypassed.add((request: string) => {
+      crossRoads.bypassed.add((request: string) => {
           let hash: string[] = request.split('.html')[0].split('/');
           if (samplePath.indexOf(hash.slice(1).join('/')) === -1) {
               location.hash = '#/' + hash[0] + '/' + (defaultSamples[hash[1]] || 'grid/grid-overview.html');
@@ -1349,7 +1365,7 @@
               let urlString: string = '/' + selectedTheme + '/' + control + '/' + sample + '.html';
               samplesAr.push('#' + urlString);
               // tslint:disable-next-line:max-func-body-length
-              addRoute(urlString, () => {
+              crossRoads.addRoute(urlString, () => {
                   let controlID: string = node.uid;
                   let sampleID: string = subNode.uid;
                   (document.getElementById('open-plnkr') as any).disabled = true;
@@ -1417,11 +1433,6 @@
                    * sample header
                    */
                   sampleNameElement.innerHTML = node.name;
-                  if (node.name === 'PDF Viewer') {
-                      (document.querySelector('.sb-desktop-setting') as any).style.display = 'none';
-                  } else {
-                      (document.querySelector('.sb-desktop-setting') as any).style.display = '';
-                  }
                   /**
                    * BreadCrumb
                    */
@@ -1602,11 +1613,11 @@
           scriptElement.id = control + '-common';
           scriptElement.type = 'text/javascript';
           scriptElement.onload = () => {
-              parse(newHash);
+            crossRoads.parse(newHash);
           };
           document.getElementsByTagName('head')[0].appendChild(scriptElement);
       } else {
-          parse(newHash);
+        crossRoads.parse(newHash);
       }
   }
   

@@ -2,8 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { createElement, compile, extend } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { Popup } from '@syncfusion/ej2-popups';
-import { ItemModel } from '@syncfusion/ej2-navigations';
-import { Schedule, Month, ActionEventArgs, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
+import { Schedule, Month, EventRenderedArgs, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 import { applyCategoryColor } from './helper';
 
@@ -16,6 +15,13 @@ Schedule.Inject(Month, Resize, DragAndDrop);
 (window as any).default = (): void => {
     loadCultureFiles();
     let data: Object[] = <Object[]>extend([], (dataSource as any).employeeEventData, null, true);
+    const onIconClick = (): void => {
+        if (profilePopup.element.classList.contains('e-popup-close')) {
+            profilePopup.show();
+        } else {
+            profilePopup.hide();
+        }
+    }
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',
@@ -23,31 +29,17 @@ Schedule.Inject(Month, Resize, DragAndDrop);
         views: ['Month'],
         currentView: 'Month',
         eventSettings: { dataSource: data },
+        toolbarItems: [{ name: 'Previous', align: 'Left' }, { name: 'Next', align: 'Left' }, { name: 'DateRangeText', align: 'Left' }, { name: 'Today', align: 'Right' }, { align: 'Right', prefixIcon: 'user-icon', text: 'Nancy', cssClass: 'e-schedule-user-icon', click: onIconClick }],
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView),
-        actionBegin: (args: ActionEventArgs) => {
-            if (args.requestType === 'toolbarItemRendering') {
-                let userIconItem: ItemModel = { align: 'Right', prefixIcon: 'user-icon', text: 'Nancy', cssClass: 'e-schedule-user-icon' };
-                args.items.push(userIconItem);
-            }
-        },
-        actionComplete: (args: ActionEventArgs) => {
-            if (args.requestType === 'toolBarItemRendered') {
-                let userIconEle: HTMLElement = scheduleObj.element.querySelector('.e-schedule-user-icon') as HTMLElement;
-                userIconEle.onclick = () => {
-                    profilePopup.relateTo = userIconEle;
-                    profilePopup.dataBind();
-                    if (profilePopup.element.classList.contains('e-popup-close')) {
-                        profilePopup.show();
-                    } else {
-                        profilePopup.hide();
-                    }
-                };
-            }
+        // custom code start
+        destroyed: () => {
+            document.removeEventListener('keydown', hidePopup);
+            document.removeEventListener('click', hidePopup);
         }
+        // custom code end
     });
     scheduleObj.appendTo('#Schedule');
 
-    // custom code start
     let headerBarCheckObj: CheckBox = new CheckBox({
         label: 'Show/Hide Header bar', checked: true,
         change: (args: ChangeEventArgs) => {
@@ -63,7 +55,6 @@ Schedule.Inject(Month, Resize, DragAndDrop);
     });
     scheduleObj.element.parentElement.appendChild(userContentEle);
 
-    let userIconEle: HTMLElement = scheduleObj.element.querySelector('.e-schedule-user-icon') as HTMLElement;
     let getDOMString: (data: object) => NodeList = compile('<div class="profile-container"><div class="profile-image">' +
         '</div><div class="content-wrap"><div class="name">Nancy</div>' +
         '<div class="destination">Product Manager</div><div class="status">' +
@@ -71,7 +62,7 @@ Schedule.Inject(Month, Resize, DragAndDrop);
     let output: NodeList = getDOMString({});
     let profilePopup: Popup = new Popup(userContentEle, {
         content: output[0] as HTMLElement,
-        relateTo: userIconEle,
+        relateTo: '.e-schedule-user-icon',
         position: { X: 'left', Y: 'bottom' },
         collision: { X: 'flip', Y: 'flip' },
         targetType: 'relative',
@@ -80,5 +71,17 @@ Schedule.Inject(Month, Resize, DragAndDrop);
         height: 80
     });
     profilePopup.hide();
+
+    // custom code start
+    document.addEventListener('keydown', hidePopup);
+    document.addEventListener('click', hidePopup);
+
+    function hidePopup(event: KeyboardEvent | MouseEvent): void {
+        if (profilePopup.element.classList.contains('e-popup-open') && (event.type === 'keydown' && ((event as KeyboardEvent).key === 'Escape') ||
+            (event.type === 'click' && event.target && !((event.target as HTMLElement).closest('.e-schedule-user-icon') ||
+                (event.target as HTMLElement).closest('.e-profile-wrapper'))))) {
+            profilePopup.hide();
+        }
+    }
     // custom code end
 };

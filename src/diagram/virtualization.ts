@@ -90,7 +90,6 @@ function getConnectorDefaults(connector: ConnectorModel): void {
         },
     });
     diagram.appendTo('#diagram');
-    diagram.fitToPage();
     let toolbarObj: Toolbar = new Toolbar({
         clicked: onItemClick,
         items: [

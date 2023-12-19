@@ -44,6 +44,7 @@ loadCultureFiles();
         },
         width: '150px',
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             line: {
                 width: 5
@@ -89,6 +90,7 @@ loadCultureFiles();
         },
         width: '150px',
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             line: {
                 width: 5
@@ -142,6 +144,7 @@ loadCultureFiles();
         },
         width: '150px',
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             line: {
                 width: 5
@@ -195,6 +198,7 @@ loadCultureFiles();
         },
         width: '150px',
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             line: {
                 width: 5
@@ -259,6 +263,7 @@ loadCultureFiles();
         },
         width: '150px',
         background:'transparent',
+        animationDuration: 2000,
         axes: [{
             line: {
                 width: 5

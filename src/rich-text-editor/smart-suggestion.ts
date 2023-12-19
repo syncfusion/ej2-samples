@@ -32,11 +32,12 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
  
     let formatRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
-                'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
-                'LowerCase', 'UpperCase', 'SuperScript', 'SubScript', '|',
-                'Formats', 'Alignments', 'NumberFormatList', 'BulletFormatList',
-                'Outdent', 'Indent','EmojiPicker', '|', 'CreateTable', 'CreateLink', 'Image',
+            items: ['Bold', 'Italic', 'Underline', 'StrikeThrough', 'SuperScript', 'SubScript', '|',
+                'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
+                'LowerCase', 'UpperCase', '|',
+                'Formats', 'Alignments', '|', 'NumberFormatList', 'BulletFormatList', '|',
+                'Outdent', 'Indent', '|', 'CreateLink', 'Image', 'Video', 'Audio', 'CreateTable', '|', 'FormatPainter', 'ClearFormat',
+                '|', 'EmojiPicker', '|',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
         },
         placeholder: 'Type "/" and choose format.',
@@ -110,9 +111,11 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
             beforeApplyFormat(true);
         }
         if ((args.itemData as  { [key: string]: Object }).command == 'OL') {
+            mentionObj.hidePopup();
             formatRTE.executeCommand('insertOrderedList');
         }
         else if ((args.itemData as  { [key: string]: Object }).command == 'UL') {
+            mentionObj.hidePopup();
             formatRTE.executeCommand('insertUnorderedList');
         }
         else if ((args.itemData as  { [key: string]: Object }).command == 'CreateTable') {
@@ -137,6 +140,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
             formatRTE.showEmojiPicker();
         }
         else {
+            mentionObj.hidePopup();
             formatRTE.executeCommand('formatBlock', (args.itemData as  { [key: string]: Object }).command);
         }
     } 

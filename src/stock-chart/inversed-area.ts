@@ -16,7 +16,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
 (window as any).default = (): void => {
     loadCultureFiles();
     let stockChart: StockChart = new StockChart({
-        primaryXAxis: { valueType: 'DateTime', isInversed: true, majorGridLines: { width: 0 }, crosshairTooltip: { enable: true } },
+        primaryXAxis: { valueType: 'DateTime', isInversed: true, majorGridLines: { width: 0 }, crosshairTooltip: { enable: true }},
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
             crosshairTooltip: { enable: true },

@@ -99,7 +99,7 @@ function readFile(args: any): void {
         enableNavigationToolbar: false,
         documentPath: 'InvisibleDigitalSignature.pdf',
         enableThumbnail: false,
-        serviceUrl: 'https://ej2services.syncfusion.com/js/development/api/pdfviewer'
+        serviceUrl: 'https://services.syncfusion.com/js/production/api/pdfviewer'
     });
     viewer.enableTextSelection=true;
     viewer.downloadFileName = 'InvisibleDigitalSignature.pdf';
@@ -137,7 +137,7 @@ function readFile(args: any): void {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(postData)
         };
-        const apiUrl = 'https://ej2services.syncfusion.com/js/development/api/pdfviewer/ValidateSignature';
+        const apiUrl = 'https://services.syncfusion.com/js/production/api/pdfviewer/ValidateSignature';
         fetch(apiUrl, options)
             .then(response => response.json())
             .then(body => {

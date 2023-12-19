@@ -12,7 +12,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let reminderInterval: NodeJS.Timeout | number;
+    let reminderInterval: number;
     let data: Record<string, any>[] = getReminderEvents();
     let scheduleObj: Schedule = new Schedule({
         height: '550px',

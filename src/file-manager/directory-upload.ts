@@ -8,7 +8,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    var buttonTemplate = '<button id="dropButton" class="e-tbar-btn e-tbtn-txt">Upload</button>';
+    var buttonTemplate = '<button id="dropButton" class="e-tbar-btn e-tbtn-txt"> <span class="e-tbar-btn-text">Upload</span> </button>';
     let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
     let fileObject: FileManager = new FileManager({
         ajaxSettings: {

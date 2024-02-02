@@ -3,8 +3,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Rich Text Editor iframe sample
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager);
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager,Audio,Video,FormatPainter,EmojiPicker } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager,Audio,Video,EmojiPicker);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -21,7 +21,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, Fil
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
                 'LowerCase', 'UpperCase', '|',
                 'Formats', 'Alignments', '|', 'NumberFormatList', 'BulletFormatList', '|',
-                'Outdent', 'Indent', '|', 'CreateLink', 'Image', 'FileManager', 'Video', 'Audio', 'CreateTable', '|', 'FormatPainter', 'ClearFormat',
+                'Outdent', 'Indent', '|', 'CreateLink', 'Image', 'FileManager', 'Video', 'Audio', 'CreateTable', '|', 'ClearFormat',
                 '|', 'EmojiPicker', 'Print', '|',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']
         },

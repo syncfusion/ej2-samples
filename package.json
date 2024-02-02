@@ -1,6 +1,6 @@
 {
   "name": "@syncfusion/ej2-samples",
-  "version": "24.1.41",
+  "version": "24.2.3",
   "description": "Samples for Syncfusion Essential JS 2",
   "author": "Syncfusion Inc.",
   "license": "SEE LICENSE IN license",
@@ -57,6 +57,11 @@
   },
   "devDependencies": {
     "@syncfusion/ej2-react-notifications": "*",
+    "@types/chai": "^4.3.11",
+    "@types/jasmine": "^5.1.4",
+    "@types/jasmine-ajax": "^3.3.5",
+    "@types/mocha": "^10.0.6",
+    "@types/requirejs": "^2.1.37",
     "aws-sdk": "2.1415.0",
     "browser-sync": "2.29.3",
     "cheerio": "^1.0.0-rc.12",

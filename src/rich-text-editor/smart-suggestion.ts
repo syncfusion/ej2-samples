@@ -52,32 +52,23 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
     formatRTE.appendTo('#MentionInlineFormat');
 
 
-    function beforeApplyFormat(isBlockFormat: boolean) {      
-        let range1: Range = formatRTE.getRange();
-        let node: Node = formatRTE.formatter.editorManager.nodeSelection.getNodeCollection(range1)[0];
-        let blockNewLine = !(node.parentElement.innerHTML.replace(/&nbsp;|<br>/g, '').trim() == '/' || node.textContent.trim().indexOf('/')==0);
-        let blockNode: Node;
-        let startNode:Node = node;
-        if (blockNewLine && isBlockFormat) {
-            while (startNode != formatRTE.inputElement) {
-                blockNode = startNode;
-                startNode = startNode.parentElement;
-            }           
-        }          
-        let startPoint = range1.startOffset;
-        while(formatRTE.formatter.editorManager.nodeSelection.getRange(document).toString().indexOf("/") ==-1 ){
-            formatRTE.formatter.editorManager.nodeSelection.setSelectionText(document, node, node, startPoint, range1.endOffset);
+    function beforeApplyFormat() {
+        let currentRange: Range = formatRTE.getRange();
+        let node: Node = formatRTE.formatter.editorManager.nodeSelection.getNodeCollection(currentRange)[0];
+    
+        let startPoint = currentRange.startOffset;
+        while (formatRTE.formatter.editorManager.nodeSelection.getRange(document).toString().indexOf('/') == -1) {
+            formatRTE.formatter.editorManager.nodeSelection.setSelectionText(document, node, node, startPoint, currentRange.endOffset);
             startPoint--;
         }
-        let range2: Range = formatRTE.getRange();
-        let node2: Node = formatRTE.formatter.editorManager.nodeCutter.GetSpliceNode(range2, node as HTMLElement);
-        let previouNode: Node = node2.previousSibling;
-        const brTag: HTMLElement = document.createElement('br');
-        if ( node2.parentElement && node2.parentElement.innerHTML.length === 1) {
-            node2.parentElement.appendChild(brTag);
+        let slashRange: Range = formatRTE.getRange();
+        let slashNode: Node = formatRTE.formatter.editorManager.nodeCutter.GetSpliceNode(slashRange, node as HTMLElement);
+        let previouNode: Node = slashNode.previousSibling;
+        if (slashNode.parentElement && slashNode.parentElement.innerHTML.length === 1) {
+            slashNode.parentElement.appendChild(document.createElement('br'));
         }
-        node2.parentNode.removeChild(node2);
-        if(previouNode) {
+        slashNode.parentNode.removeChild(slashNode);
+        if (previouNode) {
             selection.setCursorPoint(document, previouNode as Element, previouNode.textContent.length);
         }
     }
@@ -107,41 +98,34 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
         args.cancel = true;
         formatRTE.focusIn();
         saveSelection.restore();
-        if (!((args.itemData as  { [key: string]: Object }).formatType == 'Inline')) {
-            beforeApplyFormat(true);
+        const itemData = args.itemData as { [key: string]: Object };
+        const { command, formatType } = itemData;
+        if (!(formatType === 'Inline')) {
+            beforeApplyFormat();
         }
-        if ((args.itemData as  { [key: string]: Object }).command == 'OL') {
-            mentionObj.hidePopup();
-            formatRTE.executeCommand('insertOrderedList');
-        }
-        else if ((args.itemData as  { [key: string]: Object }).command == 'UL') {
-            mentionObj.hidePopup();
-            formatRTE.executeCommand('insertUnorderedList');
-        }
-        else if ((args.itemData as  { [key: string]: Object }).command == 'CreateTable') {
-            mentionObj.hidePopup();
-            formatRTE.showDialog(DialogType.InsertTable);
-        }
-        else if ((args.itemData as  { [key: string]: Object }).command == 'Image') {
-            mentionObj.hidePopup();
-            formatRTE.showDialog(DialogType.InsertImage);
-        }
-        else if ((args.itemData as  { [key: string]: Object }).command == 'Audio') {
-            mentionObj.hidePopup();
-            formatRTE.showDialog(DialogType.InsertAudio);
-        }
-        else if ((args.itemData as  { [key: string]: Object }).command == 'Video') {
-            mentionObj.hidePopup();
-            formatRTE.showDialog(DialogType.InsertVideo);
-        }
-        else if ((args.itemData as  { [key: string]: Object }).command == 'EmojiPicker') {
-            beforeApplyFormat(false);
-            mentionObj.hidePopup();
-            formatRTE.showEmojiPicker();
-        }
-        else {
-            mentionObj.hidePopup();
-            formatRTE.executeCommand('formatBlock', (args.itemData as  { [key: string]: Object }).command);
+        switch (command) {
+            case 'OL':
+                formatRTE.executeCommand('insertOrderedList');
+                break;
+            case 'UL':
+                formatRTE.executeCommand('insertUnorderedList');
+                break;
+            case 'CreateTable':
+            case 'Image':
+            case 'Audio':
+            case 'Video':
+                mentionObj.hidePopup();
+                formatRTE.showDialog(command === 'Video'? DialogType.InsertVideo: command === 'Audio'
+                    ? DialogType.InsertAudio: command === 'Image'? DialogType.InsertImage: DialogType.InsertTable);
+                break;
+            case 'EmojiPicker':
+                beforeApplyFormat();
+                mentionObj.hidePopup();
+                formatRTE.showEmojiPicker();
+                break;
+            default:
+                formatRTE.executeCommand('formatBlock', command);
+                break;
         }
     } 
 };

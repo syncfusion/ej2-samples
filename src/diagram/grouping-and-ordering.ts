@@ -6,7 +6,6 @@ import {
     ISelectionChangeEventArgs,
     SelectorConstraints,
     UserHandleModel,
-    UserHandleEventsArgs,
   } from '@syncfusion/ej2-diagrams';
   import {
     ColorPicker,
@@ -16,7 +15,7 @@ import {
   } from '@syncfusion/ej2-inputs';
 import { ConnectorModel, SymbolPalette, TextStyleModel } from '@syncfusion/ej2/diagrams';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import { ChangeEventArgs, ClickEventArgs, Toolbar } from '@syncfusion/ej2-navigations';
+import {ClickEventArgs, Toolbar } from '@syncfusion/ej2-navigations';
 
 
 let diagram: Diagram;
@@ -221,9 +220,6 @@ function selectionChange(args: ISelectionChangeEventArgs) {
         diagram.selectedItems.connectors
       );
       if (selectedItems.length === 0) {
-        // for(let i=0;i<toolbarItems.items.length;i++){
-        //     toolbarItems.items[i].disabled = true;
-        // }
         toolbarItems.items[0].disabled = true;
         toolbarItems.items[1].disabled = true;
         toolbarItems.items[3].disabled = true;

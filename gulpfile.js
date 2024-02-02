@@ -327,7 +327,7 @@ gulp.task('combine-samplelists', function (done) {
 });
 
 gulp.task('combine-seo-list', function (done) {
-    combineSampleList(commonConfig.platform, isCompSample, true, done);
+    combineSampleList(commonConfig.platform, true, done);
 });
 
 function combineSampleList(platform, seo, done) {

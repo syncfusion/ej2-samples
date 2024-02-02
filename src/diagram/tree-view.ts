@@ -74,14 +74,6 @@ let workingData:object[] = [
   let treeObj:TreeView;
   let targetNodeId:any;
   let elementNodeId:any;
-  let fields:Object  = {
-    dataSource: workingData,
-    id: 'Id',
-    text: 'Name',
-    parentID: 'ParentId',
-    hasChildren: 'hasChild',
-  };
-
   function dragEnter(args:any) {
     let lable = '';
     if (args.dragData) {

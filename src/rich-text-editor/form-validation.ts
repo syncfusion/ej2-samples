@@ -9,14 +9,29 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar);
 (window as any).default = (): void => {
     loadCultureFiles();
 
-    let defaultRTE: RichTextEditor = new RichTextEditor({ showCharCount: true, maxLength: 100, placeholder: 'Type something' });
-    defaultRTE.appendTo('#defaultRTE');
+    let formValidatorOptions = {
+        rules: {
+            defaultRTE: {
+                required: true,
+                minLength: [
+                    () => {
+                        const contentElement = document.querySelector(
+                            '.e-rte-content .e-content'
+                        ) as HTMLElement;
+                        const textContent = contentElement.textContent?.trim() || '';
+                        const imgElements = contentElement.querySelectorAll('img');
+                        const textLengthValid = textContent.length >= 20;
+                        return imgElements.length > 0 || textLengthValid;
+                    }, 'Please enter at least 20 characters'],
+            },
+        },
+    };
+    let formObject: FormValidator = new FormValidator('#form-element', formValidatorOptions);
 
-    new FormValidator('#form-element');
-    (document.querySelector('.form-vertical') as HTMLElement).addEventListener('submit', function (e) {
-        if(((document.querySelector('.e-rte-content .e-content') as HTMLElement).textContent as string).trim() === '' ) {
-            e.preventDefault();
-        }
+    let defaultRTE: RichTextEditor = new RichTextEditor({
+        showCharCount: true, maxLength: 100,
+        placeholder: 'Type something',
     });
+    defaultRTE.appendTo('#defaultRTE');
 };
 

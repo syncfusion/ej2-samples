@@ -3,7 +3,6 @@
     "directory": "heatmap-chart",
     "ftName": "heatmap-chart",
     "category": "Data Visualization",
-    "type": "update",
     "samples": [
         {
             "url": "default-functionalities",
@@ -219,8 +218,7 @@
                     "cellSettings",
                     "legendSettings"
                 ]
-            },
-            "type": "new"
+            }
         },
         {
             "url": "multi-level-labels",

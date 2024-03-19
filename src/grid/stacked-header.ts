@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Selection, Resize } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, Resize, Sort } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
 
-Grid.Inject(Page, Selection, Resize);
+Grid.Inject(Page, Selection, Resize, Sort);
 /**
  * Stacked header Sample
  */
@@ -14,6 +14,7 @@ Grid.Inject(Page, Selection, Resize);
             allowPaging: true,
             allowResizing: true,
             pageSettings: { pageCount: 5 },
+            allowSorting: true,
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120, minWidth: 10 },
                 {

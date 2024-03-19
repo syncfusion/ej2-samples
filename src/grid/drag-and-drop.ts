@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Selection, RowDD } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, RowDD, Sort } from '@syncfusion/ej2-grids';
 import { orderDetails } from './data-source';
 
-Grid.Inject(Page, Selection, RowDD);
+Grid.Inject(Page, Selection, RowDD, Sort);
 
 /**
  * DragAndDrop Grid sample
@@ -17,6 +17,7 @@ Grid.Inject(Page, Selection, RowDD);
             selectionSettings: { type: 'Multiple' },
             rowDropSettings: { targetID: 'DestGrid' },
             pageSettings: { pageCount: 2 },
+            allowSorting: true,
             width: '49%',
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },
@@ -34,6 +35,7 @@ Grid.Inject(Page, Selection, RowDD);
             selectionSettings: { type: 'Multiple' },
             rowDropSettings: { targetID: 'Grid' },
             pageSettings: { pageCount: 2 },
+            allowSorting: true,
             width: '49%',
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },

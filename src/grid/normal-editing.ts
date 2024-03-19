@@ -1,11 +1,11 @@
-import { Grid, Edit, Toolbar, Page, NewRowPosition } from '@syncfusion/ej2-grids';
+import { Grid, Edit, Toolbar, Page, NewRowPosition, Sort } from '@syncfusion/ej2-grids';
 import { orderDataSource } from './data-source';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 /**
  * Batch Editing sample
  */
-Grid.Inject(Edit, Toolbar, Page);
+Grid.Inject(Edit, Toolbar, Page, Sort);
 
 (window as any).default = (): void => {
     let newRowPosition: { [key: string]: Object }[] = [
@@ -15,9 +15,10 @@ Grid.Inject(Edit, Toolbar, Page);
     let grid: Grid = new Grid(
         {
             dataSource: orderDataSource,
-            editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal', newRowPosition: 'Top' },
+            editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal', showAddNewRow: true, newRowPosition: 'Top' },
             allowPaging: true,
             pageSettings: { pageCount: 5 },
+            allowSorting: true,
             toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
             actionBegin: actionBegin,
             columns: [
@@ -27,11 +28,11 @@ Grid.Inject(Edit, Toolbar, Page);
                 },
                 {
                     field: 'CustomerID', headerText: 'Customer ID',
-                    validationRules: { required: true }, width: 140
+                    validationRules: { required: true, minLength: 5 }, width: 140
                 },
                 {
                     field: 'Freight', headerText: 'Freight', textAlign: 'Right', editType: 'numericedit',
-                    width: 140, format: 'C2', validationRules: { required: true }
+                    width: 140, format: 'C2', validationRules: { required: true, min: 0 }
                 },
                 {
                     field: 'OrderDate', headerText: 'Order Date', editType: 'datetimepickeredit',
@@ -61,6 +62,7 @@ Grid.Inject(Edit, Toolbar, Page);
         change: (e: ChangeEventArgs) => {
             let newRowPosition: string = <string>e.value;
             grid.editSettings.newRowPosition = <NewRowPosition>newRowPosition;
+            grid.refresh();
         }
     });
     dropDownType.appendTo('#newRowPosition');

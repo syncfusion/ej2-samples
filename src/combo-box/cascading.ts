@@ -32,7 +32,7 @@ import * as data from './dataSource.json';
             } else {
                 stateList.enabled = true;
                 // frame the query based on selected value in country ComboBox.
-                let tempQuery: Query = new Query().where('CountryId', 'equal', countryList.value);
+                let tempQuery: Query = new Query().where('CountryId', 'equal', countryList.value as string);
                 // set the framed query based on selected value in country Combobox.
                 stateList.query = tempQuery;
                  // set null value to state Combobox text property
@@ -71,7 +71,7 @@ import * as data from './dataSource.json';
             } else {
                 cityList.enabled = true;
                 // frame the query based on selected value in state ComboBox.
-                let tempQuery: Query = new Query().where('StateId', 'equal', stateList.value);
+                let tempQuery: Query = new Query().where('StateId', 'equal', stateList.value as string);
                 // set the framed query based on selected value in state ComboBox.
                 cityList.query = tempQuery;
                 cityList.value = null;

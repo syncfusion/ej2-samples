@@ -58,7 +58,7 @@ Gantt.Inject(Selection, Sort, DayMarkers);
                 dependency: 'predecessor',
                 child: 'subtasks',
             },
-            height: '450px',
+            height: '503px',
             highlightWeekends: true,
             projectStartDate: new Date('02/03/2019'),
             projectEndDate: new Date('03/23/2019'),
@@ -72,12 +72,21 @@ Gantt.Inject(Selection, Sort, DayMarkers);
                 }
             },
             splitterSettings: {
-                columnIndex: 0
+                columnIndex: 1
             },
             treeColumnIndex: 1,
             labelSettings: {
                 rightLabel: 'taskName',
             },
+            columns: [
+                { field: 'taskID', visible: false },
+                { field: 'taskName', headerText: 'Name', width: 250 },
+                { field: 'StartDate', headerText: 'Start Date', type: 'date', format: 'yMd' },
+                { field: 'endDate', headerText: 'End Date', type: 'date', format: 'yMd' },
+                { field: 'duration', headerText: 'Duration' },
+                { field: 'predecessor', headerText: 'Dependency' },
+                { field: 'progress', headerText: 'Progress' }
+            ]
         });
     gantt.appendTo('#Timeline');
 
@@ -252,4 +261,15 @@ Gantt.Inject(Selection, Sort, DayMarkers);
         }
         unitWidthNumObj.value = unitWidth;
     }
+
+    let mutitaskbar: CheckBox = new CheckBox({ checked: false });
+    mutitaskbar.appendTo('#mutiTaskbarCheck');
+
+    document.getElementById('mutiTaskbarCheck').onclick = function () {
+        if (mutitaskbar.checked) {
+            gantt.enableMultiTaskbar = true;
+        } else {
+            gantt.enableMultiTaskbar = false;
+        }
+    };
 };

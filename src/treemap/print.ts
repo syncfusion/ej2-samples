@@ -8,6 +8,7 @@ import { TreeMap, ExportType, TreeMapTooltip, TreeMapAjax, Print, ImageExport, P
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
+import { productSales } from './treemap-data/product';
 import { EmitType } from '@syncfusion/ej2-base';
 import { TextBox } from  '@syncfusion/ej2-inputs';
 TreeMap.Inject(TreeMapTooltip, Print, ImageExport, PdfExport);
@@ -16,10 +17,12 @@ TreeMap.Inject(TreeMapTooltip, Print, ImageExport, PdfExport);
     loadCultureFiles();
     // custom code end
     let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        // custom code start
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
         theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+        // custom code end
     };
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
@@ -31,7 +34,7 @@ TreeMap.Inject(TreeMapTooltip, Print, ImageExport, PdfExport);
         allowImageExport: true,
         allowPdfExport: true,
         //enableDrillDown: true,
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/product.json'),
+        dataSource: productSales,
         layoutType: 'SliceAndDiceVertical',
         weightValuePath: 'Percentage',
         rangeColorValuePath: 'Percentage',

@@ -2,7 +2,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 /**
- * Bubble sample
+ * Osm sample
  */
 import { Maps, Bubble, MapsTooltip, MapsTheme, ILoadEventArgs, Zoom, Marker } from '@syncfusion/ej2-maps';
 import { enableRipple } from '@syncfusion/ej2-base';

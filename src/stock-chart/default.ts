@@ -1,12 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { StockChart } from '@syncfusion/ej2-charts';
-import { chartData } from './indicator-data';
-import { DateTime, AreaSeries, CandleSeries, HiloOpenCloseSeries, HiloSeries, LineSeries, SplineSeries } from '@syncfusion/ej2-charts';
+import { defaultData } from './indicator-data';
+import { DateTime, DateTimeCategory, AreaSeries, CandleSeries, HiloOpenCloseSeries, HiloSeries, LineSeries, SplineSeries } from '@syncfusion/ej2-charts';
 import { AccumulationDistributionIndicator, AtrIndicator, BollingerBands, EmaIndicator, MomentumIndicator } from '@syncfusion/ej2-charts';
 import { MacdIndicator, RsiIndicator, Trendlines, SmaIndicator, StochasticIndicator, Export } from '@syncfusion/ej2-charts';
 import { TmaIndicator, RangeTooltip, Tooltip, Crosshair, ITooltipRenderEventArgs, IStockChartEventArgs, ChartTheme }
 from '@syncfusion/ej2-charts';
-StockChart.Inject(DateTime, AreaSeries, CandleSeries, HiloOpenCloseSeries, HiloSeries, LineSeries, SplineSeries);
+StockChart.Inject(DateTime, DateTimeCategory, AreaSeries, CandleSeries, HiloOpenCloseSeries, HiloSeries, LineSeries, SplineSeries);
 StockChart.Inject(AccumulationDistributionIndicator, AtrIndicator, BollingerBands, EmaIndicator, MomentumIndicator);
 StockChart.Inject(MacdIndicator, RsiIndicator, SmaIndicator, StochasticIndicator);
 StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Export);
@@ -22,11 +22,15 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
             lineStyle: { color: 'transparent' },
             majorTickLines: { color: 'transparent', height: 0 }, crosshairTooltip: { enable: true }
         },
-        primaryXAxis: { majorGridLines: { color: 'transparent' }, crosshairTooltip: { enable: true }},
+        primaryXAxis: { valueType:'DateTimeCategory', majorGridLines: { color: 'transparent' }, crosshairTooltip: { enable: true }},
         series: [
             {
-                dataSource: chartData,
-                type: 'Candle'
+                dataSource: defaultData,
+                type: 'Candle',
+                xName:'x',
+                yName:'high',
+                high:'high',
+                low:'low'
             },
         ],
         tooltipRender : (args: ITooltipRenderEventArgs) => {

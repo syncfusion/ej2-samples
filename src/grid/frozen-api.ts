@@ -1,9 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, freezeDirection, Column } from '@syncfusion/ej2-grids';
+import { Grid, freezeDirection, Column, Sort, Freeze} from '@syncfusion/ej2-grids';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
+
+Grid.Inject(Sort, Freeze);
 
 /**
  * Grid frozen rows and columns sample
@@ -17,6 +19,7 @@ import { orderData } from './data-source';
             height: 410,
             enableHover: false,
             frozenRows: 2,
+            allowSorting: true,
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', freeze: 'Left' },
                 { field: 'Freight', width: 125, format: 'C2', textAlign: 'Right' },

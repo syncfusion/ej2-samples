@@ -1,8 +1,7 @@
-/**
- * Metals Data 
- */
+// custom code start
 //tslint:disable
-export let Country_Population =[
+// custom code end
+export let countryPopulation =[
     { Country:"China", Population:1388232693},
     
     { Country:"India", Population:1342512706},

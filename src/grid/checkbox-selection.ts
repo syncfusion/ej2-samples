@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Toolbar, Edit } from '@syncfusion/ej2-grids';
+import { Grid, Page, Toolbar, Edit, Sort } from '@syncfusion/ej2-grids';
 import { inventoryData } from './data-source';
 
-Grid.Inject(Page, Toolbar, Edit);
+Grid.Inject(Page, Toolbar, Edit, Sort);
 /**
  * Checkbox Selection API sample
  */
@@ -17,6 +17,7 @@ Grid.Inject(Page, Toolbar, Edit);
             editSettings: {allowDeleting: true},
             toolbar: ['Delete'],
             enableHover: false,
+            allowSorting: true,
             columns: [
                 { type: 'checkbox', width: 50 },
                 { field: 'Inventor', isPrimaryKey: true, headerText: 'Inventor Name', width: 180 },

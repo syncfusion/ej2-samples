@@ -4,7 +4,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps Tooltip
  */
-import { Maps, MapsTooltip, Legend, ITooltipRenderEventArgs, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, MapsTooltip, Legend, ITooltipRenderEventArgs, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { tooltipData } from './map-data/tooltip-datasource';
 Maps.Inject(MapsTooltip, Legend);
 // custom code start
 /* tslint:disable:no-string-literal */
@@ -50,10 +52,10 @@ Maps.Inject(MapsTooltip, Legend);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapePropertyPath: 'name',
                 shapeDataPath: 'name',
-                dataSource: new MapAjax('./src/maps/map-data/tooltip-datasource.json'),
+                dataSource: tooltipData,
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'name',

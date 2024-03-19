@@ -2,9 +2,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor Markdown Sample
  */
-import { RichTextEditor, Toolbar, Link, Image, MarkdownFormatter, MarkdownEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, MarkdownFormatter, MarkdownEditor} from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs } from '@syncfusion/ej2-base';
-RichTextEditor.Inject(Toolbar, Link, Image, MarkdownEditor, QuickToolbar);
+RichTextEditor.Inject(Toolbar, Link, Image, MarkdownEditor);
 import * as Marked from 'marked';
 
 let textArea: HTMLTextAreaElement;

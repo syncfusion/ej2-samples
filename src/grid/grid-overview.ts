@@ -217,9 +217,10 @@ let urlapi: DataManager = new DataManager({
             },
             100);
     }
-    document.getElementById('Grid').addEventListener('DOMSubtreeModified', () => {
+    var observer = new MutationObserver((mutations: MutationRecord[]) => {
+        mutations.forEach(() => {
             if (dReady && stTime && isDataChanged) {
-                let msgEle: Element = document.getElementById('msg');
+                let msgEle: Element = document.getElementById('msg') as Element;
                 let val: any = (performance.now() - stTime).toFixed(0);
                 stTime = null;
                 dtTime = false;
@@ -229,5 +230,11 @@ let urlapi: DataManager = new DataManager({
                 msgEle.classList.remove('e-hide');
             }
         });
+    });
+    observer.observe(document.getElementById('Grid') as Node, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+    });
 };
 

@@ -17,6 +17,7 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize, RowDD);
             viewType: 'ResourceView',
             enableMultiTaskbar: true,
             showOverAllocation: true,
+            taskType:'FixedWork',
             taskFields: {
                 id: 'TaskID',
                 name: 'TaskName',

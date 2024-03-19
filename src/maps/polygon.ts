@@ -1,8 +1,11 @@
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
-import { Maps, MapsTheme, ILoadEventArgs, Polygon } from '@syncfusion/ej2-maps';
-Maps.Inject(Polygon);
+/**
+ * Polygon sample
+ */
+import { Maps, MapsTheme, ILoadEventArgs, Polygon, MapsTooltip, Zoom } from '@syncfusion/ej2-maps';
+Maps.Inject(Polygon, MapsTooltip, Zoom);
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -19,8 +22,10 @@ Maps.Inject(Polygon);
         layers: [{
             urlTemplate: "https://tile.openstreetmap.org/level/tileX/tileY.png",
             polygonSettings: {
+                tooltipSettings: { visible: true },
                 polygons: [
                     {
+                        tooltipTemplate: '<div style="height: auto; width: 280px; background-color: #fff; padding: 10px;"><table style="padding:10px; border:1px solid #000;"><tr><td style="padding:5px; width: 40%; text-align: center;"><img src="src/maps/images/germany-flag.png" style="height:auto;width: 100%" alt="Germany" /></td><td style="padding:5px"><span style="font-size: 12px; font-weight: 500;display:block">Country Name : Germany</span><span style="font-size: 12px; font-weight: 500;display:block">Capital Name : Berlin</span><span style="font-size: 12px; font-weight: 500;display:block">Population : 83,252,474</span><span style="font-size: 12px; font-weight: 500;display:block">GDP : $4.509 trillion</span></td></tr></table></div>',
                         points: [
                             { longitude : 8.64898681640625, latitude : 54.909777539554824 },
                             { longitude : 8.5638427734375, latitude : 54.90030293114211 },

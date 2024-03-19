@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
-ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner } from '@syncfusion/ej2-pdfviewer';
+ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer } from '@syncfusion/ej2-pdfviewer';
 // tslint:disable-next-line:max-line-length
 import { Switch } from '@syncfusion/ej2-buttons';
 import { Grid, Page, CommandColumn } from '@syncfusion/ej2-grids';
@@ -8,7 +8,7 @@ import { data } from './document-list-data';
 import { Dialog } from '@syncfusion/ej2-popups';
 Grid.Inject(Page,CommandColumn);
 
-PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner);
+PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -18,12 +18,12 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     renderPDFViewer();
     let commandClick: any = function(args:any){
       var mode = args.target.title;
-      viewer.documentPath = args.rowData.Document;
+      var documentPath = args.rowData.Document;
       dialogObj.header = args.rowData.FileName;
       if(mode === 'View'){
           viewer.enableStickyNotesAnnotation=false;
           viewer.enableAnnotationToolbar = false;
-          viewer.enableFormDesignerToolbar = false;
+          viewer.isFormDesignerToolbarVisible = false;
           viewer.toolbarSettings = { showTooltip : true, toolbarItems: ['OpenOption', 'PageNavigationTool', 'MagnificationTool', 'PanTool','SearchOption', 'PrintOption']};
           viewer.annotationSettings = {  
               isLock:true,       
@@ -56,7 +56,6 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
       } else {
           viewer.enableStickyNotesAnnotation = true;
           viewer.enableAnnotationToolbar = true;
-          viewer.enableFormDesignerToolbar = true;
           viewer.toolbarSettings = { showTooltip : true, toolbarItems: ['OpenOption', 'UndoRedoTool', 'PageNavigationTool', 'MagnificationTool', 'PanTool', 'SelectionTool', 'CommentTool', 'SubmitForm', 'SearchOption', 'AnnotationEditTool', 'FormDesignerEditTool', 'PrintOption', 'DownloadOption']};
           viewer.annotationSettings = {  
               isLock:false,       
@@ -89,11 +88,12 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
       }
       dialogObj.show();
       viewer.dataBind();
-      viewer.load(viewer.documentPath,null);
+      viewer.load(documentPath,null);
     };
     let grid: Grid = new Grid({
         dataSource: data,
         commandClick:commandClick,
+        destroyed:destroyed,
         columns: [
           { template: '#fileNameTemplate', headerText: 'File Name' },
           { headerText: 'Author', field: 'Author'},
@@ -109,12 +109,18 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
         showCloseIcon: true,
         width: '90%',
         height: '90%',
+        minHeight: '90%',
         visible: false,
         isModal: true,
         enableResize: true,
         position: { X: 'center', Y: 'center' }
       });
       dialogObj.appendTo('#defaultDialog');
+    }
+
+    function destroyed(): void{
+      viewer.destroy();
+      dialogObj.destroy();
     }
 
     function renderPDFViewer(): void {

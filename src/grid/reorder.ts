@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Grid, Selection, Reorder, Column, ActionEventArgs } from '@syncfusion/ej2-grids';
+import { Grid, Selection, Reorder, Column, ActionEventArgs, Sort } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 
-Grid.Inject(Selection, Reorder);
+Grid.Inject(Selection, Reorder, Sort);
 
 /**
  * Reorder Grid sample
@@ -27,8 +27,9 @@ Grid.Inject(Selection, Reorder);
         {
             dataSource: employeeData,
             allowReordering: true,
+            allowSorting: true,
             columns: [
-                { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 140 },
+                { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 150 },
                 { field: 'FirstName', headerText: 'Name', width: 125 },
                 { field: 'Title', headerText: 'Title', width: 190 },
                 {

@@ -22,7 +22,7 @@ Grid.Inject(Resize, Sort, Group, Filter, ColumnMenu, Page);
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 160, textAlign: 'Right', showInColumnChooser: false },
                 { field: 'CustomerName', headerText: 'Customer Name', width: 200 },
-                { field: 'Freight', format: 'C2', width: 160, textAlign: 'Right', editType: 'numericedit' },
+                { field: 'Freight', format: 'C2', width: 160, textAlign: 'Right' },
                 { field: 'ShipName', headerText: 'Ship Name', width: 200 },
                 { field: 'ShipCountry', visible: false, headerText: 'Ship Country', width: 200 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 150 }

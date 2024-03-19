@@ -40,11 +40,11 @@ let getLabelText: Function = (value: number): string => {
             rows: [{ height: '30%' }, { height: '70%' }],
             // Initialize the chart series
             series: [
-                { type: 'Column', dataSource: chartValue, enableTooltip: false, xName: 'period', yName: 'volume', name: 'Volume' },
+                { type: 'Column', dataSource: chartValue, enableTooltip: false, xName: 'period', yName: 'volume' },
                 {
                     type: 'Candle', yAxisName: 'secondary', bearFillColor: '#2ecd71', bullFillColor: '#e74c3d',
                     dataSource: chartValue, volume: 'volume',
-                    xName: 'period', low: 'low', high: 'high', open: 'open', close: 'close', name: 'Apple Inc.(AAPL)',
+                    xName: 'period', low: 'low', high: 'high', open: 'open', close: 'close'
                 }
             ], tooltip: { enable: true, shared: true, header:'', format: '<b>Apple Inc.(AAPL)</b> <br> High : <b>${point.high}</b> <br> Low : <b>${point.low}</b> <br> Open : <b>${point.open}</b> <br> Close : <b>${point.close}</b> <br> Volume : <b>${point.volume}</b>' },
             sharedTooltipRender: (args: ISharedTooltipRenderEventArgs) => {

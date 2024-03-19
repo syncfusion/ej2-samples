@@ -1,12 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, Chart, IChangedEventArgs, } from '@syncfusion/ej2-charts';
 import {
-    ChartTheme, Crosshair, StepLineSeries, RangeTooltip, Tooltip, IRangeTooltipRenderEventArgs,
+    ChartTheme, Crosshair, StepLineSeries, RangeTooltip, Tooltip, IRangeTooltipRenderEventArgs, LineSeries,
     IAxisLabelRenderEventArgs
 } from '@syncfusion/ej2-charts';
 import { SplineSeries, ChartAnnotation, ILoadedEventArgs, ChartAnnotationSettingsModel, getSeriesColor } from '@syncfusion/ej2-charts';
 Chart.Inject(SplineSeries, Crosshair, ChartAnnotation, Tooltip);
-RangeNavigator.Inject(StepLineSeries, RangeTooltip);
+RangeNavigator.Inject(StepLineSeries, RangeTooltip, LineSeries);
 import { Browser, Fetch } from '@syncfusion/ej2-base';
 
 /**

@@ -1,8 +1,8 @@
-import { HeatMap, Tooltip, ILoadedEventArgs, HeatMapTheme, ISelectedEventArgs, SelectedCellDetails } from '@syncfusion/ej2-heatmap';
+import { HeatMap, Tooltip, ILoadedEventArgs, HeatMapTheme, ISelectedEventArgs, SelectedCellDetails, Legend as HeatMapLegend } from '@syncfusion/ej2-heatmap';
 import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip as chartTooltip, ILoadedEventArgs as IChartLoadedEventsArgs } from '@syncfusion/ej2-charts';
 import { Button } from '@syncfusion/ej2-buttons';
 import * as data from './cell-seletion-data.json';
-HeatMap.Inject(Tooltip);
+HeatMap.Inject(Tooltip, HeatMapLegend);
 Chart.Inject(ColumnSeries, DataLabel, Category, Legend, chartTooltip);
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
@@ -30,6 +30,9 @@ loadCultureFiles();
             textStyle: {
                 fontFamily: 'inherit'
             }
+        },
+        legendSettings: {
+            visible: false
         },
         allowSelection: true,
         dataSource: (data as any).cellSeletionData,

@@ -4,8 +4,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Earth quake map sample
  */
-import { Maps, Zoom, Marker, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-Maps.Inject(Zoom, Marker);
+import { Maps, Zoom, Marker, DataLabel, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { asia } from './map-data/asia';
+Maps.Inject(Zoom, Marker, DataLabel);
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -44,7 +45,7 @@ Maps.Inject(Zoom, Marker);
                 animationDuration: 1000,
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: new MapAjax('./src/maps/map-data/asia.json'),
+                shapeData: asia,
                 markerSettings: [{
                     visible: true,
                     height: 100,

@@ -1,16 +1,19 @@
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
-import { Maps, Marker, ILoadEventArgs, ILoadedEventArgs, IResizeEventArgs, MapsTheme, Legend, MapAjax } from '@syncfusion/ej2-maps';
-import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip } from '@syncfusion/ej2-charts';
-AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip);
-Maps.Inject(Marker, Legend);
 /**
- * Dynamic Pie
+ * Pie sample
  */
+import { Maps, Marker, ILoadEventArgs, ILoadedEventArgs, IResizeEventArgs, MapsTheme, Legend } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip, AccumulationLegend, AccumulationDataLabel } from '@syncfusion/ej2-charts';
+AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip, AccumulationLegend, AccumulationDataLabel);
+Maps.Inject(Marker, Legend);
 // custom code start
 //tslint:disable:max-func-body-length
 // custom code end
+let chartCollection: AccumulationChart[] = [];
+let count: number = 0;
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -57,7 +60,7 @@ Maps.Inject(Marker, Legend);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeSettings: {
                     fill: '#E5E5E5',
                     colorMapping: [
@@ -130,8 +133,7 @@ Maps.Inject(Marker, Legend);
     });
     maps.appendTo('#container');
 };
-let chartCollection: AccumulationChart[] = [];
-let count: number = 0;
+
 // custom code start
 /* tslint:disable:no-string-literal */
 // custom code end
@@ -146,6 +148,9 @@ export function AccumulationChartRender(id: string): void {
         tooltip: {
             enable: true,
             format: '${point.x} : ${point.y}%'
+        },
+        legendSettings: {
+            visible: false
         },
         series: [
             {

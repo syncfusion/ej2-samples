@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Aggregate, Group } from '@syncfusion/ej2-grids';
+import { Grid, Page, Aggregate, Group, Sort } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
 
-Grid.Inject(Page, Group, Aggregate);
+Grid.Inject(Page, Group, Aggregate, Sort);
 /**
  * Aggregates
  */
@@ -15,6 +15,7 @@ Grid.Inject(Page, Group, Aggregate);
             allowPaging: true,
             pageSettings: {pageCount: 5},
             allowGrouping: true,
+            allowSorting: true,
             groupSettings: { showDropArea: false, columns: ['CategoryName'] },
             columns: [
                 { field: 'CategoryName', headerText: 'Category Name', width: 160 },

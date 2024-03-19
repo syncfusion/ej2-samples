@@ -52,7 +52,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
-    let bounds: ClientRect = document.getElementById('diagram-space').getBoundingClientRect()
+    let bounds: ClientRect = document.getElementById('diagram-space').getBoundingClientRect();
     let pathData: string = 'M 120 24.9999 C 120 38.8072 109.642 50 96.8653 50 L 23.135' +
         ' 50 C 10.3578 50 0 38.8072 0 24.9999 L 0 24.9999 C' +
         '0 11.1928 10.3578 0 23.135 0 L 96.8653 0 C 109.642 0 120 11.1928 120 24.9999 Z';

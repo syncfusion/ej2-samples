@@ -12,7 +12,7 @@ import * as data from './data-default.json';
     loadCultureFiles();
     let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
     let contentChanged: boolean = false;
-    let container: DocumentEditorContainer = new DocumentEditorContainer({  serviceUrl:hostUrl,enableToolbar: true, height: '590px' });
+    let container: DocumentEditorContainer = new DocumentEditorContainer({  serviceUrl:hostUrl,enableToolbar: true, height: '590px', documentEditorSettings: { showRuler: true } });
     DocumentEditorContainer.Inject(Toolbar);
     container.appendTo('#container');
 

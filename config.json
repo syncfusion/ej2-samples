@@ -178,7 +178,7 @@
 		"signature",
 		"multiline-textbox",
 		null,
-		"workflow-editor",
+		"textarea",
 		null
 	]
 }

@@ -11,7 +11,7 @@ import * as data from './data-table-of-contents.json';
 
     let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
 
-    let container: DocumentEditorContainer = new DocumentEditorContainer({ serviceUrl:hostUrl, enableToolbar: true, height: '590px' });
+    let container: DocumentEditorContainer = new DocumentEditorContainer({ serviceUrl:hostUrl, enableToolbar: true, height: '590px', documentEditorSettings:{ showRuler: true} });
     DocumentEditorContainer.Inject(Toolbar);
     container.appendTo('#container');
 

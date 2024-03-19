@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Toolbar, Edit, Page } from '@syncfusion/ej2-grids';
+import { Grid, Toolbar, Edit, Page, Sort } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
 
 /**
  * Batch Editing sample
  */
-Grid.Inject(Edit, Toolbar, Page);
+Grid.Inject(Edit, Toolbar, Page, Sort);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -14,8 +14,9 @@ Grid.Inject(Edit, Toolbar, Page);
             dataSource: orderData,
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Batch' },
             allowPaging: true,
-            pageSettings: {pageCount: 5},
+            pageSettings: { pageCount: 5 },
             toolbar: ['Add', 'Delete', 'Update', 'Cancel'],
+            allowSorting: true,
             columns: [
                 {
                     field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right',
@@ -23,11 +24,11 @@ Grid.Inject(Edit, Toolbar, Page);
                 },
                 {
                     field: 'CustomerID', headerText: 'Customer ID',
-                    validationRules: { required: true }, width: 140
+                    validationRules: { required: true, minLength: 5 }, width: 140
                 },
                 {
                     field: 'Freight', headerText: 'Freight', textAlign: 'Right', editType: 'numericedit',
-                    width: 120, format: 'C2', validationRules: { required: true }
+                    width: 120, format: 'C2', validationRules: { required: true, min: 0, number: true }
                 },
                 {
                     field: 'OrderDate', headerText: 'Order Date', editType: 'datepickeredit', format: 'yMd',
@@ -38,6 +39,5 @@ Grid.Inject(Edit, Toolbar, Page);
                     edit: { params: { popupHeight: '300px' } }
                 }],
         });
-    grid.appendTo('#Grid');
-
+    grid.appendTo('#Grid'); 
 };

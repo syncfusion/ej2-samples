@@ -94,7 +94,7 @@
         Cards in this sample have a hidden content within the DOM (Document Object Model), which is set behind the visible card.
         On the click action handler of front card, the back-side content is shown with a flip animation.
         <p> More information about Card can be found in this
-            <a target="_blank" href="http://ej2.syncfusion.com/documentation/card/getting-started.html">
+            <a target="_blank" href="https://ej2.syncfusion.com/documentation/card/getting-started/">
                 documentation</a> section.</p>
     </p>
 </div>
@@ -108,9 +108,7 @@
     }
 
     .card-control-section.flip_card_layout #card_flip.e-card .e-front .e-card-header-caption .e-card-header-title,
-    .card-control-section.flip_card_layout #card_flip_profile.e-card .e-front .e-card-header-caption .e-card-header-title,
     .card-control-section.flip_card_layout #card_flip.e-card .e-front .e-card-header-caption .e-card-sub-title,
-    .card-control-section.flip_card_layout #card_flip_profile.e-card .e-front .e-card-header-caption .e-card-sub-title,
     .card-control-section.flip_card_layout #card_flip.e-card .e-card-actions button,
     .card-control-section.flip_card_layout #card_flip_profile.e-card .e-card-actions button {
         color: #000;
@@ -148,7 +146,19 @@
         height: 300px;
         justify-content: flex-end;
     }
+    
+    .e-bigger .bootstrap5 .card-control-section.flip_card_layout #card_flip.e-card, 
+    .e-bigger .bootstrap5 .card-control-section.flip_card_layout #card_flip_profile.e-card,
+    .e-bigger .bootstrap5-dark .card-control-section.flip_card_layout #card_flip.e-card, 
+    .e-bigger .bootstrap5-dark .card-control-section.flip_card_layout #card_flip_profile.e-card {
+        height: 350px;
+    }
 
+    .tailwind-dark .card-control-section.flip_card_layout #card_flip.e-card,
+    .tailwind-dark .card-control-section.flip_card_layout #card_flip_profile.e-card {
+        height: 314px;
+    }
+    
     .card-control-section.flip_card_layout #card_flip.e-card,
     .card-control-section.flip_card_layout #card_profile.e-card {
         background-image: url('./src/card/images/vertical_img.png');

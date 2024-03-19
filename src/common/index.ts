@@ -128,7 +128,7 @@
   const sampleRegex: RegExp = /#\/(([^\/]+\/)+[^\/\.]+)/;
   // Regex for removal of hidden codes 
   const reg: RegExp = /.*custom code start([\S\s]*?)custom code end.*/g;
-  const sbArray: string[] = ['angular', 'react', 'javascript', 'aspnetcore', 'aspnetmvc', 'vue', 'blazor'];
+  const sbArray: string[] = ['angular', 'react','nextjs', 'javascript', 'aspnetcore', 'aspnetmvc', 'vue', 'blazor'];
   /**
    * constant for search operations
    */
@@ -204,23 +204,30 @@
   let openNewTemplate: string = `<div class="sb-custom-item sb-open-new-wrapper"><a id="openNew" target="_blank" aria-label="Open new sample">
   <div class="sb-icons sb-icon-Popout"></div></a></div>`;
   // tslint:disable-next-line:no-multiline-string
-  let sampleNavigation: string = `<div class="sb-custom-item sample-navigation"><button id='prev-sample' class="sb-navigation-prev" 
-      aria-label="previous sample">
+  let sampleNavigation: string = `<div class="sb-custom-item sample-navigation"><button id='prev-sample' role='tab' class="sb-navigation-prev" 
+      aria-label="Navigate to previous sample">
   <span class='sb-icons sb-icon-Previous'></span>
   </button>
-  <button  id='next-sample' class="sb-navigation-next" aria-label="next sample">
+  <button  id='next-sample' role='tab' class="sb-navigation-next" aria-label="Navigate to next sample">
   <span class='sb-icons sb-icon-Next'></span>
   </button>
   </div>`;
-  let plnrTemplate: string = '<span class="sb-icons sb-icons-plnkr"></span><span class="sb-plnkr-text">Edit in StackBlitz</span>';
+  let plnrTemplate: string = '<span class="sb-icons sb-icons-plnkr" role="presentation"></span><span class="sb-plnkr-text">Edit in StackBlitz</span>';
   // tslint:disable-next-line:no-multiple-var-decl
-  let contentToolbarTemplate: string = '<div class="sb-desktop-setting"><button id="open-plnkr" class="sb-custom-item sb-plnr-section">' +
+  let contentToolbarTemplate: string = '<div class="sb-desktop-setting"><button id="open-plnkr" role="tab" aria-label="Open Edit in StackBlitz" tabindex="0" class="sb-custom-item sb-plnr-section">' +
       plnrTemplate + '</button>' + hsplitter + openNewTemplate + hsplitter +
       '</div>' + sampleNavigation + '<div class="sb-icons sb-mobile-setting sb-hide"></div>';
   
   let tabContentToolbar: Element = createElement('div', { className: 'sb-content-toolbar', innerHTML: contentToolbarTemplate });
   let apiGrid: Grid;
-  let demoSection: Element = select('.sb-demo-section');
+let demoSection: Element = select('.sb-demo-section');
+
+if (Browser.isDevice || isMobile) {
+    leftToggle.setAttribute('aria-expanded', 'false');
+} else {
+    leftToggle.setAttribute('aria-expanded', 'true');
+}
+
   /**
    * Routing variables
    */
@@ -806,11 +813,21 @@
           e.stopPropagation();
           sbHeaderClick('changeSampleBrowser');
       });
+      document.getElementById('sb-switcher').addEventListener('keydown', (e: any) => {
+        if (e.keyCode === 'Enter' || e.keyCode === ' ') {
+            sbHeaderClick('changeSampleBrowser');
+        }
+    });
       headerThemeSwitch.addEventListener('click', (e: MouseEvent) => {
           e.preventDefault();
           e.stopPropagation();
           sbHeaderClick('changeTheme');
       });
+      headerThemeSwitch.addEventListener('keydown', (e: any) => {
+        if (e.keyCode === 'Enter' || e.keyCode === ' ') {
+            sbHeaderClick('changeTheme');
+        }
+    });
       themeList.addEventListener('click', changeTheme);
       // tslint:disable
       document.addEventListener('click', sbHeaderClick.bind(this, 'closePopup'));
@@ -819,6 +836,11 @@
           e.stopPropagation();
           sbHeaderClick('toggleSettings');
       });
+      settingElement.addEventListener('keydown', (e: any) => {
+        if (e.keyCode === 'Enter' || e.keyCode === ' ') {
+            sbHeaderClick('toggleSettings');
+        }
+     });
       searchButton.addEventListener('click', (e: MouseEvent) => {
           e.preventDefault();
           e.stopPropagation();
@@ -835,6 +857,11 @@
       setResponsiveElement.addEventListener('click', setMouseOrTouch);
       select('#sb-left-back').addEventListener('click', showHideControlTree);
       leftToggle.addEventListener('click', toggleLeftPane);
+      leftToggle.addEventListener('keydown', (e: any) => {
+        if (e.keyCode === 'Enter' || e.keyCode === ' ') {
+            toggleLeftPane();
+        }
+    });
       select('.sb-header-settings').addEventListener('click', viewMobilePrefPane);
       select('.sb-mobile-setting').addEventListener('click', viewMobilePropPane);
       resetSearch.addEventListener('click', resetInput);
@@ -914,7 +941,9 @@
           let ele: HTMLFormElement = <HTMLFormElement>select('#' + sb);
           if (sb === 'aspnetcore' || sb === 'aspnetmvc') {
               ele.href = sb === 'aspnetcore' ? 'https://ej2.syncfusion.com/aspnetcore/' : 'https://ej2.syncfusion.com/aspnetmvc/';
-          } else if (sb === 'blazor') { 
+          } else if (sb === 'nextjs') {
+              ele.href = 'https://ej2.syncfusion.com/nextjs/demos/';
+          } else if (sb === 'blazor') {
               ele.href = 'https://blazor.syncfusion.com/demos/';
           } else {
               ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('https://ej2.syncfusion.com/')) +
@@ -1011,6 +1040,7 @@
   function toggleLeftPane(): void {
       let reverse: boolean = sidebar.isOpen;
       select('#left-sidebar').classList.remove('sb-hide');
+      leftToggle.setAttribute('aria-expanded', (!reverse).toString());
       if (!reverse) {
           leftToggle.classList.add('toggle-active');
       } else {
@@ -1098,7 +1128,7 @@
               dataSource: controlSampleData[location.hash.split('/')[2]] || controlSampleData.grid,
               fields: { id: 'uid', text: 'name', groupBy: 'order', htmlAttributes: 'data' },
               select: controlSelect,
-              template: '<div class="e-text-content ${if(type)}e-icon-wrapper${/if}"> <span class="e-list-text" role="listitem">${name}' +
+              template: '<div class="e-text-content ${if(type)}e-icon-wrapper${/if}"> <span class="e-list-text">${name}' +
                   '</span>${if(type === "update")}<span class="e-badge sb-badge e-samplestatus ${type}">Updated</span>' +
                   '${else}${if(type)}<span class="e-badge sb-badge e-samplestatus ${type}">${type}</span>${/if}${/if}' +
                   '${if(directory)}<div class="e-icons e-icon-collapsible"></div>${/if}</div>',
@@ -1204,6 +1234,10 @@
   }
   
   function setSelectList(): void {
+    const eles = document.querySelectorAll('#controlList .e-list-item.e-level-1');
+    for (const ele of eles as any) {
+      ele.tabIndex = 0;
+     }
       let hString: string = window.hashString || location.hash;
       let hash: string[] = hString.split('/');
       let list: ListView = (select('#controlList') as any).ej2_instances[0];
@@ -1433,6 +1467,7 @@
                    * sample header
                    */
                   sampleNameElement.innerHTML = node.name;
+                  sampleNameElement.setAttribute('title', node.name);
                   /**
                    * BreadCrumb
                    */

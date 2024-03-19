@@ -2,12 +2,12 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor Markdown Preview Sample
  */
-import { RichTextEditor, Link, Image, MarkdownEditor, Toolbar, QuickToolbar, Table , ToolbarType } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Link, Image, MarkdownEditor, Toolbar, Table , ToolbarType } from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs, isNullOrUndefined, addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { Splitter } from '@syncfusion/ej2-layouts';
 import * as Marked from 'marked';
 
-RichTextEditor.Inject(Link, Image, MarkdownEditor, Toolbar, QuickToolbar, Table);
+RichTextEditor.Inject(Link, Image, MarkdownEditor, Toolbar, Table);
 
 let textArea: HTMLTextAreaElement;
 let srcArea: HTMLElement;
@@ -22,7 +22,7 @@ let splitObj: Splitter;
         paneSettings: [{ resizable: true, size: '50%', min: '40%' }, { min: '40%' }],
         created: updateOrientation,
     });
-    splitObj.appendTo('#horizontal');
+    splitObj.appendTo('#splitter-rte-markdown-preview');
     defaultRTE = new RichTextEditor({
         height: '100%',
         floatingToolbarOffset: 0,

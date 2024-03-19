@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
-ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner } from '@syncfusion/ej2-pdfviewer';
+ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer } from '@syncfusion/ej2-pdfviewer';
 // tslint:disable-next-line:max-line-length
 import { Switch } from '@syncfusion/ej2-buttons';
-PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner);
+PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer);
 
 /**
  * Default PdfViewer sample
@@ -13,7 +13,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     let viewer: PdfViewer = new PdfViewer();
     viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/restricted-formfield.pdf";
     viewer.resourceUrl ="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib";
-    viewer.toolbarSettings={ showTooltip : true, toolbarItems:['OpenOption', 'PageNavigationTool', 'MagnificationTool', 'PanTool','SearchOption', 'PrintOption']};
+    viewer.toolbarSettings={ showTooltip : true, toolbarItems:['OpenOption', 'PageNavigationTool', 'MagnificationTool', 'PanTool','PrintOption']};
        
     var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
     switchObj.appendTo('#checked');

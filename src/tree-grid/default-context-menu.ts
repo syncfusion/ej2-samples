@@ -15,6 +15,7 @@ TreeGrid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort, R
             allowExcelExport: true,
             allowPdfExport: true,
             allowSorting: true,
+            allowResizing: true,
             childMapping: 'subtasks',
             height: 350,
             allowPaging: true,

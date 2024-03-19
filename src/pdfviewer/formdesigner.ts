@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
-ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormDesigner, FormFields, TextFieldSettings, RadioButtonFieldSettings, SignatureFieldSettings, CheckBoxFieldSettings, InitialFieldSettings} from '@syncfusion/ej2-pdfviewer';
+ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormDesigner,PageOrganizer, FormFields, TextFieldSettings, RadioButtonFieldSettings, SignatureFieldSettings, CheckBoxFieldSettings, InitialFieldSettings} from '@syncfusion/ej2-pdfviewer';
 // tslint:disable-next-line:max-line-length
 import { Switch } from '@syncfusion/ej2-buttons';
-PdfViewer.Inject(Toolbar, Magnification, Navigation, FormDesigner, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields);
+PdfViewer.Inject(Toolbar, Magnification, Navigation, FormDesigner, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields,PageOrganizer);
 
 /**
  * FormDesigner PdfViewer sample

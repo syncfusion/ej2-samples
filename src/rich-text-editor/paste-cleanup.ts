@@ -1,9 +1,10 @@
 /**
  * Rich Text Editor Paste Cleanup sample
  */
-import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, PasteCleanup, Table } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, PasteCleanup);
+import { isNullOrUndefined } from '@syncfusion/ej2-base';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, PasteCleanup, Video, Audio);
 
 (window as any).default = (): void => {
     let defaultRTE: RichTextEditor = new RichTextEditor({
@@ -42,15 +43,22 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
     let deniedTagsElem: HTMLElement = document.getElementById('deniedTags');
     let deniedAttrsElem: HTMLElement = document.getElementById('deniedAttributes');
     allowedStylePropsElem.addEventListener('blur', (e: FocusEvent) => {
-        defaultRTE.pasteCleanupSettings.allowedStyleProps = (eval)('[' + (e.target as HTMLInputElement).value + ']' );
+        onPasteCleanupSettingsChange((e.target as HTMLInputElement).value, 'allowedStyleProps');
         defaultRTE.dataBind();
     });
     deniedAttrsElem.addEventListener('blur', (e: FocusEvent) => {
-        defaultRTE.pasteCleanupSettings.deniedAttrs = (eval)('[' + (e.target as HTMLInputElement).value + ']' );
+        onPasteCleanupSettingsChange((e.target as HTMLInputElement).value, 'deniedAttrs');
         defaultRTE.dataBind();
     });
     deniedTagsElem.addEventListener('blur', (e: FocusEvent) => {
-        defaultRTE.pasteCleanupSettings.deniedTags = (eval)('[' + (e.target as HTMLInputElement).value + ']' );
+        onPasteCleanupSettingsChange((e.target as HTMLInputElement).value, 'deniedTags');
         defaultRTE.dataBind();
     });
+
+    function onPasteCleanupSettingsChange(value: string, settingsProperty: string): void {
+        if (!isNullOrUndefined(value)) {
+            const arrayValue = value.split(',').map((item) => item.trim().replace(/^['"]|['"]$/g, ''));
+            defaultRTE.pasteCleanupSettings[settingsProperty] = arrayValue.filter((prop) => prop !== '');
+        }
+    }
 };

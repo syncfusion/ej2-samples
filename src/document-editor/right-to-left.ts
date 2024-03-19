@@ -213,6 +213,11 @@ L10n.load({
             'Edit Field': 'تحرير الحقل',
             'Bookmark': 'الاشاره المرجعيه',
             'Page Setup': 'اعداد الصفحة',
+            'Page Breaks':  'فواصل الصفحة',
+            'Section Breaks': 'فواصل القسم',
+            'Column':'عمود',
+            'Next Page':'الصفحة التالية',
+            'Continuous' : 'الصفحة التالية',
             'No bookmarks found': 'لم يتم العثور علي إشارات مرجعيه',
             'Format': 'تنسيق',
             'Create New Style': 'إنشاء نمط جديد',
@@ -519,7 +524,7 @@ L10n.load({
 
     let container: DocumentEditorContainer = new DocumentEditorContainer({
         serviceUrl:hostUrl,enableToolbar: true,
-        height: '590px', enableRtl: true, locale: 'ar-AE'
+        height: '590px', enableRtl: true, locale: 'ar-AE',  documentEditorSettings:{ showRuler: true}
     });
     DocumentEditorContainer.Inject(Toolbar);
     container.appendTo('#container');

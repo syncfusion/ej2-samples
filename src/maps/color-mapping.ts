@@ -2,12 +2,14 @@
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 /**
- * Maps datalabel sample
+ * ColorMapping sample
  */
-import { Maps, MapsTooltip, Legend, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, MapsTooltip, Legend, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 import { EmitType } from '@syncfusion/ej2-base';
+import { usa } from './map-data/usa';
+import { colorMappingData } from './map-data/color-mapping';
 Maps.Inject(MapsTooltip, Legend);
 // custom code start
 //tslint:disable:max-func-body-length
@@ -54,9 +56,9 @@ Maps.Inject(MapsTooltip, Legend);
         },
         layers: [
             {
-                dataSource : new MapAjax('./src/maps/map-data/color-mapping.json'),
+                dataSource : colorMappingData,
                 shapeDataPath: 'State',
-                shapeData: new MapAjax('./src/maps/map-data/usa.json'),
+                shapeData: usa,
                 shapePropertyPath: 'name',
                 shapeSettings: {
                     colorValuePath: 'inches',

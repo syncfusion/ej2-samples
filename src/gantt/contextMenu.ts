@@ -12,7 +12,7 @@ import { editingData, editingResources } from './data-source';
 Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort);
 let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpenEventArgs) => {
     let record: IGanttData = args.rowData;
-    if (args.type !== 'Header') {
+    if (args.type !== 'Header' && record) {
         if (!record.hasChildRecords) {
             args.hideItems.push('Collapse the Row');
             args.hideItems.push('Expand the Row');
@@ -75,10 +75,10 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
             contextMenuItems: contextMenuItems as ContextMenuItem[],
             contextMenuClick: (args?: ContextMenuClickEventArgs) => {
                 let record: IGanttData = args.rowData;
-                if (args.item.id === 'collapserow') {
+                if (args.item.id === 'collapserow' && record) {
                     gantt.collapseByID(Number(record.ganttProperties.taskId));
                 }
-                if (args.item.id === 'expandrow') {
+                if (args.item.id === 'expandrow' && record) {
                     gantt.expandByID(Number(record.ganttProperties.taskId));
                 }
             },

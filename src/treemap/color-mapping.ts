@@ -11,6 +11,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
+import { colorMappingData } from './treemap-data/color';
 import { EmitType } from '@syncfusion/ej2-base';
 let prevTime: Date; let curTime: Date;
 (window as any).default = (): void => {
@@ -18,10 +19,12 @@ let prevTime: Date; let curTime: Date;
     loadCultureFiles();
     // custom code end
     let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        // custom code start
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
             theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+        // custom code end
     };
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
@@ -32,7 +35,7 @@ let prevTime: Date; let curTime: Date;
         format: 'n',
         useGroupingSeparator: true,
         rangeColorValuePath: 'Area',
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/color.json'),
+        dataSource: colorMappingData,
         legendSettings: {
             visible: true,
             position: 'Bottom',

@@ -3,8 +3,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Rich Text Editor iframe sample
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager,Audio,Video,FormatPainter,EmojiPicker } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager,Audio,Video,EmojiPicker);
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager,Audio,Video,EmojiPicker, PasteCleanup } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, FileManager,Audio,Video,EmojiPicker, PasteCleanup);
 
 (window as any).default = (): void => {
     loadCultureFiles();

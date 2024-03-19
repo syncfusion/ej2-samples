@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, Tooltip, Legend, PolarSeries, Category,
-    RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme, Highlight
+    RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme, Highlight, ColumnSeries
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries, Highlight);
+Chart.Inject(Tooltip, Legend, PolarSeries, Category, RadarSeries, Highlight, ColumnSeries);
 
 /**
  * Sample for Polar Series with DrawType Column

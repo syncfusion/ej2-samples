@@ -102,7 +102,7 @@ loadCultureFiles();
         axes: [{
             annotations: [{
                 angle: 0, radius: '0%', zIndex: '1',
-                content: '<div class="annotation4"><img style="width:17px;height:17px;" src="src/circular-gauge/images/image1.svg" /></div>'
+                content: '<div class="annotation4"><img style="width:17px;height:17px;margin-top: 2px;margin-left: 2px;" src="src/circular-gauge/images/image1.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },
@@ -149,7 +149,7 @@ loadCultureFiles();
         axes: [{
             annotations: [{
                 angle: 0, radius: '0%', zIndex: '1',
-                content: '<div class="annotation5"><img style="width:15px;height:15px;" src="src/circular-gauge/images/image2.svg" /></div>'
+                content: '<div class="annotation5"><img style="width:15px;height:15px;margin-top: 3px;margin-left: 1px;" src="src/circular-gauge/images/image2.svg" /></div>'
             }],
             startAngle: 0, endAngle: 360,
             lineStyle: { width: 0 },

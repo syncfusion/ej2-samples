@@ -2,9 +2,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 /**
- * Changing exporting sample.
+ * Print sample.
  */
-import { Maps, ILoadEventArgs, MapsTheme, ITooltipRenderEventArgs, MapsTooltip, Legend, MapAjax, Print } from '@syncfusion/ej2-maps';
+import { Maps, ILoadEventArgs, MapsTheme, ITooltipRenderEventArgs, MapsTooltip, Legend, Print } from '@syncfusion/ej2-maps';
+import { usa } from './map-data/usa';
+import { printData } from './map-data/print-datasource';
 import { Button } from '@syncfusion/ej2-buttons';
 Maps.Inject(Legend, MapsTooltip, Print);
 (window as any).default = (): void => {
@@ -49,10 +51,10 @@ Maps.Inject(Legend, MapsTooltip, Print);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/usa.json'),
+                shapeData: usa,
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                dataSource: new MapAjax('./src/maps/map-data/print-datasource.json'),
+                dataSource: printData,
                 shapeSettings: {
                     border: {
                         width: 0.5,

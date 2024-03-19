@@ -1,5 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DocumentEditorContainer, Toolbar } from '@syncfusion/ej2-documenteditor';
+import { CheckBox } from '@syncfusion/ej2-buttons';
 import { TitleBar } from './title-bar';
 import * as data from './data-default.json';
 
@@ -24,4 +25,10 @@ import * as data from './data-default.json';
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };
+    let checkbox: CheckBox = new CheckBox({ label: 'Show ruler', checked: true, change: (args) => { 
+        container.documentEditorSettings.showRuler = args.checked;
+      }});
+
+    // Render initialized CheckBox.
+    checkbox.appendTo('#checkbox');
 };

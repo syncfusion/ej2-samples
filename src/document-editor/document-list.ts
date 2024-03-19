@@ -27,7 +27,7 @@ Grid.Inject(Page,CommandColumn);
     dialogObj.appendTo('#defaultDialog');
 
     let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
-    let container: DocumentEditorContainer = new DocumentEditorContainer({ height:"90%", serviceUrl:hostUrl, enableToolbar: true , zIndex: 3000 });
+    let container: DocumentEditorContainer = new DocumentEditorContainer({ height:"90%", serviceUrl:hostUrl, enableToolbar: true , zIndex: 3000 , documentEditorSettings:{ showRuler: true}});
     DocumentEditorContainer.Inject(Toolbar);
     container.appendTo('#container'); 
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true, false, dialogObj);

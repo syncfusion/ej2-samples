@@ -8,24 +8,24 @@
             </div>
             <div class="col-lg-3 col-md-3" style="margin-left: -9%">
                 <div class="panel" id="panel1" align="center">
-                    <div class="subgauge" id="gauge2" style="float: left;margin-top: 3%"></div>
-                    <div class="content">
+                    <div class="subgauge" id="gauge2" style="float: left;margin-top: 2%"></div>
+                    <div class="borderContent">
                         <span class="firstcontent" style="font-size: 17px;">MOVE</span>
                         <span class="firstcontent" style="font-size: 17px;color: #fa114f;">65%</span><br />
                         <span class="secondcontent" style="color: #fa114f; font-size: 19px">338/520 CAL</span>
                     </div>
                 </div>
                 <div class="panel" id="panel2" align="center">
-                    <div class="subgauge" id="gauge3" style="float: left;margin-top: 3%"></div>
-                    <div class="content">
+                    <div class="subgauge" id="gauge3" style="float: left;margin-top: 2%"></div>
+                    <div class="borderContent">
                         <span class="firstcontent" style="font-size: 17px;">EXERCISE</span>
                         <span class="firstcontent" style="font-size: 17px;color: #99ff01;">43%</span><br />
                         <span class="secondcontent" style="color: #99ff01;; font-size: 19px">13/30 MIN</span>
                     </div>
                 </div>
                 <div class="panel" id="panel3" align="center">
-                    <div class="subgauge" id="gauge4" style="float: left;margin-top: 3%"></div>
-                    <div class="content">
+                    <div class="subgauge" id="gauge4" style="float: left;margin-top: 2%"></div>
+                    <div class="borderContent">
                         <span class="firstcontent" style="font-size: 17px;">STAND</span>
                         <span class="firstcontent" style="font-size: 17px;color: #00d8fe">58%</span><br />
                         <span class="secondcontent" style="color: #00d8fe; font-size: 19px">7/12 HR</span>
@@ -69,13 +69,13 @@
         background-color: transparent;
     }
 
-    .content {
+    .borderContent {
         float: left !important;
-        margin-left: 62px !important;
-        margin-top: 10px !important;
+        margin-left: 65px !important;
+        margin-top: -62px !important;
         text-align: left !important;
-        position: absolute;
-        width: 120px;
+        width: 126px;
+        height: auto;
     }
 
     @media screen and (max-width: 1160px) {
@@ -91,8 +91,8 @@
             font-size: 15px !important;
         }
 
-        .content {
-            margin-top: 15px !important;
+        .borderContent {
+            margin-top: -62px !important;
         }
 
         .divide {
@@ -113,9 +113,9 @@
             margin-top: 1% !important;
         }
 
-        .content {
+        .borderContent {
             margin-left: 63px !important;
-            margin-top: 10px !important;
+            margin-top: -63px !important;
         }
 
         .firstcontent {
@@ -154,8 +154,8 @@
             width: 165px !important;
         }
 
-        .content {
-            margin-top: 3% !important;
+        .borderContent {
+            margin-top: -35% !important;
         }
     }
 

@@ -47,7 +47,8 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
           selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
       }
-    }
+    },
+    height: 450
   });
   pivotObj.appendTo('#PivotView');
 

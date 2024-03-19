@@ -1,7 +1,6 @@
-/**
- * Countries population
- */
+// custom code start
 //tslint:disable
+// custom code end
 export let internetUsers: any = [
     { 'rank': 1, 'name': 'China', 'value': bubblesize(746662194), 'color': '#7F38A0', 'population': 746662194},
     { 'rank': 2, 'name': 'India', 'value': bubblesize(391292635), 'color': '#7F38A0 ', 'population': 391292635 },

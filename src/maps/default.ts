@@ -1,15 +1,14 @@
 /**
  * Maps default sample
  */
-import { Maps, Legend, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Legend, Marker, MapsTooltip, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { defaultData } from './map-data/default-datasource';
 Maps.Inject(Legend, Marker, MapsTooltip);
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 //tslint:disable:max-func-body-length
 // custom code end
-/**
- * Code for Maps
- */
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -33,10 +32,10 @@ import { loadCultureFiles } from '../common/culture-loader';
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapePropertyPath: 'continent',
                 shapeDataPath: 'continent',
-                dataSource: new MapAjax('./src/maps/map-data/default-datasource.json'),
+                dataSource: defaultData,
                 shapeSettings: {
                     colorValuePath: 'color',
                 },

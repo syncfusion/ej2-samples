@@ -19,7 +19,6 @@
             "url": "live-data",
             "name": "Live Data",
             "category": "Pivot Table",
-            "type": "new",
             "description": "This sample demonstrates how frequently the pivot table and the pivot chart are updated with real-time data at a given time interval."
         },
         {
@@ -55,12 +54,12 @@
             "url": "server-side-aggregation",
             "name": "Server-side Aggregation",
             "category": "Data Binding",
-            "type": "new",
             "description": "This sample demonstrates the ability to use an external pivot engine to bind and populate data from a remote service and display it in the pivot table."
         },
         {
             "url": "olap",
             "name": "OLAP",
+            "type": "update",
             "category": "Data Binding",
             "description": "This demo for Essential JS2 Pivot Table control demonstrate the basic rendering of the pivot table with olap datasource"
         },
@@ -68,7 +67,6 @@
             "url": "performance",
             "name": "Performance",
             "category": "Benchmark",
-            "type": "new",
             "description": "This sample demonstrates how the pivot table loads a large amount of data with ease using virtual scrolling."
         },
         {
@@ -87,7 +85,6 @@
             "url": "heat-map",
             "name": "HeatMap",
             "category": "Integration",
-            "type": "new",
             "description": "In this sample, we show you how to visualize the bound data by making the pivot table cells look like a heatmap"
         },
         {
@@ -195,6 +192,7 @@
         {
             "url": "virtual-scrolling",
             "name": "Virtual Scrolling",
+            "type": "update",
             "category": "Scrolling",
             "description": "This demo for Essential JS2 Pivot Table control shows virtual scrolling option available vertically and horizontally to load large records with ease"
         },

@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Grid, Selection, GridLine } from '@syncfusion/ej2-grids';
+import { Grid, Selection, GridLine, Sort } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 
-Grid.Inject(Selection);
+Grid.Inject(Selection, Sort);
 
 /**
  * Grid Lines sample
@@ -21,6 +21,7 @@ Grid.Inject(Selection);
     let grid: Grid = new Grid(
         {
             dataSource: employeeData,
+            allowSorting: true,
             gridLines: 'Default',
             columns: [
                 { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 140 },

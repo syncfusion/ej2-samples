@@ -1,14 +1,15 @@
-/**
- * Sample for cyber attack map of USA
- */
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 //tslint:disable
 // custom code end
+/**
+ * Sample for cyber attack map of USA
+ */
 import {
-    Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax, NavigationLine,
+    Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, NavigationLine,
     NavigationLineSettingsModel, loaded, ILoadedEventArgs
 } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
 Maps.Inject(Marker, NavigationLine, MapsTooltip);
 (window as any).default = (): void => {
     // custom code start
@@ -21,7 +22,7 @@ Maps.Inject(Marker, NavigationLine, MapsTooltip);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeSettings: {
                     border: { color: '#D2691E', width: 0.5 },
                     fill: '#FFFFE0'
@@ -151,6 +152,7 @@ Maps.Inject(Marker, NavigationLine, MapsTooltip);
             args.maps.theme = <MapsTheme>(theme.charAt(0).toUpperCase() +
             theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
         },
+        // custom code end
         loaded: (args: ILoadedEventArgs) => {
             let lines: NavigationLineSettingsModel[] = args.maps.layers[0].navigationLineSettings;
             for (let i: number = 0; i < lines.length; i++) {
@@ -187,7 +189,6 @@ Maps.Inject(Marker, NavigationLine, MapsTooltip);
                 }
             }
         }
-        // custom code end
     });
     maps.appendTo('#container');
 };

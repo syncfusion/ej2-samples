@@ -3,8 +3,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  * RichTextEditor Online Html Editor sample
  */
 import { createElement, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, ToolbarType, Table } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table);
+import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, ToolbarType, Table, PasteCleanup,EmojiPicker, Audio ,Video, FormatPainter } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, PasteCleanup, EmojiPicker, Audio ,Video, FormatPainter);
 import { Splitter } from '@syncfusion/ej2-layouts';
 import * as CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';
@@ -25,7 +25,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       paneSettings: [{ resizable: true, size: '50%',min: '40%' }, {min: '40%'}],
       created: updateOrientation,
     });
-    splitObj.appendTo('#horizontal');
+    splitObj.appendTo('#splitter-rte-online-html-editor');
 
     defaultRTE = new RichTextEditor({
       height: '100%',

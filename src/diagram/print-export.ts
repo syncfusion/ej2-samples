@@ -158,7 +158,7 @@ function toolbarClick(args: ClickEventArgs): void {
     });
 
     let items: ItemModel[] = [
-        { text: 'JPG' }, { text: 'PNG' }, { text: 'BMP' }, { text: 'SVG' }
+        { text: 'JPG' }, { text: 'PNG' }, { text: 'SVG' }
     ];
     //DropDownButton used to perform exporting.
     let btnObj: DropDownButton = new DropDownButton({

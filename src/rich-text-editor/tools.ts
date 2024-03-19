@@ -3,8 +3,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Rich Text Editor overview sample
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager , EmojiPicker, Audio ,Video, FormatPainter} from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager , EmojiPicker, Audio, Video, FormatPainter);
+import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager , EmojiPicker, Audio ,Video, FormatPainter, PasteCleanup} from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager , EmojiPicker, Audio, Video, FormatPainter, PasteCleanup);
 import { createElement } from '@syncfusion/ej2-base';
 import * as CodeMirror from 'codemirror';
 
@@ -36,9 +36,11 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
         },
         quickToolbarSettings: {
             table: ['TableHeader', 'TableRows', 'TableColumns', 'TableCell', '-',
-            'BackgroundColor', 'TableRemove', 'TableCellVerticalAlign', 'Styles']
+            'BackgroundColor', 'TableRemove', 'TableCellVerticalAlign', 'Styles'],
+            showOnRightClick: true,
         },
         showCharCount: true,
+        enableTabKey : true,
         actionBegin: handleFullScreen, actionComplete: actionCompleteHandler
     });
     defaultRTE.appendTo('#defaultRTE');
@@ -62,7 +64,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
             } else { mirrorView.innerHTML = ''; }
             textArea.style.display = 'none';
             mirrorView.style.display = 'block';
-            renderCodeMirror(mirrorView, defaultRTE.value);
+            renderCodeMirror(mirrorView, defaultRTE.value === null ? '' : defaultRTE.value);
             charCount.style.display = 'none';
         }
     }

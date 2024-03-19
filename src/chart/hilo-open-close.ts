@@ -25,8 +25,11 @@ import { Browser } from '@syncfusion/ej2-base';
             //Initializing Primary Y Axis
             primaryYAxis: {
                 title: 'Price',
-                labelFormat: 'n0',interval: 20,
-                lineStyle: { width: 0 }, rangePadding: 'None',
+                labelFormat: 'n0',
+                lineStyle: { width: 0 },
+                minimum: 40,
+                maximum: 140,
+                interval: 20,
                 majorTickLines: { width: 0 }
             },
             chartArea: { border: { width: 0 } },

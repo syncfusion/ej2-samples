@@ -7,20 +7,27 @@ import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 import { TreeMap, ILoadedEventArgs, IResizeEventArgs, TreeMapTooltip, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip } from '@syncfusion/ej2-charts';
+import { continentData } from './treemap-data/continent-data';
 AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip);
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs, ITreeMapTooltipRenderEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+let chartCollection: AccumulationChart[] = [];
+let count: number = 0;
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
-    let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+    let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {        
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
         theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
     };
+    // custom code end
     let treemap: TreeMap = new TreeMap({
+        // custom code start
         load: treemapload,
+        // custom code end
         // AccumulationChart rendering
         loaded: (args: ILoadedEventArgs) => {
             let template: Element = document.getElementById(args.treemap.element.id + '_Label_Template_Group');
@@ -56,8 +63,7 @@ import { EmitType } from '@syncfusion/ej2-base';
             textStyle: { size: '15px', fontFamily: 'Segoe UI' }
         },
         format: 'n', useGroupingSeparator: true,
-        //enableDrillDown: true,
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/continent_data.json'),
+        dataSource: continentData,
         weightValuePath: 'Population',
         leafItemSettings: {
             labelPath: 'Gender',
@@ -80,8 +86,7 @@ import { EmitType } from '@syncfusion/ej2-base';
     });
     treemap.appendTo('#container');
 };
-let chartCollection: AccumulationChart[] = [];
-let count: number = 0;
+
 // custom code start
 /* tslint:disable:no-string-literal */
 // custom code end

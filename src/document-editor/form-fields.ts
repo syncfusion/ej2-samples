@@ -12,7 +12,7 @@ import * as data from './data-form-fields.json';
     let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
 
     let container: DocumentEditorContainer = new DocumentEditorContainer({ serviceUrl:hostUrl,
-        enableToolbar: true, height: '590px', showPropertiesPane: false
+        enableToolbar: true, height: '590px', showPropertiesPane: false,  documentEditorSettings:{ showRuler: true}
     });
     DocumentEditorContainer.Inject(Toolbar);
     container.appendTo('#container');

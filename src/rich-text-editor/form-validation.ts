@@ -2,9 +2,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor form validation sample
  */
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
 import { FormValidator } from '@syncfusion/ej2-inputs';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar);
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar, PasteCleanup, Table, Video, Audio);
 
 (window as any).default = (): void => {
     loadCultureFiles();

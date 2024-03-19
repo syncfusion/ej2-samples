@@ -7,6 +7,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 import { TreeMap, TreeMapTooltip, LayoutMode, TreeMapAjax, RenderingMode } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { economicsData } from './treemap-data/economics';
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -16,10 +17,12 @@ import { EmitType } from '@syncfusion/ej2-base';
     loadCultureFiles();
     // custom code end
     let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        // custom code start
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
         theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+        // custom code end
     };
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
@@ -28,7 +31,7 @@ import { EmitType } from '@syncfusion/ej2-base';
             text: 'Top 10 countries by GDP Nominal - 2015',
             textStyle: {size: '15px', fontFamily: 'Segoe UI'}
         },
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/econmics.json'),
+        dataSource: economicsData,
         weightValuePath: 'GDP',
         // To config tooltip for treemap 
         tooltipSettings: {

@@ -2,9 +2,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor inline toolbar sample
  */
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio);
 
 (window as any).default = (): void => {
     loadCultureFiles();

@@ -6,10 +6,12 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { TreeMap, TreeMapTooltip, TreeMapLegend, TreeMapAjax } from '@syncfusion/ej2-treemap';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
+import { rtlData } from './treemap-data/rtl-data';
 import { EmitType } from '@syncfusion/ej2-base';
 
 let prevTime: Date; let curTime: Date;
 (window as any).default = (): void => {
+    // custom code start
     loadCultureFiles();
     let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         let theme: string = location.hash.split('/')[1];
@@ -17,8 +19,11 @@ let prevTime: Date; let curTime: Date;
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
         theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
     };
+    // custom code end
     let treemap: TreeMap = new TreeMap({
+        // custom code start
         load: treemapload,
+        // custom code end
         palette: ['#5B244D', '#6F3953', ' #87525A', '#A26F63', '#BA896B', '#D5A574', '#F1C37D'],
         titleSettings: {
             text: 'List of Countries by Unemployment Rate',
@@ -29,7 +34,7 @@ let prevTime: Date; let curTime: Date;
         enableRtl: true,
         format: 'n',
         useGroupingSeparator: true,
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/rtl-data.json'),
+        dataSource: rtlData,
         weightValuePath: 'Size',
         tooltipSettings: {
             visible: true,

@@ -52,7 +52,8 @@ import { Dialog, DialogUtility } from '@syncfusion/ej2-popups';
             'Separator',
             'FormFields',
             'UpdateFields',
-        ]
+        ],
+        documentEditorSettings:{ showRuler: true}
     });
     DocumentEditorContainer.Inject(Toolbar);
     container.appendTo('#container');

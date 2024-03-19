@@ -1,8 +1,9 @@
 /**
  * Maps Curved line
  */
-import { Maps, Marker, MapsTooltip, NavigationLine, ILoadEventArgs, Zoom, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-import * as marker_location from './map-data/marker-location.json';
+import { Maps, Marker, MapsTooltip, NavigationLine, ILoadEventArgs, Zoom, MapsTheme } from '@syncfusion/ej2-maps';
+import { markerLocation, data } from './map-data/marker-location';
+import { worldMap } from './map-data/world-map';
 Maps.Inject(Marker, MapsTooltip, NavigationLine, Zoom);
 // custom code start
 //tslint:disable
@@ -69,10 +70,10 @@ Maps.Inject(Marker, MapsTooltip, NavigationLine, Zoom);
                         }
                     ]
                 },
-                navigationLineSettings: (marker_location as any).data,
+                navigationLineSettings: data,
                 markerSettings: [
                     {
-                        dataSource: (marker_location as any).markerLocation,
+                        dataSource: markerLocation,
                         visible: true,
                         shape: 'Circle',
                         fill: 'white',
@@ -238,7 +239,7 @@ Maps.Inject(Marker, MapsTooltip, NavigationLine, Zoom);
                         }
                     }
                 ],
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json')
+                shapeData: worldMap
             }
         ],
     });

@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor enter key configuration sample
  */
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { createElement } from '@syncfusion/ej2-base';
 import * as CodeMirror from 'codemirror';
@@ -11,7 +11,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio);
 
 (window as any).default = (): void => {
     loadCultureFiles();

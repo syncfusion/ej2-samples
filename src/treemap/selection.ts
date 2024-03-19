@@ -6,6 +6,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 import { TreeMap, TreeMapHighlight, TreeMapSelection, HighLightMode, SelectionMode, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { importData } from './treemap-data/import';
 TreeMap.Inject(TreeMapHighlight, TreeMapSelection);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -13,20 +14,22 @@ import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/e
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
-    // custom code end
     let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
         theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
     };
+    // custom code end
     let treemap: TreeMap = new TreeMap({
+        // custom code start
         load: treemapload,
+        // custom code end
         titleSettings: {
             text: 'Import and Export details of US',
             textStyle: { fontFamily: 'Segoe UI' }
         },
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/import.json'),
+        dataSource: importData,
         weightValuePath: 'sales',
         levels: [
             { groupPath: 'dataType', fill: '#c5e2f7', headerStyle: { size: '16px' }, headerAlignment: 'Center', groupGap: 5 },

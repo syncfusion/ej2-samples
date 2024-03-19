@@ -1,18 +1,15 @@
 /**
  * Marker sample
  */
-import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax, Zoom } from '@syncfusion/ej2-maps';
-import * as dataSource from './map-data/southamerica-country-capitals.json';
+import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, Zoom } from '@syncfusion/ej2-maps';
+import { southAmericaCapitals} from './map-data/southamerica-country-capitals';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 import { EmitType } from '@syncfusion/ej2-base';
-let data: any  = dataSource as any;
+import { worldMap } from './map-data/world-map';
 Maps.Inject(Marker, MapsTooltip, Zoom);
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
-/**
- * Code for Maps
- */
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -42,7 +39,7 @@ import { loadCultureFiles } from '../common/culture-loader';
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeSettings: {
                     fill: '#C3E6ED',
                     border: {
@@ -53,7 +50,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 
                 markerSettings: [
                     {
-                        dataSource: data.southAmericaCountryCapitals,
+                        dataSource: southAmericaCapitals,
                         visible: true,
                         animationDuration: 0,
                         height: 20,

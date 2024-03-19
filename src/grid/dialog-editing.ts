@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Edit, Toolbar, Page } from '@syncfusion/ej2-grids';
+import { Grid, Edit, Toolbar, Page, Sort } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
 
 /**
  * Dialog Editing sample
  */
-Grid.Inject(Edit, Toolbar, Page);
+Grid.Inject(Edit, Toolbar, Page, Sort);
 (window as any).default = (): void => {
     loadCultureFiles();
     let grid: Grid = new Grid(
@@ -14,6 +14,7 @@ Grid.Inject(Edit, Toolbar, Page);
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Dialog' },
             allowPaging: true,
             pageSettings: {pageCount: 5},
+            allowSorting: true,
             toolbar: ['Add', 'Edit', 'Delete'],
             columns: [
                 {

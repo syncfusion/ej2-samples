@@ -1,9 +1,9 @@
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
-import { Grid, Page, Selection, Column } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, Column, Sort } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
 
-Grid.Inject(Page, Selection);
+Grid.Inject(Page, Selection, Sort);
 /**
  * Show Hide sample
  */
@@ -19,6 +19,7 @@ Grid.Inject(Page, Selection);
         dataSource: categoryData,
         allowPaging: true,
         pageSettings: { pageCount: 2 },
+        allowSorting: true,
         columns: [
             { field: 'CategoryName', headerText: 'Category Name', width: 160 },
             { field: 'ProductName', headerText: 'Product Name', width: 170 },

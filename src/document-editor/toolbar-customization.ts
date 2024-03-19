@@ -13,7 +13,7 @@ import * as data from './data-toolbar-customization.json';
     loadCultureFiles();
     let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
     let container: DocumentEditorContainer = new DocumentEditorContainer({
-        serviceUrl:hostUrl,enableToolbar: true, height: '590px'});
+        serviceUrl:hostUrl,enableToolbar: true, height: '590px', documentEditorSettings:{ showRuler: true}});
     DocumentEditorContainer.Inject(Toolbar);
     MultiSelect.Inject(CheckBoxSelection);
     container.appendTo('#container');

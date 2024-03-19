@@ -29,12 +29,12 @@ import { Browser } from '@syncfusion/ej2-base';
         ],
         series: [
             {
-                type: 'Column', xName: 'x', yName: 'y', dataSource: chartData, name: 'Sales',
-                width: 2
+                type: 'Column', xName: 'x', yName: 'y', dataSource: chartData,
+                width: 2, name: 'Sales'
             },
             {
-                dataSource: chartData, type: 'Line', yAxisName: 'yAxis2', name: 'Profit Margin', xName: 'x', yName: 'y1', width: 2,
-                marker: { isFilled: true, visible: true, width: 7, height: 7 }
+                dataSource: chartData, type: 'Line', yAxisName: 'yAxis2', xName: 'x', yName: 'y1', width: 2,
+                marker: { isFilled: true, visible: true, width: 7, height: 7 }, name: 'Profit Margin'
             }
         ],
         chartArea: {
@@ -48,6 +48,7 @@ import { Browser } from '@syncfusion/ej2-base';
         title: 'Sales Vs Profit Margins',
         //Initializing User Interaction Tooltip
         tooltip: { enable: true },
+        legendSettings: { visible: false },
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

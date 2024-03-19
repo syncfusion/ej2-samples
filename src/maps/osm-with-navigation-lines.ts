@@ -2,7 +2,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 /**
- * Bubble sample
+ * Osm with navigation sample
  */
 import { Maps, Bubble, Marker, MapsTooltip, MapsTheme, ILoadEventArgs, Zoom, NavigationLine } from '@syncfusion/ej2-maps';
 Maps.Inject(Bubble, MapsTooltip, NavigationLine, Zoom, Marker);
@@ -40,15 +40,6 @@ export interface Data {
             latitude: 27.0902,
             longitude: -105.7129
         },
-        annotations: [{
-            content: '<div style="height:18px;width:170px;background:white;text-align:center">' +
-                '<a href="https://www.openstreetmap.org/copyright"  target = "_blank" > © OpenStreetMap contributors </a></div > ',
-            verticalAlignment: 'Far',
-            zIndex: '1',
-            x: '-40',
-            y: '-20',
-            horizontalAlignment: 'Far'
-        }],
         layers: [
             {
                 layerType: 'OSM',

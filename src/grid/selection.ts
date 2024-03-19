@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { CheckBox } from '@syncfusion/ej2-buttons';
-import { Grid, SelectionType, Selection } from '@syncfusion/ej2-grids';
+import { Grid, SelectionType, Selection, Sort } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 
-Grid.Inject(Selection);
+Grid.Inject(Selection, Sort);
 /**
  * Selection sample
  */
@@ -29,13 +29,14 @@ Grid.Inject(Selection);
     let grid: Grid = new Grid(
         {
             dataSource: employeeData,
+            allowSorting: true,
             allowSelection: true,
             selectionSettings: { type: 'Multiple' },
             enableHover: false,
             rowSelecting : selecting,
             cellSelecting: selecting,
             columns: [
-                { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 135 },
+                { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 150 },
                 { field: 'FirstName', headerText: 'Name', width: 125 },
                 { field: 'Title', headerText: 'Title', width: 180 },
                 {

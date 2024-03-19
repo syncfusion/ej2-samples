@@ -1,8 +1,10 @@
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
-
-import { Maps, Marker, MapsTooltip, MapsTheme, Legend, ILoadEventArgs, Zoom, MapAjax } from '@syncfusion/ej2-maps';
+/**
+ * Osm with legend sample
+ */
+import { Maps, Marker, MapsTooltip, MapsTheme, Legend, ILoadEventArgs, Zoom } from '@syncfusion/ej2-maps';
 Maps.Inject(Marker, MapsTooltip, Zoom, Legend);
 
 (window as any).default = (): void => {

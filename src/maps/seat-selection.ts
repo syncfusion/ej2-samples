@@ -4,7 +4,8 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Seat Selection sample
  */
-import { Maps, ISelectionEventArgs, Selection, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, ISelectionEventArgs, Selection, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { seatData } from './map-data/seat';
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
@@ -60,7 +61,7 @@ import { Maps, ISelectionEventArgs, Selection, ILoadEventArgs, MapsTheme, MapAja
         layers: [
             {
                 geometryType: 'Normal',
-                shapeData: new MapAjax('./src/maps/map-data/seat.json'),
+                shapeData: seatData,
                 shapeSettings: {
                     colorValuePath: 'fill'
                 },

@@ -4,9 +4,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Linea penusular sample
  */
-import { Maps, Marker, Zoom, NavigationLine, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-import * as mapLocation from './map-data/map-location.json';
-let data: any  = mapLocation as any;
+import { Maps, Marker, Zoom, NavigationLine, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { peninsularLocationData, peninsularMarkerData } from './map-data/map-location';
 Maps.Inject(Marker, Zoom, NavigationLine);
 // custom code start
 //tslint:disable:max-func-body-length
@@ -46,11 +46,11 @@ Maps.Inject(Marker, Zoom, NavigationLine);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeSettings: {
                     fill: '#789071',
                 },
-                navigationLineSettings: data.penisular_location,
+                navigationLineSettings: peninsularLocationData,
                 markerSettings: [
                     {
                         visible: true,
@@ -59,7 +59,7 @@ Maps.Inject(Marker, Zoom, NavigationLine);
                         width: 10,
                         height: 10,
                         animationDuration: 0,
-                        dataSource: data.penisular_marker
+                        dataSource: peninsularMarkerData
                     },
                     {
                         visible: true,

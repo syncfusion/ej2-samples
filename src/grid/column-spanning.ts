@@ -1,6 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, QueryCellInfoEventArgs } from '@syncfusion/ej2-grids';
+import { Grid, QueryCellInfoEventArgs, Freeze } from '@syncfusion/ej2-grids';
 import { columnSpanData, ColumnSpanDataType } from './data-source';
+
+Grid.Inject(Freeze);
 
 /**
  * Grid Column spanning sample
@@ -12,8 +14,10 @@ import { columnSpanData, ColumnSpanDataType } from './data-source';
             dataSource: columnSpanData,
             queryCellInfo: QueryCellEvent,
             gridLines: 'Both',
+            enableHover: false,
+            allowSelection: false,
             columns: [
-                { field: 'EmployeeID', headerText: 'Employee ID', isPrimaryKey: true, textAlign: 'Right', width: 150 },
+                { field: 'EmployeeID', headerText: 'Employee ID', freeze: 'Left', isPrimaryKey: true, textAlign: 'Right', width: 150 },
                 { field: 'EmployeeName', headerText: 'Employee Name', width: 200 },
                 { field: '9:00', headerText: '9.00 AM', width: 120 },
                 { field: '9:30', headerText: '9.30 AM', width: 120 },
@@ -117,7 +121,7 @@ function extendQueryCellEvent(args: QueryCellInfoEventArgs, value: number): void
                 args.colSpan = 2;
             }
             break;
-        case 100010:
+        case 10010:
             if (args.column.field === '9:00' || args.column.field === '2:30' ||
                 args.column.field === '4:00' || args.column.field === '11:30') {
                 args.colSpan = 3;

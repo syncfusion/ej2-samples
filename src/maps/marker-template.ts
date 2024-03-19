@@ -1,7 +1,8 @@
 /**
  * Marker template sample
  */
-import { Maps, Marker, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Marker, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { australia } from './map-data/australia';
 Maps.Inject(Marker);
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
@@ -32,7 +33,7 @@ import { loadCultureFiles } from '../common/culture-loader';
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/australia.json'),
+                shapeData: australia,
                 shapeDataPath: 'STATE_NAME',
                 markerSettings: [
                     {

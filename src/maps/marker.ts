@@ -1,11 +1,11 @@
 /**
  * Marker sample
  */
-import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-import * as dataSource from './map-data/top-location.json';
+import { Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { topPopulation } from './map-data/top-location';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 import { EmitType } from '@syncfusion/ej2-base';
-let data: any  = dataSource as any;
 Maps.Inject(Marker, MapsTooltip);
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
@@ -40,13 +40,13 @@ import { loadCultureFiles } from '../common/culture-loader';
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeSettings: {
                     fill: '#C3E6ED'
                 },
                 markerSettings: [
                     {
-                        dataSource: data.topPopulation,
+                        dataSource: topPopulation,
                         visible: true,
                         animationDuration: 0,
                         shape: 'Circle',

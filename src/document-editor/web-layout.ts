@@ -13,7 +13,7 @@ import * as data from './data-web-layout.json';
 
     let container: DocumentEditorContainer = new DocumentEditorContainer({
         serviceUrl:hostUrl,enableToolbar: true,
-        height: '590px', layoutType: 'Continuous'
+        height: '590px', layoutType: 'Continuous',  documentEditorSettings:{ showRuler: true}
     });
     DocumentEditorContainer.Inject(Toolbar);
     container.appendTo('#container');

@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page } from '@syncfusion/ej2-grids';
+import { Grid, Page, Sort } from '@syncfusion/ej2-grids';
 import { productData } from './data-source';
 
-Grid.Inject(Page);
+Grid.Inject(Page, Sort);
 
 /**
  * Hover sample
@@ -14,6 +14,7 @@ Grid.Inject(Page);
         allowPaging: true,
         allowSelection: false,
         enableHover: true,
+        allowSorting: true,
         columns: [
             { field: 'ProductID', headerText: 'Product ID', width: 130, textAlign: 'Right' },
             { field: 'ProductName', headerText: 'Product Name', width: 170 },

@@ -1,13 +1,13 @@
 import { loadCultureFiles } from '../common/culture-loader';
 
-import { Grid, DetailRow, Toolbar, PdfExport, ExcelExport, ExportDetailTemplateEventArgs } from '@syncfusion/ej2-grids';
+import { Grid, DetailRow, Toolbar, PdfExport, ExcelExport, ExportDetailTemplateEventArgs, Sort } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { Internationalization } from '@syncfusion/ej2-base';
 
 let instance: Internationalization = new Internationalization();
 
-Grid.Inject(DetailRow, Toolbar, PdfExport, ExcelExport);
+Grid.Inject(DetailRow, Toolbar, PdfExport, ExcelExport, Sort);
 /**
  * Detail row template Sample
  */
@@ -30,6 +30,7 @@ interface DateFormat extends Window {
         toolbar: ['ExcelExport', 'PdfExport'],
         allowPdfExport: true,
         allowExcelExport : true,
+        allowSorting: true,
         toolbarClick: toolbarClick,
         exportDetailTemplate: exportDetailTemplate,
         columns: [

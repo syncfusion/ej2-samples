@@ -22,7 +22,13 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Resize, DragAndDrop);
         views: ['Day', 'Week', 'WorkWeek', 'Month'],
         showQuickInfo: false,
         selectedDate: new Date(2021, 1, 15),
-        eventSettings: { dataSource: data },
+        eventSettings: {
+            dataSource: data,
+            fields: {
+                startTime: { name: 'StartTime', validation: { required: true } },
+                endTime: { name: 'EndTime', validation: { required: true } }
+            }
+        },
         editorHeaderTemplate: '#EventEditorHeaderTemplate',
         editorTemplate: '#EventEditorTemplate',
         popupOpen: (args: PopupOpenEventArgs) => {

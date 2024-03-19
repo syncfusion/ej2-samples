@@ -2,10 +2,10 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor smart suggestion
  */
-import { RichTextEditor, Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, NodeSelection, DialogType,EmojiPicker } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, NodeSelection, DialogType,EmojiPicker, PasteCleanup, FormatPainter} from '@syncfusion/ej2-richtexteditor';
 import { Mention, SelectEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Dialog } from '@syncfusion/ej2-popups';
-RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, EmojiPicker);
+RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, EmojiPicker, PasteCleanup, FormatPainter);
  
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -115,13 +115,15 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
             case 'Audio':
             case 'Video':
                 mentionObj.hidePopup();
-                formatRTE.showDialog(command === 'Video'? DialogType.InsertVideo: command === 'Audio'
-                    ? DialogType.InsertAudio: command === 'Image'? DialogType.InsertImage: DialogType.InsertTable);
+                setTimeout(() => {
+                    formatRTE.showDialog(command === 'Video'? DialogType.InsertVideo: command === 'Audio'
+                        ? DialogType.InsertAudio: command === 'Image'? DialogType.InsertImage: DialogType.InsertTable);
+                }, 150);
                 break;
             case 'EmojiPicker':
                 beforeApplyFormat();
                 mentionObj.hidePopup();
-                formatRTE.showEmojiPicker();
+                setTimeout(() => { formatRTE.showEmojiPicker(); }, 150);
                 break;
             default:
                 formatRTE.executeCommand('formatBlock', command);

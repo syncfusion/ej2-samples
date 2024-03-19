@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * AutoComplete Default functionality Sample
+ * Dropdownlist Default functionality Sample
  */
 import { DropDownList , VirtualScroll } from '@syncfusion/ej2-dropdowns';
 import { Query, DataManager, WebApiAdaptor  } from '@syncfusion/ej2-data';

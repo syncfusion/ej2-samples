@@ -46,7 +46,6 @@ let dt2: number;
         //Initializing Chart Series
         series: [
             {
-                name: 'Series1',
                 type: 'Area',fill: fill,
                 animation: { enable: false },border: { width: 2, color: borderColor[themes.indexOf(theme)]},
             }

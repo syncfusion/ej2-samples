@@ -1,11 +1,12 @@
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
-// custom code start
+// custom code end
 /**
  * Bubble sample
  */
 import { internetUsers } from './map-data/population-data';
-import { Maps, Bubble, IBubbleRenderingEventArgs, MapsTooltip, MapsTheme, ILoadEventArgs, Zoom, MapAjax } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { Maps, Bubble, IBubbleRenderingEventArgs, MapsTooltip, MapsTheme, ILoadEventArgs, Zoom } from '@syncfusion/ej2-maps';
 Maps.Inject(Bubble, MapsTooltip, Zoom);
 export interface Data {
     value?: number;
@@ -45,7 +46,7 @@ export interface Data {
             {
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeSettings: {
                     fill: '#E5E5E5'
                 },

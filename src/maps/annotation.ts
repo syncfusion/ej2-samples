@@ -5,7 +5,8 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps Annotation
  */
-import { Maps, Annotations, Marker, MapsTheme, ILoadEventArgs, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Annotations, Marker, MapsTheme, ILoadEventArgs } from '@syncfusion/ej2-maps';
+import { africaContinent } from './map-data/africa-continent';
 Maps.Inject(Annotations, Marker);
 (window as any).default = (): void => {
     // custom code start
@@ -36,7 +37,7 @@ Maps.Inject(Annotations, Marker);
             {
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                shapeData: new MapAjax('./src/maps/map-data/africa-continent.json'),
+                shapeData: africaContinent,
                 shapeSettings: {
                     fill: 'url(#grad1)'
                 },

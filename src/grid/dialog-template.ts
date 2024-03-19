@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Edit, Toolbar, Page, DialogEditEventArgs } from '@syncfusion/ej2-grids';
+import { Grid, Edit, Toolbar, Page, DialogEditEventArgs, Sort } from '@syncfusion/ej2-grids';
 import { DataUtil } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
@@ -11,7 +11,7 @@ import { Dialog } from '@syncfusion/ej2-popups';
 /**
  * Dialog Template Editing sample
  */
-Grid.Inject(Edit, Toolbar, Page);
+Grid.Inject(Edit, Toolbar, Page, Sort);
 (window as any).default = (): void => {
     loadCultureFiles();
     let countryData: {}[] = DataUtil.distinct(orderData, 'ShipCountry', true);
@@ -23,6 +23,7 @@ Grid.Inject(Edit, Toolbar, Page);
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Dialog', template: '#dialogtemplate' },
             allowPaging: true,
             pageSettings: {pageCount: 5},
+            allowSorting: true,
             toolbar: ['Add', 'Edit', 'Delete'],
             columns: [
                 {

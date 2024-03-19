@@ -119,6 +119,7 @@ PivotView.Inject(FieldList, GroupingBar, CalculatedField, Toolbar, ConditionalFo
         showToolbar: true,
         showGroupingBar: true,
         allowCalculatedField: true,
+        enableValueSorting: true,
         displayOption: { view: 'Both' },
         chartSettings: {
             title: 'Sales Analysis',

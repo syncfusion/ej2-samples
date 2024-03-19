@@ -13,7 +13,7 @@ import * as data from './data-track-changes.json';
 
     let container: DocumentEditorContainer = new DocumentEditorContainer({
         serviceUrl:hostUrl,enableToolbar: true, height: '590px', showPropertiesPane: false,
-        enableTrackChanges: true, userColor: '#b70f34'
+        enableTrackChanges: true, userColor: '#b70f34',  documentEditorSettings:{ showRuler: true}
     });
     DocumentEditorContainer.Inject(Toolbar);
     container.appendTo('#container');

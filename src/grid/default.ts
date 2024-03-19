@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Selection } from '@syncfusion/ej2-grids';
+import { Grid, Selection, Sort } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
 
-Grid.Inject(Selection);
+Grid.Inject(Selection, Sort);
 
 /**
  * Default Grid sample
@@ -14,6 +14,7 @@ Grid.Inject(Selection);
     let grid: Grid = new Grid(
         {
             dataSource: data,
+            allowSorting: true,
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },
                 { field: 'CustomerName', headerText: 'Customer Name', width: 150 },

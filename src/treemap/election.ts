@@ -6,6 +6,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 import { TreeMap, TreeMapTooltip, TreeMapLegend, LegendMode, LegendPosition, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { electionData } from './treemap-data/election-data';
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs, IResizeEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -17,10 +18,12 @@ let prevTime: Date; let curTime: Date;
     loadCultureFiles();
     // custom code end
     let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        // custom code start
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
         theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+        // custom code end
     };
     let treemap: TreeMap = new TreeMap({
         load: treemapload,
@@ -49,7 +52,7 @@ let prevTime: Date; let curTime: Date;
             text: 'US Presidential election result - 2016',
             textStyle: { size: '15px',  fontFamily: 'Segoe UI' }
         },
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/election-data.json'),
+        dataSource: electionData,
         weightValuePath: 'Population',
         tooltipSettings: {
             visible: true,

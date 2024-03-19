@@ -1,8 +1,6 @@
-/**
- * Import data for Japan 
- */
+// custom code start
 //tslint:disable
-
+// custom code end
 export let importData: object[] = [
     { dataType: "Import", type: "Animal products",   product: "2010", sales: 20839332874 },
     { dataType: "Import", type: "Animal products",   product: "2011", sales: 23098635589 },

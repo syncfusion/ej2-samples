@@ -1,8 +1,7 @@
-/**
- * drill down sample
- */
+// custom code start
 //tslint:disable
-export let DrillDown: Object[] = [
+// custom code end
+export let drillDownData: Object[] = [
     { Continent:[
        { Name: "Africa",Population: 1216130000, States: [
             { Name: "Eastern Africa",Population:410637987, Region:[				

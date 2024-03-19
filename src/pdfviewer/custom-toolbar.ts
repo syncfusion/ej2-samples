@@ -1,14 +1,16 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print,Annotation,FormDesigner, FormFields,
+    PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print,Annotation,FormDesigner, 
+     PageOrganizer, FormFields,
     PageChangeEventArgs, LoadEventArgs, TextSearch, TextSelection, SignStampItem, StandardBusinessStampItem, DynamicStampItem,
 } from '@syncfusion/ej2-pdfviewer';
 import { Toolbar as Tool, TreeView, NodeSelectEventArgs,Menu,MenuItemModel } from '@syncfusion/ej2-navigations';
 import { ClickEventArgs, Button, CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Switch } from '@syncfusion/ej2-buttons';
+import { select } from '@syncfusion/ej2-base';
 
-PdfViewer.Inject(Toolbar,Annotation, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSearch, TextSelection, FormFields,FormDesigner);
+PdfViewer.Inject(Toolbar,Annotation, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSearch, TextSelection, FormFields,FormDesigner, PageOrganizer);
 
 /**
  * Default PdfViewer sample
@@ -74,6 +76,17 @@ const data: MenuItemModel[] = [
         ],
     },
 ]; 
+const signMenu:MenuItemModel[]=[{
+  iconCss: "e-icons e-signature",
+    items:
+      [
+        { text: "Add Signature" },
+        { text: "Add Initial" },
+
+      ]
+    }
+];
+
 function disableInkAnnotation() {
   if(isInkEnabled)
   {
@@ -219,7 +232,7 @@ function  readFile(args:  any):  void  {
             // tslint:disable-next-line
             reader.onload  =  (e:  any):  void  =>  {
                 let  uploadedFileUrl:  string  =  e.currentTarget.result;
-                viewer.load(uploadedFileUrl,  null);
+                viewer.documentPath= uploadedFileUrl;
                 viewer.fileName = filename;
                 (currentPageBox as HTMLInputElement).value = '1';
                 document.getElementById('totalPage').textContent = 'of ' + viewer.pageCount;
@@ -233,6 +246,15 @@ function  readFile(args:  any):  void  {
 
 function  openDocument(e:  ClickEventArgs):  void  {
     disableInkAnnotation();
+    const textSearchToolbarElement = document.getElementById('textSearchToolbar');
+  if (textSearchToolbarElement !== null && textSearchToolbarElement.style.display === 'block') {
+    textSearchToolbarElement.style.display = 'none';
+  }
+  const formFieldToolbarElement = document.getElementById('formFieldToolbar');
+  if (formFieldToolbarElement !== null && formFieldToolbarElement.style.display === 'block') {
+    formFieldToolbarElement.style.display = 'none';
+    viewer.designerMode = false;
+  }
     document.getElementById('fileUpload').click();
 }
 
@@ -297,11 +319,6 @@ function onItemSelect (args:any) {
   const textSearchToolbarElement = document.getElementById('textSearchToolbar');
   if (textSearchToolbarElement !== null && textSearchToolbarElement.style.display === 'block') {
     textSearchToolbarElement.style.display = 'none';
-  }
-
-  const signatureToolbarElement = document.getElementById('SignatureToolbar');
-  if (signatureToolbarElement !== null && signatureToolbarElement.style.display === 'block') {
-    signatureToolbarElement.style.display = 'none';
   }
 
   const formFieldToolbarElement = document.getElementById('formFieldToolbar');
@@ -445,11 +462,6 @@ function openEditAnnotation(args:ClickEventArgs) {
       textSearchToolbarElement.style.display = 'none';
     }
 
-    const signatureToolbarElement = document.getElementById('SignatureToolbar');
-    if (signatureToolbarElement !== null && signatureToolbarElement.style.display === 'block') {
-      signatureToolbarElement.style.display = 'none';
-    }
-
     const formFieldToolbarElement = document.getElementById('formFieldToolbar');
     if (formFieldToolbarElement !== null && formFieldToolbarElement.style.display === 'block') {
       formFieldToolbarElement.style.display = 'none';
@@ -487,11 +499,6 @@ function openEditAnnotation(args:ClickEventArgs) {
     const textSearchToolbarElement = document.getElementById('textSearchToolbar');
     if (textSearchToolbarElement !== null && textSearchToolbarElement.style.display === 'block') {
       textSearchToolbarElement.style.display = 'none';
-    }
-
-    const signatureToolbarElement = document.getElementById('SignatureToolbar');
-    if (signatureToolbarElement !== null && signatureToolbarElement.style.display === 'block') {
-      signatureToolbarElement.style.display = 'none';
     }
   }
   function highlight(args:ClickEventArgs) {
@@ -562,79 +569,9 @@ function openEditAnnotation(args:ClickEventArgs) {
     disableInkAnnotation();
     viewer.annotation.setAnnotationMode('FreeText');
   }
-  function addSign(args: ClickEventArgs) {
-    disableInkAnnotation();
-    const element = document.querySelector('.e-dropdown-popup') as HTMLElement | null;
   
-    if (element !== null) {
-      if ('formField_signature') {
-        const editAnnotationToolbarElement = document.getElementById('editAnnotationToolbar') as HTMLElement | null;
   
-        if (editAnnotationToolbarElement !== null && editAnnotationToolbarElement.style.display === 'block') {
-          editAnnotationToolbarElement.style.display = 'none';
-        }
   
-        element.style.left = '50%';
-        element.style.top = '153px';
-      } else {
-        element.style.left = '790px';
-        element.style.top = '137px';
-      }
-    }
-  
-    const signatureToolbarElement = document.getElementById('SignatureToolbar') as HTMLElement | null;
-  
-    if (signatureToolbarElement !== null) {
-      if (signatureToolbarElement.style.display === 'block') {
-        signatureToolbarElement.style.display = 'none';
-      } else {
-        signatureToolbarElement.style.display = 'block';
-      }
-    }
-  
-    const textSearchToolbarElement = document.getElementById('textSearchToolbar') as HTMLElement | null;
-  
-    if (textSearchToolbarElement !== null && textSearchToolbarElement.style.display === 'block') {
-      textSearchToolbarElement.style.display = 'none';
-    }
-  }
-  
-  function addSign1(args: ClickEventArgs) {
-    disableInkAnnotation();
-    const element = document.querySelector('.e-dropdown-popup') as HTMLElement | null;
-  
-    if (element !== null) {
-      if ('signature') {
-        const editAnnotationToolbarElement = document.getElementById('editAnnotationToolbar') as HTMLElement | null;
-  
-        if (editAnnotationToolbarElement !== null && editAnnotationToolbarElement.style.display === 'block') {
-          editAnnotationToolbarElement.style.display = 'block';
-        }
-  
-        element.style.left = '73%';
-        element.style.top = '156px';
-      } else {
-        element.style.left = '790px';
-        element.style.top = '137px';
-      }
-    }
-  
-    const signatureToolbarElement = document.getElementById('SignatureToolbar') as HTMLElement | null;
-  
-    if (signatureToolbarElement !== null) {
-      if (signatureToolbarElement.style.display === 'block') {
-        signatureToolbarElement.style.display = 'none';
-      } else {
-        signatureToolbarElement.style.display = 'block';
-      }
-    }
-  
-    const textSearchToolbarElement = document.getElementById('textSearchToolbar') as HTMLElement | null;
-  
-    if (textSearchToolbarElement !== null && textSearchToolbarElement.style.display === 'block') {
-      textSearchToolbarElement.style.display = 'none';
-    }
-  }
   
   function ink(args:ClickEventArgs) {
     if(!isInkEnabled)
@@ -747,14 +684,14 @@ function updateSearchInputIcon(isEnable: boolean): void {
         searchButton.classList.add('e-pv-search-close');
     }
 }
-function onSignatureClick(event: MouseEvent): void{
+function onSignatureClick(event : any): void{
   const editAnnotationToolbarElement = document.getElementById('editAnnotationToolbar') as HTMLElement | null;
 
   if (editAnnotationToolbarElement && editAnnotationToolbarElement.style.display === 'block') {
-    if (event.target instanceof HTMLElement) {
-      if (event.target.innerText === 'Add Signature') {
+    if (event.element instanceof HTMLElement) {
+      if (event.element.innerText === 'Add Signature') {
         viewer.annotationModule.setAnnotationMode('HandWrittenSignature');
-      } else if (event.target.innerText === 'Add Initial') {
+      } else if (event.element.innerText === 'Add Initial') {
         viewer.annotationModule.setAnnotationMode('Initial');
       }
     }
@@ -763,19 +700,13 @@ function onSignatureClick(event: MouseEvent): void{
   const formFieldToolbarElement = document.getElementById('formFieldToolbar') as HTMLElement | null;
 
   if (formFieldToolbarElement && formFieldToolbarElement.style.display === 'block') {
-    if (event.target instanceof HTMLElement) {
-      if (event.target.innerText === 'Add Signature') {
+    if (event.element instanceof HTMLElement) {
+      if (event.element.innerText === 'Add Signature') {
         viewer.formDesignerModule.setFormFieldMode('SignatureField');
-      } else if (event.target.innerText === 'Add Initial') {
+      } else if (event.element.innerText === 'Add Initial') {
         viewer.formDesignerModule.setFormFieldMode('InitialField');
       }
     }
-  }
-
-  const signatureToolbarElement = document.getElementById('SignatureToolbar') as HTMLElement | null;
-
-  if (signatureToolbarElement && signatureToolbarElement.style.display === 'block') {
-    signatureToolbarElement.style.display = 'none';
   }
 }
 (window as any).default = (): void => {
@@ -825,7 +756,7 @@ function onSignatureClick(event: MouseEvent): void{
             { type: 'Separator', tooltipText: 'separator', align: 'Center' },
             { prefixIcon: 'e-icons e-stamp', tooltipText: 'Add Stamp', id: 'stamp', align: 'Center', template: `<div><ul id="menu"></ul></div>`},
             { type: 'Separator', tooltipText: 'separator', align: 'Center' },
-            { id: 'signature', prefixIcon: 'e-icons e-signature', click: addSign1.bind(this), tooltipText: 'Add Signature', align: 'Center' },
+            { id: 'signature', tooltipText: 'Add Signature', align: 'Center', template: `<div><ul id="signatureToolbar"></ul></div>`},
             { type: 'Separator', tooltipText: 'separator', align: 'Center' },
             { prefixIcon: 'e-icons e-style', click: ink.bind(this), id: 'ink', tooltipText: 'Ink', align: 'Center' }
         ]
@@ -839,7 +770,7 @@ function onSignatureClick(event: MouseEvent): void{
          { id: 'radio_button', prefixIcon: 'e-icons e-radio-button', click: radioButton.bind(this), tooltipText: 'Radio Button', align: 'Center' },
          { id: 'drop_down', prefixIcon: 'e-icons e-drop-down', click: dropDown.bind(this), tooltipText: 'Drop Down', align: 'Center' },
          { id: 'list_box', prefixIcon: 'e-icons e-list-unordered', click: listBox.bind(this), tooltipText: 'List Box', align: 'Center' },
-         { id: 'formField_signature', prefixIcon: 'e-icons e-signature', click: addSign.bind(this), tooltipText: 'Add Signature', align: 'Center' }
+         { id: 'formField_signature',tooltipText: 'Add Signature', align: 'Center',template: `<div><ul id="formFieldSignatureToolbar"></ul></div>` }
         ]
     });
     formFieldToolbar.appendTo('#formFieldToolbar');
@@ -918,6 +849,8 @@ function onSignatureClick(event: MouseEvent): void{
         viewer.load(viewer.documentPath, null);
     }
     new Menu({ items: data, select:onItemSelect, showItemOnClick: true }, "#menu");
+    new Menu({items:signMenu,select:onSignatureClick,showItemOnClick:true},"#signatureToolbar");
+    new Menu({items:signMenu,select:onSignatureClick,showItemOnClick:true},"#formFieldSignatureToolbar");
     searchButton = document.getElementById('searchBtn');
     searchInput.addEventListener('focus', () => { searchInput.parentElement.classList.add('e-input-focus'); });
     searchInput.addEventListener('blur', () => { searchInput.parentElement.classList.remove('e-input-focus'); });

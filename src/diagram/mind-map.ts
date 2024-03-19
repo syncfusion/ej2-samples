@@ -330,7 +330,10 @@ export interface EmployeeInfo {
         getNodeDefaults: getNodeDefaults,
         //sets connector default value 
         getConnectorDefaults: getConnectorDefaults,
-        getCustomTool: getTool
+        getCustomTool: getTool,
+        scrollSettings:{
+            padding: { left:50 ,right: 50 }
+        },
     });
     diagram.appendTo('#diagram');
     diagram.fitToPage();

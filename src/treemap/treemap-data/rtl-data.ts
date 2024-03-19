@@ -1,8 +1,7 @@
-/**
- * drill down sample
- */
+// custom code start
 //tslint:disable
-export let RTLData: Object[] = [
+// custom code end
+export let rtlData: Object[] = [
 		{ Continent:[
 		   { Name: "Africa",Size: 519.70, Country : [
 				{ Name: "The Gambia",Size:29.80 },

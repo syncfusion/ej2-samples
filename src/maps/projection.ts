@@ -1,7 +1,9 @@
 /**
  * Changing projection sample
  */
-import { Maps, Zoom, Legend, ProjectionType, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Zoom, Legend, ProjectionType, MapsTooltip, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { projectionData } from './map-data/projection-datasource';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 Maps.Inject(Zoom, Legend, MapsTooltip);
 // custom code start
@@ -48,10 +50,10 @@ import { loadCultureFiles } from '../common/culture-loader';
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeDataPath: 'Country',
                 shapePropertyPath: 'name',
-                dataSource: new MapAjax('./src/maps/map-data/projection-datasource.json'),
+                dataSource: projectionData,
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'Country',

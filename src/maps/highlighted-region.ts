@@ -4,7 +4,8 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Highlighted region map sample
  */
-import { Maps, Marker, Zoom, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Marker, Zoom, MapsTooltip, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { oklahoma } from './map-data/oklahoma';
 Maps.Inject(Marker, Zoom, MapsTooltip);
 // custom code start
 //tslint:disable:max-func-body-length
@@ -34,7 +35,7 @@ Maps.Inject(Marker, Zoom, MapsTooltip);
         layers: [
             {
                 animationDuration: 1000,
-                shapeData: new MapAjax('./src/maps/map-data/oklahoma.json'),
+                shapeData: oklahoma,
                 shapeSettings: {
                     fill: '#F5F5F5',
                     border: { color: '#EEDA97', width: 1 }
@@ -217,9 +218,6 @@ Maps.Inject(Marker, Zoom, MapsTooltip);
                             },
                             {
                                 longitude: -97.1191406, latitude: 34.5042932, name: 'Davis'
-                            },
-                            {
-                                longitude: -98.0310059, latitude: 37.1537496, name: 'Anthony'
                             },
                             {
                                 longitude: -98.3564758, latitude: 36.7542898, name: 'Cherokee'

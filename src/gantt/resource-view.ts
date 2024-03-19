@@ -30,6 +30,7 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize);
                 work: 'work',
                 child: 'subtasks'
             },
+            taskType:'FixedWork',
             resourceFields: {
                 id: 'resourceId',
                 name: 'resourceName',

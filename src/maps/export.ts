@@ -6,8 +6,9 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import {
         Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme,
-        ExportType, MapAjax, ShapeLayerType, ImageExport, PdfExport
+        ExportType, ShapeLayerType, ImageExport, PdfExport
 } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 import { TextBox } from  '@syncfusion/ej2-inputs';
@@ -37,7 +38,7 @@ Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeSettings: { fill: 'lightgrey', border: { color: 'black', width: 0.1 } },
                 markerSettings: [
                     {

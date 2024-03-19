@@ -15,7 +15,7 @@ import {
   } from '@syncfusion/ej2-inputs';
 import { ConnectorModel, SymbolPalette, TextStyleModel } from '@syncfusion/ej2/diagrams';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import {ClickEventArgs, Toolbar } from '@syncfusion/ej2-navigations';
+import {  ClickEventArgs, Toolbar } from '@syncfusion/ej2-navigations';
 
 
 let diagram: Diagram;

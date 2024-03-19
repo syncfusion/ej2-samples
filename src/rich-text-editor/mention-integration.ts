@@ -2,8 +2,8 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor mention integration sample
  */
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio);
 import { Mention } from '@syncfusion/ej2-dropdowns';
 
 (window as any).default = (): void => {
@@ -26,10 +26,11 @@ import { Mention } from '@syncfusion/ej2-dropdowns';
         { Name: "William", Status: "away", Eimg: "10", EmailId: "william@gmail.com" }
     ];
 
+    let emailObj: Mention;
     let defaultRTE: RichTextEditor = new RichTextEditor({
         placeholder: 'Type @ and tag the name',
         actionBegin: (args) => {
-            if (args.requestType === 'EnterAction') {
+            if (args.requestType === 'EnterAction' && emailObj.element.classList.contains('e-popup-open')) {
                 args.cancel = true;
             }
         }
@@ -37,7 +38,7 @@ import { Mention } from '@syncfusion/ej2-dropdowns';
     defaultRTE.appendTo('#mention_integration');
 
     // Initialize Mention component.
-    let emailObj: Mention = new Mention({
+        emailObj = new Mention({
         dataSource: emailData,
         fields: { text: 'Name' },
         suggestionCount: 8,

@@ -5,7 +5,9 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Legend Sample
  */
 import { Maps, Legend, LegendMode, MapsTooltip, ITooltipRenderEventArgs,
-    ILoadEventArgs, MapsTheme, MapAjax, LegendPosition } from '@syncfusion/ej2-maps';
+    ILoadEventArgs, MapsTheme, LegendPosition } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { legendData } from './map-data/legend-datasource';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 import { EmitType } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -51,10 +53,10 @@ Maps.Inject(Legend, MapsTooltip);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeDataPath: 'name',
                 shapePropertyPath: 'name',
-                dataSource: new MapAjax('./src/maps/map-data/legend-datasource.json'),
+                dataSource: legendData,
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'name',

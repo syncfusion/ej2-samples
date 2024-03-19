@@ -1,9 +1,7 @@
-/**
- * Marker location
- */
-
+// custom code start
 //tslint:disable
-export let penisular_marker: any = [
+// custom code end
+export let peninsularMarkerData: any = [
     {
         latitude: 22.403410892712124,
         longitude: -97.8717041015625,
@@ -30,7 +28,7 @@ export let penisular_marker: any = [
         name: 'PROGRESO'
     }
 ]
-export let penisular_location: any  = [
+export let peninsularLocationData: any  = [
     {
         visible: true,
         latitude: [22.403410892712124, 29.756032197482973],

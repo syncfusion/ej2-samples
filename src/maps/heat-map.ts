@@ -4,7 +4,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Heat Map sample
  */
-import { Maps, Marker, MapsTooltip, Legend, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Marker, MapsTooltip, Legend, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { india } from './map-data/india';
+import { heatmapData } from './map-data/heatmap-datasource';
 Maps.Inject(Marker, MapsTooltip, Legend);
 // custom code start
 //tslint:disable
@@ -48,10 +50,10 @@ Maps.Inject(Marker, MapsTooltip, Legend);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/india.json'),
+                shapeData: india,
                 shapePropertyPath: 'NAME_1',
                 shapeDataPath: 'Name',
-                dataSource: new MapAjax('./src/maps/map-data/heatmap-datasource.json'),
+                dataSource: heatmapData,
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'population',

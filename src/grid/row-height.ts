@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Selection, Toolbar } from '@syncfusion/ej2-grids';
+import { Grid, Selection, Toolbar, Sort } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { data } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 
-Grid.Inject(Selection, Toolbar);
+Grid.Inject(Selection, Toolbar, Sort);
 
 /**
  * Row height sample
@@ -15,6 +15,7 @@ Grid.Inject(Selection, Toolbar);
     let grid: Grid = new Grid(
         {
             dataSource: gridData,
+            allowSorting: true,
             toolbar: [
                 { prefixIcon: 'e-small-icon', id: 'big', align: 'Right', tooltipText: 'Row-height-big' },
                 { prefixIcon: 'e-medium-icon', id: 'medium', align: 'Right', tooltipText: 'Row-height-medium' },

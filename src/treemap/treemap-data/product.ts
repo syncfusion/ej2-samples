@@ -1,8 +1,7 @@
-/**
- * 
- */
+// custom code start
 //tslint:disable
-export let ProductSale: Object[] =[
+// custom code end
+export let productSales: Object[] =[
     {Product:" Samsung", Percentage:22},
     {Product:"Apple", Percentage:11.2},
     {Product:"Huawei", Percentage:10.5},

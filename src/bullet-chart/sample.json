@@ -3,7 +3,6 @@
     "directory": "bullet-chart",
     "category": "Data Visualization",
     "ftName": "bullet-chart",
-    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -24,7 +23,6 @@
             "name": "Multiple Data",
             "description":"This demo for Essential JS2 Bullet Chart control shows the default rendering of bullet chart with multiple data values.",
             "category": "Bullet Chart",
-            "type": "update",
             "api": {
                 "BulletChart": [
                     "tooltip",

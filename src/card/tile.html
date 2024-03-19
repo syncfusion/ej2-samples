@@ -1,38 +1,3 @@
-<script id="card_template" type="text/x-template">
-    <div class="e-card ${if(isHorizontal)} e-card-horizontal ${/if}">
-        ${if(cardImage)}
-        <div class="e-card-image" style="background-image:url(${cardImage.url})">
-            ${if(cardImage.title)}
-            <div class="e-card-title"> ${cardImage.title} </div>
-            ${/if}
-        </div>
-        ${/if} ${if(cardTitle)}
-        <div class="e-card-title"> ${cardTitle} </div>
-        ${/if} ${if(header_title || header_subtitle || header_img)}
-        <div class="e-card-header">
-            ${if(header_img)}
-            <div class="e-card-header-image ${if(header_img.isRounded)} e-card-corner ${/if}" style="background-image:url(${header_img.url})"></div>
-            ${/if} ${if(header_title || header_subtitle)}
-            <div class="e-card-header-caption">
-                ${if(header_title)}
-                <div class="e-card-header-title">${header_title}</div>${/if} ${if(header_subtitle)}
-                <div class="e-card-sub-title">${header_subtitle}</div>${/if}
-            </div>
-            ${/if}
-        </div>
-        ${/if} ${if(cardContent)}
-        <div class="e-card-content"> ${cardContent} </div>
-        ${/if} ${if(card_action_btn)}
-        <div class="e-card-actions ${if(card_action_btn.isVertical)} e-card-vertical ${/if}">
-            ${for(action_btn of card_action_btn.action_btns)} ${if(action_btn.tag === 'a')}
-            <a href="${action_btn.href}" class="e-btn e-outline e-primary" target="${action_btn.target}">${action_btn.text}</a>
-            ${else}
-            <button class="e-card-btn">${action_btn.text}</button>
-            ${/if} ${/for}
-        </div>
-        ${/if}
-    </div>
-</script>
 <div class="control-section card-control-section tile_layout">
     <div class="row filter">
         <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
@@ -96,22 +61,12 @@
 </div>
 <div id="action-description">
     <p>
-        This sample demonstrates filter and search of the
-        <code>card</code> based on categories, and text containing the card. You can use search box to search cards, and you can
-        filter choosing categories in multi-select component.
+        The "Tile View" example in the JavaScript <code>card</code> Control showcases the functionality of filtering and searching cards based on categories and text content. In this sample, you can utilize the search box to search for specific cards, and you can apply filters by selecting categories from the multi-select component.
     </p>
 </div>
 <div id="description">
     <p>
-        Card is a small container in which user can show defined content in specific structure and it is flexible and extensible.
-        This sample demonstrates to render the
-        <code>Card</code> Using
-        <a target="_blank" href="http://ej2.syncfusion.com/documentation/base/template-engine.html"> Template Engine</a> and it can be filtered based on
-        <a target="_blank" href="http://ej2.syncfusion.com/documentation/data/getting-started.html">
-            data Manager</a>.
-        <p> More information about Card can be found in this
-            <a target="_blank" href="http://ej2.syncfusion.com/documentation/card/getting-started.html">
-                documentation</a> section. </p>
+        A card is a small container that allows users to display defined content in a specific structure. It provides a flexible and extensible way to present information or data. In this sample, the <code>Card</code> is rendered using the <a target="_blank" href="https://ej2.syncfusion.com/documentation/common/template-engine/"> Template Engine</a>, which enables you to customize the appearance and layout of the cards according to your needs. Additionally, the cards can be filtered based on the <a target="_blank" href="https://ej2.syncfusion.com/documentation/data/getting-started/">data Manager</a>, allowing you to dynamically update the cards based on specific criteria or data changes. This enhances the functionality and interactivity of the card control. <p>For more detailed information about the Card control and its capabilities, you can refer to this <a target="_blank" href="https://ej2.syncfusion.com/documentation/card/getting-started/">documentation</a> section. This documentation provides comprehensive details, examples, and guidance on how to effectively utilize the Card control in your JavaScript applications.</p>
     </p>
 </div>
 <style>
@@ -205,3 +160,38 @@
         }
     }
 </style>
+<script id="card_template" type="text/x-template">
+    <div class="e-card ${if(isHorizontal)} e-card-horizontal ${/if}">
+        ${if(cardImage)}
+        <div class="e-card-image" style="background-image:url(${cardImage.url})">
+            ${if(cardImage.title)}
+            <div class="e-card-title"> ${cardImage.title} </div>
+            ${/if}
+        </div>
+        ${/if} ${if(cardTitle)}
+        <div class="e-card-title"> ${cardTitle} </div>
+        ${/if} ${if(header_title || header_subtitle || header_img)}
+        <div class="e-card-header">
+            ${if(header_img)}
+            <div class="e-card-header-image ${if(header_img.isRounded)} e-card-corner ${/if}" style="background-image:url(${header_img.url})"></div>
+            ${/if} ${if(header_title || header_subtitle)}
+            <div class="e-card-header-caption">
+                ${if(header_title)}
+                <div class="e-card-header-title">${header_title}</div>${/if} ${if(header_subtitle)}
+                <div class="e-card-sub-title">${header_subtitle}</div>${/if}
+            </div>
+            ${/if}
+        </div>
+        ${/if} ${if(cardContent)}
+        <div class="e-card-content"> ${cardContent} </div>
+        ${/if} ${if(card_action_btn)}
+        <div class="e-card-actions ${if(card_action_btn.isVertical)} e-card-vertical ${/if}">
+            ${for(action_btn of card_action_btn.action_btns)} ${if(action_btn.tag === 'a')}
+            <a href="${action_btn.href}" class="e-btn e-outline e-primary" target="${action_btn.target}">${action_btn.text}</a>
+            ${else}
+            <button class="e-card-btn">${action_btn.text}</button>
+            ${/if} ${/for}
+        </div>
+        ${/if}
+    </div>
+</script>

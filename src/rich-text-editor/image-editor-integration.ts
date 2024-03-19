@@ -2,8 +2,8 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor Image Editor integration sample
  */
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, NodeSelection, ToolbarClickEventArgs } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, NodeSelection, ToolbarClickEventArgs, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio);
 import { Dialog } from '@syncfusion/ej2-popups';
 import { ImageEditor } from '@syncfusion/ej2-image-editor';
 import { isNullOrUndefined  as isNOU } from '@syncfusion/ej2-base';
@@ -34,6 +34,9 @@ import { isNullOrUndefined  as isNOU } from '@syncfusion/ej2-base';
               'Remove',
               '-',
               'InsertLink',
+              'OpenImageLink',
+              'EditImageLink',
+              'RemoveImageLink',
               'Display',
               'AltText',
               {

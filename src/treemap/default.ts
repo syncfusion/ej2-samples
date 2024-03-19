@@ -9,16 +9,19 @@ import { TreeMap, TreeMapTooltip, TreeMapLegend, IItemMoveEventArgs, TreeMapAjax
 TreeMap.Inject(TreeMapTooltip, TreeMapLegend);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+import { carSales } from './treemap-data/car-sales';
 let prevTime: Date; let curTime: Date;
 (window as any).default = (): void => {
     // custom code start
     loadCultureFiles();
     // custom code end
     let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        // custom code start
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
         theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+        // custom code end
     };
     //Treemap tooltip changes in levels and leaf Items
     let tooltipRender: EmitType<IItemMoveEventArgs> = (args: IItemMoveEventArgs) => {
@@ -37,7 +40,7 @@ let prevTime: Date; let curTime: Date;
         rangeColorValuePath: 'Sales',
         format: 'n',
         useGroupingSeparator: true,
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/car-sales.json'),
+        dataSource: carSales,
         legendSettings: {
             visible: true,
             position: 'Top',

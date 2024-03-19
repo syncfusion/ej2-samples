@@ -1,8 +1,7 @@
-/**
- * 
- */
+// custom code start
 //tslint:disable
-export let econmics: Object[] =[
+// custom code end
+export let economicsData: Object[] =[
     {State:"United States", GDP:17946, percentage:11.08, Rank:1},	 
     {State:"China", GDP:10866, percentage: 28.42, Rank:2},	 
     {State:"Japan", GDP:4123, percentage:-30.78, Rank:3},	 

@@ -5,7 +5,7 @@ import { IAxisLabelRenderEventArgs, withInBounds, IAxisRangeCalculatedEventArgs,
 import { RangeTooltip, IRangeLoadedEventArgs, Zoom, getElement, ITooltipRenderEventArgs } from '@syncfusion/ej2-charts';
 import { Switch, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 Chart.Inject(AreaSeries, DateTime, LineSeries, Crosshair, ChartAnnotation, CandleSeries, MomentumIndicator, Tooltip, Zoom);
-RangeNavigator.Inject(AreaSeries, DateTime, PeriodSelector, RangeTooltip);
+RangeNavigator.Inject(AreaSeries, DateTime, PeriodSelector, RangeTooltip, LineSeries);
 import { Browser, remove, Fetch } from '@syncfusion/ej2-base';
 
 /**

@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Selection, Toolbar } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, Toolbar, Sort } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
 
-Grid.Inject(Page, Selection, Toolbar);
+Grid.Inject(Page, Selection, Toolbar, Sort);
 
 /**
  * Search Grid sample
@@ -13,6 +13,7 @@ Grid.Inject(Page, Selection, Toolbar);
         {
             dataSource: categoryData,
             allowPaging: true,
+            allowSorting: true,
             toolbar: ['Search'],
             columns: [
                 { field: 'CategoryName', headerText: 'Category Name', width: 160 },

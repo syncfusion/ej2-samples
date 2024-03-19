@@ -5,6 +5,9 @@ import { CheckBox, RadioButton } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Slider } from '@syncfusion/ej2-inputs';
 import { expenseData } from './data-source';
+import { Tab } from '@syncfusion/ej2-navigations';
+import { getCELQuery, getSpELQuery } from './util';
+import { Tooltip } from '@syncfusion/ej2/popups';
 
 /**
  * Template sample
@@ -12,6 +15,9 @@ import { expenseData } from './data-source';
 // tslint:disable-next-line
 (window as any).default = (): void => {
     loadCultureFiles();
+    let content: string = "";
+    let  selectedIndex: number = 0;
+    let selectedContent: HTMLElement;
     let elem: HTMLElement;
     let boxObj: CheckBox;
     let slider: Slider;
@@ -150,44 +156,26 @@ import { expenseData } from './data-source';
         columns: filter,
         width: '100%',
         rule: importRules,
-        ruleChange: updateRule
+        ruleChange: updateContentTemplate,
     });
     qryBldrObj.appendTo('#querybuilder');
-    let radioButton: RadioButton = new RadioButton({
-        label: 'JSON Rule',
-        name: 'rule',
-        value: 'json',
-        checked: true,
-        change: changeValue
+    let tabObj: Tab = new Tab({
+        height: 320,
+        created: updateCELContentTemplate,
+        selected: tabChange
     });
-    radioButton.appendTo('#radio1');
-
-    radioButton = new RadioButton({
-        label: 'SQL Rule',
-        name: 'rule',
-        value: 'sql',
-        change: changeValue
+    //Render initialized Tab component
+    tabObj.appendTo('#tab_orientation');
+    let celTooltip: Tooltip = new Tooltip({
+        opensOn: 'Click',
+        content: 'Copied to clipboard'
     });
-    radioButton.appendTo('#radio2');
-    let element: Element = document.getElementById('ruleContent');
-    function updateRule(args: RuleChangeEventArgs): void {
-        if ((getComponent(radioButton.element as HTMLElement, 'radio') as RadioButton).checked) {
-            element.textContent = qryBldrObj.getSqlFromRules(args.rule);
-        } else {
-            element.textContent = JSON.stringify(args.rule, null, 4);
-        }
-    }
-    element.textContent = JSON.stringify(qryBldrObj.getValidRules(qryBldrObj.rule), null, 4);
-    function changeValue(): void {
-        element = document.getElementById('ruleContent');
-        let validRule: RuleModel = qryBldrObj.getValidRules(qryBldrObj.rule);
-        if ((getComponent(radioButton.element as HTMLElement, 'radio') as RadioButton).checked) {
-            element.textContent = qryBldrObj.getSqlFromRules(validRule);
-        } else {
-            element.textContent = JSON.stringify(validRule, null, 4);
-
-        }
-    }
+    celTooltip.appendTo('#celTooltip');
+    let spelTooltip: Tooltip = new Tooltip({
+        opensOn: 'Click',
+        content: 'Copied to clipboard'
+    });
+    spelTooltip.appendTo('#spelTooltip');
     if (document.getElementById('right-pane')) {
         document.getElementById('right-pane').addEventListener('scroll', onScroll);
     }
@@ -199,4 +187,73 @@ import { expenseData } from './data-source';
             sliderObj.refreshTooltip();
         });
     }
+
+    function tabChange(args: any) {
+        selectedIndex = args.selectedIndex;
+        selectedContent = args.selectedContent;
+        setTimeout(function() {
+            updateContentTemplate();
+        }, 100);
+    }
+
+    function updateCELContentTemplate(): void {
+        const allRules = qryBldrObj.getValidRules();
+        let celQuery: string = '';
+        celQuery = getCELQuery(allRules, celQuery);
+        content = celQuery
+        document.getElementsByClassName('e-cel-content')[0].textContent = content;
+        (document.getElementsByClassName('e-cel-content')[0] as HTMLElement).style.display = 'block';
+    }
+
+    function updateContentTemplate(): void {
+        switch (selectedIndex) {
+            case 0:
+                updateCELContentTemplate();
+                break;
+            case 1:
+                updateSpCELContentTemplate();
+                break;
+        }
+    };
+
+    function updateSpCELContentTemplate(): void {
+        const allRules: any = qryBldrObj.getValidRules();
+        content = getSpELQuery(allRules);
+        document.getElementsByClassName('e-spel-content')[0].textContent = content;
+        (document.getElementsByClassName('e-spel-content')[0] as HTMLElement).style.display = 'block';
+    }
+
+    const queryPreview: HTMLElement = document.getElementById('e-query-preview');
+
+    queryPreview?.addEventListener('mouseenter', () => {
+        let elem: any = document.getElementsByClassName("copy-tooltip");
+        for (var i: number = 0; i< elem.length; i++) {
+            if(tabObj.selectedItem == i) {
+                elem[i].style.display = 'block';
+            }
+        }
+    });
+
+    queryPreview?.addEventListener('mouseleave', () => {
+        let elem: any = document.getElementsByClassName("copy-tooltip");
+        for (let i: number = 0; i< elem.length; i++) {
+            if(tabObj.selectedItem == i) {
+                elem[i].style.display = 'none';
+            }
+        }
+    });
+    const celElem: HTMLElement = document.getElementById('copy-cel');
+    const spelElem: HTMLElement = document.getElementById('copy-spel');
+    celElem?.addEventListener('click', (args: any) => {
+        navigator.clipboard.writeText(content);
+        setTimeout(() => { 
+            (getComponent(args.target.closest('.e-tooltip'), 'tooltip') as any).close();
+        },1000);
+    });
+    spelElem?.addEventListener('click', (args: any) => {
+        navigator.clipboard.writeText(content);
+        setTimeout(() => { 
+            (getComponent(args.target.closest('.e-tooltip'), 'tooltip') as any).close();
+        },1000);
+    });
 };

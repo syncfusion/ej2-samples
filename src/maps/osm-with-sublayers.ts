@@ -2,9 +2,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 // custom code end
 /**
- * Bubble sample
+ * Osm with sublayer sample
  */
-import { Maps, Bubble, MapsTooltip, MapsTheme, ILoadEventArgs, Zoom, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Bubble, MapsTooltip, MapsTheme, ILoadEventArgs, Zoom } from '@syncfusion/ej2-maps';
+import { africa } from './map-data/africa';
 Maps.Inject(Bubble, MapsTooltip, Zoom);
 export interface Data {
     value?: number;
@@ -32,22 +33,13 @@ export interface Data {
         zoomSettings: {
             enable: true
         },
-        annotations: [{
-            content: '<div style="height:18px;width:170px;background:white;text-align:center">' +
-                '<a href="https://www.openstreetmap.org/copyright"  target = "_blank" > © OpenStreetMap contributors </a></div > ',
-            verticalAlignment: 'Far',
-            zIndex: '1',
-            x: '-40',
-            y: '-20',
-            horizontalAlignment: 'Far'
-        }],
         layers: [{
             layerType: 'OSM',
         },
         {
             type: 'SubLayer',
             animationDuration: 0,
-            shapeData: new MapAjax('./src/maps/map-data/africa.json'),
+            shapeData: africa,
             shapeSettings: {
                 fill: '#5100a3',
                 opacity: 0.4

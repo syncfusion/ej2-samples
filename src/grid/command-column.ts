@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Edit, Page, CommandColumn  } from '@syncfusion/ej2-grids';
+import { Grid, Edit, Page, CommandColumn, Sort  } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
 
 /**
  * Command column sample
  */
-Grid.Inject(Edit, Page, CommandColumn);
+Grid.Inject(Edit, Page, CommandColumn, Sort);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -15,6 +15,7 @@ Grid.Inject(Edit, Page, CommandColumn);
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, allowEditOnDblClick: false },
             allowPaging: true,
             pageSettings: {pageCount: 5},
+            allowSorting: true,
             columns: [
                 {
                     field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right',

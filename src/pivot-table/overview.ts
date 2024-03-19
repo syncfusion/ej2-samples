@@ -229,6 +229,7 @@ let Universitydata: IDataSet[] = (data as any).data;
             }
         },
         cellTemplate: '${getCellContent(data)}',
+        enableFieldSearching: true
     });
     pivotObj.appendTo('#PivotView');
 

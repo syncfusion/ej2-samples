@@ -4,8 +4,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps datalabel sample
  */
-import { Maps, MapsTooltip, DataLabel, ILoadEventArgs, MapsTheme, SmartLabelMode, IntersectAction, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, MapsTooltip, DataLabel, ILoadEventArgs, MapsTheme, SmartLabelMode, IntersectAction } from '@syncfusion/ej2-maps';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { usa } from './map-data/usa';
 Maps.Inject(MapsTooltip, DataLabel);
 (window as any).default = (): void => {
     // custom code start
@@ -33,7 +34,7 @@ Maps.Inject(MapsTooltip, DataLabel);
                         fontFamily: 'Segoe UI'
                     }
                 },
-                shapeData: new MapAjax('./src/maps/map-data/usa.json'),
+                shapeData: usa,
                 shapeSettings: {
                     autofill: true
                 },

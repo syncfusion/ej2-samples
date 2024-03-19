@@ -2,11 +2,11 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor expand toolbar sample
  */
-import { RichTextEditor, Toolbar, Link, Image, ToolbarType, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, ToolbarType, HtmlEditor, QuickToolbar, EmojiPicker, PasteCleanup, Audio ,Video, FormatPainter, Table } from '@syncfusion/ej2-richtexteditor';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, EmojiPicker, PasteCleanup, Audio ,Video, FormatPainter, Table);
 
 (window as any).default = (): void => {
     loadCultureFiles();

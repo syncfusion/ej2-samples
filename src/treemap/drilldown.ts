@@ -3,12 +3,13 @@
  */
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
-// custom code start
+// custom code end
 import { TreeMap, TreeMapTooltip, IDrillStartEventArgs, ITreeMapTooltipRenderEventArgs, TreeMapAjax } from '@syncfusion/ej2-treemap';
 import { Alignment } from '@syncfusion/ej2-treemap';
 TreeMap.Inject(TreeMapTooltip);
 import { TreeMapTheme, ILoadEventArgs } from '@syncfusion/ej2-treemap';
 import { EmitType } from '@syncfusion/ej2-base';
+import { drillDownData } from './treemap-data/drilldown-sample';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
 
@@ -18,10 +19,12 @@ let prevTime: Date; let curTime: Date;
     loadCultureFiles();
     // custom code end
     let treemapload: EmitType<ILoadEventArgs> = (args: ILoadEventArgs) => {
+        // custom code start
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
         theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+        // custom code end
     };
     let treemap: TreeMap = new TreeMap({
         // show the header in level two
@@ -48,7 +51,7 @@ let prevTime: Date; let curTime: Date;
         enableDrillDown: true,
         format: 'n',
         useGroupingSeparator: true,
-        dataSource: new TreeMapAjax('./src/treemap/treemap-data/drilldown-sample.json'),
+        dataSource: drillDownData,
         weightValuePath: 'Population',
         tooltipSettings: {
             visible: true,

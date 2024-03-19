@@ -1,9 +1,9 @@
 /**
  * Marker Cluster sample
  */
-import { Maps, Marker, Zoom, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
-import * as dataSource from './map-data/sales-map.json';
-let data: any = dataSource as any;
+import { Maps, Marker, Zoom, MapsTooltip, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { salesData } from './map-data/sales-map';
 Maps.Inject(Marker, MapsTooltip, Zoom);
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
@@ -41,7 +41,7 @@ import { loadCultureFiles } from '../common/culture-loader';
         tooltipDisplayMode: 'Click',
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapeSettings: {
                     fill: '#C1DFF5'
                 },
@@ -57,7 +57,7 @@ import { loadCultureFiles } from '../common/culture-loader';
                 markerSettings: [
                     {
                         visible: true,
-                        dataSource: data.salesmap,
+                        dataSource: salesData,
                         shape: 'Image',
                         imageUrl: 'src/maps/images/ballon.png',
                         tooltipSettings: {

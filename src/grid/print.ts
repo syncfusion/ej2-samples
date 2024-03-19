@@ -25,7 +25,7 @@ Grid.Inject(Sort, DetailRow, Toolbar);
         dataSource: employeeData,
         hierarchyPrintMode: 'All',
         allowSorting: true,
-        toolbar: [ 'Print'],
+        toolbar: ['Print'],
         columns: [
             { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 125 },
             { field: 'FirstName', headerText: 'Name', width: 125 },
@@ -47,7 +47,7 @@ Grid.Inject(Sort, DetailRow, Toolbar);
                 queryString: 'CustomerID',
                 columns: [
                     { field: 'CustomerID', headerText: 'Customer ID', textAlign: 'Right', width: 75 },
-                    { field: 'Phone', headerText: 'Phone', width: 100 },
+                    { field: 'ContactName', headerText: 'Contact Name', width: 100 },
                     { field: 'Address', headerText: 'Address', width: 120 },
                     { field: 'Country', headerText: 'Country', width: 100 }
                 ]

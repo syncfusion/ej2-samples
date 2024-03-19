@@ -5,8 +5,10 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Maps selction sample
  */
 import {
-    Maps, MapsTooltip, ISelectionEventArgs, Selection, Highlight, Legend, ILoadEventArgs, MapsTheme, MapAjax
+    Maps, MapsTooltip, ISelectionEventArgs, Selection, Highlight, Legend, ILoadEventArgs, MapsTheme
 } from '@syncfusion/ej2-maps';
+import { usa } from './map-data/usa';
+import { selectionData } from './map-data/selection-datasource';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 Maps.Inject(MapsTooltip, Selection, Highlight, Legend);
 interface PopulationData {
@@ -91,10 +93,10 @@ interface PopulationData {
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/usa.json'),
+                shapeData: usa,
                 shapePropertyPath: 'name',
                 shapeDataPath: 'State',
-                dataSource: new MapAjax('./src/maps/map-data/selection-datasource.json'),
+                dataSource: selectionData,
                 tooltipSettings: {
                     visible: true,
                     valuePath: 'State',

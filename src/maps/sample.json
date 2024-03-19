@@ -20,8 +20,8 @@
             "sourceFiles":[
                 { "displayName": "default.html", "path":"src/maps/default.html" },
                 { "displayName": "default.ts", "path":"src/maps/default.ts" },
-                { "displayName": "default-datasource.json", "path":"src/maps/map-data/default-datasource.json" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "default-datasource.ts", "path":"src/maps/map-data/default-datasource.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
                 
             ]
         },
@@ -40,8 +40,8 @@
             },
             "sourceFiles":[{ "displayName": "projection.html", "path":"src/maps/projection.html" },
                 { "displayName": "projection.ts", "path":"src/maps/projection.ts" },
-                { "displayName": "projection-datasource.json", "path":"src/maps/map-data/projection-datasource.json" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "projection-datasource.ts", "path":"src/maps/map-data/projection-datasource.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
                 
             ]
         },
@@ -59,9 +59,9 @@
             },
             "sourceFiles":[{ "displayName": "multilayer.html", "path":"src/maps/multilayer.html" },
                 { "displayName": "multilayer.ts", "path":"src/maps/multilayer.ts" },
-                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" },
-                { "displayName": "texas.json", "path":"src/maps/map-data/texas.json" },
-                { "displayName": "california.json", "path":"src/maps/map-data/california.json" }                
+                { "displayName": "usa.ts", "path":"src/maps/map-data/usa.ts" },
+                { "displayName": "texas.ts", "path":"src/maps/map-data/texas.ts" },
+                { "displayName": "california.ts", "path":"src/maps/map-data/california.ts" }                
             ]
         },
         {
@@ -79,8 +79,8 @@
             "sourceFiles":[
                 { "displayName": "marker.html", "path":"src/maps/marker.html" },
                 { "displayName": "marker.ts", "path":"src/maps/marker.ts" },
-                { "displayName": "marker-location.json", "path":"src/maps/map-data/top-location.json" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "marker-location.ts", "path":"src/maps/map-data/top-location.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -98,7 +98,7 @@
             "sourceFiles":[
                 { "displayName": "marker-template.html", "path":"src/maps/marker-template.html" },
                 { "displayName": "marker-template.ts", "path":"src/maps/marker-template.ts" },
-                { "displayName": "australia.json", "path":"src/maps/map-data/australia.json" }
+                { "displayName": "australia.ts", "path":"src/maps/map-data/australia.ts" }
             ]
         },
         {
@@ -114,22 +114,10 @@
                 ]
             },
             "sourceFiles": [
-                {
-                    "displayName": "marker-cluster.html",
-                    "path": "src/maps/marker-cluster.html"
-                },
-                {
-                    "displayName": "marker-cluster.ts",
-                    "path": "src/maps/marker-cluster.ts"
-                },
-                {
-                    "displayName": "marker-cluster.json",
-                    "path": "src/maps/map-data/marker-cluster.json"
-                },
-                {
-                    "displayName": "world-map.json",
-                    "path": "src/maps/map-data/world-map.json"
-                }
+                { "displayName": "marker-cluster.html", "path": "src/maps/marker-cluster.html" },
+                { "displayName": "marker-cluster.ts", "path": "src/maps/marker-cluster.ts" },
+                { "displayName": "marker-cluster.ts", "path": "src/maps/map-data/marker-cluster.ts" },
+                { "displayName": "world-map.ts", "path": "src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -146,7 +134,7 @@
             "sourceFiles":[
                 { "displayName": "data-label.html", "path":"src/maps/data-label.html" },
                 { "displayName": "data-label.ts", "path":"src/maps/data-label.ts" },
-                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" }
+                { "displayName": "usa.ts", "path":"src/maps/map-data/usa.ts" }
             ]
         },
         {
@@ -165,7 +153,7 @@
                 { "displayName": "bubble.html", "path":"src/maps/bubble.html" },
                 { "displayName": "bubble.ts", "path":"src/maps/bubble.ts" },
                 { "displayName": "population-data.ts", "path":"src/maps/map-data/population-data.ts" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -183,8 +171,8 @@
             "sourceFiles":[
                 { "displayName": "navigation-line.html", "path":"src/maps/navigation-line.html" },
                 { "displayName": "navigation-line.ts", "path":"src/maps/navigation-line.ts" },
-                { "displayName": "map-location.json", "path":"src/maps/map-data/map-location.json" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "map-location.ts", "path":"src/maps/map-data/map-location.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -203,8 +191,8 @@
             "sourceFiles":[
                 { "displayName": "legend.html", "path":"src/maps/legend.html" },
                 { "displayName": "legend.ts", "path":"src/maps/legend.ts" },
-                { "displayName": "legend-datasource.json", "path":"src/maps/map-data/legend-datasource.json" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "legend-datasource.ts", "path":"src/maps/map-data/legend-datasource.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -214,7 +202,7 @@
             "category": "Features",
             "sourceFiles":[ { "displayName": "color-mapping.html", "path":"src/maps/color-mapping.html" },
                 { "displayName": "color-mapping.ts", "path":"src/maps/color-mapping.ts" },
-                { "displayName": "color-mapping.json", "path":"src/maps/map-data/color-mapping.json" }
+                { "displayName": "color-mapping.ts", "path":"src/maps/map-data/color-mapping.ts" }
             ]
         },
         {
@@ -232,7 +220,7 @@
             "sourceFiles":[
                 { "displayName": "annotation.html", "path":"src/maps/annotation.html" },
                 { "displayName": "annotation.ts", "path":"src/maps/annotation.ts" },
-                { "displayName": "africa-continent.json", "path":"src/maps/map-data/africa-continent.json" }
+                { "displayName": "africa-continent.ts", "path":"src/maps/map-data/africa-continent.ts" }
             ]
         },
         {
@@ -243,7 +231,7 @@
                 { "displayName": "polygon.html", "path":"src/maps/polygon.html" },
                 { "displayName": "polygon.ts", "path":"src/maps/polygon.ts" }
             ],
-            "type": "new"
+            "type": "update"
         },
         {
             "url": "osm",
@@ -270,7 +258,7 @@
             "sourceFiles":[
                 { "displayName": "osm-sublayers.html", "path":"src/maps/osm-with-sublayers.html" },
                 { "displayName": "osm-sublayers.ts", "path":"src/maps/osm-with-sublayers.ts" },
-                { "displayName": "africa.json", "path":"src/maps/map-data/africa.json" }
+                { "displayName": "africa.ts", "path":"src/maps/map-data/africa.ts" }
             ]
         },
         {
@@ -299,8 +287,8 @@
             "sourceFiles":[
                 { "displayName": "tooltip-datasource.html", "path":"src/maps/tooltip.html" },
                 { "displayName": "tooltip-datasource.ts", "path":"src/maps/tooltip.ts" },
-                { "displayName": "tooltip-datasource.json", "path":"src/maps/map-data/tooltip-datasource.json" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "tooltip-datasource.ts", "path":"src/maps/map-data/tooltip-datasource.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -319,8 +307,8 @@
             "sourceFiles":[
                 { "displayName": "selection.html", "path":"src/maps/selection.html" },
                 { "displayName": "selection.ts", "path":"src/maps/selection.ts" },
-                { "displayName": "selection-datasource.json", "path":"src/maps/map-data/selection-datasource.json" },
-                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" }
+                { "displayName": "selection-datasource.ts", "path":"src/maps/map-data/selection-datasource.ts" },
+                { "displayName": "usa.ts", "path":"src/maps/map-data/usa.ts" }
             ]
         },
         {
@@ -337,8 +325,8 @@
             "sourceFiles":[
                 { "displayName": "zooming.html", "path":"src/maps/zooming.html" },
                 { "displayName": "zooming.ts", "path":"src/maps/zooming.ts" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "zooming-datasource.json", "path":"src/maps/map-data/zooming-datasource.json" }
+                { "displayName": "zooming-datasource.ts", "path":"src/maps/map-data/zooming-datasource.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -356,8 +344,8 @@
             "sourceFiles":[
                 { "displayName": "zoom-marker.html", "path":"src/maps/zoom-marker.html" },
                 { "displayName": "zoom-marker.ts", "path":"src/maps/zoom-marker.ts" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "southamerica-country-capitals.json", "path":"src/maps/map-data/southamerica-country-capitals.json" }
+                { "displayName": "southamerica-country-capitals.ts", "path":"src/maps/map-data/southamerica-country-capitals.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -374,13 +362,13 @@
             "sourceFiles":[
                 { "displayName": "drilldown.html", "path":"src/maps/drilldown.html" },
                 { "displayName": "drilldown.ts", "path":"src/maps/drilldown.ts" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "africa.json", "path":"src/maps/map-data/africa.json" },
-                { "displayName": "europe.json", "path":"src/maps/map-data/europe.json" },
-                { "displayName": "asia.json", "path":"src/maps/map-data/asia.json" },
-                { "displayName": "north-america.json", "path":"src/maps/map-data/north-america.json" },
-                { "displayName": "south-america.json", "path":"src/maps/map-data/south-america.json" },
-                { "displayName": "oceania.json", "path":"src/maps/map-data/oceania.json" }
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" },
+                { "displayName": "africa.ts", "path":"src/maps/map-data/africa.ts" },
+                { "displayName": "europe.ts", "path":"src/maps/map-data/europe.ts" },
+                { "displayName": "asia.ts", "path":"src/maps/map-data/asia.ts" },
+                { "displayName": "north-america.ts", "path":"src/maps/map-data/north-america.ts" },
+                { "displayName": "south-america.ts", "path":"src/maps/map-data/south-america.ts" },
+                { "displayName": "oceania.ts", "path":"src/maps/map-data/oceania.ts" }
             ]
         },
         {
@@ -398,8 +386,8 @@
             "sourceFiles":[
                 { "displayName": "print.html", "path":"src/maps/print.html" },
                 { "displayName": "print.ts", "path":"src/maps/print.ts" },
-                { "displayName": "print-datasource.json", "path":"src/maps/map-data/print-datasource.json" },
-                { "displayName": "usa.json", "path":"src/maps/map-data/usa.json" }
+                { "displayName": "print-datasource.ts", "path":"src/maps/map-data/print-datasource.ts" },
+                { "displayName": "usa.ts", "path":"src/maps/map-data/usa.ts" }
             ]
         },
         {
@@ -416,7 +404,7 @@
             "sourceFiles":[
                 { "displayName": "export.html", "path":"src/maps/export.html" },
                 { "displayName": "export.ts", "path":"src/maps/export.ts" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -435,8 +423,8 @@
             "sourceFiles":[
                 { "displayName": "heat-map.html", "path":"src/maps/heat-map.html" },
                 { "displayName": "heat-map.ts", "path":"src/maps/heat-map.ts" },
-                { "displayName": "heatmap-datasource.json", "path":"src/maps/map-data/heatmap-datasource.json" },
-                { "displayName": "india.json", "path":"src/maps/map-data/india.json" }
+                { "displayName": "heatmap-datasource.ts", "path":"src/maps/map-data/heatmap-datasource.ts" },
+                { "displayName": "india.ts", "path":"src/maps/map-data/india.ts" }
             ]
         },
         {
@@ -454,8 +442,8 @@
             "sourceFiles":[
                 { "displayName": "curved-lines.html", "path":"src/maps/curved-lines.html" },
                 { "displayName": "curved-lines.ts", "path":"src/maps/curved-lines.ts" },
-                { "displayName": "marker-location.json", "path":"src/maps/map-data/marker-location.json" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "marker-location.ts", "path":"src/maps/map-data/marker-location.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -473,7 +461,7 @@
             "sourceFiles":[
                 { "displayName": "earthquake.html", "path":"src/maps/earthquake.html" },
                 { "displayName": "earthquake.ts", "path":"src/maps/earthquake.ts" },
-                { "displayName": "asia.json", "path":"src/maps/map-data/asia.json" }
+                { "displayName": "asia.ts", "path":"src/maps/map-data/asia.ts" }
             ]
         },
         {
@@ -490,7 +478,7 @@
             "sourceFiles":[
                 { "displayName": "highlighted-region.html", "path":"src/maps/highlighted-region.html" },
                 { "displayName": "highlighted-region.ts", "path":"src/maps/highlighted-region.ts" },
-                { "displayName": "oklahoma.json", "path":"src/maps/map-data/oklahoma.json" }
+                { "displayName": "oklahoma.ts", "path":"src/maps/map-data/oklahoma.ts" }
             ]
         },
         {
@@ -506,7 +494,7 @@
             "sourceFiles":[
                 { "displayName": "cyber-attack-map.html", "path":"src/maps/cyber-attack-map.html" },
                 { "displayName": "cyber-attack-map.ts", "path":"src/maps/cyber-attack-map.ts" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
 		{
@@ -523,18 +511,9 @@
                 ]
             },
             "sourceFiles": [
-                {
-                    "displayName": "dynamic-marker.html",
-                    "path": "src/maps/dynamic-marker.html"
-                },
-                {
-                    "displayName": "dynamic-marker.ts",
-                    "path": "src/maps/dynamic-marker.ts"
-                },
-                {
-                    "displayName": "world-map.json",
-                    "path": "src/maps/map-data/world-map.json"
-                }
+                { "displayName": "dynamic-marker.html", "path": "src/maps/dynamic-marker.html" },
+                { "displayName": "dynamic-marker.ts", "path": "src/maps/dynamic-marker.ts" },
+                { "displayName": "world-map.ts", "path": "src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -553,7 +532,7 @@
             "sourceFiles":[
                 { "displayName": "pie.html", "path":"src/maps/pie.html" },
                 { "displayName": "pie.ts", "path":"src/maps/pie.ts" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -564,8 +543,8 @@
             "sourceFiles":[
                 { "displayName": "map-with-slider.html", "path":"src/maps/map-with-slider.html" },
                 { "displayName": "map-with-slider.ts", "path":"src/maps/map-with-slider.ts" },
-                { "displayName": "population-growth.json", "path":"src/maps/map-data/population-growth.json" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" }
+                { "displayName": "population-growth.ts", "path":"src/maps/map-data/population-growth.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
         {
@@ -582,8 +561,8 @@
             "sourceFiles":[
                 { "displayName": "sales-map.html", "path":"src/maps/sales-map.html" },
                 { "displayName": "sales-map.ts", "path":"src/maps/sales-map.ts" },
-                { "displayName": "world-map.json", "path":"src/maps/map-data/world-map.json" },
-                { "displayName": "seat.json", "path":"src/maps/map-data/sales-map.json" }
+                { "displayName": "sales-data.ts", "path":"src/maps/map-data/sales-map.ts" },
+                { "displayName": "world-map.ts", "path":"src/maps/map-data/world-map.ts" }
             ]
         },
 		{
@@ -594,7 +573,7 @@
             "sourceFiles":[
                 { "displayName": "seat-selection.html", "path":"src/maps/seat-selection.html" },
                 { "displayName": "seat-selection.ts", "path":"src/maps/seat-selection.ts" },
-                { "displayName": "seat.json", "path":"src/maps/map-data/seat.json" }
+                { "displayName": "seat.ts", "path":"src/maps/map-data/seat.ts" }
             ]
         }
     ]

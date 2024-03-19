@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Chart, Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme, Highlight
+    Chart, Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries, ChartDrawType, ILoadedEventArgs, ChartTheme, Highlight, StackingColumnSeries
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries, Highlight);
+Chart.Inject(Tooltip, Legend, PolarSeries, Category, LineSeries, RadarSeries, Highlight, StackingColumnSeries);
 
 /**
  * Sample for Polar Series with DrawType StackingColumn

@@ -125,7 +125,6 @@ let longitude: number[] = [];
         maps.layers[0].navigationLineSettings = [];
         navigationLines = [];
         emptySavedLinePositions();
-        maps.refresh();
         togglebtn.disabled = true;
     };
     let emptySavedLinePositions: any = () => {

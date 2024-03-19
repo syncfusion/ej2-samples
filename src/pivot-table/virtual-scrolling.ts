@@ -46,7 +46,7 @@ let data: Function = (count: number) => {
             Price: Math.round(Math.random() * 5000) + 5000,
             Sold: Math.round(Math.random() * 80) + 10,
         });
-        if (dt / 4 == 1) {
+        if (dt / 2 == 1) {
             dt = 0;
         }
     }
@@ -65,10 +65,11 @@ let data: Function = (count: number) => {
             columns: [{ name: 'Year' }],
             values: [{ name: 'Price', caption: 'Unit Price' }, { name: 'Sold', caption: 'Unit Sold' }],
         },
-        width: Browser.isDevice ? '100%' : 860,
+        width: Browser.isDevice ? '100%' : 1200,
         height: 300,
         enableVirtualization: true,
         gridSettings: { columnWidth: 140 },
+        virtualScrollSettings: { allowSinglePage: true },
         dataBound: (args: any): void => {
             if ((pivotObj.dataSourceSettings.dataSource as IDataSet[]).length > 0) {
                 if (date1 && isInit) {

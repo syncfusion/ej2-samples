@@ -2,10 +2,10 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor API sample
  */
-import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
-RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar);
+RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio);
 
 (window as any).default = (): void => {
     loadCultureFiles();

@@ -1,13 +1,13 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, CandleSeries, Category, Tooltip, ILoadedEventArgs, DateTime, Zoom, Logarithmic,
-    Crosshair, LineSeries, BollingerBands, ChartTheme, RangeAreaSeries
+    Crosshair, LineSeries, BollingerBands, ChartTheme, RangeAreaSeries, SplineRangeAreaSeries
 } from '@syncfusion/ej2-charts';
 import { chartValue } from './financial-data';
 import { Browser} from '@syncfusion/ej2-base';
 Chart.Inject(
     CandleSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, LineSeries, RangeAreaSeries,
-    BollingerBands
+    BollingerBands, SplineRangeAreaSeries
 );
 
 /**

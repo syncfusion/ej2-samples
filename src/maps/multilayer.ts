@@ -1,8 +1,11 @@
 /**
  * Multi-layer map sample
  */
-import { Maps, Marker, ILoadEventArgs, MapsTheme, MapsTooltip, DataLabel, MapAjax } from '@syncfusion/ej2-maps';
-Maps.Inject(Marker, MapsTooltip, DataLabel);
+import { Maps, Marker, ILoadEventArgs, MapsTheme, MapsTooltip, DataLabel, Zoom } from '@syncfusion/ej2-maps';
+import { usa } from './map-data/usa';
+import { texas } from './map-data/texas';
+import { california } from './map-data/california';
+Maps.Inject(Marker, MapsTooltip, DataLabel, Zoom);
 // custom code start
 import { loadCultureFiles } from '../common/culture-loader';
 //tslint:disable:max-func-body-length
@@ -36,7 +39,7 @@ import { loadCultureFiles } from '../common/culture-loader';
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/usa.json'),
+                shapeData: usa,
                 shapeSettings: {
                     fill: '#E5E5E5',
                     border: {
@@ -55,7 +58,7 @@ import { loadCultureFiles } from '../common/culture-loader';
                 }
             },
             {
-                shapeData: new MapAjax('./src/maps/map-data/texas.json'),
+                shapeData: texas,
                 type: 'SubLayer',
                 shapeSettings: {
                     fill: 'rgba(141, 206, 255, 0.6)',
@@ -99,7 +102,7 @@ import { loadCultureFiles } from '../common/culture-loader';
                 ]
             },
             {
-                shapeData: new MapAjax('./src/maps/map-data/california.json'),
+                shapeData: california,
                 type: 'SubLayer',
                 shapeSettings: {
                     fill: 'rgba(141, 206, 255, 0.6)',

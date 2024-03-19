@@ -4,8 +4,10 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Map with slider sample
  */
-import { Maps, MapsTooltip, ILoadEventArgs, MapsTheme, MapAjax, ILoadedEventArgs, Annotations } from '@syncfusion/ej2-maps';
+import { Maps, MapsTooltip, ILoadEventArgs, MapsTheme, ILoadedEventArgs, Annotations } from '@syncfusion/ej2-maps';
 import { Slider, SliderChangeEventArgs  } from '@syncfusion/ej2-inputs';
+import { northAmerica } from './map-data/north-america';
+import { populationGrowthData } from './map-data/population-growth';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 Maps.Inject(MapsTooltip, Annotations);
 // custom code start
@@ -45,10 +47,10 @@ let sliderVal: number | number[] = [-2 , 4];
         ],
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/north-america.json'),
+                shapeData: northAmerica,
                 shapePropertyPath: 'name',
                 shapeDataPath: 'name',
-                dataSource: new MapAjax('./src/maps/map-data/population-growth.json'),
+                dataSource: populationGrowthData,
                 shapeSettings: {
                     colorValuePath: 'population',
                     colorMapping: [

@@ -4,7 +4,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Maps zooming sample
  */
-import { Maps, Zoom, ILoadEventArgs, MapsTheme, MapAjax } from '@syncfusion/ej2-maps';
+import { Maps, Zoom, ILoadEventArgs, MapsTheme } from '@syncfusion/ej2-maps';
+import { worldMap } from './map-data/world-map';
+import { zoomData } from './map-data/zooming-datasource';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { EmitType } from '@syncfusion/ej2-base';
 Maps.Inject(Zoom);
@@ -28,7 +30,7 @@ Maps.Inject(Zoom);
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/maps/map-data/world-map.json'),
+                shapeData: worldMap,
                 shapePropertyPath: 'continent',
                 shapeDataPath: 'continent',
                 animationDuration: 500,
@@ -36,7 +38,7 @@ Maps.Inject(Zoom);
                     autofill: true,
                     colorValuePath: 'color'
                 },
-                dataSource: new MapAjax('./src/maps/map-data/zooming-datasource.json')
+                dataSource: zoomData
             }
         ]
     });

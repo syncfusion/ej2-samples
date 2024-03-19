@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Filter, Page, Selection } from '@syncfusion/ej2-grids';
+import { Grid, Filter, Page, Selection, Sort } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 
-Grid.Inject(Filter, Page, Selection);
+Grid.Inject(Filter, Page, Selection, Sort);
 
 /**
  * Filtering sample
@@ -15,6 +15,7 @@ Grid.Inject(Filter, Page, Selection);
             dataSource: categoryData,
             allowPaging: true,
             allowFiltering: true,
+            allowSorting: true,
             columns: [
                 { field: 'CategoryName', headerText: 'Category Name', width: 150 },
                 { field: 'ProductName', headerText: 'Product Name', width: 150 },

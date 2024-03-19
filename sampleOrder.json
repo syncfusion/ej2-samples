@@ -20,6 +20,7 @@
             "default": "Default Functionalities",
             "grouping-icon": "Grouping and Icons",
             "data-binding": "Data Binding",
+            "object-value-binding": "Object Value Binding",
             "template": "Template",
             "highlight": "Highlight",
             "custom-filtering": "Custom Filtering",
@@ -256,6 +257,15 @@
 	  "empty-point": "Column With null and 0 values"
         }
     },
+    "circular-3d-chart": {
+        "ControlName": "3D Circular",
+        "Samples": {
+            "pie": "Pie",
+            "donut": "Donut",
+            "pie-legend": "Pie with Legend",
+            "selection": "Selection"
+        }
+    },
     "chips": {
         "ControlName": "Chips",
         "Samples": {
@@ -311,6 +321,7 @@
             "default": "Default Functionalities",
             "grouping-icon": "Grouping and Icons",
             "data-binding": "Data Binding",
+            "object-value-binding": "Object Value Binding",
             "custom-value": "Custom Value",
             "template": "Template",
             "filtering": "Filtering",
@@ -470,6 +481,7 @@
             "default": "Default Functionalities",
             "grouping-icon": "Grouping and Icons",
             "data-binding": "Data Binding",
+            "object-value-binding": "Object Value Binding",
             "template": "Template",
             "filtering": "Filtering",
             "cascading": "Cascading",
@@ -792,6 +804,7 @@
         "Samples": {
             "default": "Default Functionalities",
             "data-binding": "Data Binding",
+            "object-value-binding": "Object Value Binding",
             "grouping-icon": "Grouping",
             "template": "Template",
             "filtering": "Filtering",
@@ -1152,6 +1165,23 @@
         "Samples": {
             "default": "Default Functionalities",
             "multiline-textbox": "Multiline TextBox"
+        }
+    },
+    "textarea": {
+        "ControlName": "TextArea",
+        "Samples": {
+            "default": "Default Functionalities",
+            "floatingLabel": "Floating Label",
+            "resize": "Resize",
+            "api": "API"
+        }
+    },
+    "timeline": {
+        "ControlName": "Timeline",
+        "Samples": {
+            "default": "Default Functionalities",
+            "api": "API",
+            "template": "Template"
         }
     },
     "timepicker": {

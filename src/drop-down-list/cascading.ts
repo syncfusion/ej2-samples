@@ -21,7 +21,7 @@ import * as data from './dataSource.json';
             // disable the state DropDownList
             stateObj.enabled = true;
             // frame the query based on selected value in country DropDownList.
-            let tempQuery: Query = new Query().where('CountryId', 'equal', countryObj.value);
+            let tempQuery: Query = new Query().where('CountryId', 'equal', countryObj.value as string);
             // set the framed query based on selected value in country DropDownList.
             stateObj.query = tempQuery;
             // set null value to state DropDownList text property
@@ -55,7 +55,7 @@ import * as data from './dataSource.json';
             // enable the city DropDownList
             cityObj.enabled = true;
             // Query the data source based on state DropDownList selected value
-            let tempQuery1: Query = new Query().where('StateId', 'equal', stateObj.value);
+            let tempQuery1: Query = new Query().where('StateId', 'equal', stateObj.value as string);
             // set the framed query based on selected value in city DropDownList.
             cityObj.query = tempQuery1;
             //clear the existing selection

@@ -2,9 +2,10 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor auto-save sample
  */
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar);
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio);
 import { Switch } from '@syncfusion/ej2-buttons';
+import { isNullOrUndefined } from '@syncfusion/ej2-base';
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -42,6 +43,11 @@ import { Switch } from '@syncfusion/ej2-buttons';
     let savedIcon: HTMLElement = document.getElementById('saved');
     savingIcon.style.display = 'block';
     savedIcon.style.display = 'none';
-    setTimeout(() => { savingIcon.style.display = 'none'; savedIcon.style.display = 'block'; }, 500);
+    setTimeout(() => {
+      if (!isNullOrUndefined(savingIcon) && !isNullOrUndefined(savedIcon)) {
+        savingIcon.style.display = 'none';
+        savedIcon.style.display = 'block';
+      }
+    }, 500);
   }
 };

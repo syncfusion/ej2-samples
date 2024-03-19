@@ -27,6 +27,7 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
                 child: 'subtasks',
                 type: 'taskType'
             },
+            taskType:'FixedWork',
             editSettings: {
                 allowAdding: true,
                 allowEditing: true,

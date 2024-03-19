@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Selection, Toolbar, ColumnChooser } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, Toolbar, ColumnChooser, Sort } from '@syncfusion/ej2-grids';
 import { orderDetails } from './data-source';
 
-Grid.Inject(Page, Selection, Toolbar, ColumnChooser);
+Grid.Inject(Page, Selection, Toolbar, ColumnChooser, Sort);
 
 /**
  * Column Chooser Grid sample
@@ -14,6 +14,7 @@ Grid.Inject(Page, Selection, Toolbar, ColumnChooser);
             dataSource: orderDetails,
             showColumnChooser: true,
             allowPaging: true,
+            allowSorting: true,
             toolbar: ['ColumnChooser'],
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },

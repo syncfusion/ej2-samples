@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(true);
-import { Grid, Toolbar, ExcelExport, PdfExport, Page } from '@syncfusion/ej2-grids';
+import { Grid, Toolbar, ExcelExport, PdfExport, Page, Sort } from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { productData } from './data-source';
 
-Grid.Inject(Toolbar, ExcelExport, PdfExport, Page);
+Grid.Inject(Toolbar, ExcelExport, PdfExport, Page, Sort);
 /**
  * Advanced Grid Exporting to Excel, PDF sample
  */
@@ -179,6 +179,7 @@ date += '/' + ((new Date()).getFullYear().toString());
         allowPdfExport: true,
         allowPaging: true,
         pageSettings: { pageCount: 2, pageSize: 10 },
+        allowSorting: true,
         toolbar: ['ExcelExport', 'PdfExport'],
         columns: [
             { field: 'ProductID', headerText: 'Product ID', textAlign: 'Right', width: 120 },

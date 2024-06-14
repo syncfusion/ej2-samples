@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Selection, DetailRow, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, DetailRow, Sort, Filter } from '@syncfusion/ej2-grids';
 import { DataManager, ODataV4Adaptor } from '@syncfusion/ej2-data';
 import { employeeData } from './data-source';
 
-Grid.Inject(Page, Selection, DetailRow, Sort);
+Grid.Inject(Page, Selection, DetailRow, Sort, Filter);
 /**
  * Hierarchy Grid Sample
  */
@@ -23,6 +23,8 @@ Grid.Inject(Page, Selection, DetailRow, Sort);
     let grid: Grid = new Grid({
         dataSource: employeeData,
         allowSorting: true,
+        allowFiltering: true,
+        filterSettings: { type: 'Excel' },
         columns: [
             { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 125 },
             { field: 'FirstName', headerText: 'Name', width: 125 },

@@ -58,5 +58,4 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
         }
     });
     pie.appendTo('#container');
-   
 };

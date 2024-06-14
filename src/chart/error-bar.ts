@@ -59,7 +59,7 @@ Chart.Inject(ColumnSeries, Category, ErrorBar, Tooltip);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             if (selectedTheme === 'bootstrap5' || selectedTheme === 'fluent') {
                 chart.series[0].fill = '#81CCBB';
                 chart.highlightColor = '#C7E9B6';

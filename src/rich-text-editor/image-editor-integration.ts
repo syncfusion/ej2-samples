@@ -7,6 +7,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteClean
 import { Dialog } from '@syncfusion/ej2-popups';
 import { ImageEditor } from '@syncfusion/ej2-image-editor';
 import { isNullOrUndefined  as isNOU } from '@syncfusion/ej2-base';
+import { getComponent } from '@syncfusion/ej2-base';
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -15,9 +16,10 @@ import { isNullOrUndefined  as isNOU } from '@syncfusion/ej2-base';
     let header = 'Image Editor';
     let range: Range;
     let saveSelection: NodeSelection;
-    let dataURL;
+    let dataURL: string | ImageData;
     let isLoaded = false;
     let imageEditorObj: ImageEditor;
+    let imageELement: HTMLImageElement;
     let dlgButtons = [
         {
           buttonModel: { content: 'Insert', isPrimary: true },
@@ -72,59 +74,79 @@ import { isNullOrUndefined  as isNOU } from '@syncfusion/ej2-base';
     }
 
     function onInsert() {
-        if (defaultRTE.formatter.getUndoRedoStack().length === 0) {
-          defaultRTE.formatter.saveData();
-        }
-        saveSelection.restore();
-        let canvas = document.createElement('CANVAS') as HTMLCanvasElement;
-        let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
-        const imgData = imageEditorObj.getImageData();
-        canvas.height = imgData.height;
-        canvas.width = imgData.width;
-        ctx.putImageData(imgData, 0, 0);
-        isLoaded = true;
-        defaultRTE.executeCommand('editImage', {
-          url: canvas.toDataURL(),
-          width: { width: canvas.width },
-          height: { height: canvas.height },
-          selection: saveSelection,
-        });
+      if (defaultRTE.formatter.getUndoRedoStack().length === 0) {
         defaultRTE.formatter.saveData();
-        defaultRTE.formatter.enableUndo(defaultRTE);
-        dialogObj.hide();
-        isLoaded = false;
       }
+      saveSelection.restore();
+      let canvas = document.createElement('CANVAS') as HTMLCanvasElement;
+      let ctx: CanvasRenderingContext2D = canvas.getContext('2d');
+      const imgData = imageEditorObj.getImageData();
+      canvas.height = imgData.height;
+      canvas.width = imgData.width;
+      ctx.putImageData(imgData, 0, 0);
+      isLoaded = true;
+      defaultRTE.executeCommand('editImage', {
+        url: canvas.toDataURL(),
+        width: { width: canvas.width },
+        height: { height: canvas.height },
+        selection: saveSelection,
+        cssClass: imageELement.getAttribute('class').replace('e-rte-image', ''),
+      });
+      defaultRTE.formatter.saveData();
+      defaultRTE.formatter.enableUndo(defaultRTE);
+      dispose();
+      dialogObj.hide();
+      imageELement.crossOrigin = null;
+    }
       
       function onCancel() {
+        dispose();
         dialogObj.hide();
-        imageEditorObj.reset();
+        isLoaded = true;
+        imageELement.crossOrigin = null;
+      }
+      function onclose() {
+        dispose();
+        dialogObj.hide();
+        isLoaded = true;
+        imageELement.crossOrigin = null;
+      }
+      function dispose() {
+        if (imageEditorObj !== null && imageEditorObj !== undefined) {
+          const imageEditorInstance = getComponent(
+            document.getElementById('imageeditor'),
+            'image-editor'
+          ) as ImageEditor;
+          if (imageEditorInstance !== null && imageEditorInstance !== undefined) {
+            imageEditorInstance.destroy();
+          }
+        }
       }
       
       function OnOpen() {
-        if (isNOU(imageEditorObj)) {
-          imageEditorObj = new ImageEditor({
-            height: '450px',
-          });
-          imageEditorObj.appendTo('#imageeditor');
-        }
-        let imageELement: HTMLImageElement;
-        let selectNodes: Node[] = defaultRTE.formatter.editorManager.nodeSelection.getNodeCollection(range);
-        if (selectNodes.length == 1 && (selectNodes[0] as HTMLElement).tagName == 'IMG') {
-          imageELement = selectNodes[0] as HTMLImageElement;
-          imageELement.crossOrigin = 'anonymous';
-          let imageUrl = imageELement.src + '?timestamp=' + Date.now();
-          imageELement.src = imageUrl;
-          let canvas = document.createElement('CANVAS') as HTMLCanvasElement;
-          let ctx = canvas.getContext('2d');
-          canvas.height = imageELement.offsetHeight;
-          canvas.width = imageELement.offsetWidth;
-          imageELement.onload = function () {
-            ctx.drawImage(imageELement, 0, 0, canvas.width, canvas.height);
-            dataURL = canvas.toDataURL();
-            if (!isLoaded) {
-              imageEditorObj.open(dataURL);
-            }
-          };
-        }
+        isLoaded = false;
+        let selectNodes: Node[] =
+        defaultRTE.formatter.editorManager.nodeSelection.getNodeCollection(range);
+      if (selectNodes.length == 1 &&(selectNodes[0] as HTMLElement).tagName == 'IMG') {
+        imageELement = selectNodes[0] as HTMLImageElement;
+        imageELement.crossOrigin = 'anonymous';
+        let canvas = document.createElement('CANVAS') as HTMLCanvasElement;
+        let ctx = canvas.getContext('2d');
+        canvas.height = imageELement.offsetHeight;
+        canvas.width = imageELement.offsetWidth;
+        imageELement.onload = function () {
+          ctx.drawImage(imageELement, 0, 0, canvas.width, canvas.height);
+          dataURL = canvas.toDataURL();
+          if (!isLoaded) {
+            imageEditorObj = new ImageEditor({
+              height: '450px',
+              created: function () {
+                imageEditorObj.open(dataURL);
+              },
+            });
+            imageEditorObj.appendTo('#imageeditor');
+          }
+        };
       }
+    }
 };

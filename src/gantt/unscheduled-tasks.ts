@@ -41,8 +41,8 @@ Gantt.Inject(Edit, Toolbar, Selection);
             },
             allowUnscheduledTasks: true,
             allowSelection: true,
-            projectStartDate: new Date('01/01/2019'),
-            projectEndDate: new Date('01/20/2019'),
+            projectStartDate: new Date('01/01/2024'),
+            projectEndDate: new Date('01/20/2024'),
             toolbarClick: (args: ClickEventArgs) => {
                 let data: object = {
                      Duration: null,

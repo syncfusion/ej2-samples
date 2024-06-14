@@ -16,9 +16,9 @@ TreeGrid.Inject(Page, Filter, Sort, Resize, ColumnMenu );
             childMapping: 'subtasks',
             height: 350,
             allowPaging: true,
+            allowResizing: true,
             pageSettings: {pageSize: 10},
             allowFiltering: true,
-            allowResizing: true,
             columnMenuOpen: (args: ColumnMenuOpenEventArgs) => {
                 if (args.parentItem != null) {
                     args.element.querySelectorAll('li')[treegrid.treeColumnIndex].style.display = 'none';

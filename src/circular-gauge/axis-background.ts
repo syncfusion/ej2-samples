@@ -20,28 +20,33 @@ loadCultureFiles();
                 width: 0,
             },
             labelStyle: {
+                format:'{value} %',
                 font: {
                     size: '0px'
                 },
             },
             annotations: [{
+                description:'Axis background',
                 angle: 0,
                 radius: '0%',
                 zIndex: '1',
-                content: '<div style="margin-top: -37%;display: flex;justify-content: center;"><img src="./src/circular-gauge/images/axis-background.png" height="400" width="400" /></div>'
+                content: '<div alt="Axis background image" style="margin-top: -37%;display: flex;justify-content: center;"><img src="./src/circular-gauge/images/axis-background.png" height="400" width="400" /></div>'
             },
             {
+                description:'Sub gauge',
                 angle: 0,
                 radius: '0%',
                 zIndex: '1',
                 content: '<div id="subGauge" style="margin-left: -50%; margin-top: -46%;"></div>'
             }, {
+                description:'Annotation value : 90',
                 angle: 10,
                 radius: '0%',
                 zIndex: '1',
                 content: '<div style="color:orange;margin-top: -84px;margin-left: 0px;font-size: 18px;"> 90</div>'
             }],
             pointers: [{
+                description:'Marker pointer value : 90',
                 cap: {
                     radius: 8,
                     border: { width: 0 }

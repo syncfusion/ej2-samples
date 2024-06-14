@@ -31,7 +31,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
         if (resourceName === 'GENERAL' || resourceName === 'DENTAL') {
             return '';
         } else {
-            return '<img class="specialist-image" src="src/schedule/images/' + resourceName.toLowerCase() + '.png" />';
+            return '<img class="specialist-image" src="src/schedule/images/' + resourceName.toLowerCase() + '.png" alt="' + resourceName.toLowerCase() + '"/>';
         }
     };
     (window as TemplateFunction).getConsultantDesignation = (value: ResourceDetails) => {

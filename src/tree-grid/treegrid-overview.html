@@ -103,7 +103,7 @@
 <!-- custom code end -->
 <div class="control-section">
     <div class="content-wrapper">
-        <div id="TreeGrid">
+        <div id="TreeGrid" role="grid" aria-colcount="8" aria-label="Tree Grid">
         </div>
         <div style="padding-top: 20px; text-align: right">Reference links:
             <a href="https://countryeconomy.com/ratings" style="padding-right: 12px">https://countryeconomy.com</a>
@@ -119,7 +119,7 @@
                 ${else} 
                 <img src="src/tree-grid/images/${name}.png" class="e-image" alt="${name}" />
                 ${/if} 
-            </div> <div style="display:inline-block; padding-left:4px">${name}</div>
+            </div> <div style="display:inline-block; padding-left:4px; vertical-align: middle;">${name}</div>
             ${else} 
                 ${name}
             ${/if}  
@@ -132,7 +132,7 @@
             <script id="locationtemplate" type="text/x-template">
              <div class="image" id="coordinates">
                  <img src="src/tree-grid/images/Map.png" class="e-image" alt="${coordinates}" /> &nbsp
-                 <a target="_blank" href="https://www.google.com/maps/place/${coordinates}">${coordinates}</a>
+                 <a target="_blank" href="https://www.google.com/maps/place/${coordinates}" aria-label="${coordinates}">${coordinates}</a>
              </div>
            </script>
            <script type="text/x-template" id="gdptemplate">
@@ -144,7 +144,7 @@
             ${utcZone(data)}
             <span style="padding-left:7px;">${timezone}</span>
           </script>
-           <script type="text/x-template" id="ratingtemplate">
+           <script type="text/x-template" id="ratingtemplate">  
                ${if(rating)}
              <div class="rating">
                  <span class="star"></span>

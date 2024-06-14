@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort, Filter } from '@syncfusion/ej2-grids';
 import { orderDetails } from './data-source';
 
-Grid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort);
+Grid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort, Filter);
 
 /**
  * Context menu in grid sample
@@ -15,6 +15,8 @@ Grid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort);
             allowExcelExport: true,
             allowPdfExport: true,
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
             editSettings: { allowAdding: true, allowDeleting: true, allowEditing: true },
             allowPaging: true,
             contextMenuItems: ['AutoFit', 'AutoFitAll', 'SortAscending', 'SortDescending',

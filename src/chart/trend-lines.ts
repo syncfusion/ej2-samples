@@ -34,7 +34,7 @@ let series1: Object[] = [   { x : 1947, y : 4.76 },
         series: [{
             dataSource: series1, xName: 'x', yName: 'y', name: 'Rupees', type: 'Spline', marker: { visible: true, height: 7, width: 7, isFilled:true },
             //Initializing TrendLines
-            trendlines: [{ type: 'Linear', width: 3, name: 'Trends',  fill:  '#C64A75', enableTooltip: false }]
+            trendlines: [{ type: 'Linear', width: 3, name: 'Trends', fill: '#C64A75', enableTooltip: false }]
         }],
         //Initializing User Interaction Tooltip 
         tooltip: { enable: true },  //Initializing Chart Title
@@ -45,7 +45,7 @@ let series1: Object[] = [   { x : 1947, y : 4.76 },
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
     });
     chart.appendTo('#container');

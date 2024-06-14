@@ -21,6 +21,7 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
         cssClass: 'e-custom-spreadsheet',
         allowOpen: false,
         allowSave: false,
+        allowPrint: false,
         allowEditing: false,
         selectionSettings: {
         mode: 'None'
@@ -152,7 +153,7 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
                         new TextBox({ placeholder: 'Email'}, target);
                         break;
                     case 'C9':
-                        new TextBox(null, target);
+                        new TextBox({ placeholder: 'Address' }, target);
                         break;
                 }
             }

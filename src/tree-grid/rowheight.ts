@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { TreeGrid, Toolbar } from '@syncfusion/ej2-treegrid';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { sampleData } from './data-source';
@@ -9,6 +10,7 @@ import { sampleData } from './data-source';
  TreeGrid.Inject( Toolbar );
 
 (window as any).default = (): void => {
+    loadCultureFiles();
     let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: sampleData,

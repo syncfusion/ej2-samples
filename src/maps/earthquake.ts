@@ -27,8 +27,7 @@ Maps.Inject(Zoom, Marker, DataLabel);
         zoomSettings: {
             enable: false,
             zoomFactor: 7,
-            mouseWheelZoom: false,
-            toolbars: []
+            mouseWheelZoom: false
         },
         mapsArea: {
             background: '#AEE2FA'

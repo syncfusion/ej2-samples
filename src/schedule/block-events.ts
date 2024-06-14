@@ -24,7 +24,7 @@ Schedule.Inject(Day, TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
     (window as TemplateFunction).getEmployeeImage = (value: ResourceDetails) => {
         let resourceName: string = (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] as string;
-        return `<img class="employee-image" src="src/schedule/images/${resourceName.toLowerCase()}.png" />`;
+        return `<img class="employee-image" src="src/schedule/images/${resourceName.toLowerCase()}.png" alt="${resourceName.toLowerCase()}"/>`;
     };
 
     (window as TemplateFunction).getEmployeeDesignation = (value: ResourceDetails) => {

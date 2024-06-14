@@ -87,8 +87,11 @@ loadCultureFiles();
     });
     exportGauge.appendTo('#export');
     let fileText: TextBox = new TextBox({
+        value: 'Circular Gauge',
+        width: '100%'
     });
     fileText.appendTo('#fileName');
+
     document.getElementById('export').onclick = () => {
         let fileName: string = fileText.value;
         circulargauge.export(<ExportType>mode.value, fileName);

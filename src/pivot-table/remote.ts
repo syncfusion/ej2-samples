@@ -17,6 +17,7 @@ enableRipple(false);
 	});
 
 	let jsonReport: IDataOptions = {
+		url: '',
 		dataSource: remoteData,
 		type: 'JSON',
 		expandAll: true,

@@ -365,6 +365,8 @@ let zoomPosition: number = 0;
         let fabricdarkColors: string[] = ['#4472c4', '#ed7d31', '#ffc000', '#70ad47'];
         let material3Colors: string[] = ['#6355C7', '#00AEE0', '#FFB400', '#F7523F'];
         let material3DarkColors: string[] = ['#4EAAFF', '#FA4EAB', '#FFF500', '#17EA58'];
+        let fluent2Colors: string[] = ['#6200EE', '#09AF74', '#0076E5', '#CB3587'];
+        let fluent2DarkColors: string[] = ['#9BB449', '#2A72D5', '#43B786', '#3F579A'];
         // check the theme
         if (args.chart.theme === 'MaterialDark') {
             themeColor = materialDarkColors;
@@ -410,6 +412,12 @@ let zoomPosition: number = 0;
         }
         else if (args.chart.theme === 'Material3Dark') {
             themeColor = material3DarkColors;
+        }
+        else if (args.chart.theme === 'Fluent2') {
+            themeColor = fluent2Colors;
+        }
+        else if (args.chart.theme === 'Fluent2Dark') {
+            themeColor = fluent2DarkColors;
         }
         else {
             themeColor = fluentColors;

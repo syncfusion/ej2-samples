@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { CheckBox } from '@syncfusion/ej2-buttons';
-import { Grid, SelectionType, Selection, Sort } from '@syncfusion/ej2-grids';
+import { Grid, SelectionType, Selection, Sort, Filter, Edit, Toolbar } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 
-Grid.Inject(Selection, Sort);
+Grid.Inject(Selection, Sort, Filter, Edit, Toolbar);
 /**
  * Selection sample
  */
@@ -18,7 +18,7 @@ Grid.Inject(Selection, Sort);
         { id: 'Row', mode: 'Row' },
         { id: 'Cell', mode: 'Cell' },
         { id: 'Both', mode: 'Both' }
-    ];
+    ]; 
 
     let selecting: any = (e: any) => {
         if (grid.selectionSettings.allowColumnSelection) {
@@ -30,18 +30,22 @@ Grid.Inject(Selection, Sort);
         {
             dataSource: employeeData,
             allowSorting: true,
-            allowSelection: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
+            toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
+            editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true },
+            allowSelection: true,  
             selectionSettings: { type: 'Multiple' },
             enableHover: false,
             rowSelecting : selecting,
             cellSelecting: selecting,
             columns: [
-                { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 150 },
-                { field: 'FirstName', headerText: 'Name', width: 125 },
+                { field: 'EmployeeID', headerText: 'Employee ID', textAlign: 'Right', width: 150, isPrimaryKey: true, validationRules: { required: true, number: true } },
+                { field: 'FirstName', headerText: 'Name', width: 125, validationRules: { required: true, minLength: 5 } },
                 { field: 'Title', headerText: 'Title', width: 180 },
                 {
                     field: 'HireDate', headerText: 'Hire Date', textAlign: 'Right',
-                    width: 135, format: { skeleton: 'yMd', type: 'date' }
+                    width: 135, format: { skeleton: 'yMd', type: 'date' }, editType: 'datepickeredit'
                 }
             ]
         });

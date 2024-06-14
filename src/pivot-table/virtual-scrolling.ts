@@ -65,10 +65,9 @@ let data: Function = (count: number) => {
             columns: [{ name: 'Year' }],
             values: [{ name: 'Price', caption: 'Unit Price' }, { name: 'Sold', caption: 'Unit Sold' }],
         },
-        width: Browser.isDevice ? '100%' : 1200,
+        width: '100%',
         height: 300,
         enableVirtualization: true,
-        gridSettings: { columnWidth: 140 },
         virtualScrollSettings: { allowSinglePage: true },
         dataBound: (args: any): void => {
             if ((pivotObj.dataSourceSettings.dataSource as IDataSet[]).length > 0) {

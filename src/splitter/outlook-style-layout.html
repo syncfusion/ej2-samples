@@ -1,4 +1,3 @@
-
 <div id="target" class="control-section" >
     <div id="splitter1">
         <div>
@@ -14,18 +13,18 @@
         <div>
             <div class="outlook-layout-content">
                 <div style="width: 100%; padding: 15px;">
-                    <table>
+                    <table role="presentation">
                         <tr>
                             <td><button class="e-btn e-flat e-outline">To...</button></td>
-                            <td><input id="firstname" /></td>
+                            <td><input id="firstname" aria-label="firstname" /></td>
                         </tr>
                         <tr>
                             <td><button class="e-btn e-flat e-outline">Cc...</button></td>
-                            <td><input id="lastname" /></td>
+                            <td><input id="lastname" aria-label="lastname" /></td>
                         </tr>
                         <tr>
                             <td><div id="subject-text">Subject</div></td>
-                            <td><input id="subject" /></td>
+                            <td><input id="subject" aria-label="subject" /></td>
                         </tr>
                     </table>
                 </div>
@@ -42,20 +41,21 @@
         </div>
     </div>
 </div>
-    <div id="action-description">
-        <p>
-            This example demonstrates the splitter control that is used to design outlook-like application using multiple horizontal panes. 
-            You can resize its panes horizontally to increase dimension. 
-        </p>
-    </div>
-    <div id="description">
-        <p>
-            The splitter control is used to create outlook-like user interface application using multiple panes with horizontal orientation. 
-            To create outlook-style user interface, use TreeView, ListView, and RichTextEditor controls within split panes. 
-            The TreeView control is used to display mail folders at left pane and ListView to display details of mail items, and 
-            RichTextEditor to create new mail.
-        </p>
-    </div>
+<div id="action-description">
+    <p>
+        This example demonstrates the splitter control that is used to design outlook-like application using multiple horizontal panes. 
+        You can resize its panes horizontally to increase dimension. 
+    </p>
+</div>
+<div id="description">
+    <p>
+        The splitter control is used to create outlook-like user interface application using multiple panes with horizontal orientation. 
+        To create outlook-style user interface, use TreeView, ListView, and RichTextEditor controls within split panes. 
+        The TreeView control is used to display mail folders at left pane and ListView to display details of mail items, and 
+        RichTextEditor to create new mail.
+    </p>
+</div>
+
     <!-- Template to render tree node -->
     <script id="treeTemplate" type="text/x-template">
         <div>

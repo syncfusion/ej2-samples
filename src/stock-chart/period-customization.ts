@@ -28,7 +28,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
         series1.push(point1);
     }
     let stockChart: StockChart = new StockChart({
-        primaryXAxis: { valueType: 'DateTime', majorGridLines: { color: 'transparent' },
+        primaryXAxis: { valueType: 'DateTime', majorGridLines: { color: 'transparent' }, edgeLabelPlacement: 'Shift',
                         crosshairTooltip: { enable: true }},
         primaryYAxis: {
             lineStyle: { color: 'transparent' },
@@ -61,7 +61,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.stockChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
     });
     stockChart.appendTo('#container');

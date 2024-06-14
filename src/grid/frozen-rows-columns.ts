@@ -1,11 +1,11 @@
-import { Grid, Selection, Freeze, Sort, Resize } from '@syncfusion/ej2-grids';
+import { Grid, Selection, Freeze, Sort, Resize, Filter, Edit, Toolbar } from '@syncfusion/ej2-grids';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
 import { Browser } from '@syncfusion/ej2-base';
 
-Grid.Inject(Selection, Freeze, Sort, Resize);
+Grid.Inject(Selection, Freeze, Sort, Resize, Filter, Edit, Toolbar);
 
 /**
  * Grid frozen rows and columns sample
@@ -20,20 +20,24 @@ Grid.Inject(Selection, Freeze, Sort, Resize);
             enableHover: false,
             allowSorting: true,
             allowMultiSorting: false,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
+            toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
+            editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true },
             allowResizing: true,
             frozenColumns: 1,
             frozenRows: 2,
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', minWidth: 10, },
-                { field: 'Freight', width: 125, format: 'C2', minWidth: 10 },
-                { field: 'CustomerID', headerText: 'Customer ID', width: 150, minWidth: 10 },
-                { field: 'CustomerName', headerText: 'Customer Name', width: 180, minWidth: 10 },
-                { field: 'OrderDate', headerText: 'Order Date', width: 150, format: 'yMd', textAlign: 'Right', minWidth: 10 },
-                { field: 'ShippedDate', headerText: 'Shipped Date', width: 180, format: 'yMd', textAlign: 'Right', minWidth: 10 },
+                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', minWidth: 10, isPrimaryKey: true, validationRules: { required: true, number: true } },
+                { field: 'Freight', width: 125, format: 'C2', minWidth: 10, editType: 'numericedit', validationRules: { required: true, min: 0 } },
+                { field: 'CustomerID', headerText: 'Customer ID', width: 150, minWidth: 10, validationRules: { required: true, minLength: 5 } },
+                { field: 'CustomerName', headerText: 'Customer Name', width: 180, minWidth: 10, validationRules: { required: true, minLength: 5 } },
+                { field: 'OrderDate', headerText: 'Order Date', width: 150, format: 'yMd', textAlign: 'Right', minWidth: 10, editType: 'datepickeredit' },
+                { field: 'ShippedDate', headerText: 'Shipped Date', width: 180, format: 'yMd', textAlign: 'Right', minWidth: 10, editType: 'datepickeredit' },
                 { field: 'ShipName', headerText: 'Ship Name', width: 300, minWidth: 10 },
                 { field: 'ShipAddress', headerText: 'Ship Address', width: 270, minWidth: 10 },
                 { field: 'ShipCity', headerText: 'Ship City', width: 250, minWidth: 10 },
-                { field: 'ShipCountry', headerText: 'Ship Country', width: 250, minWidth: 10 }
+                { field: 'ShipCountry', headerText: 'Ship Country', width: 250, minWidth: 10, editType: 'dropdownedit' }
             ]
         });
     grid.appendTo('#Grid');

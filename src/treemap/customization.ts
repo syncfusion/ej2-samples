@@ -51,7 +51,7 @@ import { EmitType } from '@syncfusion/ej2-base';
             templatePosition: 'Center',
             border: { color: 'black', width: 0.5 },
             labelFormat: ' ${Sport} - ${Gold}',
-            labelTemplate: '<div style="pointer-events: none;"><img src="src/treemap/image/{{:GameImage}}"' +
+            labelTemplate: '<div style="pointer-events: none;"><img alt="Custom label template for illustrations" src="src/treemap/image/{{:GameImage}}"' +
             ' style="height:{{:ItemHeight}};width:{{:ItemWidth}};"></img></div>'
         }
     });

@@ -25,12 +25,13 @@ let splitObj: Splitter;
     splitObj.appendTo('#splitter-rte-markdown-preview');
     defaultRTE = new RichTextEditor({
         height: '100%',
+        placeholder : "Enter your text here...",
         floatingToolbarOffset: 0,
         editorMode: 'Markdown',
         toolbarSettings: {
             type: ToolbarType.Expand,
             enableFloating: false,
-            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'OrderedList',
+            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'Blockquote', 'OrderedList',
                 'UnorderedList', '|', 'CreateLink', 'Image', 'CreateTable',
                 '|', 'Undo', 'Redo'
             ]

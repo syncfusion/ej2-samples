@@ -64,12 +64,12 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonGallery);
                 items: [{
                     type: RibbonItemType.Gallery,
                     gallerySettings: {
-                        popupWidth: "580px",
+                        popupWidth: "544px",
                         itemCount: 3,
                         select: function (args: GallerySelectEventArgs) { updateContent("Gallery -> " + args.currentItem.content); },
                         groups: [{
                                 itemWidth: '100',
-                                itemHeight: '30',
+                                itemHeight: '40',
                                 header: 'Title and Headings',
                                 items: [
                                     {
@@ -95,7 +95,7 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonGallery);
                                 ]
                             }, {
                                 itemWidth: '100',
-                                itemHeight: '30',
+                                itemHeight: '40',
                                 header: 'Data and Model',
                                 items: [
                                     {
@@ -121,7 +121,7 @@ Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonGallery);
                                 ]
                             }, {
                                 itemWidth: '100',
-                                itemHeight: '30',
+                                itemHeight: '40',
                                 header: 'Good, Bad and Neutral',
                                 items: [{
                                         content: 'Normal',

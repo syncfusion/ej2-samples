@@ -12,7 +12,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor, EmojiPicke
     loadCultureFiles();
     let emojiPickerRTE:RichTextEditor = new RichTextEditor({
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'Underline', '|', 'Formats', 'Alignments', 'OrderedList',
+            items: ['Bold', 'Italic', 'Underline', '|', 'Formats', 'Alignments', 'Blockquote', 'OrderedList',
             'UnorderedList', '|', 'CreateLink', 'Image', '|', 'SourceCode', 'EmojiPicker',
             '|', 'Undo', 'Redo'] 
         }}

@@ -14,6 +14,7 @@ Grid.Inject(Page, Group, LazyLoadGroup, Sort);
         {
             dataSource: lazyLoadData,
             allowPaging: true,
+            height: 400,
             allowGrouping: true,
             allowSorting: true,
             groupSettings: { enableLazyLoading: true, columns: ['ProductName', 'CustomerName'] },

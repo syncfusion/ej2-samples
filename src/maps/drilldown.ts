@@ -80,7 +80,6 @@ export interface ShapeData {
         },
         layers: [
             {
-                layerType: 'Geometry',
                 shapePropertyPath: 'continent',
                 shapeDataPath: 'continent',
                 dataSource: defaultData,
@@ -153,7 +152,6 @@ export interface ShapeData {
                 ]
             },
             {
-                layerType: 'Geometry',
                 shapeData: africa,
                 shapeSettings: {
                     fill: '#80306A'
@@ -171,7 +169,6 @@ export interface ShapeData {
                 }
             },
             {
-                layerType: 'Geometry',
                 shapeData: europe,
                 shapeSettings: {
                     fill: '#622D6C'
@@ -189,7 +186,6 @@ export interface ShapeData {
                 }
             },
             {
-                layerType: 'Geometry',
                 shapeData: asia,
                 shapeSettings: {
                     fill: '#462A6D'
@@ -207,7 +203,6 @@ export interface ShapeData {
                 }
             },
             {
-                layerType: 'Geometry',
                 shapeData: northAmerica,
                 shapeSettings: {
                     fill: '#C13664'
@@ -225,7 +220,6 @@ export interface ShapeData {
                 }
             },
             {
-                layerType: 'Geometry',
                 shapeData: southAmerica,
                 shapeSettings: {
                     fill: '#9C3367'
@@ -243,7 +237,6 @@ export interface ShapeData {
                 }
             },
             {
-                layerType: 'Geometry',
                 shapeData: oceania,
                 shapeSettings: {
                     fill: '#2A2870'

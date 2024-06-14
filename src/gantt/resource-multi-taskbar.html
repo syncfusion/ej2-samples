@@ -2,13 +2,13 @@
     <div class="content-wrapper">
         <div style="display: flex;">
             <div style="display: flex;">
-            <label for="checked" style="font-size: 15px;margin-right: 5px;"> Allow Taskbar Drag And Drop </label>
+            <label for="checked" id="drag" style="font-size: 15px;margin-right: 5px;"> Allow Taskbar Drag And Drop </label>
             <div>
             <input id="checked" type="checkbox">
             </div>
         </div>
         <div style="display: flex;">
-            <label for="unchecked" style="margin:0px 5px 0px 5px;font-size: 15px;"> Allow Taskbar Overlap </label>
+            <label for="unchecked" id="overlap" style="margin:0px 5px 0px 5px;font-size: 15px;"> Allow Taskbar Overlap </label>
             <div>
             <input id="unchecked" type="checkbox">
             </div> 
@@ -48,7 +48,16 @@
     </p> 
 </div>
 
-
+<style>
+    .fluent2 #overlap,
+    .fluent2-dark #overlap {
+        padding: 5px;
+    }
+    .fluent2 #drag,
+    .fluent2-dark #drag {
+        padding: 5px;
+    }
+</style>
 
   
 

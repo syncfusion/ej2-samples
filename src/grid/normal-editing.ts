@@ -1,11 +1,11 @@
-import { Grid, Edit, Toolbar, Page, NewRowPosition, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Edit, Toolbar, Page, NewRowPosition, Sort, Filter } from '@syncfusion/ej2-grids';
 import { orderDataSource } from './data-source';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 /**
  * Batch Editing sample
  */
-Grid.Inject(Edit, Toolbar, Page, Sort);
+Grid.Inject(Edit, Toolbar, Page, Sort, Filter);
 
 (window as any).default = (): void => {
     let newRowPosition: { [key: string]: Object }[] = [
@@ -19,6 +19,8 @@ Grid.Inject(Edit, Toolbar, Page, Sort);
             allowPaging: true,
             pageSettings: { pageCount: 5 },
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
             toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
             actionBegin: actionBegin,
             columns: [

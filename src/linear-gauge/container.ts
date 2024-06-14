@@ -6,7 +6,7 @@ loadCultureFiles();
 // custom code end
 (window as any).default = (): void => {
     let gauge: LinearGauge = new LinearGauge({
-        title: 'Temperature Measure',
+        title: 'Temperature Measure',        
         titleStyle: {
             fontFamily: "inherit",
         },
@@ -57,7 +57,11 @@ loadCultureFiles();
                 }
             },
             majorTicks: {
-                interval: 20
+                interval: 20,
+                color: '#9e9e9e'
+            },
+            minorTicks: {
+                color: '#9e9e9e'
             },
             opposedPosition: true,
             pointers: [

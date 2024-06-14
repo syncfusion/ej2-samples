@@ -45,7 +45,7 @@ import { NumericTextBox, TextBox, ChangedEventArgs } from '@syncfusion/ej2-input
         max: 10,
         value: 2,
         change: (args: any) => {
-            textareaObj.rowsCount = args.value;
+            textareaObj.rows = args.value;
         }
     });
     rows.appendTo('#rows');
@@ -55,7 +55,7 @@ import { NumericTextBox, TextBox, ChangedEventArgs } from '@syncfusion/ej2-input
         max: 40,
         value: 20,
         change: (args: any) => {
-            textareaObj.columnsCount = args.value;
+            textareaObj.cols = args.value;
         }
     });
     cols.appendTo('#cols');

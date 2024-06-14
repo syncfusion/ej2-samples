@@ -6,7 +6,7 @@ import {
 } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, Category, Legend, Export, DataLabel);
 import { Button } from '@syncfusion/ej2-buttons';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, fluent2Colors, fluent2DarkColors } from './theme-color';
 import { EmitType } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2/base';
@@ -27,6 +27,10 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fluentColors[args.point.index % 10];
     } else if (selectedTheme === 'fluent-dark') {
         args.fill = fluentDarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent2') {
+        args.fill = fluent2Colors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent2-dark') {
+        args.fill = fluent2DarkColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }

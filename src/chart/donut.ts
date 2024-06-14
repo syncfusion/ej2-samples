@@ -52,6 +52,9 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
         else if (selectedTheme.indexOf('highcontrast') > -1) {
             args.border.color = '#000000';
         }
+        else if (selectedTheme.indexOf('fluent2') > -1) {
+            args.fill = seriesColor[args.point.index % 10];
+        }
         else {
             args.border.color = '#FFFFFF';
         }
@@ -100,7 +103,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
          // custom code end
     });

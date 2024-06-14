@@ -34,7 +34,6 @@ Maps.Inject(Marker, Zoom, NavigationLine);
         zoomSettings: {
             enable: false,
             mouseWheelZoom: false,
-            toolbars: [],
             zoomFactor: 13
         },
         mapsArea: {

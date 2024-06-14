@@ -28,7 +28,9 @@ ProgressBar.Inject(ProgressAnnotation);
         fluentdark: string,
         material3: string,
         material3dark: string
-    } = { fluent: '#0D6EFD', fluentdark: '#0D6EFD',  material: '#e91e63', fabric: '#0078D6', bootstrap: '#317ab9', bootstrap4: '#007bff', highcontrast: '#FFD939', tailwind: '#4F46E5', bootstrap5: '#0D6EFD', bootstrap5dark: '#0D6EFD', bootstrapdark: '#9A9A9A', fabricdark: '#9A9A9A', materialdark: '#9A9A9A', tailwinddark: '#22D3EE',material3 : '#6750A4', material3dark: '#D0BCFF'};
+        fluent2: string,
+        fluent2dark: string,
+    } = { fluent: '#0D6EFD', fluentdark: '#0D6EFD',  material: '#e91e63', fabric: '#0078D6', bootstrap: '#317ab9', bootstrap4: '#007bff', highcontrast: '#FFD939', tailwind: '#4F46E5', bootstrap5: '#0D6EFD', bootstrap5dark: '#0D6EFD', bootstrapdark: '#9A9A9A', fabricdark: '#9A9A9A', materialdark: '#9A9A9A', tailwinddark: '#22D3EE',material3 : '#6750A4', material3dark: '#D0BCFF', fluent2: '#0F6CBD', fluent2dark: '#115EA3'};
     let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
         let selectedTheme: string = location.hash.split('/')[1];
         selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -38,9 +40,9 @@ ProgressBar.Inject(ProgressAnnotation);
             // tslint:disable-next-line:max-line-length
             args.progressBar.annotations[0].content = '<div id="point1" class="plabeltxt" style="color: ' + annotationColors[selectedTheme.replace(/-/i, '')] + ' "><span>80%</span></div>';
         } else if (args.progressBar.element.id === 'download-container') {
-            args.progressBar.annotations[0].content = '<img src="src/progress-bar/images/' + selectedTheme.replace(/-/i, '') + '-Download.svg"></img>';
+            args.progressBar.annotations[0].content = '<img src="src/progress-bar/images/' + selectedTheme.replace(/-/i, '') + '-Download.svg" alt="Download Icon"></img>';
         } else {
-            args.progressBar.annotations[0].content = '<img src="src/progress-bar/images/' + selectedTheme.replace(/-/i, '') + '-pause.svg"></img>';
+            args.progressBar.annotations[0].content = '<img src="src/progress-bar/images/' + selectedTheme.replace(/-/i, '') + '-pause.svg" alt="Pause Icon"></img>';
         }
     };
     let pausePlay: ProgressBar = new ProgressBar({
@@ -59,7 +61,7 @@ ProgressBar.Inject(ProgressAnnotation);
             clearTimeout1 = +setTimeout(
                 () => {
                     //tslint:disable-next-line
-                    pausePlay.annotations[0].content = '<img src="src/progress-bar/images/' + (pausePlay.theme).toLowerCase() + '-Play.svg"></img>';
+                    pausePlay.annotations[0].content = '<img src="src/progress-bar/images/' + (pausePlay.theme).toLowerCase() + '-Play.svg" alt=\"Play Icon\"></img>';
                     pausePlay.dataBind();
                 },
                 2000);
@@ -67,7 +69,7 @@ ProgressBar.Inject(ProgressAnnotation);
         annotations: [
             {
                 //tslint:disable-next-line
-                content: `<img src="src/progress-bar/images/material-pause.svg"></img>`,
+                content: `<img src="src/progress-bar/images/material-pause.svg" alt="Pause Icon"></img>`,
             },
         ]
     });
@@ -89,7 +91,7 @@ ProgressBar.Inject(ProgressAnnotation);
             clearTimeout2 = +setTimeout(
                 () => {
                     //tslint:disable-next-line
-                    downloadProgress.annotations[0].content = '<img src="src/progress-bar/images/' + (downloadProgress.theme).toLowerCase() + '-Tick.svg"></img>';
+                    downloadProgress.annotations[0].content = '<img src="src/progress-bar/images/' + (downloadProgress.theme).toLowerCase() + '-Tick.svg" alt=\"Tick Icon\"></img>';
                     downloadProgress.dataBind();
                 },
                 2000);
@@ -97,7 +99,7 @@ ProgressBar.Inject(ProgressAnnotation);
         annotations: [
             {
                 //tslint:disable-next-line
-                content: `<img src="src/progress-bar/images/material-Download.svg"></img>`,
+                content: `<img src="src/progress-bar/images/material-Download.svg" alt="Download Icon"></img>`,
             },
         ]
     });

@@ -52,7 +52,7 @@ TreeGrid.Inject(Toolbar, Edit);
                     }
                 },
                 width: 200  },
-                { field: 'startDate', headerText: 'Start Date', textAlign: 'Right', width: 140, editType: 'datepickeredit',
+                { field: 'startDate', headerText: 'Start Date', textAlign: 'Right', width: 155, editType: 'datepickeredit',
                   format: 'yMd', validationRules: { date: true} },
                 {
                     field: 'duration', headerText: 'Duration', textAlign: 'Right', width: 140, editType: 'numericedit',

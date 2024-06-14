@@ -16,16 +16,16 @@
 </div>
 <div class="col-lg-3 property-section-pdfviewer">
     <div class="pdfviewer-property-container">
-        <h5><b>Properties</b></h5>
+        <p><b>Properties</b></p>
     </div>
     <table>
         <tr>
-            <td class='pdfviewer-contextmenu-checkbox-label'>Hide Default Context Menu</td>
-            <td><input type="checkbox" id="hide-default-context-menu"></td>
+            <td class='pdfviewer-contextmenu-checkbox-label' id="hide-default-context-menu-label">Hide Default Context Menu</td>
+            <td><input type="checkbox" id="hide-default-context-menu" aria-labelledby="hide-default-context-menu-label"></td>
         </tr>
         <tr>
-            <td class='pdfviewer-contextmenu-checkbox-label'>Add Custom option at bottom</td>
-            <td><input type="checkbox" id="show-custom-menu-bottom"></td>
+            <td class='pdfviewer-contextmenu-checkbox-label' id="show-custom-menu-bottom-label">Add Custom option at bottom</td>
+            <td><input type="checkbox" id="show-custom-menu-bottom" aria-labelledby="show-custom-menu-bottom-label"></td>
         </tr>
     </table>
 </div>
@@ -39,14 +39,15 @@
     </p>
     <ul>
         <li>Selecting text on pages reveals a custom context menu, enabling users to search for the selected text on Google.</li>
-        <li>Annotations and Form fields can be locked directly from the context menu.</li>
-        <li>Customization is achieved using the following APIs:</li>
-        <ul>
-            <li>Customize the context menu by selectively displaying custom options, hiding existing menu items, controlled by boolean parameters in the <code>addCustomMenu()</code> method.</li>
-            <li>Position custom menu items either above or below existing ones, adjusting boolean parameters in the <code>addCustomMenu()</code> method.</li>
-            <li>Tailor the visibility of custom menu items using the <code>customContextMenuBeforeOpen</code> event.</li>
-            <li>Implement specific functionalities for custom options through the <code>customContextMenuSelect</code> event.</li>
-        </ul>
+        <li>Annotations and Form Fields can be locked directly from the context menu.</li>
+        <li>Customization is achieved using the following APIs:
+            <ul>
+                <li>Customize the context menu by selectively displaying custom options, hiding existing menu items, controlled by boolean parameters in the <code>addCustomMenu()</code> method.</li>
+                <li>Position custom menu items either above or below existing ones, adjusting boolean parameters in the <code>addCustomMenu()</code> method.</li>
+                <li>Tailor the visibility of custom menu items using the <code>customContextMenuBeforeOpen</code> event.</li>
+                <li>Implement specific functionalities for custom options through the <code>customContextMenuSelect</code> event.</li>
+            </ul>
+        </li>
     </ul> 
     <p>
         More information on the PDF Viewer instantiation can be found in this

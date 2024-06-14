@@ -28,7 +28,6 @@ Maps.Inject(Marker, Zoom, MapsTooltip);
         },
         zoomSettings: {
             enable: false,
-            toolbars: [],
             mouseWheelZoom: false,
             zoomFactor: 1.75
         },

@@ -9,7 +9,6 @@
         {
             "url": "default",
             "name": "Default Functionalities",
-            "type": "update",
             "category": "Document Editor",
             "description": "The Document Editor component in JavaScript platform is used to create, edit, view, and print Word documents in web applications.",
             "api": {
@@ -119,6 +118,23 @@
                     "redo",
                     "canUndo",
                     "canRedo"
+                ]
+            }
+        },
+        {
+            "url": "bindUI-to-document",
+            "name": "Bind UI To Document",
+            "type": "new",
+            "category": "Document Editor",
+            "description": "The Document Editor component in JavaScript platform is used to create, edit, view, and print Word documents in web applications.",
+            "api": {
+                "DocumentEditor": [
+                    "exportContentControlData",
+                    "importContentControlData",
+                    "resetContentControlData"
+                ],
+                "Editor": [
+                    "insertContentControl"
                 ]
             }
         },
@@ -277,7 +293,6 @@
             "url": "comments",
             "name": "Comments",
             "category": "Review",
-            "type": "update",
             "description": "The Document Editor component supports add and edit comments in a Word document for comment discussion.",
             "api": {
                 "Editor": [
@@ -376,7 +391,6 @@
             "url": "colorpicker-customization",
             "name": "Color Picker Customization",
             "category": "Customization",
-            "type":"new",
             "description": "The Document Editor component supports to to customize color picker in appearance.",
             "api": {
                 "DocumentEditorSettings": [
@@ -415,7 +429,6 @@
         {
             "url": "advanced-exporting",
             "name": "Advanced Exporting",
-            "type":"new",
             "category": "Exporting",
             "description": "The Document Editor component in JavaScript is used to view and print Word documents in web applications by injecting only the modules that are necessary.",
             "api": {
@@ -688,7 +701,6 @@
         {
             "url": "heading-navigation",
             "name": "Heading Navigation",
-            "type": "new",
             "category": "View",
             "description": "The Document Editor component supports navigating documents by heading allows users to move around the document very quickly.",
             "api": {

@@ -101,7 +101,9 @@ loadCultureFiles();
     });
     exportGauge.appendTo('#export');
     let fileText: TextBox = new TextBox({
-    });
+        value: 'Linear Gauge',
+        width: '90%'
+    }); 
     fileText.appendTo('#fileName');
     document.getElementById('export').onclick = () => {
         let fileName: string = fileText.value;

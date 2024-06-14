@@ -5,7 +5,7 @@ import {
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType, Browser } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, fluent2Colors, fluent2DarkColors } from './theme-color';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 Chart.Inject(ColumnSeries, Category, DataLabel, Tooltip);
 
@@ -22,6 +22,10 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fluentColors[args.point.index % 10];
     } else if (selectedTheme === 'fluent-dark') {
         args.fill = fluentDarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent2') {
+        args.fill = fluent2Colors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent2-dark') {
+        args.fill = fluent2DarkColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }
@@ -81,7 +85,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
     });
     chart.appendTo('#container');
@@ -116,6 +120,7 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         let trim: any = document.getElementById('Trim');
         if (trim.checked) {
             chart.primaryXAxis.enableTrim = (trim.value === 'true');
+            chart.series[0].animation.enable = false;
           } else {
             chart.primaryXAxis.enableTrim = (trim.value === 'false');
           }

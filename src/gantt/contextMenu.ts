@@ -12,7 +12,7 @@ import { editingData, editingResources } from './data-source';
 Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort);
 let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpenEventArgs) => {
     let record: IGanttData = args.rowData;
-    if (args.type !== 'Header' && record) {
+    if (args.type !== 'Header') {
         if (!record.hasChildRecords) {
             args.hideItems.push('Collapse the Row');
             args.hideItems.push('Expand the Row');
@@ -75,10 +75,10 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
             contextMenuItems: contextMenuItems as ContextMenuItem[],
             contextMenuClick: (args?: ContextMenuClickEventArgs) => {
                 let record: IGanttData = args.rowData;
-                if (args.item.id === 'collapserow' && record) {
+                if (args.item.id === 'collapserow') {
                     gantt.collapseByID(Number(record.ganttProperties.taskId));
                 }
-                if (args.item.id === 'expandrow' && record) {
+                if (args.item.id === 'expandrow') {
                     gantt.expandByID(Number(record.ganttProperties.taskId));
                 }
             },
@@ -104,10 +104,10 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                 },
             },
             eventMarkers: [
-                { day: '4/17/2019', label: 'Project approval and kick-off' },
-                { day: '5/3/2019', label: 'Foundation inspection' },
-                { day: '6/7/2019', label: 'Site manager inspection' },
-                { day: '7/16/2019', label: 'Property handover and sign-off' },
+                { day: '4/17/2024', label: 'Project approval and kick-off' },
+                { day: '5/3/2024', label: 'Foundation inspection' },
+                { day: '6/7/2024', label: 'Site manager inspection' },
+                { day: '7/16/2024', label: 'Property handover and sign-off' },
             ],
             labelSettings: {
                 leftLabel: 'TaskName',
@@ -119,8 +119,8 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                 { type: 'Resources' },
                 { type: 'Notes' },
             ],
-            projectStartDate: new Date('03/25/2019'),
-            projectEndDate: new Date('07/28/2019')
+            projectStartDate: new Date('03/25/2024'),
+            projectEndDate: new Date('07/28/2024')
         });
     gantt.appendTo('#ContextMenu');
 };

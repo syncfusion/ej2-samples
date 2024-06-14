@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import { Grid, Sort, Page, Selection, SortDirection } from '@syncfusion/ej2-grids';
+import { Grid, Sort, Page, Selection, SortDirection, Filter, Edit, Toolbar } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
 
-Grid.Inject(Sort, Page, Selection);
+Grid.Inject(Sort, Page, Selection, Filter, Edit, Toolbar);
 /**
  * Sorting sample
  */
@@ -25,11 +25,15 @@ Grid.Inject(Sort, Page, Selection);
             dataSource: orderData,
             allowPaging: true,
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
+            toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
+            editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true },
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right' },
-                { field: 'CustomerName', headerText: 'Customer Name', width: 160 },
-                { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'Right' },
-                { field: 'Freight', width: 120, format: 'C2', textAlign: 'Right' }
+                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', isPrimaryKey: true, validationRules: { required: true, number: true } },
+                { field: 'CustomerName', headerText: 'Customer Name', width: 160, validationRules: { required: true, minLength: 5 } },
+                { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'Right', editType: 'datepickeredit' },
+                { field: 'Freight', width: 120, format: 'C2', textAlign: 'Right', editType: 'numericedit', validationRules: { required: true, min: 0 } }
             ],
             pageSettings: { pageCount: 2 }
         });

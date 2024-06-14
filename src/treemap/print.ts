@@ -86,6 +86,8 @@ TreeMap.Inject(TreeMapTooltip, Print, ImageExport, PdfExport);
     });
     togglebtn1.appendTo('#togglebtn1');
     let fileText: TextBox = new TextBox({
+        value: 'TreeMap',
+        width: '100%'
     });
     fileText.appendTo('#fileName');
     document.getElementById('togglebtn1').onclick = () => {

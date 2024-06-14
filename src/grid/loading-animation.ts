@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Selection, Sort, Filter } from '@syncfusion/ej2-grids';
-import { DataManager, UrlAdaptor } from '@syncfusion/ej2-data';
+import { DataManager, UrlAdaptor, Query } from '@syncfusion/ej2-data';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 Grid.Inject(Page, Selection, Sort, Filter);
@@ -22,6 +22,7 @@ Grid.Inject(Page, Selection, Sort, Filter);
         {
             dataSource: data,
             allowPaging: true,
+            query: new Query().addParams('dataCount', '1000'),
             allowFiltering: true,
             allowSorting: true,
             loadingIndicator: { indicatorType: 'Shimmer' },

@@ -26,10 +26,10 @@ Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation, Highlight
         },
         //Initializing Annotations
         annotations: [{
-            content: '<div id="chart_cloud"><img src="src/chart/images/cloud.png"  style="width: 41px; height: 41px"/></div>',
+            content: '<div id="chart_cloud"><img src="src/chart/images/cloud.png" alt="Cloud Picture" style="width: 41px; height: 41px"/></div>',
             x: 'Sun', y: 2, coordinateUnits: 'Point', verticalAlignment: 'Top'
         }, {
-            content: '<div id="chart_cloud"><img src="src/chart/images/sunny.png"  style="width: 41px; height: 41px"/></div>',
+            content: '<div id="chart_cloud"><img src="src/chart/images/sunny.png" alt="Sunny Picture" style="width: 41px; height: 41px"/></div>',
             x: 'Tue', y: 33, coordinateUnits: 'Point', verticalAlignment: 'Top'
         }],
         //Initializing Primary Y Axis
@@ -103,7 +103,7 @@ Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation, Highlight
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
     });
     chart.appendTo('#container');

@@ -6,7 +6,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import {
         Maps, Marker, MapsTooltip, ILoadEventArgs, MapsTheme,
-        ExportType, ShapeLayerType, ImageExport, PdfExport
+        ExportType, ImageExport, PdfExport
 } from '@syncfusion/ej2-maps';
 import { worldMap } from './map-data/world-map';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -84,11 +84,14 @@ Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
         width: '100%',
         change: () => {
             if (layertype.value === 'OSM') {
+                maps.layers[maps.layersCollection.length - 1].urlTemplate = 'https://tile.openstreetmap.org/level/tileX/tileY.png';
+                maps.layers[maps.layersCollection.length - 1].shapeData = null;
                 mode.dataSource = modeData.slice(0, 3);
             } else {
+                maps.layers[maps.layersCollection.length - 1].urlTemplate = '';
+                maps.layers[maps.layersCollection.length - 1].shapeData = worldMap;
                 mode.dataSource = modeData;
             }
-            maps.layers[maps.layersCollection.length - 1].layerType = <ShapeLayerType>layertype.value;
             maps.refresh();
         }
     });
@@ -98,6 +101,8 @@ Maps.Inject(Marker, MapsTooltip, ImageExport, PdfExport);
     });
     togglebtn.appendTo('#togglebtn');
     let fileText: TextBox = new TextBox({
+        value: 'Maps',
+        width: '100%'
     });
     fileText.appendTo('#fileName');
     document.getElementById('togglebtn').onclick = () => {

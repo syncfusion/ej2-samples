@@ -60,38 +60,38 @@
             The remaining panes automatically adjust its dimension based on the expanded or collapsed panes. 
             These icons are visible by default in mobile devices.
         </p>
-    </div>
-    <style>
-        .expand-content a,
-        .expand-content p {
-            padding: 10px;
+</div>
+<style>
+    .expand-content a,
+    .expand-content p {
+        padding: 10px;
+    }
+    #target {
+        margin: 20px auto;
+        max-width: 820px;
+    }
+    .control-section{            
+        min-height: 370px; 
+    }
+    .splitter-expand .expand-content {
+        padding: 12px;
+    }
+    @media screen and (max-width: 768px) {
+        #source_link {
+            margin-top: 10px;
+            margin-right: 0px;
         }
-       #target {
-            margin: 20px auto;
-            max-width: 820px;
-       }
-        .control-section{            
-            min-height: 370px; 
-        }
-        .splitter-expand .expand-content {
-            padding: 12px;
-        }
-        @media screen and (max-width: 768px) {
-            #source_link {
-                margin-top: 10px;
-                margin-right: 0px;
-            }
-        }
+    }
 
-		/* styles to hide scroll bars */
-		.splitter-expand .e-pane.e-pane-horizontal.e-scrollable::-webkit-scrollbar,
-		.splitter-expand .e-pane.e-pane-vertical.e-scrollable::-webkit-scrollbar {
-		  display: none; 
-		}
+    /* styles to hide scroll bars */
+    .splitter-expand .e-pane.e-pane-horizontal.e-scrollable::-webkit-scrollbar,
+    .splitter-expand .e-pane.e-pane-vertical.e-scrollable::-webkit-scrollbar {
+        display: none; 
+    }
 
-		.splitter-expand .e-pane.e-pane-horizontal.e-scrollable, .splitter-expand .e-pane.e-pane-vertical.e-scrollable {
-			scrollbar-width: none;
-			-ms-overflow-style: none;
-		}
+    .splitter-expand .e-pane.e-pane-horizontal.e-scrollable, .splitter-expand .e-pane.e-pane-vertical.e-scrollable {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
 
-    </style>
+</style>

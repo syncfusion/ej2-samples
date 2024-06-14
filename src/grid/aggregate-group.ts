@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Aggregate, Group, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Page, Aggregate, Group, Sort, Filter } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
 
-Grid.Inject(Page, Group, Aggregate, Sort);
+Grid.Inject(Page, Group, Aggregate, Sort, Filter);
 /**
  * Aggregates
  */
@@ -16,6 +16,8 @@ Grid.Inject(Page, Group, Aggregate, Sort);
             pageSettings: {pageCount: 5},
             allowGrouping: true,
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
             groupSettings: { showDropArea: false, columns: ['CategoryName'] },
             columns: [
                 { field: 'CategoryName', headerText: 'Category Name', width: 160 },

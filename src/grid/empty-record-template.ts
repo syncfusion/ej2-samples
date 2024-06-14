@@ -10,6 +10,19 @@ Grid.Inject(Page, Selection, Toolbar, Edit );
  */
 
 (window as any).default = (): void => {
+
+    (window as any).renderEmptyImg = function () {
+        let img: HTMLImageElement = document.createElement('img');
+        if (document.body.classList.value.indexOf('dark') > -1 || document.body.classList.value.indexOf('highcontrast') > -1) {
+            img.src = "src/grid/images/emptyRecordTemplate_dark.svg";
+        } else {
+            img.src = "src/grid/images/emptyRecordTemplate_light.svg";
+        }
+        img.classList.add("e-emptyRecord");
+        img.alt = "No record";
+        return img.outerHTML;
+    }
+
     loadCultureFiles();
     let dropDownDataSource = new DataManager(orderDataSource);
     let grid: Grid = new Grid(

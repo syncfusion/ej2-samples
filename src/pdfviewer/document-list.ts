@@ -88,7 +88,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
       }
       dialogObj.show();
       viewer.dataBind();
-      viewer.load(documentPath,null);
+      viewer.load(documentPath ,null);
     };
     let grid: Grid = new Grid({
         dataSource: data,

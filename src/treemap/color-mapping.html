@@ -1,135 +1,141 @@
-<!-- custom code start -->
+<main>
+    <!-- custom code start -->
 <style>
-.property-text {
-                font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif" !important;
-                font-size: 13px !important;
-                font-weight: 400 !important;
+    .property-text {
+                    font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif" !important;
+                    font-size: 13px !important;
+                    font-weight: 400 !important;
+                }
+    </style>
+    <!-- custom code end -->
+    <div class="col-lg-9 control-section">
+        <div class="content-wrapper">
+            <div id="default-container"></div>
+        </div>
+    </div>
+    <!-- property panel -->
+    <div class="col-lg-3 property-section">
+        <table id="property" title="Properties" style="width: 100%;" role="none">
+            <colgroup>
+                <col span="1" style="width: 50%;">
+                <col span="1" style="width: 50%;">
+             </colgroup>
+             <tbody>
+             <tr style="height: 50px">
+                    <td>
+                        <div class="property-text" style="width: 92%;">Color Mapping Type</div>
+                    </td>
+                    <td>
+                        <div class="property-text">
+                        <select autocomplete="off" id="colorMapping">
+                            <option value="RangeColorMapping" selected>Range</option>
+                            <option value="EqualColorMapping">Equal</option>
+                            <option value="DesaturationColorMapping">Desaturation</option>
+                        </select>
+                    </div>
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                        <div id="text1" class="property-text"  style="display: none; width: 99%;" class="property-text"> Change Opacity</div>
+                    </td>
+                    <td>
+                        <div id="input1" class="property-text"  style="display: none; margin-top: -10px; margin-left: -10px">
+                            <input type="checkbox" id="opacity"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                        <div id="text2" style="display: none;" class="property-text">Min Opacity</div>
+                    </td>
+                    <td>
+                        <div id="input2" style="display: none;" class="property-text">
+                            <input type="range" id="minopacity" step="0.1" value="0.5" min="0" max="1" style="width:100%;" />
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                        <div class="property-text" id="text3" class="property-text" style="display: none;">Max Opacity</div>
+                    </td>
+                    <td>
+                        <div id="input3" class="property-text" style="display: none;">
+                            <input type="range" id="maxopacity" step="0.1" value="1" min="0" max="1" style="width:100%;" />
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+    <!-- tooltip template -->
+    <div id="template" style="display:none">
+        <div class="toolback">
+                    <div class="listing2">
+                        <center>
+                            ${Name}                                            
+                        </center>
+                    </div>
+                    <hr style="margin-top: 2px;margin-bottom:5px;border:0.5px solid #DDDDDD">
+                    <div>
+                        <center>  <span class="listing1">Area : </span><span class="listing2">${Area}</span></center>
+                    </div> 
+                    <div>
+                        <center>  <span class="listing1">Continent : </span><span style="display:inline-block;" class="listing2">${Location}</span> </center>
+                    </div>
+        </div>
+    </div>
+    <section id="action-description" aria-label="Description of TreeMap sample">
+        <p>
+            This sample visualizes the top 10 largest islands in the world based on area. The color mapping is applied to the items to differentiate them from other items.
+        </p>
+    </section>
+    <section id="description" aria-label="Description of the TreeMap features demonstrated in this sample">
+        <p>
+            In this example, you can see how to render a tree map with color mapping. The range color mapping and desaturation color mapping group the shapes based on the area size, whereas the equal color mapping groups the shapes based on the continent value. The legend is enabled in this example to represent each color mapping.
+        </p>
+        <p>
+            The tooltip is enabled in this example. To see the tooltip in action, hover the mouse over an item or tap an item in touch enabled devices.
+        </p>
+        <br/>
+        <p style="font-weight: 500">Injecting Module</p>
+        <p>
+                The TreeMap component features are segregated into individual modules by feature. To use a legend, inject the <code>Legend</code> module using the <code>TreeMap.Inject(TreeMapLegend)</code> method.
+        </p>
+        <p>
+            More information on colormapping can be found in this
+            <a target="_blank" href="https://ej2.syncfusion.com/documentation/treemap/color-mapping/?no-cache=1">documentation section</a>.
+        </p>
+        <!-- style for tooltip-->
+    </section>
+        <style>
+            .toolback {
+                border-radius: 4px;
+                border: 1px #abb9c6;
+                opacity: 90%;
+                background: rgba(53, 63, 76, 0.90);
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.40);
+                padding-bottom: 10px;
+                padding-top: 10px;
+                padding-left: 10px;
+                padding-right: 10px;
+                width: 170px;
             }
-</style>
-<!-- custom code end -->
-<div class="col-lg-9 control-section">
-    <div class="content-wrapper">
-        <div id="default-container"></div>
-    </div>
-</div>
-<!-- property panel -->
-<div class="col-lg-3 property-section">
-    <table id="property" title="Properties" style="width: 100%;">
-        <colgroup>
-            <col span="1" style="width: 50%;">
-            <col span="1" style="width: 50%;">
-         </colgroup>
-         <tbody>
-         <tr style="height: 50px">
-                <td>
-                    <div class="property-text" style="width: 92%;">Color Mapping Type</div>
-                </td>
-                <td>
-                    <div class="property-text">
-                    <select autocomplete="off" id="colorMapping">
-                        <option value="RangeColorMapping" selected>Range</option>
-                        <option value="EqualColorMapping">Equal</option>
-                        <option value="DesaturationColorMapping">Desaturation</option>
-                    </select>
-                </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td>
-                    <div id="text1" class="property-text"  style="display: none; width: 99%;" class="property-text"> Change Opacity</div>
-                </td>
-                <td>
-                    <div id="input1" class="property-text"  style="display: none; margin-top: -10px; margin-left: -10px">
-                        <input type="checkbox" id="opacity"/>
-                    </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td>
-                    <div id="text2" style="display: none;" class="property-text">Min Opacity</div>
-                </td>
-                <td>
-                    <div id="input2" style="display: none;" class="property-text">
-                        <input type="range" id="minopacity" step="0.1" value="0.5" min="0" max="1" style="width:100%;" />
-                    </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td>
-                    <div class="property-text" id="text3" class="property-text" style="display: none;">Max Opacity</div>
-                </td>
-                <td>
-                    <div id="input3" class="property-text" style="display: none;">
-                        <input type="range" id="maxopacity" step="0.1" value="1" min="0" max="1" style="width:100%;" />
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-    </table>
-</div>
-<!-- tooltip template -->
-<div id="template" style="display:none">
-    <div class="toolback">
-                <div class="listing2">
-                    <center>
-                        ${Name}                                            
-                    </center>
-                </div>
-                <hr style="margin-top: 2px;margin-bottom:5px;border:0.5px solid #DDDDDD">
-                <div>
-                    <center>  <span class="listing1">Area : </span><span class="listing2">${Area}</span></center>
-                </div> 
-                <div>
-                    <center>  <span class="listing1">Continent : </span><span style="display:inline-block;" class="listing2">${Location}</span> </center>
-                </div>
-    </div>
-</div>
-<div id="action-description">
-    <p>
-        This sample visualizes the top 10 largest islands in the world based on area. The color mapping is applied to the items to differentiate them from other items.
-    </p>
-</div>
-<div id="description">
-    <p>
-        In this example, you can see how to render a tree map with color mapping. The range color mapping and desaturation color mapping group the shapes based on the area size, whereas the equal color mapping groups the shapes based on the continent value. The legend is enabled in this example to represent each color mapping.
-    </p>
-    <p>
-        The tooltip is enabled in this example. To see the tooltip in action, hover the mouse over an item or tap an item in touch enabled devices.
-    </p>
-    <br/>
-    <p style="font-weight: 500">Injecting Module</p>
-    <p>
-            The TreeMap component features are segregated into individual modules by feature. To use a legend, inject the <code>Legend</code> module using the <code>TreeMap.Inject(TreeMapLegend)</code> method.
-    </p>
-    <p>
-        More information on colormapping can be found in this
-        <a target="_blank" href="https://ej2.syncfusion.com/documentation/treemap/color-mapping/?no-cache=1">documentation section</a>.
-    </p>
-    <!-- style for tooltip-->
-</div>
-    <style>
-        .toolback {
-            border-radius: 4px;
-            border: 1px #abb9c6;
-            opacity: 90%;
-            background: rgba(53, 63, 76, 0.90);
-            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.40);
-            padding-bottom: 10px;
-            padding-top: 10px;
-            padding-left: 10px;
-            padding-right: 10px;
-            width: 170px;
-        }
-        .listing1 {
-             font-size:13px;
-             color:#cccccc
-        }
-        .listing2 {
-             font-size:13px;
-             color:#ffffff;
-             font-weight: 500;
-        } 
-        div.property-text {
-            padding-left: 0px; padding-top: 0px;
-        }
-     </style>
+            .listing1 {
+                 font-size:13px;
+                 color:#cccccc
+            }
+            .listing2 {
+                 font-size:13px;
+                 color:#ffffff;
+                 font-weight: 500;
+            } 
+            div.property-text {
+                padding-left: 0px; padding-top: 0px;
+            }
+
+            .e-view.fluent2 #property .e-checkbox-wrapper .e-icons, .e-view.fluent2-dark #property .e-checkbox-wrapper .e-icons {
+                margin-left: 0px;
+            }
+         </style>
+</main>

@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(true);
-import { Grid, Toolbar, ExcelExport, PdfExport, Page, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Toolbar, ExcelExport, PdfExport, Page, Sort, Filter, Edit } from '@syncfusion/ej2-grids';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { productData } from './data-source';
 
-Grid.Inject(Toolbar, ExcelExport, PdfExport, Page, Sort);
+Grid.Inject(Toolbar, ExcelExport, PdfExport, Page, Sort, Filter, Edit);
 /**
  * Advanced Grid Exporting to Excel, PDF sample
  */
@@ -43,7 +43,7 @@ function getExcelExportProperties(): any {
                     index: 5,
                     cells: [
                         { index: 1, colSpan: 2, value: 'Tel +1 888.936.8638 Fax +1 919.573.0306' },
-                        { index: 4, value: 'CUSOTMER ID', style: { fontColor: '#C67878', bold: true } },
+                        { index: 4, value: 'CUSTOMER ID', style: { fontColor: '#C67878', bold: true } },
                         { index: 5, value: 'TERMS', width: 150, style: { fontColor: '#C67878', bold: true } }
                     ]
                 },
@@ -180,13 +180,16 @@ date += '/' + ((new Date()).getFullYear().toString());
         allowPaging: true,
         pageSettings: { pageCount: 2, pageSize: 10 },
         allowSorting: true,
-        toolbar: ['ExcelExport', 'PdfExport'],
+        allowFiltering: true,
+        filterSettings: { type: 'Excel' },
+        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'ExcelExport', 'PdfExport'],
+        editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true },
         columns: [
-            { field: 'ProductID', headerText: 'Product ID', textAlign: 'Right', width: 120 },
-            { field: 'ProductName', headerText: 'Product Name', width: 200 },
+            { field: 'ProductID', headerText: 'Product ID', textAlign: 'Right', width: 120, isPrimaryKey: true, validationRules: { required: true, number: true } },
+            { field: 'ProductName', headerText: 'Product Name', width: 200, validationRules: { required: true, minLength: 5 } },
             { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 145 },
-            { field: 'UnitsInStock', headerText: 'Units In Stock', textAlign: 'Right', width: 140 },
-            { field: 'UnitPrice', headerText: 'Unit Price', textAlign: 'Right', width: 140, format: 'C2' },
+            { field: 'UnitsInStock', headerText: 'Units In Stock', textAlign: 'Right', width: 140, editType: 'numericedit' },
+            { field: 'UnitPrice', headerText: 'Unit Price', textAlign: 'Right', width: 140, format: 'C2', editType: 'numericedit' },
         ]
     });
     grid.appendTo('#Grid');

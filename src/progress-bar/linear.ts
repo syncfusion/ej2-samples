@@ -16,7 +16,7 @@ import { Button } from '@syncfusion/ej2-buttons';
         args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         if (args.progressBar.theme === 'HighContrast' || args.progressBar.theme === 'Bootstrap5Dark' || args.progressBar.theme === 'BootstrapDark' || args.progressBar.theme === 'FabricDark'
-        || args.progressBar.theme === 'TailwindDark' || args.progressBar.theme === 'MaterialDark' || args.progressBar.theme === 'FluentDark'|| args.progressBar.theme === 'Material3Dark') {
+        || args.progressBar.theme === 'TailwindDark' || args.progressBar.theme === 'MaterialDark' || args.progressBar.theme === 'FluentDark' || args.progressBar.theme === 'Material3Dark' || args.progressBar.theme === 'Fluent2Dark') {
             for (let i: number = 0; i < div.length; i++) {
                 div[i].setAttribute('style', 'color:white');
             }
@@ -49,6 +49,10 @@ import { Button } from '@syncfusion/ej2-buttons';
             args.progressBar.secondaryProgressColor = '#386e7f'
           } else if (selectedTheme === 'tailwind') {
             args.progressBar.secondaryProgressColor = '#b1afe9'
+          }else if (selectedTheme === 'fluent2') {
+            args.progressBar.secondaryProgressColor = '#0F6CBD'
+          } else if (selectedTheme === 'fluent2-dark') {
+            args.progressBar.secondaryProgressColor = '#115EA3'
           }
     };
 

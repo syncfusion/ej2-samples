@@ -12,6 +12,7 @@ import { EmitType } from '@syncfusion/ej2-base';
 import { drillDownData } from './treemap-data/drilldown-sample';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents } from '@syncfusion/ej2-buttons';
+import { TextBox } from  '@syncfusion/ej2-inputs';
 
 let prevTime: Date; let curTime: Date;
 (window as any).default = (): void => {
@@ -73,6 +74,14 @@ let prevTime: Date; let curTime: Date;
         ]
     });
     treemap.appendTo('#container');
+
+    
+    let textConnector : TextBox = new TextBox({
+        value: ' - ',
+        width: '100%',
+        enabled: false
+    }); 
+    textConnector.appendTo('#connectorText');
     // Visiblity of breadcrumb
     let breadCrumbChange: EmitType<CheckBoxChangeEvents>;
     let breadCrumbCheckBox: CheckBox = new CheckBox(
@@ -82,14 +91,11 @@ let prevTime: Date; let curTime: Date;
         '#breadCrumb');
     breadCrumbCheckBox.change = breadCrumbChange = (e: CheckBoxChangeEvents) => {
         treemap.enableBreadcrumb = e.checked;
-        let breadCrumbText: HTMLInputElement = document.getElementById('connectorText') as HTMLInputElement;
-        if (e.checked) {
-            breadCrumbText.disabled = false;
-        } else {
-            breadCrumbText.disabled = true;
-        }
+        textConnector.enabled = e.checked;
         treemap.refresh();
     };
+
+    
 
     // Visiblity of drill-down view
     let drillChange: EmitType<CheckBoxChangeEvents>;

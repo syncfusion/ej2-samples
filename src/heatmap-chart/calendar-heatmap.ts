@@ -41,9 +41,6 @@ loadCultureFiles();
         },
         cellSettings: {
             showLabel: false,
-            border: {
-                color: 'white'
-            },
             textStyle: {
                 fontFamily: 'inherit'
             }
@@ -91,6 +88,7 @@ loadCultureFiles();
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
+            args.heatmap.cellSettings.border.color = selectedTheme.indexOf('dark') > -1 || selectedTheme.indexOf('highcontrast') > -1 ? '#000' : '#fff';
             // custom code end
         },
         dataSource: (data as any).calendarDataSource,

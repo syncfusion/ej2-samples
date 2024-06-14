@@ -2,7 +2,6 @@
    "name": "TextArea", 
    "directory": "textarea",
    "category":"Inputs",
-   "type": "preview",
    "ftName": "textarea",
    "samples" : [
     {"url":"default", "name": "Default Functionalities", "category":"TextArea", "description":"This example describes key features of JavaScript textarea such as a input group, placeholder, validation states, and more.", "api": { "TextArea": ["placeholder", "floatLabelType", "enableRtl", "cssClass"]}},

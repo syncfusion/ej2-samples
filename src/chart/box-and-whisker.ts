@@ -3,7 +3,7 @@ import {
     ChartTheme, Chart, getSaturationColor, Category, ILoadedEventArgs,
     IPointRenderEventArgs, BoxAndWhiskerSeries, Tooltip, getElement, BoxPlotMode
 } from '@syncfusion/ej2-charts';
-import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors } from './theme-color';
+import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2DarkColors } from './theme-color';
 Chart.Inject(Category, BoxAndWhiskerSeries, Tooltip);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -23,7 +23,11 @@ import { Browser } from '@syncfusion/ej2/base';
     let fluentColors: string[] = ['#1AC9E6', '#4C6FB1', '#CC6952', '#3F579A', '#4EA09B', '#6E7A89', '#D4515C', '#E6AF5D', '#639751',
         '#9D4D69'];
     let fluentDarkColors: string[] = ['#1AC9E6', '#2A72D5', '#43B786', '#584EC6', '#E85F9C', '#6E7A89', '#EA6266', '#EBA844', '#26BC7A', 
-        '#BC4870'];        
+        '#BC4870'];
+    let fluent2Colors: string[] = ['#6200EE', '#09AF74', '#0076E5', '#CB3587', '#E7910F', '#0364DE', '#66CD15', '#F3A93C', '#107C10',
+        '#C19C00'];
+    let fluent2DarkColors: string[] = ['#9BB449', '#2A72D5', '#43B786', '#3F579A', '#584EC6', '#E85F9C', '#6E7A89', '#EA6266', 
+        '#0B6A0B', '#C19C00'];       
     let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
         let selectedTheme: string = location.hash.split('/')[1];
         selectedTheme = selectedTheme ? selectedTheme : 'Material';
@@ -55,6 +59,10 @@ import { Browser } from '@syncfusion/ej2/base';
             args.fill = pointTailwindColors[args.point.index % 10];
         } else if (selectedTheme === 'material3') {
             args.fill = pointMaterial3Colors[args.point.index % 10];
+        } else if (selectedTheme === 'fluent2') {
+            args.fill = pointFluent2Colors[args.point.index % 10];
+        } else if (selectedTheme === 'fluent2-dark') {
+            args.fill = pointFluent2DarkColors[args.point.index % 10];
         }
         else if (selectedTheme === 'material3-dark') {
             args.fill = pointMaterial3DarkColors[args.point.index % 10];
@@ -117,7 +125,7 @@ import { Browser } from '@syncfusion/ej2/base';
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         },
         legendSettings: {
             visible: false

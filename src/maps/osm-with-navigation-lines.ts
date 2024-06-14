@@ -42,11 +42,11 @@ export interface Data {
         },
         layers: [
             {
-                layerType: 'OSM',
+                urlTemplate:'https://tile.openstreetmap.org/level/tileX/tileY.png',
                 markerSettings: [
                     {
                         visible: true,
-                        template: '<div><img src="src/maps/images/group.svg" style="height:15px;width:15px;"></img></div>',
+                        template: '<div><img alt="Group image" src="src/maps/images/group.svg" style="height:15px;width:15px;"></img></div>',
                         dataSource: [{
                                 name: 'Mexico City',
                                 latitude: 23.6445,
@@ -62,7 +62,7 @@ export interface Data {
                     },
                     {
                         visible: true,
-                        template: '<div><img src="src/maps/images/ballon.png" style="height:30px;width:20px;"></img></div>',
+                        template: '<div><img alt="Balloon image" src="src/maps/images/ballon.png" style="height:30px;width:20px;"></img></div>',
                         dataSource: [{
                                 name: 'Mexico City',
                                 latitude: 24.2005,
@@ -78,7 +78,7 @@ export interface Data {
                     },
                     {
                         visible: true,
-                        template: '<div style= "font-weight:500; font-size: 13px; text-align: left; font-family:Segoe UI;">Mexico</div>',
+                        template: '<div style= "color:#000;font-weight:500; font-size: 13px; text-align: left; font-family:Segoe UI;">Mexico</div>',
                         dataSource: [{
                                 name: 'Mexico City',
                                 latitude: 24.0005,
@@ -87,7 +87,7 @@ export interface Data {
                     },
                     {
                         visible: true,
-                        template: '<div><img src="src/maps/images/oval.svg" style="height:15px;width:15px;"></img></div>',
+                        template: '<div><img alt="Oval image" src="src/maps/images/oval.svg" style="height:15px;width:15px;"></img></div>',
                         dataSource: [{
                                 name: 'Los Angeles',
                                 latitude: 34.0522,
@@ -103,7 +103,7 @@ export interface Data {
                     },
                     {
                         visible: true,
-                        template: '<div><div style="text-align: right; font-weight:500; font-size: 13px; font-family:Segoe UI;">Los Angeles</br>' +
+                        template: '<div><div style="color:#000; text-align: right; font-weight:500; font-size: 13px; font-family:Segoe UI;">Los Angeles</br>' +
                         'International Airport</div></div>',
                         dataSource: [{
                                 name: 'Los Angeles City',
@@ -113,7 +113,7 @@ export interface Data {
                     },
                     {
                         visible: true,
-                        template: '<div><img src="src/maps/images/map-tooltip.svg" style="height:50px;width:100px;"></img></div>',
+                        template: '<div><img alt="Map tooltip" src="src/maps/images/map-tooltip.svg" style="height:50px;width:100px;"></img></div>',
                         dataSource: [{
                                 latitude: 28.5,
                                 longitude: -110.400

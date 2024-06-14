@@ -38,6 +38,7 @@ loadCultureFiles();
                 interval: 10, height: 0
             },
             labelStyle: {
+                format:'Music {value} %',
                 font: { size: '0px' }
             }
         }],
@@ -99,6 +100,7 @@ loadCultureFiles();
                 interval: 10, height: 0
             },
             labelStyle: {
+                format:'Bell {value} %',
                 font: { size: '0px' }
             }
         }],
@@ -159,6 +161,7 @@ loadCultureFiles();
                 interval: 10, height: 0
             },
             labelStyle: {
+                format:'Clock {value} %',
                 font: { size: '0px' }
             }
         }],

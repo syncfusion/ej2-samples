@@ -31,8 +31,10 @@ export interface Data {
         useGroupingSeparator: true,
         zoomSettings: {
             enable: true,
-            horizontalAlignment: 'Near',
-            toolBarOrientation: 'Vertical',
+            toolbarSettings: {
+                orientation:'Vertical',
+                horizontalAlignment: 'Near',
+            },
             pinchZooming: true
         },
         titleSettings: {

@@ -12,7 +12,7 @@ import { isNullOrUndefined } from '@syncfusion/ej2-base';
   let switchObj: Switch;
   let defaultRTE: RichTextEditor = new RichTextEditor({
     toolbarSettings: {
-      items: ['Bold', 'Italic', 'Underline', '|', 'Formats', 'Alignments',
+      items: ['Bold', 'Italic', 'Underline', '|', 'Formats', 'Alignments', 'Blockquote',
         'OrderedList', 'UnorderedList', '|', 'CreateLink', 'Image', '|', 'SourceCode', 'Undo', 'Redo']
     },
     saveInterval: 5000,

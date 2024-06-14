@@ -16,5 +16,5 @@ import * as dataSource from './dataSource.json';
         placeholder: 'Select an employee',
         popupHeight: '250px'
     });
-    ddtreeObj.appendTo('#template');
+    ddtreeObj.appendTo('#ddttemplate');
 };

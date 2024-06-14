@@ -212,7 +212,7 @@ let Universitydata: IDataSet[] = (data as any).data;
                 let selectedTheme: string = location.hash.split('/')[1];
                 selectedTheme = selectedTheme ? selectedTheme : 'Material';
                 args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
             }
         },
         chartSeriesCreated: function () {
@@ -245,7 +245,7 @@ let Universitydata: IDataSet[] = (data as any).data;
                 className: 'university-logo',
                 attrs: {
                     'src': Universitydata[args.cellInfo.index[0]].logo as string,
-                    'alt': args.cellInfo.formattedText as string,
+                    'alt': args.cellInfo.formattedText as string + ' Image',
                     'width': '30',
                     'height': '30'
                 },

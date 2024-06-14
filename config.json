@@ -178,7 +178,6 @@
 		"signature",
 		"multiline-textbox",
 		null,
-		"textarea",
-		null
+		"textarea"
 	]
 }

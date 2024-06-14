@@ -28,7 +28,7 @@ ProgressBar.Inject(ProgressAnnotation);
         }
         return ('<div id="point1" style="font-size:24px;font-weight:bold;color: ' + color + ' "><span>' + content + '</span></div>');
     }
-    let annotationColors: string[] = ['#e91e63', '#0078D6', '#317ab9', '#007bff', '#4F46E5', '#FFD939', '#9A9A9A', '#22D3EE', '#0D6EFD', '#6750A4', '#D0BCFF'];
+    let annotationColors: string[] = ['#e91e63', '#0078D6', '#317ab9', '#007bff', '#4F46E5', '#FFD939', '#9A9A9A', '#22D3EE', '#0D6EFD', '#6750A4', '#D0BCFF', '#0F6CBD', '#115EA3'];
 
     let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
         let selectedTheme: string = location.hash.split('/')[1];
@@ -71,6 +71,12 @@ ProgressBar.Inject(ProgressAnnotation);
             case 'material3-dark':
                 args.progressBar.annotations[0].content = annotationElementContent(annotationColors[10], args.progressBar.element.id);
                 break;       
+            case "fluent2":
+                args.progressBar.annotations[0].content = annotationElementContent(annotationColors[11], args.progressBar.element.id);
+                break;
+            case "fluent2-dark":
+                args.progressBar.annotations[0].content = annotationElementContent(annotationColors[12], args.progressBar.element.id);
+                break;
             default:
                 args.progressBar.annotations[0].content = annotationElementContent(annotationColors[5], args.progressBar.element.id);
                 break;

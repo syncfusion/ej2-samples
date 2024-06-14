@@ -1,11 +1,11 @@
 
-import { Grid, Page, Selection, DetailRow, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, DetailRow, Sort, Filter } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 import { Internationalization } from '@syncfusion/ej2-base';
 
 let instance: Internationalization = new Internationalization();
 
-Grid.Inject(Page, Selection, DetailRow, Sort);
+Grid.Inject(Page, Selection, DetailRow, Sort, Filter);
 /**
  * Detail row template Sample
  */
@@ -24,6 +24,8 @@ interface DateFormat extends Window {
         dataSource: employeeData,
         detailTemplate: '#detailtemplate',
         allowSorting: true,
+        allowFiltering: true,
+        filterSettings: { type: 'Excel' },
         width: 'auto',
         columns: [
             { field: 'FirstName', headerText: 'First Name', width: 110 },

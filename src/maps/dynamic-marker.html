@@ -1,120 +1,128 @@
-<div class="col-lg-9 control-section">
-    <div id="container"></div>
-    <div align="center">
-            <p>
-                <i>
-                    <div align="center">
-                        <p id="content" style="font-size: 16px;color:grey">Click on the maps to add marker/navigation line</p>
-                    </div>
-                </i>
-            </p>
-        </div>
-</div>
-<div id="action-description">
-        <p>
-            This sample shows how custom markers and lines can be dynamically added to our maps with UI interaction. Marker or line can be chosen from the properties panel.
-       </p>
-    </div>
-    <div id="description">
-        <p>
-            Using UI interaction, the markers or line can be added as follows: You can get the currently clicked geo location by passing "PointerEvent" or "MouseEvent" argument and layer index to the "getGeoLocation" method. Then, use that geo position to place the marker or line in the appropriate position. 
-        </p>
-    <br/>
-        <p style="font-weight: 500">Injecting Module</p>
-        <p>
-            The features of maps component are segregated into individual feature-wise modules. To use navigation lines and marker, you need to inject the <code>NavigationLine </code> and <code>Marker </code> module using the <code>Maps.Inject(NavigationLine, Marker)</code> method.
-        </p>
-        <p>
-            More information on maps can be found in this
-            <a target="_blank" href="https://ej2.syncfusion.com/documentation/maps/markers/">documentation section</a>.
-        </p>
-       
-    </div>
-<div class="col-lg-3 property-section">
-    <table id="property" title="Properties" style="width: 100%;">
-        <colgroup>
-            <col span="1" style="width: 50%;">
-            <col span="1" style="width: 50%;">
-       </colgroup>
-       <tbody> 
-       <tr style="height: 50px">
-                <td>
-                    <div class="property-text">Marker</div>
-                </td>
-                <td>
-                    <div class="checkbox">
-                    <input type="checkbox" id="marker" />
-                    </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td>
-                   <div class="property-text">Line</div>
-                </td>
-                <td>
-                <div class="checkbox">  
-                    <input type="checkbox" name="high" id="line"/>
-                </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td>
-                    <div class="property-text">Connecting line</div>
-                </td> 
-                <td>
-                <div class="checkbox">
-                    <input type="checkbox" id="connect"/>
-                </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td>
-                    <div class="property-text">Marker type</div>
-                </td>
-                <td>
-                    <div class="property-text">
-                        <select  disabled id="type" style="height: 20px" >
-                            <option value="Image">Image</option>
-                            <option value="Circle">Circle</option>
-                            <option value="Diamond">Diamond</option>
-                            <option value="Star">Star</option>
-                            <option value="Triangle">Triangle</option>
-                        </select>
+<main>
+    <div class="col-lg-9 control-section">
+        <div id="container"></div>
+        <div align="center">
+                <p>
+                    <i>
+                        <div align="center">
+                            <p id="content" style="font-size: 16px;color:grey">Click on the maps to add marker/navigation line</p>
                         </div>
-                </td>
-            </tr>
-            <tr style="height: 50px">
-                <td>
-                    <div class="property-text"> Width</div>
-                </td>
-                <td>
-                    <div class="property-text">
-                    <input type="text" class="e-input" value="1" style="width:100%;" id="width" disabled />
+                    </i>
+                </p>
+            </div>
+    </div>
+    <section id="action-description" aria-label="Description of Maps sample">
+            <p>
+                This sample shows how custom markers and lines can be dynamically added to our maps with UI interaction. Marker or line can be chosen from the properties panel.
+           </p>
+        </section>
+        <section id="description" aria-label="Description of the Maps features demonstrated in this sample">
+            <p>
+                Using UI interaction, the markers or line can be added as follows: You can get the currently clicked geo location by passing "PointerEvent" or "MouseEvent" argument and layer index to the "getGeoLocation" method. Then, use that geo position to place the marker or line in the appropriate position. 
+            </p>
+        <br/>
+            <p style="font-weight: 500">Injecting Module</p>
+            <p>
+                The features of maps component are segregated into individual feature-wise modules. To use navigation lines and marker, you need to inject the <code>NavigationLine </code> and <code>Marker </code> module using the <code>Maps.Inject(NavigationLine, Marker)</code> method.
+            </p>
+            <p>
+                More information on maps can be found in this
+                <a target="_blank" href="https://ej2.syncfusion.com/documentation/maps/markers/">documentation section</a>.
+            </p>
+           
+        </section>
+    <div class="col-lg-3 property-section">
+        <table id="property" title="Properties" style="width: 100%;" role="none">
+            <colgroup>
+                <col span="1" style="width: 50%;">
+                <col span="1" style="width: 50%;">
+           </colgroup>
+           <tbody> 
+           <tr style="height: 50px">
+                    <td>
+                        <div class="property-text">Marker</div>
+                    </td>
+                    <td>
+                        <div class="checkbox">
+                        <input type="checkbox" id="marker" />
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                       <div class="property-text">Line</div>
+                    </td>
+                    <td>
+                    <div class="checkbox">  
+                        <input type="checkbox" name="high" id="line"/>
                     </div>
-                </td>
-            </tr>
-            <tr style="height: 70px">
-                <td align="center">
-                    <div style="margin-top: 20px; margin-left: 50%">
-                        <button id="togglebtn" style="text-transform:none !important;width: 80px;margin-top: -2px">Clear</button>
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                        <div class="property-text">Connecting line</div>
+                    </td> 
+                    <td>
+                    <div class="checkbox">
+                        <input type="checkbox" id="connect"/>
                     </div>
-                </td>
-            </tr>
-            </tbody>
-    </table>
-</div>
-<style>
-    #width.e-input[disabled] {
-        border-bottom-color: inherit;
-        background-image: none;
-    }
-    div.property-text {
-        padding-left: 0px; padding-top: 0px;
-    }
-    div.checkbox {
-        padding-left: 0px; padding-top: 0px;
-        margin-left: -25px;
-    }
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                        <div class="property-text">Marker type</div>
+                    </td>
+                    <td>
+                        <div class="property-text">
+                            <select  disabled id="type" style="height: 20px" >
+                                <option value="Image">Image</option>
+                                <option value="Circle">Circle</option>
+                                <option value="Diamond">Diamond</option>
+                                <option value="Star">Star</option>
+                                <option value="Triangle">Triangle</option>
+                            </select>
+                            </div>
+                    </td>
+                </tr>
+                <tr style="height: 50px">
+                    <td>
+                        <div class="property-text"> Width</div>
+                    </td>
+                    <td>
+                        <div class="property-text">
+                        <input type="text" class="e-input" value="1" style="width:100%;" id="width" disabled />
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 70px">
+                    <td align="center">
+                        <div style="margin-top: 20px; margin-left: 50%">
+                            <button id="togglebtn" style="text-transform:none !important;width: 80px;margin-top: -2px">Clear</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+        </table>
+    </div>
+    <style>
+        #width.e-input[disabled] {
+            border-bottom-color: inherit;
+            background-image: none;
+        }
+        div.property-text {
+            padding-left: 0px; padding-top: 0px;
+        }
+        div.checkbox {
+            padding-left: 0px; padding-top: 0px;
+            margin-left: -25px;
+        }
+        
+        .e-view.fluent2 #property .e-checkbox-wrapper .e-icons, 
+        .e-view.fluent2-dark #property .e-checkbox-wrapper .e-icons {
+            margin-left: -5px;
+            margin-top: 1px;
+        }
+    </style>
+    <!-- custom code start-->
     
-</style>
-<!-- custom code start-->
+</main>

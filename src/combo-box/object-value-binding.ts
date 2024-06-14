@@ -53,6 +53,6 @@ for (let i = 1; i <= 150; i++) {
     function valueChange(): void {
         let value: Element = document.getElementById('value');
          // update the text and value property values in property panel based on selected item in ComboBox
-        value.innerHTML = comboBoxObj.value === null ? 'null' : "Selected value : "  + JSON.stringify(comboBoxObj.value);
+        value.innerHTML =  "Selected value : "  + JSON.stringify(comboBoxObj.value);
     }
 };

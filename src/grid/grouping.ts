@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Sort, Page, Selection, Group, Edit, Toolbar } from '@syncfusion/ej2-grids';
+import { Grid, Sort, Page, Selection, Group, Edit, Toolbar, Filter } from '@syncfusion/ej2-grids';
 import { inventoryData, orderDataSource } from './data-source';
 import { Dialog } from '@syncfusion/ej2-popups';
 
-Grid.Inject(Sort, Page, Selection, Group, Edit, Toolbar);
+Grid.Inject(Sort, Page, Selection, Group, Edit, Toolbar, Filter);
 
 /**
  * Grouping sample
@@ -33,6 +33,8 @@ Grid.Inject(Sort, Page, Selection, Group, Edit, Toolbar);
         toolbar: ['Edit', 'Update', 'Cancel'],
         allowPaging: true,
         allowSorting: true,
+        allowFiltering: true,
+        filterSettings: { type: 'Excel' },
         allowGrouping: true,
         groupSettings: {columns: ['ShipCountry']},
         height: 400,

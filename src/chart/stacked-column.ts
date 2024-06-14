@@ -104,7 +104,7 @@ Chart.Inject(StackingColumnSeries, Category, Legend, Tooltip, Highlight);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         },
         axisLabelRender: function (args) {
             args.text = args.text.replace("0000000", "0M").replace("000000", "M");

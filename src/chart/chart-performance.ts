@@ -12,8 +12,8 @@ Chart.Inject(AreaSeries, DateTime);
  selectedTheme = selectedTheme ? selectedTheme : 'Material';
  let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
  selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
- let themes : string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'materialdark', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast', 'fluent', 'fluentdark', 'material3', 'material3dark'];
- let borderColor : string[] = ['#6355C7', '#8F80F4', '#5A61F6', '#8B5CF6', '#00bdae', '#9ECB08', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4', '#1AC9E6', '#1AC9E6', '#6355C7', '#4EAAFF'];
+ let themes : string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'materialdark', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast', 'fluent', 'fluentdark', 'material3', 'material3dark', 'fluent2', 'fluent2dark'];
+ let borderColor : string[] = ['#6355C7', '#8F80F4', '#5A61F6', '#8B5CF6', '#00bdae', '#9ECB08', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4', '#1AC9E6', '#1AC9E6', '#6355C7', '#4EAAFF', '#6200EE', '#9BB449'];
  let fill : string = 'url(#' + selectedTheme + '-gradient-chart)';
 
 let chart: Chart;
@@ -52,7 +52,6 @@ let dt2: number;
         ],
         title:'Chart with 100k points',
         width: Browser.isDevice ? '100%' : '75%',
-        // custom code start
         load: (args: ILoadedEventArgs) => {
             let series1: Object[] = [];
               let point1: Object;
@@ -88,8 +87,6 @@ let dt2: number;
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
             args.chart.series[0].border = { width: 2, color: borderColor[themes.indexOf(args.chart.theme.toLowerCase())] }
         }
-        
-        // custom code end
     });
     chart.appendTo('#container');
    

@@ -17,11 +17,12 @@ let mdsource: HTMLElement;
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
         height: '250px',
+        placeholder : "Enter your text here...",
         formatter: new MarkdownFormatter({ listTags: { 'OL': '1., 2., 3.'} }),
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'OrderedList',
+            items: ['Bold', 'Italic', 'StrikeThrough', '|', 'Formats', 'Blockquote', 'OrderedList',
             'UnorderedList', 'SuperScript', 'SubScript', '|', 'CreateLink', 'Image', 'CreateTable', '|',
-           { tooltipText: 'Preview', template: '<button id="preview-code" class="e-tbar-btn e-control e-btn e-icon-btn">' +
+           { tooltipText: 'Preview', template: '<button id="preview-code" class="e-tbar-btn e-control e-btn e-icon-btn" aria-label="Preview Code">' +
                '<span class="e-btn-icon e-md-preview e-icons"></span></button>' }, '|', 'Undo', 'Redo']
 
         },
@@ -36,10 +37,10 @@ let mdsource: HTMLElement;
                 fullPreview();
                 if ((e.currentTarget as HTMLElement).classList.contains('e-active')) {
                     defaultRTE.disableToolbarItem(['Bold', 'Italic', 'StrikeThrough', 'OrderedList',
-                        'UnorderedList', 'SuperScript', 'SubScript', 'CreateLink', 'Image', 'CreateTable', 'Formats', 'Undo', 'Redo']);
+                        'UnorderedList', 'SuperScript', 'SubScript', 'CreateLink', 'Image', 'CreateTable', 'Formats', 'Blockquote', 'Undo', 'Redo']);
                 } else {
                     defaultRTE.enableToolbarItem(['Bold', 'Italic', 'StrikeThrough', 'OrderedList',
-                        'UnorderedList', 'SuperScript', 'SubScript', 'CreateLink', 'Image', 'CreateTable', 'Formats', 'Undo', 'Redo']);
+                        'UnorderedList', 'SuperScript', 'SubScript', 'CreateLink', 'Image', 'CreateTable', 'Formats', 'Blockquote', 'Undo', 'Redo']);
                 }
             });
         }

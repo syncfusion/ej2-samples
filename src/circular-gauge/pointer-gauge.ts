@@ -12,6 +12,7 @@ export function gauge1(): CircularGauge {
             endAngle: 90,
             lineStyle: { width: 3, color: '#ff5985' },
             labelStyle: {
+                format:'$ {value}',
                 position: 'Outside',
                 font: { size: '0px', color: '#ff5985' }
             }, majorTicks: {
@@ -35,6 +36,7 @@ export function gauge1(): CircularGauge {
             }],
             annotations: [
                 {
+                    description:'Range bar pointer',
                     angle: 180, zIndex: '1',
                     radius: '28%',
                     content: '<div style="font-size:14px;margin-top:11px;">Range bar pointer</div>'
@@ -62,6 +64,7 @@ export function gauge2(): CircularGauge {
             endAngle: 90,
             lineStyle: { width: 3, color: '#01aebe' },
             labelStyle: {
+                format:'{value}%',
                 position: 'Outside',
                 font: { size: '0px', color: '#01aebe' }
             }, majorTicks: {
@@ -76,6 +79,7 @@ export function gauge2(): CircularGauge {
             minimum: 0,
             maximum: 100,
             pointers: [{
+                description: 'Marker pointer value: 80',
                 radius: '100%',
                 value: 80,
                 type: 'Marker',
@@ -86,6 +90,7 @@ export function gauge2(): CircularGauge {
             }],
             annotations: [
                 {
+                    description: 'Marker pointer',
                     angle: 180, zIndex: '1',
                     radius: '28%',
                     content: '<div style="font-size:14px;margin-top:10px;">Marker pointer</div>'
@@ -113,6 +118,7 @@ export function gauge4(): CircularGauge {
             endAngle: 90,
             lineStyle: { width: 3, color: '#1E7145' },
             labelStyle: {
+                format:'${value}',
                 position: 'Outside',
                 font: { size: '0px', color: '#1E7145' }
             }, majorTicks: {
@@ -128,6 +134,7 @@ export function gauge4(): CircularGauge {
             maximum: 100,
             pointers: [{
                 animation: { enable: true, duration: 1000 },
+                description: 'Needle pointer: 80',
                 value: 80,
                 radius: '80%',
                 color: 'green',
@@ -144,6 +151,7 @@ export function gauge4(): CircularGauge {
             }],
             annotations: [
                 {
+                    description:'Customized pointer',
                     angle: 180, zIndex: '1',
                     radius: '28%',
                     content: '<div style="font-size:14px; padding-top: 29px">Customized pointer</div>'
@@ -171,6 +179,7 @@ export function gauge3(): CircularGauge {
             endAngle: 90,
             lineStyle: { width: 3, color: '#9250e6' },
             labelStyle: {
+                format:'{value} s',
                 position: 'Outside',
                 font: { size: '0px', color: '#9250e6' }
             }, majorTicks: {
@@ -185,6 +194,7 @@ export function gauge3(): CircularGauge {
             minimum: 0,
             maximum: 100,
             pointers: [{
+                description: 'Needle pointer value : 70',
                 radius: '100%',
                 animation: { enable: true, duration: 900 },
                 value: 70,
@@ -195,6 +205,7 @@ export function gauge3(): CircularGauge {
             }],
             annotations: [
                 {
+                    description:'Needle pointer',
                     angle: 180, zIndex: '1',
                     radius: '28%',
                     content: '<div style="font-size:14px;margin-top:11px;">Needle pointer</div>'
@@ -319,6 +330,7 @@ export function gauge5(): CircularGauge {
             endAngle: 90,
             lineStyle: { width: 0 },
             labelStyle: {
+                format:'{value} seconds',
                 position: 'Outside',
                 font: { size: '0px', color: '#067bc2' }
             }, majorTicks: {
@@ -334,6 +346,7 @@ export function gauge5(): CircularGauge {
             maximum: 100,
             pointers: [{
                 radius: '100%',
+                description: 'Needle pointer :40',
                 animation: { enable: false, duration: 100 },
                 value: 40,
                 color: '#067bc2',
@@ -341,6 +354,7 @@ export function gauge5(): CircularGauge {
                 cap: { radius: 0 },
                 needleTail: { length: '4%', color: '#067bc2' }
             }, {
+                description: 'RangeBar pointer value : 40',
                 radius: '100%',
                 type: 'RangeBar',
                 animation: { enable: false, duration: 100 },
@@ -350,6 +364,7 @@ export function gauge5(): CircularGauge {
             }],
             annotations: [
                 {
+                    description:'Live update',
                     angle: 180, zIndex: '1',
                     radius: '32%',
                     content: '<div style="font-size:14px; margin-top:22px">Live update</div>'

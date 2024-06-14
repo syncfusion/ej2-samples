@@ -3,7 +3,7 @@ import { DocumentEditorContainer, Toolbar } from '@syncfusion/ej2-documenteditor
 import { TitleBar } from './title-bar';
 import { DropDownButton, DropDownButtonModel } from '@syncfusion/ej2/splitbuttons';
 import { ListView, SelectEventArgs as ListSelectEventArgs } from '@syncfusion/ej2-lists';
-import { createSpinner, showSpinner, hideSpinner, DialogUtility } from '@syncfusion/ej2-popups';
+import { createSpinner, showSpinner, hideSpinner } from '@syncfusion/ej2-popups';
 import * as data from './data-default.json';
 
 /**
@@ -134,8 +134,7 @@ function created() {
 }
 function formatSave(type: string) {
     createSpinner({
-        target: document.getElementById('container'),
-        cssClass: 'e-de-spin-overlay'
+        target: document.getElementById('container')
     });
     showSpinner(document.getElementById('container'));
     let format: string = type;
@@ -151,17 +150,7 @@ function formatSave(type: string) {
         Filename: container.documentEditor.documentName,
         Format: '.' + format
     };
-    http.onloadend = function() {
-        hideSpinner(document.getElementById('container'));
-    }
-    http.onerror = function() {
-        DialogUtility.alert({
-            title: "Information",
-            content: "Error in establishing connection with web server.",
-            okButton: {  text: "OK" },
-            closeOnEscape: true,
-        });
-    }    
+
     // Set up event listener for the response
     http.onload = function () {
         if (http.status === 200) {

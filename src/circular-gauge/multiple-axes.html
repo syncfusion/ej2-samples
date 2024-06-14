@@ -1,99 +1,101 @@
-<div>
-    <div class="col-md-8 control-section">
-        <div class="content-wrapper">
-            <div id="axis-container"></div>
-        </div>
-    </div>
-    <!-- property panel -->
-    <br>
-    <div id="property-panel" class="col-md-4 property-section">
-        <div class="property-panel-section">
-            <div class="property-panel-content">
-                <table id="property" title="Properties" style="width: 100%; margin-left:-10px">
-                    <colgroup>
-                        <col span="1" style="width: 45%;">
-                        <col span="1" style="width: 40%;">
-                        <col span="1" style="width: 10%;">
-                    </colgroup>
-                    <tbody>
-                        <tr style="height: 50px">
-                            <td>
-                                <div style="font-size: 14px;"> Axis </div>
-                            </td>
-                            <td colspan="2">
-                                <div>
-                                    <select id="axisIndex" class="form-control">
-                                        <option value="0" selected=true>Axis 1</option>
-                                        <option value="1">Axis 2</option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="height: 50px">
-                            <td>
-                                <div style="font-size: 14px;"> Direction </div>
-                            </td>
-                            <td colspan="2">
-                                <div>
-                                    <select id="axisDirection" class="form-control">
-                                        <option value="ClockWise" selected=true>Clockwise</option>
-                                        <option value="AntiClockWise">Anti-clockwise</option>
-                                    </select>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="height: 50px">
-                            <td>
-                                <div style="font-size: 14px;">Start Angle</div>
-                            </td>
-                            <td>
-                                <div>
-                                    <input type="range" id="startAngle" value="220" min="0" max="360" />
-                                </div>
-                            </td>
-                            <td style="text-align: center;">
-                                <div>
-                                    <span id='start'>220</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr style="height: 50px">
-                            <td>
-                                <div style="font-size: 14px;">End Angle</div>
-                            </td>
-                            <td>
-                                <div>
-                                    <input type="range" id="endAngle" value="140" min="0" max="360" />
-                                </div>
-                            </td>
-                            <td style="text-align: center;">
-                                <div>
-                                    <span id='end'>140</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<main>
+    <div>
+        <div class="col-md-8 control-section">
+            <div class="content-wrapper">
+                <div id="axis-container"></div>
             </div>
         </div>
-
+        <!-- property panel -->
+        <br>
+        <div id="property-panel" class="col-md-4 property-section">
+            <div class="property-panel-section">
+                <div class="property-panel-content">
+                    <table id="property" title="Properties" style="width: 100%; margin-left:-10px" role="none">
+                        <colgroup>
+                            <col span="1" style="width: 45%;">
+                            <col span="1" style="width: 40%;">
+                            <col span="1" style="width: 10%;">
+                        </colgroup>
+                        <tbody>
+                            <tr style="height: 50px">
+                                <td>
+                                    <div style="font-size: 14px;"> Axis </div>
+                                </td>
+                                <td colspan="2">
+                                    <div>
+                                        <select id="axisIndex" class="form-control">
+                                            <option value="0" selected=true>Axis 1</option>
+                                            <option value="1">Axis 2</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="height: 50px">
+                                <td>
+                                    <div style="font-size: 14px;"> Direction </div>
+                                </td>
+                                <td colspan="2">
+                                    <div>
+                                        <select id="axisDirection" class="form-control">
+                                            <option value="ClockWise" selected=true>Clockwise</option>
+                                            <option value="AntiClockWise">Anti-clockwise</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="height: 50px">
+                                <td>
+                                    <div style="font-size: 14px;">Start Angle</div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="range" id="startAngle" value="220" min="0" max="360" />
+                                    </div>
+                                </td>
+                                <td style="text-align: center;">
+                                    <div>
+                                        <span id='start'>220</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="height: 50px">
+                                <td>
+                                    <div style="font-size: 14px;">End Angle</div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <input type="range" id="endAngle" value="140" min="0" max="360" />
+                                    </div>
+                                </td>
+                                <td style="text-align: center;">
+                                    <div>
+                                        <span id='end'>140</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    
+        </div>
     </div>
-</div>
-<div id="action-description">
-    <p>
-        This sample illustrates the multiple axes in the circular gauge as well as the options for changing the
-        direction, start, and end angle of an axis.
-    </p>
-</div>
-
-<div id="description">
-    <p>
-        In this example, you can see how to render and configure multiple axes in the circular gauge. To render multiple
-        axes in the circular gauge, use the axes collection, and each axis can be customized with pointers and ticks.
-    </p>
-    <p>
-        More information on the multiple axes can be found in this <a target="_blank"
-            href="https://ej2.syncfusion.com/documentation/circular-gauge/gauge-axes/#multiple-axes">documentation
-            section</a>.
-    </p>
-</div>
+    <section id="action-description" aria-label="Description of Circular Gauge sample">
+        <p>
+            This sample illustrates the multiple axes in the circular gauge as well as the options for changing the
+            direction, start, and end angle of an axis.
+        </p>
+    </section>
+    
+    <section id="description" aria-label="Description of the Circular Gauge features demonstrated in this sample">
+        <p>
+            In this example, you can see how to render and configure multiple axes in the circular gauge. To render multiple
+            axes in the circular gauge, use the axes collection, and each axis can be customized with pointers and ticks.
+        </p>
+        <p>
+            More information on the multiple axes can be found in this <a target="_blank"
+                href="https://ej2.syncfusion.com/documentation/circular-gauge/gauge-axes/#multiple-axes">documentation
+                section</a>.
+        </p>
+    </section>
+</main>

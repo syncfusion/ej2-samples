@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { BulletChart, BulletTooltip, ChartTheme, IBulletLoadedEventArgs } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-import { fabricColors, bootstrapColors, highContrastColors, materialColors, bootstarp5Colors, bootstarp5DarkColors, bootstrapDarkColors, tailwindColors, tailwindDarkColors, material3Colors, material3DarkColors, defaultColors, fluentColors } from './bullet-theme';
+import { fabricColors, bootstrapColors, highContrastColors, materialColors, bootstarp5Colors, bootstarp5DarkColors, bootstrapDarkColors, tailwindColors, tailwindDarkColors, material3Colors, material3DarkColors, defaultColors, fluentColors, fluent2Colors, fluent2DarkColors } from './bullet-theme';
 BulletChart.Inject(BulletTooltip);
 
 /**
@@ -124,6 +124,12 @@ let data: Object[] = [
                     break;
                 case "Material3Dark":
                     color = material3DarkColors;
+                    break;
+                case "Fluent2":
+                    color = fluent2Colors;
+                    break;
+                case "Fluent2Dark":
+                    color = fluent2DarkColors;
                     break;
                 default:
                     color = defaultColors;

@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointBootstrap5DarkColors, pointBootstrap5Colors, pointBootstrapColors, pointHighContrastColors, pointFluentDarkColors, pointFluentColors, pointTailwindDarkColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors } from './theme-color';
+import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointBootstrap5DarkColors, pointBootstrap5Colors, pointBootstrapColors, pointHighContrastColors, pointFluentDarkColors, pointFluentColors, pointTailwindDarkColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2DarkColors } from './theme-color';
 import { ChartTheme, Chart3DPointRenderEventArgs, Chart3D, ColumnSeries3D, Category3D, Tooltip3D, Chart3DLoadedEventArgs } from '@syncfusion/ej2-charts';
 Chart3D.Inject(ColumnSeries3D, Category3D, Tooltip3D);
 import { Browser, EmitType } from '@syncfusion/ej2-base';
@@ -36,9 +36,12 @@ let labelRender: EmitType<Chart3DPointRenderEventArgs> = (args: Chart3DPointRend
         args.fill = pointTailwindColors[args.point.index % 10];
     } else if (selectedTheme === 'material3') {
         args.fill = pointMaterial3Colors[args.point.index % 10];
-    }
-    else if (selectedTheme === 'material3-dark') {
+    } else if (selectedTheme === 'material3-dark') {
         args.fill = pointMaterial3DarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent2') {
+        args.fill = pointFluent2Colors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent2-dark') {
+        args.fill = pointFluent2DarkColors[args.point.index % 10];
     }
 };
 /**

@@ -31,7 +31,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             args.text = args.point.x + ' ' + args.point.y + ' %';
         }, annotations: [{
             content: '<div id="back" style="cursor:pointer;padding:3px;width:30px; height:30px;">' +
-            '<img src="./src/chart/images/back.png" id="back" />', region: 'Series', x: '50%', y: '50%'
+            '<img src="./src/chart/images/back.png" id="back" alt="Back Icon"/>', region: 'Series', x: '50%', y: '50%'
         }], chartMouseClick: (args: IMouseEventArgs) => {
             if (args.target.indexOf('back') > -1) {
                 let tooltip: Element = document.getElementsByClassName('e-tooltip-wrap')[0];
@@ -52,7 +52,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
             if (selectedTheme === 'highcontrast') {
                 args.accumulation.annotations[0].content = '#white' ;
             }
@@ -112,7 +112,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         }
     };
     let pie: AccumulationChart = new AccumulationChart(instance); pie.appendTo('#container');

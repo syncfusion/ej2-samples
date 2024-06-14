@@ -72,8 +72,8 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize);
             highlightWeekends: true,
             treeColumnIndex: 1,
             height: '450px',
-            projectStartDate: new Date('03/28/2019'),
-            projectEndDate: new Date('05/18/2019')
+            projectStartDate: new Date('03/28/2024'),
+            projectEndDate: new Date('05/18/2024')
         });
     gantt.appendTo('#ResourceView');
 };

@@ -2,7 +2,7 @@
     <div class="content-wrapper">
         <div style="display: flex;">
             <div style="display: flex; margin-bottom: 10px">
-              <label for="checked" style="font-size: 15px;margin-right: 10px;"> AutoFit in Pdf Export </label>
+              <label for="checked" id="export" style="font-size: 15px;margin-right: 10px;"> AutoFit in Pdf Export </label>
               <input id="checked" type="checkbox">
             </div>
         </div>
@@ -35,3 +35,9 @@
     <p>To use PDF export feature, inject the <code>PdfExport</code> module using the
         <code>Gantt.Inject(PdfExport)</code> method. </p>
 </div>
+<style>
+    .fluent2 #export,
+    .fluent2-dark #export {
+        padding: 7px;
+    }
+</style>

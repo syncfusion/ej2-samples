@@ -43,7 +43,7 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         },
         textRender(args: { text: string; point: { x: string; y: string; }; })
         {
@@ -57,6 +57,7 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
         width: 120,
         change: () => {
             chart.series[0].emptyPointSettings.mode = <EmptyPointMode>mode.value;
+            chart.series[0].animation.enable = false;
             chart.refresh();
         }
     });

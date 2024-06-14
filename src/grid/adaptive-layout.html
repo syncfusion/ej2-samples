@@ -16,7 +16,7 @@
             </td>
             <td style="width: 30%;padding:0px 10px 10px 0px">
                 <div style="padding-top: 0px;">
-                    <input type="checkbox" id='fullscreen' />
+                    <input type="checkbox" id='fullscreen' aria-label="Enable horizontal row mode"/>
                 </div>
             </td>
         </tr>
@@ -179,6 +179,23 @@
         .e-mprev,
         .e-mnext {
             width: 5%;
+        }
+    }
+
+    .fluent2,
+    .fluent2-dark,
+    .fluent2-highcontrast {
+        .e-adaptive-demo.e-pager-pagesizes .e-pager {
+            .e-mfirst,
+            .e-mprev,
+            .e-mnext,
+            .e-mlast {
+                padding: 1% 1.4%;
+            }
+        }
+        
+        .e-pager.e-adaptive div.e-parentmsgbar {
+            margin: 0;
         }
     }
 

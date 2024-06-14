@@ -22,6 +22,7 @@ loadCultureFiles();
             endAngle: 90,
             lineStyle: { width: 3, color: '#e3a21a' },
             labelStyle: {
+                format:'$ {value}',
                 position: 'Outside',
                 font: { size: '0px', color: '#e3a21a' }
             }, majorTicks: {
@@ -37,6 +38,7 @@ loadCultureFiles();
             maximum: 100,
             pointers: [{
                 radius: '60%',
+                description: 'Needle pointer value :80',
                 value: 80,
                 markerWidth: 5,
                 markerHeight: 5,
@@ -56,6 +58,7 @@ loadCultureFiles();
                     color: '#e3a21a'
                 }
             }, {
+                description: 'Needle pointer value :40',
                 radius: '60%', value: 40,
                 markerWidth: 5, markerHeight: 5,
                 animation: { enable: true, duration: 1000 },
@@ -69,6 +72,7 @@ loadCultureFiles();
             }],
             annotations: [
                 {
+                    description:'Multiple pointers',
                     angle: 180, zIndex: '1',
                     radius: '32%',
                     content: '<div style="font-size:14px; padding-top:22px">Multiple pointers</div>'

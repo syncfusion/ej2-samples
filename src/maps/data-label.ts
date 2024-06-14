@@ -34,6 +34,7 @@ Maps.Inject(MapsTooltip, DataLabel);
                         fontFamily: 'Segoe UI'
                     }
                 },
+                shapePropertyPath:'iso_3166_2',
                 shapeData: usa,
                 shapeSettings: {
                     autofill: true

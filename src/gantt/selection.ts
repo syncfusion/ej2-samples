@@ -39,8 +39,8 @@ Gantt.Inject(Selection);
             splitterSettings: {
                 columnIndex: 2
             },
-            projectStartDate: new Date('03/27/2019'),
-            projectEndDate: new Date('07/06/2019')
+            projectStartDate: new Date('03/27/2024'),
+            projectEndDate: new Date('07/06/2024')
         });
     gantt.appendTo('#Selection');
 

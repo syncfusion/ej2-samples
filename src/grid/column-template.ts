@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Selection, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Selection, Sort, Filter } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 
-Grid.Inject(Selection, Sort);
+Grid.Inject(Selection, Sort, Filter);
 /**
  * column template sample
  */
@@ -12,6 +12,8 @@ Grid.Inject(Selection, Sort);
     let grid: Grid = new Grid({
         dataSource: new DataManager(employeeData as JSON[]).executeLocal(new Query().take(8)),
         allowSorting: true,
+        allowFiltering: true,
+        filterSettings: { type: 'Excel' },
         columns: [
             {
                 headerText: 'Employee Image', textAlign: 'Center',

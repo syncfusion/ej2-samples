@@ -1,87 +1,94 @@
-<div class="col-lg-8 control-section">
-    <div class="content-wrapper">
-    <div id="container" align="center"></div>
-<!-- source link -->
-    <div style="float: right; margin-right: 10px;">Source:
-       <a href="https://simple.wikipedia.org/wiki/List_of_countries_by_population_density" target="_blank">simple.wikipedia.org</a>
+<main>
+    <div class="col-lg-8 control-section">
+        <div class="content-wrapper">
+        <div id="container" align="center"></div>
+    <!-- source link -->
+        <div style="float: right; margin-right: 10px;">Source:
+           <a href="https://simple.wikipedia.org/wiki/List_of_countries_by_population_density" target="_blank">simple.wikipedia.org</a>
+        </div>
     </div>
-</div>
-</div>
-<!-- property panel-->
-<div class="col-lg-4 property-section">
-        <table id="property" title="Properties" style="width: 100%; margin-left: -10px;">
-            <colgroup>
-                <col span="1" style="width: 60%;">
-                <col span="1" style="width: 40%;">
-             </colgroup>   
-             <tbody> 
-             <tr style="height: 65px">
-                    <td>
-                        <div class="property-text" style="padding-top: 0px;">Legend mode </div>
-                    </td>
-                    <td>
-                        <select name="selectIndex" autocomplete="off" id="legendMode">
-                            <option value="Default" selected>Default</option>
-                            <option value="Interactive">Interactive</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr style="height: 65px">
-                    <td>
-                        <div class="property-text" style="padding-top: 0px;">Legend position </div>
-                    </td>
-                    <td>
-                        <select name="legendPos" autocomplete="off" id="legendPosition">
-                            <option value="Top" selected>Top</option>
-                            <option value="Bottom">Bottom</option>
-                            <option value="Left">Left</option>
-                            <option value="Right">Right</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr style="height: 65px">
-                    <td>
-                        <div class="property-text" style="width: 83%; padding-top: 0px;">Show legend for remaining data source items</div>
-                    </td>
-                    <td >
-                        <div style="margin-left: -20px;margin-top: -17px;">
-                            <input type="checkbox" id="opacity"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr style="height: 65px">
-                    <td>
-                        <div class="property-text" style="width: 83%;">Show population density when the legend item is toggled</div>
-                    </td>
-                    <td>
-                        <div style="margin-left: -20px;margin-top: -10px;">
-                            <input type="checkbox" id="toggleLegend"/>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-        </table>
     </div>
-<div id="action-description">
-        <p>
-                This sample visualizes grouping of countries in the legend based on their population density. The type and position of the legend can be changed using the <code>Type</code> and <code>Position</code> options in the properties panel.
-       </p>
-    </div>
-    <div id="description">
-        <p>
-                In this example, you can see how to render a legend in maps. A legend item denotes the value of a shape. Any number of legend items can be added to a legend. You can bind the desired colors to the shapes if its values are within the specified range using the ColorMapping property. You can also show or hide the legend items for the remaining items in the data source; they are not categorized in any color mapping. You can also show or hide color mapping related to population density while toggling the legend item
-    
-        </p>
-        <p>
-                Tooltip is enabled in this example. To see the tooltip in action, hover the mouse over a shape or tap a shape in touch enabled devices.
-        </p>
-    <br/>
-        <p style="font-weight: 500">Injecting Module</p>
-        <p>
-                The maps component features are segregated into individual modules by feature. To use a legend, inject the <code>Legend</code> module using the <code>Maps.Inject(Legend)</code> method.
-        </p>
-        <p>
-            More information on markers can be found in this
-            <a target="_blank" href="https://ej2.syncfusion.com/documentation/maps/legend/">documentation section</a>.
-        </p>
-    </div>
+    <!-- property panel-->
+    <div class="col-lg-4 property-section">
+            <table id="property" title="Properties" style="width: 100%; margin-left: -10px;" role="none">
+                <colgroup>
+                    <col span="1" style="width: 60%;">
+                    <col span="1" style="width: 40%;">
+                 </colgroup>   
+                 <tbody> 
+                 <tr style="height: 65px">
+                        <td>
+                            <div class="property-text" style="padding-top: 0px;">Legend mode </div>
+                        </td>
+                        <td style="padding-left: 10px">
+                            <select name="selectIndex" autocomplete="off" id="legendMode">
+                                <option value="Default" selected>Default</option>
+                                <option value="Interactive">Interactive</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr style="height: 65px">
+                        <td>
+                            <div class="property-text" style="padding-top: 0px;">Legend position </div>
+                        </td>
+                        <td style="padding-left: 10px">
+                            <select name="legendPos" autocomplete="off" id="legendPosition">
+                                <option value="Top" selected>Top</option>
+                                <option value="Bottom">Bottom</option>
+                                <option value="Left">Left</option>
+                                <option value="Right">Right</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr style="height: 65px">
+                        <td>
+                            <div class="property-text" style="width: 83%; padding-top: 0px;">Show legend for remaining data source items</div>
+                        </td>
+                        <td style="padding-left: 10px">
+                            <div style="margin-left: -20px;margin-top: -17px;">
+                                <input type="checkbox" id="opacity"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="height: 65px">
+                        <td>
+                            <div class="property-text" style="width: 83%;">Show population density when the legend item is toggled</div>
+                        </td>
+                        <td style="padding-left: 10px">
+                            <div style="margin-left: -20px;margin-top: -10px;">
+                                <input type="checkbox" id="toggleLegend"/>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+    <section id="action-description" aria-label="Description of Maps sample">
+            <p>
+                    This sample visualizes grouping of countries in the legend based on their population density. The type and position of the legend can be changed using the <code>Type</code> and <code>Position</code> options in the properties panel.
+           </p>
+        </section>
+        <section id="description" aria-label="Description of the Maps features demonstrated in this sample">
+            <p>
+                    In this example, you can see how to render a legend in maps. A legend item denotes the value of a shape. Any number of legend items can be added to a legend. You can bind the desired colors to the shapes if its values are within the specified range using the ColorMapping property. You can also show or hide the legend items for the remaining items in the data source; they are not categorized in any color mapping. You can also show or hide color mapping related to population density while toggling the legend item
+        
+            </p>
+            <p>
+                    Tooltip is enabled in this example. To see the tooltip in action, hover the mouse over a shape or tap a shape in touch enabled devices.
+            </p>
+        <br/>
+            <p style="font-weight: 500">Injecting Module</p>
+            <p>
+                    The maps component features are segregated into individual modules by feature. To use a legend, inject the <code>Legend</code> module using the <code>Maps.Inject(Legend)</code> method.
+            </p>
+            <p>
+                More information on markers can be found in this
+                <a target="_blank" href="https://ej2.syncfusion.com/documentation/maps/legend/">documentation section</a>.
+            </p>
+        </section>
+        <style>
+            .e-view.fluent2 #property .e-checkbox-wrapper .e-icons, .e-view.fluent2-dark #property .e-checkbox-wrapper .e-icons {
+               margin-left: 0px;
+            }
+        </style>
+</main>

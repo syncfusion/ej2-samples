@@ -174,6 +174,7 @@ Grid.Inject(Filter, Page, Selection);
                     headers: header,
                     crossDomain: true
                 });
+                grid.query.addParams('dataCount', '1000');
             }
             else if (changedAdaptor === 'WebApiAdaptor') {
                 newDataSource = new DataManager({

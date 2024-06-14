@@ -51,9 +51,12 @@ MultiSelect.Inject(CheckBoxSelection);
             labelSettings: {
                 leftLabel: 'TaskName'
             },
+            splitterSettings: {
+                columnIndex: 1
+            },
             workWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            projectStartDate: new Date('03/24/2019'),
-            projectEndDate: new Date('07/06/2019')
+            projectStartDate: new Date('03/24/2024'),
+            projectEndDate: new Date('07/06/2024')
         });
     gantt.appendTo('#WorkWeek');
     const select: any = (args: SelectEventArgs) => {

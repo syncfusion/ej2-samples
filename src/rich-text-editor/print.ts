@@ -9,7 +9,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteClean
     loadCultureFiles();
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
-            items: ['Bold',  'Italic',  'Underline',  '|',  'Formats',  'Alignments',
+            items: ['Bold', 'Italic', 'Underline', '|', 'Formats', 'Alignments', 'Blockquote',
                 'OrderedList',  'UnorderedList',  '|',  'CreateLink',  'Image',  '|',  'SourceCode',  'Undo',  'Redo', 'Print']
         }
     });

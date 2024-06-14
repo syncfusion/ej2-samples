@@ -90,8 +90,8 @@ Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar,
             splitterSettings: {
                 columnIndex: 2
             },
-            projectStartDate: new Date('03/24/2019'),
-            projectEndDate: new Date('07/06/2019')
+            projectStartDate: new Date('03/24/2024'),
+            projectEndDate: new Date('07/06/2024')
         });
     gantt.appendTo('#Events');
     let clear: Button = new Button();

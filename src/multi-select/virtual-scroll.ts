@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * AutoComplete Default functionality Sample
+ * MultiSelect Virtualization Sample
  */
 import { MultiSelect, DropDownList , VirtualScroll, ChangeEventArgs as DropDownChangeArgs, visualMode, CheckBoxSelection  } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
@@ -82,17 +82,13 @@ for (let i = 1; i <= 150; i++) {
 
     let databindObj: MultiSelect = new MultiSelect({
         //set the remote data to dataSource property
-        dataSource: new DataManager({
-            url: 'https://services.syncfusion.com/js/production/api/orders',
-            adaptor: new WebApiAdaptor ,
-            crossDomain: true
-        }),
-        fields: { text: 'OrderID', value: 'OrderID' },
+        dataSource: records,
+        fields: { text: 'text', value: 'id' },
         //enable the virtualization property
         enableVirtualization: true,
         popupHeight: '200px',
         mode: 'Default', 
-        value: ["20003", "10025", "10044", "custom"],
+        value: ['id10', 'id50', 'id100', "custom"],
         allowFiltering: true,
         allowCustomValue: true,
         hideSelectedItem: true,

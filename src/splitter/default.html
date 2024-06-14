@@ -1,30 +1,30 @@
 
 <div id="target" class="control-section" >
     <div class="pane1">
-            <div id="pane-heading">Horizontal Splitter</div>
+            <div id="horizontal-pane-heading">Horizontal Splitter</div>
         <div id="horizontal">
             <div class="splitter-default-content">
-                <div>Left pane<div id='panetext'>size: 25%</div><div id='panetext'>min: 60px</div></div>
+                <div>Left pane<div id='leftpanetext'>size: 25%</div><div id='leftpanetext1'>min: 60px</div></div>
             </div>
             <div class="splitter-default-content">
-                <span>Middle pane<div id='panetext'>size: 50%</div><div id='panetext'>min: 60px</div></span>
+                <span>Middle pane<div id='middlepanetext'>size: 50%</div><div id='middlepanetext1'>min: 60px</div></span>
             </div>
             <div class="splitter-default-content">
-                <span>Right pane<div id='panetext'>size: 25%</div><div id='panetext'>min: 60px</div></span>
+                <span>Right pane<div id='rightpanetext'>size: 25%</div><div id='rightpanetext1'>min: 60px</div></span>
             </div>
         </div>
     </div>
     <div class="pane2">
-            <div id="pane-heading">Vertical Splitter</div>
+            <div id="vertical-pane-heading">Vertical Splitter</div>
         <div id="vertical">
             <div class="splitter-default-content">
-                <span>Top pane<div id='panetext'>size: 30%</div><div id='panetext'>min: 60px</div></span>
+                <span>Top pane<div id='toppanetext'>size: 30%</div><div id='toppanetext1'>min: 60px</div></span>
             </div>
             <div class="splitter-default-content">
-                <span>Middle pane<div id='panetext'>size: 40%</div><div id='panetext'>min: 60px</div></span>
+                <span>Middle pane<div id='middlepanetexts'>size: 40%</div><div id='middlepanetexts1'>min: 60px</div></span>
             </div>
             <div class="splitter-default-content">
-                <span>Bottom pane<div id='panetext'>size: 30%</div><div id='panetext'>min: 60px</div></span>
+                <span>Bottom pane<div id='bottompanetext'>size: 30%</div><div id='bottompanetext1'>min: 60px</div></span>
             </div>
         </div>
     </div>
@@ -46,11 +46,13 @@
     </p>
 </div>
 <style>
-    #panetext {
+    #leftpanetext, #leftpanetext1, #middlepanetext, #middlepanetext1,
+    #rightpanetext, #rightpanetext1, #toppanetext, #toppanetext1,
+    #middlepanetexts, #middlepanetexts1, #bottompanetext, #bottompanetext1 {
         font-size: 11px;
     }
 
-    #pane-heading {
+    #horizontal-pane-heading, #vertical-pane-heading {
         font-size: 14px;
         margin-bottom: 4px;
     }

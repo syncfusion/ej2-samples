@@ -49,8 +49,8 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
             splitterSettings: {
                 columnIndex: 4
             },
-            projectStartDate: new Date('03/24/2019'),
-            projectEndDate: new Date('07/06/2019')
+            projectStartDate: new Date('03/24/2024'),
+            projectEndDate: new Date('07/06/2024')
         });
     gantt.appendTo('#ColumnMenu');
 };

@@ -34,7 +34,7 @@ export interface Data {
             enable: true
         },
         layers: [{
-            layerType: 'OSM',
+            urlTemplate:'https://tile.openstreetmap.org/level/tileX/tileY.png',
         },
         {
             type: 'SubLayer',

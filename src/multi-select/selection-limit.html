@@ -1,6 +1,6 @@
 <div class="control-section col-lg-8">
     <div class="control-wrapper">
-        <h4>Selection Limit</h4>
+        <label class="h4">Selection Limit</label>
         <input type="text" id='checkbox' />
     </div>
 </div>
@@ -14,7 +14,7 @@
                     </td>
                     <td>
                         <div>
-                            <input id="maxsel" type="text" class="form-control" value="3">
+                            <input id="maxsel" type="text" aria-label="value"  class="form-control" value="3">
                         </div>
                     </td>
                 </tr>
@@ -50,6 +50,11 @@
         margin: 0 auto;
         width: 250px;
         padding-top: 15px
+    }
+    .control-wrapper .h4 {
+        font-size: 16px;
+        margin: 0 0 10px;
+        font-weight: bold;
     }
 
     @font-face {

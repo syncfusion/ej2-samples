@@ -15,16 +15,16 @@
             "url":"document-list", "name": "Document List", "description":"This sample demonstrates to open PDF document in Read-only mode and Editable mode using PDF Viewer in Pop-up dialog", "category": "File Management"
         },
         {
-            "url":"multi-format-viewer", "name": "Multi-Format Viewer", "type": "new" ,"description":"This sample demonstrates to loads various file types like PDFs, images, and Microsoft Office documents (Word, Excel, PowerPoint) into the PDF Viewer", "category": "File Management"
+            "url":"multi-format-viewer", "name": "Multi-Format Viewer", "description":"This sample demonstrates to loads various file types like PDFs, images, and Microsoft Office documents (Word, Excel, PowerPoint) into the PDF Viewer", "category": "File Management"
         },
         {
-            "url":"organize-pdf", "name": "Organize Pages", "type": "new" ,"description":"This sample demonstrates how to digitally sign a PDF document from code behind using Syncfusion's PDF Viewer and PDF Library", "category": "Editor"
+            "url":"organize-pdf", "name": "Organize Pages", "type": "update" ,"description":"This sample demonstrates the page organization features of the PDF Viewer component, allowing users to effortlessly insert, delete, rearrange, copy, undo, redo, and rotate pages.", "category": "Editor"
         },
         {
             "url":"custom-toolbar", "name": "Toolbar", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with custom toolbar configuration.", "category": "Customization"
         },
         {
-            "url":"custom-context-menu", "name": "Context Menu", "type": "new","description":"This demo for Essential JS 2 PdfViewer shows the custom options for users who use to add custom options in context menu.", "category": "Customization"
+            "url":"custom-context-menu", "name": "Context Menu", "description":"This demo for Essential JS 2 PdfViewer shows the custom options for users who use to add custom options in context menu.", "category": "Customization"
         },
         {
             "url":"right-to-left", "name": "Right to Left", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with Right to Left Configuration.", "category": "Localization"

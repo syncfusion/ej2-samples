@@ -11,7 +11,7 @@ RichTextEditor.Inject(HtmlEditor, Toolbar, QuickToolbar, FormatPainter ,Table, L
         toolbarSettings: {
             items: ['FormatPainter', 'Bold', 'Italic', 'Underline', 'StrikeThrough',
                 'SuperScript', 'SubScript', '|', 'FontName', 'FontSize', 'FontColor', 'BackgroundColor', 'LowerCase', 'UpperCase', '|',
-                'Formats', 'Alignments', 'OrderedList', 'UnorderedList', '|',
+                'Formats', 'Alignments', 'Blockquote', 'OrderedList', 'UnorderedList', '|',
                 'Outdent', 'Indent', '|', 'CreateLink', 'Image', 'Video', 'Audio', 'CreateTable', '|', 'SourceCode', 'Undo', 'Redo'] 
         }}
     );

@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Aggregate, Group, Toolbar, Edit, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Page, Aggregate, Group, Toolbar, Edit, Sort, Filter } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
 
-Grid.Inject(Page, Group, Aggregate, Edit, Toolbar, Sort);
+Grid.Inject(Page, Group, Aggregate, Edit, Toolbar, Sort, Filter );
 /**
  * Aggregates
  */
@@ -15,6 +15,8 @@ Grid.Inject(Page, Group, Aggregate, Edit, Toolbar, Sort);
             pageSettings: {pageCount: 5},
             allowGrouping: true,
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
             groupSettings: { showDropArea: false, columns: ['CustomerID'] },
             editSettings: { allowEditing: true, allowDeleting: true, mode: 'Batch' },
             toolbar: [ 'Delete', 'Update', 'Cancel'],

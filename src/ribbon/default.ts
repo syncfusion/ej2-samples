@@ -216,7 +216,7 @@ Ribbon.Inject(RibbonFileMenu);
                         content: 'Find',
                         items: [
                             { text: 'Find', iconCss: 'e-icons e-search' },
-                            { text: 'Advanced find', iconCss: 'e-icons e-search' },
+                            { text: 'Advanced Find', iconCss: 'e-icons e-search' },
                             { text: 'Go to', iconCss: 'e-icons e-arrow-right' }
                         ],
                         select:(args: MenuEventArgs) => {updateContent( "Find -> " + args.item.text)},
@@ -535,7 +535,7 @@ Ribbon.Inject(RibbonFileMenu);
     });
     list.appendTo('#pictureList');
     let menuItems: MenuItemModel[] = [
-        { text: 'New', iconCss:'e-icons e-file-new', id: 'new' }, 
+        { text: 'New', iconCss:'e-icons e-file-new', id: 'new' },
         { text: 'Open', iconCss:'e-icons e-folder-open', id: 'open' },
         { text: 'Rename', iconCss:'e-icons e-rename', id: 'rename' },
         {

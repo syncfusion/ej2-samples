@@ -20,7 +20,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, Fil
             items: ['Bold', 'Italic', 'Underline', 'StrikeThrough', 'SuperScript', 'SubScript', '|',
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
                 'LowerCase', 'UpperCase', '|',
-                'Formats', 'Alignments', '|', 'NumberFormatList', 'BulletFormatList', '|',
+                'Formats', 'Alignments', 'Blockquote', '|', 'NumberFormatList', 'BulletFormatList', '|',
                 'Outdent', 'Indent', '|', 'CreateLink', 'Image', 'FileManager', 'Video', 'Audio', 'CreateTable', '|', 'ClearFormat',
                 '|', 'EmojiPicker', 'Print', '|',
                 'SourceCode', 'FullScreen', '|', 'Undo', 'Redo']

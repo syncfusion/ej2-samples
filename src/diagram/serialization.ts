@@ -146,6 +146,8 @@ let items: ItemModel[] = [
         id: 'palette-icon',
         prefixIcon: 'e-ddb-icons2 e-toggle-palette',
         align: 'Right',
+        text: '',
+        tooltipText: 'Palette-Icon',
     },
     { text: 'New', tooltipText: 'New', prefixIcon: 'e-ddb-icons e-new' },
     {
@@ -266,8 +268,8 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
 
     let uploadObj: Uploader = new Uploader({
         asyncSettings: {
-            saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
-            removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove'
+            saveUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Save',
+            removeUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Remove'
         },
         success: onUploadSuccess,
         showFileList: false

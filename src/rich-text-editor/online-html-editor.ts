@@ -35,7 +35,7 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
         enableFloating: false,
         items: ['Bold', 'Italic', 'Underline', 'StrikeThrough',
           'FontName', 'FontSize', 'FontColor', 'BackgroundColor',
-          'Formats', 'Alignments', 'OrderedList', 'UnorderedList',
+          'Formats', 'Alignments', 'Blockquote', 'OrderedList', 'UnorderedList',
           'Outdent', 'Indent',
           'CreateLink', 'Image', 'Video', 'Audio', 'CreateTable', '|', 'FormatPainter', 'ClearFormat',
           '|', 'EmojiPicker', 'SourceCode', '|', 'Undo', 'Redo'
@@ -63,7 +63,8 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
       }
     }
     function updateHtmlValue(): void {
-      textArea.innerHTML = myCodeMirror.getValue();
+      defaultRTE.value = myCodeMirror.getValue();
+      defaultRTE.dataBind();
     }
     function updateValue(): void {
       let mirrorView: HTMLElement = document.querySelector('#src-view');

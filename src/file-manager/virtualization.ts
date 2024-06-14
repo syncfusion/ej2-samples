@@ -19,8 +19,9 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu, Virtualiza
         view: 'Details',
         toolbarSettings: { items: ['NewFolder', 'SortBy', 'Cut', 'Copy', 'Paste', 'Delete', 'Refresh', 'Download', 'Rename', 'View', 'Details'] },
         contextMenuSettings: {
-                layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
-                visible: true
+            file: [ "Cut", "Copy", "|", "Delete", "Download", "Rename", "|", "Details"],
+            layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
+            visible: true
         },
         enableVirtualization: true
     });

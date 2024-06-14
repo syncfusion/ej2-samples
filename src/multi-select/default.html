@@ -1,8 +1,8 @@
 <div class="control-section">
     <div class="control-wrapper">
         <div id='content'>
-            <div>
-                <h4> Default Mode</h4>
+            <div class="control-styles">
+                <label class="h4"> Default Mode</label>
                 <select id="default"> 
                 <option value="Game1">American Football</option>
                 <option value="Game2">Badminton</option>
@@ -17,7 +17,7 @@
             </select>
             </div>
             <div class="control-styles">
-                <h4>Box Mode</h4>
+                <label class="h4">Box Mode</label>
                 <select id="box"> 
                 <option value="Game1">American Football</option>
                 <option value="Game2">Badminton</option>
@@ -34,7 +34,7 @@
             </div>
 
             <div class="control-styles">
-                <h4>Delimiter Mode</h4>
+                <label class="h4">Delimiter Mode</label>
                 <select id="delimiter"> 
                 <option value="Game1">American Football</option>
                 <option value="Game2">Badminton</option>
@@ -77,6 +77,11 @@
         width: 80%;
         margin: 0 auto;
         min-width: 185px;
+    }
+    .control-styles .h4 {
+        font-size: 16px;
+        margin: 0 0 10px;
+        font-weight: bold;
     }
    .e-bigger .control-section .control-wrapper {
         width: 100%;

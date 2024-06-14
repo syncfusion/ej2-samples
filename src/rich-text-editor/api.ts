@@ -20,6 +20,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Pas
         value: 1000,
         min: 555,
         max: 2000,
+        placeholder : "Maximum Length",
         format: 'n0',
         change: (e: ChangeEventArgs) => {
             defaultAPI.maxLength = maxLength.value;

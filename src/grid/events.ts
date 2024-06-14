@@ -1,8 +1,8 @@
 import { Button } from '@syncfusion/ej2-buttons';
-import { Grid, Page, Selection, Reorder, Group, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, Reorder, Group, Sort, Filter } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
 
-Grid.Inject(Page, Selection, Reorder, Group, Sort);
+Grid.Inject(Page, Selection, Reorder, Group, Sort, Filter);
 
 /**
  * Events sample
@@ -16,6 +16,8 @@ Grid.Inject(Page, Selection, Reorder, Group, Sort);
             allowGrouping: true,
             allowReordering: true,
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
             columns: [
                 { field: 'CategoryName', headerText: 'Category Name', width: 170 },
                 { field: 'ProductName', headerText: 'Product Name', width: 170 },

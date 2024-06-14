@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
-import { Grid, Page, Selection, Sort, PageEventArgs } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, Sort, PageEventArgs, Filter, Edit, Toolbar } from '@syncfusion/ej2-grids';
 import { productData } from './data-source';
 import { L10n } from '@syncfusion/ej2-base';
 
@@ -14,7 +14,7 @@ L10n.load({
     }
 });
 
-Grid.Inject(Page, Selection, Sort);
+Grid.Inject(Page, Selection, Sort, Filter, Edit, Toolbar);
 
 /**
  * PagingApi sample
@@ -28,10 +28,14 @@ Grid.Inject(Page, Selection, Sort);
             allowPaging: true,
             pageSettings: { pageCount: 2 },
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
+            toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
+            editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true },
             columns: [
-                { field: 'ProductID', headerText: 'Product ID', width: 130, textAlign: 'Right' },
-                { field: 'ProductName', headerText: 'Product Name', width: 190 },
-                { field: 'UnitPrice', headerText: 'Unit Price', width: 135, textAlign: 'Right', format: 'C2' },
+                { field: 'ProductID', headerText: 'Product ID', width: 130, textAlign: 'Right', isPrimaryKey: true, validationRules: { required: true, number: true } },
+                { field: 'ProductName', headerText: 'Product Name', width: 190, validationRules: { required: true, minLength: 5 } },
+                { field: 'UnitPrice', headerText: 'Unit Price', width: 135, textAlign: 'Right', format: 'C2', editType: 'numericedit' },
                 { field: 'UnitsInStock', headerText: 'Units In Stock', width: 160, textAlign: 'Right' }
             ],
             actionComplete: paging

@@ -82,7 +82,6 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         checked: false,
         change: (args: ChangeEventArgs) => {
             args.checked ? slider.orientation = 'Vertical' : slider.orientation = 'Horizontal';
-            slider.refresh();
         }
     });
     orientationMb.appendTo('#mb-orientation');
@@ -91,7 +90,6 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         checked: false,
         change: (args: ChangeEventArgs) => {
             slider.readonly = args.checked;
-            slider.refresh();
         }
     });
     readOnlyMb.appendTo('#mb-readOnly');
@@ -109,7 +107,6 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         label: 'Vertical Orientation',
         change: (args: ChangeEventArgs) => {
             args.checked ? slider.orientation = 'Vertical' : slider.orientation = 'Horizontal';
-            slider.refresh();
         }
     });
     orientation.appendTo('#orientation');
@@ -119,7 +116,6 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         label: 'Readonly',
         change: (args: ChangeEventArgs) => {
             slider.readonly = args.checked;
-            slider.refresh();
         }
     });
     readOnly.appendTo('#readOnly');

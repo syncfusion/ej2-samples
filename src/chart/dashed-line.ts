@@ -110,7 +110,7 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Category,Crosshair, ChartAnn
         let selectedTheme = location.hash.split('/')[1];
         selectedTheme = selectedTheme ? selectedTheme : 'Material';
         args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i,  'Contrast');
+        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
         if (selectedTheme && selectedTheme.indexOf('fabric-dark') > -1) {
           annotationColor = 'dark'
         } else if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
@@ -137,12 +137,14 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Category,Crosshair, ChartAnn
           annotationColor = 'dark'
         } else if (selectedTheme === 'tailwind') {
           annotationColor = 'light'
-        }
-        else if (selectedTheme === 'material3-dark') {
+        } else if (selectedTheme === 'material3-dark') {
           annotationColor = 'dark';
-        }
-        else if (selectedTheme === 'material3') {
+        } else if (selectedTheme === 'material3') {
           annotationColor = 'light';
+        } else if (selectedTheme === 'fluent2') {
+          annotationColor = 'light';
+        } else if (selectedTheme === 'fluent2-dark') {
+          annotationColor = 'dark';
         } else {
           annotationColor = 'light'
         }

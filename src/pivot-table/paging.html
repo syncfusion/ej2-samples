@@ -15,7 +15,7 @@
                 </td>
                 <td>
                     <div>
-                        <input type="text" tabindex="1" id='Pager_Position' />
+                        <input type="text" tabindex="0" id='Pager_Position' />
                     </div>
                 </td>
             </tr>
@@ -26,7 +26,7 @@
                 </td>
                 <td>
                     <div>
-                        <input type="text" tabindex="1" id='Pager_View' />
+                        <input type="text" tabindex="0" id='Pager_View' />
                     </div>
                 </td>
             </tr>
@@ -37,7 +37,7 @@
                 </td>
                 <td>
                     <div>
-                        <input type="text" tabindex="1" id='Page_Size' />
+                        <input type="text" tabindex="0" id='Page_Size' />
                     </div>
                 </td>
             </tr>
@@ -48,7 +48,7 @@
                 </td>
                 <td>
                     <div>
-                        <input id="Compact_View" type="checkbox">
+                        <input id="Compact_View" type="checkbox" aria-label="multiselect">
                     </div>
                 </td>
             </tr>
@@ -59,7 +59,7 @@
                 </td>
                 <td>
                     <div>
-                        <input id="Inverse" type="checkbox">
+                        <input id="Inverse" type="checkbox" aria-label="multiselect">
                     </div>
                 </td>
             </tr>
@@ -188,6 +188,11 @@
         need to inject the
         <code>Pager</code> module using the
         <code>PivotView.Inject(Pager)</code> method.
+    </p><br />
+    <p>
+      More information on the paging can be found in this <a target="_blank"
+        href="https://ej2.syncfusion.com/documentation/pivotview/paging">
+      documentation section</a>.
     </p>
 </div>
 <style>

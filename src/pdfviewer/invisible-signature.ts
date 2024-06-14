@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    PdfViewer, FormFields, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print,
+    PdfViewer, FormFields, Toolbar, Magnification, Navigation, LinkAnnotation, Annotation, BookmarkView, ThumbnailView, Print,
     PageChangeEventArgs, LoadEventArgs, TextSearch, TextSelection, FormDesigner, PageOrganizer
 } from '@syncfusion/ej2-pdfviewer';
 import { Toolbar as Tool, TreeView, NodeSelectEventArgs } from '@syncfusion/ej2-navigations';
@@ -8,7 +8,7 @@ import { ClickEventArgs, Button, CheckBox, ChangeEventArgs } from '@syncfusion/e
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Message } from '@syncfusion/ej2-notifications/src/message/message';
 
-PdfViewer.Inject(FormDesigner, FormFields, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSearch, TextSelection, PageOrganizer);
+PdfViewer.Inject(FormDesigner, FormFields, Toolbar, Magnification, Navigation, LinkAnnotation, Annotation, BookmarkView, ThumbnailView, Print, TextSearch, TextSelection, PageOrganizer);
 
 
 /**

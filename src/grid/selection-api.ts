@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
-import { Grid, Selection, Page, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Selection, Page, Sort, Filter } from '@syncfusion/ej2-grids';
 import { inventoryData } from './data-source';
 
-Grid.Inject(Selection, Page, Sort);
+Grid.Inject(Selection, Page, Sort, Filter);
 /**
  * Selection API sample
  */
@@ -15,6 +15,8 @@ Grid.Inject(Selection, Page, Sort);
             dataSource: inventoryData,
             allowPaging: true,
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
             allowSelection: true,
             selectionSettings: { type: 'Multiple' },
             enableHover: false,

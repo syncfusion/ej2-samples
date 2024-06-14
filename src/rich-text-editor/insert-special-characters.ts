@@ -16,7 +16,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor, PasteClean
     let saveSelection: NodeSelection;
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'Underline', '|', 'Formats', 'Alignments', 'OrderedList',
+            items: ['Bold', 'Italic', 'Underline', '|', 'Formats', 'Alignments', 'Blockquote', 'OrderedList',
                 'UnorderedList', '|', 'CreateLink', 'Image', '|', 'SourceCode',
                 {
                     tooltipText: 'Insert Symbol',

@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, freezeDirection, Column, Sort, Freeze} from '@syncfusion/ej2-grids';
+import { Grid, freezeDirection, Column, Sort, Freeze, Filter, Edit, Toolbar} from '@syncfusion/ej2-grids';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Query, DataManager } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
 
-Grid.Inject(Sort, Freeze);
+Grid.Inject(Sort, Freeze, Filter, Edit, Toolbar);
 
 /**
  * Grid frozen rows and columns sample
@@ -20,15 +20,19 @@ Grid.Inject(Sort, Freeze);
             enableHover: false,
             frozenRows: 2,
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
+            toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
+            editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true },
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', freeze: 'Left' },
-                { field: 'Freight', width: 125, format: 'C2', textAlign: 'Right' },
-                { field: 'CustomerID', headerText: 'Customer ID', width: 130, freeze: 'Right' },
-                { field: 'OrderDate', headerText: 'Order Date', width: 150, format: 'yMd', textAlign: 'Right' },
+                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', freeze: 'Left', isPrimaryKey: true, validationRules: { required: true, number: true } },
+                { field: 'Freight', width: 125, format: 'C2', textAlign: 'Right', editType: 'numericedit', validationRules: { required: true, min: 0 } },
+                { field: 'CustomerID', headerText: 'Customer ID', width: 130, freeze: 'Right', validationRules: { required: true, minLength: 5 } },
+                { field: 'OrderDate', headerText: 'Order Date', width: 150, format: 'yMd', textAlign: 'Right', editType: 'datepickeredit' },
                 { field: 'ShipName', headerText: 'Ship Name', width: 300 },
                 { field: 'ShipAddress', headerText: 'Ship Address', width: 270, freeze: 'Fixed' },
                 { field: 'ShipCity', headerText: 'Ship City', width: 250 },
-                { field: 'ShipCountry', headerText: 'Ship Country', width: 250 }
+                { field: 'ShipCountry', headerText: 'Ship Country', width: 250, editType: 'dropdownedit' }
             ]
         });
     grid.appendTo('#Grid');

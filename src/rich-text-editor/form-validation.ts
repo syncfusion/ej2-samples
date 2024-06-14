@@ -20,8 +20,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar, Pas
                         ) as HTMLElement;
                         const textContent = contentElement.textContent?.trim() || '';
                         const imgElements = contentElement.querySelectorAll('img');
-                        const textLengthValid = textContent.length >= 20;
-                        return imgElements.length > 0 || textLengthValid;
+                        return imgElements.length + textContent.length >= 20;
                     }, 'Please enter at least 20 characters'],
             },
         },

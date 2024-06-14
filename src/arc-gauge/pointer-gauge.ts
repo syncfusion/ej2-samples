@@ -24,6 +24,7 @@ export function gauge1(): CircularGauge {
       {
         annotations: [
           {
+            description:'38',
             content: '<div style="font-size:30px;font-family: inherit;">38</div>',
             angle: 188,
             radius: '15%',
@@ -51,6 +52,7 @@ export function gauge1(): CircularGauge {
         },
         pointers: [
           {
+            description:'RangeBar pointer value : 38',
             type: 'RangeBar',
             color: '#7edfb4',
             value: 38,
@@ -61,6 +63,7 @@ export function gauge1(): CircularGauge {
             }
           },
           {
+            description:'Marker pointer value : 38',
             type: 'Marker',
             markerShape: 'Rectangle',
             markerWidth: 28,
@@ -145,18 +148,21 @@ export function gauge2(): CircularGauge {
       {
         annotations: [
           {
+            description:'75%',
             content: '<div style="font-size:25px;font-family: inherit;">75%</div>',
             angle: 1,
             radius: '0%',
             zIndex: '1',
           },
           {
+            description:'Annotation value : 0 %',
             content: '<div style="font-size:22px;font-family: inherit;">0%</div>',
             angle: 255,
             radius: '102%',
             zIndex: '1',
           },
           {
+            description:'Annotation value : 100 %',
             content: '<div style="font-size:22px;font-family: inherit;">100%</div>',
             angle: 105,
             radius: '105%',
@@ -174,6 +180,7 @@ export function gauge2(): CircularGauge {
           width: 0,
         },
         labelStyle: {
+          format:'{value} %',
           font: {
             fontFamily: 'inherit',
             size: '0px',
@@ -182,6 +189,7 @@ export function gauge2(): CircularGauge {
         pointers: [
           {
             type: 'RangeBar',
+            description: 'RangeBar pointer value: 75',
             pointerWidth: 40,
             color: '#d6f5e8',
             value: 75,
@@ -189,6 +197,7 @@ export function gauge2(): CircularGauge {
           },
           {
             type: 'RangeBar',
+            description: 'RangeBar pointer value :75',
             pointerWidth: 30,
             color: '#7edfb4',
             value: 75,
@@ -222,6 +231,7 @@ export function gauge3(): CircularGauge {
       {
         annotations: [
           {
+            description:'450',
             content:
               '<div style="font-size:30px;font-family: inherit;"> 450 </div> </div>',
             zIndex: '1',
@@ -229,18 +239,21 @@ export function gauge3(): CircularGauge {
             radius: '-10%',
           },
           {
+            description:'300',
             content: '<div style="font-size:12px;font-family: inherit;"> 300 </div>',
             zIndex: '1',
             angle: 0,
             radius: '112%',
           },
           {
+            description:'400',
             content: '<div style="font-size:12px;font-family: inherit;"> 400 </div>',
             zIndex: '1',
             angle: 48,
             radius: '112%',
           },
           {
+            description:'500',
             content: '<div style="font-size:12px;font-family: inherit;"> 500 </div>',
             zIndex: '1',
             angle: 93,
@@ -254,6 +267,7 @@ export function gauge3(): CircularGauge {
         maximum: 600,
         radius: '75%',
         labelStyle: {
+          format:'{value}%',
           font: { fontFamily: 'inherit', size: '0px' },
           offset: 10,
         },
@@ -338,6 +352,7 @@ export function gauge4(): CircularGauge {
       {
         annotations: [
           {
+            description:'21%',
             content:
               '<div class="titleText" style="font-size:30px;">21%</div>',
             angle: 105,
@@ -347,6 +362,7 @@ export function gauge4(): CircularGauge {
         ],
         lineStyle: { width: 0 },
         labelStyle: {
+          format:'Pointer {value} %',
           font: {
             size: '0px',
           },
@@ -397,6 +413,7 @@ export function gauge4(): CircularGauge {
         pointers: [
           {
             type: 'RangeBar',
+            description:'RangeBar pointer value : 21',
             radius: '90%',
             value: 21,
             roundedCornerRadius: 10,
@@ -408,6 +425,7 @@ export function gauge4(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 22',
             markerShape: 'Circle',
             markerWidth: 30,
             markerHeight: 30,
@@ -420,6 +438,7 @@ export function gauge4(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value :22',
             markerShape: 'Circle',
             markerWidth: 18,
             markerHeight: 18,
@@ -457,6 +476,7 @@ export function gauge5(): CircularGauge {
       {
         annotations: [
           {
+            description:'54%',  
             content:
               '<div style="font-size:30px;font-family: inherit;">54%</div>',
             angle: 154,
@@ -466,6 +486,7 @@ export function gauge5(): CircularGauge {
         ],
         lineStyle: { width: 0 },
         labelStyle: {
+          format:'$ {value}',
           font: {
             size: '0px',
           },
@@ -518,6 +539,7 @@ export function gauge5(): CircularGauge {
         pointers: [
           {
             roundedCornerRadius: 20,
+            description:'RangeBar pointer value : 54',
             value: 54,
             type: 'RangeBar',
             radius: '90%',
@@ -559,6 +581,7 @@ export function gauge6(): CircularGauge {
       {
         annotations: [
           {
+            description:'80% Completed',
             content:
               '<div class="annotationText">80% <br/> <div> Completed </div> </div>',
             angle: 10,
@@ -568,6 +591,7 @@ export function gauge6(): CircularGauge {
         ],
         lineStyle: { width: 0 },
         labelStyle: {
+          format:'{value} % Completed',
           font: {
             size: '0px',
           },
@@ -582,6 +606,7 @@ export function gauge6(): CircularGauge {
         pointers: [
           {
             type: 'Marker',
+            description:'Marker pointer value : 0',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -594,6 +619,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 1',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -606,6 +632,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 2',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -618,6 +645,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 3',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -630,6 +658,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 4',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -642,6 +671,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 5',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -654,6 +684,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 6',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -666,6 +697,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 7',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -678,6 +710,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 8',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -690,6 +723,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 9',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -702,6 +736,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 10',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -714,6 +749,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 11',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -726,6 +762,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 12',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -738,6 +775,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 13',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -750,6 +788,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 14',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -762,6 +801,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 15',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -774,6 +814,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 16',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -786,6 +827,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 17',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -798,6 +840,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 18',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -810,6 +853,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 19',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -822,6 +866,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 20',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -834,6 +879,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 21',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -846,6 +892,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 22',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -858,6 +905,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 23',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -870,6 +918,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 24',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -882,6 +931,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 25',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -894,6 +944,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 26',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -906,6 +957,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 27',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -918,6 +970,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 28',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -930,6 +983,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 29',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -942,6 +996,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 30',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -954,6 +1009,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 31',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -966,6 +1022,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 32',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -978,6 +1035,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 33',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -990,6 +1048,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 34',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1002,6 +1061,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 35',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1014,6 +1074,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 36',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1026,6 +1087,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 37',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1038,6 +1100,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 38',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1050,6 +1113,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 39',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1062,6 +1126,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 40',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1074,6 +1139,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 41',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1086,6 +1152,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 42',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1098,6 +1165,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 43',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1110,6 +1178,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 44',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1122,6 +1191,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 45',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1134,6 +1204,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 46',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1146,6 +1217,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 47',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1158,6 +1230,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 48',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1170,6 +1243,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 49',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1182,6 +1256,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 50',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1194,6 +1269,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 51',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1206,6 +1282,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 52',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1218,6 +1295,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 53',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1230,6 +1308,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 54',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1242,6 +1321,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 55',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1254,6 +1334,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 56',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1266,6 +1347,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 57',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1278,6 +1360,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 58',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1290,6 +1373,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 59',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1302,6 +1386,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 60',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1314,6 +1399,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 61',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1326,6 +1412,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 62',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1338,6 +1425,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 63',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1350,6 +1438,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 64',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1362,6 +1451,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 65',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1374,6 +1464,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 66',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1386,6 +1477,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 67',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1398,6 +1490,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 68',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1410,6 +1503,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 69',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1422,6 +1516,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 70',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1434,6 +1529,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 71',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1446,6 +1542,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 72',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1458,6 +1555,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 73',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1470,6 +1568,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 74',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1482,6 +1581,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 75',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1494,6 +1594,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 76',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1506,6 +1607,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 77',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1518,6 +1620,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker pointer value : 78',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,
@@ -1530,6 +1633,7 @@ export function gauge6(): CircularGauge {
           },
           {
             type: 'Marker',
+            description:'Marker Pointer Value : 79',
             markerShape: 'Rectangle',
             markerWidth: 38,
             markerHeight: 3,

@@ -3,7 +3,6 @@
     "directory": "maps",
     "category": "Data Visualization",
     "ftName": "maps",
-    "type": "update",
     "samples": [{
             "url": "default",
             "name": "Default Functionalities",
@@ -230,8 +229,7 @@
             "sourceFiles":[
                 { "displayName": "polygon.html", "path":"src/maps/polygon.html" },
                 { "displayName": "polygon.ts", "path":"src/maps/polygon.ts" }
-            ],
-            "type": "update"
+            ]
         },
         {
             "url": "osm",

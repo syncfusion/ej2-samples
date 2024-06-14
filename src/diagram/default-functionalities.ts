@@ -444,12 +444,11 @@ function historyChange(args:any){
       node.ports = getPorts();
       return node;
     }
-    let uploadObject:Uploader = new Uploader({
-        asyncSettings: {
-            saveUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Save',
-            removeUrl: 'https://aspnetmvc.syncfusion.com/services/api/uploadbox/Remove'
-        },success: onUploadSuccess,showFileList:false
-        
+    let uploadObject: Uploader = new Uploader({
+      asyncSettings: {
+        saveUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Save',
+        removeUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Remove'
+      }, success: onUploadSuccess, showFileList: false
     });
     uploadObject.appendTo('#fileupload');
     function printDiagram(args:any) {

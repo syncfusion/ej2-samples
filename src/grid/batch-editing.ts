@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Toolbar, Edit, Page, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Toolbar, Edit, Page, Sort, Filter } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
 
 /**
  * Batch Editing sample
  */
-Grid.Inject(Edit, Toolbar, Page, Sort);
+Grid.Inject(Edit, Toolbar, Page, Sort, Filter);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -17,6 +17,8 @@ Grid.Inject(Edit, Toolbar, Page, Sort);
             pageSettings: { pageCount: 5 },
             toolbar: ['Add', 'Delete', 'Update', 'Cancel'],
             allowSorting: true,
+            allowFiltering: true,
+            filterSettings: { type: 'Excel' },
             columns: [
                 {
                     field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right',

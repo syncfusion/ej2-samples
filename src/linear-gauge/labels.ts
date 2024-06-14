@@ -163,6 +163,9 @@ loadCultureFiles();
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
                 selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+            if (args.gauge.theme === "Fluent2Dark") {
+                (args.gauge.axes[0].pointers as any)[3].color = "#292827"; 
+            }
             // custom code end
         }
     });

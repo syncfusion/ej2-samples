@@ -1,16 +1,20 @@
 import { loadCultureFiles } from '../common/culture-loader';
+
 import {
     Diagram,
     NodeModel,
+    DataBinding,
+    HierarchicalTree
   } from '@syncfusion/ej2-diagrams';
   import { Toolbar, ClickEventArgs, TreeView } from '@syncfusion/ej2-navigations';
-import { Button } from '@syncfusion/ej2/buttons';
-import { DataManager, Query } from '@syncfusion/ej2/data';
-import { NodeConstraints, SnapConstraints, UndoRedo } from '@syncfusion/ej2/diagrams';
-Diagram.Inject(UndoRedo);
+import { Button } from '@syncfusion/ej2-buttons';
+import { DataManager, Query } from '@syncfusion/ej2-data';
+import { NodeConstraints, SnapConstraints, UndoRedo } from '@syncfusion/ej2-diagrams';
+Diagram.Inject(DataBinding, HierarchicalTree, UndoRedo);
 
 let diagram: Diagram
 
+//collecton of data
 let workingData:object[] = [
     { Name: 'Plant Manager', Id: '1', hasChild: true, expanded: true },
     {
@@ -74,28 +78,32 @@ let workingData:object[] = [
   let treeObj:TreeView;
   let targetNodeId:any;
   let elementNodeId:any;
+  //drag enter event
   function dragEnter(args:any) {
-    let lable = '';
+    let label = '';
     if (args.dragData) {
-        lable = args.dragData.text;
+        label = args.dragData.text;
     }
     let node =
     {
         id: 'node' + index,
-        data: { Name: lable, Id: 'node' + index },
-        annotations: [{ content: lable }]
+        data: { Name: label, Id: 'node' + index },
+        annotations: [{ content: label }]
     };
     args.dragItem = node;
 }
 
+//check data function
 function checkData(a:any) {
     return a.Id === targetNodeId;
 }
 
+//check element data function
 function checkElementData(a:any) {
     return a.Id === elementNodeId;
 }
 
+//Drop a node from the palette into the diagram
 function drop(args:any) {
     let connector:any;
     let tempData:any;
@@ -138,6 +146,7 @@ function drop(args:any) {
 
 }
 
+//Change the annotation of the node
 function textEdit(args:any) {
     setTimeout(function () {
         if (args.annotation) {
@@ -149,11 +158,13 @@ function textEdit(args:any) {
     }, 0);
 }
 
+//Enable the add and delete button
 function nodeSelected() {
     deleteButton.disabled = false;
     addButton.disabled = false;
 }
 
+//node click event
 function nodeClicked() {
     let node = diagram.getObject(treeObj.selectedNodes[0]);
     diagram.select([node]);
@@ -166,12 +177,14 @@ function keyPress(args:any) {
     }
 }
 
+//node edited event
 function nodeEdited(args:any) {
     let node:any = diagram.getObject(args.nodeData.id);
     node.annotations[0].content = args.newText;
     treeObj.selectedNodes = [args.nodeData.id];
 }
 
+//Remove node
 function remove() {
     let nodeId:any;
     if (diagram.selectedItems.nodes.length > 0) {
@@ -193,6 +206,7 @@ function remove() {
 
 }
 
+//Remove sub child node
 function removeSubChild(node:any, canDelete:any) {
     let childNode:any;
     let connector:any;
@@ -242,6 +256,7 @@ function removeSubChild(node:any, canDelete:any) {
     }
 }
 
+//add function
 function add() {
     let nodeId:any;
     if (diagram.selectedItems.nodes.length > 0) {
@@ -253,10 +268,12 @@ function add() {
     }
 }
 
+//filter Node Data Function
 function filterNodeData(a:any) {
     return a.data.Id === targetNodeId;
 }
 
+//add Node Function
 function addNode(nodeId:any) {
     targetNodeId = nodeId ? nodeId : treeObj.selectedNodes[0];
     let tempData:any = workingData.filter(checkData);
@@ -329,6 +346,11 @@ function addNode(nodeId:any) {
                     deleteButton.disabled = true;
                     addButton.disabled = true;
                 }
+                let selectedItems: any = diagram.selectedItems.nodes.concat((diagram.selectedItems as any).connectors);
+                if(selectedItems.length==0)
+                {
+                    treeObj.selectedNodes=[];
+                }
             }
         },
         click: function (args:any) {
@@ -345,16 +367,18 @@ function addNode(nodeId:any) {
         // Button Initialization
 
         addButton = new Button({ isPrimary: true, disabled: true });
-        addButton.appendTo('#addBtn');
+        addButton.appendTo('#addButton');
     
         deleteButton = new Button({ isPrimary: true, disabled: true });
-        deleteButton.appendTo('#deleteBtn');
-    
-        document.getElementById('addBtn').onclick = function () {
+        deleteButton.appendTo('#deleteButton');
+
+        //add button on click
+        document.getElementById('addButton').onclick = function () {
             add();
         };
-    
-        document.getElementById('deleteBtn').onclick = function () {
+        
+        //delete button on click
+        document.getElementById('deleteButton').onclick = function () {
             if ((diagram.selectedItems.nodes[0].data as any).Id !== "1") {
                 remove();
             }

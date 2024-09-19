@@ -1,0 +1,17 @@
+{
+    "name": "Rich Text Editor",
+    "directory": "ai-rich-text-editor",
+    "category": "Smart AI Solutions",
+    "samples": [
+        {
+            "url": "assistant",
+            "name": "AI Assistant",
+            "category": "Rich Text Editor",
+            "sourceFiles": [
+                { "displayName": "ai-assistant.ts", "path": "src/ai-rich-text-editor/assistant.ts" },
+                { "displayName": "ai-assistant.html", "path": "src/ai-rich-text-editor/ai-assistant.html" }
+            ],
+            "description": "This demo showcases the Rich Text Editor AI feature."
+        }
+    ]
+}

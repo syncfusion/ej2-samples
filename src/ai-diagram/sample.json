@@ -1,0 +1,27 @@
+{
+    "name": "Diagram",
+    "directory": "ai-diagram",
+    "category": "Smart AI Solutions",
+    "samples": [
+        {
+            "url": "text-to-flowchart",
+            "name": "Text to Flowchart",
+            "category": "Diagram",
+            "sourceFiles": [
+                { "displayName": "text-to-flowchart.html", "path": "src/ai-diagram/ai-text-to-flowchart.html" },
+                { "displayName": "text-to-flowchart.ts", "path": "src/ai-diagram/text-to-flowchart.ts" }
+            ],
+            "description": "This demo showcases the Diagram AI feature."
+        },
+        {
+            "url": "text-to-mindmap",
+            "name": "Text to MindMap",
+            "category": "Diagram",
+            "sourceFiles": [
+                { "displayName": "text-to-mindmap.html", "path": "src/ai-diagram/ai-text-to-mindmap.html" },
+                { "displayName": "text-to-mindmap.ts", "path": "src/ai-diagram/text-to-mindmap.ts" }
+            ],
+            "description": "This demo showcases the Diagram AI feature."
+        }
+    ]
+}

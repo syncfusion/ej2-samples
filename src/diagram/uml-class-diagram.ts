@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * class-diagram -  Annotation
  */
@@ -5,29 +6,25 @@
 import {
     Diagram, NodeModel, ConnectorModel, UmlClassifierShapeModel,IDragEnterEventArgs
 } from '@syncfusion/ej2-diagrams';
-import { Connector, PaletteModel, SymbolInfo, SymbolPalette } from '@syncfusion/ej2/diagrams';
+import { Connector, PaletteModel, SymbolInfo, SymbolPalette } from '@syncfusion/ej2-diagrams';
 import { addEvents } from './script/diagram-common';
 
 let diagram: Diagram;
 
 //Set the default values of nodes.
-function getNodeDefaults(obj: NodeModel): NodeModel {
-    obj.style = { fill: '#26A0DA', strokeColor: 'white' };
-    return obj;
-}
-
-//Set the default values of connectors.
-function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
-    return connector;
-}
-
-//Set an annoation style at runtime.
-function setNodeTemplate(node: NodeModel): void {
+function getNodeDefaults(node: NodeModel): NodeModel {
+    node.style = { fill: '#26A0DA', strokeColor: 'white' };
     if (node.annotations.length > 0) {
         for (let i: number = 0; i < node.annotations.length; i++) {
             node.annotations[i].style.color = 'white';
         }
     }
+    return node;
+}
+
+//Set the default values of connectors.
+function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
+    return connector;
 }
 
 //Create a connector.
@@ -68,6 +65,7 @@ function createMethods(name: string, type: string): object {
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
     let nodes: NodeModel[] = [
         {
             id: 'Patient',
@@ -209,30 +207,30 @@ function createMethods(name: string, type: string): object {
         createConnector('connect15', 'AdministrativeStaff', 'Staff'),
         createConnector('connect16', 'TechnicalStaff', 'Staff')
     ];
-
-
+    //Initializes diagram control
     diagram = new Diagram({
         width: '100%',
       height: '100%',
         nodes: nodes,
         connectors: connectors,
-        //Sets the default values of nodes
+        //Sets the default values for nodes
         getNodeDefaults: getNodeDefaults,
         //Sets the default values of connectors
         getConnectorDefaults: getConnectorDefaults,
-        //Customize the content of the node
-        setNodeTemplate: setNodeTemplate,
         dragEnter:function(args: IDragEnterEventArgs): void{
             if(args.element instanceof Connector){
               args.element.targetPoint.x += 100;
               args.element.targetPoint.y += 20
             }
         },
+        created: () => {
+            addEvents();
+        }
     });
     diagram.appendTo('#diagram');
     diagram.fitToPage();
 
-      // Initializes the palettes to be displayed in the symbol palette.
+      //Initializes the palettes to be displayed in the symbol palette.
     let palettes: PaletteModel[] = [
         {
             id: 'UmlActivity', expanded: true, title: 'UML Classifier Nodes', symbols: [
@@ -246,7 +244,7 @@ function createMethods(name: string, type: string): object {
                     type: 'UmlClassifier',
                     classShape: {
                         attributes: [
-                            { name: 'accepted', type: 'Date', style: { color: "red", fontFamily: "Arial", textDecoration: 'Underline',  italic: true },isSeparator: true },
+                            { name: 'accepted', type: 'Date', isSeparator: true },
                             { name: 'sickness', type: 'History' },
                             { name: 'prescription', type: 'String[*]' },
                             { name: 'allergies', type: 'String[*]' }
@@ -294,7 +292,6 @@ function createMethods(name: string, type: string): object {
                 shape: {
                     type: 'UmlClassifier',
                     enumerationShape: {
-                        name: 'AccountType',
                         members: [
                             {
                                 name: 'Checking Account', style: {}
@@ -515,7 +512,7 @@ function createMethods(name: string, type: string): object {
           ]
         }
     ];
-    function setPaletteNodeDefaults(node:any) {
+    function setPaletteNodeDefaults(node:NodeModel) {
         node.width = 100;
         node.height = 100;
     }
@@ -523,16 +520,16 @@ function createMethods(name: string, type: string): object {
     let palette: SymbolPalette = new SymbolPalette({
         // sets the expandable mode of the symbol palette.
         expandMode: 'Multiple',
-        // sets the palettes to be displayed in the symbol palette.
+       // Sets the palettes displayed in the symbol palette.
         palettes: palettes,
-        getNodeDefaults: setPaletteNodeDefaults, 
         // sets the width and height of the palette.
         width: '100%', height: '100%',
         symbolMargin: { left: 12, right: 12, top: 12, bottom: 12 },
         symbolHeight: 90, symbolWidth: 90,
+        getNodeDefaults :setPaletteNodeDefaults,
         getSymbolInfo: (symbol: NodeModel): SymbolInfo => {
             return { fit: true,description: { text: symbol.id, } ,tooltip: symbol.addInfo ? symbol.addInfo['tooltip'] : symbol.id };
-        },
+        }
     });
     palette.appendTo('#symbolpalette');
 };

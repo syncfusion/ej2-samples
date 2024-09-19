@@ -15,257 +15,125 @@ export interface GalleryInfo {
 
 Diagram.Inject(BpmnDiagrams);
 
-let basicShapeModel: object[] = [
-    {
-        shape: { type: 'Text', content: 'Basic Shapes' }, constraints: NodeConstraints.PointerEvents,
-        style: { fontSize: 16, fill: 'None', fontFamily: 'sans-serif', bold: true, strokeWidth: 0 },
-    },
-    {
-        shape: { type: 'Basic', shape: 'Rectangle' }, annotations: [
-            { content: 'Rectangle' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Ellipse' }, annotations: [
-            { content: 'Ellipse' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Triangle' }, annotations: [
-            { content: 'Triangle' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Plus' }, annotations: [
-            { content: 'Plus' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Star' }, annotations: [
-            { content: 'Star' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Pentagon' }, annotations: [
-            { content: 'Pentagon' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Heptagon' }, annotations: [
-            { content: 'Heptagon' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Octagon' }, annotations: [
-            { content: 'Octagon' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Trapezoid' }, annotations: [
-            { content: 'Trapezoid' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Decagon' }, annotations: [
-            { content: 'Decagon' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'RightTriangle' }, annotations: [
-            { content: 'Right Triangle' }
-        ]
-    },
-    {
-        shape: { type: 'Basic', shape: 'Parallelogram' }, annotations: [
-            { content: 'Parallelogram' }
-        ]
-    },
-];
-
-let flowShapeModel: object[] = [
-    {
-        shape: { type: 'Text', content: 'Flow Shapes' }, constraints: NodeConstraints.PointerEvents,
-        style: { fontSize: 16, fill: 'None', fontFamily: 'sans-serif', bold: true, strokeWidth: 0 },
-    },
-    {
-        shape: { type: 'Flow', shape: 'Terminator' }, annotations: [
-            { content: 'Terminator' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Process' }, annotations: [
-            { content: 'Process' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Decision' }, annotations: [
-            { content: 'Decision' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Document' }, annotations: [
-            { content: 'Document' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'PreDefinedProcess' }, annotations: [
-            { content: 'Predefined Process' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'PaperTap' }, annotations: [
-            { content: 'Paper Tape' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'DirectData' }, annotations: [
-            { content: 'Direct Data' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'SequentialData' }, annotations: [
-            { content: 'Direct Data' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Sort' }, annotations: [
-            { content: 'Sort' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'MultiDocument' }, annotations: [
-            { content: 'Multi-Document' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Collate' }, annotations: [
-            { content: 'Collate' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'SummingJunction' }, annotations: [
-            { content: 'Summing Junction' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Or' }, annotations: [
-            { content: 'Or' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'InternalStorage' }, annotations: [
-            { content: 'Internal Storage' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Extract' }, annotations: [
-            { content: 'Extract' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'ManualOperation' }, annotations: [
-            { content: 'Manual Operation' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Merge' }, annotations: [
-            { content: 'Merge' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'OffPageReference' }, annotations: [
-            { content: 'Off-Page Reference' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'SequentialAccessStorage' }, annotations: [
-            { content: 'Sequential Access Storage' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Data' }, annotations: [
-            { content: 'Data' }
-        ]
-    },
-    {
-        shape: { type: 'Flow', shape: 'Card' }, annotations: [
-            { content: 'Card' }
-        ]
-    },
-];
-
-let bpmnShapeModel: object[] = [
-    {
-        shape: { type: 'Text', content: 'BPMN Shapes' }, constraints: NodeConstraints.PointerEvents,
-        style: { fontSize: 16, fill: 'none', fontFamily: 'sans-serif', bold: true, strokeWidth: 0 },
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'Event', event: { event: 'Start', trigger: 'None' } },
-        annotations: [
-            { content: 'Start Event' }
-        ]
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'Event', event: { event: 'Intermediate', trigger: 'None' } },
-        annotations: [
-            { content: 'Intermediate Event' }
-        ]
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'Event', event: { event: 'End', trigger: 'None' } },
-        annotations: [
-            { content: 'End Event' }
-        ]
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'Gateway' },
-        annotations: [
-            { content: 'Gateway' }
-        ]
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'Activity', activity: { activity: 'Task' } },
-        annotations: [
-            { content: 'Task' }
-        ]
-    },
-    {
+// Function to create a basic shape object
+function getBasicShape(shapeType: string, annotations: { content: string }[]): any {
+    return {
         shape: {
-            type: 'Bpmn', shape: 'Activity', activity: {
-                activity: 'SubProcess',
-                subProcess: {
-                    type: 'Transaction', transaction: {
-                        success: { visible: false }, failure: { visible: false }, cancel: { visible: false }
-                    }
-                }
-            },
+            type: 'Basic',
+            shape: shapeType
         },
-        annotations: [
-            { content: 'Transaction' }
-        ]
+        annotations
+    };
+}
+
+// Define basic shape models
+let basicShapeModel: any[] = [
+    { 
+        shape: { type: 'Text', content: 'Basic Shapes' },
+        constraints: NodeConstraints.PointerEvents,
+        style: { fontSize: 16, fill: 'None', fontFamily: 'sans-serif', bold: true, strokeWidth: 0 },
     },
-    {
-        shape: { type: 'Bpmn', shape: 'Message' }, annotations: [{ content: 'Message' }]
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'DataObject' }, annotations: [{ content: 'Data Object' }]
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'DataSource' }, annotations: [{ content: 'Data Source' }]
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'Group' }, annotations: [{ content: 'Group' }]
-    },
-    {
-        shape: { type: 'Bpmn', shape: 'TextAnnotation' }, annotations: [{ content: 'Text Annotation' }]
-    }
+    getBasicShape('Rectangle', [{ content: 'Rectangle' }]),
+    getBasicShape('Ellipse', [{ content: 'Ellipse' }]),
+    getBasicShape('Triangle', [{ content: 'Triangle' }]),
+    getBasicShape('Plus', [{ content: 'Plus' }]),
+    getBasicShape('Star', [{ content: 'Star' }]),
+    getBasicShape('Pentagon', [{ content: 'Pentagon' }]),
+    getBasicShape('Heptagon', [{ content: 'Heptagon' }]),
+    getBasicShape('Octagon', [{ content: 'Octagon' }]),
+    getBasicShape('Trapezoid', [{ content: 'Trapezoid' }]),
+    getBasicShape('Decagon', [{ content: 'Decagon' }]),
+    getBasicShape('RightTriangle', [{ content: 'Right Triangle' }]),
+    getBasicShape('Parallelogram', [{ content: 'Parallelogram' }])
+];
+
+
+//Function to get flowshapes.
+function createFlowShape(shapeType: any,content: string): NodeModel {
+    let flowshape: NodeModel = {
+        shape: { type: 'Flow', shape: shapeType },
+    annotations:[{content:content}] };
+    return flowshape;
+  }
+
+  //Initialize the flowshapes for the symbol palatte
+  let flowShapes: NodeModel[] = [
+    { shape: { type: 'Text', content: 'Flow Shapes' }, constraints: NodeConstraints.PointerEvents,
+    style: { fontSize: 16, fill: 'None', fontFamily: 'sans-serif', bold: true, strokeWidth: 0 }
+  },
+  createFlowShape('Terminator', 'Terminator'),
+  createFlowShape('Process', 'Process'),
+  createFlowShape('Decision', 'Decision'),
+  createFlowShape('Document', 'Document'),
+  createFlowShape('PreDefinedProcess', 'Predefined Process'),
+  createFlowShape('PaperTap', 'Paper Tape'),
+  createFlowShape('DirectData', 'Direct Data'),
+  createFlowShape('SequentialData', 'Direct Data'),
+  createFlowShape('Sort', 'Sort'),
+  createFlowShape('MultiDocument', 'Multi-Document'),
+  createFlowShape('Collate', 'Collate'),
+  createFlowShape('SummingJunction', 'Summing Junction'),
+  createFlowShape('Or', 'Or'),
+  createFlowShape('InternalStorage', 'Internal Storage'),
+  createFlowShape('Extract', 'Extract'),
+  createFlowShape('ManualOperation', 'Manual Operation'),
+  createFlowShape('Merge', 'Merge'),
+  createFlowShape('OffPageReference', 'Off-Page Reference'),
+  createFlowShape('SequentialAccessStorage', 'Sequential Access Storage'),
+  createFlowShape('Data', 'Data'),
+  createFlowShape('Card', 'Card')
+  ];
+
+// Function to create BPMN shape
+function getBpmnShape(shapeType: string, annotations: { content: string }[], event?: { event: string, trigger: string }): any {
+  const shape: any = {
+      type: 'Bpmn',
+      shape: shapeType
+  };
+  if (event) {
+      shape.event = event;
+  }
+  return {
+      shape,
+      annotations
+  };
+}
+
+// Define BPMN shape models
+let bpmnShapeModel: any[] = [
+  { 
+      shape: { type: 'Text', content: 'BPMN Shapes' },
+      constraints: NodeConstraints.PointerEvents,
+      style: { fontSize: 16, fill: 'none', fontFamily: 'sans-serif', bold: true, strokeWidth: 0 },
+  },
+  getBpmnShape('Event', [{ content: 'Start Event' }], { event: 'Start', trigger: 'None' }),
+  getBpmnShape('Event', [{ content: 'Intermediate Event' }], { event: 'Intermediate', trigger: 'None' }),
+  getBpmnShape('Event', [{ content: 'End Event' }], { event: 'End', trigger: 'None' }),
+  getBpmnShape('Gateway', [{ content: 'Gateway' }]),
+  {
+    shape: { type: 'Bpmn', shape: 'Activity', activity: { activity: 'Task' } },
+    annotations: [{ content: 'Task' }]
+  },
+  {
+    shape: {type: 'Bpmn', shape: 'Activity', activity: {
+            activity: 'SubProcess',
+            subProcess: {
+                type: 'Transaction', transaction: {
+                    success: { visible: false }, failure: { visible: false }, cancel: { visible: false }}
+            }}},
+    annotations: [{ content: 'Transaction' }]
+  },
+  getBpmnShape('Message', [{ content: 'Message' }]),
+  getBpmnShape('DataObject', [{ content: 'Data Object' }]),
+  getBpmnShape('DataSource', [{ content: 'Data Source' }]),
+  getBpmnShape('Group', [{ content: 'Group' }]),
+  getBpmnShape('TextAnnotation', [{ content: 'Text Annotation' }])
 ];
 
 
 //create and return the Nodes collection.
 function getNodes(): NodeModel[] {
-    let nodes1: NodeModel[] = basicShapeModel;
-    nodes1 = nodes1.concat(flowShapeModel).concat(bpmnShapeModel);
+    let nodes1: NodeModel[] = basicShapeModel.concat(flowShapes).concat(bpmnShapeModel);
     let offsetx: number = 60;
     let offsety: number = 50;
     let count: number = 1;
@@ -287,10 +155,11 @@ function getNodes(): NodeModel[] {
         node.offsetX = offsetx;
         node.offsetY = offsety;
         if (!(node.shape.type === 'Text')) {
-            node.annotations[0].verticalAlignment = 'Top';
-            node.annotations[0].offset = { y: 1 };
-            node.annotations[0].margin = { top: 10 };
-            offsetx = offsetx + 90;
+            let label = node.annotations[0];
+            label.verticalAlignment = 'Top';
+            label.offset = { y: 1 };
+            label.margin = { top: 10 };
+            offsetx += 90;
             if (count % 10 === 0) {
                 offsety = offsety + 100;
                 offsetx = 60;
@@ -299,7 +168,7 @@ function getNodes(): NodeModel[] {
         }
         if (node.shape.type === 'Text') {
             offsetx = 60;
-            offsety = offsety + 50;
+            offsety +=50;
             count = 1;
             node.width = 150;
             node.height = 100;

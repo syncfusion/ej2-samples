@@ -1,0 +1,21 @@
+{
+    "name": "Smart Paste",
+    "directory": "ai-smart-paste",
+    "category": "Smart Controls",
+    "type": "preview",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "category": "Smart Paste",
+            "hideDisplayGif": false,
+            "sourceFiles":[
+                { "displayName": "smart-paste.html", "path":"src/ai-smart-paste/ai-default.html" },
+                { "displayName": "smart-paste.ts", "path":"src/ai-smart-paste/default.ts" }
+            ],
+            "description": "This example demonstrates the usage of the SmartPasteButton component. It is designed to integrate seamlessly with text input fields, offering enhanced clipboard functionality."
+        }
+    ]
+}
+
+

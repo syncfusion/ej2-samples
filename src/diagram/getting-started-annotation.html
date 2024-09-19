@@ -1,7 +1,7 @@
 <div class="col-lg-8 control-section">
     <style>
         /* Css for images in property panel  */
-        .image-pattern-style {
+        .diagram-property-tab .image-pattern-style {
             background-color: white;
             background-size: contain;
             background-repeat: no-repeat;
@@ -13,7 +13,7 @@
             float: left;
         }
     
-        .image-pattern-style:hover {
+        .diagram-property-tab .image-pattern-style:hover {
             border-color: gray;
             border-width: 2px;
         }
@@ -22,7 +22,7 @@
             pointer-events: none;
         }
     
-        .column-style {
+        .diagram-property-tab .column-style {
             display: table;
             height: 35px;
             padding-right: 4px;
@@ -30,12 +30,12 @@
             width: calc((100% - 12px) / 3);
         }
     
-        .row {
+        .diagram-property-tab .row {
             margin-left: 0px;
             margin-right: 0px;
         }
     
-        .row-header {
+        .diagram-property-tab .row-header {
             font-size: 15px;
             font-weight: 500;
         }
@@ -43,12 +43,6 @@
         .e-selected-style {
             border-color: #006CE6;
             border-width: 2px;
-        }
-    
-        .col-xs-6 {
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-top: 5px;
         }
     
         .property-section .e-remove-selection {
@@ -64,7 +58,6 @@
     
         .e-ddb-icons {
             font-family: 'e-ddb-icons';
-            speak: none;
             font-size: 55px;
             font-style: normal;
             font-weight: normal;
@@ -92,7 +85,7 @@
     </div>
 
 </div>
-<div class="col-lg-4 property-section">
+<div class="col-lg-4 property-section diagram-property-tab">
     <div class="property-panel-header">
         Properties
     </div>
@@ -108,15 +101,15 @@
                         </div>
                         <div class="image-pattern-style" id="right" style="background-image: url(./src/diagram/Images/annotation/Annotation_2.png); margin: 0px 4px">
                         </div>
-                        <div class="image-pattern-style" id="bottoml" style="background-image: url(./src/diagram/Images/annotation/Annotation_3.png);margin-left: 4px">
+                        <div class="image-pattern-style" id="bottomLeft" style="background-image: url(./src/diagram/Images/annotation/Annotation_3.png);margin-left: 4px">
                         </div>
                     </div>
                     <div class="row" style="padding-top: 8px">
-                        <div class="image-pattern-style" id="bottomr" style="background-image: url(./src/diagram/Images/annotation/Annotation_4.png); margin-right: 4px">
+                        <div class="image-pattern-style" id="bottomRight" style="background-image: url(./src/diagram/Images/annotation/Annotation_4.png); margin-right: 4px">
                         </div>
                         <div class="image-pattern-style" id="center" style="background-image: url(./src/diagram/Images/annotation/Annotation_5.png); margin: 0px 4px">
                         </div>
-                        <div class="image-pattern-style" id="bottomcenter_top" style="background-image: url(./src/diagram/Images/annotation/Annotation_6.png);margin-left: 4px">
+                        <div class="image-pattern-style" id="bottomCenter" style="background-image: url(./src/diagram/Images/annotation/Annotation_6.png);margin-left: 4px">
                         </div>
                     </div>
                 </div>
@@ -140,10 +133,10 @@
                     <div class="col-xs-4 column-style">
                         <input id="fontcolor" type="color">
                     </div>
-                    <div class="col-xs-4 column-style" style="width: 105px;">
+                    <div class="col-xs-4 column-style">
                         <input type="text" id="fontSize" aria-label="font-size-textBox" min="0" max="50" step="1" value="12">
                     </div>
-                    <div class="col-xs-4 column-style" style="width: 100px;">
+                    <div class="col-xs-4 column-style">
                         <input id="fontfamily" type="text">
                     </div>
                 </div>
@@ -152,7 +145,7 @@
                 <div class="row row-header">
                     Templates
                 </div>
-                <div class="row col-xs-8" style="width: 220px;padding-left: 0px; padding-top: 8px">
+                <div class="row col-xs-8" style="padding-left: 0px; padding-top: 8px">
                     <input id="template" type="text">
                 </div>
             </div>

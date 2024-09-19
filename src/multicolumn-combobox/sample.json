@@ -2,8 +2,8 @@
     "name": "MultiColumn Combobox",
     "directory": "multicolumn-combobox",
     "category": "Dropdowns",
-    "ftName": "multicolumn-combobox",
     "type": "preview",
+    "ftName": "multicolumn-combobox",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "description": "This example demonstrates the default functionalities of the JavaScript multicolumn-combobox control with minimum configuration.", "category": "MultiColumn ComboBox", "api": { "MultiColumn ComboBox": ["popupHeight", "popupWidth", "change", "placeholder", "fields", "columns", "value", "text" ] } },
         { "url": "remote-databinding", "name": "Remote Data", "description": "This example demonstrates how to bind with local data source and fetch data from remote data service in the JavaScript multicolumn-combobox control.", "category": "MultiColumn ComboBox", "api": { "MultiColumn ComboBox": ["dataSource", "fields", "query", "popupHeight", "popupWidth", "placeholder"] } },

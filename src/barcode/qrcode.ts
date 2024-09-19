@@ -20,7 +20,10 @@ let barcode: QRCodeGenerator;
     barcode = new QRCodeGenerator({
         width: '200px',
         height: '150px',
-        displayText: { visibility: false },
+        displayText: { visibility: true },
+        logo: {
+            imageSource: 'https://www.syncfusion.com/web-stories/wp-content/uploads/sites/2/2022/02/cropped-Syncfusion-logo.png'
+        },
         invalid: invalidInput,
         mode: 'SVG',
         value: 'Syncfusion',
@@ -233,6 +236,16 @@ let barcode: QRCodeGenerator;
         }
     });
     textVisibility.appendTo('#textVisibility');
+
+    let logo: CheckBox = new CheckBox({
+        checked: true,
+        change: (args: CheckBoxChangeEventArgs) => {
+            if (barcode.logo) {
+                barcode.logo.imageSource = args.checked ? 'https://www.syncfusion.com/web-stories/wp-content/uploads/sites/2/2022/02/cropped-Syncfusion-logo.png' : '';
+            }
+        }
+    });
+    logo.appendTo('#logo');
 
 
     let svgMode: CheckBox = new CheckBox({

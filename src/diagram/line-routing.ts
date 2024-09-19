@@ -65,34 +65,45 @@ Diagram.Inject(UndoRedo, LineRouting, ConnectorBridging);
         { id: 'Connector9', sourceID: 'start', sourcePortID: 'port1', targetID: 'card', targetPortID: 'port1' },
         { id: 'Connector10', sourceID: 'card', sourcePortID: 'port2', targetID: 'document', targetPortID: 'port1' }
     ];
+    // Function to set default values for nodes in the diagram
     function getNodeDefaults(node: NodeModel): NodeModel {
-        node.height = 50;
+        node.height = 50; // Default height for nodes
         if (node.id === 'decision') {
-            node.height = 70;
+            node.height = 70; // Special height for nodes with id 'decision'
         }
-        node.width = 120;
-        node.style = { strokeColor: 'transparent' };
+        node.width = 120; // Default width for nodes
+        node.style = { strokeColor: 'transparent' }; // Default style with transparent stroke color
         return node;
     }
 
+    // Function to set default values for connectors in the diagram
     function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
-        connector.type = 'Orthogonal';
-        connector.style = { strokeColor: '#707070 ', strokeWidth: 1.25 };
-        connector.targetDecorator = { style: { fill: '#707070 ', strokeColor: '#707070 ' } };
+        connector.type = 'Orthogonal'; // Connector type set to Orthogonal
+        connector.style = { strokeColor: '#707070', strokeWidth: 1.25 }; // Connector style with specific stroke color and width
+        connector.targetDecorator = { style: { fill: '#707070', strokeColor: '#707070' } }; // Target decorator style
         return connector;
     }
-    //initialize the diagram control
+
+    // Initialize the diagram control
     let diagram: Diagram = new Diagram({
-        width: '100%', height: 600, nodes: nodes, connectors: connectors,
-        constraints: DiagramConstraints.Default | (DiagramConstraints.Bridging | DiagramConstraints.LineRouting),
-        snapSettings: { constraints: SnapConstraints.None },
-        getNodeDefaults: getNodeDefaults,
-        getConnectorDefaults: getConnectorDefaults,
-        created: onCreated
+        width: '100%', // Full width of the parent container
+        height: '600px', // Height of the diagram
+        nodes: nodes, // Array of nodes for the diagram (assumed to be defined elsewhere)
+        connectors: connectors, // Array of connectors for the diagram (assumed to be defined elsewhere)
+        constraints: DiagramConstraints.Default | DiagramConstraints.Bridging | DiagramConstraints.LineRouting,
+        // Constraints including default, bridging, and line routing
+        snapSettings: { constraints: SnapConstraints.None }, // Snap settings with snapping disabled
+        getNodeDefaults: getNodeDefaults, // Callback function to customize node defaults
+        getConnectorDefaults: getConnectorDefaults, // Callback function to customize connector defaults
+        created: onCreated // Callback function called when diagram is created
     });
+
+    // Append the diagram to the element with id 'diagram'
     diagram.appendTo('#diagram');
+
+    // Function called when diagram is created
     function onCreated(): void {
-        diagram.fitToPage();
+        diagram.fitToPage(); // Fit the diagram to the page
     }
 };
 

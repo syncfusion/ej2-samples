@@ -23,6 +23,7 @@ let diagram: Diagram;
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
+    //Initialize the connectors object with basic properties.
     function CreateConnector(
         name: string, source: string, target: string, content: string, type?: Segments,
         direction?: Direction, targePort?: string, length?: number): ConnectorModel {
@@ -30,30 +31,23 @@ let diagram: Diagram;
         connector.id = name;
         connector.sourceID = source;
         connector.targetID = target;
-        connector.style = { strokeWidth: 2 };
-        let annotation: PathAnnotationModel = {};
-        annotation.content = content;
-        annotation.style = { fill: 'white' };
-        connector.annotations = [annotation];
-        connector.style.strokeColor = '#8D8D8D';
-        connector.targetDecorator = {};
-        connector.targetDecorator.style = {};
-        connector.targetDecorator.style.strokeColor = '#8D8D8D';
-        connector.targetDecorator.style.fill = '#8D8D8D';
         if (targePort) {
             connector.targetPortID = targePort;
         }
-        let segment: OrthogonalSegmentModel = {};
+        connector.style = { strokeWidth: 2,strokeColor: '#8D8D8D' };
+        let annotation: PathAnnotationModel = {};
+        connector.annotations = [annotation];
+        connector.targetDecorator = { style: { strokeColor: '#8D8D8D', fill: '#8D8D8D' } };
+       
         if (type) {
             connector.type = type;
-            segment.direction = direction;
-            segment.type = type;
-            segment.length = length;
+            let segment: OrthogonalSegmentModel = { type: type, direction: direction, length: length };
             connector.segments = [segment];
         }
         return connector;
     }
 
+    //Initialize the node object with basic properties.
     function CreateNodes(
         name: string, offsetX: number, offsetY: number, shape: FlowShapes, content: string,
         width: number, height: number, ports?: PointPortModel[]): NodeModel {
@@ -63,21 +57,23 @@ let diagram: Diagram;
         node.width = 150;
         node.height = 50;
         node.offsetY = offsetY;
-        let annotations: ShapeAnnotationModel = {};
-        annotations.content = content;
-        node.annotations = [annotations];
         node.shape = { type: 'Flow', shape: shape };
         node.style = { fill: '#FBF6E1', strokeColor: '#E8DFB6', strokeWidth: 2 };
+        let annotations: ShapeAnnotationModel = {};
+        node.annotations = [annotations];
+        annotations.content = content;
         if (ports) {
             node.ports = ports;
         }
         return node;
     }
 
-    let selectedButton: string = 'LinksConnected';
-    let nodes: NodeModel[] = [];
     let port1: PointPortModel = { id: 'port1', offset: { x: 0.5, y: 1 } };
     let port: PointPortModel = { id: 'port', offset: { x: 1, y: 0.5 } };
+    let selectedButton: string = 'LinksConnected';
+
+    // Initialize Diagram Nodes
+    let nodes: NodeModel[] = [];
     nodes.push(CreateNodes('node1', 100, 125, 'Terminator', 'Begin', 100, 35));
     nodes.push(CreateNodes('node2', 300, 125, 'Process', 'Specify collection', 120, 25, [port]));
     nodes.push(CreateNodes('node3', 500, 125, 'Decision', 'Particulars \n required?', 100, 50, [port1]));
@@ -88,6 +84,7 @@ let diagram: Diagram;
     nodes.push(CreateNodes('node8', 730, 320, 'Process', 'Record and analyze \n results', 170, 25, [port]));
     nodes.push(CreateNodes('node9', 730, 420, 'Terminator', 'End ', 100, 35));
 
+    // Initialize diagram connectors
     let connectors: ConnectorModel[] = [];
     connectors.push(CreateConnector('connector1', 'node1', 'node2', ''));
     connectors.push(CreateConnector('connector2', 'node2', 'node3', ''));
@@ -133,7 +130,7 @@ let diagram: Diagram;
     radioButton = new RadioButton({ label: 'Incoming and outgoing nodes', change: buttonChange, name: 'radio', value: 'NodesConnected' });
     radioButton.appendTo('#NodesConnected');
 
-    radioButton = new RadioButton({ label: 'Adjacent nodes', change: buttonChange, name: 'radio', value: 'NodesReachable' });
+    radioButton = new RadioButton({ label: 'Flow of Execution', change: buttonChange, name: 'radio', value: 'NodesReachable' });
     radioButton.appendTo('#NodesReachable');
 
 
@@ -142,113 +139,102 @@ let diagram: Diagram;
         selectedButton =(args.event.srcElement as HTMLElement).id;
     }
 
+    //Function to apply changes based on selection.
     function applyChanges(id: string): void {
         Unhighlight();
         switch (id) {
             case 'LinksInto':
-                linkedIn();
+                highlightIncomingConnections();
                 break;
             case 'LinksOutOf':
-                LinksOut();
+                highlightOutgoingConnections();
                 break;
             case 'LinksConnected':
-                LinksConnector();
+                highlightIncomingConnections();
+                highlightOutgoingConnections();
                 break;
             case 'NodesInto':
-                NodesIn();
+                highlightIncomingNodes();
                 break;
             case 'NodesOutOf':
-                NodesOut();
+                highlightOutgoingNodes();
                 break;
             case 'NodesConnected':
-                NodesConnect();
+                highlightIncomingNodes();
+                highlightOutgoingNodes();
                 break;
             case 'NodesReachable':
-                NodeReachable();
+                highlightReachableNodes();
                 break;
         }
     }
-    function linkedIn(): void {
+
+    // Highlight connectors
+    function highlightConnectors(edges: string[]): void {
+        edges.forEach(edge => {
+            let index = diagram.connectors.indexOf(diagram.nameTable[edge]);
+            highLightedObjects.push(edge);
+            let connector = diagram.connectors[index];
+            connector.style.strokeColor = '#1413F8';
+            connector.targetDecorator.style.strokeColor = '#1413F8';
+            connector.targetDecorator.style.fill = '#1413F8';
+            diagram.dataBind();
+        });
+    };
+
+    // Function to display Incoming connectors.
+    function highlightIncomingConnections(): void {
         if (diagram.selectedItems.nodes.length) {
             let node: string[] = (diagram.selectedItems.nodes[0] as Node).inEdges;
-            for (let i: number = 0; i < node.length; i++) {
-                let index: number = diagram.connectors.indexOf(diagram.nameTable[node[i]]);
-                highLightedObjects.push(node[i]);
-                diagram.connectors[index].style.strokeColor = '#1413F8';
-                diagram.connectors[index].targetDecorator.style.strokeColor = '#1413F8';
-                diagram.connectors[index].targetDecorator.style.fill = '#1413F8';
-                diagram.dataBind();
-            }
+            highlightConnectors(node);
         }
     }
 
-    function LinksOut(): void {
+    // Function to display outgoing connectors.
+    function highlightOutgoingConnections(): void {
         if (diagram.selectedItems.nodes.length) {
             let node: string[] = (diagram.selectedItems.nodes[0] as Node).outEdges;
-            for (let i: number = 0; i < node.length; i++) {
-                let index: number = diagram.connectors.indexOf(diagram.nameTable[node[i]]);
-                highLightedObjects.push(node[i]);
-                diagram.connectors[index].style.strokeColor = '#1413F8';
-                diagram.connectors[index].targetDecorator.style.strokeColor = '#1413F8';
-                diagram.connectors[index].targetDecorator.style.fill = '#1413F8';
-                diagram.dataBind();
-            }
+            highlightConnectors(node);
         }
     }
 
-    function LinksConnector(): void {
-        LinksOut();
-        linkedIn();
-    }
+    // Highlight Nodes
+    function highlightNodes(edges: string[], edgeType: 'sourceID' | 'targetID'): void {
+        edges.forEach(edge => {
+            let nodeId: string = diagram.nameTable[edge][edgeType];
+            highLightedObjects.push(nodeId);
+            let index: number = diagram.nodes.indexOf(diagram.nameTable[nodeId]);
+            diagram.nodes[index].style.strokeColor = '#1413F8';
+            diagram.dataBind();
+        });
+    };
 
-    function NodesIn(): void {
+    // Function to display incoming nodes.
+    function highlightIncomingNodes(): void {
         if (diagram.selectedItems.nodes.length) {
             let node: string[] = (diagram.selectedItems.nodes[0] as Node).inEdges;
-            for (let i: number = 0; i < node.length; i++) {
-                let nodeId: string = diagram.nameTable[node[i]].sourceID;
-                highLightedObjects.push(nodeId);
-                let index: number = diagram.nodes.indexOf(diagram.nameTable[nodeId]);
-                diagram.nodes[index].style.strokeColor = '#1413F8';
-                diagram.dataBind();
-            }
+            highlightNodes(node, 'sourceID');
         }
     }
 
-    function NodesOut(): void {
+    // Function to display the outgoing nodes.
+    function highlightOutgoingNodes(): void {
         if (diagram.selectedItems.nodes.length) {
             let node: string[] = (diagram.selectedItems.nodes[0] as Node).outEdges;
-            for (let i: number = 0; i < node.length; i++) {
-                let nodeId: string = diagram.nameTable[node[i]].targetID;
-                highLightedObjects.push(nodeId);
-                let index: number = diagram.nodes.indexOf(diagram.nameTable[nodeId]);
-                diagram.nodes[index].style.strokeColor = '#1413F8';
-                diagram.dataBind();
-            }
+            highlightNodes(node, 'targetID');
         }
     }
 
-
-    function NodesConnect(): void {
-        NodesOut();
-        NodesIn();
-    }
-
-
-    function NodeReachable(): void {
+    //Function to display the flow of execution.
+    function highlightReachableNodes(): void {
         if (diagram.selectedItems.nodes.length) {
             let connectors: string[] = (diagram.selectedItems.nodes[0] as Node).outEdges;
             let nodeList: string[] = foundNode(connectors, []);
-            for (let i: number = 0; i < nodeList.length; i++) {
-                let index: number = diagram.connectors.indexOf(diagram.nameTable[nodeList[i]]);
-                highLightedObjects.push(nodeList[i]);
-                diagram.connectors[index].style.strokeColor = '#1413F8';
-                diagram.connectors[index].targetDecorator.style.strokeColor = '#1413F8';
-                diagram.connectors[index].targetDecorator.style.fill = '#1413F8';
-                diagram.dataBind();
-            }
+            highlightConnectors(nodeList);
         }
     }
 
+    //Function to find the connected nodes.
     function foundNode(list: string[], nodeList: string[]): string[] {
         for (let i: number = 0; i < list.length; i++) {
             let connector: ConnectorModel = diagram.nameTable[list[i]];
@@ -268,6 +254,7 @@ let diagram: Diagram;
         return nodeList;
     }
 
+    //Function to unhighlight the highlighted objects.
     function Unhighlight(): void {
         for (let i: number = highLightedObjects.length - 1; i >= 0; i--) {
             if (diagram.nameTable[highLightedObjects[i]] instanceof Node) {
@@ -276,9 +263,10 @@ let diagram: Diagram;
                 diagram.dataBind();
             } else {
                 let index: number = diagram.connectors.indexOf(diagram.nameTable[highLightedObjects[i]]);
-                diagram.connectors[index].style.strokeColor = '#8D8D8D';
-                diagram.connectors[index].targetDecorator.style.strokeColor = '#8D8D8D';
-                diagram.connectors[index].targetDecorator.style.fill = '#8D8D8D';
+                var connector=diagram.connectors[index];
+                connector.style.strokeColor = '#8D8D8D';
+                connector.targetDecorator.style.strokeColor = '#8D8D8D';
+                connector.targetDecorator.style.fill = '#8D8D8D';
                 diagram.dataBind();
             }
         }

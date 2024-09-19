@@ -10,7 +10,6 @@ Schedule.Inject(Month, Resize, DragAndDrop);
 (window as any).default = (): void => {
     loadCultureFiles();
     let data: Object[] = <Object[]>extend([], null, true);
-    // custom code start
     (window as TemplateFunction).getCellContent = (date: Date) => {
         if (date.getMonth() === 10 && date.getDate() === 23) {
             return '<img src="src/schedule/images/thanksgiving-day.svg" alt="Thanksgiving day" /><div class="caption">Thanksgiving day</div>';
@@ -35,7 +34,6 @@ Schedule.Inject(Month, Resize, DragAndDrop);
     interface TemplateFunction extends Window {
         getCellContent?: Function;
     }
-    // custom code end
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
         height: '650px',

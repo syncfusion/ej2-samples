@@ -1,22 +1,19 @@
 import { loadCultureFiles } from '../common/culture-loader';
+//Importing necessary modules
 import {
     NodeModel,
     Node,
-    Diagram,
-    ISelectionChangeEventArgs,
-    SelectorConstraints,
-    UserHandleModel,
-    UserHandleEventsArgs,
+    Diagram
   } from '@syncfusion/ej2-diagrams';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import { ConnectorModel, IDragEnterEventArgs, Rect, SymbolInfo, SymbolPalette } from '@syncfusion/ej2/diagrams';
-import { TextBox } from '@syncfusion/ej2/inputs';
-import { CheckBox } from '@syncfusion/ej2/buttons';
+import { ConnectorModel, IDragEnterEventArgs, Rect, SymbolInfo, SymbolPalette } from '@syncfusion/ej2-diagrams';
+import { TextBox } from '@syncfusion/ej2-inputs';
+import { CheckBox } from '@syncfusion/ej2-buttons';
 import { addEvents } from './script/diagram-common';
 
 
 let diagram: Diagram;
-
+//Initialize the basicShapes for the symbol palatte
 let basicShapes: NodeModel[] = [
     {
         id: 'rectangle', shape: { type: 'Basic', shape: 'Rectangle' }
@@ -65,7 +62,7 @@ let flowShapes: NodeModel[] = [
     { id: 'offPageReference1', shape: { type: 'Flow', shape: 'OffPageReference' } },
     { id: 'sequentialAccessStorage1', shape: { type: 'Flow', shape: 'SequentialAccessStorage' } },
     { id: 'annotation1', shape: { type: 'Flow', shape: 'Annotation' } },
-    { id: 'annotation21', shape: { type: 'Flow', shape: 'Annotation2' } },
+    { id: 'annotation2', shape: { type: 'Flow', shape: 'Annotation2' } },
     { id: 'data1', shape: { type: 'Flow', shape: 'Data' } },
     { id: 'summingJunction1', shape: { type: 'Flow', shape: 'SummingJunction' } },
     { id: 'or1', shape: { type: 'Flow', shape: 'Or' } },
@@ -83,39 +80,44 @@ let flowShapes: NodeModel[] = [
     { id: 'collate1', shape: { type: 'Flow', shape: 'Collate' } },
 ];
 
-let items:any = [
-    { text: 'Auto', value: 'Auto' }, { text: 'Scroll', value: 'Scroll' },
-    { text: 'Drag', value: 'Drag' }
-];
-
+//Initialize the connectors for the symbol palatte
 let connectorSymbols: ConnectorModel[] = [
     {
-        id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-        targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
-        style: { strokeWidth: 1, strokeColor: '#757575' }
+        id: 'orthogonal', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 }
     },
     {
-        id: 'link3', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-        style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+        id: 'straight', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
+        targetDecorator: { shape: 'None' }
     },
     {
-        id: 'Link21', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-        targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
-        style: { strokeWidth: 1, strokeColor: '#757575' }
+        id: 'Straight', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 } 
     },
     {
-        id: 'link23', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-        style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+        id: 'Orthogonal', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
+        targetDecorator: { shape: 'None' }
     },
     {
-        id: 'link33', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-        style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+        id: 'bezier', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
+         targetDecorator: { shape: 'None' }
     },
 ];
+ //Sets the scroll limit
 let scrollLimitDatasource:any = [
     { text: 'Infinity', value: 'Infinity' }, { text: 'Diagram', value: 'Diagram' },
     { text: 'Limited', value: 'Limited' }
 ];
+//Sets the default values of a Connector.
+ function getConnectorDefaults(connector: ConnectorModel) {
+    setConnectorStyles(connector, '#757575');
+    return connector;
+}
+    //set styles for connector
+    function setConnectorStyles(connector: ConnectorModel, color: string) {
+    connector.style.strokeWidth = 1;
+    connector.style.strokeColor = color;
+    connector.targetDecorator.style.fill = color;
+    connector.targetDecorator.style.strokeColor = color;
+    }
 let scrollableArea:any = new Rect(0, 0, 1500, 1500);
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
@@ -129,57 +131,40 @@ let scrollableArea:any = new Rect(0, 0, 1500, 1500);
             scrollLimit: 'Infinity', canAutoScroll: true, autoScrollBorder: { left: 10, right: 10, top: 10, bottom: 10 },
             scrollableArea: scrollableArea
         },
-        //Sets the default values of a node
-        getNodeDefaults: function (node:Node) {
-            if (node.width === undefined) {
-                node.width = 145;
-            } else {
-                let ratio = 100 / node.width;
-                node.width = 100;
-                node.height *= ratio;
-            }
-            node.style = { fill: '#357BD2', strokeColor: 'white' };
-            node.annotations = [{ style: { color: 'white', fill: 'transparent' } }];
-            return node;
-        },
-        //Sets the default values of a Connector.
-        getConnectorDefaults: function (connector: ConnectorModel) {
-            if (connector.id.indexOf('connector') !== -1) {
-                connector.type = 'Orthogonal';
-                connector.targetDecorator = { shape: 'Arrow', width: 10, height: 10 };
-            }
-        },
-        //Sets the Node style for DragEnter element.
+        getConnectorDefaults : getConnectorDefaults,
+        //Sets the node style for DragEnter element.
         dragEnter: function (args:IDragEnterEventArgs) {
             let node:any = args.element;
             if (node instanceof Node) {
-                let oWidth = node.width;
-                let oHeight = node.height;
+                let nodeWidth = node.width;
+                let nodeHeight = node.height;
                 let ratio = 100 / node.width;
                 node.width = 100;
                 node.height *= ratio;
-                node.offsetX += (node.width - oWidth) / 2;
-                node.offsetY += (node.height - oHeight) / 2;
+                node.offsetX += (node.width - nodeWidth) / 2;
+                node.offsetY += (node.height - nodeHeight) / 2;
                 node.style = { fill: '#357BD2', strokeColor: 'white' };
+                node.annotations = [{ style: { color: 'white', fill: 'transparent' } }];
             }
         },
+        //Disable the scrollable area
         created: function (args) {
-            let element2 = document.getElementById('scrollableDiv');
-            element2.className = "disabledbutton";
+            let scrollElement = document.getElementById('scrollableDiv');
+            scrollElement.className = "disabledbutton";
         }
     });
     diagram.appendTo('#diagram');
-
+ //Initializes the symbol palette
   let palette: SymbolPalette = new SymbolPalette({
     expandMode: 'Single',
     getNodeDefaults: function (symbol: NodeModel): void{
         let obj:any = symbol;
-        if (obj.id === 'terminator' || obj.id === 'process') {
+        if (obj.id === 'terminator1' || obj.id === 'process1') {
             obj.width = 80;
             obj.height = 40;
         }
-        else if (obj.id === 'decision' || obj.id === 'document' || obj.id === 'preDefinedProcess' ||
-            obj.id === 'paperTap' || obj.id === 'directData' || obj.id === 'multiDocument' || obj.id === 'data') {
+        else if (obj.id === 'decision1' || obj.id === 'document1' || obj.id === 'preDefinedProcess1' ||
+            obj.id === 'paperTap1' || obj.id === 'directData1' || obj.id === 'multiDocument1' || obj.id === 'data1') {
             obj.width = 50;
             obj.height = 40;
         }
@@ -195,6 +180,7 @@ let scrollableArea:any = new Rect(0, 0, 1500, 1500);
         { id: 'connectors', expanded: false, symbols: connectorSymbols, iconCss: 'e-ddb-icons e-connector', title: 'Connectors' }
     ],
     symbolMargin: { left: 15, right: 15, top: 15, bottom: 15 },
+    getConnectorDefaults:getConnectorDefaults,
     getSymbolInfo: (symbol: NodeModel): SymbolInfo => {
         return { fit: true };
     },
@@ -203,17 +189,7 @@ let scrollableArea:any = new Rect(0, 0, 1500, 1500);
   palette.appendTo('#symbolpalette');
   addEvents();
 
-  let scrollLevel:DropDownList = new DropDownList({
-    dataSource: items,
-    fields: { text: 'text', value: 'value' },
-    value: 'Scroll',
-    change: function (args:any) {
-        let element = document.getElementById('autoScrollDiv');
-        element.className = args.value === "Auto" ? "" : "disabledbutton";
-    }
-});
-scrollLevel.appendTo('#scrollLevel');
-
+//Initializes a dropdown for scrollLimit
 let scrollLimit:DropDownList = new DropDownList({
     dataSource: scrollLimitDatasource,
     fields: { text: 'text', value: 'value' },
@@ -226,7 +202,7 @@ let scrollLimit:DropDownList = new DropDownList({
 });
 scrollLimit.appendTo('#scrollLimit');
 
-let numeric:TextBox  = new TextBox({
+let offsetXtextBox:TextBox  = new TextBox({
     // sets value to the NumericTextBox
     value: '10',
     change: function (args:any) {
@@ -234,10 +210,10 @@ let numeric:TextBox  = new TextBox({
     }
 });
 
-// renders initialized NumericTextBox
-numeric.appendTo('#x');
+// Renders initialized NumericTextBox
+offsetXtextBox.appendTo('#x');
 
-let numeric2:TextBox  = new TextBox({
+let offsetYtextBox:TextBox  = new TextBox({
     // sets value to the NumericTextBox
     value: '10',
     change: function (args:any) {
@@ -245,8 +221,8 @@ let numeric2:TextBox  = new TextBox({
     }
 });
 
-// renders initialized NumericTextBox
-numeric2.appendTo('#y');
+// Renders initialized NumericTextBox
+offsetYtextBox.appendTo('#y');
 
 let widthTextBox:TextBox  = new TextBox({
     // sets value to the NumericTextBox
@@ -256,7 +232,7 @@ let widthTextBox:TextBox  = new TextBox({
     }
 });
 
-// renders initialized NumericTextBox
+// Renders initialized NumericTextBox
 widthTextBox.appendTo('#width');
 
 let heightTextBox:TextBox  = new TextBox({
@@ -267,18 +243,18 @@ let heightTextBox:TextBox  = new TextBox({
     }
 });
 
-// renders initialized NumericTextBox
+// Renders initialized NumericTextBox
 heightTextBox.appendTo('#height');
 
 let checkBoxObj: CheckBox = new CheckBox({
     checked: true,
     change: function (args:any) {
-        let element4:any = document.getElementById('autoScrollDiv');
+        let autoScrollElement:any = document.getElementById('autoScrollDiv');
         if (args.checked) {
-          element4.className = '';
+            autoScrollElement.className = '';
           diagram.scrollSettings.canAutoScroll = true;
         } else {
-          element4.className = 'disabledbutton';
+            autoScrollElement.className = 'disabledbutton';
           diagram.scrollSettings.canAutoScroll = false;
         }
     }
@@ -293,7 +269,7 @@ let leftTextBox:TextBox  = new TextBox({
     }
 });
 
-// renders initialized NumericTextBox
+// Renders initialized NumericTextBox
 leftTextBox.appendTo('#left');
 
 let rightTextBox:TextBox  = new TextBox({
@@ -304,7 +280,7 @@ let rightTextBox:TextBox  = new TextBox({
     }
 });
 
-// renders initialized NumericTextBox
+// Renders initialized NumericTextBox
 rightTextBox.appendTo('#right');
 
 let topTextBox = new TextBox({
@@ -315,7 +291,7 @@ let topTextBox = new TextBox({
     }
 });
 
-// renders initialized NumericTextBox
+// Renders initialized NumericTextBox
 topTextBox.appendTo('#top');
 
 let bottomTextBox:TextBox = new TextBox({
@@ -325,6 +301,6 @@ let bottomTextBox:TextBox = new TextBox({
         diagram.scrollSettings.autoScrollBorder.bottom = Number(args.value);
     }
 });
-// renders initialized NumericTextBox
+// Renders initialized NumericTextBox
 bottomTextBox.appendTo('#bottom');
 };

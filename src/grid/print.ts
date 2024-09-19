@@ -23,6 +23,7 @@ Grid.Inject(Sort, DetailRow, Toolbar, Filter, Edit);
 
     let grid: Grid = new Grid({
         dataSource: employeeData,
+        cssClass: document.querySelector('.fluent2-highcontrast') ? 'e-print-fluent2-highcontrast' : '',
         hierarchyPrintMode: 'All',
         allowSorting: true,
         allowFiltering: true,

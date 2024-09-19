@@ -3,6 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Mind-map sample
  */
 
+// Importing necessary modules from '@syncfusion/ej2-diagrams' package
 import {
     Diagram, ConnectorModel, Connector, Node, ConnectorConstraints, DataBinding,
     PointPortModel, PointPort, randomId, TextModel,
@@ -12,6 +13,7 @@ import {
 } from '@syncfusion/ej2-diagrams';
 import * as Data from './diagram-data.json';
 import { DataManager, Query } from '@syncfusion/ej2-data';
+// Injecting required modules
 Diagram.Inject(DataBinding, MindMap, HierarchicalTree);
 
 let items: DataManager = new DataManager((Data as any).mindMap, new Query().take(7));
@@ -120,6 +122,7 @@ function selectionChange(arg: ISelectionChangeEventArgs): void {
     }
 }
 
+// Function to add a new node
 function addNode(): NodeModel {
     let obj: NodeModel = {};
     obj.id = randomId();
@@ -128,6 +131,7 @@ function addNode(): NodeModel {
     return obj;
 }
 
+// Function to add a new connector
 function addConnector(source: NodeModel, target: NodeModel): ConnectorModel {
     let connector: ConnectorModel = {};
     connector.id = randomId();
@@ -148,6 +152,8 @@ function getTool(action: string): ToolBase {
     return tool;
 }
 
+
+// Class definition for handling left extension tool
 class LeftExtendTool extends ToolBase {
     //mouseDown event
     public mouseDown(args: MouseEventArgs): void {
@@ -169,11 +175,11 @@ class LeftExtendTool extends ToolBase {
                     }
                     let connector: ConnectorModel = addConnector(selectedObject[0], node);
                     diagram.clearSelection();
-                    let nd: Node = diagram.add(node) as Node;
+                    let newNode : Node = diagram.add(node) as Node;
                     diagram.add(connector);
                     diagram.doLayout();
-                    diagram.bringIntoView(nd.wrapper.bounds);
-                    diagram.select([diagram.nameTable[nd.id]]);
+                    diagram.bringIntoView(newNode.wrapper.bounds);
+                    diagram.select([diagram.nameTable[newNode.id]]);
                     diagram.startTextEdit(diagram.selectedItems.nodes[0]);
                 }
             }
@@ -181,6 +187,7 @@ class LeftExtendTool extends ToolBase {
     }
 }
 
+// Class definition for handling right extension tool
 class RightExtendTool extends ToolBase {
     //mouseDown event
     public mouseDown(args: MouseEventArgs): void {
@@ -202,17 +209,19 @@ class RightExtendTool extends ToolBase {
                     }
                     let connector: ConnectorModel = addConnector(selectedObject[0], node);
                     diagram.clearSelection();
-                    let nd: Node = diagram.add(node) as Node;
+                    let newNode: Node = diagram.add(node) as Node;
                     diagram.add(connector);
                     diagram.doLayout();
-                    diagram.bringIntoView(nd.wrapper.bounds);
-                    diagram.select([diagram.nameTable[nd.id]]);
+                    diagram.bringIntoView(newNode.wrapper.bounds);
+                    diagram.select([diagram.nameTable[newNode.id]]);
                     diagram.startTextEdit(diagram.selectedItems.nodes[0]);
                 }
             }
         }
     }
 }
+
+// Class definition for handling delete tool
 class DeleteClick extends ToolBase {
     //mouseDown event
     public mouseDown(args: MouseEventArgs): void {
@@ -275,10 +284,10 @@ let handle: UserHandleModel[] = [leftuserhandle, rightuserhandle, deleteuserhand
 //set and creation of the Userhandle.
 function setUserHandle(//it is in dedicated line here.
     name: string, pathData: string, side: Side, offset: number, margin: MarginModel,
-    halignment: HorizontalAlignment, valignment: VerticalAlignment): UserHandleModel {
+    HorizontalAlignment: HorizontalAlignment, VerticalAlignment: VerticalAlignment): UserHandleModel {
     let userhandle: UserHandleModel = {
         name: name, pathData: pathData, backgroundColor: 'black', pathColor: 'white', side: side,
-        offset: offset, margin: margin, horizontalAlignment: halignment, verticalAlignment: valignment
+        offset: offset, margin: margin, horizontalAlignment: HorizontalAlignment, verticalAlignment: VerticalAlignment
     };
     return userhandle;
 }
@@ -295,11 +304,11 @@ function changeUserHandlePosition(change: string): void {
 }
 //set the value for UserHandle element.
 function applyHandle(//it is in dedicated line here.
-    handle: UserHandleModel, side: Side, margin: MarginModel, halignment: HorizontalAlignment): void {
+    handle: UserHandleModel, side: Side, margin: MarginModel, HorizontalAlignment: HorizontalAlignment): void {
     handle.side = side;
     handle.offset = 1;
     handle.margin = margin;
-    handle.horizontalAlignment = halignment;
+    handle.horizontalAlignment = HorizontalAlignment;
     handle.verticalAlignment = 'Top';
 }
 

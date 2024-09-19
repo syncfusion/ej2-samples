@@ -1,0 +1,19 @@
+{
+    "name": "Pivot Table",
+    "directory": "ai-pivot-table",
+    "category": "Smart AI Solutions",
+    "dataSourcePath": "src/ai-pivot-table/data-source.ts",
+    "samples": [
+        {
+            "url": "smart-pivot",
+            "name": "Smart Pivot",
+            "category": "Pivot Table",
+            "sourceFiles": [
+                { "displayName": "smart-pivot.html", "path": "src/ai-pivot-table/ai-smart-pivot.html" },
+                { "displayName": "smart-pivot.ts", "path": "src/ai-pivot-table/smart-pivot.ts" }
+
+            ],
+            "description": "This demo showcases the Pivot Table AI feature."
+        }
+    ]
+}

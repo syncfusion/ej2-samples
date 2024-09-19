@@ -1,17 +1,22 @@
 import { loadCultureFiles } from '../common/culture-loader';
+
 /**
  * Getting started -  nodes
  */
-
+// Importing necessary modules from '@syncfusion/ej2-diagrams' package
 import {
     Diagram, NodeModel, ConnectorModel, NodeConstraints, SnapConstraints,
-    GradientType, RadialGradientModel
+    GradientType, RadialGradientModel, UndoRedo, ConnectorConstraints
 } from '@syncfusion/ej2-diagrams';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEventArgs } from '@syncfusion/ej2-buttons';
+
+// Injecting required modules
+Diagram.Inject(UndoRedo);
 
 let diagram: Diagram;
 let element: CheckBox;
 
+ //Sets the default values of a nodes
 function getNodeDefaults(obj: NodeModel): NodeModel {
     obj.width = 100;
     obj.height = 100;
@@ -28,35 +33,52 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     return { style: { strokeColor: '#024249', strokeWidth: 2 } };
 }
 
-//Enable or disable the Constraints for Node.
+//Enable or disable the Constraints(Aspect Ratio) for Node.
 function setNodeConstraints(args: CheckBoxChangeEventArgs): void {
     for (let i: number = 0; i < diagram.nodes.length; i++) {
         let node: NodeModel = diagram.nodes[i];
-            if (element.checked) {
-                node.constraints |= NodeConstraints.AspectRatio;
-            } else {
-                node.constraints &= ~NodeConstraints.AspectRatio;
-            }
+        if (element.checked) {
+            node.constraints |= NodeConstraints.AspectRatio;
+        } else {
+            node.constraints &= ~NodeConstraints.AspectRatio;
+        }
         diagram.dataBind();
     }
 }
 
+//Enable or disable the lock Constraints for Nodes and Connectors
 function setLockConstraints(args: CheckBoxChangeEventArgs): void {
     for (let i: number = 0; i < diagram.nodes.length; i++) {
-      let node: NodeModel = diagram.nodes[i];
-      if (args.checked) {
-        node.constraints &= ~(
-          NodeConstraints.Resize |
-          NodeConstraints.Rotate |
-          NodeConstraints.Drag
-        );
-        node.constraints |= NodeConstraints.ReadOnly;
-      } else {
-        node.constraints |= NodeConstraints.Default & ~NodeConstraints.ReadOnly;
-      }
-      diagram.dataBind();
+        let node: NodeModel = diagram.nodes[i];
+        if (args.checked) {
+            node.constraints &= ~(
+                NodeConstraints.Resize |
+                NodeConstraints.Rotate |
+                NodeConstraints.Drag |
+                NodeConstraints.Delete
+            );
+            node.constraints |= NodeConstraints.ReadOnly;
+        } else {
+            node.constraints |= NodeConstraints.Default & ~NodeConstraints.ReadOnly;
+        }
     }
-  }
+
+    for (let i: number = 0; i < diagram.connectors.length; i++) {
+        let connector: ConnectorModel = diagram.connectors[i];
+        if (args.checked) {
+            connector.constraints &= ~(
+                ConnectorConstraints.DragSourceEnd |
+                ConnectorConstraints.DragTargetEnd |
+                ConnectorConstraints.Drag |
+                ConnectorConstraints.Delete
+            );
+            connector.constraints |= ConnectorConstraints.ReadOnly;
+        } else {
+            connector.constraints |= ConnectorConstraints.Default & ~ConnectorConstraints.ReadOnly;
+        }
+    }
+    diagram.dataBind();
+}
 
 //Set customStyle for Node.
 function applyNodeStyle(
@@ -114,7 +136,18 @@ function applyNodeStyle(
         //Sets the default values of a Connector
         getConnectorDefaults: getConnectorDefaults,
         snapSettings: { constraints: SnapConstraints.None },
-        created: created
+        created: created,
+         //Enable or disable the AspectRatio if multiple nodes or connectors is selected .
+         selectionChange: function()
+         {
+            if (diagram.selectedItems.nodes.length > 1 || diagram.selectedItems.connectors.length > 0) {
+                element.disabled = true;
+            }
+            else {
+                element.disabled = false;
+            }
+         }
+
     });
     diagram.appendTo('#diagram');
     function created(): void {

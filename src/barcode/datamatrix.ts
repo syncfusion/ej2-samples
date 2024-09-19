@@ -259,7 +259,7 @@ let barcode: DataMatrixGenerator;
 
 
     let textVisibility: CheckBox = new CheckBox({
-        checked: true,
+        checked: false,
         change: (args: CheckBoxChangeEventArgs) => {
             barcode.displayText.visibility = args.checked;
         }

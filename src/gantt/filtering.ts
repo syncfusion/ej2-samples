@@ -58,21 +58,21 @@ Gantt.Inject(Filter, Toolbar, Selection);
                 },
             },
             splitterSettings: {
-                columnIndex: 3
+                columnIndex: 2
             },
             durationUnit: 'Hour',
             dayWorkingTime: [{ from: 1, to: 24 }],
             labelSettings: {
                 rightLabel: 'TaskName',
             },
-            projectStartDate: new Date('07/16/1969 01:00:00 AM'),
-            projectEndDate: new Date('07/25/1969'),
+            projectStartDate: new Date('07/16/2024 01:00:00 AM'),
+            projectEndDate: new Date('07/25/2024'),
             actionComplete: (args: IActionBeginEventArgs) => {
                 if (args.requestType === 'filterafteropen' &&
                  (getValue('columnName', args) === 'StartDate' || getValue('columnName', args) === 'EndDate') 
                     && gantt.filterSettings.type === "Menu") {
-                    getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].min = new Date(1969, 5, 1);
-                    getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].max = new Date(1969, 8, 30);
+                    getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].min = new Date(2024, 5, 1);
+                    getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].max = new Date(2024, 8, 30);
                     getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].dataBind();
                 }
             },

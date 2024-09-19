@@ -14,7 +14,7 @@ loadCultureFiles();
                 size: '15px',
                 fontWeight: '500',
                 fontStyle: 'Normal',
-                fontFamily: 'inherit'
+                fontFamily: 'Segoe UI'
             }
         },
         xAxis: {
@@ -25,7 +25,7 @@ loadCultureFiles();
             labelFormat: 'MMM',
             showLabelOn: 'Months',
             textStyle: {
-                fontFamily: 'inherit'
+                fontFamily: 'Segoe UI'
             }
         },
         yAxis: {
@@ -33,7 +33,7 @@ loadCultureFiles();
                 '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00',
                 '22:00', '23:00', '24:00'],
                 textStyle: {
-                    fontFamily: 'inherit'
+                    fontFamily: 'Segoe UI'
                 }
         },
         renderingMode: 'Canvas',
@@ -59,7 +59,7 @@ loadCultureFiles();
                 width: 0
             },
             textStyle: {
-                fontFamily: 'inherit'
+                fontFamily: 'Segoe UI'
             }
         },
         tooltipRender: (args: ITooltipEventArgs) => {
@@ -72,7 +72,8 @@ loadCultureFiles();
             // custom code start
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
+            args.heatmap.theme = <HeatMapTheme>(selectedTheme.charAt(0).toUpperCase() +
+                selectedTheme.slice(1)).replace(/-dark/i, "Dark").replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
             // custom code end
         }
     });

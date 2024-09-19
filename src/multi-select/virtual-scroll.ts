@@ -4,7 +4,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import { MultiSelect, DropDownList , VirtualScroll, ChangeEventArgs as DropDownChangeArgs, visualMode, CheckBoxSelection  } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
-import { Query, DataManager, WebApiAdaptor  } from '@syncfusion/ej2-data';
+import { Query, DataManager, UrlAdaptor  } from '@syncfusion/ej2-data';
 
 MultiSelect.Inject(VirtualScroll);
 MultiSelect.Inject(CheckBoxSelection);
@@ -60,8 +60,8 @@ for (let i = 1; i <= 150; i++) {
     let remoteObj: MultiSelect = new MultiSelect({
         //set the remote data to dataSource property
         dataSource: new DataManager({
-            url: 'https://services.syncfusion.com/js/production/api/orders',
-            adaptor: new WebApiAdaptor ,
+            url: 'https://services.syncfusion.com/js/production/api/VirtualDropdownData',
+            adaptor: new UrlAdaptor ,
             crossDomain: true
         }),
         fields: { text: 'OrderID', value: 'OrderID' },

@@ -107,6 +107,10 @@
             margin-top: 10px;
         }
 
+        .barcode-panel-left {
+            padding-left: 0px;
+        }
+
         .centercontrol {
             margin: auto;
             width: 50%;
@@ -121,18 +125,17 @@
     </div>
 </div>
 
-<div class="col-lg-4 property-section" style="padding-right: 0px;
-padding-left: 18px;">
+<div class="col-lg-4 property-section" style="padding-right: 0px; min-width: 36%;">
     <div class="property-panel-header">
         Appearance
     </div>
-    <div id="propertypanel" class="e-remove-selection">
+    <div id="propertypanel">
         <div class="property-section-content">
             <div class="row sb-child-row">
-                <div class="col-xs-2 top" style="padding-left: 0px;">
+                <div class="col-xs-2 top barcode-panel-left">
                     Value
                 </div>
-                <div class="col-xs-10" style="padding-left: 0px">
+                <div class="col-xs-10 barcode-panel-left">
                     <form id="form-element" class="form-horizontal">
                         <div id='barcodevaluediv'>
                             <input type="text" id="barcodeValue" name="password" class="form-control" />
@@ -142,50 +145,44 @@ padding-left: 18px;">
             </div>
             <div class="row sb-child-row">
                 <div>
-                    <div class="col-xs-2 top" style="padding-left: 0px;padding-right: 20px;">
+                    <div class="col-xs-2 top barcode-panel-left">
                         Width
                     </div>
-                    <div class="col-xs-3" style="width: 33%;padding-left: 0px">
+                    <div class="col-xs-4 barcode-panel-left">
                         <input type="text" id='width' />
                     </div>
                 </div>
                 <div>
-                    <div class="rightProperty">
+                    <div class="col-xs-2 top barcode-panel-left">
                         Height
                     </div>
-                    <div class="col-xs-3" style="width: 33%;padding-left: 0px;">
+                    <div class="col-xs-4 barcode-panel-left">
                         <input type="text" id='height' />
 
                     </div>
                 </div>
             </div>
 
-            <div class="row sb-child-row" style="margin-top: 20px;">
-                <div class="col-xs-6" style="padding-left: 0px;">
-                    <div class="col-xs-1" style="padding-left: 0px;"><input type="checkbox" id="textVisibility"
-                            unchecked="false">
+            <div class="row sb-child-row" style="padding-top: 10px;">
+                <div class="col-xs-6 barcode-panel-left">
+                    <div class="col-xs-12 barcode-panel-left" ><input type="checkbox" id="textVisibility" unchecked="false">
+                        <div style="padding-left: 4px; vertical-align:middle; display: inline-block;">Text Visibility</div>
                     </div>
-                    <div class="col-xs-10">Text Visibility</div>
                 </div>
-                <div class="col-xs-4" style="padding-left: 0;margin-left: 13px;">
-                    <div class="col-xs-1" style="padding-left: 0px;"><input type="checkbox" id="svgMode"
-                            unchecked="false"></div>
-                    <div class="svgTextClass" >SVG Mode</div>
+                <div class="col-xs-6 barcode-panel-left">
+                    <div class="col-xs-12 barcode-panel-left"><input type="checkbox" id="svgMode" unchecked="false">
+                        <div style="padding-left: 4px; vertical-align:middle; display: inline-block;" >SVG Mode</div>
+                        </div>
                 </div>
-
-
-
-
             </div>
+
             <div class="row sb-child-row">
-                <div style="margin-top: 15px">
-                    <div class="col-xs-2" style="margin-top: 5px;padding-left: 0px;">BG Color</div>
-                    <div class="col-xs-4" style="padding-left: 0px;">
+                <div style="padding-top: 10px;">
+                    <div class="col-xs-3 barcode-panel-left" style="padding-top: 5px;">BG Color</div>
+                    <div class="col-xs-3 barcode-panel-left">
                         <input id='bgColor' type="color" />
                     </div>
-                    <div class="col-xs-2" style="width: 18%;
-                    padding-left: 12px;
-                    margin-top: 5px;">Fore Color</div>
+                    <div class="col-xs-3 barcode-panel-left" style="padding-top: 5px;">Fore Color</div>
                     <div class="col-xs-3" style="padding-left: 2px;">
                         <input id='foreColor' type="color" />
                     </div>
@@ -195,40 +192,40 @@ padding-left: 18px;">
                 Margin
             </div>
             <div class="row sb-child-row">
-                <div class="col-xs-2 top" style="padding-left: 0px;"> Left</div>
-                <div class="col-xs-3" style="width: 33%;padding-left: 0px;">
+                <div class="col-xs-2 top barcode-panel-left"> Left</div>
+                <div class="col-xs-4 barcode-panel-left">
                     <input type="text" id='marginLeft' />
                 </div>
-                <div class="rightProperty">Right</div>
-                <div class="col-xs-3" style="width: 33%;padding-left: 0px;">
+                <div class="col-xs-2 top barcode-panel-left">Right</div>
+                <div class="col-xs-4 barcode-panel-left">
                     <input type="text" id='MarginRight' />
                 </div>
             </div>
         </div>
         <div class="row sb-child-row">
-            <div class="col-xs-2 top" style="padding-left: 0px;">Top</div>
-            <div class="col-xs-3" style="width: 33%;padding-left: 0px;">
+            <div class="col-xs-2 top barcode-panel-left">Top</div>
+            <div class="col-xs-4 barcode-panel-left">
                 <div style="padding-bottom: 8px">
                     <input type="text" id='marginTop' />
                 </div>
             </div>
-            <div class="rightProperty">Bottom</div>
-            <div class="col-xs-3" style="width: 33%;padding-left: 0px;">
+            <div class="col-xs-2 top barcode-panel-left">Bottom</div>
+            <div class="col-xs-4 barcode-panel-left">
                 <input type="text" id='MarginBottom' />
                 <!-- </div> -->
             </div>
         </div>
         <div class="row sb-child-row">
-            <div class="col-xs-2 top" style="padding-left: 0px;">Size</div>
-            <div class="matrixSize">
+            <div class="col-xs-2 top barcode-panel-left">Size</div>
+            <div class="col-xs-10">
                 <div style="padding-bottom: 8px">
                     <input type="text" id='MatrixSize' />
                 </div>
             </div>
         </div>
         <div class="row sb-child-row">
-            <div class="col-xs-2 top" style="padding-left: 0px;">Encoding</div>
-            <div class="matrixSize">
+            <div class="col-xs-2 top barcode-panel-left">Encoding</div>
+            <div class="col-xs-10">
                 <div style="padding-bottom: 8px">
                     <input type="text" id='PdfDataMatrixEncoding' />
                 </div>

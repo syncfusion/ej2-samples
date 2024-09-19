@@ -5,23 +5,25 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * resource.ts file
  */
-import { resourceData, resourceResources } from './data-source';
+import { resourceAllocationData, resourceAllocationResources } from './data-source';
 
 import { Gantt, Selection, DayMarkers, Toolbar, Edit } from '@syncfusion/ej2-gantt';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { DataManager } from '@syncfusion/ej2-data';
 
 Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
 (window as any).default = (): void => {
     loadCultureFiles();
+    let dropdownlistObj: DropDownList;
     let gantt: Gantt = new Gantt(
         {
-            dataSource: resourceData,
+            dataSource: resourceAllocationData,
             taskFields: {
                 id: 'TaskID',
                 name: 'TaskName',
                 startDate: 'StartDate',
                 duration: 'Duration',
                 progress: 'Progress',
-                dependency: 'Predecessor',
                 resourceInfo: 'resources',
                 work: 'work',
                 child: 'subtasks',
@@ -35,13 +37,78 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
                 allowTaskbarEditing: true,
                 showDeleteConfirmDialog: true
             },
-            resources: resourceResources,
+            resources: resourceAllocationResources,
             resourceFields: {
                 id: 'resourceId',
                 name: 'resourceName',
                 unit: 'unit'
             },
+            queryTaskbarInfo: function (args: any) {
+                if (args.data.ganttProperties.resourceNames) {
+                    let resourceName: string = args.data.ganttProperties.resourceNames;
+                    if (resourceName.split('[')[0].includes('Rose Fuller')) {
+                        args.taskbarBgColor = '#539ed6';
+                        args.milestoneColor = '#539ed6';
+                        args.progressBarBgColor = '#1c5d8e';
+                        args.taskbarBorderColor = '#1c5d8e';
+                        if (args.data.ganttProperties.progress === 0) {
+                            args.taskLabelColor = 'black';
+                        }
+                    } else if (resourceName.split('[')[0].includes('Van Jack')) {
+                        args.taskbarBgColor = '#ff826b';
+                        args.milestoneColor = '#ff826b';
+                        args.progressBarBgColor = '#b24531';
+                        args.taskbarBorderColor = '#b24531';
+                        if (args.data.ganttProperties.progress === 0) {
+                            args.taskLabelColor = 'black';
+                        }
+                    } else if (resourceName.split('[')[0].includes('Bergs Anton')) {
+                        args.taskbarBgColor = '#ef6fbb';
+                        args.milestoneColor = '#ef6fbb';
+                        args.progressBarBgColor = '#a53576';
+                        args.taskbarBorderColor = '#a53576';
+                        if (args.data.ganttProperties.progress === 0) {
+                            args.taskLabelColor = 'black';
+                        }
+                    } else if (resourceName.split('[')[0].includes('Fuller King')) {
+                        args.taskbarBgColor = '#87b972';
+                        args.milestoneColor = '#87b972';
+                        args.progressBarBgColor = '#4a7537';
+                        args.taskbarBorderColor = '#4a7537';
+                        if (args.data.ganttProperties.progress === 0) {
+                            args.taskLabelColor = 'black';
+                        }
+                    } else if (resourceName.split('[')[0].includes('Tamer Vinet')) {
+                        args.taskbarBgColor = '#a496cf';
+                        args.milestoneColor = '#a496cf';
+                        args.progressBarBgColor = '#635688';
+                        args.taskbarBorderColor = '#635688';
+                        if (args.data.ganttProperties.progress === 0) {
+                            args.taskLabelColor = 'black';
+                        }
+                    }
+                }
+                if (args.taskbarType === 'ParentTask') {
+                    args.taskbarBgColor = '#adadad';
+                    args.progressBarBgColor = '#6b6b6b';
+                    if (args.data.ganttProperties.progress === 0) {
+                        args.taskLabelColor = 'black';
+                    }
+                }
+            },
             workUnit: 'Hour',
+            editDialogFields: [
+                { type: 'Resources' }
+            ],
+            addDialogFields: [
+                { type: 'Resources' }
+            ],
+            actionBegin: function(args: any) {
+                if (args.requestType == 'beforeOpenEditDialog' || args.requestType == 'beforeOpenAddDialog') {
+                    args.Resources.selectionSettings = {};
+                    args.Resources.columns.splice(0, 1);
+                }
+            },
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll'],
             allowSelection: true,
             height: '450px',
@@ -50,18 +117,39 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
             columns: [
                 { field: 'TaskID', visible: false },
                 { field: 'TaskName', headerText: 'Task Name', width: '180' },
-                { field: 'resources', headerText: 'Resources', width: '160' },
+                { field: 'resources', headerText: 'Resources', width: '190', template: '#resColumnTemplate', editType: "dropdownedit",
+                    edit: {
+                    read: () => {
+                        var value = dropdownlistObj.value;
+                        if (value == null) {
+                            value = [];
+                        }
+                        gantt.treeGridModule.currentEditRow[gantt.taskFields.resourceInfo] = [value];
+                        return value;
+                    },
+                    destroy: () => {
+                        dropdownlistObj.destroy();
+                    },
+                    write: (args: any) => {
+                        gantt.treeGridModule.currentEditRow = {};
+                        dropdownlistObj = new DropDownList({
+                        dataSource: new DataManager(gantt.resources),
+                        fields: { text: gantt.resourceFields.name, value: gantt.resourceFields.id },
+                        enableRtl: gantt.enableRtl,
+                        popupHeight: '350px',
+                        value: gantt.treeGridModule.getResourceIds(args.rowData)
+                    });
+                    dropdownlistObj.appendTo(args.element as HTMLElement);
+                    }
+                }
+            },
                 { field: 'work', width: '110' },
                 { field: 'Duration', width: '100' },
                 { field: 'taskType', headerText: 'Task Type', width: '110' }
             ],
-            editDialogFields: [
-                { type: 'General', headerText: 'General' },
-                { type: 'Dependency' },
-                { type: 'Resources' }
-            ],
             labelSettings: {
-                rightLabel: 'resources'
+                rightLabel: 'resources',
+                taskLabel: '${Progress}%'
             },
             splitterSettings: {
                 columnIndex: 2

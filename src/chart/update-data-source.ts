@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, ColumnSeries, Category, DataLabel, ILoadedEventArgs, ChartTheme, Series, IAxisRangeCalculatedEventArgs, IPointRenderEventArgs } from '@syncfusion/ej2-charts';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluent2Colors, fluent2DarkColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluent2Colors, fluent2HighContrastColors } from './theme-color';
 Chart.Inject(ColumnSeries, Category, DataLabel);
 import { Browser } from '@syncfusion/ej2-base';
 import { EmitType } from '@syncfusion/ej2/base';
@@ -19,7 +19,7 @@ const updatedData: Object[] = [
 ];
 let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];
-    selectedTheme = selectedTheme ? selectedTheme : 'Material';
+    selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
     if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
         args.fill = fabricColors[args.point.index % 10];
     } else if (selectedTheme === 'material') {
@@ -28,8 +28,8 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = highContrastColors[args.point.index % 10];
     } else if (selectedTheme === 'fluent2') {
         args.fill = fluent2Colors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent2-dark') {
-        args.fill = fluent2DarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
+        args.fill = fluent2HighContrastColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }
@@ -50,7 +50,7 @@ let intervalId: number;
         //Initializing Chart Series
         series: [
             {
-                dataSource: updatedData, xName: 'x', yName: 'y', type: 'Column',
+                dataSource: updatedData, xName: 'x', yName: 'y', type: 'Column', marker: {visible: false,  dataLabel: { visible: true, position: 'Top', format: '{value}%', font: { color: '#ffffff' } }},
                 cornerRadius: { topLeft: Browser.isDevice ? 10 : 15, topRight: Browser.isDevice ? 10 : 15 }, columnWidth: 0.5
             }
         ],
@@ -59,9 +59,9 @@ let intervalId: number;
         pointRender: labelRender,
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
                 updateClearInterval();
     
                 intervalId = setInterval(function() {

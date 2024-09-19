@@ -16,8 +16,17 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     let viewer: PdfViewer = new PdfViewer();
     renderdialog();
     renderPDFViewer();
+    var mode:any;
+    function documentLoaded(){
+        if (mode === 'View') {
+            viewer.enablePageOrganizer = false;
+        }
+        else {
+            viewer.enablePageOrganizer = true;
+        }
+    }
     let commandClick: any = function(args:any){
-      var mode = args.target.title;
+      mode = args.target.title;
       var documentPath = args.rowData.Document;
       dialogObj.header = args.rowData.FileName;
       if(mode === 'View'){
@@ -26,7 +35,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
           viewer.isFormDesignerToolbarVisible = false;
           viewer.toolbarSettings = { showTooltip : true, toolbarItems: ['OpenOption', 'PageNavigationTool', 'MagnificationTool', 'PanTool','SearchOption', 'PrintOption']};
           viewer.annotationSettings = {  
-              isLock:true,       
+              isLock:true, author: 'Guest',       
           };
           viewer.textFieldSettings = {        
               isReadOnly: true,
@@ -58,7 +67,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
           viewer.enableAnnotationToolbar = true;
           viewer.toolbarSettings = { showTooltip : true, toolbarItems: ['OpenOption', 'UndoRedoTool', 'PageNavigationTool', 'MagnificationTool', 'PanTool', 'SelectionTool', 'CommentTool', 'SubmitForm', 'SearchOption', 'AnnotationEditTool', 'FormDesignerEditTool', 'PrintOption', 'DownloadOption']};
           viewer.annotationSettings = {  
-              isLock:false,       
+              isLock:false, author: 'Guest',     
           };
           viewer.textFieldSettings = {        
               isReadOnly: false,
@@ -126,7 +135,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     function renderPDFViewer(): void {
       viewer.documentPath = "";
       viewer.resourceUrl = 'https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib';
-        
+      viewer.documentLoad = documentLoaded;
       var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
       switchObj.appendTo('#checked');
       

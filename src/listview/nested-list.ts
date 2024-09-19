@@ -22,7 +22,9 @@ import { nestedListData } from './datasource';
         headerTitle: 'Folders',
 
         //Set true to show header title
-        showHeader: true
+        showHeader: true,
+
+        animation: { duration:0 }
     });
 
     //Render initialized ListView component

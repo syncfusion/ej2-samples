@@ -44,11 +44,18 @@ import * as dataSource from './sorting-and-filtering-data.json';
         saveUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/save',
         created: () => {
             spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center' }, 'A1:G1');
+            spreadsheet.numberFormat('m/d/yyyy', 'E2:E51');
+            // custom code start
+            setTimeout(() => {
+            // custom code end
             // Sorted B(Employee Name field) column in ascending order
             spreadsheet.sort({ sortDescriptors: { field: 'B' } }, 'A2:G51').then(() => {
                 // Filtered D(Department  field) column with value 'Services'
                 spreadsheet.applyFilter([{ field: 'D', operator: 'equal', value: 'Services' }], 'A1:G51');
             });
+            // custom code start
+            });
+            // custom code end
         }
     });
     //Render initialized Spreadsheet component

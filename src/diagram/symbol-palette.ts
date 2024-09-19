@@ -11,8 +11,6 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 
-Diagram.Inject(UndoRedo);
-
 interface Symbol extends NodeModel {
     text?: string;
 }
@@ -20,7 +18,7 @@ interface Symbol extends NodeModel {
 let palette: SymbolPalette;
 
 //Initialize the flowshapes for the symbol palatte
-let flowshapes: NodeModel[] = [
+let flowShapes: NodeModel[] = [
     { id: 'Terminator', shape: { type: 'Flow', shape: 'Terminator' } },
     { id: 'Process', shape: { type: 'Flow', shape: 'Process' } },
     { id: 'Sort', shape: { type: 'Flow', shape: 'Sort' } },
@@ -31,6 +29,7 @@ let flowshapes: NodeModel[] = [
     { id: 'SequentialData', shape: { type: 'Flow', shape: 'SequentialData' } },
 ];
 
+//Initialize the basicshapes for the symbol palatte
 let basicShapes: NodeModel[] = [
     { id: 'Rectangle', shape: { type: 'Basic', shape: 'Rectangle' } },
     { id: 'Ellipse', shape: { type: 'Basic', shape: 'Ellipse' } },
@@ -45,29 +44,25 @@ let basicShapes: NodeModel[] = [
 let connectorSymbols: ConnectorModel[] = [
     {
         id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
-        style: { strokeWidth: 2, strokeColor: '#757575' }
     },
     {
         id: 'link3', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+        targetDecorator: { shape: 'None' }
     },
     {
         id: 'Link21', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
-        style: { strokeWidth: 2, strokeColor: '#757575' }
     },
     {
         id: 'link23', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+        targetDecorator: { shape: 'None' }
     },
     {
         id: 'link33', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-        style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+        targetDecorator: { shape: 'None' }
     },
 ];
 
-//set Node default value
+//Set node default value
 function getNodeDefaults(symbol: NodeModel): NodeModel {
     if (symbol.id === 'Terminator' || symbol.id === 'Process') {
         symbol.width = 80;
@@ -81,10 +76,20 @@ function getNodeDefaults(symbol: NodeModel): NodeModel {
     return symbol;
 }
 
+//Set connector default value
+function getConnectorDefaults(symbol: ConnectorModel): ConnectorModel {
+    symbol.style.strokeWidth = 2;
+    symbol.style.strokeColor = '#757575';
+    symbol.targetDecorator.style.strokeColor = '#757575';
+    symbol.targetDecorator.style.fill = '#757575';
+    return symbol;
+}
+
 function getSymbolInfo(symbol: Symbol): SymbolInfo {
     return { fit: true };
 }
 
+//Enable or disable the animation for symbol palette
 function onAnimationChange(args: ChangeEventArgs): void {
     palette.enableAnimation = args.checked;
 }
@@ -131,12 +136,12 @@ function onHeaderIconChange(args: ChangeEventArgs): void {
     palette = new SymbolPalette({
         expandMode: 'Multiple', allowDrag: false,
         palettes: [
-            { id: 'flow', expanded: true, symbols: flowshapes, iconCss: 'e-ddb-icons e-basic', title: 'Flow Shapes' },
+            { id: 'flow', expanded: true, symbols: flowShapes, iconCss: 'e-ddb-icons e-basic', title: 'Flow Shapes' },
             { id: 'basic', expanded: true, symbols: basicShapes, iconCss: 'e-ddb-icons e-flow', title: 'Basic Shapes' },
             { id: 'connectors', expanded: true, symbols: connectorSymbols, iconCss: 'e-ddb-icons e-connector', title: 'Connectors' }
         ], enableAnimation: true,
         width: '100%', height: '500px', symbolHeight: 80, symbolWidth: 80,
-        getNodeDefaults: getNodeDefaults, getSymbolInfo: getSymbolInfo,
+        getNodeDefaults: getNodeDefaults, getConnectorDefaults: getConnectorDefaults, getSymbolInfo: getSymbolInfo,
         symbolMargin: { left: 15, right: 15, top: 15, bottom: 15 }
     });
     palette.appendTo('#symbolpalette');
@@ -161,7 +166,7 @@ function onHeaderIconChange(args: ChangeEventArgs): void {
 
     //NumericTextBox is used to apply the size of the Symbol.
     let size: NumericTextBox = new NumericTextBox({
-        value: 80, min: 40,
+        value: 80, min: 60,
         max: 100, width: 120,
         step: 5,
         format: '##.##',
@@ -172,12 +177,13 @@ function onHeaderIconChange(args: ChangeEventArgs): void {
     });
     palette.dataBind();
     size.appendTo('#size');
-
+    //enable or disable the Text for Symbol palette item.
     let itemtext: CheckBox = new CheckBox({
         change: onItemTextChange
     });
     itemtext.appendTo('#itemtext');
 
+    //Checkbox for enable or disable symbol palette header icons.
     let headericon: CheckBox = new CheckBox({
         checked: true,
         change: onHeaderIconChange

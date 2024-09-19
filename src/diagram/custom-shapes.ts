@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Getting started -  Html Node
  */
-
+// Importing necessary modules from '@syncfusion/ej2-diagrams' package
 import {
   Diagram, NodeModel, HtmlModel, NodeConstraints
 } from '@syncfusion/ej2-diagrams';
@@ -16,12 +16,17 @@ import {
   Chart, ColumnSeries, Category, Legend, Tooltip, ChartAnnotation,
   LineSeries, AreaSeries, DateTime, Logarithmic, Crosshair
 } from '@syncfusion/ej2-charts';
+
+// Injecting necessary modules into AccumulationChart
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip, AccumulationSelection, ChartAnnotation);
+// Injecting necessary modules into Chart
 Chart.Inject(ColumnSeries, Category, Legend, Tooltip, ChartAnnotation, DateTime, Crosshair);
 Chart.Inject(LineSeries, AreaSeries, DateTime, Logarithmic, Legend, Tooltip);
+// Importing necessary modules from '@syncfusion/ej2-grids' package
 import { Grid, Page, Toolbar } from '@syncfusion/ej2-grids';
 Grid.Inject(Page, Toolbar);
-// custom code start
+
+// Define interface for Expense data
 interface IExpense {
   UniqueId: string;
   DateTime: Date;
@@ -32,16 +37,19 @@ interface IExpense {
   Amount: number;
 }
 
+// Define interface for Expense data used in rendering
 interface IExpenseData {
   x: string;
   y: number;
   text: string;
 }
-// custom code end
+
+
+// Define predicates for filtering data based on date range
 let predicateStart: Predicate = new Predicate('DateTime', 'greaterthanorequal', window.startDate);
 let predicateEnd: Predicate = new Predicate('DateTime', 'lessthanorequal', window.endDate);
 let predicate: Predicate = predicateStart.and(predicateEnd);
-// custom code start
+
 declare let window: MyWindow;
 let dataSource: Object[] = [];
 /* tslint:disable */
@@ -75,7 +83,7 @@ let tempChartExpenseDS: any = {};
 let tempChartLineDS: any = {};
 let curDateTime: any;
 let lineD: any = [];
-// custom code end
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
   //   loadCultureFiles();
@@ -157,7 +165,7 @@ let lineD: any = [];
   dateRangePickerObject.appendTo('#daterange');
   window.startDate = dateRangePickerObject.startDate;
   window.endDate = dateRangePickerObject.endDate;
-  // custom code start
+
   function getSeries(): object[] {
     let series: object[] = [
       {
@@ -186,7 +194,9 @@ let lineD: any = [];
     ];
     return series;
   }
-  // custom code end
+
+
+  // Function to handle date range change
   function onDateRangeChange(args: RangeEventArgs): void {
     window.startDate = args.startDate;
     window.endDate = args.endDate;
@@ -205,7 +215,7 @@ let lineD: any = [];
     new DataManager(window.expenseData)
       .executeQuery(new Query().where(predicate.and("TransactionType", "equal", "Expense")))
       .then((e: any) => {
-        getCoulmnChartExpenseDS(e);
+        getColumnChartExpenseDS(e);
       });
     /* tslint:enable */
     /* tslint:disable */
@@ -213,7 +223,7 @@ let lineD: any = [];
       .executeQuery(new Query().where(predicate.and("TransactionType", "equal", "Income"))
       )
       .then((e: any) => {
-        getCoulmnChartIncomeDS(e);
+        getColumnChartIncomeDS(e);
         columnChartObj.setProperties({
           //Initializing Chart Series
           primaryXAxis: { labelFormat: "MMM", valueType: "DateTime", edgeLabelPlacement: "Shift" },
@@ -272,18 +282,19 @@ let lineD: any = [];
     predicate = predicateStart.and(predicateEnd);
     lineBarChart();
   }
-  // custom code start
+
   // tslint:disable-next-line:max-func-body-length
+  //Renders combined column and line charts from expense and income data.
   function lineBarChart() {
     new DataManager(window.expenseData)
       .executeQuery(new Query().where(predicate.and('TransactionType', 'equal', 'Expense')))
       .then((e: any) => {
-        getCoulmnChartExpenseDS(e);
+        getColumnChartExpenseDS(e);
       });
     new DataManager(window.expenseData)
       .executeQuery(new Query().where(predicate.and('TransactionType', 'equal', 'Income')))
       .then((e: any) => {
-        getCoulmnChartIncomeDS(e);
+        getColumnChartIncomeDS(e);
         columnChartObj = new Chart({
           width: '100%', height: '400px',
           //Initializing Primary X Axis
@@ -319,6 +330,8 @@ let lineD: any = [];
         line();
       });
   }
+
+  //Configures and renders a line chart using Syncfusion's Chart component.
   function line(): void {
     // tslint:disable-next-line:max-line-length
     let content: string = '<p style="font-family:Roboto;font-size: 16px;font-weight: 400;font-weight: 400;letter-spacing: 0.02em;line-height: 16px;color: #797979 !important;">Account - Balance</p>';
@@ -372,7 +385,9 @@ let lineD: any = [];
     });
     linechartObj.appendTo('#lineChart');
   }
-  // custom code end
+
+
+  // Function to calculate total expenses and prepare data for pie chart rendering
   function getTotalExpense(): void {
     let renderingData: IExpenseData[] = [];
     tempData.forEach(item => {
@@ -386,6 +401,7 @@ let lineD: any = [];
       }
     });
     /* tslint:disable */
+    // Iterate through each unique expense category
     category.forEach(str => {
       let total: number = 0;
       legendData.forEach(item => {
@@ -403,7 +419,7 @@ let lineD: any = [];
       hiGridData = new DataManager(JSON.parse(JSON.stringify(renderingData))).executeLocal((new Query().sortByDesc('y').skip(9)));
     }
   }
-  // custom code start
+  // Function to create legend data for the pie chart (% value in pie chart)
   function createLegendData(initiate: string): void {
     if (pieRenderingData.length > 10) {
       pie.series[0].groupTo = groupValue.toString();
@@ -425,7 +441,9 @@ let lineD: any = [];
       pieRenderData.push(data);
     }
   }
-  function getCoulmnChartExpenseDS(e: any): void {
+
+  // Function to get data for column chart (expense) ( bar & line chart)
+  function getColumnChartExpenseDS(e: any): void {
     let result: Object[] = objectAssign(e);
     for (let i: number = 0; i < result.length - 1; i++) {
       let cur: any = result[i];
@@ -441,7 +459,8 @@ let lineD: any = [];
       columnExpenseDS.push(tempChartExpenseDS[data]);
     }
   }
-  function getCoulmnChartIncomeDS(e: any): void {
+  // Function to get data for column chart (income)( bar & line chart)
+  function getColumnChartIncomeDS(e: any): void {
     let result: Object[] = objectAssign(e);
     for (let i: number = 0; i < result.length - 1; i++) {
       let cur: any = result[i];
@@ -457,6 +476,8 @@ let lineD: any = [];
       columnIncomeDS.push(tempChartIncomeDS[data]);
     }
   }
+
+  // Function to combine objects and arrays
   function objectAssign(e: any): Object[] {
     let result: Object[] = [];
     let obj: any;
@@ -466,6 +487,8 @@ let lineD: any = [];
     }
     return result;
   }
+
+  // Function to prepare data for the line chart
   function getLineChartDS(): void {
     tempChartLineDS = columnIncomeDS.concat(columnExpenseDS);
     for (let i: number = 0; i < tempChartLineDS.length; i++) {
@@ -483,5 +506,5 @@ let lineD: any = [];
       }
     }
   }
-  // custom code end
+ 
 };

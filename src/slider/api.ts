@@ -64,7 +64,6 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         label: 'Show Buttons',
         change: (args: ChangeEventArgs) => {
             slider.showButtons = args.checked;
-
         }
     });
     button.appendTo('#button');
@@ -73,7 +72,6 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
         checked: false,
         change: (args: ChangeEventArgs) => {
             slider.showButtons = args.checked;
-
         }
     });
     buttonMb.appendTo('#mb-button');

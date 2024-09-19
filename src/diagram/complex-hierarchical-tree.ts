@@ -17,10 +17,9 @@ export interface DataInfo {
     [key: string]: string;
 }
 
-//Sets the default values of nodes
+//Sets the default values of nodes.
 function getNodeDefaults(obj: NodeModel): NodeModel {
     obj.width = 40; obj.height = 40;
-    //Initialize shape
     obj.shape = { type: 'Basic', shape: 'Rectangle', cornerRadius: 7 };
     return obj;
 }
@@ -47,9 +46,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
             horizontalSpacing: 40, verticalSpacing: 40, orientation: 'TopToBottom',
             margin: { left: 10, right: 0, top: 50, bottom: 0 }
         },
-        //Sets the default values of nodes
         getNodeDefaults: getNodeDefaults,
-        //Sets the default values of connectors
         getConnectorDefaults: getConnectorDefaults,
         //Configures data source
         dataSourceSettings: {
@@ -67,15 +64,12 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         created: created
     });
     diagram.appendTo('#diagram');
+    
     let checkBoxObj: CheckBox = new CheckBox({
         checked: true, label: 'Prevent Connector Overlapping',
         change: () => {
-            if (checkBoxObj.checked) {
-                diagram.layout.connectionPointOrigin = ConnectionPointOrigin.DifferentPoint;
-            } else {
-                diagram.layout.connectionPointOrigin = ConnectionPointOrigin.SamePoint;
+             diagram.layout.connectionPointOrigin = checkBoxObj.checked ? ConnectionPointOrigin.DifferentPoint : ConnectionPointOrigin.SamePoint;
             }
-        }
     });
     checkBoxObj.appendTo('#checked');
     function created(): void {
@@ -101,6 +95,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
             // custom code end
         }
     };
+    
     //used NumericTextBox for left margin of the layout.
     let marginLeftObj: NumericTextBox = new NumericTextBox({
         value: diagram.layout.margin.left, step: 1, format: '##.##',
@@ -114,6 +109,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     let marginTopObj: NumericTextBox = new NumericTextBox({
         value: diagram.layout.margin.top, step: 1, format: '##.##',
         change: (args: NumericChangeEventArgs) => {
+            diagram.layout.verticalAlignment = 'Top';
             diagram.layout.margin.top = args.value;
             diagram.dataBind();
         }

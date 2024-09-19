@@ -69,7 +69,6 @@ import * as dataSource from './freeze-pane-data.json';
         openUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/open',
         saveUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/save',
         created: (): void => {
-            spreadsheet.wrap('C2:P2');
             spreadsheet.merge('A1:B1');
             spreadsheet.merge('C1:P1');
             spreadsheet.cellFormat({ backgroundColor: '#4e4ee6', color: '#FFFFF4', fontSize: '12pt', fontWeight: 'bold'}, 'A1:P2');
@@ -77,6 +76,7 @@ import * as dataSource from './freeze-pane-data.json';
             spreadsheet.cellFormat({ backgroundColor: '#4e4ee6', color: '#FFFFF4' }, 'A3:B26');
             spreadsheet.numberFormat('$#,##0.00', 'C2:P26');
             spreadsheet.numberFormat('$#,##0.00', 'O27:P27');
+            spreadsheet.wrap('C2:P2');
         }
     });
 

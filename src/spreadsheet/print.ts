@@ -489,6 +489,7 @@ const imageSource: string = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABjIAA
         ],
         created: function () {
             spreadsheet.numberFormat('$#,##0.00', 'Car Sales!F3:F59');
+            spreadsheet.numberFormat('m/d/yyyy', 'Car Sales!E3:E58');
         },
         openUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/open',
         saveUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/save',

@@ -23,7 +23,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
     });
     scheduleObj.appendTo('#Schedule');
 
-    // custom code start
     let currentDate: DatePicker = new DatePicker({
         value: new Date(2021, 0, 10),
         showClearButton: false,
@@ -35,5 +34,4 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         }
     });
     currentDate.appendTo('#scheduledate');
-    // custom code end
 };

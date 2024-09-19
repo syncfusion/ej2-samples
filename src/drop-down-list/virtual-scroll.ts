@@ -3,7 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Dropdownlist Default functionality Sample
  */
 import { DropDownList , VirtualScroll } from '@syncfusion/ej2-dropdowns';
-import { Query, DataManager, WebApiAdaptor  } from '@syncfusion/ej2-data';
+import { Query, DataManager, UrlAdaptor  } from '@syncfusion/ej2-data';
 
 
 DropDownList.Inject(VirtualScroll);
@@ -55,8 +55,8 @@ for (let i = 1; i <= 150; i++) {
     let remoteObj: DropDownList = new DropDownList({
         //set the remote data to dataSource property
         dataSource: new DataManager({
-            url: 'https://services.syncfusion.com/js/production/api/orders',
-            adaptor: new WebApiAdaptor ,
+            url: 'https://services.syncfusion.com/js/production/api/VirtualDropdownData',
+            adaptor: new UrlAdaptor ,
             crossDomain: true
         }),
         fields: { text: 'OrderID', value: 'OrderID' },

@@ -31,7 +31,7 @@ import { extend } from '@syncfusion/ej2/base';
         'custom': ['#ffffff', '#000000', '#e91e63', '#9c27b0', '#673ab7', '#2196f3', '#03a9f4', '#00bcd4',
         '#009688', '#8bc34a', '#cddc39', '#ffeb3b']
     };
-
+    const toolbars: any = ['filter', 'rectangle', 'ellipse', 'line', 'text', 'edittext', 'freehanddraw'];
     EventHandler.add(document, 'keydown', keyDownEventHandler, this);
     EventHandler.add(document.getElementById('image-editor-container'), 'dblclick', doubleClickEvent, this);
 
@@ -52,7 +52,7 @@ import { extend } from '@syncfusion/ej2/base';
         showQuickAccessToolbar: false,
         shapeChanging: (args: ShapeChangeEventArgs) => {
             if (args.action === 'select') {
-                isShapeSelected = isShapeSelected ? false : true;
+                isShapeSelected = true;
                 updateToolbar(args, true);
             } else if (args.action === 'insert') {
                 activeObjIndex = args.currentShapeSettings.id;
@@ -60,7 +60,7 @@ import { extend } from '@syncfusion/ej2/base';
             }
         },
         shapeChange: (args: ShapeChangeEventArgs) => {
-            if (args.action === 'apply' && !isShapeCustomizing) {
+            if (args.action === 'apply' && !isShapeCustomizing && !isShapeSelected) {
                 isTextEditing = false;
                 setTimeout(function() {
                     refreshToolbar('main');
@@ -68,7 +68,7 @@ import { extend } from '@syncfusion/ej2/base';
             }
         },
         click: () => {
-            if (currentToolbar === 'filter') {
+            if (toolbars.indexOf(currentToolbar) !== -1) {
                 refreshToolbar('main');
             }
         },

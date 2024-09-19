@@ -1,0 +1,20 @@
+{
+    "name": "Scheduler",
+    "directory": "ai-schedule",
+    "category": "Smart AI Solutions",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Smart Event Window",
+            "category": "Scheduler",
+            "api": {},
+            "sourceFiles":[
+                { "displayName": "smart-event-window.html", "path":"src/ai-schedule/schedule.html" },
+                { "displayName": "smart-event-window.ts", "path":"src/ai-schedule/default.ts" }
+            ],
+            "description": "This demo demonstrates how AI can be utilized to convert natural language context into scheduler events."
+        }
+    ]
+}
+
+

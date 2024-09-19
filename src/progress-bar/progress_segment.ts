@@ -25,9 +25,9 @@ ProgressBar.Inject(ProgressAnnotation);
         },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
             args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
             if (selectedTheme === 'highcontrast') {
                 args.progressBar.trackColor = '#969696';
             }
@@ -56,9 +56,9 @@ ProgressBar.Inject(ProgressAnnotation);
         cornerRadius: 'Square',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
             args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
 
             switch (selectedTheme) {
                 case 'material':
@@ -106,6 +106,9 @@ ProgressBar.Inject(ProgressAnnotation);
                     break;
                 case "fluent2-dark":
                     args.progressBar.annotations[0].content = '<div id="point1" style="font-size:24px;font-weight:bold;color:#115EA3"><span></span></div>';
+                    break; 
+                case "fluent2-highcontrast":
+                    args.progressBar.annotations[0].content = '<div id="point1" style="font-size:24px;font-weight:bold;color:#1AEBFF"><span></span></div>';
                     break; 
                 default:
                     args.progressBar.trackColor = '#969696';

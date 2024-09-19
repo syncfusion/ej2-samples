@@ -24,8 +24,8 @@ Grid.Inject(Page, Toolbar, Edit, Sort, Filter);
                 { type: 'checkbox', width: 50 },
                 { field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', textAlign: 'Right', width: 180 },
                 { field: 'CustomerName', headerText: 'Customer Name', width: 150 },
-                { field: 'OrderDate', headerText: 'Order Date', format: 'yMd', width: 150, textAlign: 'Right' },
-                { field: 'Freight', headerText: 'Freight', format: 'C2', width: 130, textAlign: 'Right' },
+                { field: 'OrderDate', headerText: 'Order Date', width: 150, format: 'yMd', textAlign: 'Right' },
+                { field: 'Freight', headerText: 'Freight', width: 130, format: 'C2', textAlign: 'Right' },
                 { field: 'ShipCountry', headerText: 'Ship Country', width: 130 }
             ],
             pageSettings: { pageCount: 2 }

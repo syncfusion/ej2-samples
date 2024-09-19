@@ -18,10 +18,8 @@ import { Browser } from '@syncfusion/ej2-base';
         "#b91c52"];
     let highContrastColors: string[] = ["#79ECE4", "#E98272", "#DFE6B6", "#C6E773", "#BA98FF", "#FA83C3", "#00C27A", "#43ACEF", "#D681EF",
         "#D8BC6E"];
-    let bootstrap5Colors: string[] = ["#6355C7", "#FFB400", "#2196F5", "#F7523F", "#963C70", "#4BE0BC", "#FD7400", "#C9E422", "#0C7DA0",
-    "#162F88"];
-    let bootstrap5DarkColors: string[] = ["#8F80F4", "#FFD46D", "#6CBDFF", "#FF7F71", "#FF6DB3", "#63F5D2", "#FCAA65", "#ECFF77", "#EF8EFF",
-    "#5F82FD"];
+    let bootstrap5Colors: string[] = ['#FD7E14', '#6610F2', '#6F42C1', '#D63384', '#DC3545', '#FFC107', '#198754', '#0DCAF0'];
+    let bootstrap5DarkColors: string[] = ['#FD7E14', '#6610F2', '#6F42C1', '#D63384', '#DC3545', '#FFC107', '#198754', '#0DCAF0'];
     let fluentColors: string[] = ["#1AC9E6", "#DA4CB2", "#EDBB40", "#AF4BCF", "#FF7266", "#1BD565", "#EE993D", "#5887FF", "#EC548D",
     "#7D39C0"];
     let fluentDarkColors: string[] = ["#1AC9E6", "#DA4CB2", "#EDBB40", "#AF4BCF", "#FF7266", "#1BD565", "#EE993D", "#5887FF", "#EC548D",
@@ -38,7 +36,7 @@ import { Browser } from '@syncfusion/ej2-base';
         "#FF9E45", "#B3F32F", "#B93CE4", "#FC5664", "#9B55FF"];
     let fluent2Colors: string[] = ["#6200EE", "#09AF74", "#0076E5", "#CB3587", "#E7910F", "#0364DE", "#66CD15", "#F3A93C", "#107C10",
         "#C19C00"];
-    let fluent2DarkColors: string[] = ["#9BB449", "#2A72D5", "#43B786", "#3F579A", "#584EC6", "#E85F9C", "#6E7A89", "#EA6266",
+    let fluent2HighContrastColors: string[] = ["#9BB449", "#2A72D5", "#43B786", "#3F579A", "#584EC6", "#E85F9C", "#6E7A89", "#EA6266",
         "#0B6A0B", "#C19C00"];
 
     let FontColor: string = "#353535";
@@ -231,9 +229,9 @@ import { Browser } from '@syncfusion/ej2-base';
         },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i,  'Dark').replace(/contrast/i, 'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i,  'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
             FontColor = args.chart.theme.indexOf("dark") > -1 || args.chart.theme.indexOf("highcontrast") > -1 ? "#F3F2F1" : "#353535";
             let FillColors: string[];
             let TextColor: string;
@@ -305,8 +303,8 @@ import { Browser } from '@syncfusion/ej2-base';
                 FillColors = fluent2Colors;
                 TextColor = "#000000";
             }
-            else if (args.chart.theme === 'Fluent2Dark') {
-                FillColors = fluent2DarkColors;
+            else if (args.chart.theme === 'Fluent2HighContrast' || args.chart.theme === 'Fluent2Dark') {
+                FillColors = fluent2HighContrastColors;
                 TextColor = "#FFFFFF";
             }
             else {

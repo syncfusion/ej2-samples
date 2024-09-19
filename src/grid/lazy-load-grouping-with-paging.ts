@@ -14,10 +14,10 @@ Grid.Inject(Page, Group, LazyLoadGroup, Sort);
         {
             dataSource: lazyLoadData,
             allowPaging: true,
-            height: 400,
             allowGrouping: true,
             allowSorting: true,
             groupSettings: { enableLazyLoading: true, columns: ['ProductName', 'CustomerName'] },
+            height: 400,
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 120 },
                 { field: 'ProductName', headerText: 'Product Name', width: 160 },

@@ -26,7 +26,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
     let layoutColor;
     let onPointRender: EmitType<IAccPointRenderEventArgs> = (args: IAccPointRenderEventArgs): void => {
         let selectedTheme = location.hash.split('/')[1];
-        selectedTheme = selectedTheme ? selectedTheme : 'Material';
+        selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
         if (selectedTheme.indexOf('dark') > -1) {
             if (selectedTheme.indexOf('material') > -1) {
                 args.border.color = '#303030';
@@ -65,11 +65,15 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             args.border.color = '#000000';
             layoutColor = '#000000';
         }
+        else if (selectedTheme.indexOf('fluent2-highcontrast') > -1) {
+            args.border.color = '#000000';
+            layoutColor = '#000000';
+        }
         else {
             args.border.color = '#FFFFFF';
             layoutColor = '#FFFFFF';
         }
-        if (selectedTheme.indexOf('highcontrast') > -1 || selectedTheme.indexOf('dark') > -1) {
+        if ((selectedTheme.indexOf('highcontrast') > -1 || selectedTheme.indexOf('dark') > -1) && document.getElementById('defaultLayout')) {
             let el = document.getElementById('header1');
             el.style.setProperty('color', '#F3F2F1');
             let el1 = document.getElementById('header2');
@@ -149,9 +153,9 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             ],
             load: (args: any) => {
                 let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'Material';
+                selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
                 args.chart.theme = <any>(selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
 
             }
         });
@@ -191,9 +195,9 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             height: '100%',
             load: (args: IAccLoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'Material';
+                selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
                 args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
             }
         });
         pie.appendTo('#pie');
@@ -249,10 +253,10 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             height: '100%',
             load: (args: ILoadedEventArgs) => {
                 let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'Material';
-                args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Material';
+                selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
+                args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Fluent2';
                 args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
             }
         });
         chart.appendTo('#chart');

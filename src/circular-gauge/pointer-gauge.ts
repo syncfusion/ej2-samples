@@ -48,7 +48,7 @@ export function gauge1(): CircularGauge {
             var selectTheme = location.hash.split('/')[1];
             selectTheme = selectTheme ? selectTheme : 'Material';
             args.gauge.theme = (selectTheme.charAt(0).toUpperCase() +
-                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
             // custom code end
         }
     });
@@ -102,7 +102,7 @@ export function gauge2(): CircularGauge {
             var selectTheme = location.hash.split('/')[1];
             selectTheme = selectTheme ? selectTheme : 'Material';
             args.gauge.theme = (selectTheme.charAt(0).toUpperCase() +
-                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-high/i, 'High').replace(/5.3/i, '5');
             // custom code end
         }
     });
@@ -163,7 +163,7 @@ export function gauge4(): CircularGauge {
             var selectTheme = location.hash.split('/')[1];
             selectTheme = selectTheme ? selectTheme : 'Material';
             args.gauge.theme = (selectTheme.charAt(0).toUpperCase() +
-                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-high/i, 'High').replace(/5.3/i, '5');
             // custom code end
         }
     });
@@ -217,7 +217,7 @@ export function gauge3(): CircularGauge {
             var selectTheme = location.hash.split('/')[1];
             selectTheme = selectTheme ? selectTheme : 'Material';
             args.gauge.theme = (selectTheme.charAt(0).toUpperCase() +
-                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-high/i, 'High').replace(/5.3/i, '5');
             // custom code end
         }
     });
@@ -314,7 +314,7 @@ export function gauge6(): CircularGauge {
             var selectTheme = location.hash.split('/')[1];
             selectTheme = selectTheme ? selectTheme : 'Material';
             args.gauge.theme = (selectTheme.charAt(0).toUpperCase() +
-                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
             // custom code end
         }
     });
@@ -376,7 +376,7 @@ export function gauge5(): CircularGauge {
             var selectTheme = location.hash.split('/')[1];
             selectTheme = selectTheme ? selectTheme : 'Material';
             args.gauge.theme = (selectTheme.charAt(0).toUpperCase() +
-                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-high/i, 'High').replace(/5.3/i, '5');
             // custom code end
         }
     });

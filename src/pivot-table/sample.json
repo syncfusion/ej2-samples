@@ -1,6 +1,7 @@
 {
     "name": "Pivot Table",
     "directory": "pivot-table",
+    "type": "update",
     "category": "Grids",
     "samples": [{
             "url": "overview",
@@ -100,6 +101,7 @@
         {
             "url": "conditional-formatting",
             "name": "Conditional Formatting",
+            "type": "update",
             "category": "User Interaction",
             "description": "This demo for Essential JS2 Pivot Table control demonstrate formatting the appearance of the pivot table cells with values based on the applied conditions"
         },

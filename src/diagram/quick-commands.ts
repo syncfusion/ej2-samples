@@ -2,37 +2,16 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * UserHandle
  */
-
+//Importing necessary modules
 import {
-    Diagram, DataBinding, MindMap, HierarchicalTree, NodeModel, ConnectorModel, UserHandleModel,
-    Side, SelectorConstraints, SnapConstraints, MoveTool, MouseEventArgs, cloneObject, randomId,
+    Diagram, NodeModel, ConnectorModel, UserHandleModel,Node,Connector,
+    Side, SelectorConstraints, SnapConstraints, MoveTool, MouseEventArgs, ISelectionChangeEventArgs,cloneObject, randomId,
     IElement, ToolBase
 } from '@syncfusion/ej2-diagrams';
-Diagram.Inject(DataBinding, MindMap, HierarchicalTree);
-
-export interface EmployeeInfo {
-    Role: string;
-    color: string;
-}
 
 let diagram: Diagram;
 
-//set Node default value 
-function getNodeDefaults(node: NodeModel): NodeModel {
-    let node1: NodeModel = {
-        style: { fill: '#578CA9', strokeColor: 'none' },
-        annotations: [{ style: { color: 'white' } }]
-    };
-    return node1;
-}
-
-//set Node default value
-function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
-    obj.type = 'Straight';
-    return obj;
-}
-
-//Enable the clone Tool for UserHandle.
+//Enable the clone tool for UserHandle.
 function getTool(action: string): ToolBase {
     let tool: ToolBase;
     if (action === 'clone') {
@@ -115,7 +94,7 @@ function setHandlePattern(args: MouseEvent): void {
     diagram.dataBind();
 }
 
-//Defines the clone tool used to copy Node/Connector
+//Defines the clone tool for copying Node or Connector objects.
 class CloneTool extends MoveTool {
     public mouseDown(args: MouseEventArgs): void {
         let newObject: any;
@@ -126,7 +105,14 @@ class CloneTool extends MoveTool {
         }
         newObject.id += randomId();
         diagram.paste([newObject]);
-        args.source = diagram.nodes[diagram.nodes.length - 1] as IElement;
+        if(diagram.selectedItems.connectors.length > 0)
+        {
+            args.source = diagram.connectors[diagram.connectors.length - 1] as IElement;
+        }
+        else
+        {
+            args.source = diagram.nodes[diagram.nodes.length - 1] as IElement;
+        }
         args.sourceWrapper = args.source.wrapper;
         super.mouseDown(args);
         this.inAction = true;
@@ -137,7 +123,6 @@ class CloneTool extends MoveTool {
 // tslint:disable-next-line:max-func-body-length 
 (window as any).default = (): void => {
     loadCultureFiles();
-
     //Defines the nodes collection in diagram
     let nodes: NodeModel[] = [
         {
@@ -157,7 +142,8 @@ class CloneTool extends MoveTool {
             annotations: [{ content: 'Implement and Deliver' }]
         }, {
             id: 'Decision', width: 250, height: 60, offsetX: 550, offsetY: 60, shape: { type: 'Flow', shape: 'Card' },
-            annotations: [{ content: 'Decision process for new software ideas' }]
+            annotations: [{ content: 'Decision process for new software ideas' }],
+            fixedUserHandles: [{ padding: { left: 2, right: 2, top: 2, bottom: 2 }, offset:{x:1.1,y:0.5}, width: 20, height: 20,}],
         }, {
             id: 'Reject', width: 150, height: 60, offsetX: 550, offsetY: 280, shape: { type: 'Flow', shape: 'Process' },
             annotations: [{ content: 'Reject' }]
@@ -184,18 +170,46 @@ class CloneTool extends MoveTool {
             'M68.5,72.5h-30V34.4h30V72.5z',
         visible: true, offset: 0, side: 'Bottom', margin: { top: 0, bottom: 0, left: 0, right: 0 }
     }];
-
+    // Defines the content of the diagram.
     diagram = new Diagram({
         width: '100%', height: '600px', nodes: nodes, connectors: connectors,
         selectedItems: { constraints: SelectorConstraints.UserHandle, userHandles: handles },
         snapSettings: { constraints: SnapConstraints.None },
+        fixedUserHandleTemplate: '#fixeduserhandletemplate',
+        fixedUserHandleClick: function (args:any) {
+            diagram.select([diagram.nameTable['Decision']]);
+            diagram.remove();
+        },
         //get Node default value 
-        getNodeDefaults: getNodeDefaults,
-        //get Node default value 
-        getConnectorDefaults: getConnectorDefaults,
+        getNodeDefaults: function (node: NodeModel){
+            let nodes: NodeModel = {
+                style: { fill: '#578CA9', strokeColor: 'none' },
+                annotations: [{ style: { color: 'white' } }]
+            };
+            return nodes;
+        },
         //set CustomTool
-        getCustomTool: getTool
+        getCustomTool: getTool,
+        selectionChange: selectionChange
     });
+    // Enable or disable the property panel based on the selection.
+    function selectionChange(arg: ISelectionChangeEventArgs): void {
+        let PropertyAppearance: HTMLElement = document.getElementById('propertypanel');
+        let getSelectedElement: HTMLCollection = document.getElementsByClassName('e-remove-selection');
+        if (arg.newValue) {
+            // Check if the item in newValue is either a Node or Connector
+            if ((arg.newValue[0] instanceof Node)||(arg.newValue[0] instanceof Connector)) {
+                if (getSelectedElement.length) {
+                    getSelectedElement[0].classList.remove('e-remove-selection');
+                }
+            } 
+            else {
+                if (!PropertyAppearance.classList.contains('e-remove-selection')) {
+                    PropertyAppearance.classList.add('e-remove-selection');
+                }
+            }
+        }
+    }
     diagram.appendTo('#diagram');
     diagram.select([diagram.nodes[0]]);
     diagram.fitToPage();

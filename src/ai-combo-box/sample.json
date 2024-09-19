@@ -1,0 +1,18 @@
+{
+    "name": "ComboBox",
+    "directory": "ai-combo-box",
+    "category": "Smart AI Solutions",
+    "samples": [
+        {
+            "url": "semantic-searching",
+            "name": "Semantic Searching(Embeddings)",
+            "category": "Combo Box",
+            "api": {},
+            "sourceFiles":[
+                { "displayName": "semantic-searching.html", "path":"src/ai-combo-box/ai-semantic-searching.html" },
+                { "displayName": "semantic-searching.ts", "path":"src/ai-combo-box/semantic-searching.ts" }
+            ],
+            "description": "This demo shows the semantic search AI feature in Combo Box."
+        }
+    ]
+}

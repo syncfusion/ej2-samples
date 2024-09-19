@@ -2,35 +2,16 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor smart suggestion
  */
-import { RichTextEditor, Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, NodeSelection, DialogType,EmojiPicker, PasteCleanup, FormatPainter} from '@syncfusion/ej2-richtexteditor';
-import { Mention, SelectEventArgs } from '@syncfusion/ej2-dropdowns';
-import { Dialog } from '@syncfusion/ej2-popups';
-RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, EmojiPicker, PasteCleanup, FormatPainter);
+import { RichTextEditor, Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar,EmojiPicker, PasteCleanup, FormatPainter, SlashMenu, SlashMenuItemSelectArgs} from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, EmojiPicker, PasteCleanup, FormatPainter, SlashMenu);
  
 (window as any).default = (): void => {
     loadCultureFiles();
- 
-     let formatList: { [key: string]: Object }[] = [
-        { formatName: "Text", command: "P", formatType: "Basic blocks", icon: "e-btn-icon e-text e-icons", description: "Writing with paragraphs"},
-        { formatName: "Quotation", command: "BlockQuote", formatType: "Basic blocks", icon: "e-icons block-view", description: "Insert a quote or citation" },
-        { formatName: "Heading 1", command: "H1", formatType: "Basic blocks", icon: "e-icons h1-view", description: "Use this for a top level heading"},
-        { formatName: "Heading 2", command: "H2", formatType: "Basic blocks", icon: "e-icons h2-view", description: "Use this for key sections"},
-        { formatName: "Heading 3", command: "H3", formatType: "Basic blocks", icon: "e-icons h3-view",description: "Use this for sub sections and group headings" },
-        { formatName: "Heading 4", command: "H4", formatType: "Basic blocks", icon: "e-icons h4-view", description: "Use this for deep headings"},
-        { formatName: "Numbered list", command: "OL", formatType: "Basic blocks", icon: "e-icons e-list-ordered icon", description: "Create an ordered list"},
-        { formatName: "Bulleted list", command: "UL", formatType: "Basic blocks", icon: "e-icons e-list-unordered icon", description: "Create an unordered list"},
-        { formatName: "Table", command: "CreateTable", formatType: "Basic blocks",icon: "e-icons e-table icon", description: "Insert a table"},
-        { formatName: "Emoji picker", command: "EmojiPicker", formatType: "Inline", icon: "e-icons e-emoji icon",description: "Use emojis to express ideas and emoticons"},
-        { formatName: "Image", command: "Image", formatType: "Media", icon: "e-icons e-image icon", description: "Add image to your page"},
-        { formatName: "Audio", command: "Audio", formatType: "Media", icon: "e-icons e-audio icon", description: "Add audio to your page"},
-        { formatName: "Video", command: "Video", formatType: "Media", icon: "e-icons e-video icon", description: "Add video to your page"},
-     ];
+    const meetingNotes: string = '<p><strong>Meeting Notes</strong></p><table class="e-rte-table" style="width: 100%; min-width: 0px; height: 150px;"> <tbody> <tr style="height: 20%;"> <td style="width: 50%;"><strong>Attendees</strong></td> <td style="width: 50%;" class=""><br></td> </tr> <tr style="height: 20%;"> <td style="width: 50%;"><strong>Date &amp; Time</strong></td> <td style="width: 50%;"><br></td> </tr> <tr style="height: 20%;"> <td style="width: 50%;"><strong>Agenda</strong></td> <td style="width: 50%;"><br></td> </tr> <tr style="height: 20%;"> <td style="width: 50%;"><strong>Discussed Items</strong></td> <td style="width: 50%;"><br></td> </tr> <tr style="height: 20%;"> <td style="width: 50%;"><strong>Action Items</strong></td> <td style="width: 50%;"><br></td> </tr> </tbody> </table>';
 
-    let mentionObj: Mention;
-    let saveSelection: NodeSelection;
-    let selection: NodeSelection = new NodeSelection();
- 
-    let formatRTE: RichTextEditor = new RichTextEditor({
+    const signature: string = '<p><br></p><p>Warm regards,</p><p>John Doe<br>Event Coordinator<br>ABC Company</p>';
+
+    const formatRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
             items: ['Bold', 'Italic', 'Underline', 'StrikeThrough', 'SuperScript', 'SubScript', '|',
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
@@ -40,94 +21,35 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
                 '|', 'EmojiPicker', '|',
                 'SourceCode', '|', 'Undo', 'Redo']
         },
-        placeholder: 'Type "/" and choose format.',
-        actionBegin: (args) => {
-            if (args.requestType === 'EnterAction') {
-                if (mentionObj.element.classList.contains("e-popup-open")) {
-                    args.cancel = true;
+        slashMenuSettings: {
+            enable: true,
+            items: ['Paragraph', 'Heading 1', 'Heading 2', 'Heading 3', 'Heading 4', 'OrderedList', 'UnorderedList',
+                'CodeBlock', 'Blockquote', 'Link', 'Image','Video', 'Audio', 'Table', 'Emojipicker',
+                {
+                    text: 'Meeting notes',
+                    description: 'Insert a meeting note template.',
+                    iconCss: 'e-icons e-description',
+                    type: 'Custom',
+                    command: 'MeetingNotes'
+                },
+                {
+                    text: 'Signature',
+                    description: 'Insert a signature template.',
+                    iconCss: 'e-icons e-signature',
+                    type: 'Custom',
+                    command: 'Signature'
                 }
+            ]
+        },
+        slashMenuItemSelect: (args: SlashMenuItemSelectArgs) => {
+            if (args.itemData.command === 'MeetingNotes') {
+                formatRTE.executeCommand('insertHTML', meetingNotes, {undo: true});
             }
-        }
-    });
-    formatRTE.appendTo('#MentionInlineFormat');
-
-
-    function beforeApplyFormat() {
-        let currentRange: Range = formatRTE.getRange();
-        let node: Node = formatRTE.formatter.editorManager.nodeSelection.getNodeCollection(currentRange)[0];
-    
-        let startPoint = currentRange.startOffset;
-        while (formatRTE.formatter.editorManager.nodeSelection.getRange(document).toString().indexOf('/') == -1) {
-            formatRTE.formatter.editorManager.nodeSelection.setSelectionText(document, node, node, startPoint, currentRange.endOffset);
-            startPoint--;
-        }
-        let slashRange: Range = formatRTE.getRange();
-        let slashNode: Node = formatRTE.formatter.editorManager.nodeCutter.GetSpliceNode(slashRange, node as HTMLElement);
-        let previouNode: Node = slashNode.previousSibling;
-        if (slashNode.parentElement && slashNode.parentElement.innerHTML.length === 1) {
-            slashNode.parentElement.appendChild(document.createElement('br'));
-        }
-        slashNode.parentNode.removeChild(slashNode);
-        if (previouNode) {
-            selection.setCursorPoint(document, previouNode as Element, previouNode.textContent.length);
-        }
-    }
-
-    // Initialize Mention control.
-    
-    mentionObj = new Mention({
-        popupHeight: '290px',
-        popupWidth: '320px',
-        dataSource: formatList,
-        mentionChar : '/',
-        itemTemplate:'<table class="format-table"><tr><td><span id="icons" class="${icon}"></td><td><span class="font">${formatName}</span><span class="description">${description}</span></td></tr></table>',
-        fields: { text: 'formatName', groupBy: 'formatType' },
-        target: formatRTE.inputElement,
-        allowSpaces: true,
-        beforeOpen: function () {
-            saveSelection = selection.save(selection.getRange(document), document);
+            if (args.itemData.command === 'Signature') {
+                formatRTE.executeCommand('insertHTML', signature, {undo: true});
+            }
         },
-        filtering: function () {
-            saveSelection = selection.save(selection.getRange(document), document);
-        },
-        select: applyCommand
+        placeholder: 'Type "/" and choose format.',
     });
-    mentionObj.appendTo('#mentionEditor');
-
-    function  applyCommand(args: SelectEventArgs ){
-        args.cancel = true;
-        formatRTE.focusIn();
-        saveSelection.restore();
-        const itemData = args.itemData as { [key: string]: Object };
-        const { command, formatType } = itemData;
-        if (!(formatType === 'Inline')) {
-            beforeApplyFormat();
-        }
-        switch (command) {
-            case 'OL':
-                formatRTE.executeCommand('insertOrderedList');
-                break;
-            case 'UL':
-                formatRTE.executeCommand('insertUnorderedList');
-                break;
-            case 'CreateTable':
-            case 'Image':
-            case 'Audio':
-            case 'Video':
-                mentionObj.hidePopup();
-                setTimeout(() => {
-                    formatRTE.showDialog(command === 'Video'? DialogType.InsertVideo: command === 'Audio'
-                        ? DialogType.InsertAudio: command === 'Image'? DialogType.InsertImage: DialogType.InsertTable);
-                }, 150);
-                break;
-            case 'EmojiPicker':
-                beforeApplyFormat();
-                mentionObj.hidePopup();
-                setTimeout(() => { formatRTE.showEmojiPicker(); }, 150);
-                break;
-            default:
-                formatRTE.executeCommand('formatBlock', command);
-                break;
-        }
-    } 
+    formatRTE.appendTo('#mentionEditor');
 };

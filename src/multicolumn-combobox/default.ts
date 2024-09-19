@@ -9,27 +9,28 @@ import * as data from './dataSource.json';
 (window as any).default = (): void => {
     loadCultureFiles();
     const columns: ColumnModel[] = [
-        { field: 'OrderID', header: 'Order ID', width: 110 },
-        { field: 'CustomerID', width: 130, header: 'Customer ID' },
-        { field: 'Freight', header: 'Freight', width: 90 },
-        { field: 'ShipCountry', header: 'Ship Country', width: 140 }
+        { field: 'Name', header: 'Name', width: 90 },
+        { field: 'Position', header: 'Position', width: 85 },
+        { field: 'Department', header: 'Department', width: 98 }, 
+        { field: 'PhoneNo', header: 'Phone No', width: 105 },    
+        { field: 'Location', header: 'Location', width: 98 }
     ];
 
     // Initialize multicolumn ComboBox component
     let multicolumnObj: MultiColumnComboBox = new MultiColumnComboBox({
         //set the local data to dataSource property
-        dataSource: (data as any).orderDetails,
+        dataSource: (data as any).employeeData,
         //set column of the multicolumn combobox
         columns: columns,
         //set the fields of the multicolumn combobox
-        fields: { text: 'ShipCountry', value: 'OrderID' },
+        fields: { text: 'Name', value: 'Department' },
         // set the height of the popup element
         popupHeight: '230px',
         // set the placeholder to multiColumn comboBox input element
-        placeholder: 'Select the country',
+        placeholder: 'Select a name',
         showClearButton: true,
-        value: '1001',
-        text: 'France',
+        value: 'HR',
+        text: 'John Smith',
         change: valueChange
     });
     multicolumnObj.appendTo('#default');

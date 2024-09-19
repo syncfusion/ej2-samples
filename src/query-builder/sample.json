@@ -3,7 +3,6 @@
   "directory": "query-builder",
   "category": "Forms",
   "ftName": "query-builder",
-  "type": "update",
   "samples": [
     {
       "url": "default",
@@ -90,7 +89,6 @@
     "name": "Drag and Drop",
     "category": "Query Builder",
     "ftName": "query-builder",
-    "type": "new",
     "api": {
         "QueryBuilder": [
             "width",
@@ -107,7 +105,6 @@
     "name": "Separate Connector",
     "category": "Query Builder",
     "ftName": "query-builder",
-    "type": "new",
     "api": {
         "QueryBuilder": [
             "width",

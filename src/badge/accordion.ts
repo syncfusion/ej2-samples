@@ -7,31 +7,22 @@ import { createElement } from '@syncfusion/ej2-base';
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    // Assigning badge data
-    let badgeContent: string[] = ['7 New', '27 New', '2 New', '14 New'];
-
     let template: string = '<div><ul><li class="msg"><span class="e-acrdn-icons e-content-icon people">' +
         '</span>Message Thread</li><li class="msg"><span class="e-acrdn-icons e-content-icon people"></span>Message Thread</li></ul></div>';
+    
+        let headercontent1: string  = '<span>Robert</span><span class="e-badge e-badge-success">7 New</span>';
+    let headercontent2: string  = '<span>Kevin</span><span class="e-badge e-badge-success">27 New</span>';
+    let headercontent3: string  = '<span>Eric</span><span class="e-badge e-badge-success">2 New</span>';
+    let headercontent4: string  = '<span>Peter</span><span class="e-badge e-badge-success">14 New</span>';
     //Initialize Accordion component
     let acrdnObj: Accordion = new Accordion({
         // Assigning accordion data
         items: [
-            { header: 'Robert', iconCss: 'e-people e-acrdn-icons', content: template, expanded: true },
-            { header: 'Kevin', iconCss: 'e-people e-acrdn-icons', content: template },
-            { header: 'Eric', iconCss: 'e-people e-acrdn-icons', content: template },
-            { header: 'Peter', iconCss: 'e-people e-acrdn-icons', content: template }
-        ],
-        created: () => {
-            // Appending Badge component after the accordion rendered in created event
-            let element: HTMLElement = document.getElementById('accordion');
-            let iconElement: HTMLElement[] = Array.prototype.slice.call((element as HTMLElement).querySelectorAll('.e-toggle-icon'));
-            for (let i: number = 0; i < iconElement.length; i++) {
-                // Success Badge Element
-                let badge: HTMLSpanElement = createElement('span', { className: 'e-badge e-badge-success' });
-                badge.textContent = badgeContent[i];
-                iconElement[i].appendChild(badge);
-            }
-        }
+            { header: headercontent1, iconCss: 'e-people e-acrdn-icons', content: template, expanded: true },
+            { header: headercontent2, iconCss: 'e-people e-acrdn-icons', content: template },
+            { header: headercontent3, iconCss: 'e-people e-acrdn-icons', content: template },
+            { header: headercontent4, iconCss: 'e-people e-acrdn-icons', content: template }
+        ]
     });
     //Render initialized Accordion component
     acrdnObj.appendTo('#accordion');

@@ -16,6 +16,7 @@ Schedule.Inject(TimelineViews, Resize, DragAndDrop);
         height: '650px',
         selectedDate: new Date(2021, 7, 2),
         currentView: 'TimelineWeek',
+        cssClass: 'adaptive-rows',
         rowAutoHeight: true,
         views: ['TimelineDay', 'TimelineWeek'],
         group: {

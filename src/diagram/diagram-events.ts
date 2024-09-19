@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Event sample
  */
-
+// Importing necessary modules from '@syncfusion/ej2-diagrams' package
 import {
     Diagram, NodeModel, UndoRedo, ConnectorModel, SymbolPalette,
     SymbolInfo, IDragEnterEventArgs, IDragLeaveEventArgs,
@@ -21,9 +21,10 @@ import { MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 import { getEventDetails } from './diagram-events-details';
 import { ListView } from '@syncfusion/ej2-lists';
 
+// Injecting required modules
 Diagram.Inject(UndoRedo, DiagramContextMenu, Snapping);
 
-
+// Function to define default properties for symbols in the diagram
 function getSymbolDefaults(symbol: NodeModel): void {
     symbol.width = 50;
     symbol.height = 50;
@@ -31,112 +32,141 @@ function getSymbolDefaults(symbol: NodeModel): void {
     symbol.constraints = NodeConstraints.Default | NodeConstraints.AllowDrop;
 }
 
+// Event handler for symbol info event
 function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     return { fit: true };
 }
 
+// Event handler for drag enter event
 function dragEnter(args: IDragEnterEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for drag leave event
 function dragLeave(args: IDragLeaveEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for drag over event
 function dragOver(args: IDragOverEventArgs): void {
     if (args.target) {
         getEventDetails(args);
     }
 }
 
+// Event handler for click event
 function click(args: IClickEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for history change event
 function historyChange(args: IHistoryChangeArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for double click event
 function doubleClick(args: IDoubleClickEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for text edit event
 function textEdit(args: ITextEditEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for scroll change event
 function scrollChange(args: IScrollChangeEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for selection change event
 function selectionChange(args: ISelectionChangeEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for size change event
 function sizeChange(args: ISizeChangeEventArgs): void {
+     // Check if the state is completed and get event details
     if (args.state === 'Completed') {
         getEventDetails(args);
     }
 }
 
+// Event handler for connection change event
 function connectionChange(args: IConnectionChangeEventArgs): void {
+     // Check if the state is changed and get event details
     if (args.state === 'Changed') {
         getEventDetails(args);
     }
 }
 
+// Event handler for source point change event
 function sourcePointChange(args: IEndChangeEventArgs): void {
+     // Check if the state is completed and get event details
     if (args.state === 'Completed') {
         getEventDetails(args);
     }
 }
 
+// Event handler for target point change event
 function targetPointChange(args: IEndChangeEventArgs): void {
+     // Check if the state is completed and get event details
     if (args.state === 'Completed') {
         getEventDetails(args);
     }
 }
 
+// Event handler for property change event
 function propertyChange(args: IPropertyChangeEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for position change event
 function positionChange(args: IDraggingEventArgs): void {
     if (args.state === 'Completed') {
         getEventDetails(args);
     }
 }
 
+// Event handler for rotate change event
 function rotateChange(args: IRotationEventArgs): void {
+     // Check if the state is completed and get event details
     if (args.state === 'Completed') {
         getEventDetails(args);
     }
 }
 
+// Event handler for collection change event
 function collectionChange(args: ICollectionChangeEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for mouse enter event
 function mouseEnter(args: IMouseEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for mouse leave event
 function mouseLeave(args: IMouseEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for mouse over event
 function mouseOver(args: IMouseEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for context menu open event
 function contextMenuOpen(args: BeforeOpenCloseMenuEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for context menu before item render event
 function contextMenuBeforeItemRender(args: MenuEventArgs): void {
     getEventDetails(args);
 }
 
+// Event handler for context menu click event
 function contextMenuClick(args: MenuEventArgs): void {
     getEventDetails(args);
 }
@@ -184,7 +214,7 @@ function contextMenuClick(args: MenuEventArgs): void {
 
     //Render initialized button component
     let button: Button = new Button();
-    button.appendTo('#clearbtn');
+    button.appendTo('#clearButton');
 
     //Initializes diagram control
     let diagram: Diagram = new Diagram({
@@ -241,25 +271,25 @@ function contextMenuClick(args: MenuEventArgs): void {
     let connectorSymbols: ConnectorModel[] = [
         {
             id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
-            style: { strokeWidth: 1, strokeColor: '#757575' }
+            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } }
+           
         },
         {
             id: 'link3', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+           targetDecorator: { shape: 'None' }
         },
         {
             id: 'Link21', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
-            style: { strokeWidth: 1, strokeColor: '#757575' }
+            targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } }
+           
         },
         {
             id: 'link23', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+            targetDecorator: { shape: 'None' }
         },
         {
             id: 'link33', type: 'Bezier', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-            style: { strokeWidth: 1, strokeColor: '#757575' }, targetDecorator: { shape: 'None' }
+            targetDecorator: { shape: 'None' }
         },
     ];
 
@@ -273,16 +303,21 @@ function contextMenuClick(args: MenuEventArgs): void {
         expandMode: 'Multiple', palettes: palettes,
         width: '100%', height: '700px', symbolHeight: 60, symbolWidth: 60,
         symbolMargin: { left: 15, right: 15, top: 15, bottom: 15 },
-        getNodeDefaults: getSymbolDefaults, getSymbolInfo: getSymbolInfo
+        getNodeDefaults: getSymbolDefaults, getSymbolInfo: getSymbolInfo,
+          //Sets the default values of a Connectors
+          getConnectorDefaults: function (connector: ConnectorModel) {
+            connector.style = { strokeWidth: 1 , strokeColor: '#757575' };
+        },
     });
     palette.appendTo('#symbolpalette');
 
     addEvents();
     clearEventLog();
-    document.getElementById('clearbtn').onclick = (args: MouseEvent) => {
+    document.getElementById('clearButton').onclick = (args: MouseEvent) => {
         clearEventLog();
     };
 
+    // Function to clear the event log
     function clearEventLog(): void {
         let data: HTMLElement = document.getElementById('EventLog');
         data.innerHTML = '';

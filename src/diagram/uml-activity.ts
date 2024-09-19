@@ -2,52 +2,46 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * UML activity sample
  */
+
+// Importing needed dependencies for diagram
 import {
-    Diagram, NodeModel, UndoRedo, ConnectorModel,
-    SymbolPalette, DiagramContextMenu, StrokeStyleModel, DecoratorModel, PointModel,
-    SymbolInfo, PortVisibility, SnapConstraints, PointPortModel
+    Diagram, NodeModel, UndoRedo, ConnectorModel, SymbolPalette, DiagramContextMenu, StrokeStyleModel,
+    DecoratorModel, PointModel, SymbolInfo, PortVisibility, SnapConstraints, PointPortModel
 } from '@syncfusion/ej2-diagrams';
+import { addEvents } from './script/diagram-common';
+import { Shapes, UmlActivityShapes } from '@syncfusion/ej2/diagrams';
+
 Diagram.Inject(UndoRedo, DiagramContextMenu);
 
 let diagram: Diagram;
 let palette: SymbolPalette;
-
 let isMobile: boolean;
 
+// Initializes an array of UML activity shapes for the symbol palette
+const umlActivityShapes: NodeModel[] = [
+    'Action', 'Decision', 'MergeNode', 'InitialNode', 'FinalNode', 'ForkNode',
+    'JoinNode', 'TimeEvent', 'AcceptingEvent', 'SendSignal', 'ReceiveSignal',
+    'StructuredNode', 'Note'
+].map(shape => ({ id: shape, shape: { type: 'UmlActivity', shape } }));
 
-let umlActivityShapes: NodeModel[] = [
-    { id: 'Action', shape: { type: 'UmlActivity', shape: 'Action' } },
-    { id: 'Decision', shape: { type: 'UmlActivity', shape: 'Decision' } },
-    { id: 'MergeNode', shape: { type: 'UmlActivity', shape: 'MergeNode' } },
-    { id: 'InitialNode', shape: { type: 'UmlActivity', shape: 'InitialNode' } },
-    { id: 'FinalNode', shape: { type: 'UmlActivity', shape: 'FinalNode' } },
-    { id: 'ForkNode', shape: { type: 'UmlActivity', shape: 'ForkNode' } },
-    { id: 'JoinNode', shape: { type: 'UmlActivity', shape: 'JoinNode' } },
-    { id: 'TimeEvent', shape: { type: 'UmlActivity', shape: 'TimeEvent' } },
-    { id: 'AcceptingEvent', shape: { type: 'UmlActivity', shape: 'AcceptingEvent' } },
-    { id: 'SendSignal', shape: { type: 'UmlActivity', shape: 'SendSignal' } },
-    { id: 'ReceiveSignal', shape: { type: 'UmlActivity', shape: 'ReceiveSignal' } },
-    { id: 'StructuredNode', shape: { type: 'UmlActivity', shape: 'StructuredNode' } },
-    { id: 'Note', shape: { type: 'UmlActivity', shape: 'Note' } }
+// Defines a base connector symbol to standardize connector creation
+const baseConnector: Partial<ConnectorModel> = {
+    sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+    targetDecorator: { shape: 'Arrow', style: { strokeColor: '#757575', fill: '#757575' } },
+    style: { strokeWidth: 2, strokeColor: '#757575' }
+};
 
+// Initializes connector symbols with varying styles for the symbol palette
+let connectorSymbols: ConnectorModel[] = [
+    { ...baseConnector, id: 'Link1', type: 'Orthogonal' },
+    { ...baseConnector, id: 'Link2', type: 'Orthogonal', style: { ...baseConnector.style, strokeDashArray: '4 4' } },
+    { ...baseConnector, id: 'Link3', type: 'Straight' }
 ];
 
-
-
-function getConnectorStyle(dashArrayed?: boolean): StrokeStyleModel {
-    let style: StrokeStyleModel = {};
-    if (dashArrayed) {
-        style = { strokeWidth: 2, strokeColor: '#757575', strokeDashArray: '4 4' };
-    } else {
-        style = { strokeWidth: 2, strokeColor: '#757575' };
-    }
-    return style;
-
-}
-
-//Create and add ports for node.
-function getNodePorts(obj: NodeModel): PointPortModel[] {
-    if (obj.id === 'node2' || obj.id === 'node9') {
+// Determines the port positions for a node based on its type.
+function getNodePorts(node: NodeModel): PointPortModel[] {
+    if (node.id === 'ForkNode' || node.id === 'JoinNode') {
+        // Ports for ForkNode and JoinNode
         let node2Ports: PointPortModel[] = [
             { id: 'port1', offset: { x: 0.2, y: 1 } },
             { id: 'port2', offset: { x: 0.8, y: 1 } },
@@ -56,6 +50,7 @@ function getNodePorts(obj: NodeModel): PointPortModel[] {
         ];
         return node2Ports;
     } else {
+        // Default ports for other nodes
         let ports: PointPortModel[] = [
             { id: 'portLeft', offset: { x: 0, y: 0.5 } },
             { id: 'portRight', offset: { x: 1, y: 0.5 } },
@@ -66,7 +61,7 @@ function getNodePorts(obj: NodeModel): PointPortModel[] {
     }
 }
 
-
+// Sets the default values for the symbols in the symbol palette
 function setPaletteNodeDefaults(symbol: NodeModel): NodeModel {
     if (symbol.id === 'JoinNode') {
         symbol.width = 20; symbol.height = 50;
@@ -84,50 +79,6 @@ function setPaletteNodeDefaults(symbol: NodeModel): NodeModel {
     return symbol;
 }
 
-// initializes connector symbols to the connector palette in the symbol palette
-function getConnectors(): ConnectorModel[] {
-    let sourcePoint: PointModel = { x: 0, y: 0 };
-    let targetPoint: PointModel = { x: 40, y: 40 };
-    let targetDecorator: DecoratorModel = { shape: 'Arrow', style: { fill: '#757575', strokeColor: '#757575' } };
-    let connectorSymbols: ConnectorModel[] = [
-        {
-            id: 'Link2', sourcePoint: sourcePoint, targetPoint: targetPoint,
-            type: 'Orthogonal', style: getConnectorStyle(true), targetDecorator: targetDecorator,
-        },
-        {
-            id: 'Link1', sourcePoint: sourcePoint, targetPoint: targetPoint,
-            type: 'Orthogonal', style: getConnectorStyle(), targetDecorator: targetDecorator,
-        },
-        {
-            id: 'Link3', sourcePoint: sourcePoint, targetPoint: targetPoint,
-            type: 'Straight', style: getConnectorStyle(), targetDecorator: targetDecorator,
-        }
-    ];
-    return connectorSymbols;
-}
-
-function addEvents(): void {
-    isMobile = window.matchMedia('(max-width:550px)').matches;
-    if (isMobile) {
-        let paletteIcon: HTMLElement = document.getElementById('palette-icon') as HTMLElement;
-        if (paletteIcon) {
-            paletteIcon.addEventListener('click', openPalette, false);
-        }
-    }
-}
-// custom code start
-function openPalette(): void {
-    let paletteSpace: HTMLElement = document.getElementById('palette-space') as HTMLElement;
-    isMobile = window.matchMedia('(max-width:550px)').matches;
-    if (isMobile) {
-        if (!paletteSpace.classList.contains('sb-mobile-palette-open')) {
-            paletteSpace.classList.add('sb-mobile-palette-open');
-        } else {
-            paletteSpace.classList.remove('sb-mobile-palette-open');
-        }
-    }
-}
-// custom code end
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -137,155 +88,139 @@ function openPalette(): void {
     let left: number = middle - 120;
     let right: number = middle + 120;
 
-    //Initializes the nodes for the diagram
+    // Creates a UML activity node with specified properties
+    const createNode = (
+        id: string,
+        offsetX: number,
+        offsetY: number,
+        shapeType: UmlActivityShapes,
+        width: number = 40,
+        height: number = 40,
+        content: string = ''
+    ): NodeModel => ({
+        id,
+        width,
+        height,
+        offsetX,
+        offsetY,
+        shape: { type: "UmlActivity", shape: shapeType },
+        annotations: content ? [{ content }] : []
+    });
+
+    // Initializes nodes representing the flow of a customer service call process
     let nodes: NodeModel[] = [
-        {
-            id: 'Start', height: 40, width: 40, offsetX: middle, offsetY: 25,
-            shape: { type: 'UmlActivity', shape: 'InitialNode' }
-        }, {
-            id: 'ReceiveCall', height: 40, width: 105, offsetX: middle, offsetY: 85,
-            shape: { type: 'UmlActivity', shape: 'Action' },
-            annotations: [{ content: 'Receive Customer Call' }]
-        }, {
-            id: 'node2', height: 10, width: 70, offsetX: middle, offsetY: 130,
-            shape: { type: 'UmlActivity', shape: 'ForkNode' }
-        }, {
-            id: 'Determine', height: 40, width: 105, offsetX: left, offsetY: 210,
-            shape: { type: 'UmlActivity', shape: 'Action' },
-            annotations: [{ content: 'Determine Type of Call' }]
-        }, {
-            id: 'Log', height: 40, width: 105, offsetX: right, offsetY: 210,
-            shape: { type: 'UmlActivity', shape: 'Action' },
-            annotations: [{ content: 'Customer Logging a Call' }]
-        }, {
-            id: 'node5', height: 50, width: 50, offsetX: left, offsetY: 290,
-            shape: { type: 'UmlActivity', shape: 'Decision' }
-        }, {
-            id: 'transfer_sales', height: 40, width: 105, offsetX: middle - 200, offsetY: 360,
-            shape: { type: 'UmlActivity', shape: 'Action' },
-            annotations: [{ content: 'Transfer the call to Sales' }]
-        }, {
-            id: 'transfer_desk', height: 40, width: 105, offsetX: middle - 25, offsetY: 360,
-            shape: { type: 'UmlActivity', shape: 'Action' },
-            annotations: [{ content: 'Transfer the call to Help Desk' }]
-        }, {
-            id: 'node8', height: 50, width: 50, offsetX: left, offsetY: 430,
-            shape: { type: 'UmlActivity', shape: 'MergeNode' }
-        }, {
-            id: 'node9', height: 10, width: 70, offsetX: middle, offsetY: 500,
-            shape: { type: 'UmlActivity', shape: 'JoinNode' }
-        }, {
-            id: 'CloseCall', height: 40, width: 105, offsetX: middle, offsetY: 550,
-            shape: { type: 'UmlActivity', shape: 'Action' },
-            annotations: [{ content: 'Close Call', margin: { left: 25, right: 25 } }]
-        }, {
-            id: 'node11', height: 40, width: 40, offsetX: middle, offsetY: 615,
-            shape: { type: 'UmlActivity', shape: 'FinalNode' }
-        }
-
+        createNode("Start", 300, 20, "InitialNode"),
+        createNode("ReceiveCall", 300, 100, "Action", 105, 40, "Receive Customer Call"),
+        createNode("ForkNode", 300, 170, "ForkNode", 70, 10),
+        createNode("Determine", 190, 250, "Action", 105, 40, "Determine Type of Call"),
+        createNode("Log", 410, 250, "Action", 105, 40, "Customer Logging a Call"),
+        createNode("Decision", 190, 350, "Decision", 50, 50),
+        createNode("transfer_sales", 100, 450, "Action", 105, 40, "Transfer the Call to Sales"),
+        createNode("transfer_desk", 280, 450, "Action", 105, 40, "Transfer the Call to Help Desk"),
+        createNode("MergeNode", 190, 540, "MergeNode", 50, 50),
+        createNode("JoinNode", 300, 630, "JoinNode", 70, 10),
+        createNode("CloseCall", 300, 710, "Action", 105, 40, "Close Call"),
+        createNode("FinalNode", 300, 800, "FinalNode")
     ];
 
+    // Creates a UML activity diagram connector with specified properties
+    const createConnector = (
+        id: string,
+        sourceID: string,
+        targetID: string,
+        sourcePortID: string = "",
+        targetPortID: string = "",
+        additionalProps: any = {}
+    ): ConnectorModel => ({
+        id,
+        sourceID,
+        targetID,
+        sourcePortID,
+        targetPortID,
+        ...additionalProps
+    });
+
+    // Defines common segments for connectors
+    const commonSegments = {
+        orthogonalShort: [{ type: "Orthogonal", length: 20, direction: "Bottom" }],
+        orthogonalLongLeft: [{ type: "Orthogonal", length: 50, direction: "Left" }],
+        orthogonalLongRight: [{ type: "Orthogonal", length: 50, direction: "Right" }],
+        orthogonalBottom: [{ type: "Orthogonal", length: 50, direction: "Bottom" }]
+    };
+
+    // Initializes connectors for transitions between activities
     let connectors: ConnectorModel[] = [
-        { id: 'connector1', sourceID: 'Start', targetID: 'ReceiveCall' },
-        { id: 'connector2', sourceID: 'ReceiveCall', targetID: 'node2' },
-        {
-            id: 'connector3', sourceID: 'node2', targetID: 'Determine',
-            sourcePortID: 'port1', targetPortID: 'portTop',
+        createConnector("connector1", "Start", "ReceiveCall"),
+        createConnector("connector2", "ReceiveCall", "ForkNode"),
+        createConnector("connector3", "ForkNode", "Determine", "port1", "portTop", {
+            segments: [...commonSegments.orthogonalShort, ...commonSegments.orthogonalLongLeft]
+        }),
+        createConnector("connector4", "ForkNode", "Log", "port2", "portTop", {
+            segments: [...commonSegments.orthogonalShort, ...commonSegments.orthogonalLongRight]
+        }),
+        createConnector("connector5", "Determine", "Decision"),
+        createConnector("connector6", "Decision", "transfer_sales", "portLeft", "portTop", {
+            shape: { type: "UmlActivity", flow: "Association" },
+            annotations: [{
+                id: "connector6Label", content: "type=New Customer", offset: 0.715,
+                style: { fill: "white", color: "black", textWrapping: 'NoWrap' }
+            }]
+        }),
+        createConnector("connector7", "Decision", "transfer_desk", "portRight", "portTop", {
+            shape: { type: "UmlActivity", flow: "Association" },
+            annotations: [{
+                id: "connector7Label", content: "type=Existing Customer", offset: 0.75,
+                style: { fill: "white", color: "black", textWrapping: 'NoWrap' }
+            }]
+        }),
+        createConnector("connector8", "transfer_sales", "MergeNode", "portBottom", "portLeft", {
+            segments: commonSegments.orthogonalBottom
+        }),
+        createConnector("connector9", "transfer_desk", "MergeNode", "portBottom", "portRight", {
+            segments: commonSegments.orthogonalBottom
+        }),
+        createConnector("connector10", "MergeNode", "JoinNode", "portBottom", "port3"),
+        createConnector("connector11", "Log", "JoinNode", "portBottom", "port4", {
             segments: [
-                { type: 'Orthogonal', length: 20, direction: 'Bottom' },
-                { type: 'Orthogonal', length: 50, direction: 'Left' }
-            ],
-        },
-        {
-            id: 'connector4', sourceID: 'node2', targetID: 'Log',
-            sourcePortID: 'port2', targetPortID: 'portTop',
-            segments: [
-                { type: 'Orthogonal', length: 20, direction: 'Bottom' },
-                { type: 'Orthogonal', length: 50, direction: 'Right' }
-            ],
-        },
-        { id: 'connector5', sourceID: 'Determine', targetID: 'node5' },
-        {
-            id: 'connector6', sourceID: 'node5', targetID: 'transfer_sales',
-            sourcePortID: 'portLeft', targetPortID: 'portTop',
-            shape: { type: 'UmlActivity', flow: 'Sequence' },
-            annotations: [
-                {
-                    id: 'connector6Label', content: 'type=New Customer', offset: 0.715,
-                    style: { fill: 'white', color: 'black', textWrapping: 'NoWrap' }
-                }
-            ],
-        },
-        {
-            id: 'connector7', sourceID: 'node5', targetID: 'transfer_desk',
-            sourcePortID: 'portRight', targetPortID: 'portTop',
-            shape: { type: 'UmlActivity', flow: 'Sequence' },
-            annotations: [
-                {
-                    id: 'connector7Label', content: 'type=Existing Customer', offset: 0.75,
-                    style: { fill: 'white', color: 'black', textWrapping: 'NoWrap' }
-                }
-            ],
-        },
-        {
-            id: 'connector8', sourceID: 'transfer_sales', targetID: 'node8',
-            sourcePortID: 'portBottom', targetPortID: 'portLeft',
-            segments: [{ type: 'Orthogonal', length: 50, direction: 'Bottom' }],
-        },
-        {
-            id: 'connector9', sourceID: 'transfer_desk', targetID: 'node8',
-            sourcePortID: 'portBottom', targetPortID: 'portRight',
-            segments: [{ type: 'Orthogonal', length: 50, direction: 'Bottom' }],
-        },
-        {
-            id: 'connector10', sourceID: 'node8', targetID: 'node9',
-            sourcePortID: 'portBottom', targetPortID: 'port3'
-        },
-        {
-            id: 'connector11', sourceID: 'Log', targetID: 'node9',
-            sourcePortID: 'portBottom', targetPortID: 'port4',
-            segments: [
-                { type: 'Orthogonal', length: 213, direction: 'Bottom' },
-                { type: 'Orthogonal', length: 50, direction: 'Left' }
-            ],
-        },
-        { id: 'connector12', sourceID: 'node9', targetID: 'CloseCall' },
-        { id: 'connector13', sourceID: 'CloseCall', targetID: 'node11' }
-
+                { type: "Orthogonal", length: 265, direction: "Bottom" },
+                ...commonSegments.orthogonalLongLeft
+            ]
+        }),
+        createConnector("connector12", "JoinNode", "CloseCall"),
+        createConnector("connector13", "CloseCall", "FinalNode")
     ];
 
-
-    // initializes diagram control
+    // Initializes diagram control
     diagram = new Diagram({
         // sets the height and width of the diagram
         width: '100%', height: '100%',
         // sets the nodes and connectors of the diagram
         nodes: nodes, connectors: connectors,
         // sets snap settings to the diagram
-        snapSettings: {
-            constraints: SnapConstraints.None
-        },
+        snapSettings: { constraints: SnapConstraints.None },
         //Sets the default values of a node
-        getNodeDefaults: (obj: NodeModel): NodeModel => {
-            obj.ports = getNodePorts(obj);
-            if (obj.ports) {
-                for (let i: number = 0; i < obj.ports.length; i++) {
-                    obj.ports[i].visibility = PortVisibility.Hidden;
+        getNodeDefaults: (node: NodeModel): NodeModel => {
+            node.ports = getNodePorts(node);
+            if (node.ports) {
+                for (let i: number = 0; i < node.ports.length; i++) {
+                    node.ports[i].visibility = PortVisibility.Hidden;
                 }
             }
-            if (obj.id === 'Start' || obj.id === 'node2' || obj.id === 'node9' || obj.id === 'node11') {
-                obj.style.fill = '#444';
+            if (node.id === 'Start' || node.id === 'ForkNode' || node.id === 'JoinNode' || node.id === 'FinalNode') {
+                node.style.fill = '#444';
             }
-            obj.style.strokeColor = '#444';
-            return obj;
+            node.style.strokeColor = '#444';
+            return node;
         },
         //Sets the default values of a Connector.
-        getConnectorDefaults: (obj: ConnectorModel): void => {
-            if (obj.id.indexOf('connector') !== -1) {
-                obj.type = 'Orthogonal'; obj.cornerRadius = 10;
-                obj.targetDecorator = { shape: 'OpenArrow', style: { strokeColor: '#444', fill: '#444' } };
+        getConnectorDefaults: (connector: ConnectorModel): void => {
+            if (connector.id.indexOf('connector') !== -1) {
+                connector.type = 'Orthogonal'; connector.cornerRadius = 10;
+                connector.targetDecorator = { shape: 'OpenArrow', style: { strokeColor: '#444', fill: '#444' } };
             }
         },
+
+        // Function to add event listeners for Symbol palette to Mobile device
         created: (): void => {
             addEvents();
         }
@@ -293,6 +228,7 @@ function openPalette(): void {
     });
     diagram.appendTo('#diagram');
 
+    //Initializes the symbol palette
     palette = new SymbolPalette({
         // sets the expandable mode of the symbol palette
         expandMode: 'Multiple',
@@ -307,11 +243,10 @@ function openPalette(): void {
         // sets the palettes to be displayed in the symbol palette
         palettes: [
             { id: 'umlActivity', expanded: true, symbols: umlActivityShapes, title: 'UML Shapes' },
-            { id: 'Connector', expanded: true, symbols: getConnectors(), title: 'Connectors' }
+            { id: 'Connector', expanded: true, symbols: connectorSymbols, title: 'Connectors' }
         ],
         getSymbolInfo: (symbol: NodeModel): SymbolInfo => { return { fit: true }; }
 
     });
     palette.appendTo('#symbolPalette');
 };
-

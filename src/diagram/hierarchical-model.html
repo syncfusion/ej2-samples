@@ -1,7 +1,7 @@
 <div class="col-lg-8 control-section">
     <style>
         /* Css for images in property panel  */
-        .image-pattern-style {
+        .diagram-property-tab .image-pattern-style {
             background-color: white;
             background-size: contain;
             background-repeat: no-repeat;
@@ -13,17 +13,17 @@
             float: left;
         }
     
-        .image-pattern-style:hover {
+        .diagram-property-tab .image-pattern-style:hover {
             border-color: gray;
             border-width: 2px;
         }
         /* Property panel CSS */
-        .row {
+        .diagram-property-tab .row {
             margin-left: 0px;
             margin-right: 0px;
         }
     
-        .row-header {
+        .diagram-property-tab .row-header {
             font-size: 13px;
             font-weight: 500;
         }
@@ -33,7 +33,7 @@
             border-width: 2px;
         }
     
-        .col-xs-6 {
+        .diagram-property-tab .col-xs-6 {
             padding-left: 0px;
             padding-right: 0px;
         }
@@ -42,7 +42,7 @@
         <div id="diagram"></div>
     </div>
 </div>
-<div class="col-lg-4 property-section">
+<div class="col-lg-4 property-section diagram-property-tab">
     <div class="property-panel-header">
         Properties
     </div>
@@ -72,7 +72,7 @@
                 <div style="display: table-cell; vertical-align: middle">Horizontal Spacing</div>
             </div>
             <div class="col-xs-6">
-                <input type="text" id="hSpacing" style="width: 100%" min="20" max="60" step="2" value="40" />
+                <input type="text" id="horizontalSpacing" style="width: 100%" min="20" max="60" step="2" value="40" />
             </div>
         </div>
         <div class="row" style="padding-top: 8px">
@@ -80,7 +80,7 @@
                 <div style="display: table-cell; vertical-align: middle">Vertical Spacing</div>
             </div>
             <div class="col-xs-6">
-                <input type="text" id="vSpacing" style="width: 100%" min="20" max="60" step="2" value="30" />
+                <input type="text" id="verticalSpacing" style="width: 100%" min="20" max="60" step="2" value="30" />
             </div>
         </div>
         <div class="row" style="padding-top: 8px">

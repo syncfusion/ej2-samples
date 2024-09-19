@@ -100,8 +100,9 @@ let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
 let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
 let themeList: HTMLElement = document.getElementById('themelist');
-var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind', 'highcontrast', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind-dark', 'fluent-dark'];
-var darkIgnore = ['highcontrast'];
+var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind', 'fluent2-highcontrast', 'highcontrast', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind-dark', 'fluent-dark'];
+var themesToRedirect: string[] = ['material', 'material-dark', 'bootstrap4', 'bootstrap', 'bootstrap-dark', 'fabric', 'fabric-dark'];
+var darkIgnore = ['highcontrast', 'fluent2-highcontrast'];
 let themeDarkButton: HTMLElement = document.getElementById('sb-dark-theme');
 let darkButton: HTMLElement = document.getElementById('sb-dark-span');
 let themeModeDropDown: DropDownList;
@@ -322,7 +323,6 @@ let themeDropDown: DropDownList;
              noRecordsTemplate: '<div class="search-no-record">We’re sorry. We cannot find any matches for your search term.</div>',
              fields: { groupBy: 'doc.component', value: 'doc.uid', text: 'doc.name' },
              popupHeight: 'auto',
-             suggestionCount: 10,
              highlight: true,
              select: (e: any) => {
                  let data: any = e.itemData.doc;
@@ -507,7 +507,7 @@ let themeDropDown: DropDownList;
            let elementList = demoSection.getElementsByClassName('e-control e-lib');
            for (let i = 0; i < elementList.length; i++) {
                let instance = (elementList[i] as any).ej2_instances;
-               if (instance && instance[0] && typeof instance[0].refresh === 'function' && componentToIgnore.indexOf(instance[0].getModuleName()) === -1) {
+               if (instance && instance[0] && typeof instance[0].refresh === 'function' && componentToIgnore.indexOf(instance[0].getModuleName()) === -1 && currentControl !== 'rich-text-editor') {
                    instance[0].refresh();
                }
                if (instance && instance[0] && instance[0].getModuleName() !== 'DashboardLayout')
@@ -922,6 +922,11 @@ function darkSwitch(): void {
          }
      });
      // select('.copycode').addEventListener('click', copyCode);
+     document.getElementById("theme-studio").addEventListener("click", function(event) {
+        event.preventDefault();
+        let href: string = `https://ej2.syncfusion.com/themestudio/?theme=${selectedTheme}`;
+        window.open(href,'_blank');
+     });
  }
  
  /**
@@ -956,7 +961,13 @@ function darkSwitch(): void {
  }
  
  function setSbLink(): void {
-     let href: string = location.href;
+     let hrefLink: string[] = location.hash.split('/').slice(1);
+     let aiControlRegex: RegExp = /ai-(?!assistview\b)[a-z-]+/;
+     const desktopSettings = select('.sb-desktop-setting') as HTMLElement;
+     if (desktopSettings) {
+         desktopSettings.style.display = aiControlRegex.test(location.hash) ? 'none' : '';
+     }
+     let href: string = location.href = '#/' + selectedTheme + '/' + hrefLink.slice(1).join('/');
      let link: string[] = href.match(urlRegex);
      let sample: string = href.match(sampleRegex)[1];
      for (let sb of sbArray) {
@@ -967,7 +978,10 @@ function darkSwitch(): void {
                ele.href = 'https://ej2.syncfusion.com/nextjs/demos/';
            } else if (sb === 'blazor') {
              ele.href = 'https://blazor.syncfusion.com/demos/';
-         } else {
+         }
+         else if (sb === 'react' && location.href.includes('grid/grid-overview.html')) {
+             ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('https://ej2.syncfusion.com/')) + 'react/demos/#/' + selectedTheme + '/grid/overview';
+        } else {
              ele.href = ((link) ? ('http://' + link[1] + '/' + (link[3] ? (link[3] + '/') : '')) : ('https://ej2.syncfusion.com/')) +
                  sb + '/' + 'demos/#/' + sample + (sb === 'javascript' ? '.html' : '');
          }
@@ -992,6 +1006,8 @@ function darkSwitch(): void {
   * load theme on page loading
   */
  function loadTheme(theme: string): void {
+   theme = themesToRedirect.indexOf(theme) !== -1 ? 'fluent2': theme;
+   theme =  theme.includes('bootstrap5') ? theme.replace('bootstrap5', 'bootstrap5.3') : theme;
    let body: HTMLElement = document.body;
    if (body.classList.length > 0) {
        for (let themeItem of themeCollection) {
@@ -1009,12 +1025,14 @@ function darkSwitch(): void {
            darkButton.innerHTML = "DARK";
            document.getElementById("dark-icon")!.style.display = "inline-block";
            themeList.querySelector('.active')!.classList.remove('active');
+           theme== 'bootstrap5.3'?themeList.querySelector('#bootstrap5').classList.add('active'): 
            themeList.querySelector('#' + theme)!.classList.add('active');
        }
        else {
            darkButton.innerHTML = "LIGHT";
            document.getElementById("light-icon")!.style.display = "inline-block";
            themeList.querySelector('.active')!.classList.remove('active');
+           theme== 'bootstrap5.3-dark'? themeList.querySelector('#bootstrap5').classList.add('active'):
            themeList.querySelector('#' + theme.replace('-dark', ""))!.classList.add('active');
        }
    }
@@ -1023,6 +1041,7 @@ function darkSwitch(): void {
      let ajax: Ajax = new Ajax('./styles/' + theme + '.css', 'GET', true);
      ajax.send().then((result: any) => {
          selectedTheme = theme;
+         selectedTheme = selectedTheme === "bootstrap5.3" ? 'bootstrap5' : selectedTheme === "bootstrap5.3-dark" ? "bootstrap5-dark" : selectedTheme;
          //renderleftpane 
          renderLeftPaneComponents();
          //renderPopups

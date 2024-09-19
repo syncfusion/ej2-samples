@@ -29,17 +29,17 @@ function selectionChange(arg: ISelectionChangeEventArgs): void {
             let annotations: ShapeAnnotationModel[] = node.annotations;
             let offset: PointModel = annotations[0].offset;
             if (offset.x === 0 && offset.y === 0) {
-                updatePosition('left');
+                updateAnnotationPosition('left');
             } else if (offset.x === 1 && offset.y === 0) {
-                updatePosition('right');
+                updateAnnotationPosition('right');
             } else if (offset.x === 0 && offset.y === 1) {
-                updatePosition('bottoml');
+                updateAnnotationPosition('bottomLeft');
             } else if (offset.x === 1 && offset.y === 1) {
-                updatePosition('bottomr');
+                updateAnnotationPosition('bottomRight');
             } else if (offset.x === 0.5 && offset.y === 0.5) {
-                updatePosition('center');
+                updateAnnotationPosition('center');
             } else if (offset.x === 0.5 && offset.y === 1) {
-                updatePosition('bottomcenter_top');
+                updateAnnotationPosition('bottomCenter');
             }
         }
         enableOptions(arg);
@@ -66,8 +66,7 @@ function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
 function updateAnnotation(value: string, fontSize?: number, fontFamily?: string): void {
     for (let i: number = 0; i < diagram.selectedItems.nodes.length; i++) {
         let node: NodeModel = diagram.selectedItems.nodes[i];
-        for (let j: number = 0; j < node.annotations.length; j++) {
-            let annotationStyle: TextStyleModel = (node.annotations[j].style as TextStyleModel);
+            let annotationStyle: TextStyleModel = (node.annotations[0].style as TextStyleModel);
             if (value === 'fontsize') {
                 annotationStyle.fontSize = fontSize;
             } else if (value === 'underline') {
@@ -81,24 +80,23 @@ function updateAnnotation(value: string, fontSize?: number, fontFamily?: string)
                 annotationStyle.italic = !annotationStyle.italic;
             } else if (value === 'template') {
                 if (fontFamily === 'none') {
-                    node.annotations[j].template = '';
-                    node.annotations[j].width = undefined;
-                    node.annotations[j].height = undefined;
+                    node.annotations[0].template = '';
+                    node.annotations[0].width = undefined;
+                    node.annotations[0].height = undefined;
                 } else {
-                    node.annotations[j].width = 25;
-                    node.annotations[j].height = 25;
-                    node.annotations[j].template =
+                    node.annotations[0].width = 25;
+                    node.annotations[0].height = 25;
+                    node.annotations[0].template =
                         '<img src="src/diagram/Images/annotation/' + fontFamily + '.svg" style="width:100%;height:100%" />';
                 }
             } else if (value === 'interaction') {
-                node.annotations[j].constraints = node.annotations[j].constraints ^ AnnotationConstraints.Interaction;
+                node.annotations[0].constraints = node.annotations[0].constraints ^ AnnotationConstraints.Interaction;
             }
             diagram.dataBind();
         }
     }
-}
 //Update the Annotation Position based on the selection
-function updatePosition(id: string): void {
+function updateAnnotationPosition(id: string): void {
     let target: HTMLElement = document.getElementById(id);
     for (let i: number = 0; i < diagram.selectedItems.nodes.length; i++) {
         let node: NodeModel = diagram.selectedItems.nodes[i];
@@ -112,16 +110,16 @@ function updatePosition(id: string): void {
                 case 'right':
                     setAnnotationPosition(annotation, 1, 0, 'Top', 'Right', target);
                     break;
-                case 'bottoml':
+                case 'bottomLeft':
                     setAnnotationPosition(annotation, 0, 1, 'Bottom', 'Left', target);
                     break;
-                case 'bottomr':
+                case 'bottomRight':
                     setAnnotationPosition(annotation, 1, 1, 'Bottom', 'Right', target);
                     break;
                 case 'center':
                     setAnnotationPosition(annotation, 0.5, .5, 'Center', 'Center', target);
                     break;
-                case 'bottomcenter_top':
+                case 'bottomCenter':
                     setAnnotationPosition(annotation, 0.5, 1, 'Top', 'Center', target);
                     break;
             }
@@ -131,19 +129,19 @@ function updatePosition(id: string): void {
 //set the Annotation Position
 function setAnnotationPosition( //it is in dedicated line here.
     annotation: ShapeAnnotationModel, offsetX: number, offsetY: number,
-    vAlignment: VerticalAlignment, hAlignment: HorizontalAlignment, target: HTMLElement
+    verticalAlignment: VerticalAlignment, horizontalAlignment: HorizontalAlignment, target: HTMLElement
 ): void {
     annotation.offset.x = offsetX;
     annotation.offset.y = offsetY;
-    annotation.verticalAlignment = vAlignment;
-    annotation.horizontalAlignment = hAlignment;
-    if (vAlignment === 'Top' && hAlignment === 'Left') {
+    annotation.verticalAlignment = verticalAlignment;
+    annotation.horizontalAlignment = horizontalAlignment;
+    if (verticalAlignment === 'Top' && horizontalAlignment === 'Left') {
         annotation.margin = { left: 3, top: 3 };
-    } else if (vAlignment === 'Top' && hAlignment === 'Right') {
+    } else if (verticalAlignment === 'Top' && horizontalAlignment === 'Right') {
         annotation.margin = { right: 3, top: 3 };
-    } else if (vAlignment === 'Bottom' && hAlignment === 'Left') {
+    } else if (verticalAlignment === 'Bottom' && horizontalAlignment === 'Left') {
         annotation.margin = { left: 3, bottom: 3 };
-    } else if (vAlignment === 'Bottom' && hAlignment === 'Right') {
+    } else if (verticalAlignment === 'Bottom' && horizontalAlignment === 'Right') {
         annotation.margin = { right: 3, bottom: 3 };
     }
     target.classList.add('e-selected-style');
@@ -261,15 +259,14 @@ function enableOptions(arg: ISelectionChangeEventArgs): void {
         }
     });
     fontSize.appendTo('#fontSize');
+    fontSize.dataBind();
 
     //Colorpicker used to apply for Color of the Annotation
     let fontColor: ColorPicker = new ColorPicker({
         value: '#000', change: (arg: ColorPickerEventArgs) => {
             for (let i: number = 0; i < diagram.selectedItems.nodes.length; i++) {
                 let node: NodeModel = diagram.selectedItems.nodes[i];
-                for (let j: number = 0; j < node.annotations.length; j++) {
-                    (node.annotations[j].style as TextStyleModel).color = arg.currentValue.rgba;
-                }
+                    (node.annotations[0].style as TextStyleModel).color = arg.currentValue.rgba;
             }
         }
     });
@@ -335,7 +332,7 @@ function enableOptions(arg: ISelectionChangeEventArgs): void {
             selectedElement[0].classList.remove('e-selected-style');
         }
         if (target.className === 'image-pattern-style') {
-            updatePosition(target.id);
+            updateAnnotationPosition(target.id);
         }
     };
 };

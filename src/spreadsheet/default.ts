@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Spreadsheet } from '@syncfusion/ej2-spreadsheet';
+import { Spreadsheet, getFormatFromType } from '@syncfusion/ej2-spreadsheet';
 import * as dataSource from './default-data.json';
 
 /**
@@ -8,7 +8,7 @@ import * as dataSource from './default-data.json';
 (window as any).default = (): void => {
     loadCultureFiles();
     //Initialize Spreadsheet component
-    let spreadsheet: Spreadsheet = new Spreadsheet({
+    const spreadsheet: Spreadsheet = new Spreadsheet({
         sheets: [
             {
                 name: 'Car Sales Report',
@@ -29,9 +29,14 @@ import * as dataSource from './default-data.json';
         openUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/open',
         saveUrl: 'https://services.syncfusion.com/js/production/api/spreadsheet/save',
         created: (): void => {
-            //Applies cell and number formatting to specified range of the active sheet
+            // Apply the format to the specified range in the active sheet.
             spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center', verticalAlign: 'middle' }, 'A1:F1');
-            spreadsheet.numberFormat('$#,##0.00', 'F2:F31');
+            // Apply format to the specified range in the active sheet.
+            // The 'getFormatFromType' method will return the format code with a culture-based currency symbol.
+            // For 'en-US' (English) culture, the format code will be '$#,##0.00'.
+            // For 'de' (German) culture, the format code will be '#,##0.00 "€"'.
+            spreadsheet.numberFormat(getFormatFromType('Currency'), 'F2:F31');
+            spreadsheet.numberFormat('m/d/yyyy', 'E2:E30');
         }
     });
 

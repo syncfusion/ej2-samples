@@ -178,6 +178,10 @@
 		"signature",
 		"multiline-textbox",
 		null,
-		"textarea"
+		"textarea",
+		"aiassistview",
+		"ai",
+		"assistview",
+		null
 	]
 }

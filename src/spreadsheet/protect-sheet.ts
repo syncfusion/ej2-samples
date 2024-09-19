@@ -121,6 +121,8 @@ import * as dataSource from './protect-sheet-data.json';
             //Applied style and number formatting to a range
             spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center' }, 'EMI Schedule!A1:F1');
             spreadsheet.numberFormat(getFormatFromType('Currency'), 'EMI Schedule!C2:F13');
+            spreadsheet.numberFormat('m/d/yyyy', 'EMI Calculator!C5:C5');
+            spreadsheet.numberFormat('m/d/yyyy', 'EMI Schedule!B2:B13');
         },
         beforeCellRender: (args: CellRenderEventArgs) => {
             //Merged cells using custom code

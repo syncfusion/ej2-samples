@@ -2,7 +2,6 @@ import { ImageEditor } from '@syncfusion/ej2-image-editor';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { getComponent, createElement } from '@syncfusion/ej2-base';
 import { loadCultureFiles } from '../common/culture-loader';
-
 /**
  * Profile picture sample
  */
@@ -62,7 +61,6 @@ import { loadCultureFiles } from '../common/culture-loader';
             click: () => {
                 const imageEditor: ImageEditor = getComponent(document.getElementById('image-editor'), 'image-editor') as ImageEditor;
                 imageEditor.reset();
-                imageEditor.select('circle');
             },
             buttonModel: { content: 'Reset', isPrimary: false, cssClass: 'e-custom-img-btn e-img-custom-reset' }
         },

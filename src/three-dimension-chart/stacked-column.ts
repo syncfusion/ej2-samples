@@ -94,9 +94,9 @@ Chart3D.Inject(StackingColumnSeries3D, Category3D, Legend3D, Tooltip3D, Highligh
         },
         load: (args: Chart3DLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
         },
         axisLabelRender: function (args) {
             if (args.axis.name === 'primaryYAxis') {

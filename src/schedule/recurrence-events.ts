@@ -23,7 +23,6 @@ Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
         eventRendered: (args: EventRenderedArgs) => applyCategoryColor(args, scheduleObj.currentView)
     });
     scheduleObj.appendTo('#Schedule');
-    // custom code start
     let checkBoxObj: CheckBox = new CheckBox({
         label: 'Enable Following Events',
         checked: false,
@@ -32,5 +31,4 @@ Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
         }
     });
     checkBoxObj.appendTo('#editFollowingEvents');
-    // custom code end
-};
+}; 

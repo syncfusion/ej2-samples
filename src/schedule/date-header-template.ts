@@ -14,7 +14,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineMonth, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    // custom code start
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).getDateHeaderText = (value: Date) => {
         return instance.formatDate(value, { skeleton: 'Ed' });
@@ -44,7 +43,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, TimelineMonth, Resize, DragAndDrop);
         getDateHeaderText?: Function;
         getWeather?: Function;
     }
-    // custom code end
 
     let data: Object[] = <Object[]>extend([], (dataSource as any).scheduleData, null, true);
     let scheduleObj: Schedule = new Schedule({

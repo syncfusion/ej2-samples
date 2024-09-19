@@ -43,7 +43,7 @@ export interface EmployeeInfo {
     loadCultureFiles();
     //Initializes diagram control
     let diagram: Diagram = new Diagram({
-        width: '100%', height: 490,
+        width: '100%', height: '350px',
         //Configures data source
         dataSourceSettings: {
             id: 'Name', parentId: 'Category', dataSource: new DataManager((Data as any).species),

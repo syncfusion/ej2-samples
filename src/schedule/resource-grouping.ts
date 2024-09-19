@@ -8,14 +8,12 @@ Schedule.Inject(Week, Month, Agenda, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    // custom code start
     interface TemplateFunction extends Window {
         getAirlineImage?: Function;
         getAirlineName?: Function;
         getAirlineModel?: Function;
         getAirlineSeats?: Function;
     }
-    // custom code end
 
     let scheduleOptions: ScheduleModel = {
         width: '100%',
@@ -50,7 +48,6 @@ Schedule.Inject(Week, Month, Agenda, Resize, DragAndDrop);
 
     let scheduleObj: Schedule = new Schedule(scheduleOptions);
     scheduleObj.appendTo(document.getElementById('Schedule'));
-    // custom code start
     (window as TemplateFunction).getAirlineImage = (value: ResourceDetails) => {
         let airlineName: string = (window as TemplateFunction).getAirlineName(value);
         return airlineName.replace(' ', '-').toLowerCase();
@@ -92,5 +89,4 @@ Schedule.Inject(Week, Month, Agenda, Resize, DragAndDrop);
         }
         return collections;
     }
-    // custom code end
 };

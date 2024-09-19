@@ -11,6 +11,7 @@ import * as dataSource from './dataSource.json';
         headerTemplate: '#headerTemplate',
         itemTemplate: '#itemTemplate',
         footerTemplate: '#footerTemplate',
+        valueTemplate: '#valueTemplate',
         width: '100%',
         cssClass: 'ddt-template',
         placeholder: 'Select an employee',

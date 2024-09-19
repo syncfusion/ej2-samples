@@ -17,7 +17,7 @@ Chart.Inject(ColumnSeries, Category, ErrorBar, Tooltip);
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'Category', interval: 1, majorTickLines: { width: 0 },
-            labelIntersectAction: Browser.isDevice ? "None" : "Trim",
+            labelIntersectAction: Browser.isDevice ? "None" : "Rotate45",
             labelRotation: Browser.isDevice ? -45 : 0,
             majorGridLines: { width: 0 }
         },
@@ -57,9 +57,9 @@ Chart.Inject(ColumnSeries, Category, ErrorBar, Tooltip);
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
             if (selectedTheme === 'bootstrap5' || selectedTheme === 'fluent') {
                 chart.series[0].fill = '#81CCBB';
                 chart.highlightColor = '#C7E9B6';

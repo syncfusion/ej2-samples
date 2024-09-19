@@ -67,7 +67,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
                 modeSwitcher: false,
                 columns: 4,
                 presetColors: {
-                    'custom': ['#000000', '#000000', '#e91e63', '#9c27b0', '#673ab7', '#2196f3', '#03a9f4', '#00bcd4',
+                    'custom': ['#000000', '#e91e63', '#e91e63', '#9c27b0', '#673ab7', '#2196f3', '#03a9f4', '#00bcd4',
                     '#009688', '#8bc34a', '#cddc39', '#ffeb3b']
                 },
                 beforeTileRender: (args: PaletteTileEventArgs) => {

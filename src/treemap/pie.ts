@@ -6,7 +6,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 //tslint:disable
 // custom code end
 import { TreeMap, ILoadedEventArgs, IResizeEventArgs, TreeMapTooltip, TreeMapAjax } from '@syncfusion/ej2-treemap';
-import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip } from '@syncfusion/ej2-charts';
+import { AccumulationChart, PieSeries, DataLabel, AccumulationTooltip} from '@syncfusion/ej2-charts';
 import { continentData } from './treemap-data/continent-data';
 AccumulationChart.Inject(AccumulationChart, PieSeries, DataLabel, AccumulationTooltip);
 TreeMap.Inject(TreeMapTooltip);
@@ -21,7 +21,7 @@ let count: number = 0;
         let theme: string = location.hash.split('/')[1];
         theme = theme ? theme : 'Material';
         args.treemap.theme = <TreeMapTheme>((theme.charAt(0).toUpperCase() +
-        theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast'));
+        theme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5'));
     };
     // custom code end
     let treemap: TreeMap = new TreeMap({
@@ -100,6 +100,9 @@ export function AccumulationChartRender(id: string): void {
             enable: true,
             format: '${point.x} : ${point.y}%'
         },
+        legendSettings: {
+            visible: false
+        },
         series: [
             {
                 explode: true,
@@ -109,7 +112,7 @@ export function AccumulationChartRender(id: string): void {
                 palettes: ['#1E1E1E', '#00BDAE', '#FFFFFF'],
                 dataSource: dataSource,
                 dataLabel: {
-                    visible: true
+                    visible: false
                 },
                 type: 'Pie',
                 xName: 'x',

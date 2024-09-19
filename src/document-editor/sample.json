@@ -124,7 +124,6 @@
         {
             "url": "bindUI-to-document",
             "name": "Bind UI To Document",
-            "type": "new",
             "category": "Document Editor",
             "description": "The Document Editor component in JavaScript platform is used to create, edit, view, and print Word documents in web applications.",
             "api": {
@@ -708,6 +707,18 @@
                     "showNavigationPane"
                 ]
 
+            }
+        },
+        {
+            "url": "autoshapes",
+            "name": "Auto Shapes",
+            "type": "new",
+            "category": "Shapes",
+            "description": "The Document Editor component supports Auto shapes preservation",
+            "api": {
+                "Editor": [
+                    "insertShape"
+                ]
             }
         },
         {
@@ -1788,5 +1799,6 @@
                     ]
                 }
             }
+            
     ]
 }

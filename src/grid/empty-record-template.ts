@@ -22,7 +22,7 @@ Grid.Inject(Page, Selection, Toolbar, Edit );
         img.alt = "No record";
         return img.outerHTML;
     }
-
+    
     loadCultureFiles();
     let dropDownDataSource = new DataManager(orderDataSource);
     let grid: Grid = new Grid(

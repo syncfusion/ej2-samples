@@ -4,17 +4,22 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 
 import {
-    Diagram, NodeModel, TextElement, HierarchicalTree, ConnectorConstraints, Segments, StackPanel, randomId,
+    Diagram, NodeModel, TextElement, HierarchicalTree, ConnectorConstraints, SnapConstraints, Segments, StackPanel, randomId,
     SelectorConstraints, PointPortModel, ConnectorModel, PortVisibility, ConnectorEditing
 } from '@syncfusion/ej2-diagrams';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEventArgs } from '@syncfusion/ej2-buttons';
-import { ColorPicker } from '@syncfusion/ej2/inputs';
+import { ColorPicker, NumericTextBox } from '@syncfusion/ej2-inputs';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import { DecoratorShapes, SegmentThumbShapes } from '@syncfusion/ej2/diagrams';
+import { DecoratorShapes, SegmentThumbShapes } from '@syncfusion/ej2-diagrams';
 
 Diagram.Inject(HierarchicalTree,ConnectorEditing);
 
 let diagram: Diagram;
+let sourceDecoratorShape: DropDownList;
+let targetDecoratorShape: DropDownList;
+let sourceDecoratorSize:  NumericTextBox;
+let targetDecoratorSize:  NumericTextBox;
+let segmentDecoratorSize:  NumericTextBox;
 function created(): void {
     diagram.updateViewPort();
 }
@@ -55,6 +60,7 @@ function getConnectorDefaults(obj: ConnectorModel): ConnectorModel {
     return obj;
 }
 
+//Customize the content of the node
 function setNodeTemplate(obj: NodeModel): StackPanel {
     if (obj.id === 'node6') {
         let canvas = new StackPanel();
@@ -71,7 +77,7 @@ function setNodeTemplate(obj: NodeModel): StackPanel {
     return null;
 }
 
-//creation of the TextElement.
+//creation of the TextElement
 function getTextElement(text: string, color: string): TextElement {
     let textElement: TextElement = new TextElement();
     textElement.id = randomId();
@@ -112,6 +118,7 @@ function getPorts(obj: NodeModel): PointPortModel[] {
     }
 }
 
+//Event for Appearance of the layout.
 function changeConnectorPattern(args: MouseEvent): void {
     let target: HTMLElement = args.target as HTMLElement;
     // custom code start
@@ -149,7 +156,7 @@ function changeConnectorPattern(args: MouseEvent): void {
             case 'bezierConnectorWithDasharray':
                 applyConnectorStyle(true, false, false, 'Bezier', target);
                 break;
-            case 'cornerRadious':
+            case 'cornerRadius':
                 applyConnectorStyle(false, false, true, 'Orthogonal', target);
                 break;
             case 'sourceDecorator':
@@ -162,7 +169,7 @@ function changeConnectorPattern(args: MouseEvent): void {
     }
 }
 
-//ConnectorStyle customization
+//Connector Style customization
 function applyConnectorStyle(
     dashedLine: boolean, sourceDec: boolean, isRounded: boolean,
     type: Segments, target: HTMLElement, strokeWidth?: number
@@ -182,9 +189,11 @@ function applyConnectorStyle(
                 }, shape: 'Circle'
             };
             (document.getElementById('sourceDecorator2') as any).value='Circle';
+            sourceDecoratorShape.value='Circle';
         } else {
             connector.sourceDecorator = { shape: 'None' };
             (document.getElementById('sourceDecorator2') as any).value='None';
+            sourceDecoratorShape.value='None';
         }
         connector.targetDecorator = {
             style: {
@@ -192,15 +201,18 @@ function applyConnectorStyle(
                 fill: connector.style.strokeColor, strokeWidth: 2
             }, shape: 'Arrow'
         };
-        (document.getElementById('targetDecorator') as any).value='Arrow'
+        (document.getElementById('targetDecorator') as any).value='Arrow';
+        targetDecoratorShape.value='Arrow';
         diagram.dataBind();
+        diagram.updateSelector();
     }
     // custom code start
     target.classList.add('e-selected-style');
     // custom code end
 }
 
-function srcDecShapeChange(args:any)
+//Change Source decorator shape
+function sourceDecoratorShapeChange(args:any)
 {
     for (let i = 0; i < diagram.connectors.length; i++) {
         diagram.connectors[i].sourceDecorator = {
@@ -214,7 +226,8 @@ function srcDecShapeChange(args:any)
     diagram.dataBind();
    
 }
-function tarDecShapeChange(args:any)
+//Change target decorator shape
+function targetDecoratorShapeChange(args:any)
 {
     for (let i = 0; i < diagram.connectors.length; i++) {
         diagram.connectors[i].targetDecorator = {
@@ -227,12 +240,40 @@ function tarDecShapeChange(args:any)
         diagram.dataBind();
     }   
 }
-function segDecShapeChange(args:any)
+//Change segment decorator shape
+function segmentDecoratorShapeChange(args:any)
 {
     for (let i = 0; i < diagram.connectors.length; i++) {
         diagram.segmentThumbShape = args.itemData.shape;
     } 
     diagram.dataBind();  
+}
+
+// function to Change source  decorator Size
+function sourceDecoratorSizeChange(args:any) {
+    for (var i = 0; i < diagram.connectors.length; i++) {
+        diagram.connectors[i].sourceDecorator.width = args.value;
+        diagram.connectors[i].sourceDecorator.height = args.value;
+    }
+    diagram.dataBind();
+}
+
+// function to Change target  decorator Size
+function targetDecoratorSizeChange(args:any) {
+    for (var i = 0; i < diagram.connectors.length; i++) {
+        diagram.connectors[i].targetDecorator.width = args.value;
+        diagram.connectors[i].targetDecorator.height = args.value;
+    }
+    diagram.dataBind();
+}
+
+// function to Change segment  decorator Size
+function segmentDecoratorSizeChange(args:any) {
+    var connector=diagram.selectedItems.connectors[0];
+    diagram.segmentThumbSize = args.value;
+    diagram.clearSelection();
+    diagram.select([diagram.nameTable[connector.id]]);
+    diagram.dataBind();
 }
 
 // tslint:disable-next-line:max-func-body-length
@@ -248,33 +289,40 @@ function segDecShapeChange(args:any)
         { id: 'node3', annotations: [{ content: 'Account' }] },
         { id: 'node4', annotations: [{ content: 'Information' }] },
         { id: 'node5', annotations: [{ content: 'Opportunity' }] },
-        { id: 'node6', offsetX: marginLeft + 530, offsetY: 290, excludeFromLayout: true }
+        { id: 'node6', offsetX: marginLeft + 540, offsetY: 340, excludeFromLayout: true }
     ];
 
     //Initialize Diagram connectors
     let connectors: ConnectorModel[] = [
-        { id: 'connectr', sourceID: 'node1', targetID: 'node2' },
-        { id: 'connectr1', sourceID: 'node2', sourcePortID: 'port1', targetID: 'node3', targetPortID: 'portIn' },
-        { id: 'connectr2', sourceID: 'node2', sourcePortID: 'port2', targetID: 'node4', targetPortID: 'portIn' },
-        { id: 'connectr3', sourceID: 'node2', sourcePortID: 'port3', targetID: 'node5', targetPortID: 'portIn' },
-        { id: 'connectr4', sourceID: 'node6', sourcePortID: 'port4', targetID: 'node3', targetPortID: 'portOut' },
-        { id: 'connectr5', sourceID: 'node6', sourcePortID: 'port5', targetID: 'node4', targetPortID: 'portOut' },
-        { id: 'connectr7', sourceID: 'node6', sourcePortID: 'port6', targetID: 'node5', targetPortID: 'portOut' }
+        { id: 'connector', sourceID: 'node1', targetID: 'node2' },
+        { id: 'connector1', sourceID: 'node2', sourcePortID: 'port1', targetID: 'node3', targetPortID: 'portIn' },
+        { id: 'connector2', sourceID: 'node2', sourcePortID: 'port2', targetID: 'node4', targetPortID: 'portIn' },
+        { id: 'connector3', sourceID: 'node2', sourcePortID: 'port3', targetID: 'node5', targetPortID: 'portIn' },
+        { id: 'connector4', sourceID: 'node6', sourcePortID: 'port4', targetID: 'node3', targetPortID: 'portOut' },
+        { id: 'connector5', sourceID: 'node6', sourcePortID: 'port5', targetID: 'node4', targetPortID: 'portOut' },
+        { id: 'connector7', sourceID: 'node6', sourcePortID: 'port6', targetID: 'node5', targetPortID: 'portOut' }
     ];
 
     //Initializes diagram control
     diagram = new Diagram({
-        width: '100%', height: 580, nodes: nodes,
-        connectors: connectors, selectedItems: {
-            constraints: (SelectorConstraints.ConnectorSourceThumb | SelectorConstraints.ConnectorTargetThumb)
-        },
+        width: '100%', height: 680, nodes: nodes,
+        connectors: connectors,
         //Configrues hierarchical tree layout
         layout: {
             type: 'HierarchicalTree', orientation: 'LeftToRight',
             verticalSpacing: 75, margin: { left: marginLeft, right: 0, top: 0, bottom: 0 }
         },
         created: created,
-        snapSettings: { constraints: 0 },
+        //Function to Enable the segmentDcorator size when the Connector is selected      
+        selectionChange: function () {
+            if (diagram.selectedItems.connectors.length > 0) {
+                segmentDecoratorSize.enabled = true;
+            }
+            else {
+                segmentDecoratorSize.enabled = false;
+            }
+        },
+        snapSettings: { constraints: SnapConstraints.None },
         //Sets the default values of nodes
         getNodeDefaults: getNodeDefaults,
         //Sets the default values of connectors
@@ -284,7 +332,7 @@ function segDecShapeChange(args:any)
     });
     diagram.appendTo('#diagram');
 
-    //Click Event for Appearance of the layout.
+    //Click Event to change the connector type.
     document.getElementById('appearance').onclick = changeConnectorPattern;
 
     //set appearance color
@@ -307,7 +355,7 @@ function segDecShapeChange(args:any)
     });
     objectColor.appendTo('#color');
     //Shape collection of the decorators.
-    let decoratorshape = [
+    let decoratorShape = [
         { shape: 'None', text: 'None' },
         { shape: 'Square', text: 'Square' },
         { shape: 'Circle', text: 'Circle' },
@@ -321,29 +369,67 @@ function segDecShapeChange(args:any)
         { shape: 'DoubleArrow', text: 'Double Arrow' }
     ];
 
-    //DropDownList is used to apply the decorator shape of the connector.
-    let srcDecoratorShape = new DropDownList({
+    //DropDownList is used to apply the source decorator shape of the connector.
+    sourceDecoratorShape = new DropDownList({
         enabled: true, value: 'None',
-        dataSource: decoratorshape, fields: { value: 'shape', text: 'text' },
-        change: srcDecShapeChange
+        dataSource: decoratorShape, fields: { value: 'shape', text: 'text' },
+        change: sourceDecoratorShapeChange
     });
-    srcDecoratorShape.appendTo('#sourceDecorator2');
+    sourceDecoratorShape.appendTo('#sourceDecorator2');
 
-    //DropDownList is used to apply the decorator shape of the connector.
-    let tarDecoratorShape = new DropDownList({
+    //DropDownList is used to apply the target decorator shape of the connector.
+    targetDecoratorShape = new DropDownList({
         enabled: true, 
         value: 'Arrow',
-        dataSource: decoratorshape, fields: { value: 'shape', text: 'text' },
-        change: tarDecShapeChange
+        dataSource: decoratorShape, fields: { value: 'shape', text: 'text' },
+        change: targetDecoratorShapeChange
     });
-    tarDecoratorShape.appendTo('#targetDecorator');
+    targetDecoratorShape.appendTo('#targetDecorator');
 
-    //DropDownList is used to apply the  decorator shape of the connector.
-    let segDecoratorshape = new DropDownList({
+    //DropDownList is used to apply the segment decorator shape of the connector.
+    let segmentDecoratorshape = new DropDownList({
         enabled: true, value: 'Circle',
-        dataSource: decoratorshape, fields: { value: 'shape', text: 'text' },
-        change: segDecShapeChange
+        dataSource: decoratorShape, fields: { value: 'shape', text: 'text' },
+        change: segmentDecoratorShapeChange
     });
-    segDecoratorshape.appendTo('#segmentDecorator');
+    segmentDecoratorshape.appendTo('#segmentDecorator');
+
+    // Create a numeric text box for adjusting source decorator Size 
+     sourceDecoratorSize = new NumericTextBox({
+        min: 10,
+        max: 20,
+        step: 1,
+        width: 130,
+        value: 12,
+        format: 'n0',
+        change: sourceDecoratorSizeChange
+    });
+    sourceDecoratorSize.appendTo('#sourceDecoratorSize');
+
+
+    // Create a numeric text box for adjusting Target decorator Size 
+     targetDecoratorSize = new NumericTextBox({
+        min: 10,
+        max: 20,
+        step: 1,
+        width: 130,
+        format: 'n0',
+        value: 12,
+        change:targetDecoratorSizeChange,
+    });
+    targetDecoratorSize.appendTo('#targetDecoratorSize');
+
+    // Create a numeric text box for adjusting Segment decorator Size 
+     segmentDecoratorSize = new NumericTextBox({
+        enabled:false,
+        min: 10,
+        max: 20,
+        step: 1,
+        format: 'n0',
+        width: 130,
+        value: 12,
+        change:segmentDecoratorSizeChange,
+    });
+    segmentDecoratorSize.appendTo('#segmentDecoratorSize');
 };
 

@@ -21,7 +21,10 @@
             "url":"organize-pdf", "name": "Organize Pages", "type": "update" ,"description":"This sample demonstrates the page organization features of the PDF Viewer component, allowing users to effortlessly insert, delete, rearrange, copy, undo, redo, and rotate pages.", "category": "Editor"
         },
         {
-            "url":"custom-toolbar", "name": "Toolbar", "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with custom toolbar configuration.", "category": "Customization"
+            "url":"redaction" , "name": "Redaction" , "type": "new" , "description": "This PDF viewer sample facilitates the permanent removal of sensitive or confidential data from PDF files." , "category":"Editor"
+        },
+        {
+            "url":"custom-toolbar", "name": "Toolbar" , "description":"This demo for Essential JS 2 PdfViewer shows the default rendering of the PdfViewer with custom toolbar configuration.", "category": "Customization"
         },
         {
             "url":"custom-context-menu", "name": "Context Menu", "description":"This demo for Essential JS 2 PdfViewer shows the custom options for users who use to add custom options in context menu.", "category": "Customization"
@@ -36,7 +39,13 @@
             "url":"formdesigner", "name": "Form Designer" ,"description":"This sample demonstrates the creation of the supported Form fields in the PDF Viewer such as Textbox, Password, Checkbox, Radio Button, Drop Down, List box, Signature, and Initial. We can also customize these fields and can include new fields through the user interaction by switching to the designer mode.", "category": "PDF Form"
         },
         {
-            "url":"annotations", "name": "Annotations", "description":"This sample demonstrates the creation of different types of annotations such as Text Markup, Shapes, Measurements, Free text, Stamps, Handwritten signature, ink, and sticky notes in the PDF Viewer. And also we can customize the added annotations or we can include new annotations through user interaction from the PDF Viewer.", "category": "Annotation"
+            "url":"eSigning-form-designer", "name": "eSigning Form Designer" ,"hideOnDevice": true,"type": "new" ,"description":"This sample demonstrates the creation of the supported Form fields in the PDF Viewer such as Textbox, Password, Checkbox, Radio Button, Drop Down, List box, Signature, and Initial. We can also customize these fields and can include new fields through the user interaction by switching to the designer mode.", "category": "PDF Form"
+        },
+        {
+            "url":"eSigning-pdf-forms", "name": "eSigning PDF Forms" ,"type": "new" ,"description":"This sample demonstrates the creation of the supported Form fields in the PDF Viewer such as Textbox, Password, Checkbox, Radio Button, Drop Down, List box, Signature, and Initial. We can also customize these fields and can include new fields through the user interaction by switching to the designer mode.", "category": "PDF Form"
+        },
+        {
+            "url":"annotations", "name": "Annotations", "type": "update", "description":"This sample demonstrates the creation of different types of annotations such as Text Markup, Shapes, Measurements, Free text, Stamps, Handwritten signature, ink, and sticky notes in the PDF Viewer. And also we can customize the added annotations or we can include new annotations through user interaction from the PDF Viewer.", "category": "Annotation"
         },
         {
             "url":"hand-written", "name": "Handwritten Signature", "description":"This sample demonstrates the Handwritten signature and initial support of the PDF Viewer. The signature or initial support reduces the paperwork of reviewing the contents and it is verified digitally.", "category": "Signature"

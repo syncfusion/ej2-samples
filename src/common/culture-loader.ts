@@ -19,14 +19,14 @@ const matchedCurrency: { [key: string]: string } = {
 export function loadCultureFiles(stats?: boolean) {
     loadCldr(numberingSystems, chinaCultureData, enCultureData, swissCultureDate, currencyData, deCultureData, arCultureData);
     L10n.load(Locale);
-    setCulture('en');
-    setCurrencyCode('USD');
     let cultureDropdown = document.getElementById('cultureID') as HTMLInputElement;
+    let currencyDropdown = document.getElementById('currencyID') as HTMLInputElement;
+    setCulture(cultureDropdown.value);
+    setCurrencyCode(currencyDropdown.value);
     cultureDropdown.oninput = () => {
         setCulture(cultureDropdown.value);
         setCurrencyCode(matchedCurrency[cultureDropdown.value]);
     };
-    let currencyDropdown = document.getElementById('currencyID') as HTMLInputElement;
     currencyDropdown.oninput = () => { 
         setCurrencyCode(currencyDropdown.value);
     };

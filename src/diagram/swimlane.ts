@@ -1,8 +1,7 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Swim Lane Samples
  */
-
+//Importing necessary modules
 import {
     Diagram,
     NodeModel,
@@ -24,7 +23,6 @@ import {
     HeaderModel,
     UndoRedo,
     DiagramContextMenu,
-    GridlinesModel,
     SnapConstraints
 } from '@syncfusion/ej2-diagrams';
 import { MenuEventArgs } from '@syncfusion/ej2-navigations';
@@ -33,41 +31,39 @@ import { addEvents } from './script/diagram-common';
 /* tslint:disable */
 Diagram.Inject(UndoRedo, DiagramContextMenu);
 
-
+//Sets the default values of a Connector.
 function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
-    if (connector.id.indexOf("Link21") !== -1) {
+    if ((connector.id.indexOf("straight") !== -1) || (connector.id.indexOf("straightdashed") !== -1)) {
         connector.type = 'Straight';
-    } else if(connector.id.indexOf("Link22") !== -1) {
-        connector.type = 'Straight';
-    } else {
+    }
+    else {
         connector.type = 'Orthogonal';
     }
-    connector.style.strokeColor = "#717171";
-    connector.sourceDecorator.style.strokeColor = "#717171";
-    connector.targetDecorator.style.strokeColor = "#717171";
-    connector.sourceDecorator.style.fill = "#717171";
-    connector.targetDecorator.style.fill = "#717171";
+    setConnectorStyles(connector, '#717171');
     return connector;
+}
+ //set styles for connector
+ function setConnectorStyles(connector: ConnectorModel, color: string) {
+    connector.targetDecorator.style.strokeColor = color;
+    connector.targetDecorator.style.fill = color;
+    connector.style.strokeColor = color;
+    connector.style.strokeWidth = 1;
 }
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-    loadCultureFiles();
     let bounds: ClientRect = document.getElementById('diagram-space').getBoundingClientRect();
     let pathData: string = 'M 120 24.9999 C 120 38.8072 109.642 50 96.8653 50 L 23.135' +
         ' 50 C 10.3578 50 0 38.8072 0 24.9999 L 0 24.9999 C' +
         '0 11.1928 10.3578 0 23.135 0 L 96.8653 0 C 109.642 0 120 11.1928 120 24.9999 Z';
-    //Initializes the nodes for the diagram.
-    let interval: number[] = [
-        1, 9, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75
-    ];
-    let gridlines: GridlinesModel = { lineColor: '#e0e0e0', lineIntervals: interval };
 
+    //Create and add ports for node.
     let port: PointPortModel[] = [
         { id:'Port1', offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Default |  PortConstraints.Draw },
         { id:'Port2',offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Default |  PortConstraints.Draw },
         { id:'Port3',offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Default |  PortConstraints.Draw },
         { id:'Port4',offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Default |  PortConstraints.Draw }
     ]
+    //Initializes the nodes for the diagram.
     let nodes: NodeModel[] = [
         {
             id: 'swimlane',
@@ -202,11 +198,12 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
             width: 650
         },
     ];
+     //Set the default values of a node.
     function getNodeDefaults(node: NodeModel): NodeModel {
         node.style.strokeColor = "#717171";
         return node;
     }
-    //Initializes the connectors for the diagram.
+    //Initialize the connectors for the diagram.
     let connectors: ConnectorModel[] = [
         {
             id: 'connector1', sourceID: 'node1',
@@ -245,22 +242,21 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         // sets the nodes and connectors of the diagram.
         nodes: nodes, connectors: connectors,
         snapSettings: {
-            horizontalGridlines: gridlines,
-            verticalGridlines: gridlines,
             constraints: SnapConstraints.All & ~SnapConstraints.ShowLines
         },
         getConnectorDefaults: getConnectorDefaults,
         getNodeDefaults: getNodeDefaults,
+        //Define custom menu items
         contextMenuSettings: {
             show: true, items: [
                 {
-                    text: 'Copy', id: 'Copy', target: '.e-diagramcontent', iconCss: 'e-menu-icon e-icons e-copy'
+                    text: 'Copy', id: 'Copy', target: '.e-diagramcontent', iconCss: 'e-icons e-copy'
                 },
                 {
-                    text: 'Cut', id: 'Cut', target: '.e-diagramcontent', iconCss: 'e-menu-icon e-icons e-cut'
+                    text: 'Cut', id: 'Cut', target: '.e-diagramcontent', iconCss: 'e-icons e-cut'
                 },
                 {
-                    text: 'Paste', id: 'Paste', target: '.e-diagramcontent', iconCss: 'e-menu-icon e-icons e-paste'
+                    text: 'Paste', id: 'Paste', target: '.e-diagramcontent', iconCss: 'e-icons e-paste'
                 },
                 {
                     text: 'Insert Lane Before', id: 'InsertLaneBefore', target: '.e-diagramcontent',
@@ -270,13 +266,10 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                 }],
             showCustomMenuOnly: true,
         },
+        //open the context menu items 
         contextMenuOpen: function (args: DiagramBeforeMenuOpenEventArgs) {
             for (let item of args.items) {
-                if (
-                  diagram.selectedItems.connectors.length +
-                    diagram.selectedItems.nodes.length >
-                  0
-                ) {
+                if (diagram.selectedItems.connectors.length +diagram.selectedItems.nodes.length >0) {
                   if (item.id === 'InsertLaneBefore' || item.id === 'InsertLaneAfter') {
                     if (
                       diagram.selectedItems.connectors.length ||
@@ -291,6 +284,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                 }
               }
         },
+       // Handles click events on menu items.
         contextMenuClick: function (args: MenuEventArgs) {
             if (args.item.id === 'InsertLaneBefore' || args.item.id === 'InsertLaneAfter') {
                 if (diagram.selectedItems.nodes.length > 0 && (diagram.selectedItems.nodes[0] as Node).isLane) {
@@ -333,72 +327,39 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                 diagram.cut();
             } else if (args.item.id === 'Copy') {
                 diagram.copy();
-                diagram.paste();
             } else if (args.item.id === 'Paste') {
                 diagram.paste();
             }
         },
-        //pageSettings: { height: 1020, width: 1020 },
         selectedItems: { constraints: SelectorConstraints.All & ~SelectorConstraints.Rotate },
         created: () => {
             addEvents();
         }
     });
     diagram.appendTo('#diagram');
-
-
-
+    
     // Initializes the palettes to be displayed in the symbol palette.
     let palettes: PaletteModel[] = [
         {
+            // Initializes flowshapes for the palettes
             id: 'flow', expanded: true, title: 'Flow Shapes', symbols: [
                 {
-                    id: 'Terminator', addInfo: { tooltip: 'Terminator' }, width: 100, height: 60, shape: { type: 'Flow', shape: 'Terminator' }, style: { strokeWidth: 1, strokeColor: "#757575" }, ports: [
-                        { offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw }
-                    ]
+                    id: 'Terminator', addInfo: { tooltip: 'Terminator' }, width: 100, height: 60, shape: { type: 'Flow', shape: 'Terminator' },ports: port
                 },
                 {
-                    id: 'Process',  addInfo: { tooltip: 'Process' }, width: 100, height: 60, shape: { type: 'Flow', shape: 'Process' }, style: { strokeWidth: 1, strokeColor: "#757575" }, ports: [
-                        { offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw }
-                    ]
+                    id: 'Process',  addInfo: { tooltip: 'Process' }, width: 100, height: 60, shape: { type: 'Flow', shape: 'Process' },ports: port
                 },
                 {
-                    id: 'Decision', addInfo: { tooltip: 'Decision' }, width: 50, height: 50, shape: { type: 'Flow', shape: 'Decision' }, style: { strokeWidth: 1, strokeColor: "#757575" }, ports: [
-                        { offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw }
-                    ]
+                    id: 'Decision', addInfo: { tooltip: 'Decision' }, width: 50, height: 50, shape: { type: 'Flow', shape: 'Decision' }, ports: port
                 },
                 {
-                    id: 'Document', addInfo: { tooltip: 'Document' }, width: 50, height: 50, shape: { type: 'Flow', shape: 'Document' }, style: { strokeWidth: 1, strokeColor: "#757575" }, ports: [
-                        { offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw }
-                    ]
+                    id: 'Document', addInfo: { tooltip: 'Document' }, width: 50, height: 50, shape: { type: 'Flow', shape: 'Document' },ports: port
                 },
                 {
-                    id: 'Predefinedprocess', addInfo: { tooltip: 'Predefined process' }, width: 50, height: 50, shape: { type: 'Flow', shape: 'PreDefinedProcess' }, ports: [
-                        { offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw }
-                    ], style: { strokeWidth: 1, strokeColor: "#757575" }
+                    id: 'Predefinedprocess', addInfo: { tooltip: 'Predefined process' }, width: 50, height: 50, shape: { type: 'Flow', shape: 'PreDefinedProcess' },ports: port
                 },
                 {
-                    id: 'Data', addInfo: { tooltip: 'Data' }, width: 50, height: 50, shape: { type: 'Flow', shape: 'Data' }, ports: [
-                        { offset: { x: 0, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 0 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 1, y: 0.5 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw },
-                        { offset: { x: 0.5, y: 1 }, visibility: PortVisibility.Connect | PortVisibility.Hover, constraints: PortConstraints.Draw }
-                    ], style: { strokeWidth: 1, strokeColor: "#757575" }
+                    id: 'Data', addInfo: { tooltip: 'Data' }, width: 50, height: 50, shape: { type: 'Flow', shape: 'Data' },ports: port
                 },
             ]
         },
@@ -412,8 +373,8 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                         type: 'SwimLane', lanes: [
                             {
                                 id: 'lane1',
-                                style: { strokeColor: "#757575" }, height: 60, width: 150,
-                                header: { width: 50, height: 50, style: { strokeColor: "#757575", fontSize: 11 } },
+                                 height: 60, width: 150,
+                                header: { width: 50, height: 50, style: { fontSize: 11 } },
                             }
                         ],
                         orientation: 'Horizontal', isLane: true
@@ -429,59 +390,54 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                         lanes: [
                             {
                                 id: 'lane1',
-                                style: { strokeColor: "#757575" }, height: 150, width: 60,
-                                header: { width: 50, height: 50, style: { strokeColor: "#757575", fontSize: 11 } },
+                                height: 150, width: 60,
+                                header: { width: 50, height: 50, style: { fontSize: 11 } },
                             }
                         ],
                         orientation: 'Vertical', isLane: true
                     },
                     height: 140,
                     width: 60,
-                    // style: { fill: '#f5f5f5' },
                     offsetX: 70,
                     offsetY: 30,
                 }, {
                     id: 'Verticalphase', addInfo: { tooltip: 'Vertical phase' },
                     shape: {
                         type: 'SwimLane',
-                        phases: [{ style: { strokeWidth: 1, strokeDashArray: '3,3', strokeColor: "#757575" }, }],
+                        phases: [{ style: { strokeWidth: 1, strokeDashArray: '3,3'}, }],
                         annotations: [{ text: '' }],
                         orientation: 'Vertical', isPhase: true
                     },
                     height: 60,
-                    width: 140,
-                    style: {strokeColor: "#757575"}
+                    width: 140
                 }, {
                     id: 'Horizontalphase', addInfo: { tooltip: 'Horizontal phase' },
                     shape: {
                         type: 'SwimLane',
-                        phases: [{ style: { strokeWidth: 1, strokeDashArray: '3,3', strokeColor: "#757575" }, }],
+                        phases: [{ style: { strokeWidth: 1, strokeDashArray: '3,3'}, }],
                         annotations: [{ text: '' }],
                         orientation: 'Horizontal', isPhase: true
                     },
                     height: 60,
-                    width: 140,
-                    style: {strokeColor: "#757575"}
+                    width: 140
                 }
             ]
         },
         {
             id: 'connectors', expanded: true, symbols: [
                 {
-                    id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-                    targetDecorator: { shape: 'Arrow', style:{strokeColor: "#757575", fill: "#757575"} }, style: { strokeWidth: 1, strokeColor: "#757575" }
+                    id: 'orthogonal', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
                 },
                 {
-                    id: 'Link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
-                    targetDecorator: { shape: 'Arrow', style:{strokeColor: "#757575", fill: "#757575"} }, style: { strokeWidth: 1, strokeDashArray: '4 4', strokeColor: "#757575" }
+                    id: 'Orthogonaldashed', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 40, y: 40 },
+                    style: { strokeDashArray: '4 4' }
                 },
                 {
-                    id: 'Link21', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-                    targetDecorator: { shape: 'Arrow', style:{strokeColor: "#757575", fill: "#757575"} }, style: { strokeWidth: 1, strokeColor: "#757575" }
+                    id: 'straight', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
                 },
                 {
-                    id: 'Link22', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
-                    targetDecorator: { shape: 'Arrow', style:{strokeColor: "#757575", fill: "#757575"} }, style: { strokeWidth: 1, strokeDashArray: '4 4', strokeColor: "#757575" }
+                    id: 'straightdashed', type: 'Straight', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
+                   style: { strokeDashArray: '4 4' }
                 }
             ], title: 'Connectors'
         }
@@ -491,18 +447,20 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     let palette: SymbolPalette = new SymbolPalette({
         // sets the expandable mode of the symbol palette.
         expandMode: 'Multiple',
-        // sets the palettes to be displayed in the symbol palette.
+        // Sets the palettes displayed in the symbol palette.
         palettes: palettes,
         // sets the width and height of the palette.
         width: '100%', height: '100%',
         symbolMargin: { left: 8, right: 8, top: 8, bottom: 8 },
         symbolHeight: 48, symbolWidth: 48,
+        getConnectorDefaults: getConnectorDefaults,
+        getNodeDefaults: getNodeDefaults,
         getSymbolInfo: (symbol: NodeModel): SymbolInfo => {
             return { tooltip: symbol.addInfo ? symbol.addInfo['tooltip'] : symbol.id };
-        },
+        }
     });
     palette.appendTo('#symbolpalette');
-
+    //Set the node style for DragEnter element.
     diagram.dragEnter = function (arg) {
         if (arg.element instanceof Node) {
             let shape: SwimLaneModel = arg.element.shape as SwimLaneModel;
@@ -517,7 +475,9 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
             }
         }
     };
+    // Check if the current environment is a device
     if (Browser.isDevice) {
+        // If it is a device, fit the diagram to the page
         diagram.fitToPage();
     }
 

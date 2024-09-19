@@ -1,0 +1,57 @@
+{
+    "name": "AI AssistView",
+    "directory": "ai-assistview",
+    "category": "Interactive Chat",
+    "ftName": "AIAssitView",
+    "type": "preview",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "category": "AI AssistView",
+            "api":{ "AIAssitView": ["promptRequest", "promptSuggestions", "bannerTemplate", "toolbarSettings"] },
+            "description": "Showcases the default combinations of the AiAssistView control.",
+            "sourceFiles": [
+                { "displayName": "default.ts", "path":"src/ai-assistview/default.ts" },
+                { "displayName": "default.html", "path":"src/ai-assistview/default.html" },
+                { "displayName": "promptResponseData.ts", "path":"src/ai-assistview/promptResponseData.ts" }
+            ]
+        },
+        {
+            "url": "custom-views",
+            "name": "Custom Views",
+            "category": "AI AssistView",
+            "api":{ "AIAssitView": ["views", "promptRequest"] },
+            "description": "Showcases the different views of the AiAssistView control",
+            "sourceFiles": [
+                { "displayName": "custom-views.ts", "path":"src/ai-assistview/custom-views.ts" },
+                { "displayName": "custom-views.html", "path":"src/ai-assistview/custom-views.html" },
+                { "displayName": "promptResponseData.ts", "path":"src/ai-assistview/promptResponseData.ts" }
+            ]
+        },
+        {
+            "url": "template",
+            "name": "Template",
+            "category": "AI AssistView",
+            "api":{ "AIAssitView": ["bannerTemplate", "promptItemTemplate", "responseItemTemplate", "promptSuggestionItemTemplate", "promptSuggestions", "promptSuggestionsHeader", "promptRequest"] },
+            "description": "Showcases the template properties of the AiAssistView control.",
+            "sourceFiles": [
+                { "displayName": "template.ts", "path":"src/ai-assistview/template.ts" },
+                { "displayName": "template.html", "path":"src/ai-assistview/template.html" },
+                { "displayName": "promptResponseData.ts", "path":"src/ai-assistview/promptResponseData.ts" }
+            ]
+        },
+        {
+            "url": "dialog",
+            "name": "Dialog",
+            "category": "Integration",
+            "api":{ "AIAssitView": ["promptSuggestions", "prompts", "promptRequest", "toolbarSettings", "bannerTemplate", "responseToolbarSettings", "cssClass"] },
+            "description": "Showcases the AiAssistView control with other component integration",
+            "sourceFiles": [
+                { "displayName": "dialog.ts", "path":"src/ai-assistview/dialog.td" },
+                { "displayName": "dialog.html", "path":"src/ai-assistview/dialog.html" },
+                { "displayName": "promptResponseData.ts", "path":"src/ai-assistview/promptResponseData.ts" }
+            ]
+        }
+    ]
+}

@@ -3,6 +3,7 @@ import {
     Schedule, Day, TimelineViews, TimelineMonth, Resize, DragAndDrop, ResourceDetails
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 /**
  * schedule block events sample
@@ -60,7 +61,7 @@ Schedule.Inject(Day, TimelineViews, TimelineMonth, Resize, DragAndDrop);
             textField: 'Text', idField: 'Id', groupIDField: 'GroupId', colorField: 'Color'
         }],
         eventSettings: {
-            dataSource: (dataSource as any).blockData
+            dataSource: <Object[]>extend([], (dataSource as any).blockData, null, true)
         }
     });
     scheduleObj.appendTo('#Schedule');

@@ -69,6 +69,7 @@ import * as dataSource from './formula-data.json';
             spreadsheet.cellFormat(style, 'A1:F1');
             spreadsheet.cellFormat({ fontWeight: 'bold', backgroundColor: '#EEEEEE' }, 'A12:F15');
             spreadsheet.numberFormat('0.00', 'F2:F11');
+            spreadsheet.numberFormat('m/d/yyyy', 'A2:A11');
         }
     });
 

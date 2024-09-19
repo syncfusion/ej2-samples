@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample for Radial tree
  */
-
+//Importing necessary modules
 import {
     Diagram, NodeModel, DiagramTools, BasicShapeModel,
     NodeConstraints, ZoomOptions, DataBinding, RadialTree, SnapConstraints
@@ -20,7 +20,7 @@ Diagram.Inject(DataBinding, RadialTree);
 let diagram: Diagram;
 
 
-//based on the option, Click event to perform ZoomIn,ZoomOut and Reset.
+// Click event to perform Zoom In, Zoom Out, and Reset based on the option
 function onItemClick(args: ClickEventArgs): void {
     switch (args.item.text) {
         case 'Zoom In':
@@ -48,13 +48,13 @@ function onItemClick(args: ClickEventArgs): void {
             //sets the fields to bind
             id: 'Id', parentId: 'ReportingPerson',
             dataSource: new DataManager((Data as any).radialTree),
-            //binds the data with the nodes
+             //bind data to the nodes
             doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
                 nodeModel.annotations = [{
                     content: data.Name,
                     style: data.Id === 'parent' ? { color: 'white', fontSize: 50 } : { color: 'black', fontSize: 20 }
                 }];
-                nodeModel.constraints = NodeConstraints.Default & ~NodeConstraints.InheritTooltip | NodeConstraints.Tooltip;
+                nodeModel.constraints = NodeConstraints.Default | NodeConstraints.Tooltip;
                 nodeModel.tooltip = {
                     content: data.Name + '<br/>' + data.Designation, relativeMode: 'Object',
                     position: 'TopCenter', showTipPointer: true,
@@ -77,7 +77,7 @@ function onItemClick(args: ClickEventArgs): void {
                 }
             }
         },
-        //Disables all interactions except zoom/pan
+        //Disables all interactions except zoom and pan
         tool: DiagramTools.ZoomPan,
         //Configures automatic layout
         layout: {
@@ -87,7 +87,7 @@ function onItemClick(args: ClickEventArgs): void {
     });
     diagram.appendTo('#diagram');
     diagram.fitToPage();
-    //create and add ZoomIn,ZoomOut and Reset options in ToolBar.
+   // Creates and adds ZoomIn, ZoomOut, and Reset options to the Toolbar.
     let toolbarObj: Toolbar = new Toolbar({
         clicked: onItemClick,
         items: [

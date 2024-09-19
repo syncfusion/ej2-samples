@@ -17,7 +17,7 @@ PdfViewer.Inject(Toolbar,Annotation, Magnification, Navigation, LinkAnnotation, 
  */
 
 let inputTemplate: string = '<div class=""><input type="text" class="e-input-group e-pv-current-page-number" id="currentPage" /></div>';
-let ele: string = '<div class=""><span class="e-pv-total-page-number" id="totalPage">of 0</span></div>';
+let ele: string = '<div class="" style="margin:0px 6px"><span class="e-pv-total-page-number" id="totalPage">of 0</span></div>';
 let isBookmarkOpen: boolean = false;
 let isBookmarkClick: boolean = false;
 let isBookmarkView: boolean = false;
@@ -234,6 +234,7 @@ function  readFile(args:  any):  void  {
                 let  uploadedFileUrl:  string  =  e.currentTarget.result;
                 viewer.documentPath= uploadedFileUrl;
                 viewer.fileName = filename;
+                viewer.downloadFileName = filename;
                 (currentPageBox as HTMLInputElement).value = '1';
                 document.getElementById('totalPage').textContent = 'of ' + viewer.pageCount;
                 document.getElementById('bookmarkview').innerHTML = '';

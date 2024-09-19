@@ -1,11 +1,10 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * organization-model
  */
 
 import {
     Diagram, NodeModel, ConnectorModel, LayoutOrientation, LayoutAnimation, TreeInfo, SubTreeOrientation,
-    SubTreeAlignments, DiagramTools, DataBinding, HierarchicalTree, SnapConstraints
+    SubTreeAlignments, DiagramTools, DataBinding, HierarchicalTree, SnapConstraints, ConnectorConstraints
 } from '@syncfusion/ej2-diagrams';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
@@ -21,13 +20,9 @@ function nodeDefaults(obj: NodeModel): NodeModel {
     obj.expandIcon = { height: 10, width: 10, shape: 'None', fill: 'lightgray', offset: { x: .5, y: 1 } };
     obj.expandIcon.verticalAlignment = 'Center';
     obj.expandIcon.margin = { left: 0, right: 0, top: 0, bottom: 0 };
-    obj.collapseIcon.offset = { x: .5, y: 1 };
+    obj.collapseIcon = { height: 10, width: 10, shape: 'None', fill: 'lightgray', offset: { x: 0.5, y: 1 } };
     obj.collapseIcon.verticalAlignment = 'Center';
     obj.collapseIcon.margin = { left: 0, right: 0, top: 0, bottom: 0 };
-    obj.collapseIcon.height = 10;
-    obj.collapseIcon.width = 10;
-    obj.collapseIcon.shape = 'None';
-    obj.collapseIcon.fill = 'lightgray';
     obj.width = 120;
     obj.height = 30;
     return obj;
@@ -37,7 +32,7 @@ function nodeDefaults(obj: NodeModel): NodeModel {
 function connectorDefaults(connector: ConnectorModel): ConnectorModel {
     connector.targetDecorator.shape = 'None';
     connector.type = 'Orthogonal';
-    connector.constraints = 0;
+    connector.constraints = ConnectorConstraints.None;
     connector.cornerRadius = 0;
     return connector;
 }
@@ -53,7 +48,6 @@ export interface EmployeeInfo {
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-    loadCultureFiles();
     //Initializes the nodes for the diagram
     let diagram: Diagram = new Diagram({
         width: '100%', height: '700px', snapSettings: { constraints: SnapConstraints.None },
@@ -91,24 +85,24 @@ export interface EmployeeInfo {
     diagram.appendTo('#diagram');
 
     //NumericTextBox used to increase/decrease horizontalSpacing of the layout.
-    let hSpacing: NumericTextBox = new NumericTextBox({
+    let horizontalSpacing: NumericTextBox = new NumericTextBox({
         format: '###.##',
         change: () => {
-            diagram.layout.horizontalSpacing = Number(hSpacing.value);
+            diagram.layout.horizontalSpacing = Number(horizontalSpacing.value);
             diagram.dataBind();
         }
     });
-    hSpacing.appendTo('#hSpacing');
+    horizontalSpacing.appendTo('#horizontalSpacing');
 
     //NumericTextBox used to increase/decrease verticalSpacing of the layout. 
-    let vSpacing: NumericTextBox = new NumericTextBox({
+    let verticalSpacing: NumericTextBox = new NumericTextBox({
         format: '###.##',
         change: () => {
-            diagram.layout.verticalSpacing = Number(vSpacing.value);
+            diagram.layout.verticalSpacing = Number(verticalSpacing.value);
             diagram.dataBind();
         }
     });
-    vSpacing.appendTo('#vSpacing');
+    verticalSpacing.appendTo('#verticalSpacing');
 
     //Click Event for orientation of the PropertyPanel.
     document.getElementById('orientation').onclick = (args: MouseEvent) => {
@@ -199,11 +193,11 @@ export interface EmployeeInfo {
     };
 
     //Enable of disable the expandable option for Node.
-    let checkBoxObj: CheckBox = new CheckBox({
+    let checkBoxExpand: CheckBox = new CheckBox({
         label: 'Expandable',
         checked: false, change: () => {
             for (let node of diagram.nodes) {
-                if (checkBoxObj.checked) {
+                if (checkBoxExpand.checked) {
                     node.expandIcon.shape = 'Minus';
                     node.collapseIcon.shape = 'Plus';
                 } else {
@@ -215,5 +209,5 @@ export interface EmployeeInfo {
             diagram.doLayout();
         }
     });
-    checkBoxObj.appendTo('#checked');
+    checkBoxExpand.appendTo('#checked');
 };

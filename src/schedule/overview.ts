@@ -191,14 +191,14 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     });
     exportObj.appendTo('#exportBtn');
 
-    let timelineTemplate: string = '<div class="template"><div class="icon-child">' +
-        '<input id="timeline-views" aria-label="Timeline Views"></input></div><div class="text-child">Timeline Views</div></div>';
-    let groupTemplate: string = '<div class="template"><div class="icon-child">' +
-        '<input id="grouping" aria-label="Grouping"></input></div><div class="text-child">Grouping</div></div>';
-    let gridlineTemplate: string = '<div class="template"><div class="icon-child">' +
-        '<input id="timeSlot" aria-label="Time Slots"></input></div><div class="text-child">Time Slots</div></div>';
-    let autoHeightTemplate: string = '<div class="template"><div class="icon-child">' +
-        '<input id="row_auto_height" aria-label="Auto Fit Rows"></input></div><div class="text-child">Auto Fit Rows</div></div>';
+    let timelineTemplate: string = '<div class="template"><label><div class="icon-child">' +
+        '<input id="timeline-views" aria-label="Timeline Views"></input></div><div class="text-child">Timeline Views</div></label></div>';
+    let groupTemplate: string = '<div class="template"><label><div class="icon-child">' +
+        '<input id="grouping" aria-label="Grouping"></input></div><div class="text-child">Grouping</div></label></div>';
+    let gridlineTemplate: string = ' <div class="template"><label><div class="icon-child">' +
+        '<input id="timeSlot" aria-label="Time Slots"></input></div><div class="text-child">Time Slots</div></label></div>';
+    let autoHeightTemplate: string = '<div class="template"><label><div class="icon-child">' +
+        '<input id="row_auto_height" aria-label="Auto Fit Rows"></input></div><div class="text-child">Auto Fit Rows</div></label></div>';
     let toolbarObj: Toolbar = new Toolbar({
         height: 70,
         overflowMode: 'Scrollable',

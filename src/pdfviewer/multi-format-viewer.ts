@@ -19,7 +19,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
   //let progressValue: number = 0;
   let uploadProgressValue: number = 0;
   let pdfViewerProgressValue: number = 0;
-  let extensions: any = ['doc','docx','rtf','docm','dotm','dotx','dot','xls','xlsx','pptx','pptm','potx','potm','jpeg','png','bmp','pdf'];
+  let extensions: any = ['doc','docx','rtf','docm','dotm','dotx','dot','xls','xlsx','pptx','pptm','potx','potm','jpeg','png','bmp','pdf','jpg'];
   let viewer: PdfViewer = new PdfViewer({
     documentLoad: documentLoaded,
     ajaxRequestSuccess: ajaxRequestSuccess,
@@ -42,6 +42,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
           'DownloadOption'
       ]
   };
+  viewer.zoomMode = 'FitToPage';
   viewer.appendTo('#pdfViewer');
 
   let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
@@ -99,7 +100,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     dropArea: document.getElementById('dropArea') as HTMLElement,
     selected: onSelect,
     multiple: false,
-    allowedExtensions: '.doc, .docx, .rtf, .docm, .dotm, .dotx, .dot, .xls, .xlsx, .pptx, .pptm, .potx, .potm .jpeg, .png, .bmp, .pdf',
+    allowedExtensions: '.doc, .docx, .rtf, .docm, .dotm, .dotx, .dot, .xls, .xlsx, .pptx, .pptm, .potx, .potm .jpeg, .png, .bmp, .pdf, .jpg',
   });
   uploadObj.appendTo('#fileupload');
 
@@ -244,7 +245,6 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
       pdfViewerProgressValue = 0;
       progressValue.innerHTML = "0%";
     },1000);
-    viewer.magnification.fitToPage();
   }
 
   function calculateTotalProgress(){

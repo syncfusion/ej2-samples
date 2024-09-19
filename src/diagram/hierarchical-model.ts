@@ -11,7 +11,7 @@ import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { DataManager } from '@syncfusion/ej2-data';
 Diagram.Inject(DataBinding, HierarchicalTree, LayoutAnimation);
 import * as Data from './diagram-data.json';
-import { ChangeEventArgs, CheckBox } from '@syncfusion/ej2/buttons';
+import { ChangeEventArgs, CheckBox } from '@syncfusion/ej2-buttons';
 
 export interface EmployeeInfo {
     Name: string;
@@ -36,12 +36,11 @@ function nodeDefaults(obj: NodeModel): NodeModel {
     obj.collapseIcon.fill = 'lightgray';
     return obj;
 }
-
-function connectorDefaults(connector: ConnectorModel, diagram: Diagram): ConnectorModel {
+//sets connector default value
+function connectorDefaults(connector: ConnectorModel): ConnectorModel {
     connector.targetDecorator.shape = 'None';
     connector.type = 'Orthogonal';
     connector.style.strokeColor = '#6d6d6d';
-    connector.constraints = 0;
     connector.cornerRadius = 5;
     return connector;
 }
@@ -59,7 +58,7 @@ function connectorDefaults(connector: ConnectorModel, diagram: Diagram): Connect
             id: 'Name', parentId: 'Category',
             dataSource: new DataManager((Data as any).hierarchicalTree),
             //binds the data with the nodes
-            doBinding: (nodeModel: NodeModel, data: object, diagram: Diagram) => {
+            doBinding: (nodeModel: NodeModel, data: object) => {
                 nodeModel.shape = { type: 'Text', content: (data as EmployeeInfo).Name };
             }
         },
@@ -80,36 +79,44 @@ function connectorDefaults(connector: ConnectorModel, diagram: Diagram): Connect
     document.getElementById('appearance').onclick = (args: MouseEvent) => {
         let target: HTMLElement = args.target as HTMLElement;
         // custom code start
+        // Styling the selected appearence
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
         if (selectedElement.length) {
             selectedElement[0].classList.remove('e-selected-style');
         }
         // custom code end
+        // Changes appearence of tree
         if (target.className === 'image-pattern-style') {
             let id: string = target.id;
-            let orientation1: string = id.substring(0, 1).toUpperCase() + id.substring(1, id.length);
-            diagram.layout.orientation = orientation1 as LayoutOrientation;
+            let orientation: string = id.substring(0, 1).toUpperCase() + id.substring(1, id.length);
+            diagram.layout.orientation = orientation as LayoutOrientation;
             diagram.dataBind();
             diagram.doLayout();
         }
     };
-    let hSpacing: NumericTextBox = new NumericTextBox({
+    //sets horizontal spacing between nodes
+    let horizontalSpacing: NumericTextBox = new NumericTextBox({
         format: '###.##',
         change: () => {
-            diagram.layout.horizontalSpacing = Number(hSpacing.value);
+            diagram.layout.horizontalSpacing = Number(horizontalSpacing.value);
             diagram.dataBind();
+            diagram.doLayout();
         }
     });
-    hSpacing.appendTo('#hSpacing');
+    horizontalSpacing.appendTo('#horizontalSpacing');
 
-    let vSpacing: NumericTextBox = new NumericTextBox({
+    //sets vertical spacing between nodes
+    let verticalSpacing: NumericTextBox = new NumericTextBox({
         format: '###.##',
         change: () => {
-            diagram.layout.verticalSpacing = Number(vSpacing.value);
+            diagram.layout.verticalSpacing = Number(verticalSpacing.value);
             diagram.dataBind();
+            diagram.doLayout();
         }
     });
-    vSpacing.appendTo('#vSpacing');
+    verticalSpacing.appendTo('#verticalSpacing');
+
+    // Check box to enable expand and collapse icon
     let checkBoxObj: CheckBox = new CheckBox({ change: onChange });
     checkBoxObj.appendTo('#expand');
         function onChange (args : ChangeEventArgs): void {

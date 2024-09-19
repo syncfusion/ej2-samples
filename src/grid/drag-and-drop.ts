@@ -27,7 +27,16 @@ Grid.Inject(Page, Selection, RowDD, Sort, Filter, Edit, Toolbar);
                 { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', isPrimaryKey: true, validationRules: { required: true, number: true } },
                 { field: 'CustomerName', headerText: 'Customer Name', width: 135, validationRules: { required: true, minLength: 5 } },
                 { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'Right', editType: 'datepickeredit' }
-            ]
+            ],
+            rowDragStart: (args: any) => {
+                if (destGrid.isEdit) {
+                    if (destGrid.editModule.formObj.validate()) {
+                        destGrid.endEdit();
+                    } else {
+                        destGrid.closeEdit();
+                    }
+                }
+            },
         });
     grid.appendTo('#Grid');
 

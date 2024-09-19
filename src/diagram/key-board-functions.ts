@@ -5,7 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 
 import {
     Diagram, NodeModel, UndoRedo, Node, DataBinding, Keys, KeyModifiers, DiagramContextMenu,
-    HierarchicalTree, CommandManagerModel, ConnectorModel, SnapConstraints
+    HierarchicalTree, CommandManagerModel, ConnectorModel, SnapConstraints, CommandModel
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
 Diagram.Inject(UndoRedo, DiagramContextMenu, HierarchicalTree, DataBinding);
@@ -15,134 +15,113 @@ export interface DataInfo {
     [key: string]: string;
 }
 
+// Holds an instance of the DiagramComponent for global access within the class
 let diagram: Diagram;
 
-//Sets the default values of nodes
-function getNodeDefaults(obj: NodeModel): NodeModel {
-    if (!obj.children) {
-        obj.shape = { type: 'Basic', shape: 'Ellipse', cornerRadius: 10 };
-        obj.width = 70;
-        obj.height = 70;
-    }
-    return obj;
-}
-
-//Custom command for Diagraming elements.
-function getCommandManagerSettings(): CommandManagerModel {
-    let commandManager: CommandManagerModel = {
-        commands: [{
-            name: 'customGroup',
-            canExecute: (): boolean => {
-                if (diagram.selectedItems.nodes.length > 0 || diagram.selectedItems.connectors.length > 0) {
-                    return true;
-                }
-                return false;
-            },
-            execute: (): void => {
-                diagram.group();
-            },
-            gesture: {
-                key: Keys.G,
-                keyModifiers: KeyModifiers.Control
-            }
-        },
-        {
-            name: 'customUnGroup',
-            canExecute: (): boolean => {
-                if (diagram.selectedItems.nodes[0].children) {
-                    return true;
-                }
-                return false;
-            },
-            execute: (): void => {
-                diagram.unGroup();
-            },
-            gesture: {
-                key: Keys.U,
-                keyModifiers: KeyModifiers.Control
-            }
-        },
-        {
-            name: 'navigationDown',
-            canExecute: (): boolean => {
-                return true;
-            },
-            execute: (): void => {
-                navigateLevels(true);
-            },
-            gesture: { key: Keys.Down },
-        },
-        {
-            name: 'navigationUp',
-            canExecute: (): boolean => {
-                return true;
-            },
-            execute: (): void => {
-                navigateLevels(false);
-            },
-            gesture: { key: Keys.Up },
-        },
-        {
-            name: 'navigationLeft',
-            canExecute: (): boolean => {
-                return true;
-            },
-            execute: (): void => {
-                navigateToSiblings(true);
-            },
-            gesture: { key: Keys.Right },
-        },
-        {
-            name: 'navigationRight',
-            canExecute: (): boolean => {
-                return true;
-            },
-            execute: (): void => {
-                navigateToSiblings(false);
-            },
-            gesture: { key: Keys.Left },
-        }]
-    };
-    return commandManager;
-}
-
-//Navigation for Child Node or parent Node
-function navigateLevels(isParent: boolean): void {
-    let node: Node = diagram.selectedItems.nodes[0] as Node;
-    if (node) {
-        let connectorId: string = isParent ? node.outEdges[0] : node.inEdges[0];
-        let altNode: NodeModel[] = isParent ? getNode(connectorId, false) : getNode(connectorId, true);
-        selectNode(altNode);
-    }
-}
-//Navigate to left or right Sibling Node 
-function navigateToSiblings(isRightSibling: boolean): void {
-    let child: Node = diagram.selectedItems.nodes[0] as Node;
-    if (child) {
-        let connectorId: string = child.inEdges[0];
-        let altConnectorId: string = '';
-        let parent: NodeModel[] = getNode(connectorId, true);
-        if (parent && parent.length > 0) {
-            for (let i: number = 0; i < (parent[0] as Node).outEdges.length; i++) {
-                if ((parent[0] as Node).outEdges[i] === connectorId) {
-                    altConnectorId = isRightSibling ? (parent[0] as Node).outEdges[i + 1] : (parent[0] as Node).outEdges[i - 1];
-                }
-            }
-            let sibling: NodeModel[] = getNode(altConnectorId, false);
-            selectNode(sibling);
-        }
-    }
-}
-//Get node elements
-function getNode(name: string, isParent: boolean): NodeModel[] {
-    let node: NodeModel[] = [];
-    let connector: ConnectorModel = diagram.getObject(name) as ConnectorModel;
-    if (connector) {
-        node.push(diagram.getObject(isParent ? (connector.sourceID) : (connector.targetID)) as NodeModel);
+// Sets the default values of nodes
+function setNodeDefaults(node: NodeModel): NodeModel {
+    if (!node.children) {
+        node.shape = { type: 'Basic', shape: 'Ellipse', cornerRadius: 10 };
+        node.width = 70;
+        node.height = 70;
     }
     return node;
 }
-//draw selector.
+
+// Configures the command manager with custom and modified keyboard shortcuts
+function getCommandManagerSettings(): CommandManagerModel {
+    return {
+        commands: [
+            createCommand("customGroup", Keys.G, KeyModifiers.Control, () => groupSelectedItems(), canGroupItems),
+            createCommand("customUnGroup", Keys.U, KeyModifiers.Control, () => unGroupItems(), canUnGroupItems),
+            createCommand("navigationDown", Keys.Down, undefined, () => navigateLevels(true), alwaysTrue),
+            createCommand("navigationUp", Keys.Up, undefined, () => navigateLevels(false), alwaysTrue),
+            createCommand("navigationLeft", Keys.Left, undefined, () => navigateToSiblings(false), alwaysTrue),
+            createCommand("navigationRight", Keys.Right, undefined, () => navigateToSiblings(true), alwaysTrue)
+        ]
+    };
+}
+
+// Creates a command with specified properties
+function createCommand(name: string, key: Keys, keyModifiers: KeyModifiers, execute: () => void, canExecute: () => boolean): CommandModel {
+    return { name, gesture: { key, keyModifiers }, canExecute, execute };
+}
+
+// Checks if grouping of selected items is possible
+function canGroupItems(): boolean {
+    return diagram.selectedItems.nodes.length > 0 || diagram.selectedItems.connectors.length > 0;
+}
+
+// Groups the selected items in the diagram
+function groupSelectedItems(): void {
+    diagram.group();
+}
+
+// Checks if ungrouping of selected items is possible
+function canUnGroupItems(): boolean {
+    return diagram.selectedItems.nodes[0]?.children !== undefined;
+}
+
+// Ungroups the selected items in the diagram
+function unGroupItems(): void {
+    diagram.unGroup();
+}
+
+// Always returns true, used as a default for command execution
+function alwaysTrue(): boolean {
+    return true;
+}
+
+// Navigates to the child or parent node of the selected node
+function navigateLevels(isParent: boolean): void {
+    let selectedNode: Node = diagram.selectedItems.nodes[0] as Node;
+    if (selectedNode) {
+        let connectorId: string = isParent ? selectedNode.outEdges[0] : selectedNode.inEdges[0];
+        let altNode: NodeModel[] = isParent ? getChildNode(connectorId) : getParentNode(connectorId);
+        selectNode(altNode);
+    }
+}
+
+// Navigates to the sibling node of the selected node based on direction
+function navigateToSiblings(isRightSibling: boolean): void {
+    let selectedNode: Node = diagram.selectedItems.nodes[0] as Node;
+    if (selectedNode) {
+        let connectorId: string = selectedNode.inEdges[0];
+        let altConnectorId: string = '';
+        let parentNode: NodeModel = getParentNode(connectorId)[0];
+        if (parentNode) {
+            for (let i: number = 0; i < (parentNode as Node).outEdges.length; i++) {
+                if ((parentNode as Node).outEdges[i] === connectorId) {
+                    altConnectorId = isRightSibling ? (parentNode as Node).outEdges[i + 1] : (parentNode as Node).outEdges[i - 1];
+                }
+            }
+            let siblingNode: NodeModel[] = getChildNode(altConnectorId);
+            selectNode(siblingNode);
+        }
+    }
+}
+
+// Retrieves child node elements based on connector ID
+function getChildNode(connectorId: string): NodeModel[] {
+    let childNode: NodeModel[] = [];
+    let connector: ConnectorModel = diagram.getObject(connectorId) as ConnectorModel;
+    if (connector) {
+        childNode.push(diagram.getObject(connector.targetID) as NodeModel);
+    }
+    return childNode;
+}
+
+// Retrieves parent node elements based on connector ID
+function getParentNode(connectorId: string): NodeModel[] {
+    let parentNode: NodeModel[] = [];
+    let connector: ConnectorModel = diagram.getObject(connectorId) as ConnectorModel;
+    if (connector) {
+        parentNode.push(diagram.getObject(connector.sourceID) as NodeModel);
+    }
+    return parentNode;
+}
+
+// Selects the node
 function selectNode(node: NodeModel[]): void {
     if (node && node.length > 0) {
         diagram.clearSelection();
@@ -159,7 +138,7 @@ function selectNode(node: NodeModel[]): void {
         snapSettings: { constraints: SnapConstraints.None },
         contextMenuSettings: { show: true },
         //Sets the default values of nodes
-        getNodeDefaults: getNodeDefaults,
+        getNodeDefaults: setNodeDefaults,
         //Configrues hierarchical tree layout
         layout: { type: 'HierarchicalTree' },
         //Configures data source
@@ -179,7 +158,6 @@ function selectNode(node: NodeModel[]): void {
                     /* tslint:disable:no-string-literal */
                     fill: data['fill']
                 };
-
             }
         },
         commandManager: getCommandManagerSettings()

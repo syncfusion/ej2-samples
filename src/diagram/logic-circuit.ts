@@ -100,7 +100,7 @@ function createConnector(
     let decorator: DecoratorModel = {
         height: 12, width: 12, shape: 'Circle', style: { fill: 'white', strokeColor: '#444', strokeWidth: 1 }
     };
-    /* tslint:enable */
+    // Initialize Diagram Nodes using the createNode function
     let nodes: NodeModel[] = [
         createNode('OR1', 336, 161.5, 70, 104, orData, orPort),
         createNode('OR2', 336, 329, 70, 104, orData, orPort),
@@ -111,28 +111,25 @@ function createConnector(
         createNode('And', 543, 329, 70, 104, andData, andPort)
     ];
 
-    /* tslint:disable */
+    // Creating connectors between logic gates
     let connectors: ConnectorModel[] = [
         createConnector('line1', { x: 140, y: 130 }, null, null, 'OR1', null, 'Or_port1', decorator, null, { content: 'A', margin: { left: -20 } }, true),
         createConnector('line2', { x: 140, y: 161.5 }, null, null, 'OR1', null, 'Or_port2', decorator, null, { content: 'B', margin: { left: -20 } }, true),
         createConnector('line3', { x: 140, y: 195 }, null, null, 'OR1', null, 'Or_port3', decorator, null, { content: 'C', margin: { left: -20 } }, true),
         createConnector('line4', { x: 85, y: 267 }, null, null, 'Not1', null, 'Not_port1', decorator, null, { content: 'A', margin: { left: -20 } }),
         createConnector('line5', { x: 65, y: 329 }, null, null, 'Not2', null, 'Not_port1', decorator, null, { content: 'B', margin: { left: -20 } }),
-        createConnector('line6', { x: 85, y: 470 }, null, null, 'Not3', null, 'Not_port1', decorator, null, { content: 'C', margin: { left: -20 } }),
-        createConnector('line7', null, null, 'Not1', 'OR2', 'Not_port2', 'Or_port1', null, null, { content: 'A\'', margin: { left: 0, top: -20 } }),
-        createConnector('line8', null, null, 'Not2', 'OR2', 'Not_port2', 'Or_port2', null, null, { content: 'B\'', margin: { left: 0, top: -20 } }),
-        createConnector('line9', { x: 140, y: 380 }, null, null, 'OR2', null, 'Or_port3', decorator, null, {}, true),
-        createConnector('line10', { x: 140, y: 420 }, null, null, 'OR3', null, 'Or_port1', decorator, null, {}, true),
-        createConnector('line11', null, null, 'Not3', 'OR3', 'Not_port2', 'Or_port2', null, null, { content: 'B\'', margin: { left: 0, top: -20 } }),
-        createConnector('line12', { x: 140, y: 520 }, null, null, 'OR3', null, 'Or_port3', decorator, null, {}, true),
-        createConnector('line13', null, null, 'OR1', 'And', 'Or_port4', 'And_port1', null, null, { content: '(A + B + C)', margin: { left: 0, top: -20 } }, true),
-        createConnector('line14', null, null, 'OR2', 'And', 'Or_port4', 'And_port2', null, null, { content: '(A\' + B\' + C)', margin: { left: 0, top: -20 } }, true),
-        createConnector('line15', null, null, 'OR3', 'And', 'Or_port4', 'And_port3', null, null, { content: '(A + B\' + C)', margin: { left: 0, top: -20 } }, true),
+        createConnector('line6', { x: 85, y: 470 }, null, null, 'Not3', null, 'Not_port1', decorator, null, { content: 'B', margin: { left: -20 } }),
+        createConnector('line7', null, null, 'Not1', 'OR2', 'Not_port2', 'Or_port1', null, null, { content: 'A\'', margin: { left: 0, top: -10 } }),
+        createConnector('line8', null, null, 'Not2', 'OR2', 'Not_port2', 'Or_port2', null, null, { content: 'B\'', margin: { left: 0, top: -10 } }),
+        createConnector('line9', { x: 140, y: 380 }, null, null, 'OR2', null, 'Or_port3', decorator, null, { content: 'C', margin: { left: -20 } }, true),
+        createConnector('line10', { x: 140, y: 420 }, null, null, 'OR3', null, 'Or_port1', decorator, null, { content: 'A', margin: { left: -20 } }, true),
+        createConnector('line11', null, null, 'Not3', 'OR3', 'Not_port2', 'Or_port2', null, null, { content: 'B\'', margin: { left: 0, top: -10 } }),
+        createConnector('line12', { x: 140, y: 520 }, null, null, 'OR3', null, 'Or_port3', decorator, null, { content: 'C', margin: { left: -20 } }, true),
+        createConnector('line13', null, null, 'OR1', 'And', 'Or_port4', 'And_port1', null, null, { content: '(A + B + C)', margin: { left: 0, top: -10 } }, true),
+        createConnector('line14', null, null, 'OR2', 'And', 'Or_port4', 'And_port2', null, null, { content: '(A\' + B\' + C)', margin: { left: 0, top: -10 } }, true),
+        createConnector('line15', null, null, 'OR3', 'And', 'Or_port4', 'And_port3', null, null, { content: '(A + B\' + C)', margin: { left: 0, top: -10 } }, true),
         createConnector('line16', null, { x: 600, y: 329 }, 'And', null, 'And_port4', null, null, decorator, { content: 'F =(A+B+C)*(A+B\'+C)*(A+B\'+C)', margin: { left: -80, top: 60 } }, true, true)
     ]
-
-    /* tslint:enable */
-
 
     let diagram: Diagram = new Diagram({
         //Initializes diagram control
@@ -243,32 +240,32 @@ function createConnector(
     ];
     /* tslint:enable */
 
+    // initialize the connenctors on the palette
     let connections: ConnectorModel[] = [
-        {
-            id: 'Link1', type: 'Orthogonal', sourcePoint: { x: 20, y: 20 }, targetPoint: { x: 60, y: 60 }, cornerRadius: 5,
-            targetDecorator: { shape: 'None' }, style: { strokeWidth: 1, strokeColor: '#757575' }
-        },
-        {
-            id: 'Link11', type: 'Orthogonal', sourcePoint: { x: 20, y: 20 }, targetPoint: { x: 60, y: 60 }, cornerRadius: 5,
-            targetDecorator: { shape: 'None' }, style: { strokeWidth: 1, strokeDashArray: '5,5', strokeColor: '#757575' }
-        },
-        {
-            id: 'Link21', type: 'Straight', sourcePoint: { x: 20, y: 20 }, targetPoint: { x: 60, y: 60 },
-            targetDecorator: { shape: 'None' }, style: { strokeWidth: 1, strokeColor: '#757575' }
-        },
-        {
-            id: 'Link22', type: 'Straight', sourcePoint: { x: 20, y: 20 }, targetPoint: { x: 60, y: 60 },
-            targetDecorator: { shape: 'None' }, style: { strokeWidth: 1, strokeDashArray: '5,5', strokeColor: '#757575' }
-        },
-        {
-            id: 'Link3', type: 'Orthogonal', sourcePoint: { x: 20, y: 20 }, targetPoint: { x: 60, y: 60 }, cornerRadius: 5,
-            targetDecorator: { shape: 'None' }, style: { strokeWidth: 1, strokeColor: '#757575' }
-        },
-        {
-            id: 'Link31', type: 'Orthogonal', sourcePoint: { x: 20, y: 20 }, targetPoint: { x: 60, y: 60 }, cornerRadius: 5,
-            targetDecorator: { shape: 'None' }, style: { strokeWidth: 1, strokeDashArray: '5,5', strokeColor: '#757575' }
-        }
+        createConnections('Link1', 'Orthogonal', false, 0),
+        createConnections('Link2', 'Orthogonal', true, 0),
+        createConnections('Link3', 'Straight', false, 0),
+        createConnections('Link4', 'Straight', true, 0),
+        createConnections('Link5', 'Orthogonal', false, 5),
+        createConnections('Link6', 'Orthogonal', true, 5)
     ];
+
+    // function to create an connectors on the palette
+    function createConnections(id: string, type: any, dashed: boolean, cornerRadius: number): ConnectorModel {
+        return {
+            id: id,
+            type: type,
+            sourcePoint: { x: 0, y: 0 },
+            targetPoint: { x: 60, y: 60 },
+            targetDecorator: { shape: 'None' },
+            style: {
+                strokeWidth: 1,
+                strokeColor: '#757575',
+                strokeDashArray: dashed ? '5,5' : ''
+            },
+            cornerRadius: cornerRadius
+        };
+    }
     let palette: SymbolPalette = new SymbolPalette({
         //Initializes symbol palette control
         expandMode: 'Multiple',

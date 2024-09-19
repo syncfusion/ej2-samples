@@ -1,12 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { FileManager, Toolbar, NavigationPane, DetailsView, ContextMenu } from '@syncfusion/ej2-filemanager';
-import { CheckBox } from '@syncfusion/ej2-buttons';
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
 
 /**
- * File Manager API sample
+ * File Manager full functionalities sample
  */
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -24,48 +22,20 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
             layout: ["SortBy", "View", "Refresh", "|", "Paste", "|", "NewFolder", "|", "Details", "|", "SelectAll"],
             visible: true
         },
-        navigationPaneSettings: { visible: false },
-        view: 'LargeIcons'
+        view: 'Details',
+        detailsViewSettings: {
+            columns: [
+                {
+                    field: 'name', headerText: 'Name', customAttributes: { class: 'e-fe-grid-name' }
+                },
+                {
+                    field: '_fm_modified', headerText: 'DateModified', format: 'MM/dd/yyyy hh:mm a'
+                },
+                {
+                    field: 'size', headerText: 'Size', template: '<span class="e-fe-size">${size}</span>', format: 'n2'
+                }
+            ]
+        }
     });
-    fileObject.appendTo('#file');
-
-    let checkBoxObj : CheckBox = new CheckBox({ checked: true, change: onToolbarChange });
-    checkBoxObj.appendTo('#toolbar');
-    let multiSelectObj : CheckBox= new CheckBox({ checked: true, change: onToolbarChange });
-    multiSelectObj.appendTo('#multiSelect');
-    let fileExtendObj : CheckBox = new CheckBox({ checked: true, change: onToolbarChange });
-    fileExtendObj.appendTo('#fileExtension');
-    let thumbnailObj : CheckBox= new CheckBox({ checked: true, change: onToolbarChange });
-    thumbnailObj.appendTo('#thumbnail');
-    let enableItems = ['NewFolder', 'Cut', 'Copy', 'Paste', 'Download', 'Delete', 'Refresh', 'Selection', 'View', 'Details'];
-    let enableObj : DropDownList= new DropDownList({ dataSource: enableItems, placeholder: "Select item" ,change: onItemChange });
-    enableObj.appendTo('#enable');
-    let disableItems = ['NewFolder', 'Cut', 'Copy', 'Paste', 'Download', 'Delete', 'Refresh', 'Selection', 'View', 'Details'];
-    let disableObj : DropDownList = new DropDownList({ dataSource: disableItems, placeholder: "Select item", change: onItemChange });
-    disableObj.appendTo('#disable');
-
-    function onToolbarChange(args: any): void {
-        if (args.event.target.previousElementSibling.id == "toolbar") {
-            fileObject.toolbarSettings.visible = args.checked;
-        }
-        if (args.event.target.previousElementSibling.id == "multiSelect") {
-            fileObject.allowMultiSelection = args.checked;
-        }
-        if (args.event.target.previousElementSibling.id == "fileExtension") {
-            fileObject.showFileExtension = args.checked;
-        }
-        if (args.event.target.previousElementSibling.id == "thumbnail") {
-            fileObject.showThumbnail = args.checked;
-        }
-    }
-
-    function onItemChange(args: any): void {
-        var changedItem = args.itemData.value;
-        if (args.element.id == "enable") {
-            fileObject.enableToolbarItems([changedItem]);
-        }
-        else {
-            fileObject.disableToolbarItems([changedItem]);
-        }
-    }
+    fileObject.appendTo('#filemanager');
 };

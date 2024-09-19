@@ -117,7 +117,7 @@ import { NumericTextBox } from '@syncfusion/ej2-inputs';
   }
 
   //change event handler for content change
-  document.querySelector('#value').addEventListener('change', function (): void {
+  document.querySelector('#tooltipContentValue').addEventListener('change', function (): void {
     tooltip.content = this.value;
     tooltip.refresh(tooltip.element);
   });

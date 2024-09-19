@@ -27,14 +27,24 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     return connector;
 }
 
+// Function to determine layout info
+function layoutInfo(tree: TreeInfo): void {
+if (!tree.hasSubTree) {
+    tree.orientation = "Vertical";
+    tree.type = "Right";
+}
+}
+
 // Funtion to add the Template of the Node.
 function setNodeTemplate(obj: NodeModel): Container {
+    // Create the outer container for the node content.
     let content: StackPanel = new StackPanel();
     content.id = obj.id + '_outerstack';
     content.orientation = 'Horizontal';
     content.style.strokeColor = 'gray';
     content.padding = { left: 5, right: 10, top: 5, bottom: 5 };
 
+    // Create an image element for the employee image.
     let image: ImageElement = new ImageElement();
     image.width = 50;
     image.height = 50;
@@ -42,11 +52,13 @@ function setNodeTemplate(obj: NodeModel): Container {
     image.source = (obj.data as EmployeeInfo).ImageUrl;
     image.id = obj.id + '_pic';
 
+    // Create an inner stack panel for text elements (name and designation).
     let innerStack: StackPanel = new StackPanel();
     innerStack.style.strokeColor = 'none';
     innerStack.margin = { left: 5, right: 0, top: 0, bottom: 0 };
     innerStack.id = obj.id + '_innerstack';
 
+    // Create a text element for the employee name.
     let text: TextElement = new TextElement();
     text.content = (obj.data as EmployeeInfo).Name;
     text.style.color = 'black';
@@ -56,6 +68,7 @@ function setNodeTemplate(obj: NodeModel): Container {
     text.style.fill = 'none';
     text.id = obj.id + '_text1';
 
+    // Create a text element for the employee designation.
     let desigText: TextElement = new TextElement();
     desigText.margin = { left: 0, right: 0, top: 5, bottom: 0 };
     desigText.content = (obj.data as EmployeeInfo).Designation;
@@ -89,22 +102,14 @@ export interface EmployeeInfo {
         // Configrues organizational chart layout
         layout: {
             type: 'OrganizationalChart', margin: { top: 20 },
-            getLayoutInfo: (tree: TreeInfo) => {
-                if (!tree.hasSubTree) {
-                    tree.orientation = 'Vertical';
-                    tree.type = 'Right';
-                }
-            }
+            getLayoutInfo: layoutInfo
         },
         // Sets the parent and child relationship of DataSource.
         dataSourceSettings: {
             id: 'Id', parentId: 'ReportingPerson', dataSource: new DataManager((Data as any).data)
         },
-        // Sets the default values of Nodes.
         getNodeDefaults: getNodeDefaults,
-        // Sets the default values of connectors.
         getConnectorDefaults: getConnectorDefaults,
-        // Customization of the node.
         setNodeTemplate: setNodeTemplate,
         tool: DiagramTools.ZoomPan,
     });
@@ -117,3 +122,4 @@ export interface EmployeeInfo {
     });
     overview.appendTo('#overview');
 };
+

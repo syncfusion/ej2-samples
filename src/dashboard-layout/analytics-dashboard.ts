@@ -82,6 +82,7 @@ import expenseData from './expense-data';
     centerTitle.innerHTML = 'Active <br> users  &nbsp';
     centerTitle.style.position = 'absolute';
     centerTitle.style.visibility = 'hidden';
+    setTimeout(() => {
     let pie: AccumulationChart = new AccumulationChart({
         enableSmartLabels: true,
         selectionMode: 'Point',
@@ -257,6 +258,7 @@ import expenseData from './expense-data';
     });
     columnChartObj.appendTo('#colChart');
     columnChartObj.refresh();
+    }, 10);
     let maps: Maps = new Maps({
         height: '100%',
         width: '100%',
@@ -314,6 +316,7 @@ import expenseData from './expense-data';
         }
     });
     maps.appendTo('#map');
+    setTimeout(() => {
     let pieChart: AccumulationChart = new AccumulationChart({
         series: [
             {
@@ -342,4 +345,5 @@ import expenseData from './expense-data';
     });
     pieChart.appendTo('#pieChart');
     pieChart.refresh();
+    }, 10);
 };

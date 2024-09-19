@@ -14,9 +14,10 @@
     </p>
     <p>This sample uses the following list of templates in the Dropdown Tree</p>
     <ul>
-        <li><code>ItemTemplate</code> - To customize the list item's content.</li>
-        <li><code>HeaderTemplate</code> - To customize the header element.</li>
-        <li><code>FooterTemplate</code> - To customize the footer element.</li>
+        <li><a target="_blank" href="https://ej2.syncfusion.com/documentation/api/drop-down-tree#itemtemplate">ItemTemplate</a> - To customize the list item's content.</li>
+        <li><a target="_blank" href="https://ej2.syncfusion.com/documentation/api/drop-down-tree#headertemplate">HeaderTemplate</a> - To customize the header element.</li>
+        <li><a target="_blank" href="https://ej2.syncfusion.com/documentation/api/drop-down-tree#footertemplate">FooterTemplate</a> - To customize the footer element.</li>
+        <li><code>valueTemplate</code> - To customize the selected item's element.</li>
     </ul>
 </div>
 <style>
@@ -123,14 +124,13 @@
 
     .ddt-template .ejob {
         font-size: 14px;
-        color: #979A9C;
         opacity: .87;
         padding: 5px;
     }
 
     .ddt-template .e-badge.icons {
         padding: 0;
-        right: 10px;
+        right: 0;
         position: absolute;
         top: 25px;
         background: transparent;
@@ -175,6 +175,19 @@
     .e-ddt.e-popup.ddt-template .e-treeview {
         display: block;
     }
+
+    .bootstrap5-dark .ddt-template .ejob,
+    .bootstrap5\.3-dark .ddt-template .ejob,
+    .material-dark .ddt-template .ejob,
+    .material3-dark .ddt-template .ejob,
+    .fluent-dark .ddt-template .ejob,
+    .fluent2-dark .ddt-template .ejob,
+    .fluent-dark .ddt-template .ejob,
+    .tailwind-dark .ddt-template .ejob,
+    .highcontrast .ddt-template .ejob,
+    .fluent2-highcontrast .ddt-template .ejob {
+        color: #979A9C;
+    }
 </style>
 
 <script id="itemTemplate" type="text/x-template">
@@ -212,5 +225,11 @@
                 </span>
             </span>
         </div>        
+    </div>
+</script>
+
+<script id="valueTemplate" type="text/x-template">
+    <div>
+        <div> ${name} - ${job} </div>
     </div>
 </script>

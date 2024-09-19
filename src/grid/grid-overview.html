@@ -83,7 +83,8 @@
         content: '\e701';      
     }
 
-    .highcontrast .e-grid td.e-rowcell.e-selectionbackground.e-active {
+    .highcontrast .e-grid td.e-rowcell.e-selectionbackground.e-active,
+    .fluent2-highcontrast .e-grid td.e-rowcell.e-selectionbackground.e-active {
         background-color: transparent;
         color: white;
     }
@@ -239,6 +240,15 @@
         -webkit-text-fill-color: transparent;
         -webkit-text-stroke: 1px #ffa600;
     }
+
+    @-moz-document url-prefix() {     
+        #overviewgrid.e-grid.e-grid-min-height .e-rowcell {       
+            line-height: 0!important;
+    } }
+    @-moz-document url-prefix() {    
+        #overviewgrid.e-grid.e-grid-min-height .e-rowcell {         
+            line-height: 0!important;
+    } }
 </style>
 
 <script type="text/x-jsrender" id="progessTemplate">

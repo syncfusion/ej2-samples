@@ -77,7 +77,7 @@ let textColor: string = '#000000';
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Material';
             args.gauge.theme = <LinearGaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
             // custom code end
             borderColor = args.gauge.theme.indexOf('Dark') > -1 ? 'white' : '#bfbfbf';
             textColor = args.gauge.theme.indexOf('Dark') > -1 || args.gauge.theme.indexOf('HighContrast') > -1 ? '#FFFFFF' : '#000000';
@@ -90,7 +90,7 @@ let textColor: string = '#000000';
             if (args.gauge.theme == 'Fluent' || args.gauge.theme == 'Fluent2') {
                 borderColor = "#EDEBE9";
             }
-            if (args.gauge.theme == 'FluentDark' || args.gauge.theme == 'Fluent2Dark') {
+            if (args.gauge.theme == 'FluentDark' || args.gauge.theme == 'Fluent2Dark' || args.gauge.theme == 'Fluent2HighContrast') {
                 borderColor = "#292827";
             }
             if (args.gauge.theme == 'Bootstrap5' || args.gauge.theme == 'Tailwind') {

@@ -1,7 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, LineSeries, DateTime, Legend, Tooltip, ILoadedEventArgs, Highlight, ChartTheme } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, DateTime, Legend, Tooltip, ILoadedEventArgs, ChartTheme, ChartAnnotation, Highlight } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Highlight);
+import { IAnnotationRenderEventArgs, ISeriesRenderEventArgs } from '@syncfusion/ej2/charts';
+Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
 
 /**
  * Sample for Line series
@@ -40,7 +41,7 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Highlight);
             {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2012, 6, 11), y: 13.5 }, { x: new Date(2013, 6, 11), y: 12.4 }, { x: new Date(2014, 6, 11), y: 12.7 }, { x: new Date(2015, 6, 11), y: 12.5 }, { x: new Date(2016, 6, 11), y: 12.7 }, { x: new Date(2017, 6, 11), y: 13.7 }, { x: new Date(2018, 6, 11), y: 13.4 }, { x: new Date(2019, 6, 11), y: 12.9 }, { x: new Date(2020, 6, 11), y: 11.0 }
+                    { x: new Date(2012, 6, 11), y: 5.3 },{ x: new Date(2013, 6, 11), y: 5.6 },{ x: new Date(2014, 6, 11), y: 5.9 },{ x: new Date(2015, 6, 11), y: 5.7 },{ x: new Date(2016, 6, 11), y: 7.8 },{ x: new Date(2017, 6, 11), y: 10.3 }, { x: new Date(2018, 6, 11), y: 15.5 }, { x: new Date(2019, 6, 11), y: 17.5 }, { x: new Date(2020, 6, 11), y: 19.5 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
@@ -54,7 +55,7 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Highlight);
             {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2012, 6, 11), y: 5.3 },{ x: new Date(2013, 6, 11), y: 5.6 },{ x: new Date(2014, 6, 11), y: 5.9 },{ x: new Date(2015, 6, 11), y: 5.7 },{ x: new Date(2016, 6, 11), y: 7.8 },{ x: new Date(2017, 6, 11), y: 10.3 }, { x: new Date(2018, 6, 11), y: 15.5 }, { x: new Date(2019, 6, 11), y: 17.5 }, { x: new Date(2020, 6, 11), y: 19.5 }
+                    { x: new Date(2012, 6, 11), y: 13.5 }, { x: new Date(2013, 6, 11), y: 12.4 }, { x: new Date(2014, 6, 11), y: 12.7 }, { x: new Date(2015, 6, 11), y: 12.5 }, { x: new Date(2016, 6, 11), y: 12.7 }, { x: new Date(2017, 6, 11), y: 13.7 }, { x: new Date(2018, 6, 11), y: 13.4 }, { x: new Date(2019, 6, 11), y: 12.9 }, { x: new Date(2020, 6, 11), y: 11.0 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
@@ -111,17 +112,18 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Highlight);
         //Initializing Chart title
         title: 'Crude Steel Production Annual Growth',
         //Initializing User Interaction Tooltip
-        legendSettings: { enableHighlight: true },
+        legendSettings: { visible: true, enableHighlight: true },
         tooltip: {
             enable: true
         },
         width : Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
+            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
-        }
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+        },
+
     });
     chart.appendTo('#container');
 };

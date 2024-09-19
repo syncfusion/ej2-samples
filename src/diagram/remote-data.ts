@@ -4,9 +4,9 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 
 import {
-    Diagram, NodeModel, ConnectorModel, DataBinding, HierarchicalTree, TreeInfo, DiagramTools
+    Diagram, NodeModel, ConnectorModel, DataBinding, HierarchicalTree, DiagramTools
 } from '@syncfusion/ej2-diagrams';
-import { DataManager, Query } from '@syncfusion/ej2-data';
+import { DataManager } from '@syncfusion/ej2-data';
 
 export interface DataInfo {
     [key: string]: string;
@@ -14,18 +14,17 @@ export interface DataInfo {
 
 Diagram.Inject(DataBinding, HierarchicalTree);
 
-
-//Sets the default values of nodes
-function getNodeDefaults(obj: NodeModel): NodeModel {
-    obj.width = 80;
-    obj.height = 40;
-    //Initialize shape
-    obj.shape = { type: 'Basic', shape: 'Rectangle' };
-    obj.style = { fill: '#048785', strokeColor: 'Transparent' };
-    return obj;
+// Sets the default values of nodes
+function getNodeDefaults(node: NodeModel): NodeModel {
+    node.width = 80;
+    node.height = 40;
+    // Initialize shape
+    node.shape = { type: 'Basic', shape: 'Rectangle' };
+    node.style = { fill: '#048785', strokeColor: 'Transparent' };
+    return node;
 }
 
-//Sets the default values of connector
+// Sets the default values of connector
 function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     connector.type = 'Orthogonal';
     connector.style.strokeColor = '#048785';
@@ -43,31 +42,19 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
         layout: {
             type: 'HierarchicalTree', margin: { left: 0, right: 0, top: 100, bottom: 0 },
             verticalSpacing: 40,
-            getLayoutInfo: (node: NodeModel, options: TreeInfo) => {
-                if (options.level === 3) {
-                    node.style.fill = '#3c418d';
-                }
-                if (options.level === 2) {
-                    node.style.fill = '#108d8d';
-                    options.type = 'Center';
-                    options.orientation = 'Horizontal';
-                }
-                if (options.level === 1) {
-                    node.style.fill = '#822b86';
-                }
-            }
         },
-        //Sets the default values of nodes
+        // Sets the default values of nodes
         getNodeDefaults: getNodeDefaults,
-        //Sets the default values of connector
+        // Sets the default values of connector
         getConnectorDefaults: getConnectorDefaults,
-        //Configures data source
+        // Configure the data source for the diagram
         dataSourceSettings: {
             id: 'Id', parentId: 'ParentId',
-            dataSource: new DataManager(
-                { url: 'https://services.syncfusion.com/js/production/api/RemoteData', crossDomain: true },
-            ),
-            //binds the external data with node
+            dataSource: new DataManager({
+                url: 'https://services.syncfusion.com/js/production/api/RemoteData',
+                crossDomain: true
+            }),
+            // Bind external data to node properties
             doBinding: (nodeModel: NodeModel, data: DataInfo, diagram: Diagram) => {
                 nodeModel.annotations = [{
                     /* tslint:disable:no-string-literal */
@@ -76,7 +63,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                 }];
             }
         },
-        //Disables all interactions except zoom/pan
+        // Disable all interactions except zoom/pan
         tool: DiagramTools.ZoomPan,
         snapSettings: { constraints: 0 }
     });

@@ -634,6 +634,15 @@
             "infinite-scrolling": "Infinite Scrolling"
         }
     },
+    "ai-assistview": {
+        "ControlName": "AI AssistView",
+        "Samples": {
+            "default": "Default Functionalities",
+            "custom-views": "Custom Views",
+            "template": "Template",
+            "dialog": "Dialog"
+        }
+    },
     "heatmap-chart": {
         "ControlName": "Heatmap Chart",
         "Samples": {
@@ -761,6 +770,14 @@
             "sales-map": "Sales map"
         }
     },
+   "mark-down-editor": {
+        "ControlName": "MarkDown Editor",
+        "Samples": {
+            "markdown-editor": "Default",
+            "markdown-editor-custom-format": "Custom Format",
+            "markdown-editor-preview": "Preview"
+        }
+    },
     "maskedtextbox": {
         "ControlName": "Input Mask",
         "Samples": {
@@ -849,13 +866,22 @@
     "pdfviewer": {
         "ControlName": "PDF Viewer",
         "Samples": {
-            "default": "Default Functionalities",
+            "default": "Default",
+            "read-only": "Read-Only",
+            "document-list": "Document List",
+            "multi-format-viewer": "Multi-Format Viewer",
+            "organize-pdf": "Organize Pages",
+            "redaction": "Redaction",
             "custom-toolbar": "Custom Toolbar",
-            "right-to-left": "Right to Left",
+            "custom-context-menu":"Context Menu",
+            "right-to-left": "Right To Left",
             "form-filling": "Form Filling",
-            "formdesigner": "Form Designer",
+            "form-designer": "Form Designer",
+            "eSigning-form-designer": "eSigning Form Designer",
+            "eSigning-pdf-forms": "eSigning PDF Forms",
             "annotations": "Annotations",
-            "hand-written": "Handwritten Signature"
+            "hand-written": "Handwritten Signature",
+            "invisible-signature": "Invisible Signature"
         }
     },
     "pivot-table": {
@@ -980,10 +1006,15 @@
             "types": "Type",
             "insert-emoticons": "Insert  Emoticons",
             "insert-special-characters": "Insert Special Characters",
+            "online-html-editor": "Online Html Editor"
+        }
+    },
+    "mark-down-editor": {
+        "ControlName": "Markdown Editor",
+        "Samples": {
             "markdown-editor": "Overview",
             "markdown-editor-preview": "Preview",
-            "markdown-editor-custom-format": "Custom Format",
-            "online-html-editor": "Online Html Editor"
+            "markdown-editor-custom-format": "Custom Format"
         }
     },
     "schedule": {

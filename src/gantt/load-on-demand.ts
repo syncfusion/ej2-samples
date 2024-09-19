@@ -24,7 +24,7 @@ Gantt.Inject(Selection, VirtualScroll);
 
     let gantt: Gantt = new Gantt({
         dataSource: dataSource,
-        loadChildOnDemand: false,
+        loadChildOnDemand: true,
         taskFields: {
             id: 'taskId',
             name: 'taskName',

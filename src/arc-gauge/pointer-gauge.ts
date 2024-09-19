@@ -10,7 +10,7 @@ export function gauge1(): CircularGauge {
       let selectedTheme: string = location.hash.split('/')[1];
       selectedTheme = selectedTheme ? selectedTheme : 'Material';
       args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+      selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
 
       if (selectedTheme.indexOf("tailwind") != -1 && args.gauge.axes[0].annotations != null) {
           args.gauge.axes[0].annotations[0].angle = 188;
@@ -129,7 +129,7 @@ export function gauge2(): CircularGauge {
       let selectedTheme: string = location.hash.split('/')[1];
       selectedTheme = selectedTheme ? selectedTheme : 'Material';
       args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
       
       if (selectedTheme.indexOf("tailwind") != -1 && args.gauge.axes[0].annotations != null) {
           args.gauge.axes[0].annotations[0].angle = 12;
@@ -217,7 +217,7 @@ export function gauge3(): CircularGauge {
       let selectedTheme: string = location.hash.split('/')[1];
       selectedTheme = selectedTheme ? selectedTheme : 'Material';
       args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
 
       if (selectedTheme.indexOf("tailwind") != -1 && args.gauge.axes[0].annotations != null) {
           args.gauge.axes[0].annotations[0].angle = 194;
@@ -338,7 +338,7 @@ export function gauge4(): CircularGauge {
       let selectedTheme: string = location.hash.split('/')[1];
       selectedTheme = selectedTheme ? selectedTheme : 'Material';
       args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
 
       if (selectedTheme.indexOf("tailwind") != -1 && args.gauge.axes[0].annotations != null) {
           args.gauge.axes[0].annotations[0].angle = 174;
@@ -463,7 +463,7 @@ export function gauge5(): CircularGauge {
       let selectedTheme: string = location.hash.split('/')[1];
       selectedTheme = selectedTheme ? selectedTheme : 'Material';
       args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
       if (selectedTheme.indexOf("tailwind") != -1 && args.gauge.axes[0].annotations!= null) {
           args.gauge.axes[0].annotations[0].angle = 174;
           args.gauge.axes[0].annotations[0].radius = "12%";
@@ -567,7 +567,7 @@ export function gauge6(): CircularGauge {
       let selectedTheme: string = location.hash.split('/')[1];
       selectedTheme = selectedTheme ? selectedTheme : 'Material';
       args.gauge.theme = <GaugeTheme>(selectedTheme.charAt(0).toUpperCase() +
-        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast');
+        selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/-high/i, 'High').replace(/contrast/i, 'Contrast').replace(/5.3/i, '5');
 
       if (selectedTheme.indexOf("tailwind") != -1 && args.gauge.axes[0].annotations != null) {
           args.gauge.axes[0].annotations[0].angle = 180;

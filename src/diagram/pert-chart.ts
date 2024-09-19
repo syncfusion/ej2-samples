@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample for PERT Chart
  */
-
+// Importing necessary modules from '@syncfusion/ej2-diagrams' package
 import {
     Diagram, NodeModel, DataBinding, DiagramElement, StackPanel, VerticalAlignment, randomId,
     SnapConstraints, TextStyleModel, TextElement, HorizontalAlignment, DiagramTools,
@@ -15,11 +15,11 @@ export interface DataInfo {
     [key: string]: string;
 }
 
+// Injecting required modules
 Diagram.Inject(DataBinding, HierarchicalTree, ComplexHierarchicalTree);
 
-
+//Initialize default values for connectors
 function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
-    connector.type = 'Straight';
     connector.style.strokeColor = '#979797';
     connector.targetDecorator.width = 10;
     connector.targetDecorator.height = 10;
@@ -39,7 +39,6 @@ function setNodeTemplate(node: NodeModel): StackPanel {
     stack.children = [];
     stack.height = 25;
     stack.orientation = 'Horizontal';
-    stack.style.fill = 'white';
     stack.horizontalAlignment = 'Stretch';
     addRows(stack, node);
     table.children = [(getTextElement((node.data as DataInfo)[nameKey], 'Stretch', 170, 'Stretch')), stack];
@@ -48,17 +47,18 @@ function setNodeTemplate(node: NodeModel): StackPanel {
     return table;
 }
 
+//Function to create a text element with specified content,horizontal alignment, width, and vertical alignment
 function getTextElement(
-    text: string, alignment: HorizontalAlignment,
-    width?: number, valignment?: VerticalAlignment
+    text: string, horizontalAlignment: HorizontalAlignment,
+    width?: number, verticalAlignment?: VerticalAlignment
 ): DiagramElement {
     let textElement: TextElement = new TextElement();
     textElement.id = randomId();
     textElement.content = text;
     textElement.width = width;
     textElement.height = 25;
-    textElement.horizontalAlignment = alignment;
-    textElement.verticalAlignment = valignment;
+    textElement.horizontalAlignment = horizontalAlignment;
+    textElement.verticalAlignment = verticalAlignment;
     textElement.style.strokeWidth = 1;
     textElement.style.strokeColor = '#b5b5b5';
     textElement.style.fill = 'transparent';
@@ -67,6 +67,7 @@ function getTextElement(
     return textElement;
 }
 
+//Function to add rows of data representing start date, duration, and end date to a column within a node.
 function addRows(column: StackPanel, node: NodeModel): void {
     let nodeInfo: DataInfo = node.data as DataInfo;
     column.children.push(getTextElement(nodeInfo.startDate, 'Left', 70));

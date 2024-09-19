@@ -3,7 +3,6 @@
     "directory": "spreadsheet",
     "category": "Grids",
     "ftName": "spreadsheet",
-    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -386,7 +385,6 @@
             "url": "notes",
             "name": "Notes",
             "category": "Review",
-            "type": "new",
             "api": {
                 "Spreadsheet": [
                     "sheets",
@@ -414,7 +412,6 @@
             "url": "print",
             "name": "Print",
             "category": "Printing",
-            "type": "new",
             "api": {
                 "Spreadsheet": [
                     "sheets",

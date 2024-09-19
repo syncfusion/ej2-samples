@@ -13,7 +13,6 @@
     <p>
         Tooltip is enabled in this example, to see the tooltip in action, hover a point or tap on a point in touch enabled devices.
     </p>
-    <br>
     <p style="font-weight: 500"><b>Injecting Module</b></p>
     <p>
         chart component features are segregated into individual feature-wise modules. To use Waterfall series, we need to inject
@@ -30,7 +29,7 @@
     }
 
     #container_Series_0_Connector_ {
-        stroke-dasharray: 10px 10px;
+        stroke-dasharray: 1px 2px;
         stroke-linejoin: round; stroke-linecap: round;
         -webkit-animation: dash 1s linear infinite;
         animation: dash 1s linear infinite;
@@ -38,13 +37,13 @@
 
     @-webkit-keyframes dash {
         100% {
-            stroke-dashoffset: -20px;
+            stroke-dashoffset: -3px;
         }
     }
 
     @keyframes dash {
         100% {
-            stroke-dashoffset: -20px;
+            stroke-dashoffset: -3px;
         }
     }
 </style>

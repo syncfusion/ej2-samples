@@ -35,7 +35,7 @@ import { Button } from '@syncfusion/ej2-buttons';
     //Set tooltip position
     position: 'BottomCenter',
     //Set tooltip height
-    height: Browser.isDevice ? '60%' : 'Auto',
+    height:'Auto',
     windowCollision: true
   });
   //Render initialized Tooltip component

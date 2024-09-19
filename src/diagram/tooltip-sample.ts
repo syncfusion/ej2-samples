@@ -10,8 +10,8 @@ import {
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBoxChangeEventArgs } from '@syncfusion/ej2-grids';
 import { NumericTextBox, TextBox } from '@syncfusion/ej2-inputs';
-import { CheckBox } from '@syncfusion/ej2/buttons';
-import { Tooltip } from '@syncfusion/ej2/popups';
+import { CheckBox } from '@syncfusion/ej2-buttons';
+import { Tooltip } from '@syncfusion/ej2-popups';
 
 Diagram.Inject(BpmnDiagrams);
 
@@ -21,7 +21,7 @@ let diagram: Diagram;
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
-
+    //Initialize Diagram Nodes
     let nodes: NodeModel[] = [
             {
                 id: 'node1', width: 60, height: 60, offsetX: 35, offsetY: 120,
@@ -86,15 +86,15 @@ let diagram: Diagram;
                 }
             },
             {
-                id: 'node12', width: 60, height: 60, offsetX: 265, offsetY: 430, tooltip: { content: 'Provide the solution' },
+                id: 'node11', width: 60, height: 60, offsetX: 265, offsetY: 430, tooltip: { content: 'Provide the solution' },
                 shape: { type: 'Bpmn', shape: 'Event', event: { event: 'End', trigger: 'Message' } }
             },
             {
-                id: 'node13', width: 60, height: 60, offsetX: 720, offsetY: 430, tooltip: { content: 'Share the task details' },
+                id: 'node12', width: 60, height: 60, offsetX: 720, offsetY: 430, tooltip: { content: 'Share the task details' },
                 shape: { type: 'Bpmn', shape: 'Event', event: { event: 'End', trigger: 'Message' } }
             },
             {
-                id: 'node14', width: 60, height: 60, offsetX: 570, offsetY: 430, shape: {
+                id: 'node13', width: 60, height: 60, offsetX: 570, offsetY: 430, shape: {
                     type: 'Bpmn', shape: 'Gateway',
                     gateway: { type: 'Parallel' }
                 },
@@ -102,6 +102,7 @@ let diagram: Diagram;
             },
     ];
 
+    //Initialize Diagram Connectors
     let connectors: ConnectorModel[] = [
         { id: 'connector1', sourceID: 'node1', targetID: 'node2' },
         { id: 'connector2', sourceID: 'node2', targetID: 'node3' },
@@ -120,27 +121,30 @@ let diagram: Diagram;
             annotations: [{ content: 'How to?', offset: 0.5, style: { fill: 'white' } }]
         },
         { id: 'connector8', sourceID: 'node5', targetID: 'node9' },
-        { id: 'connector9', sourceID: 'node14', targetID: 'node13' },
+        { id: 'connector9', sourceID: 'node13', targetID: 'node12' },
         {
             id: 'connector10', sourceID: 'node7', targetID: 'node3', type: 'Orthogonal',
             segments: [{ type: 'Orthogonal', length: 100, direction: 'Right' }, { type: 'Orthogonal', length: 100, direction: 'Top' }]
         },
-        { id: 'connector11', sourceID: 'node14', targetID: 'node10' },
-        { id: 'connector12', sourceID: 'node10', targetID: 'node12' },
-        { id: 'connector13', sourceID: 'node9', targetID: 'node14' },
+        { id: 'connector11', sourceID: 'node13', targetID: 'node10' },
+        { id: 'connector12', sourceID: 'node10', targetID: 'node11' },
+        { id: 'connector13', sourceID: 'node9', targetID: 'node13' },
     ];
 
+    //set content for diagram tooltip
     function getcontent(): HTMLElement {
         let tooltipContent: HTMLElement = document.createElement('div');
         tooltipContent.innerHTML =
             '<div style="border-width:1px;"><span> Tooltip !!! </span> </div>';
         return tooltipContent;
     }
+    //set default value for connectors.
     function getConnectorDefaults(connector: ConnectorModel, diagram: Diagram): ConnectorModel {
         connector.type = 'Orthogonal';
         connector.style = { strokeWidth: 2 };
         return connector;
     }
+    //set default value for Nodes.  
     function getNodeDefaults(obj: NodeModel): NodeModel {
         obj.offsetX += 0.5;
         obj.offsetY += 0.5;
@@ -150,7 +154,7 @@ let diagram: Diagram;
     }
     //Initializes diagram control
     diagram = new Diagram({
-        width: '100%', height: '645px', connectors: connectors, nodes: nodes,
+        width: '100%', height: '560px', connectors: connectors, nodes: nodes,
         getConnectorDefaults: getConnectorDefaults,
         getNodeDefaults: getNodeDefaults,
         snapSettings: { constraints: SnapConstraints.None },
@@ -160,13 +164,13 @@ let diagram: Diagram;
         }
     });
     diagram.appendTo('#diagram');
-    //FontType Collection
+    //Collection of relative modes for tooltip
     let modevalue: { [key: string]: Object }[] = [
         { type: 'Object', text: 'Object' },
         { type: 'Mouse', text: 'Mouse' },
     ];
 
-    //FontType Collection
+    //Collection of positions for tooltip
     let positionValue: { [key: string]: Object }[] = [
         { type: 'TopLeft', text: 'Top Left' },
         { type: 'TopCenter', text: 'Top Center' },
@@ -182,7 +186,7 @@ let diagram: Diagram;
         { type: 'RightBottom', text: 'Right Bottom' },
     ];
 
-    //FontType Collection
+    //Collection of effects for tooltip
     let effectValue: { [key: string]: Object }[] = [
         { type: 'FadeIn', text: 'Fade In' },
         { type: 'FadeOut', text: 'Fade Out' },
@@ -201,7 +205,7 @@ let diagram: Diagram;
         { type: 'None', text: 'None' },
     ];
 
-    //DropDownList used to apply for fontFamily of the Annotation
+    //DropDownList used to Set relative mode for tooltip
     let mode: DropDownList = new DropDownList({
         dataSource: modevalue,
         fields: { value: 'type', text: 'text' }, popupWidth: 150,
@@ -216,7 +220,7 @@ let diagram: Diagram;
     });
     mode.appendTo('#mode');
 
-    //DropDownList used to apply for fontFamily of the Annotation
+    //DropDownList used to Set position for tooltip
     let position: DropDownList = new DropDownList({
         dataSource: positionValue,
         fields: { value: 'type', text: 'text' }, popupWidth: 150,
@@ -233,7 +237,7 @@ let diagram: Diagram;
     });
     position.appendTo('#position');
 
-    //DropDownList used to apply for fontFamily of the Annotation
+    //DropDownList used to Set effect for tooltip
     let effect: DropDownList = new DropDownList({
         dataSource: effectValue,
         fields: { value: 'type', text: 'text' }, popupWidth: 150,
@@ -245,30 +249,7 @@ let diagram: Diagram;
     });
     effect.appendTo('#effect');
 
-    let textContent: TextBox = new TextBox({
-        placeholder: 'Enter text content',
-        floatLabelType: 'Auto',
-        change: (args: any) => {
-            diagram.tooltip.content = args.value.toString();
-            diagram.dataBind();
-        }
-    });
-    textContent.appendTo('#textContent');
-
-    let htmlContent: TextBox = new TextBox({
-        placeholder: 'Enter html content',
-        floatLabelType: 'Auto',
-        change: (args: any) => {
-            let tooltipContent: HTMLDivElement = document.createElement('div');
-            let description: string = args.value.toString();
-            tooltipContent.innerHTML =
-                '<div style="border-width:1px;"><span> ' + description + ' </span></div>';
-            diagram.tooltip.content = tooltipContent;
-            diagram.dataBind();
-        }
-    });
-    htmlContent.appendTo('#htmlContent');
-
+    //Set animation for tooltip
     let animation: NumericTextBox = new NumericTextBox({
         format: '###.##',
         change: (args: any) => {
@@ -277,18 +258,16 @@ let diagram: Diagram;
         }
     });
     animation.appendTo('#duration');
-    let temp: string = '<div style="background-color: #f4f4f4; color: black; border-width:1px;' +
-        'border-style: solid;border-color: #d3d3d3; border-radius: 8px;white-space: nowrap;">' +
-        ' <span style="margin: 10px;">';
 
     diagram.fitToPage({ mode: 'Width' });
 
     //checkbox is used to enable or disable the isSticky Tooltip Property.
-    let checkBoxObj: CheckBox = new CheckBox({
+    let stickyMode: CheckBox = new CheckBox({
         checked: false,
         change: isStickyChange
     });
-    checkBoxObj.appendTo('#checked');
+    stickyMode.appendTo('#checked');
+    //function for enable or disable the isSticky Tooltip Property.
     function isStickyChange(args: CheckBoxChangeEventArgs): void {
         for (let i: number = 0; i < diagram.nodes.length; i++) {
             if (args.checked) {

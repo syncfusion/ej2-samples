@@ -27,9 +27,10 @@ import { loadCultureFiles } from '../common/culture-loader';
   let undoRedo: CheckBox;
   let Selectable: CheckBox;
   let Draggable: CheckBox;
-  let Contextmenu: CheckBox;
+  let contextMenu: CheckBox;
   let textedit: CheckBox;
   
+  //Initializes the UserHandle for the diagram
   let handles: UserHandleModel[] = [
     {
       name: 'delete',
@@ -41,6 +42,7 @@ import { loadCultureFiles } from '../common/culture-loader';
       margin: { top: 0, bottom: 0, left: 0, right: 0 },
     },
   ];
+  //Initializes the nodes for the diagram
   let nodes: NodeModel[] = [
     {
       id: 'textNode1',
@@ -69,9 +71,7 @@ import { loadCultureFiles } from '../common/culture-loader';
       id: 'rectangle',
       offsetX: 80,
       offsetY: 160,
-      width: 80,
       height: 65,
-      // style: { fill: '#6BA5D7', strokeColor: 'white' },
       shape: { type: 'Basic', shape: 'Rectangle' },
       annotations: [{ content: 'Selection = False' }],
       constraints: NodeConstraints.Default & ~NodeConstraints.Select,
@@ -80,9 +80,7 @@ import { loadCultureFiles } from '../common/culture-loader';
       id: 'ellipse',
       offsetX: 190,
       offsetY: 160,
-      width: 80,
       height: 80,
-      // style: { fill: '#6BA5D7', strokeColor: 'white' },
       shape: { type: 'Basic', shape: 'Ellipse', cornerRadius: 10 },
       annotations: [{ content: 'Dragging = False' }],
       constraints: NodeConstraints.Default & ~NodeConstraints.Drag,
@@ -91,9 +89,7 @@ import { loadCultureFiles } from '../common/culture-loader';
       id: 'heptagon',
       offsetX: 295,
       offsetY: 160,
-      width: 80,
       height: 80,
-      // style: { fill: '#6BA5D7', strokeColor: 'white' },
       shape: { type: 'Basic', shape: 'Heptagon' },
       annotations: [{ content: 'Delete = False' }],
       constraints: NodeConstraints.Default & ~NodeConstraints.Delete,
@@ -102,10 +98,8 @@ import { loadCultureFiles } from '../common/culture-loader';
       id: 'directData',
       offsetX: 410,
       offsetY: 160,
-      width: 80,
       height: 80,
       rotateAngle: -45,
-      // style: { fill: '#6BA5D7', strokeColor: 'white' },
       shape: { type: 'Flow', shape: 'DirectData' },
       annotations: [{ content: 'Rotate = False' }],
       constraints: NodeConstraints.Default & ~NodeConstraints.Rotate,
@@ -114,9 +108,7 @@ import { loadCultureFiles } from '../common/culture-loader';
       id: 'Plus',
       offsetX: 530,
       offsetY: 160,
-      width: 80,
       height: 80,
-      // style: { fill: '#6BA5D7', strokeColor: 'white' },
       shape: { type: 'Basic', shape: 'Plus' },
       annotations: [
         {
@@ -129,9 +121,7 @@ import { loadCultureFiles } from '../common/culture-loader';
       id: 'decision',
       offsetX: 630,
       offsetY: 160,
-      width: 80,
       height: 80,
-      // style: { fill: '#6BA5D7', strokeColor: 'white' },
       shape: { type: 'Flow', shape: 'Decision' },
       annotations: [{ content: 'Resizing = False' }],
       constraints: NodeConstraints.Default & ~NodeConstraints.Resize,
@@ -173,17 +163,6 @@ import { loadCultureFiles } from '../common/culture-loader';
         },
       ],
       constraints: ConnectorConstraints.Default & ~ConnectorConstraints.Select,
-      style: {
-        strokeColor: '#6BA5D7',
-        fill: '#6BA5D7',
-        strokeWidth: 2,
-      },
-      targetDecorator: {
-        style: {
-          fill: '#6BA5D7',
-          strokeColor: '#6BA5D7',
-        },
-      },
       sourcePoint: {
         x: 40,
         y: 350,
@@ -207,17 +186,6 @@ import { loadCultureFiles } from '../common/culture-loader';
         ConnectorConstraints.Default |
         ConnectorConstraints.DragSegmentThumb |
         ConnectorConstraints.Drag,
-      style: {
-        strokeColor: '#6BA5D7',
-        fill: '#6BA5D7',
-        strokeWidth: 2,
-      },
-      targetDecorator: {
-        style: {
-          fill: '#6BA5D7',
-          strokeColor: '#6BA5D7',
-        },
-      },
       sourcePoint: {
         x: 140,
         y: 350,
@@ -240,17 +208,6 @@ import { loadCultureFiles } from '../common/culture-loader';
       constraints:
         (ConnectorConstraints.Default | ConnectorConstraints.DragSegmentThumb) &
         ~(ConnectorConstraints.Delete | ConnectorConstraints.Drag),
-      style: {
-        strokeColor: '#6BA5D7',
-        fill: '#6BA5D7',
-        strokeWidth: 2,
-      },
-      targetDecorator: {
-        style: {
-          fill: '#6BA5D7',
-          strokeColor: '#6BA5D7',
-        },
-      },
       sourcePoint: {
         x: 250,
         y: 350,
@@ -276,17 +233,6 @@ import { loadCultureFiles } from '../common/culture-loader';
           SelectorConstraints.ConnectorSourceThumb |
           SelectorConstraints.ConnectorTargetThumb
         ),
-      style: {
-        strokeColor: '#6BA5D7',
-        fill: '#6BA5D7',
-        strokeWidth: 2,
-      },
-      targetDecorator: {
-        style: {
-          fill: '#6BA5D7',
-          strokeColor: '#6BA5D7',
-        },
-      },
       sourcePoint: {
         x: 360,
         y: 350,
@@ -311,17 +257,6 @@ import { loadCultureFiles } from '../common/culture-loader';
         ~(
           ConnectorConstraints.DragSourceEnd | ConnectorConstraints.DragTargetEnd
         ),
-      style: {
-        strokeColor: '#6BA5D7',
-        fill: '#6BA5D7',
-        strokeWidth: 2,
-      },
-      targetDecorator: {
-        style: {
-          fill: '#6BA5D7',
-          strokeColor: '#6BA5D7',
-        },
-      },
       sourcePoint: {
         x: 460,
         y: 350,
@@ -342,17 +277,6 @@ import { loadCultureFiles } from '../common/culture-loader';
         },
       ],
       constraints: ConnectorConstraints.Default & ~ConnectorConstraints.Drag,
-      style: {
-        strokeColor: '#6BA5D7',
-        fill: '#6BA5D7',
-        strokeWidth: 2,
-      },
-      targetDecorator: {
-        style: {
-          fill: '#6BA5D7',
-          strokeColor: '#6BA5D7',
-        },
-      },
       sourcePoint: {
         x: 580,
         y: 350,
@@ -363,12 +287,36 @@ import { loadCultureFiles } from '../common/culture-loader';
       },
     },
   ];
-  
+  // Function to define default properties for nodes
+  function nodeDefaults(nodes: NodeModel) {
+    // Check if the node ID is not textNode1 or textNode2
+      if(nodes.id !== "textNode1" && nodes.id !== "textNode2") {
+      // Set default width and styling for nodes
+      nodes.width = 80;
+      nodes.style.fill = '#C7E6FF';
+      nodes.style.strokeColor = '#1587FF';
+      }
+  }
+  // Function to define default properties for connectors
+  function connectorDefaults(connectors: ConnectorModel) {
+    // Set default styling for connectors
+    connectors.style.strokeColor = '#6BA5D7';
+    connectors.style.fill = '#6BA5D7';
+    connectors.style.strokeWidth = 2;
+    // Set default styling for target decorator of connectors
+    connectors.targetDecorator.style.fill = '#6BA5D7';
+    connectors.targetDecorator.style.strokeColor = '#6BA5D7';
+  }
+  // Selection change method for handling diagram item selection events
   function selectionChange(args: ISelectionChangeEventArgs) {
     {
+      // Handle selection change during the 'Changing' state
       if (args.state === 'Changing') {
+        // Check if items are being added to selection
         if (args.type === 'Addition') {
+          // Check if the newly selected item is 'endThumb'
           if (args.newValue.length > 0 && args.newValue[0].id === 'endThumb') {
+            // Restrict selector constraints for 'endThumb' connector
             diagram.selectedItems.constraints =
               SelectorConstraints.All &
               ~(
@@ -376,25 +324,33 @@ import { loadCultureFiles } from '../common/culture-loader';
                 SelectorConstraints.ConnectorTargetThumb
               );
           } else {
+            // Set selector constraints for all other additions
             diagram.selectedItems.constraints = SelectorConstraints.All;
           }
         } else {
+          // Set selector constraints for all other changes during 'Changing' state
           diagram.selectedItems.constraints = SelectorConstraints.All;
         }
       }
+      // Handle selection change during the 'Changed' state
       if (args.state === 'Changed') {
+        // Check if there are newly selected items and if the first item is a Node instance
         if (args.newValue.length > 0 && args.newValue[0] instanceof Node) {
+          // Set selector constraints with user handles for nodes
           diagram.selectedItems = {
             constraints: SelectorConstraints.All | SelectorConstraints.UserHandle,
             userHandles: handles,
           };
         } else {
-          if (args.newValue[0].id !== 'endThumb') {
+          // Check if there are newly selected items and if the first item is not 'endThumb'
+          if (args.newValue.length > 0 && args.newValue[0].id !== 'endThumb') {
+            // Set selector constraints for all other selected items
             diagram.selectedItems = {
               constraints:
                 SelectorConstraints.All & ~SelectorConstraints.UserHandle,
             };
           } else {
+            // Set selector constraints for all other selected items, excluding specific thumbs
             diagram.selectedItems = {
               constraints:
                 SelectorConstraints.All &
@@ -409,6 +365,7 @@ import { loadCultureFiles } from '../common/culture-loader';
       }
     }
   }
+  //used to delete object using user handle
   function getTool(action: string): ToolBase {
     let tool: ToolBase;
     if (action === 'delete') {
@@ -420,18 +377,22 @@ import { loadCultureFiles } from '../common/culture-loader';
   // tslint:disable-next-line:max-func-body-length
   (window as any).default = (): void => {
     loadCultureFiles();
-  //Initializes the nodes for the diagram
+  //Initializes the diagram
   diagram= new Diagram({
     width: '100%',
-  height: '700px',
-  nodes: nodes,
-  connectors: connectors,
-  contextMenuSettings: {
+    height: '550px',
+    nodes: nodes,
+    connectors: connectors,
+    contextMenuSettings: {
     show: true,
   },
+  // Function called after the diagram is created to set default values
   created: function () {
+    // Loop through connectors to apply specific constraints
     for (let i = 0; i < diagram.connectors.length; i++) {
+      // Check if the connector ID matches 'endThumb'
       if (diagram.connectors[i].id === 'endThumb') {
+        // Adjust connector constraints to allow dragging segment thumb but not dragging
         diagram.connectors[i].constraints =
           (ConnectorConstraints.Default |
             ConnectorConstraints.DragSegmentThumb) &
@@ -439,13 +400,20 @@ import { loadCultureFiles } from '../common/culture-loader';
       }
     }
   },
+  // Settings to display rulers in the diagram
   rulerSettings: { showRulers: true },
+  // Function to handle selection change events in the diagram
   selectionChange: selectionChange,
+  // Function to provide custom tools for the diagram
   getCustomTool: getTool,
+  // Initial selected items configuration with user handles
   selectedItems: {
     constraints: SelectorConstraints.UserHandle,
     userHandles: handles,
   },
+   //Defines the default node and connector properties
+   getNodeDefaults: nodeDefaults,
+   getConnectorDefaults: connectorDefaults,
   });
   diagram.appendTo('#diagram');
     
@@ -459,6 +427,7 @@ Zooming = new CheckBox({
   });
   Zooming.appendTo('#zooming');
   
+   //CheckBox used to enable undo redo in diagram
   undoRedo = new CheckBox({
     label: 'Undo/Redo',
     checked: true,
@@ -468,72 +437,88 @@ Zooming = new CheckBox({
     },
   });
   undoRedo.appendTo('#undoRedo');
-  
+
+  // CheckBox used to enable text editing in the diagram
   textedit = new CheckBox({
     label: 'Text Edit',
     checked: true,
+    // Change event handler for checkbox state changes
     change: function (args:any) {
+      // Loop through nodes in the diagram
       for (let i: number = 0; i < diagram.nodes.length; i++) {
+        // Check if the node has annotations and content
         var node = diagram.nodes[i];
-        for (let j: number = 0; j < node.annotations.length; j++) {
-          if (node.annotations[j].content) {
+          if (node.annotations.length > 0 && node.annotations[0].content) {
+            // Enable or disable text editing based on checkbox state
             if (args.checked) {
+              // Allow editing if checkbox is checked, except for node with ID 'Plus'
               if (node.id !== 'Plus') {
-                node.annotations[j].constraints =
-                  node.annotations[j].constraints ^
+                node.annotations[0].constraints =
+                  node.annotations[0].constraints ^
                   AnnotationConstraints.ReadOnly;
               }
             } else {
-              node.annotations[j].constraints =
-                node.annotations[j].constraints | AnnotationConstraints.ReadOnly;
+              // Set read-only if checkbox is unchecked
+              node.annotations[0].constraints =
+                node.annotations[0].constraints | AnnotationConstraints.ReadOnly;
             }
           }
-        }
       }
+      // Loop through connectors in the diagram
       for (let x: number = 0; x < diagram.connectors.length; x++) {
         var connector = diagram.connectors[x];
-        for (let y: number = 0; y < connector.annotations.length; y++) {
-          if (connector.annotations[y].content) {
+        // Check if the connector has annotations and content
+          if (connector.annotations.length > 0 && connector.annotations[0].content) {
+            // Enable or disable text editing based on checkbox state
             if (args.checked) {
+              // Allow editing if checkbox is checked, handle special case for connector with ID 'select'
               if (connector.id === 'select') {
                 connector.constraints =
                   connector.constraints & ~(ConnectorConstraints.Select);
               } else {
-                connector.annotations[y].constraints =
-                  connector.annotations[y].constraints ^
+                connector.annotations[0].constraints =
+                  connector.annotations[0].constraints ^
                   AnnotationConstraints.ReadOnly;
               }
             } else {
-              connector.annotations[y].constraints =
-                connector.annotations[y].constraints ^
+              // Set read-only if checkbox is unchecked
+              connector.annotations[0].constraints =
+                connector.annotations[0].constraints ^
                 AnnotationConstraints.ReadOnly;
             }
-          }
         }
       }
-      diagram.dataBind();
+      diagram.dataBind(); // Apply changes to the diagram
     },
   });
   textedit.appendTo('#textedit');
   
+  // CheckBox used to enable selection in diagram
   Selectable = new CheckBox({
     label: 'Selectable',
     checked: true,
+    // Change event handler for checkbox state changes
     change: function (args:any) {
+      // Loop through nodes in the diagram
       for (let i: number = 0; i < diagram.nodes.length; i++) {
         let node = diagram.nodes[i];
+        // Exclude node with ID 'rectangle' from selection toggle
         if (node.id != 'rectangle') {
+          // Enable or disable node selection based on checkbox state
           if (args.checked) {
             node.constraints = node.constraints | NodeConstraints.Select;
           } else {
             node.constraints = node.constraints & ~NodeConstraints.Select;
           }
         }
-        diagram.dataBind();
+        diagram.dataBind(); // Apply changes to the diagram
       }
+       // Loop through connectors in the diagram
       for (let j: number = 0; j < diagram.connectors.length; j++) {
         let connector = diagram.connectors[j];
+        // Exclude connector with ID 'select' from selection toggle
         if (connector.id != 'select') {
+          // Enable or disable connector selection based on checkbox state
           if (args.checked) {
             connector.constraints =
               connector.constraints | ConnectorConstraints.Select;
@@ -542,19 +527,24 @@ Zooming = new CheckBox({
               connector.constraints & ~ConnectorConstraints.Select;
           }
         }
-        diagram.dataBind();
+        diagram.dataBind(); // Apply changes to the diagram
       }
     },
   });
+  // Append checkbox to HTML element with id 'selectable'
   Selectable.appendTo('#selectable');
   
+  // CheckBox used to enable dragging interactions in diagram
   Draggable = new CheckBox({
     label: 'Draggable',
     checked: true,
-    change: function (args) {
+    change: function (args:any) { // Change event handler for checkbox state changes
+      // Loop through nodes in the diagram  
       for (let i: number = 0; i < diagram.nodes.length; i++) {
         let nodes: any = diagram.nodes[i];
+        // Enable or disable node dragging based on checkbox state
         if (args.checked) {
+        // Toggle drag constraint for node with ID 'ellipse'
           if (nodes.id === 'ellipse') {
             nodes.constraints = NodeConstraints.Default & ~NodeConstraints.Drag;
           } else {
@@ -563,10 +553,12 @@ Zooming = new CheckBox({
         } else {
           nodes.constraints = nodes.constraints & ~NodeConstraints.Drag;
         }
-        diagram.dataBind();
+        diagram.dataBind(); //Apply changes to the diagram 
       }
+       // Loop through connectors in the diagram
       for (let j: number = 0; j < diagram.connectors.length; j++) {
         let connectors: any = diagram.connectors[j];
+        // Enable or disable connector dragging based on checkbox state
         if (args.checked) {
           connectors.constraints =
             connectors.constraints | ConnectorConstraints.Drag;
@@ -574,26 +566,31 @@ Zooming = new CheckBox({
           connectors.constraints =
             connectors.constraints & ~ConnectorConstraints.Drag;
         }
-        diagram.dataBind();
+        diagram.dataBind(); // Apply changes to the diagram
       }
     },
   });
+  // Append checkbox to HTML element with id 'draggablee'
   Draggable.appendTo('#draggablee');
   
-  Contextmenu = new CheckBox({
+  // CheckBox used to enable context menu on right click
+  contextMenu = new CheckBox({
     label: 'Context Menu',
     checked: true,
+    // Change event handler for checkbox state changes
     change: function (args) {
       if (args.checked) {
+        // If checkbox is checked
         diagram.contextMenuSettings.show = true;
-        diagram.refresh();
+        diagram.refresh(); // Refresh the diagram to apply changes
       } else {
         diagram.contextMenuSettings.show = false;
       }
-      diagram.dataBind();
+      diagram.dataBind(); // Apply changes to the diagram UI
     },
   });
-  Contextmenu.appendTo('#contextmenu');
+  // Append checkbox to HTML element with id 'contextMenu'
+  contextMenu.appendTo('#contextMenu');
 };
   
  

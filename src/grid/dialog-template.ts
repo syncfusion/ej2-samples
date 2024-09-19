@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Edit, Toolbar, Page, Filter, DialogEditEventArgs, Sort } from '@syncfusion/ej2-grids';
+import { Grid, Edit, Toolbar, Page, DialogEditEventArgs, Sort, Filter } from '@syncfusion/ej2-grids';
 import { DataUtil } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';

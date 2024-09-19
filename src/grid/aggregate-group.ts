@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Aggregate, Group, Sort, Filter } from '@syncfusion/ej2-grids';
-import { categoryData } from './data-source';
+import { energyData } from './data-source';
 
 Grid.Inject(Page, Group, Aggregate, Sort, Filter);
 /**
@@ -8,55 +8,63 @@ Grid.Inject(Page, Group, Aggregate, Sort, Filter);
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let refresh: Boolean;
     let grid: Grid = new Grid(
         {
-            dataSource: categoryData,
-            allowPaging: true,
-            pageSettings: {pageCount: 5},
-            allowGrouping: true,
+            dataSource: energyData, 
             allowSorting: true,
+            allowMultiSorting:true,
             allowFiltering: true,
+            allowGrouping:true,
+            enableHover: false,
+            groupSettings:{columns:["ConsumptionCategory"],showGroupedColumn:true,showDropArea:false},
             filterSettings: { type: 'Excel' },
-            groupSettings: { showDropArea: false, columns: ['CategoryName'] },
+            gridLines:'Vertical',
+            height:300,
             columns: [
-                { field: 'CategoryName', headerText: 'Category Name', width: 160 },
-                { field: 'ProductName', headerText: 'Product Name', width: 170 },
-                { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 170, textAlign: 'Right' },
-                { field: 'UnitsInStock', headerText: 'Units In Stock', width: 170, textAlign: 'Right' },
-                {
-                    field: 'Discontinued', headerText: 'Discontinued', width: 150,
-                    textAlign: 'Center', displayAsCheckBox: true, type: 'boolean'
-                }
+                { field: 'ID', headerText: 'ID', textAlign: 'Right', isPrimaryKey: true, visible: false },
+                { field: 'Month', headerText: 'Month', textAlign: 'Right', clipMode:'EllipsisWithTooltip', width: 120, format: 'yMd' },
+                { headerText: 'Category', field: 'ConsumptionCategory', width: 130, clipMode:'EllipsisWithTooltip' },
+                { headerTemplate: "#energyTemplate", textAlign: 'Center', columns: [
+                        { field: 'EnergyConsumed', headerText: 'Consumed', width: 150, textAlign: 'Right', clipMode:'EllipsisWithTooltip' },
+                        { field: 'EnergyProduced', headerText: 'Produced', width: 300, textAlign: 'Right' },
+                    ] },
+                { field: 'WeatherCondition', headerText: 'Weather', width: 120, clipMode:'EllipsisWithTooltip' },
+                { field: 'EnergyPrice', headerText: 'Price ($)', format: 'C2', width: 130, clipMode:'EllipsisWithTooltip', textAlign: 'Right' },
             ],
             aggregates: [{
                 columns: [{
-                    type: 'Sum',
-                    field: 'UnitsInStock',
-                    groupFooterTemplate: 'Total units: ${Sum}'
-                },
-                {
-                    type: 'TrueCount',
-                    field: 'Discontinued',
-                    groupFooterTemplate: 'Discontinued: ${TrueCount}'
-                },
-                {
-                    type: 'Max',
-                    field: 'UnitsInStock',
-                    groupCaptionTemplate: 'Maximum: ${Max}'
-                }]
-            }],
-            load: () => {
-                refresh = (<any>grid).refreshing;
+                        type: 'Sum',
+                        field: 'EnergyProduced',
+                        format: 'N2',
+                        footerTemplate: 'Total Energy Produced: ${Sum} KWh'
+                    }]
             },
-            dataBound: () => {
-                if (refresh) {
-                    grid.groupColumn('CategoryName');
-                    refresh = false;
-                }
+            {
+                columns: [{
+                        type: 'Sum',
+                        field: 'EnergyProduced',
+                        format: 'N2',
+                        groupFooterTemplate: 'Total Energy Produced: ${Sum} KWh'
+                    }]
             },
-
-        });
-    grid.appendTo('#Grid');
+            {
+                columns: [{
+                        type: 'Average',
+                        field: 'EnergyProduced',
+                        format: 'N2',
+                        footerTemplate: 'Average Energy Produced: ${Average} KWh'
+                    }]
+            },
+            {
+                columns: [{
+                        type: ["Min","Max"],
+                        field: 'EnergyProduced',
+                        format: 'N2',
+                        groupCaptionTemplate: '<div class="e-grid-group-caption-temp"><span class="e-minimum">Min: ${Min}</span><span>||</span> <span class="e-maximum"> Max : ${Max}</span></div> '
+                    }]
+            }
+        ],
+    });
+    grid.appendTo('#group-aggregate-grid');
 };
 

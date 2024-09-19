@@ -9,6 +9,7 @@ import { editingData, editingResources } from './data-source';
 Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
 (window as any).default = (): void => {
     loadCultureFiles();
+    let startDate :any;
     let gantt: Gantt = new Gantt(
         {
             dataSource: editingData,
@@ -54,10 +55,11 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
             },
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName', headerText: 'Job Name', width: '250', clipMode: 'EllipsisWithTooltip' },
+                { field: 'TaskName', headerText: 'Job Name', width: '250', clipMode: 'EllipsisWithTooltip', validationRules: { required: true, minLength: [5, 'Task name should have a minimum length of 5 characters'], } },
                 { field: 'StartDate' },
-                { field: 'Duration' },
-                { field: 'Progress' },
+                { field: 'EndDate', validationRules: { date: true, required: [customFn, 'Please enter a value greater than the start date.'] } },
+                { field: 'Duration', validationRules: { required: true} },
+                { field: 'Progress', validationRules: { required: true, min: 0, max: 100 } },
                 { field: 'Predecessor' }
             ],
             eventMarkers: [
@@ -79,8 +81,25 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
             splitterSettings: {
                 position: "35%"
             },
+            actionBegin: function (args){
+                if (args.columnName === "EndDate")
+                    startDate = args.rowData.ganttProperties.startDate;
+            },
             projectStartDate: new Date('03/25/2024'),
             projectEndDate: new Date('07/28/2024')
         });
     gantt.appendTo('#Editing');
+    function customFn(args: any) {
+        let endDate: Date;
+        if (args.element && args.value) {
+            endDate = new Date(args.value);
+            if (!startDate && gantt.editModule.dialogModule['beforeOpenArgs']) {
+                startDate = gantt.editModule.dialogModule['beforeOpenArgs'].rowData['ganttProperties'].startDate;
+                endDate = (gantt.editModule.dialogModule['beforeOpenArgs'].rowData['ganttProperties'].endDate);
+            }
+            startDate.setHours(0, 0, 0, 0);
+            endDate.setHours(0, 0, 0, 0);
+        }
+        return startDate <= endDate;
+    }
 };

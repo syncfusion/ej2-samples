@@ -40,7 +40,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             { name: 'Amount', caption: 'Sold Amount' }]
         },
         width: '100%',
-        height: 300,
+        height: 450,
         gridSettings: { columnWidth: 140 },
         groupingBarSettings: { showRemoveIcon: false, showFilterIcon: false, showSortIcon: true, showValueTypeIcon: false, allowDragAndDrop: false },
         showGroupingBar: true,

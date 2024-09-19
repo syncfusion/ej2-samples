@@ -1,0 +1,33 @@
+<div class="control-section">
+    <div class='control-wrapper'>
+        <img src='src/ai-grid/images/predictive-dataentry.gif' width='100%' height='100%' alt="Showcase Predictive Data Entry Gif"></img>
+    </div>
+</div>
+
+<div id="action-description">
+    <p>This Control displays a grid of student data, including GPAs for various academic years. Users can calculate predicted grades based on existing GPA data by clicking the "Calculate Grade" button. The control uses GeminiAI to generate predictions, which are then updated in the grid.</p>
+    <p>To explore this and more Syncfusion EJ2 Smart AI integrations locally, check out our <a target='_blank' href='https://github.com/syncfusion/smart-ai-samples/tree/master/typescript' aria-label="Navigate to explore the syncfusion EJ2 AI Demos repository">GitHub repository</a>.</p>
+</div>
+    
+<div id="description">
+    <p>Click the "Calculate Grade" button to prompt the AI to calculate and update the final year GPA, total GPA, and total grade based on the provided GPA data. The grid will reflect these updated values once the AI processes the request.</p>
+</div>
+<style>
+    .e-inactivecolor {
+        background-color: indianred;
+        width: 100%;
+    }
+
+    .e-grid .e-rowcell.e-inactivecolor:not(.e-editedbatchcell):not(.e-updatedtd) {
+        color: #FFFFFF;
+    }
+
+    .e-activecolor {
+        background-color: lightgreen;
+        width: 100%;
+    }
+
+    .e-PredictiveColumn {
+        background-color: lightblue
+    }
+</style>

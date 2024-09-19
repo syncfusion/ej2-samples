@@ -3,240 +3,161 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Ports sample
  */
 import {
-    Diagram, NodeModel, ConnectorModel, PointPortModel, PortVisibility, Node, Connector
+    Diagram, NodeModel, ConnectorModel, PointPortModel, PortVisibility, Node, Connector, PortShapes
 } from '@syncfusion/ej2-diagrams';
 import { DropDownList, ChangeEventArgs as DropDownChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { MultiSelect, MultiSelectChangeEventArgs, CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
 import { NumericTextBox, ChangeEventArgs as NumericChangeEventArgs, ColorPicker, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 MultiSelect.Inject(CheckBoxSelection);
 
+// Creates a node with specified properties and ports.
+function createNode(id: string, offsetX: number, offsetY: number, annotationContent: string, ports: CustomPort[]): NodeModel {
+    return {
+        id: id,
+        offsetX: offsetX,
+        offsetY: offsetY,
+        annotations: [{ content: annotationContent }],
+        ports: ports
+    };
+}
 
+// Creates a connector linking two ports of different nodes.
+function createConnector(id: string, sourceID: string, sourcePortID: string, targetID: string, targetPortID: string): ConnectorModel {
+    return {
+        id: id,
+        sourceID: sourceID,
+        sourcePortID: sourcePortID,
+        targetID: targetID,
+        targetPortID: targetPortID
+    };
+}
 
-//Initializes the ports for the diagram
+// Creates a port with specified properties.
+function createPort(id: string, shape: PortShapes, offsetX: number, offsetY: number, text: string): CustomPort {
+    return {
+        id: id,
+        shape: shape,
+        offset: { x: offsetX, y: offsetY },
+        height: 8,
+        width: 8,
+        visibility: PortVisibility.Visible,
+        text: text
+    };
+}
+
+// Predefined ports for nodes.
 let node1Port: CustomPort[] = [
-    {
-        id: 'port1', shape: 'Circle', offset: { x: 0, y: 0.5 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 1'
-    },
-    {
-        id: 'port2', shape: 'Circle', offset: { x: 1, y: 0.5 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'OUT - 1'
-    },
-    {
-        id: 'port3', shape: 'Circle', offset: { x: 0.25, y: 1 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 2'
-    },
-    {
-        id: 'port4', shape: 'Circle', offset: { x: 0.5, y: 1 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'OUT - 2'
-    },
-    {
-        id: 'port5', shape: 'Circle', offset: { x: 0.75, y: 1 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 3'
-    }
+    createPort('port1', 'Circle', 0, 0.5, 'In - 1'),
+    createPort('port2', 'Circle', 1, 0.5, 'OUT - 1'),
+    createPort('port3', 'Circle', 0.25, 1, 'In - 2'),
+    createPort('port4', 'Circle', 0.5, 1, 'OUT - 2'),
+    createPort('port5', 'Circle', 0.75, 1, 'In - 3')
 ];
 
 let node2Port: CustomPort[] = [
-    {
-        id: 'port6', shape: 'Circle', offset: { x: 0, y: 0.5 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 1'
-    },
-    {
-        id: 'port7', shape: 'Circle', offset: { x: 1, y: 0.35 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'OUT - 1'
-    },
-    {
-        id: 'port8', shape: 'Circle', offset: { x: 1, y: 0.70 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 2'
-    },
-    {
-        id: 'port9', shape: 'Circle', offset: { x: 0.5, y: 1 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'OUT - 2'
-    }
+    createPort('port6', 'Circle', 0, 0.5, 'In - 1'),
+    createPort('port7', 'Circle', 1, 0.35, 'OUT - 1'),
+    createPort('port8', 'Circle', 1, 0.70, 'In - 2'),
+    createPort('port9', 'Circle', 0.5, 1, 'OUT - 2')
 ];
 
 let node3Port: CustomPort[] = [
-    {
-        id: 'port10', shape: 'Circle', offset: { x: 0, y: 0.5 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'Out - 1'
-    },
-    {
-        id: 'port11', shape: 'Circle', offset: { x: 0.5, y: 0 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 1'
-    },
-    {
-        id: 'port12', shape: 'Circle', offset: { x: 0.5, y: 1 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'OUT - 2'
-    }
+    createPort('port10', 'Circle', 0, 0.5, 'Out - 1'),
+    createPort('port11', 'Circle', 0.5, 0, 'In - 1'),
+    createPort('port12', 'Circle', 0.5, 1, 'OUT - 2')
 ];
 
 let node4Port: CustomPort[] = [
-    {
-        id: 'port13', shape: 'Circle', offset: { x: 0, y: 0.5 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 1'
-    },
-    {
-        id: 'port14', shape: 'Circle', offset: { x: 0.5, y: 0 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 2'
-    },
-    {
-        id: 'port15', shape: 'Circle', offset: { x: 0.5, y: 1 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'OUT - 1'
-    }
+    createPort('port13', 'Circle', 0, 0.5, 'In - 1'),
+    createPort('port14', 'Circle', 0.5, 0, 'In - 2'),
+    createPort('port15', 'Circle', 0.5, 1, 'OUT - 1')
 ];
 
 let node5Port: CustomPort[] = [
-    {
-        id: 'port16', shape: 'Circle', offset: { x: 0, y: 0.5 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'out - 1'
-    },
-    {
-        id: 'port17', shape: 'Circle', offset: { x: 0.5, y: 0 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 1'
-    },
-    {
-        id: 'port18', shape: 'Circle', offset: { x: 1, y: 0.5 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'OUT - 2'
-    }
+    createPort('port16', 'Circle', 0, 0.5, 'out - 1'),
+    createPort('port17', 'Circle', 0.5, 0, 'In - 1'),
+    createPort('port18', 'Circle', 1, 0.5, 'OUT - 2')
 ];
 
 let node6Port: CustomPort[] = [
-    {
-        id: 'port19', shape: 'Circle', offset: { x: 0, y: 0.35 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 1'
-    },
-    {
-        id: 'port20', shape: 'Circle', offset: { x: 0.5, y: 1 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'Out - 1'
-    }
+    createPort('port19', 'Circle', 0, 0.35, 'In - 1'),
+    createPort('port20', 'Circle', 0.5, 1, 'Out - 1')
 ];
 
 let node7Port: CustomPort[] = [
-    {
-        id: 'port21', shape: 'Circle', offset: { x: 0.5, y: 0 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'In - 1'
-    },
-    {
-        id: 'port22', shape: 'Circle', offset: { x: 0.5, y: 1 }, height: 8, width: 8, visibility: PortVisibility.Visible,
-        text: 'Out - 1'
-    }
+    createPort('port21', 'Circle', 0.5, 0, 'In - 1'),
+    createPort('port22', 'Circle', 0.5, 1, 'Out - 1')
 ];
 
 export interface CustomPort extends PointPortModel {
     text: string;
 }
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
     let bounds: ClientRect = document.getElementsByClassName('control-section')[0].getBoundingClientRect();
     let centerX: number = bounds.width / 2;
 
+    // Node definitions for the diagram.
     let nodes: NodeModel[] = [
-        {
-            id: 'node1', offsetX: centerX - 200, offsetY: 100,
-            annotations: [{ content: 'Publisher' }], ports: node1Port
-        },
-        {
-            id: 'node2', offsetX: centerX, offsetY: 100,
-            annotations: [{ content: 'Completed Book', margin: { left: 5, right: 5 } }], ports: node2Port
-        },
-        {
-            id: 'node3', offsetX: centerX, offsetY: 200,
-            annotations: [{ content: '1st Review' }], ports: node3Port
-        },
-        {
-            id: 'node4', offsetX: centerX, offsetY: 300,
-            annotations: [{ content: 'Legal Terms' }], ports: node4Port
-        },
-        {
-            id: 'node5', offsetX: centerX, offsetY: 400,
-            annotations: [{ content: '2nd Review' }], ports: node5Port
-        },
-        {
-            id: 'node6', offsetX: centerX + 200, offsetY: 100,
-            annotations: [{ content: 'Board' }], ports: node6Port
-        },
-        {
-            id: 'node7', offsetX: centerX + 200, offsetY: 200,
-            annotations: [{ content: 'Approval' }], ports: node7Port
-        }
-    ];
-    let connectors: ConnectorModel[] = [
-        {
-            id: 'connector1', sourceID: 'node1', sourcePortID: 'port2',
-            targetID: 'node2', targetPortID: 'port6'
-        },
-        {
-            id: 'connector2', sourceID: 'node1', sourcePortID: 'port4',
-            targetID: 'node4', targetPortID: 'port13'
-        },
-        {
-            id: 'connector3', sourceID: 'node2', sourcePortID: 'port9',
-            targetID: 'node3', targetPortID: 'port11'
-        },
-        {
-            id: 'connector4', sourceID: 'node2', sourcePortID: 'port7',
-            targetID: 'node6', targetPortID: 'port19'
-        },
-        {
-            id: 'connector5', sourceID: 'node3', sourcePortID: 'port10',
-            targetID: 'node1', targetPortID: 'port5'
-        },
-        {
-            id: 'connector6', sourceID: 'node3', sourcePortID: 'port12',
-            targetID: 'node4', targetPortID: 'port14'
-        },
-        {
-            id: 'connector7', sourceID: 'node4', sourcePortID: 'port15',
-            targetID: 'node5', targetPortID: 'port17'
-        },
-        {
-            id: 'connector8', sourceID: 'node5', sourcePortID: 'port18',
-            targetID: 'node2', targetPortID: 'port8'
-        },
-        {
-            id: 'connector9', sourceID: 'node5', sourcePortID: 'port16',
-            targetID: 'node1', targetPortID: 'port3'
-        },
-        {
-            id: 'connector10', sourceID: 'node6', sourcePortID: 'port20',
-            targetID: 'node7', targetPortID: 'port21'
-        },
-        {
-            id: 'connector11', sourceID: 'node7', sourcePortID: 'port22',
-            targetID: 'node1', targetPortID: 'port1'
-        }
+        createNode('node1', centerX - 200, 100, 'Publisher', node1Port),
+        createNode('node2', centerX, 100, 'Completed Book', node2Port),
+        createNode('node3', centerX, 200, '1st Review', node3Port),
+        createNode('node4', centerX, 300, 'Legal Terms', node4Port),
+        createNode('node5', centerX, 400, '2nd Review', node5Port),
+        createNode('node6', centerX + 200, 100, 'Board', node6Port),
+        createNode('node7', centerX + 200, 200, 'Approval', node7Port)
     ];
 
-    //Initialize diagram control
+    // Connector definitions for the diagram.
+    let connectors: ConnectorModel[] = [
+        createConnector('connector1', 'node1', 'port2', 'node2', 'port6'),
+        createConnector('connector2', 'node1', 'port4', 'node4', 'port13'),
+        createConnector('connector3', 'node2', 'port9', 'node3', 'port11'),
+        createConnector('connector4', 'node2', 'port7', 'node6', 'port19'),
+        createConnector('connector5', 'node3', 'port10', 'node1', 'port5'),
+        createConnector('connector6', 'node3', 'port12', 'node4', 'port14'),
+        createConnector('connector7', 'node4', 'port15', 'node5', 'port17'),
+        createConnector('connector8', 'node5', 'port18', 'node2', 'port8'),
+        createConnector('connector9', 'node5', 'port16', 'node1', 'port3'),
+        createConnector('connector10', 'node6', 'port20', 'node7', 'port21'),
+        createConnector('connector11', 'node7', 'port22', 'node1', 'port1')
+    ];
+
+    // Initialize diagram control
     let diagram: Diagram = new Diagram({
         width: '100%', height: 580,
-        nodes: nodes, connectors: connectors, selectionChange: selectionChange,
+        nodes: nodes, connectors: connectors, selectionChange: onSelectionChange,
         snapSettings: { constraints: 0 },
         //Sets the default values of nodes
-        getNodeDefaults: (obj: Node) => {
-            //Initialize shape
-            if (obj.id === 'node1' || obj.id === 'node2' || obj.id === 'node4' || obj.id === 'node6') {
-                obj.shape = { type: 'Basic', shape: 'Rectangle' };
-            } else if (obj.id === 'node3' || obj.id === 'node5' || obj.id === 'node7') {
-                obj.shape = { type: 'Basic', shape: 'Diamond' };
+        getNodeDefaults: (node: Node) => {
+            // Initialize shape based on node ID.
+            if (node.id === "node1" || node.id === "node2" ||
+                node.id === "node4" || node.id === "node6") {
+                node.shape = { type: "Basic", shape: "Rectangle" };
+            } else if (node.id === "node3" || node.id === "node5" ||
+                node.id === "node7") {
+                node.shape = { type: "Basic", shape: "Diamond" };
             }
-            //sets height and width for nodes
-            obj.height = 65;
-            obj.width = 100;
-            obj.style = { fill: '#ebf8fb', strokeColor: '#baeaf5' };
-            for (let i: number = 0; i < obj.ports.length; i++) {
-                //sets styles for the ports
-                obj.ports[i].style = {
-                    fill: '#366f8c',
-                    strokeColor: '#366f8c'
+            // Sets height, width, and style for nodes.
+            node.height = 65;
+            node.width = 100;
+            node.style = { fill: "#ebf8fb", strokeColor: "#baeaf5" };
+            // Sets styles for the ports of the node.
+            node.ports.forEach(port => {
+                port.style = {
+                    fill: "#366f8c",
+                    strokeColor: "#366f8c"
                 };
-                obj.ports[i].width = 6;
-                obj.ports[i].height = 6;
-            }
-            obj.annotations[0].style = {
+                port.width = 6;
+                port.height = 6;
+            });
+            // Sets style for the node annotations.
+            node.annotations[0].style = {
+                bold: true,
                 fontSize: 13,
-                color: 'black'
+                color: "black"
             };
         },
         //Sets the default values of connector
@@ -249,35 +170,38 @@ export interface CustomPort extends PointPortModel {
     });
     diagram.appendTo('#diagram');
 
-    //Visibility collection of the Port.
+    // Port visibility options for the dropdown.
     let visibility: { [key: string]: Object }[] = [
-        { PortVisibility: PortVisibility.Visible, text: 'Visible' },
-        { PortVisibility: PortVisibility.Hidden, text: 'Hidden' },
-        { PortVisibility: PortVisibility.Hover, text: 'Hover' },
-        { PortVisibility: PortVisibility.Connect, text: 'Connect' }
+        { PortVisibility: PortVisibility.Visible, text: "Visible" },
+        { PortVisibility: PortVisibility.Hidden, text: "Hidden" },
+        { PortVisibility: PortVisibility.Hover, text: "Hover" },
+        { PortVisibility: PortVisibility.Connect, text: "Connect" }
     ];
-    //Enable or disable the visibility of the Port
+
+    // Enable or disable the visibility of the Port
     let portVisibilityDrop: DropDownList = new DropDownList({
         enabled: true, dataSource: visibility,
         fields: { value: 'PortVisibility', text: 'text' },
         value: 'Visible',
-        change: portVisibilityChange,
+        change: onPortVisibilityChange,
     });
     portVisibilityDrop.appendTo('#portsVisiblity');
-    //Colorpicker used to apply for fill color of the Port.
+
+    // Colorpicker used to apply for fill color of the Port.
     let portFillColor: ColorPicker = new ColorPicker({
         value: '#000', disabled: false, change: (arg: ColorPickerEventArgs) => {
-            let port: PointPortModel[] = getPort();
+            let port: PointPortModel[] = getSelectedPort();
             for (let j: number = 0; j < port.length; j++) {
                 port[j].style.fill = arg.currentValue.rgba;
             }
         }
     });
     portFillColor.appendTo('#fill');
-    //Colorpicker used to apply for stroke color of the Port.
+
+    // Colorpicker used to apply for stroke color of the Port.
     let portBorderColor: ColorPicker = new ColorPicker({
         value: '#000', disabled: false, change: (arg: ColorPickerEventArgs) => {
-            let port: PointPortModel[] = getPort();
+            let port: PointPortModel[] = getSelectedPort();
             for (let j: number = 0; j < port.length; j++) {
                 port[j].style.strokeColor = arg.currentValue.rgba;
             }
@@ -285,21 +209,23 @@ export interface CustomPort extends PointPortModel {
     });
     portBorderColor.appendTo('#border');
 
-    //Shape collection of the Port.
+    // Shape collection of the Port.
     let shape: { [key: string]: Object }[] = [
         { shape: 'X', text: 'X' },
         { shape: 'Circle', text: 'Circle' },
         { shape: 'Square', text: 'Square' },
         { shape: 'Custom', text: 'Custom' }
     ];
-    //DropDownList is used to apply the shape of the Port.
+
+    // DropDownList is used to apply the shape of the Port.
     let portShapeDrop: DropDownList = new DropDownList({
         enabled: true, placeholder: 'Select a Shape', value: 'Circle',
         dataSource: shape, fields: { value: 'shape', text: 'text' },
-        change: portShapeChange
+        change: onPortShapeChange
     });
     portShapeDrop.appendTo('#shape');
-    //NumericTextBox is used to apply the size of the Port.
+
+    // NumericTextBox is used to apply the size of the Port.
     let portSizeNum: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
         value: 6, min: 1, step: 1,
@@ -308,7 +234,8 @@ export interface CustomPort extends PointPortModel {
         }
     });
     portSizeNum.appendTo('#size');
-    //NumericTextBox is used to apply the StrokeWidth of the Port.
+
+    // NumericTextBox is used to apply the StrokeWidth of the Port.
     let portWidthNum: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
         value: 1, step: 0.5, min: 0,
@@ -317,28 +244,31 @@ export interface CustomPort extends PointPortModel {
         }
     });
     portWidthNum.appendTo('#width');
+
     diagram.select([diagram.nodes[0]]);
 
-    //get the port for the selected node.
-    function getPort(): PointPortModel[] {
+    // Retrieves the ports of the currently selected node in the diagram.
+    function getSelectedPort(): PointPortModel[] {
         let node: NodeModel = diagram.selectedItems.nodes[0];
         let ports: PointPortModel[] = node.ports;
         return ports;
     }
-    //enable or disable the property panel based on the Selection.
-    function selectionChange(args: any): void {
+
+    // Handles changes in selection within the diagram.
+    // It updates the property panel based on the selected node's port properties.
+    function onSelectionChange(args: any): void {
         if (args.state === 'Changed') {
-            let appearance: HTMLElement = document.getElementById('propertypanel');
+            let propertypanelInstance: HTMLElement = document.getElementById('propertypanel');
             let selectedElement: HTMLCollection = document.getElementsByClassName('e-remove-selection');
             if (args.newValue) {
-                 // custom code start
-                if (!appearance.classList.contains('e-remove-selection')) {
-                    appearance.classList.add('e-remove-selection');
+                // custom code start
+                if (!propertypanelInstance.classList.contains('e-remove-selection')) {
+                    propertypanelInstance.classList.add('e-remove-selection');
                 }
                 // custom code end
                 if (args.newValue[0] instanceof Node && selectedElement.length) {
                     selectedElement[0].classList.remove('e-remove-selection');
-                    let port: PointPortModel = getPort()[0];
+                    let port: PointPortModel = getSelectedPort()[0];
                     portVisibilityDrop.value = port.visibility;
                     portVisibilityDrop.dataBind();
                     portFillColor.value = port.style.fill;
@@ -355,9 +285,10 @@ export interface CustomPort extends PointPortModel {
             }
         }
     }
-    //set the appearence of the Port.
+
+    // Applies the selected style (size or stroke width) to the selected port(s).
     function applyPortStyle(value: string): void {
-        let port: PointPortModel[] = getPort();
+        let port: PointPortModel[] = getSelectedPort();
         for (let j: number = 0; j < port.length; j++) {
             if (value === 'size' && portSizeNum) {
                 port[j].height = portSizeNum.value;
@@ -368,19 +299,21 @@ export interface CustomPort extends PointPortModel {
         }
         diagram.dataBind();
     }
-    //change the Visibility of the Port.
-    function portVisibilityChange(args: MultiSelectChangeEventArgs): void {
-        let port: PointPortModel[] = getPort();
+
+    // Updates the visibility of the selected port(s) based on the user's selection in the dropdown.
+    function onPortVisibilityChange(args: MultiSelectChangeEventArgs): void {
+        let port: PointPortModel[] = getSelectedPort();
         if (port) {
             for (let j: number = 0; j < port.length; j++) {
-                    port[j].visibility =  portVisibilityDrop.value as PortVisibility;
+                port[j].visibility = portVisibilityDrop.value as PortVisibility;
                 diagram.dataBind();
             }
         }
     }
-    //change the shape of the Port.
-    function portShapeChange(args: DropDownChangeEventArgs): void {
-        let port: PointPortModel[] = getPort();
+
+    // Updates the shape of the selected port(s) based on the user's selection in the dropdown.
+    function onPortShapeChange(args: DropDownChangeEventArgs): void {
+        let port: PointPortModel[] = getSelectedPort();
         for (let j: number = 0; j < port.length; j++) {
             switch (portShapeDrop.value) {
                 case 'X':

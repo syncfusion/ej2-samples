@@ -2,6 +2,7 @@
     "name": "Scheduler",
     "directory": "schedule",
     "category": "Calendars",
+    "type": "update",
     "ftName": "scheduler",
     "samples": [
         {
@@ -36,6 +37,45 @@
                     "height",
                     "eventSettings",
                     "selectedDate"
+                ]
+            }
+        },
+        {
+            "url": "event-calendar",
+            "name": "Event Calendar",
+            "category": "Product Use Case",
+            "type": "new",
+            "description": "This demo shows the way to organize and filter multiple types of events such as Personal, Birthdays, Work, and Holidays in the scheduler.",
+            "api": {
+                "Schedule": [
+                    "eventSettings",
+                    "height",
+                    "resources",
+                    "selectedDate",
+                    "showHeaderBar",
+                    "actionComplete",
+                    "created"
+                ]
+            }
+        },
+        {
+            "url": "holiday-calendar",
+            "name": "Holiday Calendar",
+            "category": "Product Use Case",
+            "type": "new",
+            "description": "This demo illustrates how to add and remove holiday events and perform CRUD operations on holiday dates in the scheduler.",
+            "api": {
+                "Schedule": [
+                    "actionBegin",
+                    "height",
+                    "width",
+                    "eventSettings",
+                    "selectedDate",
+                    "cellClick",
+                    "cellDoubleClick",
+                    "eventRendered",
+                    "dragStop",
+                    "resizeStop"
                 ]
             }
         },
@@ -155,9 +195,27 @@
             }
         },
         {
+            "url": "inline-editing",
+            "name": "Inline Editing",
+            "category": "Appointments",
+            "description": "The example showcases the inline mode of the JS Scheduler that is used to create an appointment or edit an existing appointment's subject easily and quickly.",
+            "api": {
+                "Schedule": [
+                    "selectedDate",
+                    "Views",
+                    "currentView",
+                    "eventSettings",
+                    "allowInline",
+                    "workDays",
+                    "group",
+                    "resources"
+                ]
+            }
+        },
+        {
             "url": "external-drag-drop",
             "name": "External Drag and Drop",
-            "category": "Appointments",
+            "category": "Drag and Drop",
             "description": "This demo shows the ability to drag and drop appointments from an external source (such as the DataGrid, ListView, etc.)  into the JavaScript Scheduler.",
             "api": {
                 "Schedule": [
@@ -179,7 +237,7 @@
         {
             "url": "multi-drag",
             "name": "Multiple Events Drag",
-            "category": "Appointments",
+            "category": "Drag and Drop",
             "description": "This demo explains you about the ability to select multiple appointments and drag them simultaneously.",
             "api": {
                 "Schedule": [
@@ -195,20 +253,41 @@
             }
         },
         {
-            "url": "inline-editing",
-            "name": "Inline Editing",
-            "category": "Appointments",
-            "description": "The example showcases the inline mode of the JS Scheduler that is used to create an appointment or edit an existing appointment's subject easily and quickly.",
+            "url": "schedule-to-schedule-drag-drop",
+            "name": "Multiple Schedulers",
+            "category": "Drag and Drop",
+            "type": "new",
+            "description": "This example illustrates how to drag and drop events among multiple Scheduler. You can drag events from one Scheduler to another.",
             "api": {
                 "Schedule": [
-                    "selectedDate",
-                    "Views",
-                    "currentView",
+                    "views",
+                    "resources",
                     "eventSettings",
-                    "allowInline",
-                    "workDays",
-                    "group",
-                    "resources"
+                    "dragStop",
+                    "dragStart"
+                ]
+            }
+        },
+        {
+            "url": "grid-to-schedule",
+            "name": "Drag Events From DataGrid",
+            "category": "Drag and Drop",
+            "type": "new",
+            "description": "This example illustrates how to drag and drop events between the DataGrid and the Scheduler.",
+            "api": {
+                "Schedule": [
+                    "views",
+                    "resources",
+                    "eventSettings",
+                    "dragStop",
+                    "dataBound"
+                ],
+                "Grid": [
+                    "allowRowDragAndDrop",
+                    "rowDrop",
+                    "rowDropSettings",
+                    "columns",
+                    "dataBound"
                 ]
             }
         },
@@ -934,6 +1013,7 @@
             "name": "Keyboard Interaction",
             "category": "Miscellaneous",
             "hideOnDevice": true,
+            "type":"update",
             "description": "This demo showcases all the available keyboard shortcuts that help users perform actions using only the keyboard in the JavaScript Scheduler control.",
             "api": {
                 "Schedule": [

@@ -1,6 +1,6 @@
 {
   "name": "@syncfusion/ej2-samples",
-  "version": "26.1.35",
+  "version": "27.1.48",
   "description": "Samples for Syncfusion Essential JS 2",
   "author": "Syncfusion Inc.",
   "license": "SEE LICENSE IN license",
@@ -50,6 +50,7 @@
     "codemirror": "5.65.15",
     "crossroads": "0.12.2",
     "fuse.js": "6.6.2",
+    "form-data": "^4.0.0",
     "hasher": "1.2.0",
     "marked": "5.1.2",
     "moment-timezone": "0.5.43"

@@ -3,7 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * AutoComplete Default functionality Sample
  */
 import { AutoComplete, VirtualScroll } from '@syncfusion/ej2-dropdowns';
-import { Query, DataManager, WebApiAdaptor  } from '@syncfusion/ej2-data';
+import { Query, DataManager, UrlAdaptor  } from '@syncfusion/ej2-data';
 
 AutoComplete.Inject(VirtualScroll);
 
@@ -53,8 +53,8 @@ for (let i = 1; i <= 150; i++) {
     let remoteObj: AutoComplete = new AutoComplete({
         //set the remote data to dataSource property
         dataSource: new DataManager({
-            url: 'https://services.syncfusion.com/js/production/api/orders',
-            adaptor: new WebApiAdaptor ,
+            url: 'https://services.syncfusion.com/js/production/api/VirtualDropdownData',
+            adaptor: new UrlAdaptor ,
             crossDomain: true
         }),
         fields: { value: 'OrderID' },

@@ -23,13 +23,13 @@ Grid.Inject(Selection, Resize, Sort, Filter, Edit, Toolbar);
             editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true },
             columns: [
                 { field: 'OrderID', headerText: 'Order ID', minWidth: 100, width: 150, maxWidth: 200, textAlign: 'Right', isPrimaryKey: true, validationRules: { required: true, number: true } },
-                { field: 'CustomerName', headerText: 'Customer Name', minWidth: 100, width: 150, validationRules: { required: true, minLength: 5 } },
+                { field: 'CustomerName', headerText: 'Customer Name', minWidth: 115, width: 150, validationRules: { required: true, minLength: 5 } },
                 { field: 'Freight', width: 120, format: 'C2', minWidth: 100, textAlign: 'Right', editType: 'numericedit', validationRules: { required: true, min: 0 } },
                 {
                     field: 'ShippedDate', headerText: 'Shipped Date',
                     width: 150, format: 'yMd', textAlign: 'Right', allowResizing: false, editType: 'datepickeredit'
                 },
-                { field: 'ShipCountry', headerText: 'Ship Country', minWidth: 100, width: 150, editType: 'dropdownedit' }
+                { field: 'ShipCountry', headerText: 'Ship Country', minWidth: 115, width: 150, editType: 'dropdownedit' }
             ]
         });
     grid.appendTo('#Grid');

@@ -32,7 +32,7 @@ TreeGrid.Inject(Toolbar, Edit);
                     validationRules: { required: true }, width: 170
                 },
                 {
-                    field: 'startDate', headerText: 'Start Date', textAlign: 'Right', width: 220,
+                    field: 'startDate', headerText: 'Start Date', textAlign: 'Right', width: 180,
                     editType: 'datetimepickeredit', edit: { params: { format: 'M/d/y hh:mm a' } },
                     format: { format: 'M/d/y hh:mm a', type: 'dateTime' }, validationRules: { date: true }
                 },
@@ -41,7 +41,7 @@ TreeGrid.Inject(Toolbar, Edit);
                     type: 'boolean', displayAsCheckBox: true
                 },
                 {
-                    field: 'progress', headerText: 'Progress', textAlign: 'Right', width: 120,
+                    field: 'progress', headerText: 'Progress', textAlign: 'Right', width: 150,
                     editType: 'numericedit', validationRules: { number: true, min: 0 }, edit: { params: { format: 'n' } }
                 },
                 { field: 'priority', headerText: 'Priority', width: 150, editType: 'dropdownedit', validationRules: { required: true } }

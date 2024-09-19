@@ -71,7 +71,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             chartObj.refresh();
         }
     }
-
+    setTimeout(() => {
     let linechartObj: Chart = new Chart({
         //Initializing Primary X Axis
         primaryXAxis: {
@@ -223,6 +223,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         }
     });
     chart.appendTo('#chart');
+    }, 10);
     let dialogObj: Dialog = new Dialog({
         width: '500px',
         header: 'Add a widget',
@@ -241,7 +242,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
     // tslint:disable-next-line:max-func-body-length
     document.getElementById('dialogBtn').onclick = () => {
         dialogObj.show();
-        document.getElementById('linetemplate').onclick = () => {
+        (window as any).lineTemplateClick = function(): void {
             let countValue: string = count.toString();
             let panel: PanelModel[] = [{
                 'id': '_layout' + countValue, 'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
@@ -303,7 +304,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             linechartObj.refresh();
             dialogObj.hide();
         };
-        document.getElementById('pietemplate').onclick = () => {
+        (window as any).pieTemplateClick = function(): void {
             let countValue: string = count.toString();
             let panel: PanelModel[] = [{
                 'id': '_layout' + countValue, 'sizeX': 1, 'sizeY': 1, 'row': 0, 'col': 0,
@@ -352,7 +353,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             dialogObj.hide();
 
         };
-        document.getElementById('splinetemplate').onclick = () => {
+        (window as any).splineTemplateClick = function(): void {
             let countValue: string = count.toString();
             let panel: PanelModel[] = [{
                 'id': '_layout' + countValue, 'sizeX': 2, 'sizeY': 1, 'row': 0, 'col': 0,

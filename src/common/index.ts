@@ -100,7 +100,7 @@ let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
 let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
 let themeList: HTMLElement = document.getElementById('themelist');
-var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind', 'fluent2-highcontrast', 'highcontrast', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind-dark', 'fluent-dark'];
+var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind3', 'tailwind', 'fluent2-highcontrast', 'highcontrast', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind3-dark', 'tailwind-dark', 'fluent-dark'];
 var themesToRedirect: string[] = ['material', 'material-dark', 'bootstrap4', 'bootstrap', 'bootstrap-dark', 'fabric', 'fabric-dark'];
 var darkIgnore = ['highcontrast', 'fluent2-highcontrast'];
 let themeDarkButton: HTMLElement = document.getElementById('sb-dark-theme');
@@ -125,7 +125,7 @@ let themeDropDown: DropDownList;
  let resetSearch: Element = select('.sb-reset-icon');
  let newYear: number = new Date().getFullYear();
  let copyRight: HTMLElement= document.querySelector('.sb-footer-copyright');
- copyRight.innerHTML = "Copyright © 2001 - " + newYear + " Syncfusion Inc.";
+ copyRight.innerHTML = "Copyright © 2001 - " + newYear + " Syncfusion<sup>®</sup> Inc.";
  /**
   * constant to process the sample url
   */
@@ -157,7 +157,7 @@ let themeDropDown: DropDownList;
  /**
   * default theme on sample loaded
   */
- let selectedTheme: string = location.hash.split('/')[1] || 'fluent2';
+ let selectedTheme: string = location.hash.split('/')[1] || 'tailwind3';
  /**
   * Toggle Pane Animation
   */
@@ -322,7 +322,6 @@ let themeDropDown: DropDownList;
              placeholder: 'Search here...',
              noRecordsTemplate: '<div class="search-no-record">We’re sorry. We cannot find any matches for your search term.</div>',
              fields: { groupBy: 'doc.component', value: 'doc.uid', text: 'doc.name' },
-             popupHeight: 'auto',
              highlight: true,
              select: (e: any) => {
                  let data: any = e.itemData.doc;
@@ -1006,7 +1005,7 @@ function darkSwitch(): void {
   * load theme on page loading
   */
  function loadTheme(theme: string): void {
-   theme = themesToRedirect.indexOf(theme) !== -1 ? 'fluent2': theme;
+   theme = themesToRedirect.indexOf(theme) !== -1 ? 'tailwind3': theme;
    theme =  theme.includes('bootstrap5') ? theme.replace('bootstrap5', 'bootstrap5.3') : theme;
    let body: HTMLElement = document.body;
    if (body.classList.length > 0) {
@@ -1241,7 +1240,7 @@ function darkSwitch(): void {
          controlListRefresh(arg.node || arg.item);
          if (path !== curHashCollection) {
              sampleOverlay();
-             let theme: string = location.hash.split('/')[1] || 'fluent2';
+             let theme: string = location.hash.split('/')[1] || 'tailwind3';
              if (arg.item && ((isMobile && !select('#left-sidebar').classList.contains('sb-hide')) ||
                  ((isTablet || (Browser.isDevice && isPc)) && isLeftPaneOpen()))) {
                  toggleLeftPane();
@@ -1455,7 +1454,7 @@ function darkSwitch(): void {
              samplePath = samplePath.concat(control + '/' + sample);
              let sampleName: string = node.name + ' / ' + ((node.name !== subNode.category) ?
                  (subNode.category + ' / ') : '') + subNode.name;
-             let selectedTheme: string = location.hash.split('/')[1] ? location.hash.split('/')[1] : 'fluent2';
+             let selectedTheme: string = location.hash.split('/')[1] ? location.hash.split('/')[1] : 'tailwind3';
              let urlString: string = '/' + selectedTheme + '/' + control + '/' + sample + '.html';
              samplesAr.push('#' + urlString);
              // tslint:disable-next-line:max-func-body-length

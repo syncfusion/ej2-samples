@@ -9,29 +9,27 @@ import { MultiColumnComboBox, ColumnModel } from '@syncfusion/ej2-multicolumn-co
 
     //Generate large datas
     let data: Function = (count: number) => {
-        let names = ["John", "Alice", "Bob", "Mario Pontes", "Yang Wang", "Michael", "Nancy", "Robert King"];
-        let hours = [8, 12, 16];
-        let status = ["Pending", "Completed", "In Progress"];
-        let designation = ["Engineer", "Manager", "Tester"];
+        let names = ["John Doe", "Jane Smith", "Alice Johnson", "Bob Brown", "Emily Davis"];
+        let departments = ["HR", "IT", "Finance", "Marketing", "Sales"];
+        let roles = ["Manager", "Developer", "Analyst", "Consultant", "Executive"];
+        let locations = ["New York", "San Francisco", "London", "Berlin", "Tokyo"];
         let result: Object[] = [];
         for (let i = 0; i < count; i++) {
             result.push({
-                TaskID: i + 1,
-                Engineer: names[Math.floor(Math.random() * names.length)],
-                Designation: designation[Math.floor(Math.random() * designation.length)],
-                Estimation: hours[Math.floor(Math.random() * hours.length)],
-                Status: status[Math.floor(Math.random() * status.length)]
+                Name: names[Math.floor(Math.random() * names.length)],
+                Department: departments[Math.floor(Math.random() * departments.length)],
+                Role: roles[Math.floor(Math.random() * roles.length)],
+                Location: locations[Math.floor(Math.random() * locations.length)]
             });
         }
         return result;
     };
 
     const columns: ColumnModel[] = [
-        { field: 'TaskID', header: 'Task ID', width: 70 },
-        { field: 'Engineer', header: 'Engineer', width: 100 },
-        { field: 'Designation', header: 'Designation', width: 100 },
-        { field: 'Estimation', header: 'Estimation', width: 90 },
-        { field: 'Status', header: 'Status', width: 90, }
+        { field: 'Name', header: 'Name', width: 100 },
+        { field: 'Department', header: 'Department', width: 100 },
+        { field: 'Role', header: 'Role', width: 90 },
+        { field: 'Location', header: 'Location', width: 90,}
     ];
 
     // Initialize multicolumn ComboBox component
@@ -43,11 +41,12 @@ import { MultiColumnComboBox, ColumnModel } from '@syncfusion/ej2-multicolumn-co
         //Set enableVirtualization true to enable virtual scroll
         enableVirtualization: true,
         //set the fields of the multicolumn combobox
-        fields: { text: 'Engineer', value: 'TaskID'},
+        fields: { text: 'Name', value: 'Name'},
         //set the placeholder to multiColumn comboBox input element
-        placeholder: 'Select an engineer',
+        placeholder: 'e.g. Alice Johnson',
         // set the height of the popup element
-        popupHeight: '230px',
+        popupHeight: '210px',
+        popupWidth: '530px',
         gridSettings: { rowHeight: 40 }
     });
     virtualComboboxObj.appendTo('#virtual');

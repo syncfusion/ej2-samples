@@ -24,10 +24,10 @@ import { Browser } from '@syncfusion/ej2-base';
     "#7D39C0"];
     let fluentDarkColors: string[] = ["#1AC9E6", "#DA4CB2", "#EDBB40", "#AF4BCF", "#FF7266", "#1BD565", "#EE993D", "#5887FF", "#EC548D",
     "#7D39C0"];
-    let tailwindColors: string[] = ["#5A61F6", "#65A30D", "#334155", "#14B8A6", "#8B5CF6", "#0369A1", "#F97316", "#9333EA", "#F59E0B",
-        "#15803D"];
-    let tailwindDarkColors: string[] = ["#8B5CF6", "#22D3EE", "#F87171", "#4ADE80", "#E879F9", "#FCD34D", "#F97316", "#2DD4BF", "#F472B6",
-        "#10B981"];
+    let tailwindColors: string[] = ["#5A61F6", "#65A30D", "#334155", "#14B8A6", "#8B5CF6", "#0369A1", "#F97316", "#9333EA", "#F59E0B", "#15803D"];
+    let tailwindDarkColors: string[] = ["#8B5CF6", "#22D3EE", "#F87171", "#4ADE80", "#E879F9", "#FCD34D", "#F97316", "#2DD4BF", "#F472B6", "#10B981"];
+    let tailwind3Colors: string[] = ['#2F4074', '#03B4B4', '#0D72DE', '#FF5733', '#D63384', '#F39C12', '#EF291F', '#91C822', '#2F4074', '#03B4B4'];
+    let tailwind3DarkColors: string[] = ['#8029F1', '#1ABC9C', '#0D72DE', '#FF5733', '#D63384', '#F39C12', '#EF291F', '#91C822', '#8029F1', '#1ABC9C'];
     var fabricDark: string[] =  ["#4472C4", "#ED7D31", "#FFC000", "#70AD47"];   
     var bootstrap4Colors: string[] =  ['#a16ee5', '#f7ce69', '#55a5c2', '#7ddf1e', '#ff6ea6','#7953ac', '#b99b4f', '#407c92', '#5ea716', '#b91c52'];
     var bootstrapdarkColors: string[] =  ["#a16ee5", "#f7ce69", "#55a5c2", "#7ddf1e", "#ff6ea6", "#7953ac", "#b99b4f", "#407c92", "#5ea716", "#b91c52"];
@@ -277,6 +277,14 @@ import { Browser } from '@syncfusion/ej2-base';
             }
             else if (args.chart.theme === 'Tailwind') {
                 FillColors = tailwindColors;
+                TextColor = "#000000";
+            }
+            else if (args.chart.theme === 'Tailwind3Dark') {
+                FillColors = tailwind3DarkColors;
+                TextColor = "#FFFFFF";
+            }
+            else if (args.chart.theme === 'Tailwind3') {
+                FillColors = tailwind3Colors;
                 TextColor = "#000000";
             }
             else if (args.chart.theme==="HighContrast") {

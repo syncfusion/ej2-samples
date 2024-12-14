@@ -1378,5 +1378,14 @@
             "file-upload-with-forms": "Form Support",
             "custom-drop-area": "Custom Drop Area"
         }
+    },
+    "chat-ui": {
+        "ControlName": "Chat UI",
+        "Samples": {
+            "default": "Default Functionalities",
+            "template": "Template",
+            "api": "API",
+            "chat-integration": "Use Case"
+        }
     }
 }

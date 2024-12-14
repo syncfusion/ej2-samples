@@ -42,6 +42,7 @@ TreeGrid.Inject( Page, Filter );
     let dropDownType: DropDownList = new DropDownList({
         dataSource: type,
         popupWidth: '100%',
+        width:'100px',
         fields: { text: 'type', value: 'id' },
         value: 'Menu',
         change: (e: ChangeEventArgs) => {
@@ -54,6 +55,7 @@ TreeGrid.Inject( Page, Filter );
     let dropDownMode: DropDownList = new DropDownList({
         dataSource: mode,
         popupWidth: '100%',
+        width:'100px',
         fields: { text: 'mode', value: 'id' },
         value: 'Parent',
         change: (e: ChangeEventArgs) => {

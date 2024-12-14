@@ -30,8 +30,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
   let isMobile: boolean = Browser.isDevice;
   let viewer: PdfViewer = new PdfViewer({
     documentPath: 'https://cdn.syncfusion.com/content/PDFViewer/Fill+and+Sign.pdf',
-    resourceUrl: 'https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib',
-    serviceUrl: 'https://services.syncfusion.com/js/production/api/pdfviewer',
+    resourceUrl: 'https://cdn.syncfusion.com/ej2/27.2.2/dist/ej2-pdfviewer-lib',
     documentLoad: documentLoaded,
     pageClick: pageClick
   });

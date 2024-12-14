@@ -8,6 +8,7 @@ import {
     Schedule, ScheduleModel, Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop, EJ2Instance
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 /**
  * Sample for searching appointments
@@ -23,7 +24,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
         height: '550px',
         selectedDate: new Date(2021, 0, 10),
         eventSettings: {
-            dataSource: (dataSource as Record<string, any>).scheduleData,
+            dataSource: <Object[]>extend([], (dataSource as Record<string, any>).scheduleData, null, true),
         }
     };
 

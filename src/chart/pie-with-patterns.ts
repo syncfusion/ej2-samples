@@ -105,7 +105,7 @@ Chart.Inject(Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, DataLabe
         pointRender: onPointRender,
         legendSettings: { visible: false },
         title: 'Browser Market Share',
-        tooltip: { enable: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>', header: "" },
+        tooltip: { enableHighlight: true, enable: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>', header: "" },
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';

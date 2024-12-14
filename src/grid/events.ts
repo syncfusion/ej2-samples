@@ -21,7 +21,7 @@ Grid.Inject(Page, Selection, Reorder, Group, Sort, Filter);
             columns: [
                 { field: 'CategoryName', headerText: 'Category Name', width: 170 },
                 { field: 'ProductName', headerText: 'Product Name', width: 170 },
-                { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 170 },
+                { field: 'QuantityPerUnit', headerText: 'Quantity Per Unit', width: 170, allowGrouping: false },
             ],
             load: load,
             created: create,

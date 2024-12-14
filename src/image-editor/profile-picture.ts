@@ -2,6 +2,7 @@ import { ImageEditor } from '@syncfusion/ej2-image-editor';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { getComponent, createElement } from '@syncfusion/ej2-base';
 import { loadCultureFiles } from '../common/culture-loader';
+
 /**
  * Profile picture sample
  */

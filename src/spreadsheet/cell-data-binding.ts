@@ -10,7 +10,7 @@ import { Spreadsheet, getFormatFromType } from '@syncfusion/ej2-spreadsheet';
 (window as any).default = (): void => {
     loadCultureFiles();
     //Initialize Spreadsheet component
-    let currencyFormat: string = getFormatFromType('Currency');
+    let currencyFormat: string = '$#,##0.00';
     let spreadsheet: Spreadsheet = new Spreadsheet({
         showRibbon: false,
         showFormulaBar: false,

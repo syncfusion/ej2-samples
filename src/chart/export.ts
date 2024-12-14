@@ -6,7 +6,7 @@ import {
 } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, Category, Legend, Export, DataLabel);
 import { Button } from '@syncfusion/ej2-buttons';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, fluent2Colors, fluent2HighContrastColors, bootstrap5Colors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, fluent2Colors, fluent2HighContrastColors, bootstrap5Colors, pointTailwindColors, pointTailwindDarkColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
 import { EmitType } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2/base';
@@ -33,6 +33,14 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fluent2HighContrastColors[args.point.index % 10];
     } else if (selectedTheme === 'bootstrap5' || selectedTheme === 'bootstrap5-dark') {
         args.fill = bootstrap5Colors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind') {
+        args.fill = pointTailwindColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind-dark') {
+        args.fill = pointTailwindDarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3') {
+        args.fill = pointTailwind3Colors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3-dark') {
+        args.fill = pointTailwind3DarkColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }

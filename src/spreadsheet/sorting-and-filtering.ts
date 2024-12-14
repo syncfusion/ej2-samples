@@ -45,6 +45,7 @@ import * as dataSource from './sorting-and-filtering-data.json';
         created: () => {
             spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center' }, 'A1:G1');
             spreadsheet.numberFormat('m/d/yyyy', 'E2:E51');
+            spreadsheet.numberFormat('$#,##0.00', 'F2:F51');
             // custom code start
             setTimeout(() => {
             // custom code end

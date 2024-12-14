@@ -42,7 +42,7 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
         dataSource: [{ id: 'CellEditing', name: 'Cell Editing' }, {id: 'RowEditing', name: 'Row Editing'}],
         fields: { text: 'name', value: 'id' },
         value: 'CellEditing',
-        width: 120,
+        width: 140,
         change: (e: ChangeEventArgs) => {
             if (e.value === 'CellEditing') {
                 grid.editSettings.mode = 'Cell';

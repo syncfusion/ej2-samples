@@ -46,7 +46,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
         enableAnimation: false,
         enableBorderOnMouseMove:false,
         //Initializing Tooltip
-        tooltip: { enable: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.tooltip}</b>' },
+        tooltip: { enable: true, enableHighlight: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.tooltip}</b>' },
         legendSettings: {
             visible: false,
         },

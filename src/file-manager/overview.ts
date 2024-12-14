@@ -16,6 +16,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
     let isFavoriteAjax: boolean = false;
     let itemsCount: number = 0;
     let treeSelectedNodes: string[] = [];
+    let isFavorite: boolean = false;
     let fileObject: FileManager = new FileManager({
         ajaxSettings: {
             url: hostUrl + 'api/Overview/FileOperations',
@@ -46,12 +47,12 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
                 {
                     field: 'name', headerText: 'Name',  width:'220px', maxWidth: '230px',
                     template: function(data: any) {
-                        var isFavorite = favoriteFiles[data.name] ? 'filled' : '';
-                        var title = isFavorite ? 'Unfavorite' : 'Favorite';
+                        var isFavoriteItem = favoriteFiles[data.name] ? 'filled' : '';
+                        var title = isFavoriteItem ? 'Unfavorite' : 'Favorite';
                         return '<div class="fmNameColumn">' + '<span>' + data.name + '</span>'  +'<div class="custom-icons">' +
                             '<span class="e-icons e-delete" data-action="delete" title="Delete"></span>' +
                             '<span class="e-icons e-download" data-action="download" title="Download"></span>' +
-                            '<span class="e-icons e-star-filled favorite-icon ' + isFavorite + '" data-action="favorite" title="' + title + '"></span>' +
+                            '<span class="e-icons e-star-filled favorite-icon ' + isFavoriteItem + '" data-action="favorite" title="' + title + '"></span>' +
                         '</div>'+ '</div>';}, customAttributes: { class: 'e-fe-grid-name' },                  
                 },
                 {
@@ -176,8 +177,6 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
         fileObject.refreshLayout();
     }
 
-    let isFavorite: boolean = false;
-
     function filemanagerFilterFiles(favoritesString: any): void {
         fileObject.path = '/';
         // Create the object with the search string
@@ -252,7 +251,10 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
     }
 
     function removeFileExtension(filename: string): string {
-        return filename.replace(/\.[^/.]+$/, ""); // Remove the extension from the filename
+        if (filename && filename.includes('.')) {
+            return filename.replace(/\.[^/.]+$/, ""); // Remove the extension if present
+        }
+        return filename; // Return the filename as is if there's no extension
     }
 
     function formatFileType(fileType:string): string {
@@ -263,15 +265,17 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
     }
 
     function formatDate(dateString: any): any {
-        let date = new Date(dateString);
-        // Use Intl.DateTimeFormat for formatting
-        let formattedDate = new Intl.DateTimeFormat(fileObject.locale, {
-            month: 'short',
-            day: '2-digit',
-            year: 'numeric'
-        }).format(date);
-    
-        return formattedDate;
+        if (dateString) {
+            let date = new Date(dateString);
+            // Use Intl.DateTimeFormat for formatting
+            let formattedDate = new Intl.DateTimeFormat(fileObject.locale, {
+                month: 'short',
+                day: '2-digit',
+                year: 'numeric'
+            }).format(date);
+            return formattedDate;
+        }
+        return null;
     }
 
     (document.getElementById('close-btn') as any).onclick = function() {
@@ -279,9 +283,12 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
     };
 
     function getLastFolderName(path: any) {
-        path = path.replace(/\/$/, "");
-        let parts = path.split('/');
-        return parts[parts.length - 1];
+        if (path) {
+            path = path.replace(/\/$/, "");
+            let parts = path.split('/');
+            return parts[parts.length - 1];
+        }
+        return null;
     }
 
     function viewPanedetails(selectedItems: any) {
@@ -308,8 +315,8 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
 
             let isFile = selectedItems.isFile;
             (document.getElementById('fileType') as any).innerHTML = isFile ? 'File' : 'Folder';
-            (document.getElementById('fm-file-name') as any).value = selectedItems.name;
-            (document.getElementById('tag-name1') as any).innerHTML = removeFileExtension(selectedItems.name);
+            (document.getElementById('fm-file-name') as any).value = selectedItems.name || selectedItems;
+            (document.getElementById('tag-name1') as any).innerHTML = removeFileExtension(selectedItems.name || selectedItems);
             (document.getElementById('tag-name2') as any).innerHTML = isFile ? formatFileType(selectedItems.type) : 'Folder';
             (document.getElementById('fmType') as any).innerHTML = isFile ? 'File' : 'Folder';
             (document.getElementById('fmSize') as any).innerHTML = (selectedItems.size / 1024).toFixed(2) + ' KB';
@@ -327,7 +334,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
             imageTypeEle.classList.add(imageTypeValue.toLowerCase());
 
             locationElement.style.display = (fileObject.path === '/') ? 'none' : '';
-            sizeElement.style.display = (selectedItems.size === 0) ? 'none' : '';
+            sizeElement.style.display = !selectedItems.size ? 'none' : '';
         } 
         else {
             fileManagerContainer.style.margin = '0px 10px 0px 5px';

@@ -3,7 +3,6 @@
     "directory": "dashboardlayout",
     "category": "Layout",
     "ftName": "dashboardlayout",
-    "type": "preview",
     "samples": [
         { "url": "default", "name": "Default Functionalities", "category": "DashboardLayout", "api": { "DashboardLayout": ["cellSpacing"] }, "description": "This example explains the default functionalities of the JavaScript Dashboard Layout with draggable and resizable panels." },
         {

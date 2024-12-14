@@ -371,10 +371,9 @@ function combineSampleList(platform, seo, done) {
             for (var i = 0; i < orderKeys.length; i++) {
                 console.log('Category : ' + orderKeys[i]);
                 var components = sampleOrder[orderKeys[i]];
-                let category = orderKeys[i];
                 for (var j = 0; j < components.length; j++) {
                     console.log('Component : ' + components[j]);
-                    var currentData = getSamples(data, components[j], category);
+                    var currentData = getSamples(data, components[j]);
                     currentData.order = i;
                     result.push(currentData);
                 }
@@ -425,11 +424,11 @@ gulp.task('skip-chunks', function (done) {
 });
 
 
-function getSamples(data, component, category) {
+function getSamples(data, component) {
     var dataList = Object.keys(data);
     for (var i = 0; i < dataList.length; i++) {
         var currentData = data[dataList[i]];
-        if (component === currentData.name && category === currentData.category) {
+        if (component === currentData.name) {
             return currentData;
         }
     }

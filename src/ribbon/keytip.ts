@@ -3,7 +3,7 @@ import { Ribbon, ItemOrientation, RibbonItemSize, RibbonItemType, RibbonTabModel
 import { ListView, SelectEventArgs as SelectListEventArgs } from "@syncfusion/ej2-lists";
 import { MenuEventArgs } from "@syncfusion/ej2-navigations";
 import { SelectEventArgs } from "@syncfusion/ej2-dropdowns";
-import { Toast } from '@syncfusion/ej2/notifications';
+import { Toast } from '@syncfusion/ej2-notifications';
 import { ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 import * as data from './datasource.json';
 

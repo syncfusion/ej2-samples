@@ -11,7 +11,7 @@ enableRipple(false);
 (window as any).default = (): void => {
 	loadCultureFiles();
 	let remoteData: DataManager = new DataManager({
-		url: 'https://bi.syncfusion.com/northwindservice/api/orders',
+		url: 'https://ej2services.syncfusion.com/js/development/api/order',
 		adaptor: new WebApiAdaptor,
 		crossDomain: true
 	});
@@ -29,7 +29,7 @@ enableRipple(false);
 	};
 
 	let csvReport: IDataOptions = {
-		url: 'https://bi.syncfusion.com/productservice/api/sales',
+		url: 'https://ej2services.syncfusion.com/js/development/api/product',
 		dataSource: undefined,
 		type: 'CSV',
 		expandAll: false,

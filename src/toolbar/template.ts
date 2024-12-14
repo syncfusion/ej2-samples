@@ -3,9 +3,9 @@ import { loadCultureFiles } from '../common/culture-loader';
  *  Toolbar sample to demonstrate template functionalities.
  */
 import { Toolbar } from '@syncfusion/ej2-navigations';
-import { NumericTextBox } from '@syncfusion/ej2/inputs';
-import { ComboBox } from '@syncfusion/ej2/dropdowns';
-import { TextBox } from '@syncfusion/ej2/inputs';
+import { NumericTextBox } from '@syncfusion/ej2-inputs';
+import { ComboBox } from '@syncfusion/ej2-dropdowns';
+import { TextBox } from '@syncfusion/ej2-inputs';
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -34,7 +34,7 @@ import { TextBox } from '@syncfusion/ej2/inputs';
                 prefixIcon: 'e-icons e-last-page', tooltipText: 'Show last page', text: 'Last', showTextOn: 'Overflow', align: 'Left'
             },
             {
-                type: 'Input', align: 'Left', cssClass: 'page-count', template: "<div><input type='text' id='numeric'> <span class=total-page> of 100 </span> </input></div>"
+                type: 'Input', align: 'Left', cssClass: 'page-count', template: new NumericTextBox({ format: '###.##', width: 50, value: 0, min: 0, max: 100, showSpinButton: false })
             },
             {
                 type: 'Separator', align: 'Left'
@@ -93,16 +93,6 @@ import { TextBox } from '@syncfusion/ej2/inputs';
         ]
     });
     toolbarObj.appendTo('#toolbar_template');
-
-    let numeric: NumericTextBox = new NumericTextBox({
-        format: '###.##',
-        width: 50,
-        value: 0,
-        min: 0,
-        max: 100,
-        showSpinButton: false
-    });
-    numeric.appendTo("#numeric");
 
     function OnCreateSearch(): any {
         this.addIcon('prepend', 'e-icons e-search');

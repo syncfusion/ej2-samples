@@ -32,10 +32,7 @@ import * as dataSource from './default-data.json';
             // Apply the format to the specified range in the active sheet.
             spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center', verticalAlign: 'middle' }, 'A1:F1');
             // Apply format to the specified range in the active sheet.
-            // The 'getFormatFromType' method will return the format code with a culture-based currency symbol.
-            // For 'en-US' (English) culture, the format code will be '$#,##0.00'.
-            // For 'de' (German) culture, the format code will be '#,##0.00 "€"'.
-            spreadsheet.numberFormat(getFormatFromType('Currency'), 'F2:F31');
+            spreadsheet.numberFormat('$#,##0.00', 'F2:F31');
             spreadsheet.numberFormat('m/d/yyyy', 'E2:E30');
         }
     });

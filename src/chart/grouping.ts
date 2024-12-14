@@ -66,7 +66,7 @@ import { Browser } from '@syncfusion/ej2/base';
             args.text = args.point.x + ' ' + args.point.y;
         },
         //Initializing tooltip
-        tooltip: {enable: true ,format:"<b>${point.x}</b><br> Gold Medals: <b>${point.y}</b>" , header:""},
+        tooltip: {enable: true ,format:"<b>${point.x}</b><br> Gold Medals: <b>${point.y}</b>" , header:"", enableHighlight: true},
         enableBorderOnMouseMove:false,
         //Initializing title
         title: 'Rio Olympic Gold Medals',

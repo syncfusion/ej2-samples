@@ -4,7 +4,7 @@ import {
     Tooltip, DataLabel, ILoadedEventArgs, ChartTheme
 } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, fluent2Colors, fluent2HighContrastColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, fluent2Colors, fluent2HighContrastColors, pointTailwindColors, pointTailwindDarkColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
 import { Browser, EmitType } from '@syncfusion/ej2-base';
 /**
  * Sample for invesed axis
@@ -26,6 +26,14 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fluent2Colors[args.point.index % 10];
     } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
         args.fill = fluent2HighContrastColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind') {
+        args.fill = pointTailwindColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind-dark') {
+        args.fill = pointTailwindDarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3') {
+        args.fill = pointTailwind3Colors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3-dark') {
+        args.fill = pointTailwind3DarkColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }

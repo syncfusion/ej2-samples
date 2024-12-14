@@ -1,21 +1,29 @@
+<style>
+
+    .property-section #selectiondd1,
+    .property-section #selectionmode,
+    .property-section #cellselectioncontent {
+        width: 70%;
+    }
+
+    @media (min-width: 990px) and (max-width: 1300px) {
+
+        .property-section #selectiondd1,
+        .property-section #selectionmode,
+        .property-section #cellselectioncontent {
+            width: 105%;
+        }
+    }
+</style>
 <div class="col-lg-9 control-section">
     <div class="content-wrapper">
         <div id="TreeGrid"></div>
     </div>
 </div>
-<style>
-    .fluent2,
-    .fluent2-dark,
-    .fluent2-highcontrast {
-        #selectiondd1 .e-input-group {
-            width: 110px !important;
-        }
-    }
-</style>
 <div class="col-lg-3 property-section">
     <table id="property" title="Properties" style="width: 100%">
         <tr>
-            <td style="width: 30%">
+            <td>
                 <div style="padding-top: 7px">Selection Type</div>
             </td>
             <td style="width: 70%;padding-right: 5px">
@@ -25,25 +33,25 @@
             </td>
         </tr>
         <tr>
-            <td style="width: 30%">
+            <td>
                 <div>
                     Selection Mode
                 </div>
             </td>
             <td style="width: 70%;padding-right: 5px">
-                <div>
+                <div id="selectionmode">
                     <input type="text" tabindex="1" id='mode' />
                 </div>
             </td>
         </tr>
         <tr id='cellselection' style='display: none'>
-            <td style="width: 30%;">
+            <td>
                 <div>
                    Cell Selection Mode
                 </div>
             </td>
             <td style="width: 70%;padding-right: 5px">
-                <div>
+                <div id="cellselectioncontent">
                     <input type="text" tabindex="1" id='cellmode' />
                 </div>
             </td>

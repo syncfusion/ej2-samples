@@ -45,6 +45,7 @@ TreeGrid.Inject( Page );
             dataSource: columnNames,
             popupWidth: '100%',
             fields: { text: 'name', value: 'id' },
+            width:'125px',
             value: 'taskID',
             change: (e: ChangeEventArgs) => {
                 let columnName: string = <string>e.value;
@@ -57,6 +58,7 @@ TreeGrid.Inject( Page );
         let dropDownAlign: DropDownList = new DropDownList({
             dataSource: alignment,
             fields: { text: 'name', value: 'id' },
+            width:'125px',
             value: 'Right',
             change: (e: ChangeEventArgs) => {
                 let alignment: any = e.value;

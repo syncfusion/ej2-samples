@@ -21,7 +21,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor, PasteClean
                 {
                     tooltipText: 'Insert Symbol',
                     template: '<button class="e-tbar-btn e-btn" tabindex="-1" id="custom_tbar"  style="width:100%">'
-                    + '<div class="e-tbar-btn-text" style="font-weight: 500;"> &#937;</div></button>'
+                    + '<div class="e-tbar-btn-text" style="font-weight: 400;"> &#937;</div></button>'
                 }, '|', 'Undo', 'Redo'
             ]
 

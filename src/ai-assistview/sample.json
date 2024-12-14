@@ -3,7 +3,6 @@
     "directory": "ai-assistview",
     "category": "Interactive Chat",
     "ftName": "AIAssitView",
-    "type": "preview",
     "samples": [
         {
             "url": "default",
@@ -48,7 +47,7 @@
             "api":{ "AIAssitView": ["promptSuggestions", "prompts", "promptRequest", "toolbarSettings", "bannerTemplate", "responseToolbarSettings", "cssClass"] },
             "description": "Showcases the AiAssistView control with other component integration",
             "sourceFiles": [
-                { "displayName": "dialog.ts", "path":"src/ai-assistview/dialog.td" },
+                { "displayName": "dialog.ts", "path":"src/ai-assistview/dialog.ts" },
                 { "displayName": "dialog.html", "path":"src/ai-assistview/dialog.html" },
                 { "displayName": "promptResponseData.ts", "path":"src/ai-assistview/promptResponseData.ts" }
             ]

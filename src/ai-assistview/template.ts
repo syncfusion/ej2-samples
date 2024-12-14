@@ -52,7 +52,7 @@ import { defaultPromptResponseData, defaultSuggestions  } from './promptResponse
         return `<div class="responseItemContent">
                     <div class="response-header">
                         <span class="e-icons e-assistview-icon"></span>
-                        AI AssistView
+                        AI Assist
                     </div>
                     <div class="content">${ctx.response}</div>
                 </div>`;

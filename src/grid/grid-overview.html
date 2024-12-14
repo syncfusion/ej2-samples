@@ -47,9 +47,13 @@
     .bootstrap5 .empimg {
         background-color:#0078d6; 
     }
+    .tailwind3 .empimg,
+    .tailwind3-dark .empimg{
+        background-color:rgba(79, 70, 229);
+    }
 
     #Emptext{
-    top: -12px;
+    top: -14px;
     left: 41px;
     position: relative;
     }
@@ -61,7 +65,7 @@
     }
    
 .e-grid.e-rtl #Emptext{
-    top: -12px;
+    top: -14px;
     left: -41px;
     position: relative;
 }
@@ -242,12 +246,8 @@
     }
 
     @-moz-document url-prefix() {     
-        #overviewgrid.e-grid.e-grid-min-height .e-rowcell {       
-            line-height: 0!important;
-    } }
-    @-moz-document url-prefix() {    
-        #overviewgrid.e-grid.e-grid-min-height .e-rowcell {         
-            line-height: 0!important;
+        #Grid.e-grid.e-grid-min-height .e-rowcell {       
+            line-height: 0 !important;
     } }
 </style>
 

@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, ScheduleModel, Day, Week, Month, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
-import { ChangeEventArgs, CheckBox } from '@syncfusion/ej2/buttons';
+import { ChangeEventArgs, CheckBox } from '@syncfusion/ej2-buttons';
 
 /**
  * schedule resources group sample

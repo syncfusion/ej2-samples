@@ -54,6 +54,12 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
     } else if (selectedTheme === 'tailwind') {
         if (args.series.yName == "Rate")
             args.fill = "grey";
+    } else if (selectedTheme === 'tailwind3-dark') {
+        if (args.series.yName == "Rate")
+            args.fill = "#f9fafb";
+    } else if (selectedTheme === 'tailwind3') {
+        if (args.series.yName == "Rate")
+            args.fill = "grey";
     } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
         if (args.series.yName == "Rate")
             args.fill = "#f9fafb";

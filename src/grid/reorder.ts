@@ -38,7 +38,7 @@ Grid.Inject(Selection, Reorder, Sort, Filter, Edit, Toolbar);
                 { field: 'Title', headerText: 'Title', width: 190 },
                 {
                     field: 'HireDate', headerText: 'Hire Date', textAlign: 'Right',
-                    width: 135, format: { skeleton: 'yMd', type: 'date' }, editType: 'datepickeredit'
+                    width: 135, format: { skeleton: 'yMd', type: 'date' }, editType: 'datepickeredit', type:'date'
                 }
             ],
             actionComplete: (args: ActionEventArgs) => {

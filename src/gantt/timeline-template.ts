@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
+import { Internationalization } from '@syncfusion/ej2-base';
 import { Gantt,Selection} from '@syncfusion/ej2-gantt';
 import { timelineTemplateData } from './data-source';
 
@@ -7,21 +7,55 @@ import { timelineTemplateData } from './data-source';
  * Tasklabel Template Gantt sample
  */
 Gantt.Inject(Selection);
+
+// Create an Internationalization instance
+const intlObj = new Internationalization();
+
 (<{ weekDate?: Function }>window).weekDate = (dateString: any) => {
-    const date = new Date(dateString);
-    const options:any = { weekday: 'short'}; // Include day of the week and day of the month
-    return date.toLocaleDateString('en-US', options);
+    const gantt = (document.getElementsByClassName('e-gantt')[0] as any).ej2_instances[0];
+    const date = gantt.locale === 'ar' ? parseArabicDate(dateString) : parseDateString(dateString);
+    return intlObj.formatDate(date, { skeleton: 'E' });
 };
 (<{ formatDate?: Function }>window).formatDate = (dateString: any) => {
-    const date = new Date(dateString);
-    const options: any = { day: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
+    const gantt = (document.getElementsByClassName('e-gantt')[0] as any).ej2_instances[0];
+    const date = gantt.locale === 'ar' ? parseArabicDate(dateString) : parseDateString(dateString);
+    return intlObj.formatDate(date, { skeleton: 'd' });
 };
 
-(<{ imageString?: Function }>window).imageString = (value: string) => {
-    return "src/gantt/images/"+ value.toLowerCase() +".svg" ;
+(<{ imageString?: Function }>window).imageString = (date: Date) => {
+    const gantt = (document.getElementsByClassName('e-gantt')[0] as any).ej2_instances[0];
+    const imageDate = gantt.locale === 'ar' ? parseArabicDate(date) : parseDateString(date);
+    return "src/gantt/images/"+ imageDate.getDay() +".svg" ;
+
 };
 
+function convertArabicNumeralsToWestern(arabicNumerals: any) {
+    const arabicToWesternMap: { [key: string]: string }  = { '٠': '0', '١': '1', '٢': '2', '٣': '3', '٤': '4', '٥': '5', '٦': '6', '٧': '7', '٨': '8', '٩': '9' };
+    return arabicNumerals.replace(/[\u0660-\u0669]/g, (match: string) => arabicToWesternMap[match]);
+}
+
+function parseArabicDate(arabicDateString: any) {
+    // To convert the 'arabicDateString' Arabic Date to ISO Date format
+    const normalizedDate = convertArabicNumeralsToWestern(arabicDateString);
+    const parts = normalizedDate.split('/'); // Assuming "DD/MM/YYYY" format
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are zero-based
+    const year = parseInt(parts[2], 10);
+    return new Date(year, month, day);
+}
+
+function parseDateString(dateString: any) {
+    // Check if the date string is in the format "DD.MM.YYYY"
+    if (dateString.includes('.')) {
+        var parts = dateString.split('.');
+        var day = parseInt(parts[0], 10);
+        var month = parseInt(parts[1], 10) - 1; // Months are 0-based in JavaScript
+        var year = parseInt(parts[2], 10);
+        return new Date(year, month, day);
+    }
+    // Fallback to default date parsing
+    return new Date(dateString);
+}
 
 (window as any).default = (): void => {
     loadCultureFiles();

@@ -1,7 +1,7 @@
 
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, ColumnSeries, Category, DataLabel, ILoadedEventArgs, IPointRenderEventArgs, IAxisRangeCalculatedEventArgs, ITextRenderEventArgs, sort, ChartTheme } from '@syncfusion/ej2-charts';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluent2Colors, fluent2DarkColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluent2Colors, fluent2DarkColors, pointTailwindColors, pointTailwindDarkColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
 import { EmitType, Browser } from '@syncfusion/ej2-base';
 Chart.Inject(ColumnSeries, Category, DataLabel);
 
@@ -19,6 +19,14 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fluent2Colors[args.point.index % 10];
     } else if (selectedTheme === 'fluent2-dark') {
         args.fill = fluent2DarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind') {
+        args.fill = pointTailwindColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind-dark') {
+        args.fill = pointTailwindDarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3') {
+        args.fill = pointTailwind3Colors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3-dark') {
+        args.fill = pointTailwind3DarkColors[args.point.index % 10];
     } else {
         args.fill = bootstrapColors[args.point.index % 10];
     }

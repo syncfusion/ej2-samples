@@ -43,7 +43,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             reverse: true
         },
         // Initialize tht tooltip
-        tooltip: {enable: true, format:'<b>${point.x}</b><br/>Area in square km: <b>${point.y} </b> <br/> Population density per square km: <b>${point.tooltip}</b>'},
+        tooltip: {enable: true, format:'<b>${point.x}</b><br/>Area in square km: <b>${point.y} </b> <br/> Population density per square km: <b>${point.tooltip}</b>', enableHighlight: true},
         enableAnimation: true,
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

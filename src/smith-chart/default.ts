@@ -16,8 +16,8 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
         // custom code start
         load: (args: ISmithchartLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Fluent2';
-            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            theme = theme ? theme : 'Material';
+            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
         // custom code end
         title: {
@@ -35,7 +35,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                     { resistance: 0.3, reactance: 0.2 }, { resistance: 0, reactance: 0.15 },
                 ],
                 name: 'Transmission1',
-                enableAnimation: false,
+                enableAnimation: true,
                 tooltip: { visible: true },
                 marker: {
                     shape: 'Circle',
@@ -56,7 +56,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                     { resistance: 0.3, reactance: 0.1 }, { resistance: 0, reactance: 0.05 },
                 ],
                 name: 'Transmission2',
-                enableAnimation: false,
+                enableAnimation: true,
                 tooltip: { visible: true },
                 marker: {
                     shape: 'Circle',

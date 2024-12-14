@@ -15,14 +15,14 @@ Grid.Inject(Page, Group, Aggregate, Sort, Filter);
             allowMultiSorting:true,
             allowFiltering: true,
             allowGrouping:true,
+            gridLines:'Vertical',
             enableHover: false,
             groupSettings:{columns:["ConsumptionCategory"],showGroupedColumn:true,showDropArea:false},
             filterSettings: { type: 'Excel' },
-            gridLines:'Vertical',
             height:300,
             columns: [
                 { field: 'ID', headerText: 'ID', textAlign: 'Right', isPrimaryKey: true, visible: false },
-                { field: 'Month', headerText: 'Month', textAlign: 'Right', clipMode:'EllipsisWithTooltip', width: 120, format: 'yMd' },
+                { field: 'Month', headerText: 'Month', textAlign: 'Right', clipMode:'EllipsisWithTooltip', width: 120, format: 'yMd', type:'date' },
                 { headerText: 'Category', field: 'ConsumptionCategory', width: 130, clipMode:'EllipsisWithTooltip' },
                 { headerTemplate: "#energyTemplate", textAlign: 'Center', columns: [
                         { field: 'EnergyConsumed', headerText: 'Consumed', width: 150, textAlign: 'Right', clipMode:'EllipsisWithTooltip' },

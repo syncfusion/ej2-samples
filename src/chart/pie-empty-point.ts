@@ -36,7 +36,7 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
         //Initializing title
         title: 'Annual Product-Wise Profit Analysis',
         legendSettings: { visible: false },
-        tooltip: { enable: true, format: '<b>${point.x}</b><br> Profit: <b>$${point.y}K</b>' , header:""},
+        tooltip: { enable: true, format: '<b>${point.x}</b><br> Profit: <b>$${point.y}K</b>' , header:"", enableHighlight: true},
         enableBorderOnMouseMove:false,
         //Initializing User Interaction Tooltip
         load: (args: IAccLoadedEventArgs) => {

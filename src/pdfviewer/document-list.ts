@@ -35,7 +35,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
           viewer.isFormDesignerToolbarVisible = false;
           viewer.toolbarSettings = { showTooltip : true, toolbarItems: ['OpenOption', 'PageNavigationTool', 'MagnificationTool', 'PanTool','SearchOption', 'PrintOption']};
           viewer.annotationSettings = {  
-              isLock:true, author: 'Guest',       
+              isLock:true, author: 'Guest',      
           };
           viewer.textFieldSettings = {        
               isReadOnly: true,
@@ -67,7 +67,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
           viewer.enableAnnotationToolbar = true;
           viewer.toolbarSettings = { showTooltip : true, toolbarItems: ['OpenOption', 'UndoRedoTool', 'PageNavigationTool', 'MagnificationTool', 'PanTool', 'SelectionTool', 'CommentTool', 'SubmitForm', 'SearchOption', 'AnnotationEditTool', 'FormDesignerEditTool', 'PrintOption', 'DownloadOption']};
           viewer.annotationSettings = {  
-              isLock:false, author: 'Guest',     
+              isLock:false, author: 'Guest',      
           };
           viewer.textFieldSettings = {        
               isReadOnly: false,

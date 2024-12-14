@@ -7,26 +7,26 @@ import { SpeedDial, SpeedDialItemModel } from '@syncfusion/ej2-buttons';
     let items: SpeedDialItemModel[] = [
         {
             title:'Home',
-            iconCss:'speeddial-icons speeddial-icon-house'
+            iconCss:'e-icons e-home'
         },
         {
             title:'People',
-            iconCss:'speeddial-icons speeddial-icon-people'
+            iconCss:'e-icons e-people'
         },
         {
             title:'Search',
-            iconCss:'speeddial-icons speeddial-icon-search'
+            iconCss:'e-icons e-search'
         },
         {
             title:'Message',
-            iconCss:'speeddial-icons speeddial-icon-message'
+            iconCss:'e-icons e-comment-show'
         }
     ]
 
     let speedDial: SpeedDial = new SpeedDial(
         {
-            openIconCss: 'speeddial-icons speeddial-icon-menu',
-            closeIconCss: 'speeddial-icons speeddial-icon-close',
+            openIconCss:'e-icons e-justify',
+            closeIconCss:'e-icons e-close',
             items: items,
             target: '#target',
             position: 'BottomCenter',

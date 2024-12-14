@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Spreadsheet, SheetModel, ColumnModel, RowModel, CellRenderEventArgs } from '@syncfusion/ej2-spreadsheet';
+import { Spreadsheet, SheetModel, ColumnModel, RowModel, CellRenderEventArgs, getFormatFromType } from '@syncfusion/ej2-spreadsheet';
 import * as dataSource from './cell-formatting-data.json';
 
 /**
@@ -52,6 +52,7 @@ import * as dataSource from './cell-formatting-data.json';
         spreadsheet.cellFormat({ fontFamily: 'Helvetica New', verticalAlign: 'middle' }, 'A1:I16');
         // Applying display formatting to a range
         spreadsheet.numberFormat('m/d/yyyy', 'C2:C16');
+        spreadsheet.numberFormat('$#,##0.00', 'I2:I16');
         //Applying border to a range
         spreadsheet.setBorder({ border: '1px solid #e0e0e0' }, 'A1:I16', 'Outer');
         spreadsheet.setBorder({ border: '1px solid #e0e0e0' }, 'A2:I15', 'Horizontal');

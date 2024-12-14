@@ -24,6 +24,9 @@ TreeGrid.Inject(Toolbar);
                 { field: 'progress', headerText: 'Progress', width: 80, textAlign: 'Right' },
                 { field: 'priority', headerText: 'Priority', width: 90 }
             ],
+            load: function () {
+                this.grid.cssClass = document.querySelector('.fluent2-highcontrast') ? 'e-print-fluent2-highcontrast' : '';
+            },
         });
     treegrid.appendTo('#TreeGrid');
 };

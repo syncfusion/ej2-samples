@@ -95,7 +95,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             let element2Body = document.getElementById('chart');
             element2Body.style.setProperty('background', layoutColor);
         }
-    };
+    }
     let dashboardObject: DashboardLayout = new DashboardLayout({
 
         cellSpacing: [15, 15],
@@ -184,7 +184,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             ],
             pointRender: onPointRender,
             tooltip: {
-                enable: true, format: "${point.tooltip}"
+                enable: true, format: "${point.tooltip}", enableHighlight: true
             },
 
             enableBorderOnMouseMove: false,
@@ -261,4 +261,4 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         });
         chart.appendTo('#chart');
     }, 10);
-}
+};

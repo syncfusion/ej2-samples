@@ -25,9 +25,10 @@ import * as data from './dataSource.json';
         //set the fields of the multicolumn combobox
         fields: { text: 'Name', value: 'Eimg' },
         //set the placeholder to multiColumn comboBox input element
-        placeholder: 'Select an employee',
+        placeholder: 'e.g. Andrew Fuller',
         // set the height of the popup element
-        popupHeight: '230px',
+        popupHeight: '210px',
+        popupWidth: '540px',
         // set the css of the multicolumn combobox
         cssClass: 'multicolumn-customize',
         // set the grid settings for multicolumn combobox

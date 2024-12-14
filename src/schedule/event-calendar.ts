@@ -6,10 +6,9 @@ import {
 } from '@syncfusion/ej2-schedule';
 import { Sidebar, ClickEventArgs, Toolbar } from '@syncfusion/ej2-navigations';
 import { Calendar, ChangeEventArgs } from '@syncfusion/ej2-calendars';
-import { Button } from '@syncfusion/ej2/buttons';
-import { ColorPicker, TextBox } from '@syncfusion/ej2/inputs';
-import { Dialog } from '@syncfusion/ej2/popups';
-import { Internationalization, isNullOrUndefined, extend, createElement } from '@syncfusion/ej2/base';
+import { ColorPicker, TextBox } from '@syncfusion/ej2-inputs';
+import { Dialog } from '@syncfusion/ej2-popups';
+import { Internationalization, isNullOrUndefined, extend, createElement } from '@syncfusion/ej2-base';
 import { ListView, SelectEventArgs } from '@syncfusion/ej2-lists';
 import { Grid } from '@syncfusion/ej2-grids';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
@@ -172,17 +171,14 @@ Schedule.Inject(Week, Day, Month, Agenda, TimelineMonth, Year, DragAndDrop, Resi
         cssClass: 'calendar-edit-dialog',
         header: 'New Calendar',
         content: '<div>Calendar Name</div><div class="dialog-content"><input id="text-box"><input id="color-picker" type="color"></div>',
-        footerTemplate: '<button id="saveButton" class="e-control e-btn e-primary" data-ripple="true"></button>',
         showCloseIcon: true,
         animationSettings: { effect: 'Zoom' },
         visible: false,
         width: '320px',
-        isModal: true
+        isModal: true,
+        buttons: [{ buttonModel: { content: 'Add', isPrimary: true } }]
     });
     dialog.appendTo('#dialog');
-    const saveButton: Button = new Button();
-    saveButton.appendTo('#saveButton');
-
     let outlineTextBox: TextBox = new TextBox({
         placeholder: 'Enter the calendar name',
         cssClass: 'e-outline calendar-name',
@@ -194,9 +190,8 @@ Schedule.Inject(Week, Day, Month, Agenda, TimelineMonth, Year, DragAndDrop, Resi
 
     function updateTextValue(): void {
         if (isAdd) {
-            const enteredVal: HTMLInputElement = dialog.element.querySelector('#text-box');
-            if (enteredVal) {
-                let newValue: string = enteredVal.value.trim();
+            if (outlineTextBox) {
+                let newValue: string = outlineTextBox.value.trim();
                 newValue = newValue === "" ? "New Calendar" : newValue;
                 const newId: number = (calendars.length + 1);
                 const newItem: {
@@ -232,20 +227,17 @@ Schedule.Inject(Week, Day, Month, Agenda, TimelineMonth, Year, DragAndDrop, Resi
             const target: HTMLElement = args.event.target as HTMLElement;
             if (target.classList.contains('e-edit') && !isNullOrUndefined(args?.data) && !isNullOrUndefined(dialog)) {
                 calendarsList.refresh();
-                const inputElement: HTMLInputElement = dialog.element.querySelector('#text-box');
                 let dialogButton = dialog.element.querySelector('#saveButton');
-                if (inputElement) {
-                    inputElement.value = (args.data as Record<string, any>).name;
+                if (outlineTextBox) {
+                    outlineTextBox.value = (args.data as Record<string, any>).name;
                     colorPicker.value = (args.data as Record<string, any>).color;
-                    dialogButton.textContent = 'Save';
+                    dialog.buttons = [{ buttonModel: { content: 'Save', isPrimary: true } }];
                     dialog.header = 'Edit Calendar';
                     dialog.show();
-                    const send: HTMLButtonElement = dialog.element.querySelector('#saveButton');
-                    if (!isNullOrUndefined(send)) {
-                        send.onclick = (): void => {
-                            let enteredVal: HTMLInputElement = dialog.element.querySelector('#text-box');
-                            if (enteredVal) {
-                                const newValue: string = enteredVal.value.trim();
+                    dialog.buttons = [{
+                        buttonModel: { isPrimary: true, content: 'close' }, click: function () {
+                            if (outlineTextBox) {
+                                const newValue: string = outlineTextBox.value.trim();
                                 const newColor: string = colorPicker.value.trim();
                                 if (newValue.length > 0) {
                                     calendars = calendars.map((item: Record<string, any>): Record<string, any> => {
@@ -260,8 +252,8 @@ Schedule.Inject(Week, Day, Month, Agenda, TimelineMonth, Year, DragAndDrop, Resi
                                     dialog.hide();
                                 }
                             }
-                        };
-                    }
+                        }
+                    }]
                 }
             } else if (target.classList.contains('e-trash') && !isNullOrUndefined(args?.item) && calendars.length > 1) {
                 calendarsList.removeItem(args.item);
@@ -323,20 +315,18 @@ Schedule.Inject(Week, Day, Month, Agenda, TimelineMonth, Year, DragAndDrop, Resi
         if (iconAdd) {
             iconAdd.addEventListener("click", (args: MouseEvent): void => {
                 isAdd = true;
-                let dialogButton: HTMLElement = dialog.element.querySelector('#saveButton');
-                dialogButton.textContent = 'Add';
-                const inputElement: HTMLInputElement = dialog.element.querySelector('#text-box');
-                if (inputElement) {
-                    inputElement.value = "";
+                dialog.buttons = [{ buttonModel: { content: 'Add', isPrimary: true } }];
+                if (outlineTextBox) {
+                    outlineTextBox.value = "";
                     colorPicker.value = "#008000ff";
                 }
                 dialog.header = 'New Calendar';
                 dialog.show();
-                if (dialogButton != null) {
-                    dialogButton.onclick = (): void => {
+                dialog.buttons = [{
+                    buttonModel: { isPrimary: true, content: 'Add' }, click:  function() {
                         updateTextValue();
-                    };
-                }
+                    }
+                }]
             });
         }
     }

@@ -32,7 +32,7 @@ Grid.Inject(Selection, Sort, Filter);
                     placeholder: 'Select a value',
                     popupHeight: '200px',
                     allowFiltering: true,
-                    mode: 'Delimiter',
+                    mode: 'Box',
                 });
                 dropInstance.appendTo(flValInput);
             },
@@ -43,7 +43,7 @@ Grid.Inject(Selection, Sort, Filter);
             },
             read: (args: { column: Column; operator: string; fltrObj: Filter }) => {
                 grid.removeFilteredColsByField(args.column.field);
-                if ((dropInstance.value as string[]) && (dropInstance.value as string[]).length) {
+                if ((dropInstance.value as string[]).length) {
                     args.fltrObj.filterByColumn(
                         args.column.field,
                         args.operator,
@@ -69,13 +69,13 @@ Grid.Inject(Selection, Sort, Filter);
             { field: 'Name', headerText: 'Name', width: 120 },
             { field: 'MailID', headerText: 'Email ID', width: 150, template: '#mailIDTemplate' },
             { field: 'Designation', headerText: 'Designation', width: 160 },
-            { field: 'DateOfJoining', headerText: 'Date Joined', width: 170, format: 'yMd', textAlign: 'Right' },
+            { field: 'DateOfJoining', headerText: 'Date Joined', width: 170, format: 'yMd', textAlign: 'Right', type:'date' },
             { field: 'Team', headerText: 'Team(s)', width: 160 },
             { field: 'ReportTo', headerText: 'Reporter', width: 120 },
             { field: 'EmployeeAvailability', headerText: 'Availability', width: 150, template: '#statusTemplate' },
             { field: 'YearOfExperience', headerText: 'Experience', width: 180 },
             { field: 'AssetKit', headerText: 'Asset Kit', width: 180, filter: filter, template: '#assetTemplate' },
-            { field: 'AssetKitDistribution', headerText: 'Assigned Date', width: 170, format: 'yMd', textAlign: 'Right' },
+            { field: 'AssetKitDistribution', headerText: 'Assigned Date', width: 170, format: 'yMd', textAlign: 'Right', type:'date' },
             { field: 'Location', headerText: 'Location', width: 150, template: '#locationTemplate' },
             { field: 'PhoneNumber', headerText: 'Contact No', width: 150, textAlign: 'Right' },
         ],

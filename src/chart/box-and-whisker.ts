@@ -3,7 +3,7 @@ import {
     ChartTheme, Chart, getSaturationColor, Category, ILoadedEventArgs,
     IPointRenderEventArgs, BoxAndWhiskerSeries, Tooltip, getElement, BoxPlotMode
 } from '@syncfusion/ej2-charts';
-import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2HighContrastColors, pointFluent2DarkColors } from './theme-color';
+import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2HighContrastColors, pointFluent2DarkColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
 Chart.Inject(Category, BoxAndWhiskerSeries, Tooltip);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { EmitType } from '@syncfusion/ej2-base';
@@ -65,9 +65,12 @@ import { Browser } from '@syncfusion/ej2/base';
             args.fill = pointFluent2Colors[args.point.index % 10];
         } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
             args.fill = pointFluent2HighContrastColors[args.point.index % 10];
-        }
-        else if (selectedTheme === 'material3-dark') {
+        } else if (selectedTheme === 'material3-dark') {
             args.fill = pointMaterial3DarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'tailwind3-dark') {
+            args.fill = pointTailwind3DarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'tailwind3') {
+            args.fill = pointTailwind3Colors[args.point.index % 10];
         }
     };
     let chart: Chart = new Chart({

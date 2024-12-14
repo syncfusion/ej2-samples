@@ -452,8 +452,8 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
                 case 'Add':
                 case 'AddRecurrence':
                     let selectedCells: Element[] = scheduleObj.getSelectedElements();
-                    let activeCellsData: CellClickEventArgs = scheduleObj.getCellDetails(targetElement) ||
-                        scheduleObj.getCellDetails(selectedCells.length > 0 ? selectedCells : selectedTarget);
+                    const isRightClickInSelectedCells: boolean = selectedCells.some((cell: Element) => cell === selectedTarget);
+                    let activeCellsData: CellClickEventArgs = scheduleObj.getCellDetails(isRightClickInSelectedCells ? selectedCells : [selectedTarget]);
                     if (selectedMenuItem === 'Add') {
                         scheduleObj.openEditor(activeCellsData, 'Add');
                     } else {

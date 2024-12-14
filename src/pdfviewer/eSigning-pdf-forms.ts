@@ -40,11 +40,9 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     let andrewBackground = '#ffefef';
     let viewer = new PdfViewer({
         documentPath: "https://cdn.syncfusion.com/content/pdf/eSign_filling.pdf",
-        resourceUrl: 'https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib',
-        serviceUrl: 'https://services.syncfusion.com/js/production/api/pdfviewer',
+        resourceUrl: 'https://cdn.syncfusion.com/ej2/27.2.2/dist/ej2-pdfviewer-lib',
         documentLoad: documentLoaded,
     });
-
     viewer.enableToolbar = false;
     viewer.enableNavigationToolbar = false;
     viewer.enableAnnotationToolbar =false;
@@ -114,20 +112,88 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     finishBtnObj.appendTo('#finish-btn');
     finishBtnObj.disabled = true;
 
-    finishBtnObj.element.onclick = function () {
+    finishBtnObj.element.onclick = function (): void {
         for (var formField of viewer.formFieldCollections) {
-            viewer?.formDesignerModule.updateFormField(formField, { backgroundColor: finishedBackground }as any);
+            viewer?.formDesignerModule.updateFormField(formField, { backgroundColor: finishedBackground } as any);
         }
-        viewer.serverActionSettings.download = "FlattenDownload";
-        viewer.download();
-        viewer.serverActionSettings.download = "Download";
+        const url: string = "https://ej2services.syncfusion.com/js/development/api/pdfviewer/FlattenDownload";
+        viewer.saveAsBlob().then((blob: Blob) => {
+            return convertBlobToBase64(blob);
+        }).then((base64String: string) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+            const requestData = JSON.stringify({ base64String: base64String });
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    const responseBase64 = xhr.responseText.split('base64,')[1];
+                    if (responseBase64) {
+                        const blob = createBlobFromBase64(responseBase64, 'application/pdf');
+                        const blobUrl = URL.createObjectURL(blob);
+                        downloadDocument(blobUrl);
+                        viewer.load(xhr.responseText, null);
+                        finishBtnObj.disabled = true;
+                        listObj.enabled = false;
+                    } else {
+                        console.error('Invalid base64 response.');
+                    }
+                } else {
+                    console.error('Download failed:', xhr.statusText);
+                }
+            };
+            xhr.onerror = () => {
+                console.error('An error occurred during the download:', xhr.statusText);
+            };
+            xhr.send(requestData);
+        }).catch((error: Error) => {
+            console.error('Error saving Blob:', error);
+        });
     };
 
-    viewer.downloadEnd = function (args: any) {
-        viewer.load(args.downloadDocument, "");
-        finishBtnObj.disabled = true;
-        listObj.enabled = false;
-    };
+    function convertBlobToBase64(blob: Blob): Promise<string> {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = () => {
+                if (typeof reader.result === 'string') {
+                    resolve(reader.result);
+                } else {
+                    reject(new Error('Failed to convert Blob to Base64'));
+                }
+            };
+            reader.onerror = (error) => reject(error);
+        });
+    }
+
+    function createBlobFromBase64(base64String: string, contentType: string): Blob {
+        const sliceSize = 512;
+        const byteCharacters = atob(base64String);
+        const byteArrays: Uint8Array[] = [];
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            const slice = byteCharacters.slice(offset, offset + sliceSize);
+            const byteNumbers = new Array(slice.length);
+            for (let i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+            const byteArray = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+        return new Blob(byteArrays, { type: contentType });
+    }
+
+    function downloadDocument(blobUrl: string): void {
+        const anchorElement = document.createElement('a');
+        anchorElement.href = blobUrl;
+        anchorElement.target = '_parent';
+        const downloadFileName = viewer.fileName || 'default.pdf';
+        anchorElement.download = downloadFileName.endsWith('.pdf')
+            ? downloadFileName
+            : `${downloadFileName.split('.pdf')[0]}.pdf`;
+        document.body.appendChild(anchorElement);
+        anchorElement.click();
+        document.body.removeChild(anchorElement);
+        URL.revokeObjectURL(blobUrl);
+    }
 
     let dialogObj = new Dialog({
         width: '350px',

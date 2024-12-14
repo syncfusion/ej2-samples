@@ -1,29 +1,16 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     PdfViewer, Magnification, Navigation, LinkAnnotation, BookmarkView,
-    ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer, HighlightSettings, UnderlineSettings,
-    StrikethroughSettings, LineSettings, ArrowSettings, RectangleSettings, CircleSettings, PolygonSettings, DistanceSettings, PerimeterSettings,
-    AreaSettings, RadiusSettings, VolumeSettings, FreeTextSettings, DynamicStampItem, SignStampItem, StandardBusinessStampItem, CustomStampSettings,
-    InkAnnotationSettings, StickyNotesSettings, StampSettings, LoadEventArgs, PageChangeEventArgs,
-    CustomStamp,
-    ZoomChangeEventArgs,
-    AnnotationAddEventArgs,
-    AnnotationRemoveEventArgs
+    ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer, LoadEventArgs, PageChangeEventArgs, AnnotationAddEventArgs,AnnotationRemoveEventArgs
 } from '@syncfusion/ej2-pdfviewer';
-import { ChangeEventArgs, Switch } from '@syncfusion/ej2-buttons';
+import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { AppBar } from '@syncfusion/ej2-navigations';
 import { Button } from '@syncfusion/ej2-buttons';
-import { Toolbar, ItemModel } from '@syncfusion/ej2-navigations';
+import { Toolbar } from '@syncfusion/ej2-navigations';
 import { ComboBox } from '@syncfusion/ej2/dropdowns';
 import { ClickEventArgs } from '@syncfusion/ej2-buttons';
-import { extend } from '@syncfusion/ej2-base';
-import { fillColor } from '@syncfusion/ej2/spreadsheet';
-import { click } from '@syncfusion/ej2-grids';
-import { windowKeys } from '@syncfusion/ej2-richtexteditor/src/rich-text-editor/models/items';
-import { authorProperty } from '@syncfusion/ej2/documenteditor';
-import { RemovingEventArgs, Uploader } from '@syncfusion/ej2-inputs';
+import { Uploader } from '@syncfusion/ej2-inputs';
 import { Dialog } from '@syncfusion/ej2-popups';
-import { closePopup } from '@syncfusion/ej2/filemanager';
 // tslint:disable-next-line:max-line-length
 PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView, ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer, AppBar, Button);
 
@@ -35,7 +22,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     document.getElementById('defaultButtonDownload').addEventListener('click', downloadClicked);
 
     viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/programmatical-annotations.pdf";
-    viewer.serviceUrl="https://ej2services.syncfusion.com/js/development/api/pdfviewer";
+    viewer.resourceUrl ="https://cdn.syncfusion.com/ej2/27.1.55/dist/ej2-pdfviewer-lib";
 
     //Creation of appbar
     const defaultAppBarObj: AppBar = new AppBar({
@@ -50,6 +37,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     let redactionCount: number = 0;
     let annotation: any;
     let fileName: string ="programmatical-annotations.pdf";
+    const url = "https://ej2services.syncfusion.com/js/development/api/pdfviewer/Redaction";
 
     //Creation of Toolbar with open , text , image , pattern , blackout, whiteout and redaction buttons
     let primaryToolbarObj: Toolbar = new Toolbar({
@@ -77,7 +65,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
                 type: 'Separator'
             },
             {
-                prefixIcon: 'e-icons e-redact', tooltipText: 'Redaction' , cssClass: 'e-pv-redaction-container', text: 'Redact', id: 'redacticon', click: redaction.bind(this) , disabled: true
+                prefixIcon: 'e-icons e-redact', cssClass: 'e-pv-redaction-container', tooltipText: 'Redaction' , text: 'Redact', id: 'redacticon', click: redaction.bind(this) , disabled: true
             }
         ]
     });
@@ -90,13 +78,13 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     let secondaryToolbarObj: Toolbar = new Toolbar({
         items: [
             {
-                prefixIcon: 'e-icon e-chevron-left', cssClass: 'e-pv-previous-container', id: 'previousPage', tooltipText: 'Previous Page', click: previousClicked.bind(this) , disabled: true
+                prefixIcon: 'e-icon e-chevron-left', cssClass: 'e-pv-previous-container', id: 'previousPage', tooltipText: 'Previous Page', click: previousClicked.bind(this) , disabled: true 
             },
             {
                 template: CurrentpageNumber
             },
             {
-                prefixIcon: 'e-icon e-chevron-right', cssClass: 'e-pv-next-container', id: 'nextPage', tooltipText: 'Next Page' , click: nextClicked.bind(this) , disabled: true
+                prefixIcon: 'e-icon e-chevron-right', cssClass: 'e-pv-next-container', id: 'nextPage',tooltipText: 'Next Page', click: nextClicked.bind(this) , disabled: true
             },
             {
                 type: 'Separator'
@@ -279,13 +267,86 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
 
 
     //To download the redacted pdf 
-    function downloadClicked(): void {
-        viewer.fileName = fileName;
-        viewer.downloadFileName = fileName;
-        viewer.serverActionSettings.download = "Redaction";
-        viewer.download();
-        viewer.serverActionSettings.download = "Download";
+    function downloadClicked() {
+        viewer.saveAsBlob().then(function (value) {
+            let reader = new FileReader();
+            reader.readAsDataURL(value);
+            reader.onload = function (e) {
+                const base64String = e.target?.result as string;
+                const xhr:XMLHttpRequest = new XMLHttpRequest();
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+                const requestData = JSON.stringify({ base64String: base64String });
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        const blobUrl = createBlobUrl(xhr.responseText.split('base64,')[1], 'application/pdf');
+                        downloadDocument(blobUrl);
+                    }
+                    else {
+                        console.error('Download failed:', xhr.statusText);
+                    }
+                };
+                xhr.onerror = function () {
+                    console.error('An error occurred during the download:', xhr.statusText);
+                };
+                xhr.send(requestData);
+            };
+        }).catch(function (error) {
+            console.error('Error saving Blob:', error);
+        });
+    }
 
+    function createBlobUrl(base64String: string, contentType: string):any {
+        const sliceSize:number = 512;
+        const byteCharacters:string = atob(base64String);
+        const byteArrays:any = [];
+        for (let offset:number = 0; offset < byteCharacters.length; offset += sliceSize) {
+            const slice:string = byteCharacters.slice(offset, offset + sliceSize);
+            const byteNumbers:any = new Array(slice.length);
+            for (let i:number = 0; i < slice.length; i++) {
+                byteNumbers[parseInt(i.toString(), 10)] = slice.charCodeAt(i);
+            }
+            const byteArray:any = new Uint8Array(byteNumbers);
+            byteArrays.push(byteArray);
+        }
+        const blob:any = new Blob(byteArrays, { type: contentType });
+        return blob;
+    }
+
+    function downloadDocument(blobUrl: string):void {
+        const Url:any = URL || webkitURL;
+        blobUrl = Url.createObjectURL(blobUrl);
+        viewer.fileName = fileName;
+        const anchorElement:HTMLElement = document.createElement('a');
+        if (anchorElement.click) {
+            (anchorElement as HTMLAnchorElement).href = blobUrl;
+            (anchorElement as HTMLAnchorElement).target = '_parent';
+            if ('download' in anchorElement) {
+                const downloadFileName = viewer.fileName || 'downloadedFile.pdf';
+                if (downloadFileName) {
+                    if (downloadFileName.endsWith('.pdf')) {
+                        (anchorElement as HTMLAnchorElement).download = downloadFileName;
+                    }
+                    else {
+                        const splitPdf:string = downloadFileName.split('.pdf')[0] + '.pdf';
+                        (anchorElement as HTMLAnchorElement).download = splitPdf;
+                    }
+                }
+                else {
+                    (anchorElement as HTMLAnchorElement).download = 'Default.pdf';
+                }
+            }
+            (document.body || document.documentElement).appendChild(anchorElement);
+            anchorElement.click();
+        }
+        else {
+            if (window.top === window &&
+                blobUrl.split('#')[0] === window.location.href.split('#')[0]) {
+                const padCharacter:string = blobUrl.indexOf('?') === -1 ? '?' : '&';
+                blobUrl = blobUrl.replace(/#|$/, padCharacter + '$&');
+            }
+            window.open(blobUrl, '_parent');
+        }
     }
 
     //To read a new file
@@ -383,19 +444,32 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     //To redact the pdf in server side using the button click event
     function redaction(): void {
         if (redactionCount > 0) {
-            viewer.serverActionSettings.download = "Redaction";
             viewer.saveAsBlob().then(function (value) {
-                let data = value;
-                let reader = new FileReader();
+                const data = value;
+                const reader = new FileReader();
                 reader.readAsDataURL(data);
-                reader.onload = (e) => {
+                reader.onload = function (e) {
                     const base64String = e.target?.result as string;
-                    viewer.load(base64String, null);
+                    const xhr:XMLHttpRequest = new XMLHttpRequest();
+                    xhr.open('POST', url, true);
+                    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+                    const requestData = JSON.stringify({ base64String: base64String });
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            viewer.load(xhr.responseText, null);
+                        }
+                        else {
+                            console.error('Redaction failed:', xhr.statusText);
+                        }
+                    };
+                    xhr.onerror = function () {
+                        console.error('An error occurred during the redaction:', xhr.statusText);
+                    };
+                    xhr.send(requestData);
                 };
             });
             redactionCount = 0;
             updateRedaction();
-            viewer.serverActionSettings.download = "Download";
         }
     }
 

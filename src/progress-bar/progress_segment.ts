@@ -78,9 +78,9 @@ ProgressBar.Inject(ProgressAnnotation);
                         '<div id="point1" style="font-size:24px;font-weight:bold;color:#007bff"><span></span></div>';
                     break;
                 case 'tailwind':
-                        args.progressBar.annotations[0].content =
-                            '<div id="point1" style="font-size:24px;font-weight:bold;color:#4F46E5"><span></span></div>';
-                        break;
+                case 'tailwind3':
+                    args.progressBar.annotations[0].content = '<div id="point1" style="font-size:24px;font-weight:bold;color:#4F46E5"><span></span></div>';
+                    break;
                 case 'bootstrap-dark':
                 case 'fabric-dark':
                 case 'material-dark':
@@ -94,6 +94,9 @@ ProgressBar.Inject(ProgressAnnotation);
                     break;
                 case 'tailwind-dark':
                     args.progressBar.annotations[0].content = '<div id="point1" style="font-size:24px;font-weight:bold;color:#22D3EE"><span></span></div>';
+                    break;
+                case 'tailwind3-dark':
+                    args.progressBar.annotations[0].content = '<div id="point1" style="font-size:24px;font-weight:bold;color:#6366F1"><span></span></div>';
                     break;
                 case 'material3':
                     args.progressBar.annotations[0].content = '<div id="point1" style="font-size:24px;font-weight:bold;color:#6750A4"><span></span></div>';

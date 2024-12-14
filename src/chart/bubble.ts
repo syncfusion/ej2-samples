@@ -3,7 +3,7 @@ import { Chart, BubbleSeries, Tooltip, IPointRenderEventArgs, DataLabel } from '
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2-base';
-import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, bubbleMaterial3Colors, pointMaterial3Colors, bubbleMaterial3DarkColors, pointMaterial3DarkColors, bubbleFluent2Colors, pointFluent2Colors, bubbleFluent2HighContrastColors, pointFluent2HighContrastColors, bubbleFluent2DarkColors, pointFluent2DarkColors } from './theme-color';
+import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, bubbleMaterial3Colors, pointMaterial3Colors, bubbleMaterial3DarkColors, pointMaterial3DarkColors, bubbleFluent2Colors, pointFluent2Colors, bubbleFluent2HighContrastColors, pointFluent2HighContrastColors, bubbleFluent2DarkColors, pointFluent2DarkColors, pointTailwind3Colors, pointTailwind3DarkColors, bubbleTailwind3Colors, bubbleTailwind3DarkColors } from './theme-color';
 Chart.Inject(BubbleSeries, Tooltip, DataLabel);
 let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
     let selectedTheme: string = location.hash.split('/')[1];
@@ -68,6 +68,14 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = bubbleFluent2DarkColors[args.point.index % 10];
         args.border.color = pointFluent2DarkColors[args.point.index % 10];
     }
+    else if (selectedTheme === 'tailwind3-dark') {
+        args.fill = bubbleTailwind3DarkColors[args.point.index % 10];
+        args.border.color = pointTailwind3DarkColors[args.point.index % 10];
+    } 
+    else if (selectedTheme === 'tailwind3') {
+        args.fill = bubbleTailwind3Colors[args.point.index % 10];
+        args.border.color = pointTailwind3Colors[args.point.index % 10];
+    }
 };
 
 /**
@@ -118,7 +126,7 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
                 maxRadius: Browser.isDevice ? 6 : 8,
                 xName: 'x', yName: 'y', size: 'size',
                 border: { width: 2 }, tooltipMappingName: 'text',
-                marker: { dataLabel: { visible: true, name: 'dataLabelName', position: 'Middle', font: { fontWeight: '500', color: '#ffffff' } } }
+                marker: { dataLabel: { visible: true, name: 'dataLabelName', labelIntersectAction:'None', position: 'Middle', font: { fontWeight: '500', color: '#ffffff' } } }
             },
         ],
         // Initiazlize the point render event

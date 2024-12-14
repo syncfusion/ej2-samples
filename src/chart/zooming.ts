@@ -51,10 +51,14 @@ Chart.Inject(DateTime, DataLabel, LineSeries, Zoom, ScrollBar);
             enableScrollbar: true,
             mode: 'X',
             enablePinchZooming: true,
-            enableAnimation: true
+            enableAnimation: true,
+            showToolbar : true,
+            toolbarPosition:{y: -60, draggable: true},
         },
+        margin : {top: 20},
         width: Browser.isDevice ? '100%' : '80%',
-        title: 'Global Warming: Monthly Temperature Anomalies',
+        title: Browser.isDevice ? 'Monthly Temperature Anomalies' : 'Global Warming: Monthly Temperature Anomalies',
+        titleStyle: { textAlignment: Browser.isDevice ? 'Near' : 'Center' },
         load: (args: ILoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];
             selectedTheme = selectedTheme ? selectedTheme : 'fluent2';

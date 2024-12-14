@@ -83,7 +83,7 @@
 		{
             "url": "color-mapping",
             "name": "Color Mapping",
-            "description": "This demo for Essential JS2 TreeMap control visualizes the population level of various continents in 2011 based on the gender and age group.",
+            "description": "This demo for Essential<sup>®</sup> JS2 TreeMap control visualizes the population level of various continents in 2011 based on the gender and age group.",
             "category": "TreeMap",
             "api": {},
             "sourceFiles":[

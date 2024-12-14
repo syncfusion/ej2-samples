@@ -55,6 +55,7 @@ TreeGrid.Inject(Page);
         dataSource: columnNames,
         popupWidth: '100%',
         fields: { text: 'name', value: 'id' },
+        width:'140px',
         value: 'price',
         change: (e: ChangeEventArgs) => {
             let columnName: string = <string> e.value;
@@ -73,6 +74,7 @@ TreeGrid.Inject(Page);
         dataSource: priceFormat,
         fields: { text: 'format', value: 'id' },
         value: 'c2',
+        width:'140px',
         change: (e: ChangeEventArgs) => {
             let formatval: any = <string> e.value;
             let columnName: string = <string> dropDownColumn.value;

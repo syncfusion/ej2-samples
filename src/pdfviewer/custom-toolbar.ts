@@ -22,6 +22,7 @@ let isBookmarkOpen: boolean = false;
 let isBookmarkClick: boolean = false;
 let isBookmarkView: boolean = false;
 let isTextSearchBoxOpen: boolean = false;
+let searchActive: boolean = false;
 let bookmarkPopup: Dialog;
 let textSearchPopup: Dialog;
 let toolbarObj: Tool;
@@ -98,6 +99,21 @@ function previousClicked(args: ClickEventArgs): void {
    disableInkAnnotation();
     hidePopups();
     viewer.navigation.goToPreviousPage();
+    searchActive = true;
+}
+
+function checkSearchActive(args:any) {
+  if(!searchActive) {
+    viewer.textSearch.clearAllOccurrences();
+  }
+}
+
+function inputChange(args:any) {
+  viewer.textSearch.clearAllOccurrences();
+  searchActive = false;
+  if((searchInput as HTMLInputElement).value == '') {
+    updateSearchInputIcon(true);
+  }
 }
 
 function hidePopups(): void {
@@ -160,6 +176,8 @@ function searchClicked(args: ClickEventArgs): void {
     if (!isTextSearchBoxOpen) {
         textSearchPopup.show();
     } else {
+        updateSearchInputIcon(true);
+        (searchInput as HTMLInputElement).value = '';
         viewer.textSearch.cancelTextSearch();
         textSearchPopup.hide();
     }
@@ -614,6 +632,7 @@ function searchInputKeypressed(event: KeyboardEvent): void {
     enablePrevButton(true);
     enableNextButton(true);
     if (event.which === 13) {
+        searchActive = true;
         initiateTextSearch();
         updateSearchInputIcon(false);
     }
@@ -623,8 +642,10 @@ function searchClickHandler(): void {
     if (searchButton.classList.contains('e-pv-search-icon')) {
         viewer.textSearch.cancelTextSearch();
         initiateTextSearch();
+        updateSearchInputIcon(false);
     } else if (searchButton.classList.contains('e-pv-search-close')) {
         (searchInput as HTMLInputElement).value = '';
+        updateSearchInputIcon(true);
         searchInput.focus();
         viewer.textSearch.cancelTextSearch();
     }
@@ -643,6 +664,7 @@ function previousSearchClicked(): void {
 }
 
 function nextSearchClicked(): void {
+    searchActive = true;
     let searchString: string = (searchInput as HTMLInputElement).value;
     if (searchString) {
         viewer.textSearch.searchNext();
@@ -853,9 +875,11 @@ function onSignatureClick(event : any): void{
     new Menu({items:signMenu,select:onSignatureClick,showItemOnClick:true},"#signatureToolbar");
     new Menu({items:signMenu,select:onSignatureClick,showItemOnClick:true},"#formFieldSignatureToolbar");
     searchButton = document.getElementById('searchBtn');
+    document.addEventListener('click', checkSearchActive);
     searchInput.addEventListener('focus', () => { searchInput.parentElement.classList.add('e-input-focus'); });
     searchInput.addEventListener('blur', () => { searchInput.parentElement.classList.remove('e-input-focus'); });
     searchInput.addEventListener('keypress', searchInputKeypressed);
+    searchInput.addEventListener('input', inputChange);
     document.getElementById('previousSearch').addEventListener('click', previousSearchClicked);
     document.getElementById('nextSearch').addEventListener('click', nextSearchClicked);
     currentPageBox.addEventListener('keypress', onCurrentPageBoxKeypress);

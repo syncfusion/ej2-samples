@@ -10,7 +10,7 @@ import * as dataSource from './conditional-formatting-data.json';
 // custom code end
 (window as any).default = (): void => {
     loadCultureFiles();
-    let currencyFormat: string = getFormatFromType('Currency');
+    let currencyFormat: string = '$#,##0.00';
     //Initialize Spreadsheet component.
     let spreadsheet: Spreadsheet = new Spreadsheet({
         sheets: [{
@@ -29,7 +29,7 @@ import * as dataSource from './conditional-formatting-data.json';
             name: 'Inventory List',
             conditionalFormats: [
                 { type: 'GYRColorScale', range: 'C3:C18' },
-                { type: 'LessThan', cFColor: 'RedFT', value: '8/30/2019', range: 'G3:G18' }
+                { type: 'LessThan', cFColor: 'RedFT', value: '8-8-2019', range: 'G3:G18' }
             ],
             columns: [{
                 width: 100

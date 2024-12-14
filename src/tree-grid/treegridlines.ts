@@ -39,6 +39,7 @@ TreeGrid.Inject( Page );
         dataSource: lines,
         popupWidth: '100%',
         fields: { text: 'type', value: 'id' },
+        width:'130px',
         value: 'Vertical',
         change: (e: ChangeEventArgs) => {
             let lines: any = <string>e.value;

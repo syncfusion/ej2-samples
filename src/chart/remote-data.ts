@@ -14,7 +14,7 @@ Chart.Inject(ColumnSeries, Category, Legend, Tooltip, DataLabel);
 let dataManager: DataManager = new DataManager({
     url: 'https://services.syncfusion.com/js/production/api/orders'
 });
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, fluent2Colors, fluent2HighContrastColors, bootstrap5Colors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, fluent2Colors, fluent2HighContrastColors, bootstrap5Colors, pointTailwindDarkColors, pointTailwindColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
 let query: Query = new Query().take(5);
 let labelRender: EmitType<IAxisLabelRenderEventArgs> = (args: IAxisLabelRenderEventArgs): void => {
     if (args.axis.name === 'primaryYAxis') {
@@ -48,7 +48,15 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         args.fill = fluent2Colors[args.point.index % 10];
     } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
         args.fill = fluent2HighContrastColors[args.point.index % 10];
-    }
+    } else if (selectedTheme === 'tailwind') {
+        args.fill = pointTailwindColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind-dark') {
+        args.fill = pointTailwindDarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3') {
+        args.fill = pointTailwind3Colors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3-dark') {
+        args.fill = pointTailwind3DarkColors[args.point.index % 10];
+    } 
     else if (selectedTheme === 'bootstrap5' || selectedTheme === 'bootstrap5-dark') {
         args.fill = bootstrap5Colors[args.point.index % 10];
     } else {

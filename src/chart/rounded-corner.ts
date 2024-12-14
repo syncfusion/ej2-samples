@@ -81,7 +81,8 @@ let onPointRender: EmitType<IAccPointRenderEventArgs> = (args: IAccPointRenderEv
         }],
         tooltip: {
             enable: true,
-            header: '<b>Budget</b>', format: '${point.x}: <b>${point.y}%</b>'
+            header: '<b>Budget</b>', format: '${point.x}: <b>${point.y}%</b>',
+            enableHighlight: true
         },
         title: 'Company Budget Distribution',
         width: Browser.isDevice ? '100%' : '75%',

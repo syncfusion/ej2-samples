@@ -9,28 +9,29 @@ import * as data from './dataSource.json';
 (window as any).default = (): void => {
     loadCultureFiles();
     const columns: ColumnModel[] = [
-        { field: 'Name', header: 'Name', width: 90 },
-        { field: 'Position', header: 'Position', width: 85 },
-        { field: 'Department', header: 'Department', width: 98 }, 
-        { field: 'PhoneNo', header: 'Phone No', width: 105 },    
-        { field: 'Location', header: 'Location', width: 98 }
+        { field: 'Name', header: 'Name', width: 110 },
+        { field: 'Price', header: 'Price', width: 70 },
+        { field: 'Availability', header: 'Availability', width: 98 },    
+        { field: 'Category', header: 'Category', width: 95 },
+        { field: 'Rating', header: 'Rating', width: 60 }
     ];
 
     // Initialize multicolumn ComboBox component
     let multicolumnObj: MultiColumnComboBox = new MultiColumnComboBox({
         //set the local data to dataSource property
-        dataSource: (data as any).employeeData,
+        dataSource: (data as any).products,
         //set column of the multicolumn combobox
         columns: columns,
         //set the fields of the multicolumn combobox
-        fields: { text: 'Name', value: 'Department' },
+        fields: { text: 'Name', value: 'Category' },
         // set the height of the popup element
-        popupHeight: '230px',
+        popupHeight: '220px',
+        popupWidth: '500px',
         // set the placeholder to multiColumn comboBox input element
-        placeholder: 'Select a name',
+        placeholder: 'Select any product',
         showClearButton: true,
-        value: 'HR',
-        text: 'John Smith',
+        value: 'Electronics',
+        text: 'Smartphone',
         change: valueChange
     });
     multicolumnObj.appendTo('#default');

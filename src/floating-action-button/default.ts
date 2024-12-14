@@ -6,7 +6,7 @@ import { Fab } from "@syncfusion/ej2-buttons";
 
     //Icon and isPrimary is false
     let fabObj1: Fab = new Fab({
-        iconCss: 'fab-icons fab-icon-mic',
+        iconCss: 'e-icons e-people',
         position:'MiddleCenter',
         isPrimary: false,
         target: '#target1'
@@ -15,7 +15,7 @@ import { Fab } from "@syncfusion/ej2-buttons";
 
     //Icon with Label
     let fabObj3: Fab = new Fab({
-        iconCss: 'fab-icons fab-icon-people',
+        iconCss: 'e-icons e-people',
         position:'MiddleCenter',
         content:"Contact",
         target: '#target2'
@@ -27,7 +27,7 @@ import { Fab } from "@syncfusion/ej2-buttons";
         content: 'Disabled',
         disabled: true,
         position:'MiddleCenter',
-        iconCss: 'fab-icons fab-icon-people',
+        iconCss: 'e-icons e-people',
         target: '#target3',
     })
     fabObj2.appendTo('#fab3');

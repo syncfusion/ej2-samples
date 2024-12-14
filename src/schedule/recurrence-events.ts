@@ -31,4 +31,4 @@ Schedule.Inject(Day, Week, Month, Resize, DragAndDrop);
         }
     });
     checkBoxObj.appendTo('#editFollowingEvents');
-}; 
+};

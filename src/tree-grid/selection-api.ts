@@ -33,14 +33,16 @@ TreeGrid.Inject( Page );
     let start: NumericTextBox = new NumericTextBox({
         format: '##',
         min: 0,
-        max: 11
+        max: 11,
+        width: '95%'
     });
 
     start.appendTo('#start');
     let to: NumericTextBox = new NumericTextBox({
         min: 0,
         max: 11,
-        format: '##'
+        format: '##',
+        width: '95%'
     });
     to.appendTo('#to');
 

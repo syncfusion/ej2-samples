@@ -32,8 +32,8 @@ import { Grid, Edit } from '@syncfusion/ej2-grids';
      * FAB rendered with add icon and targeted to Grid component.
      */
     let fabObj: Fab = new Fab({
-        iconCss: 'fab-icons fab-icon-add',
-        target: '#Grid'
+        iconCss: 'e-icons e-plus',
+        target: '#target'
     })
     fabObj.appendTo('#fab')
 

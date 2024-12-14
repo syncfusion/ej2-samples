@@ -1,12 +1,10 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * ComboBox Template Sample
  */
 import { ComboBox } from '@syncfusion/ej2-dropdowns';
 import * as data from './dataSource.json';
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     // initialize ComboBox component
     let comboBoxObj: ComboBox = new ComboBox({
         // set the employees data to dataSource property

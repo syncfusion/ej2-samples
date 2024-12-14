@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointBootstrap5DarkColors, pointBootstrap5Colors, pointBootstrapColors, pointHighContrastColors, pointFluentDarkColors, pointFluentColors, pointTailwindDarkColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2HighContrastColors } from './theme-color';
+import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointBootstrap5DarkColors, pointBootstrap5Colors, pointBootstrapColors, pointHighContrastColors, pointFluentDarkColors, pointFluentColors, pointTailwindDarkColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2HighContrastColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
 import { ChartTheme, Chart3D, Category3D, Legend3D, Chart3DPointRenderEventArgs, ColumnSeries3D, Tooltip3D, Chart3DLoadedEventArgs, Highlight3D } from '@syncfusion/ej2-charts';
 Chart3D.Inject(ColumnSeries3D, Category3D, Legend3D, Tooltip3D, Highlight3D);
 import { Browser, EmitType } from '@syncfusion/ej2-base';
@@ -41,6 +41,10 @@ let labelRender: EmitType<Chart3DPointRenderEventArgs> = (args: Chart3DPointRend
         args.fill = pointFluent2Colors[args.point.index % 10];
     } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
         args.fill = pointFluent2HighContrastColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3-dark') {
+        args.fill = pointTailwind3DarkColors[args.point.index % 10];
+    } else if (selectedTheme === 'tailwind3') {
+        args.fill = pointTailwind3Colors[args.point.index % 10];
     }
 };
 /**

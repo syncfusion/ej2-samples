@@ -6,7 +6,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 // Importing needed dependencies for diagram
 import {
     NodeModel, Diagram, ISelectionChangeEventArgs, SelectorConstraints, UserHandleModel, BasicShapes,
-    SymbolPalette, UndoRedo
+    SymbolPalette, UndoRedo, Node
 } from '@syncfusion/ej2-diagrams';
 import { ColorPicker, ColorPickerEventArgs, NumericTextBox, ChangeEventArgs as NumericChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';

@@ -26,7 +26,7 @@
     <link href="src/common/lib/highlightjs/styles/default.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"></link>
     <!-- Theme Reference -->
-    <link id="themelink" href="styles/fluent2.css" rel="stylesheet" />
+    <link id="themelink" href="styles/tailwind3.css" rel="stylesheet" />
     <link href="styles/index.css" rel="stylesheet" />
     <link href="src/common/lib/content/codemirror.css" rel="stylesheet"></link>
     <script src="src/skipChunk.js" type="text/javascript"></script>
@@ -118,7 +118,7 @@
                 </div>
                 <div class='sb-header-item sb-table-cell'>
                     <div id='sb-header-text' class='e-sb-header-text'>
-                        <span class='sb-header-text-left'>Essential Studio for</span>
+                        <span class='sb-header-text-left'>Essential Studio<sup>®</sup> for</span>
                         <span class='sb-header-text-right' role="button" tabindex="0">JavaScript</span>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                         <span class='sb-icons sb-theme-select sb-icon-icon-selection'></span>
                         <span class="switch-text">Fluent 2</span>
                     </li>
-                    <li class="e-list" id="tailwind">
+                    <li class="e-list" id="tailwind3">
                         <span class='sb-icons sb-theme-select sb-icon-icon-selection'></span>
                         <span class="switch-text">Tailwind CSS</span>
                     </li>
@@ -240,11 +240,15 @@
                         <span class='sb-icons sb-theme-select sb-icon-icon-selection'></span>
                         <span class="switch-text">Fluent 2 High Contrast</span>
                     </li>
-                    <li class="e-list" id="highcontrast">
+                    <li class="e-list sb-hide" id="highcontrast">
                         <span class='sb-icons sb-theme-select sb-icon-icon-selection'></span>
                         <span class="switch-text">High Contrast</span>
                     </li>
-                    <li class="e-list" id="fluent" role="listitem">
+                    <li class="e-list sb-hide" id="tailwind" role="listitem">
+                        <span class='sb-icons sb-theme-select sb-icon-icon-selection'></span>
+                        <span class="switch-text">Tailwind</span>
+                    </li>
+                    <li class="e-list sb-hide" id="fluent" role="listitem">
                         <span class='sb-icons sb-theme-select sb-icon-icon-selection'></span>
                         <span class="switch-text">Fluent</span>
                     </li>
@@ -267,9 +271,10 @@
                                 <option value="material3">Material 3</option>
                                 <option value="bootstrap5">Bootstrap 5</option>
                                 <option value="fluent2">Fluent 2</option>
-                                <option value="tailwind">Tailwind CSS</option>
+                                <option value="tailwind3">Tailwind CSS</option>
                                 <option value="fluent2-highcontrast">Fluent 2 High Contrast</option>
                                 <option value="highcontrast">High Contrast</option>
+                                <option value="highcontrast">Tailwind</option>
                                 <option value="fluent">Fluent</option>
                             </select>
                         </div>
@@ -420,7 +425,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
-                                    <div id="banner-head" class="banner-header">Transform your JavaScript web apps today with Syncfusion Javascript controls</div>
+                                    <div id="banner-head" class="banner-header">Transform your JavaScript web apps today with Syncfusion<sup>®</sup> Javascript controls</div>
                                 </div>
                                 <div class="col-sm-12 cnt-area">
                                     <div class="content-area">

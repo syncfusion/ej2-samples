@@ -68,7 +68,6 @@ TreeGrid.Inject(Page);
         max: 4,
         format: '##',
         value: 2,
-        width: 110,
         change: (e: ChangeEventArgs) => {
             pageCount.value = pageCount.value > 8 ? 8 : pageCount.value;
             treegrid.pageSettings.pageCount = pageCount.value;
@@ -82,7 +81,6 @@ TreeGrid.Inject(Page);
         max: 17,
         format: '##',
         value: 1,
-        width: 110,
         change: (e: ChangeEventArgs) => {
             currentPage.value = currentPage.value > currentPage.max ? currentPage.max : currentPage.value;
             let pageNumber: number = currentPage.value;

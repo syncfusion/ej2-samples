@@ -176,13 +176,13 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
             leftBar = document.querySelector('#left-sidebar');
             transformElement = document.querySelector('#right-pane');
         }
-        if (e.targetItem === 'Maximize') {
+        if (e.targetItem === 'Maximize' && sbCntEle != null || sbHdrEle != null) {
             if (Browser.isDevice && Browser.isIos) { addClass([sbCntEle, sbHdrEle], ['hide-header']); }
             addClass([leftBar], ['e-close']);
             removeClass([leftBar], ['e-open']);
             if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
             transformElement.style.transform = 'inherit';
-        } else if (e.targetItem === 'Minimize') {
+        } else if (e.targetItem === 'Minimize' && sbCntEle != null || sbHdrEle != null) {
             if (Browser.isDevice && Browser.isIos) { removeClass([sbCntEle, sbHdrEle], ['hide-header']); }
             removeClass([leftBar], ['e-close']);
             if (!Browser.isDevice) {

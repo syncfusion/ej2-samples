@@ -59,6 +59,7 @@ TreeGrid.Inject(Reorder, Page);
         dataSource: columnNames,
         popupWidth: '100%',
         fields: { text: 'name', value: 'id' },
+        width:'130px',
         value: 'taskID',
         change: (e: ChangeEventArgs) => {
             let columnName: string = <string>e.value;
@@ -72,6 +73,7 @@ TreeGrid.Inject(Reorder, Page);
     let dropDownIndex: DropDownList = new DropDownList({
         dataSource: columnsIndex,
         fields: { text: 'name', value: 'id' },
+        width:'130px',
         value: '0',
         change: (e: ChangeEventArgs) => {
             let columnName: string = <string>dropDownColumn.value;

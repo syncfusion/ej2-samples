@@ -30,7 +30,7 @@ Grid.Inject(Page, Selection, Sort, Group, Filter, Reorder, Edit);
                 },
                 { field: 'CustomerID', headerText: 'Customer Name', width: 150, textAlign: 'Left' },
                 {
-                    field: 'OrderDate', headerText: 'Order Date', width: 130, type: 'date', format: 'yMd', editType: 'datepickeredit', textAlign: 'Right'
+                    field: 'OrderDate', headerText: 'Order Date', width: 130, type: 'date', format: 'yMd', editType: 'datepickeredit', textAlign: 'Right', allowGrouping: false
                 },
                 { field: 'Freight', width: 120, format: 'C2', editType: 'numericedit', textAlign: 'Right' },
                 { field: 'ShipCountry', headerText: 'Ship Country', textAlign: 'Left', width: 150, editType: 'dropdownedit' }

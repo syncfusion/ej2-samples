@@ -1,12 +1,10 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * DropDownList Template Sample
  */
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import * as data from './dataSource.json';
 
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     // initialize DropDownList component
     let dropDownListObj: DropDownList = new DropDownList({
         // set the employees data to dataSource property

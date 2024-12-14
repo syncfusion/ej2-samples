@@ -12,7 +12,7 @@ import { editingData, editingResources } from './data-source';
 Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort);
 let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpenEventArgs) => {
     let record: IGanttData = args.rowData;
-    if (args.type !== 'Header') {
+    if (args.type !== 'Header' && record) {
         if (!record.hasChildRecords) {
             args.hideItems.push('Collapse the Row');
             args.hideItems.push('Expand the Row');

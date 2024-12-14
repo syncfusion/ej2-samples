@@ -11,6 +11,7 @@ import * as dataSource from './protect-sheet-data.json';
 (window as any).default = (): void => {
     loadCultureFiles();
 
+    let numberFormat: string = '$#,##0.00';
     //Initialize Spreadsheet component
     let spreadsheet: Spreadsheet = new Spreadsheet({
         // To protect the workbook
@@ -33,7 +34,7 @@ import * as dataSource from './protect-sheet-data.json';
                     value: 'Loan Amount:'
                 }, {
                     value: '100000',
-                    format: getFormatFromType('Currency')
+                    format: numberFormat
                 }]
             }, {
                 cells: [{
@@ -63,7 +64,7 @@ import * as dataSource from './protect-sheet-data.json';
                     value: 'Loan EMI:'
                 }, {
                     value: '8698.84',
-                    format: getFormatFromType('Currency')
+                    format: numberFormat
                 }]
             }, {
                 cells: [{
@@ -78,7 +79,7 @@ import * as dataSource from './protect-sheet-data.json';
                     value: 'Total Repayment Amount:'
                 }, {
                     value: '104386.11',
-                    format: getFormatFromType('Currency')
+                    format: numberFormat
                 }]
             }, {
                 cells: [{
@@ -86,7 +87,7 @@ import * as dataSource from './protect-sheet-data.json';
                     value: 'Total Interest Amount:'
                 }, {
                     value: '4386.11',
-                    format: getFormatFromType('Currency')
+                    format: numberFormat
                 }]
             }],
             columns: [{
@@ -120,7 +121,7 @@ import * as dataSource from './protect-sheet-data.json';
         created: () => {
             //Applied style and number formatting to a range
             spreadsheet.cellFormat({ fontWeight: 'bold', textAlign: 'center' }, 'EMI Schedule!A1:F1');
-            spreadsheet.numberFormat(getFormatFromType('Currency'), 'EMI Schedule!C2:F13');
+            spreadsheet.numberFormat(numberFormat, 'EMI Schedule!C2:F13');
             spreadsheet.numberFormat('m/d/yyyy', 'EMI Calculator!C5:C5');
             spreadsheet.numberFormat('m/d/yyyy', 'EMI Schedule!B2:B13');
         },

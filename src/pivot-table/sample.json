@@ -16,6 +16,13 @@
             "description": "This demo for Essential JS2 Pivot Table control shows the basic rendering of the pivot table with minimum configuration"
         },
         {
+            "url": "classic-layout",
+            "name": "Classic Layout",
+            "category": "Pivot Table",
+            "type": "new",
+            "description": "This sample demonstrates the classic (also known as tabular) layout view option of the pivot table."
+        },
+        {
             "url": "live-data",
             "name": "Live Data",
             "category": "Pivot Table",
@@ -101,7 +108,6 @@
         {
             "url": "conditional-formatting",
             "name": "Conditional Formatting",
-            "type": "update",
             "category": "User Interaction",
             "description": "This demo for Essential JS2 Pivot Table control demonstrate formatting the appearance of the pivot table cells with values based on the applied conditions"
         },

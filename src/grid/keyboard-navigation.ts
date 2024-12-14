@@ -38,7 +38,7 @@ Grid.Inject(Page, Selection, Sort, Group, Filter, Reorder, Edit, Toolbar);
                 },
                 {
                     field: 'OrderDate', headerText: 'Order Date', editType: 'datepickeredit', textAlign: 'Right',
-                    format: 'yMd', width: 170
+                    format: 'yMd', width: 170, allowGrouping: false
                 },
                 {
                     field: 'ShipCountry', headerText: 'Ship Country', editType: 'dropdownedit', width: 150,

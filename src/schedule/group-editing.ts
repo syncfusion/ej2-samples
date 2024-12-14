@@ -11,13 +11,12 @@ Schedule.Inject(Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    // custom code start
+
     interface TemplateFunction extends Window {
         getEmployeeImage?: Function;
         getEmployeeName?: Function;
         getEmployeeDesignation?: Function;
     }
-    // custom code end
 
     let monthEventTemplate: string = '<div class="subject">${Subject}</div>';
     let scheduleOptions: ScheduleModel = {
@@ -59,7 +58,6 @@ Schedule.Inject(Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule(scheduleOptions);
     scheduleObj.appendTo(document.getElementById('Schedule'));
 
-    // custom code start
     (window as TemplateFunction).getEmployeeName = (value: ResourceDetails) => {
         return ((value as ResourceDetails).resourceData) ?
             (value as ResourceDetails).resourceData[(value as ResourceDetails).resource.textField] : value.resourceName;
@@ -75,5 +73,4 @@ Schedule.Inject(Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop);
         return (resourceName === 'Margaret') ? 'Sales Representative' : (resourceName === 'Robert') ?
             'Vice President, Sales' : 'Inside Sales Coordinator';
     };
-    // custom code end
 };

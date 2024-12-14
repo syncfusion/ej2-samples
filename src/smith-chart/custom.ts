@@ -19,8 +19,8 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
         // custom code start
         load: (args: ISmithchartLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Fluent2';
-            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast'));
+            theme = theme ? theme : 'Material';
+            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
         // custom code end
         horizontalAxis: {
@@ -48,6 +48,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                 width: 2,
                 tooltip: { visible: true },
                 enableSmartLabels: false,
+                fill: '#0F94C4',
                 marker: {
                     shape: 'rectangle',
                     visible: true,

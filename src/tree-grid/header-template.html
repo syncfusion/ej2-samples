@@ -289,53 +289,62 @@
         background-color: #fafafa00;
     }
 
-    .tailwind-dark img.taskName {
+    .tailwind-dark img.taskName,
+    .tailwind3-dark img.taskName {
         content: url("src/tree-grid/images/Task Name.png");
         padding-left: 7px;
         padding-right: 3px;
         width: 26px;
     }
-    .tailwind img.taskName {
+    .tailwind img.taskName,
+    .tailwind3 img.taskName {
         content: url("src/tree-grid/images/__Task name.png");
         padding-left: 8px;
         padding-right: 3px;
         width: 27px;
     }
-    .tailwind-dark img.resources {
+    .tailwind-dark img.resources,
+    .tailwind3-dark img.resources {
         content: url("src/tree-grid/images/Resources.png");
         padding-left: 0px;
         padding-right: 5px;
         width: 21px;
     }
-    .tailwind img.resources {
+    .tailwind img.resources,
+    .tailwind3 img.resources {
         content: url("src/tree-grid/images/__Resources.png");
         padding-left: 3px;
         padding-right: 5px;
         width: 24px;
     }
-    .tailwind-dark img.startDate {
+    .tailwind-dark img.startDate,
+    .tailwind3-dark img.startDate  {
         content: url("src/tree-grid/images/Start Date.png");
         padding-left: 3px;
         padding-right: 4px;
         width: 23px;
     }
-    .tailwind img.startDate {
+    .tailwind img.startDate,
+    .tailwind3 img.startDate {
         content: url("src/tree-grid/images/__Start name.png");
         padding-left: 7px;
         padding-right: 4px;
         width: 27px;
     }
-    .tailwind-dark img.duration {
+    .tailwind-dark img.duration,
+    .tailwind3-dark img.duration {
         content: url("src/tree-grid/images/Duration.png");
         padding-left: 1px;
         padding-right: 5px;
     }
-    .tailwind img.duration {
+    .tailwind img.duration,
+    .tailwind3 img.duration {
         content: url("src/tree-grid/images/__Duration.png");
         padding-left: 4px;
         padding-right: 5px;
     }
-    .tailwind-dark img.progress {
+    .tailwind-dark img.progress,
+    .tailwind3-dark img.progress  {
         content: url("src/tree-grid/images/Progress.png");
         padding-left: 5px;
         padding-right: 6px;
@@ -344,7 +353,8 @@
         height: 16px;
 	    background-color: #fafafa00;
     }
-    .tailwind img.progress {
+    .tailwind img.progress,
+    .tailwind3 img.progress {
         content: url("src/tree-grid/images/__progress.png");
         padding-left: 8px;
         padding-right: 6px;
@@ -354,43 +364,51 @@
         background-color: #fafafa00;
     }
 
-    .bootstrap5-dark img.taskName {
+    .bootstrap5-dark img.taskName,
+    .bootstrap5\.3-dark img.taskName {
         content: url("src/tree-grid/images/Task Name.png");
         padding-left: 6px;
         padding-right: 3px;
         width: 25px;
     }
-    .e-bigger.bootstrap5-dark img.taskName {
+    .e-bigger.bootstrap5-dark img.taskName,
+    .e-bigger.bootstrap5\.3-dark img.taskName {
         padding-bottom: 35px;
         padding-left: 9px;
         padding-right: 0px;
     }
-    .bootstrap5-dark img.resources {
+    .bootstrap5-dark img.resources,
+    .bootstrap5\.3-dark img.resources {
         content: url("src/tree-grid/images/Resources.png");
         padding-left: 0px;
         padding-right: 5px;
         width: 21px;
     }
-    .bootstrap5-dark img.startDate {
+    .bootstrap5-dark img.startDate,
+    .bootstrap5\.3-dark img.startDate {
         content: url("src/tree-grid/images/Start Date.png");
         padding-left: 3px;
         padding-right: 4px;
         width: 23px;
     }
-    .e-bigger.bootstrap5-dark img.startDate {
+    .e-bigger.bootstrap5-dark img.startDate,
+    .e-bigger.bootstrap5\.3-dark img.startDate {
         padding-bottom: 33px;
         padding-left: 4px;
     }
-    .bootstrap5-dark img.duration {
+    .bootstrap5-dark img.duration,
+    .bootstrap5\.3-dark img.duration {
         content: url("src/tree-grid/images/Duration.png");
         padding-left: 1px;
         padding-right: 5px;
         width: 22px;
     }
-    .e-bigger.bootstrap5-dark img.duration {
+    .e-bigger.bootstrap5-dark img.duration,
+    .e-bigger.bootstrap5\.3-dark img.duration {
     margin-bottom: 3px;
     }
-    .bootstrap5-dark img.progress {
+    .bootstrap5-dark img.progress,
+    .bootstrap5\.3-dark img.progress {
         content: url("src/tree-grid/images/Progress.png");
         margin-top: -5px;
         padding-left: 10px;
@@ -638,6 +656,12 @@
     margin: 0px;
     height: 16px;
     width: 31px;
+    }
+
+    .e-headercell.e-templatecell{
+        .taskName, .startDate, .resources, .duration, .progress{
+            padding-bottom: 2px;
+        }
     }
 </style>
 <!-- custom code end -->

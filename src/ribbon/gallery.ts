@@ -4,7 +4,7 @@ import { ListView, SelectEventArgs as SelectListEventArgs } from "@syncfusion/ej
 import { MenuItemModel, MenuEventArgs } from "@syncfusion/ej2-navigations";
 import { FilteringEventArgs, SelectEventArgs } from "@syncfusion/ej2-dropdowns";
 import { Query } from "@syncfusion/ej2-data";
-import { Toast } from '@syncfusion/ej2/notifications';
+import { Toast } from '@syncfusion/ej2-notifications';
 import { ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 
 Ribbon.Inject(RibbonFileMenu, RibbonColorPicker, RibbonGallery);

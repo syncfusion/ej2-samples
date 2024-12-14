@@ -5,6 +5,11 @@
             margin-top: 30px;
         }
     }
+    @media (min-width: 990px) and (max-width: 1300px) {
+        .property-panel-section{
+            padding-left:0px;
+        }
+    }
 </style>
 <!-- custom code end -->
 <div class="col-lg-9 control-section">
@@ -16,36 +21,29 @@
 <div class="col-lg-3 property-section">
     <table id="property" title="Properties" style="width: 100%">
         <tr>
-            <td style="width: 30%">
+            <td>
                 <div>Column</div>
             </td>
-            <td style="width: 70%;padding-right: 10px">
+            <td style="width: 80%;padding-right: 10px">
                 <div id='columnddl'>
                      <input type="text" tabindex="1" id='columns' />
                 </div>
             </td>
         </tr>
         <tr>
-            <td style="width: 30%">
+            <td>
                 <div>Direction</div>
             </td>
-            <td style="width: 70%;padding-right: 10px">
+            <td style="width: 80%;padding-right: 10px">
                 <div>
                     <input type="text" tabindex="1" id='direction' />
                 </div>
             </td>
         </tr>
         <tr>
-            <td style="width: 30%">
-                <div>
-                    <button class="btn btn-default" type="button" id="sort">Sort</button>
-                </div>
-
-            </td>
-            <td style="width: 70%; padding:10px 10px 10px 0px">
-                <div>
+            <td>
+                    <button class="btn btn-default" type="button" id="sort" style="margin-left: 15px;">Sort</button>
                     <button class="btn btn-default" type="button" id="clear">Clear</button>
-                </div>
             </td>
         </tr>
     </table>

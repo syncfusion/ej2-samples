@@ -3,7 +3,7 @@ import { Schedule, TimelineViews, TimelineMonth, Resize, DragAndDrop, CellClickE
 import { ResourceDetails, ActionEventArgs } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 import { DragAndDropEventArgs, TreeView } from '@syncfusion/ej2-navigations';
-import { closest, remove, addClass } from '@syncfusion/ej2-base';
+import { closest, remove, addClass, extend } from '@syncfusion/ej2-base';
 
 Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
@@ -13,7 +13,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    // custom code start
+
     // tslint:disable-next-line:max-func-body-length
     interface TemplateFunction extends Window {
         getConsultantName?: Function;
@@ -43,7 +43,6 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             return (value as ResourceDetails).resourceData.Designation;
         }
     };
-    // custom code end
 
     let scheduleObj: Schedule = new Schedule({
         width: '100%',
@@ -89,7 +88,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
             }
         ],
         eventSettings: {
-            dataSource: (dataSource as Record<string, any>).hospitalData,
+            dataSource: <Object[]>extend([], (dataSource as Record<string, any>).hospitalData, null, true),
             fields: {
                 subject: { title: 'Patient Name', name: 'Name' },
                 startTime: { title: 'From', name: 'StartTime' },

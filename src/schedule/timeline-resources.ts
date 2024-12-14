@@ -13,7 +13,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
-    // custom code start
+
     interface TemplateFunction extends Window {
         getRoomName?: Function;
         getRoomType?: Function;
@@ -31,7 +31,7 @@ Schedule.Inject(TimelineViews, TimelineMonth, Resize, DragAndDrop);
     (window as TemplateFunction).getRoomCapacity = (value: ResourceDetails) => {
         return (value as ResourceDetails).resourceData.capacity;
     };
-    // custom code end
+
     let scheduleObj: Schedule = new Schedule({
         cssClass: 'room-schedule',
         width: '100%',

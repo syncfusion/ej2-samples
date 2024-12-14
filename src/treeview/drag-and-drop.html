@@ -122,12 +122,14 @@
     .e-rtl .custom-delete {
         float: left;
     }
-    .highcontrast .custom-delete::before {
+   .highcontrast .custom-tree .custom-delete::before,
+   .taildwind3-dark .custom-tree .custom-delete::before,
+   .e-bigger.taildwind3-dark .custom-tree .custom-delete::before {
         color: #fff;
     }
 	.highcontrast .e-active.e-list-item .custom-delete::before,
-    	.fluent2-highcontrast .e-active.e-list-item .custom-delete::before,
-    	.fluent2-highcontrast .e-hover.e-list-item .custom-delete::before {
+        .fluent2-highcontrast .e-active.e-list-item .custom-delete::before,
+        .fluent2-highcontrast .e-hover.e-list-item .custom-delete::before {
 	    color: #000;
 	}
     @font-face {
@@ -154,6 +156,7 @@
   .fluent2-highcontrast .custom-delete {
       margin-top: 1px;
   }
+
 </style>
 <!-- custom code end -->
 <div id="action-description">

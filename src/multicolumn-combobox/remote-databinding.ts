@@ -31,9 +31,10 @@ import { Query, DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
         // bind the Query instance to query property
         query: new Query().select(['FirstName', 'EmployeeID', 'Designation', 'Country']).take(10).requiresCount(),
         // set the placeholder to multiColumn comboBox input element
-        placeholder: 'Select a name',
+        placeholder: 'eg. Andrew',
         // set the height of the popup element
-        popupHeight: '230px',
+        popupHeight: '210px',
+        popupWidth: '500px',
         allowSorting: false
     });
     multicolumnObj.appendTo('#remote');

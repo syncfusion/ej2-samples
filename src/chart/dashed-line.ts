@@ -145,6 +145,10 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Category,Crosshair, ChartAnn
           annotationColor = 'light';
         } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
           annotationColor = 'dark';
+        } else if (selectedTheme === 'tailwind3-dark') {
+          annotationColor = 'dark'
+        } else if (selectedTheme === 'tailwind3') {
+          annotationColor = 'light'
         } else {
           annotationColor = 'light'
         }

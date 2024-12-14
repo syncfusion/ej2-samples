@@ -30,7 +30,6 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
                     scheduleObj.eventSettings.dataSource = data as Object[];
                 }
             });
-
             connection.start().then(() => { isHubConnected = true; }).catch(() => { isHubConnected = false; });
         },
         navigating: (args: NavigatingEventArgs) => {

@@ -3,12 +3,11 @@ import {
     Diagram,
     NodeModel,
     ConnectorModel,
-    DiagramTools,
+    DiagramTools,DataBinding, FlowchartLayout, FlowShapeModel
 } from '@syncfusion/ej2-diagrams';
 import { ChangeEventArgs, DropDownList } from '@syncfusion/ej2-dropdowns';
-import { DataManager } from '@syncfusion/ej2/data';
-import { DataBinding, FlowchartLayout, FlowShapeModel } from '@syncfusion/ej2/diagrams';
-import { NumericTextBox } from '@syncfusion/ej2/inputs';
+import { DataManager } from '@syncfusion/ej2-data';
+import { NumericTextBox } from '@syncfusion/ej2-inputs';
 Diagram.Inject(FlowchartLayout, DataBinding);
 
 let diagram: Diagram;

@@ -6,7 +6,7 @@
           "Gender":"Female",
           "Department":"Human Resources",
           "Date of Joining":"08-22-2018",
-          "Salary":"$32940.53",
+          "Salary":"32940.53",
           "City":"Valencia"
        },
        {
@@ -15,7 +15,7 @@
           "Gender":"Female",
           "Department":"Accounting",
           "Date of Joining":"02-19-2016",
-          "Salary":"$12769.67",
+          "Salary":"12769.67",
           "City":"Thị Xã Lai Châu"
        },
        {
@@ -24,7 +24,7 @@
           "Gender":"Male",
           "Department":"Legal",
           "Date of Joining":"03-12-2019",
-          "Salary":"$18565.98",
+          "Salary":"18565.98",
           "City":"Lachute"
        },
        {
@@ -33,7 +33,7 @@
           "Gender":"Male",
           "Department":"Marketing",
           "Date of Joining":"11-02-2018",
-          "Salary":"$36075.62",
+          "Salary":"36075.62",
           "City":"Cincinnati"
        },
        {
@@ -42,7 +42,7 @@
           "Gender":"Male",
           "Department":"Sales",
           "Date of Joining":"07-13-2018",
-          "Salary":"$19845.66",
+          "Salary":"19845.66",
           "City":"Liudu"
        },
        {
@@ -51,7 +51,7 @@
           "Gender":"Male",
           "Department":"Services",
           "Date of Joining":"08-30-2016",
-          "Salary":"$25054.73",
+          "Salary":"25054.73",
           "City":"Kitamilo"
        },
        {
@@ -60,7 +60,7 @@
           "Gender":"Female",
           "Department":"Marketing",
           "Date of Joining":"09-16-2010",
-          "Salary":"$21552.49",
+          "Salary":"21552.49",
           "City":"Qandala"
        },
        {
@@ -69,7 +69,7 @@
           "Gender":"Male",
           "Department":"Legal",
           "Date of Joining":"11-25-2019",
-          "Salary":"$12751.78",
+          "Salary":"12751.78",
           "City":"Parakou"
        },
        {
@@ -78,7 +78,7 @@
           "Gender":"Female",
           "Department":"Engineering",
           "Date of Joining":"11-24-2017",
-          "Salary":"$34244.64",
+          "Salary":"34244.64",
           "City":"Saint-Ambroise"
        },
        {
@@ -87,7 +87,7 @@
           "Gender":"Female",
           "Department":"Marketing",
           "Date of Joining":"01-21-2019",
-          "Salary":"$25722.37",
+          "Salary":"25722.37",
           "City":"Huashi"
        },
        {
@@ -96,7 +96,7 @@
           "Gender":"Male",
           "Department":"Human Resources",
           "Date of Joining":"09-25-2019",
-          "Salary":"$47190.81",
+          "Salary":"47190.81",
           "City":"Krajan Nglinggis"
        },
        {
@@ -105,7 +105,7 @@
           "Gender":"Female",
           "Department":"Human Resources",
           "Date of Joining":"10-22-2013",
-          "Salary":"$14168.85",
+          "Salary":"14168.85",
           "City":"Jianchang"
        },
        {
@@ -114,7 +114,7 @@
           "Gender":"Female",
           "Department":"Engineering",
           "Date of Joining":"10-19-2016",
-          "Salary":"$49673.94",
+          "Salary":"49673.94",
           "City":"Talisayan"
        },
        {
@@ -123,7 +123,7 @@
           "Gender":"Male",
           "Department":"Services",
           "Date of Joining":"06-16-2010",
-          "Salary":"$23992.84",
+          "Salary":"23992.84",
           "City":"Italó"
        },
        {
@@ -132,7 +132,7 @@
           "Gender":"Female",
           "Department":"Training",
           "Date of Joining":"10-18-2015",
-          "Salary":"$21768.47",
+          "Salary":"21768.47",
           "City":"Podbrdo"
        },
        {
@@ -141,7 +141,7 @@
           "Gender":"Male",
           "Department":"Services",
           "Date of Joining":"08-15-2019",
-          "Salary":"$46169.78",
+          "Salary":"46169.78",
           "City":"Drawsko"
        },
        {
@@ -150,7 +150,7 @@
           "Gender":"Female",
           "Department":"Training",
           "Date of Joining":"05-03-2014",
-          "Salary":"$48793.33",
+          "Salary":"48793.33",
           "City":"Baiqiao"
        },
        {
@@ -159,7 +159,7 @@
           "Gender":"Female",
           "Department":"Product Management",
           "Date of Joining":"01-07-2010",
-          "Salary":"$11971.89",
+          "Salary":"11971.89",
           "City":"Bandar-e Lengeh"
        },
        {
@@ -168,7 +168,7 @@
           "Gender":"Male",
           "Department":"Business Development",
           "Date of Joining":"05-31-2017",
-          "Salary":"$14627.52",
+          "Salary":"14627.52",
           "City":"Da’an"
        },
        {
@@ -177,7 +177,7 @@
           "Gender":"Female",
           "Department":"Engineering",
           "Date of Joining":"05-17-2012",
-          "Salary":"$49569.60",
+          "Salary":"49569.60",
           "City":"Kelowna"
        },
        {
@@ -186,7 +186,7 @@
           "Gender":"Male",
           "Department":"Accounting",
           "Date of Joining":"08-19-2014",
-          "Salary":"$11400.60",
+          "Salary":"11400.60",
           "City":"Quezon"
        },
        {
@@ -195,7 +195,7 @@
           "Gender":"Male",
           "Department":"Support",
           "Date of Joining":"01-07-2015",
-          "Salary":"$28536.96",
+          "Salary":"28536.96",
           "City":"Sacramento"
        },
        {
@@ -204,7 +204,7 @@
           "Gender":"Male",
           "Department":"Legal",
           "Date of Joining":"07-20-2017",
-          "Salary":"$10948.94",
+          "Salary":"10948.94",
           "City":"Xieshui"
        },
        {
@@ -213,7 +213,7 @@
           "Gender":"Female",
           "Department":"Engineering",
           "Date of Joining":"02-08-2012",
-          "Salary":"$42688.51",
+          "Salary":"42688.51",
           "City":"Bigoudine"
        },
        {
@@ -222,7 +222,7 @@
           "Gender":"Female",
           "Department":"Services",
           "Date of Joining":"07-17-2012",
-          "Salary":"$32651.96",
+          "Salary":"32651.96",
           "City":"Pichilemu"
        },
        {
@@ -231,7 +231,7 @@
           "Gender":"Female",
           "Department":"Training",
           "Date of Joining":"09-25-2018",
-          "Salary":"$17589.61",
+          "Salary":"17589.61",
           "City":"Binjiang"
        },
        {
@@ -240,7 +240,7 @@
           "Gender":"Female",
           "Department":"Services",
           "Date of Joining":"01-19-2018",
-          "Salary":"$34017.42",
+          "Salary":"34017.42",
           "City":"Chengkan"
        },
        {
@@ -249,7 +249,7 @@
           "Gender":"Male",
           "Department":"Business Development",
           "Date of Joining":"08-22-2018",
-          "Salary":"$49775.81",
+          "Salary":"49775.81",
           "City":"San Antonio Oeste"
        },
        {
@@ -258,7 +258,7 @@
           "Gender":"Male",
           "Department":"Product Management",
           "Date of Joining":"01-11-2014",
-          "Salary":"$36633.61",
+          "Salary":"36633.61",
           "City":"Borlänge"
        },
        {
@@ -267,7 +267,7 @@
           "Gender":"Female",
           "Department":"Accounting",
           "Date of Joining":"08-31-2016",
-          "Salary":"$25835.58",
+          "Salary":"25835.58",
           "City":"Borino"
        },
        {
@@ -276,7 +276,7 @@
           "Gender":"Female",
           "Department":"Product Management",
           "Date of Joining":"08-06-2011",
-          "Salary":"$46836.53",
+          "Salary":"46836.53",
           "City":"Fécamp"
        },
        {
@@ -285,7 +285,7 @@
           "Gender":"Female",
           "Department":"Sales",
           "Date of Joining":"02-21-2010",
-          "Salary":"$27575.10",
+          "Salary":"27575.10",
           "City":"Karangwaru"
        },
        {
@@ -294,7 +294,7 @@
           "Gender":"Female",
           "Department":"Accounting",
           "Date of Joining":"12-08-2012",
-          "Salary":"$41712.59",
+          "Salary":"41712.59",
           "City":"San Antonio"
        },
        {
@@ -303,7 +303,7 @@
           "Gender":"Female",
           "Department":"Services",
           "Date of Joining":"11-23-2016",
-          "Salary":"$46533.06",
+          "Salary":"46533.06",
           "City":"Mayisyan"
        },
        {
@@ -312,7 +312,7 @@
           "Gender":"Female",
           "Department":"Research and Development",
           "Date of Joining":"08-29-2018",
-          "Salary":"$31008.69",
+          "Salary":"31008.69",
           "City":"Wenqiao"
        },
        {
@@ -321,7 +321,7 @@
           "Gender":"Male",
           "Department":"Product Management",
           "Date of Joining":"08-31-2018",
-          "Salary":"$27791.30",
+          "Salary":"27791.30",
           "City":"Tabia"
        },
        {
@@ -330,7 +330,7 @@
           "Gender":"Female",
           "Department":"Training",
           "Date of Joining":"04-23-2016",
-          "Salary":"$31759.16",
+          "Salary":"31759.16",
           "City":"Azul"
        },
        {
@@ -339,7 +339,7 @@
           "Gender":"Male",
           "Department":"Accounting",
           "Date of Joining":"09-04-2011",
-          "Salary":"$27893.84",
+          "Salary":"27893.84",
           "City":"Frýdek-Místek"
        },
        {
@@ -348,7 +348,7 @@
           "Gender":"Male",
           "Department":"Sales",
           "Date of Joining":"01-02-2016",
-          "Salary":"$26407.41",
+          "Salary":"26407.41",
           "City":"Ash Sharyah"
        },
        {
@@ -357,7 +357,7 @@
           "Gender":"Female",
           "Department":"Human Resources",
           "Date of Joining":"10-23-2012",
-          "Salary":"$35332.31",
+          "Salary":"35332.31",
           "City":"Baluk"
        },
        {
@@ -366,7 +366,7 @@
           "Gender":"Female",
           "Department":"Sales",
           "Date of Joining":"02-04-2012",
-          "Salary":"$22904.55",
+          "Salary":"22904.55",
           "City":"Wulingyuan"
        },
        {
@@ -375,7 +375,7 @@
           "Gender":"Female",
           "Department":"Training",
           "Date of Joining":"07-02-2014",
-          "Salary":"$25515.12",
+          "Salary":"25515.12",
           "City":"Xinshui"
        },
        {
@@ -384,7 +384,7 @@
           "Gender":"Male",
           "Department":"Training",
           "Date of Joining":"08-11-2015",
-          "Salary":"$24508.84",
+          "Salary":"24508.84",
           "City":"Xin’an"
        },
        {
@@ -393,7 +393,7 @@
           "Gender":"Male",
           "Department":"Human Resources",
           "Date of Joining":"06-02-2019",
-          "Salary":"$14844.80",
+          "Salary":"14844.80",
           "City":"Rantauambacang"
        },
        {
@@ -402,7 +402,7 @@
           "Gender":"Female",
           "Department":"Support",
           "Date of Joining":"04-14-2017",
-          "Salary":"$39356.65",
+          "Salary":"39356.65",
           "City":"Saint Paul"
        },
        {
@@ -411,7 +411,7 @@
           "Gender":"Male",
           "Department":"Product Management",
           "Date of Joining":"11-25-2010",
-          "Salary":"$27421.61",
+          "Salary":"27421.61",
           "City":"Lokorae"
        },
        {
@@ -420,7 +420,7 @@
           "Gender":"Female",
           "Department":"Support",
           "Date of Joining":"05-23-2014",
-          "Salary":"$48300.27",
+          "Salary":"48300.27",
           "City":"Pakemitan"
        },
        {
@@ -429,7 +429,7 @@
           "Gender":"Female",
           "Department":"Accounting",
           "Date of Joining":"11-25-2010",
-          "Salary":"$36518.72",
+          "Salary":"36518.72",
           "City":"Berëzovyy"
        },
        {
@@ -438,7 +438,7 @@
           "Gender":"Male",
           "Department":"Human Resources",
           "Date of Joining":"07-15-2012",
-          "Salary":"$35939.87",
+          "Salary":"35939.87",
           "City":"Watodei"
        },
        {
@@ -447,7 +447,7 @@
           "Gender":"Female",
           "Department":"Marketing",
           "Date of Joining":"03-18-2011",
-          "Salary":"$26038.56",
+          "Salary":"26038.56",
           "City":"Huangzhai"
        }
     ]

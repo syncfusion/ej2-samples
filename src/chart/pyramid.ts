@@ -32,7 +32,7 @@ AccumulationChart.Inject(AccumulationLegend, PyramidSeries, AccumulationTooltip,
             visible: false
         },
         //Initializing User Interaction Tooltip
-        tooltip: { enable: true, format: '${point.x} : <b>${point.y} cal</b>',header:'' },
+        tooltip: { enable: true, enableHighlight: true, format: '${point.x} : <b>${point.y} cal</b>',header:'' },
         textRender: (args: IAccTextRenderEventArgs) => {
             args.text = args.text;
         },

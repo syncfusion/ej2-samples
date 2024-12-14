@@ -81,7 +81,10 @@ function scrollChange(args: IScrollChangeEventArgs): void {
 
 // Event handler for selection change event
 function selectionChange(args: ISelectionChangeEventArgs): void {
-    getEventDetails(args);
+    // Check if the state is changed and get event details
+    if (args.state === 'Changed') {
+        getEventDetails(args);
+    }
 }
 
 // Event handler for size change event
@@ -138,7 +141,10 @@ function rotateChange(args: IRotationEventArgs): void {
 
 // Event handler for collection change event
 function collectionChange(args: ICollectionChangeEventArgs): void {
-    getEventDetails(args);
+    // Check if the state is changed and get event details
+    if (args.state === 'Changed') {
+        getEventDetails(args);
+    }
 }
 
 // Event handler for mouse enter event

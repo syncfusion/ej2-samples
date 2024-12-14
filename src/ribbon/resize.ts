@@ -5,8 +5,8 @@ import { Slider, SliderChangeEventArgs } from "@syncfusion/ej2-inputs";
 import { Query } from '@syncfusion/ej2-data';
 import { ListView, SelectEventArgs as SelectListEventArgs } from "@syncfusion/ej2-lists";
 import { MenuItemModel } from "@syncfusion/ej2-navigations";
-import { MenuEventArgs } from '@syncfusion/ej2/splitbuttons';
-import { Toast } from '@syncfusion/ej2/notifications';
+import { MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
+import { Toast } from '@syncfusion/ej2-notifications';
 import { ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 
 Ribbon.Inject(RibbonFileMenu, RibbonColorPicker);
@@ -548,6 +548,7 @@ Ribbon.Inject(RibbonFileMenu);
     let ribbon: Ribbon = new Ribbon({
         enablePersistence: true,
         tabs: tabs,
+        cssClass: 'ribbon-resize',
         fileMenu: files,
         launcherIconClick: (args: LauncherClickEventArgs) => {
             if (args.groupId == "clipboard") {

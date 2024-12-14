@@ -42,10 +42,10 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         center: { x: '50%', y: '50%' },
         enableSmartLabels: true,
         enableBorderOnMouseMove: false,
-        enableAnimation: false,
+        enableAnimation: true,
         legendSettings: { visible: false },
         // Initialize tht tooltip
-        tooltip: {enable: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>', header: "" },
+        tooltip: {enable: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>', header: "", enableHighlight: true },
         title: 'Browser Market Share',
         load: (args: IAccLoadedEventArgs) => {
             let selectedTheme: string = location.hash.split('/')[1];

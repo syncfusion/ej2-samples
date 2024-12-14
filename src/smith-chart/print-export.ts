@@ -18,8 +18,8 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
         // custom code start
         load: (args: ISmithchartLoadEventArgs) => {
             let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Fluent2';
-            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast'));
+            theme = theme ? theme : 'Material';
+            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
         },
         // custom code end
         horizontalAxis: {
@@ -58,7 +58,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                     { resistance: 0.25, reactance: 0 },
                 ],
                 name: 'Transmission',
-                enableAnimation: false,
+                enableAnimation: true,
                 tooltip: { visible: true },
                 marker: {
                     shape: 'Circle',
@@ -81,7 +81,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
     });
     mode.appendTo('#mode');
     let togglebtn1: Button = new Button({
-        iconCss: 'e-icons e-export-icon', cssClass: 'e-flat', isPrimary: true
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn1.appendTo('#togglebtn1');
     document.getElementById('togglebtn1').onclick = () => {
@@ -89,7 +89,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
         smithchart.export(<SmithchartExportType>mode.value, fileName);
     };
     let togglebtn2: Button = new Button({
-        cssClass: 'e-flat', iconCss: 'e-icons e-print-icon', isPrimary: true
+         cssClass: 'e-info', isPrimary: true
     });
     togglebtn2.appendTo('#togglebtn2');
     document.getElementById('togglebtn2').onclick = () => {

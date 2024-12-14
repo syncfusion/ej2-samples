@@ -81,9 +81,13 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
             splitterSettings: {
                 position: "35%"
             },
-            actionBegin: function (args){
-                if (args.columnName === "EndDate")
+            actionBegin: function (args) {
+                if (args.columnName === "EndDate" || args.requestType === "beforeOpenAddDialog" || args.requestType === "beforeOpenEditDialog") {
                     startDate = args.rowData.ganttProperties.startDate;
+                }
+                if (args.requestType === "taskbarediting" && args.taskBarEditAction === "ChildDrag") {
+                    startDate = args.data.ganttProperties.startDate;
+                }
             },
             projectStartDate: new Date('03/25/2024'),
             projectEndDate: new Date('07/28/2024')

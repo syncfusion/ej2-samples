@@ -114,7 +114,8 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
         //Initializing User Interaction Tooltip
         legendSettings: { visible: true, enableHighlight: true },
         tooltip: {
-            enable: true
+            enable: true,
+            enableHighlight: true
         },
         width : Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
@@ -123,7 +124,6 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
             args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
             selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
         },
-
     });
     chart.appendTo('#container');
 };

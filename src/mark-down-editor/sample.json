@@ -3,7 +3,6 @@
     "directory": "mark-down-editor",
     "category": "File Viewers & Editors",
     "ftName": "wysiwyg-rich-text-editor",
-    "type":"update",
     "samples": [{
         "url": "overview",
         "name": "Overview",
@@ -14,7 +13,7 @@
         {
             "url": "default-functionalities",
             "name": "Default Functionalities",
-            "description": "This demo for Syncfusion JavaScript Rich Text Editor control shows the markdown editing in the Rich Text Editor with complete features.",
+            "description": "This demo for Syncfusion<sup>®</sup> JavaScript Rich Text Editor control shows the markdown editing in the Rich Text Editor with complete features.",
             "category": "Markdown Editor",
             "api": { "RichTextEditor": ["Inject", "toolbarSettings", "formatter", "height", "created", "disableToolbarItem", "enableToolbarItem", "editorMode", "appendTo"], "ToolbarSettings": ["items"] }
         },
@@ -28,9 +27,8 @@
         {
             "url": "mention-integration",
             "name": "@ Mention",
-            "description": "This demo for Syncfusion JavaScript Rich Text Editor control shows the markdown editing in the Rich Text Editor with complete features along with mention integration.",
+            "description": "This demo for Syncfusion<sup>®</sup> JavaScript Rich Text Editor control shows the markdown editing in the Rich Text Editor with complete features along with mention integration.",
             "category": "Markdown Editor",
-            "type": "new",
             "api": { "RichTextEditor": ["Inject", "toolbarSettings","editorMode", "formatter", "height", "created", "disableToolbarItem", "enableToolbarItem", "editorMode", "formatter", "appendTo"], "ToolbarSettings": ["items"] }
         }
     ]

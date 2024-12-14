@@ -154,7 +154,7 @@ let dependency: Switch | undefined;
         pdfQueryCellInfo: pdfQueryCellInfo,
         columns: [
             { field: 'TaskId', width: 60, visible: false },
-            { field: 'TaskName', width: 250, headerText: 'Product Release' },
+            { field: 'TaskName', width: 200, headerText: 'Product Release' },
             { field: 'Assignee', width: 135, allowSorting: false, headerText: 'Assignee', template: '#columnTemplate' },
             { field: 'Status', minWidth: 100, width: 120, headerText: 'Status', template: '#columnTemplate1' },
             { field: 'Priority', minWidth: 80, width: 100, headerText: 'Priority', template: '#columnTemplate2' },
@@ -178,13 +178,14 @@ let dependency: Switch | undefined;
             // columnIndex: 4
         },
         load: function (args: any) {
-            let themeCollection: any = ['bootstrap5', 'bootstrap', 'bootstrap4', 'fluent', 'fabric', 'fusionnew', 'material3', 'material', 'highcontrast', 'tailwind'];
-            let check: any = themeCollection.indexOf(theme);
+            let themeCollection: any = ['bootstrap5', 'bootstrap', 'bootstrap4', 'fluent', 'fabric', 'fusionnew', 'material3', 'material', 'highcontrast', 'tailwind','fluent2','tailwind3','bootstrap5.3'];
             let cls: any = document.body.className.split(' ');
             theme = cls.indexOf('bootstrap5') > 0 ? 'bootstrap5' : cls.indexOf('bootstrap') > 0 ? 'bootstrap' : cls.indexOf('tailwind') > 0 ? 'tailwind' :
                 cls.indexOf('fluent') > 0 ? 'fluent' : cls.indexOf('fabric') > 0 ? 'fabric' :
                     cls.indexOf('material3') > 0 ? 'material3' : cls.indexOf('bootstrap4') > 0 ? 'bootstrap4' : cls.indexOf('material') > 0 ? 'material' :
-                        cls.indexOf('fusionnew') > 0 ? 'fusionnew' : cls.indexOf('highcontrast') > 0 ? 'highcontrast' : ''
+                        cls.indexOf('fusionnew') > 0 ? 'fusionnew' : cls.indexOf('highcontrast') > 0 ? 'highcontrast' : cls.indexOf('bootstrap5.3') > 0 ? 'bootstrap5.3' :
+                            cls.indexOf('fluent2') > 0 ? 'fluent2' : cls.indexOf('tailwind3') > 0 ? 'tailwind3' : ''
+            let check: any = themeCollection.indexOf(theme);
             if (check >= 0) {
                 CurrentTheme = true;
             }
@@ -220,30 +221,30 @@ let dependency: Switch | undefined;
         },
         eventMarkers: [
             {
-                day: '04/04/2024',
+                day: new Date('04/04/2024'),
                 cssClass: 'e-custom-event-marker',
                 label: 'Q-1 Release'
             },
             {
-                day: '06/30/2024',
+                day: new Date('06/30/2024'),
                 cssClass: 'e-custom-event-marker',
                 label: 'Q-2 Release'
             },
             {
-                day: '09/29/2024',
+                day: new Date('09/29/2024'),
                 cssClass: 'e-custom-event-marker',
                 label: 'Q-3 Release'
             }
         ],
         holidays: [{
-            from: "01/01/2024",
-            to: "01/01/2024",
+            from: new Date("01/01/2024"),
+            to: new Date("01/01/2024"),
             label: "New Year holiday",
             cssClass: "e-custom-holiday"
         },
         {
-            from: "12/25/2023",
-            to: "12/26/2023",
+            from: new Date("12/25/2023"),
+            to: new Date("12/26/2023"),
             label: "Christmas holidays",
             cssClass: "e-custom-holiday"
         }],
@@ -370,8 +371,8 @@ let dependency: Switch | undefined;
                     value: 30,
                     max: 60,
                     step: 5,
-                    width: '180px',
-                    tooltip: { placement: 'Before', isVisible: true },
+                    width: '190px',
+                    tooltip: { placement: 'Before', isVisible: true, showOn: "Hover" },
                     ticks: { placement: 'Before', largeStep: 10, smallStep: 10, showSmallTicks: true },
                     changed: onChanged
                 });

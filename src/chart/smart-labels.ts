@@ -52,7 +52,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
             visible: false
         },
         //Initializing Tooltip
-        tooltip: { enable: true, format:'<b>${point.x}</b><br> Gold Medals: <b>${point.y}</b>' },
+        tooltip: { enable: true, format:'<b>${point.x}</b><br> Gold Medals: <b>${point.y}</b>', enableHighlight: true },
         //Initializing Title
         title: 'Rio Olympics Gold',
         load: (args: IAccLoadedEventArgs) => {

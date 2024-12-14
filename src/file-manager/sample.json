@@ -2,13 +2,11 @@
     "name": "File Manager",
     "directory": "file-manager",
     "category": "Navigation",
-    "type": "update",
     "ftName": "file-manager",
     "samples": [
         {
             "url": "overview",
             "name": "Overview",
-            "type": "new",
             "category": "File Manager",
             "api": { "FileManager": ["ajaxSettings", "view"] },
             "description": "File Manager for JavaScript (TypeScript) with a details view and preview, designed to resemble a OneDrive user interface with customized icons in the File Manager's details view."
@@ -36,7 +34,6 @@
         {
             "url": "api",
             "name": "API",
-            "type": "update",
             "category": "File Manager",
             "api": { "FileManager": ["ajaxSettings", "view"] },
             "description": "Example shows the File Manager without the navigation pane and enable or disable toolbar in a JavaScript (TypeScript) File Manager."

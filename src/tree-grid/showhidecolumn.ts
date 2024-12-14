@@ -37,6 +37,7 @@ TreeGrid.Inject(Page);
     let dropDownListObject: DropDownList = new DropDownList({
         dataSource: columnsName,
         fields: { text: 'name', value: 'id' },
+        width:'125px',
         value: 'taskID',
         change: (e: ChangeEventArgs) => {
             let columnName: string = <string>e.value;

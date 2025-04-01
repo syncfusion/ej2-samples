@@ -4,6 +4,7 @@ import { ChartTheme } from '@syncfusion/ej2-charts';
 RangeNavigator.Inject(Logarithmic, DateTime);
 import { GetDateTimeData } from './data-service';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadRangeNavigatorTheme } from './theme-colors';
 
 /**
  * Sample for range navigator without series
@@ -12,10 +13,7 @@ import { Browser } from '@syncfusion/ej2-base';
 (window as any).default = (): void => {
     loadCultureFiles();
 
-    let selectedTheme: string = location.hash.split('/')[1];
-    selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-    let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+    let theme: ChartTheme = loadRangeNavigatorTheme();
     let range: RangeNavigator = new RangeNavigator(
         {
             valueType: 'DateTime',

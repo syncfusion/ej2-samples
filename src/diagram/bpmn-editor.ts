@@ -377,7 +377,7 @@ let contextMenu: ContextMenuSettingsModel = {
                 { text: 'Start', id: 'Start', iconCss: 'e-event e-bpmn-icons e-NoneStart' },
                 { text: 'Intermediate', id: 'Intermediate', iconCss: 'e-event e-bpmn-icons e-InterruptingNone' },
                 { text: 'NonInterruptingStart', id: 'NonInterruptingStart', iconCss: 'e-event e-bpmn-icons e-Noninterruptingstart' },
-                { text: 'ThrowingIntermediate', id: 'ThrowingIntermediate', iconCss: 'e-event e-bpmn-icons e-InterruptingNone' },
+                { text: 'ThrowingIntermediate', id: 'ThrowingIntermediate', iconCss: 'e-event e-bpmn-icons e-ThrowingIntermediate' },
                 { text: 'NonInterruptingIntermediate', id: 'NonInterruptingIntermediate', iconCss: 'e-event e-bpmn-icons e-NoninterruptingIntermediate' },
                 { text: 'End', id: 'End', iconCss: 'e-event e-bpmn-icons e-NoneEnd' }
             ]
@@ -394,8 +394,8 @@ let contextMenu: ContextMenuSettingsModel = {
                 { text: 'Manual', id: 'Manual', iconCss: 'e-task e-bpmn-icons e-ManualCall' },
                 { text: 'Receive', id: 'Receive', iconCss: 'e-task e-bpmn-icons e-InMessage' },
                 { text: 'Script', id: 'Script', iconCss: 'e-task e-bpmn-icons e-ScriptCall' },
-                { text: 'Send', id: 'Send', iconCss: 'e-task e-bpmn-icons e-InMessage' },
-                { text: 'User', id: 'User', iconCss: 'e-task e-icons e-user' },
+                { text: 'Send', id: 'Send', iconCss: 'e-task e-bpmn-icons e-OutMessage' },
+                { text: 'User', id: 'User', iconCss: 'e-task e-bpmn-icons e-UserCall' },
             ]
         },
         {

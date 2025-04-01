@@ -58,7 +58,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
     `
         },
         exportPdf: {
-            serviceUrl: 'https://ej2services.syncfusion.com/js/development/api/RichTextEditor/ExportToPdf',
+            serviceUrl: hostUrl + 'api/RichTextEditor/ExportToPdf',
             fileName: 'RichTextEditor.pdf',
             stylesheet: `
         .e-rte-content{
@@ -117,7 +117,8 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         popupHeight: '200px',
         sortOrder: 'Ascending',
         target: editor.inputElement,
-        allowSpaces: true
+        allowSpaces: true,
+        suffixText: '&nbsp;'
     });
     mention.appendTo('#editorMention');
 
@@ -156,9 +157,6 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
     }
 
     function actionBeginHandler(e: ActionBeginEventArgs): void {
-        if (e.requestType === 'EnterAction' && mention.element.classList.contains('e-popup-open')) {
-            e.cancel = true;
-        }
         if (e.requestType === 'Maximize' || e.requestType === 'Minimize') {
             handleFullScreen(e);
         }

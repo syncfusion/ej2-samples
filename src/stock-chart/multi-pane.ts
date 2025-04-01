@@ -6,6 +6,7 @@ import { AccumulationDistributionIndicator, AtrIndicator, BollingerBands, EmaInd
 import { MacdIndicator, RsiIndicator, Trendlines, SmaIndicator, StochasticIndicator } from '@syncfusion/ej2-charts';
 import { IAxisLabelRenderEventArgs , IStockChartEventArgs, ChartTheme, Export } from '@syncfusion/ej2-charts';
 import { TmaIndicator, RangeTooltip, Tooltip, ColumnSeries, Crosshair, ITooltipRenderEventArgs } from '@syncfusion/ej2-charts';
+import { loadStockChartTheme } from './theme-color';
 StockChart.Inject(DateTime, AreaSeries, CandleSeries, HiloOpenCloseSeries, HiloSeries, LineSeries, SplineSeries, StockLegend);
 StockChart.Inject(AccumulationDistributionIndicator, AtrIndicator, BollingerBands, EmaIndicator, MomentumIndicator);
 StockChart.Inject(MacdIndicator, RsiIndicator, SmaIndicator, StochasticIndicator, Export);
@@ -58,10 +59,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Co
         },
         title: 'AAPL Historical',
         load: (args: IStockChartEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.stockChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadStockChartTheme(args);
         }
     });
     stockChart.appendTo('#container');

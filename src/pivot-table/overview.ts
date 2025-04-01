@@ -253,14 +253,14 @@ let Universitydata: IDataSet[] = (data as any).data;
             let cellValue: Element = select('.e-cellvalue', args.targetCell);
             cellValue.classList.add('e-hyperlinkcell');
             cellValue.addEventListener('click', hyperlinkCellClick.bind(pivotObj));
-            args.targetCell.insertBefore(imgElement, cellValue);
+            args.targetCell.firstElementChild.insertBefore(imgElement, cellValue);
         }
         return '';
     };
 
     function hyperlinkCellClick(args: MouseEvent) {
-        let cell: Element = (args.target as Element).parentElement;
-        let pivotValue: IAxisSet = pivotObj.pivotValues[Number(cell.getAttribute('index'))][Number(cell.getAttribute('data-colindex'))] as IAxisSet;
+        let cell: Element = (args.target as Element).closest('.e-rowsheader');
+        let pivotValue: IAxisSet = pivotObj.pivotValues[Number(cell.getAttribute('index'))][Number(cell.getAttribute('aria-colindex')) - 1] as IAxisSet;
         let link: string = Universitydata[pivotValue.index[0]].link as string;
         window.open(link, '_blank');
     }

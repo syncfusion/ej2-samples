@@ -6,10 +6,14 @@ import { RichTextEditor, Toolbar, Link, Image, MarkdownFormatter, MarkdownEditor
 import { createElement, KeyboardEventArgs } from '@syncfusion/ej2-base';
 RichTextEditor.Inject(Toolbar, Link, Image, MarkdownEditor);
 import * as Marked from 'marked';
+import { Tooltip } from '@syncfusion/ej2-popups';
+
 
 let textArea: HTMLTextAreaElement;
 let mdPreview: HTMLElement;
 let mdsource: HTMLElement;
+let tooltipObj: Tooltip;
+
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -22,10 +26,11 @@ let mdsource: HTMLElement;
                 'Formats', 'Blockquote', 'OrderedList', 'UnorderedList', '|',
                 'CreateLink', 'Image', '|',
                 {
-                    tooltipText: 'Preview',
-                    template: '<button id="preview-code" class="e-tbar-btn e-control e-btn e-icon-btn" aria-label="Preview Code">' +
-                        '<span class="e-btn-icon e-icons e-md-preview"></span></button>'
+                    template:
+                      '<button id="preview-code" class="e-tbar-btn e-control e-btn e-icon-btn" aria-label="Preview Code">' +
+                      '<span class="e-btn-icon e-icons e-md-preview"></span></button>'
                 }, 'Undo', 'Redo']
+           
         },
         editorMode: 'Markdown',
         formatter: new MarkdownFormatter({
@@ -36,6 +41,11 @@ let mdsource: HTMLElement;
             selectionTags: {'Bold': '__',  'Italic': '_'}
         }),
         created: () => {
+            tooltipObj = new Tooltip({
+                content: "Preview",  
+                target: "#preview-code"  
+              });
+            tooltipObj.appendTo("#preview-code");
             mdPreview = document.getElementById('MD_Preview');
             textArea = defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement;
             textArea.addEventListener('keyup', (e: KeyboardEventArgs) => {
@@ -60,10 +70,10 @@ let mdsource: HTMLElement;
         let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
         if (mdsource.classList.contains('e-active')) {
             mdsource.classList.remove('e-active');
-            mdsource.parentElement.title = 'Preview';
             defaultRTE.enableToolbarItem(defaultRTE.toolbarSettings.items as string[]);
             textArea.style.display = 'block';
             htmlPreview.style.display = 'none';
+            tooltipObj.content = "Preview";
         } else {
             mdsource.classList.add('e-active');
             defaultRTE.disableToolbarItem(defaultRTE.toolbarSettings.items as string[]);
@@ -74,8 +84,8 @@ let mdsource: HTMLElement;
             }
             textArea.style.display = 'none';
             htmlPreview.style.display = 'block';
+            tooltipObj.content = "Codeview";
             htmlPreview.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
-            mdsource.parentElement.title = 'Code View';
         }
     }
 };

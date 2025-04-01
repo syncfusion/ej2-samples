@@ -6,6 +6,7 @@ import { AccumulationDistributionIndicator, AtrIndicator, BollingerBands, EmaInd
 import { MacdIndicator, RsiIndicator, Trendlines, SmaIndicator, StochasticIndicator, Export } from '@syncfusion/ej2-charts';
 import { TmaIndicator, RangeTooltip, Tooltip, Crosshair, ITooltipRenderEventArgs, IStockChartEventArgs, ChartTheme }
 from '@syncfusion/ej2-charts';
+import { loadStockChartTheme } from './theme-color';
 StockChart.Inject(DateTime, DateTimeCategory, AreaSeries, CandleSeries, HiloOpenCloseSeries, HiloSeries, LineSeries, SplineSeries);
 StockChart.Inject(AccumulationDistributionIndicator, AtrIndicator, BollingerBands, EmaIndicator, MomentumIndicator);
 StockChart.Inject(MacdIndicator, RsiIndicator, SmaIndicator, StochasticIndicator);
@@ -48,10 +49,7 @@ StockChart.Inject(Trendlines, TmaIndicator, RangeTooltip, Tooltip, Crosshair, Ex
         },
         title: 'AAPL Stock Price',
         load: (args: IStockChartEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.stockChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadStockChartTheme(args);
         }
     });
     stockChart.appendTo('#container');

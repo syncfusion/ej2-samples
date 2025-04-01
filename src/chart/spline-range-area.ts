@@ -7,6 +7,7 @@ import {
 Chart.Inject(SplineRangeAreaSeries, DateTime, Zoom, Legend, DataLabel, Tooltip, Selection, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 import { chartDataValues } from './financial-data';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for RangeArea series
@@ -49,16 +50,13 @@ import { chartDataValues } from './financial-data';
         width: Browser.isDevice ? '100%' : '75%',
         tooltip: {
             enable: true, format: 'Temperature : <b>${point.low} - ${point.high}</b>', header: '<b>${point.x}</b>',
-            shared: false
+            showNearestTooltip: true
         },
         legendSettings:{enableHighlight:true},
         //Initializing Chart Title
         title: 'Temperature Variation by Month',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

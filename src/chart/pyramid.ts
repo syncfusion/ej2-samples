@@ -4,6 +4,7 @@ import {
     AccumulationDataLabel, IAccTextRenderEventArgs, IAccResizeEventArgs
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2/base';
+import { loadAccumulationChartTheme } from './theme-color';
 AccumulationChart.Inject(AccumulationLegend, PyramidSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
@@ -37,10 +38,7 @@ AccumulationChart.Inject(AccumulationLegend, PyramidSeries, AccumulationTooltip,
             args.text = args.text;
         },
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadAccumulationChartTheme(args);
         },
         //Initializing Chart Title
         title: 'Food Comparison Chart',

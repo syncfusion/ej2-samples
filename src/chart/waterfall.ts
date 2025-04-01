@@ -4,6 +4,7 @@ import {
     Crosshair, Legend, DataLabel, IAxisLabelRenderEventArgs, ITextRenderEventArgs, ChartTheme
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(WaterfallSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair, Legend, DataLabel);
 
 /**
@@ -60,10 +61,7 @@ Chart.Inject(WaterfallSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Cr
             args.series.marker.dataLabel.font.size = Browser.isDevice ? '8px' : '12px';
         },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
 
     });

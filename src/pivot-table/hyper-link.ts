@@ -55,7 +55,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             if ((args.currentCell.querySelector('.e-headercelldiv') && !(args.data as IAxisSet).indexObject) ||
                 args.currentCell.className.indexOf('e-cellvalue') > -1) {
                 cell += 'Value Header ';
-            } else if (args.currentCell.className.indexOf('e-rowsheader') > -1) {
+            } else if (args.currentCell.parentElement.className.indexOf('e-rowsheader') > -1 || args.currentCell.className.indexOf('e-rowsheader') > -1) {
                 cell += 'Row Header ';
             }
             else if (args.currentCell.className.indexOf('e-columnsheader') > -1 ||

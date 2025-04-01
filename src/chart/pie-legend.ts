@@ -1,30 +1,24 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    AccumulationTheme, AccumulationChart, AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip,
+    AccumulationChart, AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationTooltip,
     IAccTextRenderEventArgs, AccumulationSelection, AccumulationAnnotation, IAccLoadedEventArgs, IAccPointRenderEventArgs
 } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationAnnotation, AccumulationDataLabel, AccumulationTooltip, AccumulationSelection);
 import { Browser, EmitType } from '@syncfusion/ej2-base';
+import { loadAccumulationChartTheme, pieLegendPointRender } from './theme-color';
 
 /**
  * Sample for Doughnut
  */
 let fluent2Colors: string[] = ["#6200EE", "#09AF74", "#0076E5", "#CB3587", "#E7910F", "#66CD15", "#F3A93C", "#107C10",
     "#C19C00"];
-let labelRender: EmitType<IAccPointRenderEventArgs> = (args: IAccPointRenderEventArgs): void => {
-    let selectedTheme: string = location.hash.split('/')[1];
-    selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-    if (selectedTheme === 'fluent2') {
-        args.fill = fluent2Colors[args.point.index % 10];
-    }
-};
+
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
     let count: number = 0;
     let pie: AccumulationChart = new AccumulationChart({
         enableSmartLabels: true,
-        selectionMode: 'Point',
         annotations: [{
             content: (Browser.isDevice) ? " " : "<div style='font-Weight:600;font-size:14px'>Browser<br>Market<br>Share</div>" ,
             region:"Series",
@@ -50,7 +44,7 @@ let labelRender: EmitType<IAccPointRenderEventArgs> = (args: IAccPointRenderEven
                 }
             }
         ],
-        pointRender: labelRender,
+        pointRender: pieLegendPointRender,
         title:Browser.isDevice ? "Browser Market Share" : '',
         legendSettings: {
             visible: true, toggleVisibility: false,
@@ -65,10 +59,7 @@ let labelRender: EmitType<IAccPointRenderEventArgs> = (args: IAccPointRenderEven
         },
         // Triggered animation complete, text render and load event
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadAccumulationChartTheme(args);
         },
         tooltip: { enable: true, enableHighlight: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>',header:""  },
     });

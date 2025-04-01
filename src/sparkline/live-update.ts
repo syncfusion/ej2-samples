@@ -7,11 +7,10 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import { Sparkline, ISparklineLoadEventArgs, SparklineTheme } from '@syncfusion/ej2-charts/index';
 import { EmitType } from '@syncfusion/ej2-base';
+import { loadSparkLineTheme } from './theme-color';
 // custom code start
 export let sparkload: EmitType<ISparklineLoadEventArgs> = (args: ISparklineLoadEventArgs) => {
-    let theme: string = location.hash.split('/')[1];
-    theme = theme ? theme : 'Fluent2';
-    args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+    loadSparkLineTheme(args);
 };
 // tslint:disable:max-func-body-length
 // custom code end

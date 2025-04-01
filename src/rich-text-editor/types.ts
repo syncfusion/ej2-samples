@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor expand toolbar sample
  */
@@ -9,7 +8,6 @@ import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, EmojiPicker, PasteCleanup, Audio ,Video, FormatPainter, Table);
 
 (window as any).default = (): void => {
-    loadCultureFiles();
     let options: Object = {
         floatingToolbarOffset: 0,
         toolbarSettings: {

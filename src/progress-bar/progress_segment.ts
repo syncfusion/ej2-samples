@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { ProgressBar, ILoadedEventArgs, ProgressTheme, ProgressAnnotation } from '@syncfusion/ej2-progressbar';
 import { Browser } from '@syncfusion/ej2/base';
+import { loadProgressBarTheme } from './theme-colors';
 ProgressBar.Inject(ProgressAnnotation);
 
 /**
@@ -24,11 +25,8 @@ ProgressBar.Inject(ProgressAnnotation);
             duration: 2000
         },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
-            if (selectedTheme === 'highcontrast') {
+            let theme: string = loadProgressBarTheme(args);
+            if (theme === 'highcontrast') {
                 args.progressBar.trackColor = '#969696';
             }
         }
@@ -55,12 +53,9 @@ ProgressBar.Inject(ProgressAnnotation);
         }],
         cornerRadius: 'Square',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            let theme: string = loadProgressBarTheme(args);
 
-            switch (selectedTheme) {
+            switch (theme) {
                 case 'material':
                     args.progressBar.annotations[0].content =
                         '<div id="point1" style="font-size:24px;font-weight:bold;color:#e91e63"><span></span></div>';

@@ -100,7 +100,7 @@ let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
 let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
 let themeList: HTMLElement = document.getElementById('themelist');
-var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind3', 'tailwind', 'fluent2-highcontrast', 'highcontrast', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind3-dark', 'tailwind-dark', 'fluent-dark'];
+var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind3', 'fluent2-highcontrast', 'highcontrast', 'tailwind', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind3-dark', 'tailwind-dark', 'fluent-dark'];
 var themesToRedirect: string[] = ['material', 'material-dark', 'bootstrap4', 'bootstrap', 'bootstrap-dark', 'fabric', 'fabric-dark'];
 var darkIgnore = ['highcontrast', 'fluent2-highcontrast'];
 let themeDarkButton: HTMLElement = document.getElementById('sb-dark-theme');
@@ -506,7 +506,7 @@ let themeDropDown: DropDownList;
            let elementList = demoSection.getElementsByClassName('e-control e-lib');
            for (let i = 0; i < elementList.length; i++) {
                let instance = (elementList[i] as any).ej2_instances;
-               if (instance && instance[0] && typeof instance[0].refresh === 'function' && componentToIgnore.indexOf(instance[0].getModuleName()) === -1 && currentControl !== 'rich-text-editor') {
+               if (instance && instance[0] && typeof instance[0].refresh === 'function' && componentToIgnore.indexOf(instance[0].getModuleName()) === -1 && ['rich-text-editor', 'ai-assistview', 'chat-ui'].indexOf(currentControl) === -1) {
                    instance[0].refresh();
                }
                if (instance && instance[0] && instance[0].getModuleName() !== 'DashboardLayout')
@@ -974,7 +974,8 @@ function darkSwitch(): void {
          if (sb === 'aspnetcore' || sb === 'aspnetmvc') {
              ele.href = sb === 'aspnetcore' ? 'https://ej2.syncfusion.com/aspnetcore/' : 'https://ej2.syncfusion.com/aspnetmvc/';
            } else if (sb === 'nextjs') {
-               ele.href = 'https://ej2.syncfusion.com/nextjs/demos/';
+             const defaultSamplePath = sample.includes('grid/grid-overview') ? sample.split('/')[0] + '/grid/overview' : sample;
+             ele.href = 'https://ej2.syncfusion.com/nextjs/demos/' + defaultSamplePath;
            } else if (sb === 'blazor') {
              ele.href = 'https://blazor.syncfusion.com/demos/';
          }

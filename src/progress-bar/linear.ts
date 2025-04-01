@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { ProgressBar, ILoadedEventArgs, ProgressTheme } from '@syncfusion/ej2-progressbar';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
+import { loadProgressBarTheme } from './theme-colors';
 
 /**
  * Sample for default linear progress bar.
@@ -11,53 +12,50 @@ import { Button } from '@syncfusion/ej2-buttons';
     loadCultureFiles();
     let div: HTMLCollection = document.getElementsByClassName('progressbar-label');
     let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
-        let selectedTheme: string = location.hash.split('/')[1];
-        selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-        args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+      let theme: string = loadProgressBarTheme(args);
         if (args.progressBar.theme === 'HighContrast' || args.progressBar.theme === 'Bootstrap5Dark' || args.progressBar.theme === 'BootstrapDark' || args.progressBar.theme === 'FabricDark'
         || args.progressBar.theme === 'TailwindDark' || args.progressBar.theme === 'Tailwind3Dark' || args.progressBar.theme === 'MaterialDark' || args.progressBar.theme === 'FluentDark' || args.progressBar.theme === 'Material3Dark' || args.progressBar.theme === 'Fluent2Dark' || args.progressBar.theme === 'Fluent2HighContrast') {
             for (let i: number = 0; i < div.length; i++) {
                 div[i].setAttribute('style', 'color:white');
             }
         }
-        if (selectedTheme === 'fabric') {
+        if (theme === 'fabric') {
             args.progressBar.secondaryProgressColor = '#b0d0e9'
-          } else if (selectedTheme === 'material-dark') {
+          } else if (theme === 'material-dark') {
             args.progressBar.secondaryProgressColor = '#b8b8b8'
-          } else if (selectedTheme === 'material') {
+          } else if (theme === 'material') {
             args.progressBar.secondaryProgressColor = '#f087ab'
-          } else if (selectedTheme === 'bootstrap5-dark') {
+          } else if (theme === 'bootstrap5-dark') {
             args.progressBar.secondaryProgressColor = '#2b5288'
-          } else if (selectedTheme === 'bootstrap5') {
+          } else if (theme === 'bootstrap5') {
             args.progressBar.secondaryProgressColor = '#98c5f5'
-          } else if (selectedTheme === 'bootstrap') {
+          } else if (theme === 'bootstrap') {
             args.progressBar.secondaryProgressColor = '#acc6dc'
           }
-          else if (selectedTheme === 'bootstrap4') {
+          else if (theme === 'bootstrap4') {
             args.progressBar.secondaryProgressColor = '#98c5f5'
           }
-          else if (selectedTheme === 'bootstrap-dark') {
+          else if (theme === 'bootstrap-dark') {
             args.progressBar.secondaryProgressColor = '#b8b8b8'
-          } else if (selectedTheme === 'highcontrast') {
+          } else if (theme === 'highcontrast') {
             args.progressBar.secondaryProgressColor = '#aca379'
-          } else if (selectedTheme === 'fluent-dark') {
+          } else if (theme === 'fluent-dark') {
             args.progressBar.secondaryProgressColor = '#2b5288'
-          } else if (selectedTheme === 'fluent') {
+          } else if (theme === 'fluent') {
             args.progressBar.secondaryProgressColor = '#98c5f5'
-          } else if (selectedTheme === 'tailwind-dark') {
+          } else if (theme === 'tailwind-dark') {
             args.progressBar.secondaryProgressColor = '#22D3EE'
-          } else if (selectedTheme === 'tailwind') {
+          } else if (theme === 'tailwind') {
             args.progressBar.secondaryProgressColor = '#4F46E5'
-          } else if (selectedTheme === 'fluent2') {
+          } else if (theme === 'fluent2') {
             args.progressBar.secondaryProgressColor = '#0F6CBD'
-          } else if (selectedTheme === 'fluent2-dark') {
+          } else if (theme === 'fluent2-dark') {
             args.progressBar.secondaryProgressColor = '#115EA3'
-          } else if (selectedTheme === 'fluent2-highcontrast') {
+          } else if (theme === 'fluent2-highcontrast') {
             args.progressBar.secondaryProgressColor = '#1AEBFF'
-          } else if (selectedTheme === 'tailwind3-dark') {
+          } else if (theme === 'tailwind3-dark') {
             args.progressBar.secondaryProgressColor = '#6366F1'
-          } else if (selectedTheme === 'tailwind3') {
+          } else if (theme === 'tailwind3') {
             args.progressBar.secondaryProgressColor = '#4F46E5'
           }
     };

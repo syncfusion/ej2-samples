@@ -1,82 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, BubbleSeries, Tooltip, IPointRenderEventArgs, DataLabel } from '@syncfusion/ej2-charts';
+import { Chart, BubbleSeries, Tooltip, DataLabel } from '@syncfusion/ej2-charts';
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
-import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2-base';
-import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, bubbleMaterial3Colors, pointMaterial3Colors, bubbleMaterial3DarkColors, pointMaterial3DarkColors, bubbleFluent2Colors, pointFluent2Colors, bubbleFluent2HighContrastColors, pointFluent2HighContrastColors, bubbleFluent2DarkColors, pointFluent2DarkColors, pointTailwind3Colors, pointTailwind3DarkColors, bubbleTailwind3Colors, bubbleTailwind3DarkColors } from './theme-color';
+import { bubblePointRender, loadChartTheme } from './theme-color';
 Chart.Inject(BubbleSeries, Tooltip, DataLabel);
-let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
-    let selectedTheme: string = location.hash.split('/')[1];
-    selectedTheme = selectedTheme ? selectedTheme : 'material';
-    if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
-        args.fill = bubbleFabricColors[args.point.index % 10];
-        args.border.color = pointFabricColors[args.point.index % 10];;
-    } else if (selectedTheme === 'material-dark') {
-        args.fill = bubbleMaterialDarkColors[args.point.index % 10];
-        args.border.color = pointMaterialDarkColors[args.point.index % 10];;
-    } else if (selectedTheme === 'material') {
-        args.fill = bubbleMaterialColors[args.point.index % 10];
-        args.border.color = pointMaterialColors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap5-dark') {
-        args.fill = bubbleBootstrap5DarkColors[args.point.index % 10];
-        args.border.color = pointBootstrap5DarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap5') {
-        args.fill = bubbleBootstrap5Colors[args.point.index % 10];
-        args.border.color = pointBootstrap5Colors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap') {
-        args.fill = bubbleBootstrapColors[args.point.index % 10];
-        args.border.color = pointBootstrapColors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap4') {
-        args.fill = bubbleBootstrapColors[args.point.index % 10];
-        args.border.color = pointBootstrapColors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap-dark') {
-        args.fill = bubbleBootstrapColors[args.point.index % 10];
-        args.border.color = pointBootstrapColors[args.point.index % 10];
-    } else if (selectedTheme === 'highcontrast') {
-        args.fill = bubbleHighContrastColors[args.point.index % 10];
-        args.border.color = pointHighContrastColors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent-dark') {
-        args.fill = bubbleFluentDarkColors[args.point.index % 10];
-        args.border.color = pointFluentDarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent') {
-        args.fill = bubbleFluentColors[args.point.index % 10];
-        args.border.color = pointFluentColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind-dark') {
-        args.fill = bubbleTailwindDarkColors[args.point.index % 10];
-        args.border.color = pointTailwindDarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind') {
-        args.fill = bubbleTailwindColors[args.point.index % 10];
-        args.border.color = pointTailwindColors[args.point.index % 10];
-    }
-    else if (selectedTheme === 'material3') {
-        args.fill = bubbleMaterial3Colors[args.point.index % 10];
-        args.border.color = pointMaterial3Colors[args.point.index % 10];
-    }
-    else if (selectedTheme === 'material3-dark') {
-        args.fill = bubbleMaterial3DarkColors[args.point.index % 10];
-        args.border.color = pointMaterial3DarkColors[args.point.index % 10];
-    }
-    else if (selectedTheme === 'fluent2') {
-        args.fill = bubbleFluent2Colors[args.point.index % 10];
-        args.border.color = pointFluent2Colors[args.point.index % 10];
-    }
-    else if (selectedTheme === 'fluent2-highcontrast') {
-        args.fill = bubbleFluent2HighContrastColors[args.point.index % 10];
-        args.border.color = pointFluent2HighContrastColors[args.point.index % 10];
-    }
-    else if (selectedTheme === 'fluent2-dark') {
-        args.fill = bubbleFluent2DarkColors[args.point.index % 10];
-        args.border.color = pointFluent2DarkColors[args.point.index % 10];
-    }
-    else if (selectedTheme === 'tailwind3-dark') {
-        args.fill = bubbleTailwind3DarkColors[args.point.index % 10];
-        args.border.color = pointTailwind3DarkColors[args.point.index % 10];
-    } 
-    else if (selectedTheme === 'tailwind3') {
-        args.fill = bubbleTailwind3Colors[args.point.index % 10];
-        args.border.color = pointTailwind3Colors[args.point.index % 10];
-    }
-};
 
 /**
  * Sample for Bubble series
@@ -130,13 +57,10 @@ let pointRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
             },
         ],
         // Initiazlize the point render event
-        pointRender: pointRender,
+        pointRender: bubblePointRender,
          // custom code start
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         },
          // custom code end
         title: 'World Countries Details',

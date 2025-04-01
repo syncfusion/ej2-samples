@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart3D, StackingBarSeries3D, Category3D, Legend3D, Tooltip3D, Chart3DLoadedEventArgs, Highlight3D, ChartTheme } from '@syncfusion/ej2-charts';
 Chart3D.Inject(StackingBarSeries3D, Category3D, Legend3D, Tooltip3D, Highlight3D);
 import { Browser } from '@syncfusion/ej2-base';
+import { load3DChartTheme } from './theme-color';
 
 /**
  * Sample for StackedBar Series
@@ -93,10 +94,7 @@ import { Browser } from '@syncfusion/ej2-base';
             enableHighlight: true
         },
         load: (args: Chart3DLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            load3DChartTheme(args);
         }
     });
     chart.appendTo('#container');

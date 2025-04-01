@@ -6,14 +6,21 @@
     </div>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div>
-        <select id="dateformats" class="form-control">
-            <option value="dd-MMM-yy">dd-MMM-yy</option>
-            <option value="yyyy-MM-dd">yyyy-MM-dd</option>
-            <option value="dd-MMMM">dd-MMMM</option>
-        </select>
+<div class="col-lg-4 property-panel">
+    <div class="property-panel-section">
+        <div class="property-panel-header">Properties</div>
+        <div class="property-panel-content">
+            <label class="example-label">Choose a display format</label>
+            <input id="dateformats" placeholder="Select a format">
+        </div>
+        <div class="property-panel-content">
+            <label class="multi-label">Choose input format</label>
+            <input id="inputFormatsDatePicker" placeholder="e.g. MM/dd/yyyy">
+        </div>
     </div>
+</div>
+
+
     <div id="action-description">
         <p>
             In this sample, the DatePicker has been configured with the <code>dd-MMM-yy</code> date format.
@@ -25,6 +32,11 @@
         <p>
             Format sample illustrates the support of custom date format in the DatePicker component by using the
             <code>format</code> property. You can also change the date format by selecting it from the format options in the properties panel.
+        </p>
+        <p>
+            Furthermore, this example showcases the flexible date value parsing functionality available in DatePicker component.
+            By utilizing the <code>inputFormats</code> property, users can enter dates in various formats, which will be
+            automatically parsed and formatted according to the chosen date format.
         </p>
         <p> More information on the date format configuration can be found in the
             <a href="https://ej2.syncfusion.com/documentation/datepicker/date-format.html" target="_blank"> documentation section</a>.</p>
@@ -42,6 +54,10 @@
             top: 55px;
             width: 200px;
             margin-left: 80px;
+        }
+
+        .multi-label {
+            margin-top: 30px;
         }
     </style>
 <!-- custom code end-->

@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { ChartTheme, Chart3D, Category3D, ColumnSeries3D, Legend3D, Chart3DLoadedEventArgs, Tooltip3D, Highlight3D } from '@syncfusion/ej2-charts';
 Chart3D.Inject(Category3D, ColumnSeries3D, Legend3D, Tooltip3D, Highlight3D);
 import { Browser } from '@syncfusion/ej2-base';
+import { load3DChartTheme } from './theme-color';
 
 /**
  * Sample for Column Series with Side by side placement
@@ -49,10 +50,7 @@ import { Browser } from '@syncfusion/ej2-base';
         legendSettings: { visible: true, enableHighlight: true },
         width: Browser.isDevice ? '100%' : '75%',
         load: function (args) {
-            var selectedTheme = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            load3DChartTheme(args);
         }
     });
     chart.appendTo('#container');

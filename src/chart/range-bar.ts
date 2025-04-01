@@ -1,11 +1,26 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, RangeColumnSeries, Category, Tooltip, Legend, ILoadedEventArgs, ChartTheme, DataLabel } from '@syncfusion/ej2-charts';
+import { Chart, RangeColumnSeries, Category, Tooltip, Legend, ILoadedEventArgs, DataLabel } from '@syncfusion/ej2-charts';
 Chart.Inject(RangeColumnSeries, Category, Tooltip, Legend, DataLabel);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample fpr Range Bar
  */
+let rangeBarData: Object[] = [
+    { country: 'Solomon Islands', low: 44, high: 134 },
+    { country: 'Tonga', low: 52, high: 131 },
+    { country: 'Trinidad and Tobago', low: 36, high: 151 },
+    { country: 'Samoa', low: 49, high: 131 },
+    { country: 'Saint Lucia', low: 39, high: 148 },
+    { country: 'Georgia', low: 68, high: 122 },
+    { country: 'Peru', low: 56, high: 141 },
+    { country: 'Grenada', low: 41, high: 147 },
+    { country: 'Dominica', low: 46, high: 143 },
+    { country: 'Ukraine', low: 64, high: 148 },
+    { country: 'Colombia', low: 64, high: 134 }
+];
+
 (window as any).default = (): void => {
     loadCultureFiles();
 
@@ -16,15 +31,20 @@ import { Browser } from '@syncfusion/ej2-base';
             valueType: 'Category',
             majorGridLines: { width: 0 },
             majorTickLines: { width: 0 },
-            minorTickLines: { width: 0 },
+            lineStyle: { width: 0 }
         },
 
         //Initializing Primary Y Axis
         primaryYAxis: {
-            labelFormat: '{value}˚F',title: 'Temperature (In Fahrenheit)',
+            labelFormat: '{value}',
+            minimum: 0,
+            maximum: 200,
+            interval: 20,
             edgeLabelPlacement: 'Shift',
             lineStyle: { width: 0 },
-            majorTickLines: { width: 0 }
+            majorTickLines: { width: 0 },
+            title: 'Growth in Visa-Free Destinations',
+            labelRotation: Browser.isDevice ? -45 : 0
         },
         chartArea: {
             border: {
@@ -34,42 +54,23 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Chart Series
         series: [
             {
-                type: 'RangeColumn', name: 'California', xName: 'x', high: 'high',columnSpacing:0.1 ,tooltipMappingName:'text', low: 'low',marker:{
-                    dataLabel: {
-                       visible: true,
-                       position: 'Outer',
-                   }
-               },
-                dataSource: [
-                    { x: 'Jan', low: 28, high: 72, text: 'January' },
-                    { x: 'Feb', low: 25, high: 75, text: 'February' },
-                    { x: 'Mar', low: 18, high: 65, text: 'March' },
-                    { x: 'Apr', low: 22, high: 69, text: 'April' },
-                    { x: 'May', low: 56, high: 87, text: 'May' },
-                    { x: 'Jun', low: 48, high: 75, text: 'June' },
-                    { x: 'Jul', low: 40, high: 78, text: 'July' },
-                    { x: 'Aug', low: 35, high: 73, text: 'August' },
-                    { x: 'Sep', low: 43, high: 64, text: 'September' },
-                    { x: 'Oct', low: 38, high: 77, text: 'October' },
-                    { x: 'Nov', low: 28, high: 54, text: 'November' },
-                    { x: 'Dec', low: 29, high: 56, text: 'December' }
-                ]
+                type: 'RangeColumn', xName: 'country', high: 'high', low: 'low', columnSpacing: 0.4,
+                marker: { dataLabel: { visible: true, position: 'Outer' } },
+                dataSource: rangeBarData, cornerRadius: { topLeft: 4, topRight: 4, bottomLeft: 4, bottomRight: 4 }
             }
         ],
         isTransposed: true,
         tooltip: {
             enable: true,
-            header : "<b>${point.tooltip}</b>", format :"Temperature : <b>${point.low} - ${point.high}</b>"
+            format: '${point.x}: <b>${point.low} - ${point.high}</b>'
         },
         width: Browser.isDevice ? '100%' : '75%',
-        legendSettings: {visible:false},
+        legendSettings: { visible: false },
         //Initializing Chart Title
-        title: 'Temperature Variation',
+        title: 'Global Passport Rankings: Growth in Visa-Free Access (2006–2024)',
+        subTitle: 'Source: wikipedia.org',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

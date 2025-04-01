@@ -10,7 +10,6 @@ import { Switch } from '@syncfusion/ej2-buttons';
 Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers);
 (window as any).default = (): void => {
     loadCultureFiles();
-    let isFitToWidth: boolean;
     let gantt: Gantt = new Gantt(
         {
             dataSource: editingData,
@@ -74,12 +73,7 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers);
                 } else if (args.item.id === 'GanttExport_csvexport') {
                     gantt.csvExport();
                 } else if (args.item.id === 'GanttExport_pdfexport') {
-                    let exportProperties: PdfExportProperties = {
-                        fitToWidthSettings: {       
-                            isFitToWidth: isFitToWidth,       
-                        }       
-                    };
-                    gantt.pdfExport(exportProperties);
+                    gantt.pdfExport();
                 }
             },
             allowSelection: true,
@@ -108,15 +102,4 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers);
             projectEndDate: new Date('07/28/2024')
         });
     gantt.appendTo('#GanttExport');
-
-    let taskbarDragDrop: Switch = new Switch({ value: 'fitToWidth', change: dragDropChange});
-    taskbarDragDrop.appendTo('#checked');
-
-    function dragDropChange(args: any) {
-        if (args.checked) {
-            isFitToWidth = true;
-        } else {
-            isFitToWidth = false;
-        }
-    }
 };

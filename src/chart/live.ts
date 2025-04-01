@@ -1,5 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, LineSeries, Legend, ILoadedEventArgs, getElement } from '@syncfusion/ej2-charts';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(LineSeries, Legend);
 
 /**
@@ -83,8 +84,7 @@ for (i = 0; i < 100; i++) {
         width: '800',
         height: '350',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Fluent2';
+           loadChartTheme(args);
         }
     });
     chart.appendTo('#container-live');

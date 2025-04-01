@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { BulletChart, BulletTooltip, ChartTheme, IBulletLoadedEventArgs } from '@syncfusion/ej2-charts';
 import { BulletChartLegend, IBulletLegendRenderEventArgs } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadBulletChartTheme } from './theme-color';
 BulletChart.Inject(BulletTooltip, BulletChartLegend);
 
 /**
@@ -30,10 +31,7 @@ let targetValue: number;
         subtitle: 'in Thousands',
         legendSettings: { visible: true },
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, "Dark").replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
         legendRender: (args: IBulletLegendRenderEventArgs) => {
             if (args.text === 'Target_0') {

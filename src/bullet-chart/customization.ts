@@ -3,6 +3,7 @@ import { BulletChart, BulletTooltip,  ChartTheme, IBulletLoadedEventArgs } from 
 import { ColorPicker, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 import { Browser } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
+import { loadBulletChartTheme } from './theme-color';
 BulletChart.Inject(BulletTooltip);
 
 /**
@@ -29,10 +30,7 @@ let targetValue: number;
         subtitle: 'in Thousands',
         minorTickLines: { width: 0},
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, "Dark").replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
     });
     chart.appendTo('#container');

@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip, ILoadedEventArgs, Highlight } from '@syncfusion/ej2-charts';
+import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip, ILoadedEventArgs, ITooltipRenderEventArgs, Highlight } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, DataLabel, Category, Legend, Tooltip, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
 import { getElement, IAxisLabelClickEventArgs, IMouseEventArgs, IPointRenderEventArgs, Series } from '@syncfusion/ej2/charts';
-import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointBootstrap5DarkColors, pointBootstrap5Colors, pointBootstrapColors, pointHighContrastColors, pointFluentDarkColors, pointFluentColors, pointTailwindDarkColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2HighContrastColors, pointFluent2DarkColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
+import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointBootstrap5DarkColors, pointBootstrap5Colors, pointBootstrapColors, pointHighContrastColors, pointFluentDarkColors, pointFluentColors, pointTailwindDarkColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2HighContrastColors, pointFluent2DarkColors, pointTailwind3Colors, pointTailwind3DarkColors, loadChartTheme } from './theme-color';
 /**
  * Sample for Column Series
  */
@@ -61,16 +61,20 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
         ],
         //Initializing Chart title
         width: Browser.isDevice ? '100%' : '75%',
-        title: 'Top Populated Continents of 2023', tooltip: {
+        title: 'Top Populated Continents of 2023', 
+        subTitle: 'A Look at Population Rankings and Trends in 2023',
+        tooltip: {
             enable: true, header: "<b>Population - 2023</b>",
             format: '${point.x}: ${point.y}M'
         },
         legendSettings: { visible: false },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
+        },
+        tooltipRender: (args: ITooltipRenderEventArgs) => {
+            args.text = args.text.replace(/\d+/g, (num: string) =>
+                Number(num).toLocaleString('en-US')
+            );
         },
         loaded: (args: ILoadedEventArgs) => {
             if (clicked) {
@@ -88,54 +92,53 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
         },
         pointRender: (args: IPointRenderEventArgs) => {
             if (!clicked) {
-                let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'material';
-                if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
+                let theme: string = loadChartTheme().toLowerCase();
+                if (theme && theme.indexOf('fabric') > -1) {
                     args.fill = pointFabricColors[args.point.index % 10];;
-                } else if (selectedTheme === 'material-dark') {
+                } else if (theme === 'materialdark') {
                     args.fill = pointMaterialDarkColors[args.point.index % 10];;
-                } else if (selectedTheme === 'material') {
+                } else if (theme === 'material') {
                     args.fill = pointMaterialColors[args.point.index % 10];
-                } else if (selectedTheme === 'bootstrap5-dark') {
+                } else if (theme === 'bootstrap5dark') {
                     args.fill = pointBootstrap5DarkColors[args.point.index % 10];
-                } else if (selectedTheme === 'bootstrap5') {
+                } else if (theme === 'bootstrap5') {
                     args.fill = pointBootstrap5Colors[args.point.index % 10];
-                } else if (selectedTheme === 'bootstrap') {
+                } else if (theme === 'bootstrap') {
                     args.fill = pointBootstrapColors[args.point.index % 10];
-                } else if (selectedTheme === 'bootstrap4') {
+                } else if (theme === 'bootstrap4') {
                     args.fill = pointBootstrapColors[args.point.index % 10];
-                } else if (selectedTheme === 'bootstrap-dark') {
+                } else if (theme === 'bootstrapdark') {
                     args.fill = pointBootstrapColors[args.point.index % 10];
-                } else if (selectedTheme === 'highcontrast') {
+                } else if (theme === 'highcontrast') {
                     args.fill = pointHighContrastColors[args.point.index % 10];
-                } else if (selectedTheme === 'fluent-dark') {
+                } else if (theme === 'fluentdark') {
                     args.fill = pointFluentDarkColors[args.point.index % 10];
-                } else if (selectedTheme === 'fluent') {
+                } else if (theme === 'fluent') {
                     args.fill = pointFluentColors[args.point.index % 10];
-                } else if (selectedTheme === 'tailwind-dark') {
+                } else if (theme === 'tailwinddark') {
                     args.fill = pointTailwindDarkColors[args.point.index % 10];
-                } else if (selectedTheme === 'tailwind') {
+                } else if (theme === 'tailwind') {
                     args.fill = pointTailwindColors[args.point.index % 10];
                 }
-                else if (selectedTheme === 'material3') {
+                else if (theme === 'material3') {
                     args.fill = pointMaterial3Colors[args.point.index % 10];
                 }
-                else if (selectedTheme === 'material3-dark') {
+                else if (theme === 'material3dark') {
                     args.fill = pointMaterial3DarkColors[args.point.index % 10];
                 }
-                else if (selectedTheme === 'fluent2') {
+                else if (theme === 'fluent2') {
                     args.fill = pointFluent2Colors[args.point.index % 10];
                 }
-                else if (selectedTheme === 'fluent2-highcontrast') {
+                else if (theme === 'fluent2highcontrast') {
                     args.fill = pointFluent2HighContrastColors[args.point.index % 10];
                 }
-                else if (selectedTheme === 'fluent2-dark') {
+                else if (theme === 'fluent2dark') {
                     args.fill = pointFluent2DarkColors[args.point.index % 10];
                 }
-                else if (selectedTheme === 'tailwind3-dark') {
+                else if (theme === 'tailwind3dark') {
                     args.fill = pointTailwind3DarkColors[args.point.index % 10];
                 }
-                else if (selectedTheme === 'tailwind3') {
+                else if (theme === 'tailwind3') {
                     args.fill = pointTailwind3Colors[args.point.index % 10];
                 }
             }
@@ -179,6 +182,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                     document.getElementById("text").style.visibility = "visible";
                     if (args.point.index === 0) {
                         args.series.chart.title = "Top Populated Countries of Asia - 2023";
+                        args.series.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                         clicked = true;
                         args.series.chart.series[0].dataSource = [{
                                 y: 1422,
@@ -216,6 +220,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                     }
                     if (args.point.index === 1) {
                         args.series.chart.title = "Top Populated Countries of Africa - 2023";
+                        args.series.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                         clicked = true;
                         args.series.chart.series[0].dataSource = [{
                                 y: 223,
@@ -249,6 +254,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                     }
                     if (args.point.index === 2) {
                         args.series.chart.title = "Top Populated Countries of Europe - 2023";
+                        args.series.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                         clicked = true;
                         args.series.chart.series[0].dataSource = [{
                                 y: 143,
@@ -278,6 +284,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                     }
                     if (args.point.index === 3) {
                         args.series.chart.title = "Top Populated Countries of North America - 2023";
+                        args.series.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                         clicked = true;
                         args.series.chart.series[0].dataSource = [{
                                 y: 339,
@@ -315,6 +322,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                     }
                     if (args.point.index === 4) {
                         args.series.chart.title = "Top Populated Countries of Oceania - 2023";
+                        args.series.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                         clicked = true;
                         args.series.chart.series[0].dataSource = [{
                                 y: 26,
@@ -379,6 +387,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
 
                         if (args.index === 0) {
                             args.chart.title = "Top Populated Countries of Asia - 2023";
+                            args.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                             clicked = true;
                             args.chart.series[0].dataSource = [{
                                 y: 1422,
@@ -416,6 +425,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                         }
                         if (args.index === 1) {
                             args.chart.title = "Top Populated Countries of Africa - 2023";
+                            args.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                             clicked = true;
                             args.chart.series[0].dataSource = [{
                                 y: 223,
@@ -449,6 +459,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                         }
                         if (args.index === 2) {
                             args.chart.title = "Top Populated Countries of Europe - 2023";
+                            args.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                             clicked = true;
                             args.chart.series[0].dataSource = [{
                                 y: 143,
@@ -478,6 +489,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                         }
                         if (args.index === 3) {
                             args.chart.title = "Top Populated Countries of North America - 2023";
+                            args.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                             clicked = true;
                             args.chart.series[0].dataSource = [{
                                 y: 339,
@@ -515,6 +527,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
                         }
                         if (args.index === 4) {
                             args.chart.title = "Top Populated Countries of Oceania - 2023";
+                            args.chart.subTitle = "A Look at Population Rankings and Trends in 2023";
                             clicked = true;
                             args.chart.series[0].dataSource = [{
                                 y: 26,
@@ -539,6 +552,7 @@ import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointB
     chart.appendTo('#drilldown');
     (getElement('category') as HTMLElement).onclick = (e: MouseEvent) => {
         chart.title = "Top Populated Continents of 2023";
+        chart.subTitle = "A Look at Population Rankings and Trends in 2023";
         chart.primaryXAxis.labelStyle.color = "blue";
         chart.primaryYAxis.interval = 1000;
         chart.series[0].dataSource = data;

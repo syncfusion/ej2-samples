@@ -1,4 +1,6 @@
- import { ChatUI, MessageSendEventArgs } from '@syncfusion/ej2-interactive-chat';
+import { loadCultureFiles } from '../common/culture-loader';
+
+import { ChatUI, MessageSendEventArgs } from '@syncfusion/ej2-interactive-chat';
 import { Splitter } from '@syncfusion/ej2-layouts';
 import { ListView } from '@syncfusion/ej2-lists';
 import { Button } from '@syncfusion/ej2-buttons';
@@ -7,7 +9,8 @@ import { integrationMessagedata, botMessagedata, lauraMessagedata, suyamaMessage
 /**
  * Chat-Integration sample
  */
-(window as any).default = function() {
+(window as any).default = (): void => {
+    loadCultureFiles();
 
     let chatMessages: { [key: string]: any[] } = {
         user1: integrationMessagedata,
@@ -112,4 +115,4 @@ import { integrationMessagedata, botMessagedata, lauraMessagedata, suyamaMessage
     // Attach event listeners to buttons or other UI elements to trigger toggling
     const chatButton = document.getElementById('chatbtn') as HTMLElement;
     chatButton.addEventListener('click', toggleListView);
-}
+};

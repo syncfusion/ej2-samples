@@ -6,6 +6,8 @@ import {
     CircularChartDataLabel3D, CircularChart3DLoadedEventArgs, CircularChart3DTheme
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2/base';
+import { loadCircular3DChartTheme } from './theme-colors';
+
 CircularChart3D.Inject(CircularChartLegend3D, PieSeries3D, CircularChartTooltip3D, CircularChartDataLabel3D);
 /**
  * Sample for Pie with Various Radius
@@ -47,10 +49,7 @@ CircularChart3D.Inject(CircularChartLegend3D, PieSeries3D, CircularChartTooltip3
         // Initialize tht tooltip
         tooltip: { enable: true, format: '<b>${point.x}</b><br/>Area in square km: <b>${point.y} </b> <br/> Population density per square km: <b>${point.tooltip}</b>' },
         load: (args: CircularChart3DLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <CircularChart3DTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadCircular3DChartTheme(args);
         }
     });
     pie.appendTo('#container');

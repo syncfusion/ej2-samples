@@ -4,6 +4,7 @@ import {
     StripLine, ChartAnnotation, DataLabel
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(ColumnSeries, DateTimeCategory, StripLine, ChartAnnotation, DataLabel);
 
 /**
@@ -69,10 +70,7 @@ Chart.Inject(ColumnSeries, DateTimeCategory, StripLine, ChartAnnotation, DataLab
             }
         ],
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            let selectedTheme: string = loadChartTheme(args);
             if (selectedTheme === 'highcontrast') {
 args.chart.annotations[0].content = '<div style="color:#ffffff;font-family: bold; font-weight: 600">Christmas Offer<br> Dec 2017</div>';
 args.chart.annotations[1].content = '<div style="color:#ffffff;font-family: bold; font-weight: 600">New Year Offer<br> Jan 2018</div>';

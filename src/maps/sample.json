@@ -2,7 +2,6 @@
     "name": "Maps",
     "directory": "maps",
     "category": "Data Visualization",
-    "type": "update",
     "ftName": "maps",
     "samples": [{
             "url": "default",
@@ -254,7 +253,6 @@
         {
             "url": "osm-with-marker-clustering",
             "name": "OSM with Marker Clustering",
-            "type": "new",
             "category": "Map Providers",
             "sourceFiles":[
                 { "displayName": "osm-with-marker-clustering.html", "path":"src/maps/osm-with-marker-clustering.html" },

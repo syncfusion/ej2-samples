@@ -5,6 +5,7 @@ import {
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { chartValue } from './financial-data';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(
     CandleSeries, Category, Tooltip, StripLine, DateTime, Zoom, Logarithmic, Crosshair, LineSeries,
     AtrIndicator
@@ -83,10 +84,7 @@ Chart.Inject(
             title: 'AAPL Stock Price 2012-2017',
             width: Browser.isDevice ? '100%' : '75%',
             load: (args: ILoadedEventArgs) => {
-                let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-                args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+                loadChartTheme(args);
             },
             legendSettings: {
                 visible: false

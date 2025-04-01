@@ -1,52 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { pointFabricColors, pointMaterialDarkColors, pointMaterialColors, pointBootstrap5DarkColors, pointBootstrap5Colors, pointBootstrapColors, pointHighContrastColors, pointFluentDarkColors, pointFluentColors, pointTailwindDarkColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2HighContrastColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
-import { ChartTheme, Chart3D, Category3D, Legend3D, Chart3DPointRenderEventArgs, ColumnSeries3D, Tooltip3D, Chart3DLoadedEventArgs, Highlight3D } from '@syncfusion/ej2-charts';
+import { load3DChartTheme, pointRender } from './theme-color';
+import { ChartTheme, Chart3D, Category3D, Legend3D, ColumnSeries3D, Tooltip3D, Chart3DLoadedEventArgs, Highlight3D } from '@syncfusion/ej2-charts';
 Chart3D.Inject(ColumnSeries3D, Category3D, Legend3D, Tooltip3D, Highlight3D);
-import { Browser, EmitType } from '@syncfusion/ej2-base';
+import { Browser } from '@syncfusion/ej2-base';
 
-let labelRender: EmitType<Chart3DPointRenderEventArgs> = (args: Chart3DPointRenderEventArgs): void => {
-    let selectedTheme: string = location.hash.split('/')[1];
-    selectedTheme = selectedTheme ? selectedTheme : 'Material';
-    if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
-        args.fill = pointFabricColors[args.point.index % 10];
-    } else if (selectedTheme === 'material-dark') {
-        args.fill = pointMaterialDarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'material') {
-        args.fill = pointMaterialColors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap5-dark') {
-        args.fill = pointBootstrap5DarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap5') {
-        args.fill = pointBootstrap5Colors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap') {
-        args.fill = pointBootstrapColors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap4') {
-        args.fill = pointBootstrapColors[args.point.index % 10];
-    } else if (selectedTheme === 'bootstrap-dark') {
-        args.fill = pointBootstrapColors[args.point.index % 10];
-    } else if (selectedTheme === 'highcontrast') {
-        args.fill = pointHighContrastColors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent-dark') {
-        args.fill = pointFluentDarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent') {
-        args.fill = pointFluentColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind-dark') {
-        args.fill = pointTailwindDarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind') {
-        args.fill = pointTailwindColors[args.point.index % 10];
-    } else if (selectedTheme === 'material3') {
-        args.fill = pointMaterial3Colors[args.point.index % 10];
-    } else if (selectedTheme === 'material3-dark') {
-        args.fill = pointMaterial3DarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent2') {
-        args.fill = pointFluent2Colors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
-        args.fill = pointFluent2HighContrastColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind3-dark') {
-        args.fill = pointTailwind3DarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind3') {
-        args.fill = pointTailwind3Colors[args.point.index % 10];
-    }
-};
 /**
  * Sample for Column Series
  */
@@ -79,12 +36,9 @@ let labelRender: EmitType<Chart3DPointRenderEventArgs> = (args: Chart3DPointRend
         title: 'Olympic Gold Medal Counts - Tokyo 2020',
         tooltip: { enable: true, header: '${point.x}', format: 'Gold Medal : <b>${point.y}' },
         legendSettings: { enableHighlight: true, visible: false },
-        pointRender: labelRender,
+        pointRender: pointRender,
         load: (args: Chart3DLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            load3DChartTheme(args);
         }
     });
     chart.appendTo('#container');

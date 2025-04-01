@@ -1195,10 +1195,7 @@ Grid.Inject(Selection, VirtualScroll);
         }
     });
     grid.on('destroy', function () {
-        if (timerID) {
-            clearInterval(timerID);
-            timerID = undefined;
-        }
+        clearButton.element.click();
     });
     let isDataBound: boolean = true;
     function queryCellInfo(args: QueryCellInfoEventArgs) {

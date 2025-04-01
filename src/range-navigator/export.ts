@@ -8,19 +8,12 @@ RangeNavigator.Inject(DateTime, StepLineSeries);
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Fetch } from '@syncfusion/ej2-base';
+import { borderColor, printBorderColor, printRegionColors, printThemes, loadRangeNavigatorTheme } from './theme-colors';
 
 /**
  * Sample for range navigator with print and export functionalities.
  */
-let selectedTheme: string = location.hash.split('/')[1];
-selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
-let themes: string[] = ['Material', 'Fabric', 'Bootstrap', 'Bootstrap4', 'HighContrast', 'Bootstrap5', 'Tailwind','MaterialDark', 'FabricDark', 'BootstrapDark', 'TailwindDark', 'Bootstrap5Dark', 'Fluent', 'FluentDark', 'Material3', 'Material3Dark', 'Fluent2', 'Fluent2HighContrast', 'Fluent2Dark', 'Tailwind3', 'Tailwind3Dark'];
-let borderColor: string[] = ['#FF4081', '#007897', '#428BCA', '#FFD939', '#FFD939', '#FD7E14', '#4F46E5', '#FF4081', '#007897', '#428BCA', '#22D3EE', '#FD7E14', '#1AC9E6', '#1AC9E6', '#6355C7', '#4EAAFF', '#6200EE', '#9BB449', '#9BB449', '#2F4074', '#8029F1'];
-let regionColor: string[] = ['rgba(255, 64, 129, 0.3)', 'rgba(0, 120, 151, 0.3)',
-        'rgba(66, 139, 202, 0.3)', 'rgba(255, 217, 57, 0.3)', 'rgba(255, 217, 57, 0.3)', 'rgba(253, 126, 20, 0.3)', 'rgba(79, 70, 229, 0.3)',
-        'rgba(255, 64, 129, 0.3)', 'rgba(0, 120, 151, 0.3)', 'rgba(66, 139, 202, 0.3)', 'rgba(34, 211, 238, 0.3)', 'rgba(253, 126, 20, 0.3)', 'rgba(26, 201, 230, 0.3)', 'rgba(26, 201, 230, 0.3)', 'rgba(99, 85, 199, 0.3)', 'rgba(78, 170, 255, 0.3)', 'rgba(98, 0, 238, 0.3)', 'rgba(155, 180, 73, 0.3)', 'rgba(155, 180, 73, 0.3)', 'rgba(47, 64, 116, 0.3)', 'rgba(128, 41, 241, 0.3)'];
+let theme: ChartTheme = loadRangeNavigatorTheme();
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -43,8 +36,8 @@ let regionColor: string[] = ['rgba(255, 64, 129, 0.3)', 'rgba(0, 120, 151, 0.3)'
                 series: [{
                     dataSource: datasrc, xName: 'xDate', yName: 'Close', width: 2,
                     name: 'Close',
-                    fill: regionColor[themes.indexOf(theme)], type: 'SplineArea',
-                    border: { width: 2, color: borderColor[themes.indexOf(theme)] }
+                    fill: printRegionColors[printThemes.indexOf(theme)], type: 'SplineArea',
+                    border: { width: 2, color: printBorderColor[printThemes.indexOf(theme)] }
                 }],
                 chartArea: { border: { width: 0 } },
                 primaryYAxis: {

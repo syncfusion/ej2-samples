@@ -1,5 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { ProgressBar, ProgressAnnotation, ILoadedEventArgs, ProgressTheme } from '@syncfusion/ej2-progressbar';
+import { loadProgressBarTheme } from './theme-colors';
 ProgressBar.Inject(ProgressAnnotation);
 /**
  * Sample for Semi circular progress bar
@@ -24,13 +25,10 @@ ProgressBar.Inject(ProgressAnnotation);
             delay: 0,
         },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
             args.progressBar.progressColor = '#FFFFFF';
-            args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            let theme: string = loadProgressBarTheme(args);
             // tslint:disable-next-line:align
-            switch (selectedTheme) {
+            switch (theme) {
                 case 'material':
                     args.progressBar.trackColor = '#f8c2d4';
                     args.progressBar.progressColor = '#e91e63';
@@ -125,10 +123,7 @@ ProgressBar.Inject(ProgressAnnotation);
         trackThickness: 59,
         trackColor: 'lightgray',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadProgressBarTheme(args);
         },
     });
     partBackground.appendTo('#part-background');
@@ -147,10 +142,7 @@ ProgressBar.Inject(ProgressAnnotation);
             delay: 0,
         },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadProgressBarTheme(args);
         },
     });
     outerRadius.appendTo('#outer-radius');
@@ -168,10 +160,7 @@ ProgressBar.Inject(ProgressAnnotation);
         trackThickness: 3,
         progressThickness: 8,
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadProgressBarTheme(args);
         },
     });
     onRadius.appendTo('#on-radius');
@@ -188,10 +177,7 @@ ProgressBar.Inject(ProgressAnnotation);
             delay: 0,
         },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadProgressBarTheme(args);
         },
     });
     pie.appendTo('#pie');

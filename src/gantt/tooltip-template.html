@@ -48,15 +48,26 @@
     </table>
 </script>
 
+<script type="text/x-template" id="timelineTooltipTemplate">
+    ${if(tier == 'topTier')}  
+        <div>${topTierTooltip(value, date, tier)}</div>   
+    ${/if}
+    ${if(tier == 'bottomTier')} 
+        <div>${bottomTierTooltip(date, tier)}</div>  
+    ${/if}
+</script>
+
 <div id="action-description">
     <p>This sample explains the way of rendering tooltip template for taskbar and baseline by mapping template
-        elements to the property of taskbar and baseline in <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/gantt#tooltipsettings">tooltipSettings</a>.</p>
+        elements to the property of taskbar, timeline and baseline in <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/gantt#tooltipsettings">tooltipSettings</a>.</p>
 </div>
 
 <div id="description">
     <p>Tooltip can be enabled or disabled using <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/gantt/tooltipSettingsModel/#showtooltip">tooltipSettings.showTooltip</a> property.In this demo, the
-        tooltip template is rendered for <code>taskbar</code> and <code>baseline</code> using the
-        <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/gantt/tooltipSettingsModel/#taskbar">tooltipSettings.taskbar</a> and <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/gantt/tooltipSettingsModel/#baseline">tooltipSettings.baseline</a> properties.
+        tooltip template is rendered for <code>taskbar</code>, <code>timeline</code> and <code>baseline</code> using the
+        <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/gantt/tooltipSettingsModel/#taskbar">tooltipSettings.taskbar</a>,
+        <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/gantt/tooltipSettingsModel/#timeline">tooltipSettings.timeline</a>,
+         and <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/gantt/tooltipSettingsModel/#baseline">tooltipSettings.baseline</a> properties.
     </p>
     <p>
         The baseline feature enables the user to view the deviation between the planned dates and the actual dates of

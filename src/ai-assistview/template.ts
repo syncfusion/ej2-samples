@@ -82,6 +82,14 @@ import { defaultPromptResponseData, defaultSuggestions  } from './promptResponse
     carouselObj.appendTo('#bannerCarousel');
 
     carouselObj.element.addEventListener('click', function (e) {
+        handleAction(e);
+    });
+
+    carouselObj.element.addEventListener('touchstart', function (e) {
+        handleAction(e);
+    });
+
+    function handleAction(e: any) {
         let target = e.target;
         let prompt = '';
         if ((target as any).tagName === 'IMG') {
@@ -91,8 +99,7 @@ import { defaultPromptResponseData, defaultSuggestions  } from './promptResponse
         }
         if (prompt)
             templateAIAssistView.executePrompt(prompt);
-    });
-
+    };
 
     new DropDownButton({
         items: [

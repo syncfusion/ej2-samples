@@ -61,11 +61,13 @@ TreeGrid.Inject(Page);
             let columnName: string = <string> e.value;
             if ( columnName === 'price' ) {
                 dropDownFormat.dataSource = priceFormat;
+                dropDownFormat.value = 'c2';
             }
             if ( columnName === 'orderDate' ) {
                 dropDownFormat.dataSource = dateFormat;
+                dropDownFormat.value = dateFormat[0].id;
             }
-            dropDownFormat.index = 0;
+            dropDownFormat.dataBind();
         }
     });
     dropDownColumn.appendTo('#columns');

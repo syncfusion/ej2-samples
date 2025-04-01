@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, Category, AreaSeries, Legend, ILoadedEventArgs, ChartTheme, Highlight, DateTime, Tooltip} from '@syncfusion/ej2-charts';
 Chart.Inject(AreaSeries, Category, Legend, Highlight, Tooltip, DateTime);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 /**
  * Sample for Area Series with Empty Point
  */
@@ -50,13 +51,10 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Chart title
         title: 'Data Consumption',
         width: Browser.isDevice ? '100%' : '75%',
-        tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>' },
+        tooltip: { enable: true, format: '${point.x} : <b>${point.y}</b>', enableHighlight: true, showNearestTooltip: true },
         legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

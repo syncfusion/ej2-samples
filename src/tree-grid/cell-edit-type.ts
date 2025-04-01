@@ -34,7 +34,7 @@ TreeGrid.Inject(Toolbar, Edit);
                 {
                     field: 'startDate', headerText: 'Start Date', textAlign: 'Right', width: 180,
                     editType: 'datetimepickeredit', edit: { params: { format: 'M/d/y hh:mm a' } },
-                    format: { format: 'M/d/y hh:mm a', type: 'dateTime' }, validationRules: { date: true }
+                    format: { format: 'M/d/y hh:mm a', type: 'dateTime' }, validationRules: { date: ['M/d/y hh:mm a','Please enter a valid date'] }
                 },
                 {
                     field: 'approved', headerText: 'Approved', width: 80, editType: 'booleanedit',

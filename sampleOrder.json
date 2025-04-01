@@ -639,6 +639,7 @@
         "Samples": {
             "default": "Default Functionalities",
             "custom-views": "Custom Views",
+            "streaming": "Streaming Response",
             "template": "Template",
             "dialog": "Dialog"
         }
@@ -887,27 +888,37 @@
     "pivot-table": {
         "ControlName": "Pivot Table",
         "Samples": {
+            "overview": "Overview",
             "default": "Default Functionalities",
+            "classic-layout": "Classic Layout",
+            "live-data": "Live Data",
             "local": "Local Data",
             "remote": "Remote Data",
+            "server-side-aggregation": "Server-Side Aggregation",
             "olap": "OLAP",
+            "performance": "Performance",
             "pivot-chart": "Pivot Chart",
             "external-binding": "External Binding",
+            "heatmap": "HeatMap",
             "field-list": "Field List",
             "grouping-bar": "Grouping Bar",
             "conditional-formatting": "Conditional Formatting",
             "selection": "Selection",
+            "drill-down": "Drill Down",
             "summary-customization": "Show/Hide Totals",
             "grouping": "Grouping",
             "toolbar": "Toolbar",
+            "keyboard-navigation": "Keyboard Navigation",
             "calculated-field": "Calculated Field",
             "aggregation": "Aggregation",
             "sorting": "Default Sorting",
+            "custom-sorting": "Custom Sorting",
             "value-sorting": "Value Sorting",
             "filtering": "Default Filtering",
             "label-filtering": "Label Filtering",
             "value-filtering": "Value Filtering",
             "virtual-scrolling": "Virtual Scrolling",
+            "paging": "Paging",
             "cell-template": "Cell Template",
             "drill-through": "Drill Through",
             "editing": "Editing",
@@ -1155,12 +1166,15 @@
         "Samples": {
             "default": "Default Functionalities",
             "formula": "Formula",
+	    "protect-sheet": "Protect Sheet",
             "cell-data-binding": "Cell Data Binding",
             "remote-data-binding": "Remote Data Binding",
             "cell-formatting": "Cell Formatting",
             "number-formatting": "Number Formatting",
             "sorting-and-filtering": "Sorting and Filtering",
-            "cell-template": "Cell Template"
+            "cell-template": "Cell Template",
+	    "notes": "Note",
+	    "print": "Print"
         }
     },
     "speed-dial": {
@@ -1383,9 +1397,18 @@
         "ControlName": "Chat UI",
         "Samples": {
             "default": "Default Functionalities",
+            "loadOn-demand": "Load On-demand",
             "template": "Template",
             "api": "API",
             "chat-integration": "Use Case"
+        }
+    },
+    "speech-to-text": {
+        "ControlName": "Speech To Text",
+        "Samples": {
+            "default": "Default Functionalities",
+            "use-case": "Use Case",
+            "integration": "Assist View"
         }
     }
 }

@@ -99,6 +99,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     //used NumericTextBox for left margin of the layout.
     let marginLeftObj: NumericTextBox = new NumericTextBox({
         value: diagram.layout.margin.left, step: 1, format: '##.##',
+        min: 10, max:120,
         change: (args: NumericChangeEventArgs) => {
             diagram.layout.margin.left = args.value;
             diagram.dataBind();
@@ -108,6 +109,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     //used NumericTextBox for top margin of the layout.
     let marginTopObj: NumericTextBox = new NumericTextBox({
         value: diagram.layout.margin.top, step: 1, format: '##.##',
+        min: 10, max:120,
         change: (args: NumericChangeEventArgs) => {
             diagram.layout.verticalAlignment = 'Top';
             diagram.layout.margin.top = args.value;
@@ -118,6 +120,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     //used NumericTextBox for horizontalspacing of the layout.
     let horizontalSpacingObj: NumericTextBox = new NumericTextBox({
         value: diagram.layout.horizontalSpacing, step: 1, format: '##.##',
+        min: 20, max:60,
         change: (args: NumericChangeEventArgs) => {
             diagram.layout.horizontalSpacing = Number(args.value);
             diagram.dataBind();
@@ -127,6 +130,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
     //used NumericTextBox for verticalspacing of the layout.
     let verticalSpacingObj: NumericTextBox = new NumericTextBox({
         value: diagram.layout.verticalSpacing, step: 1, format: '##.##',
+        min: 20, max:60,
         change: (args: NumericChangeEventArgs) => {
             diagram.layout.verticalSpacing = Number(args.value);
             diagram.dataBind();

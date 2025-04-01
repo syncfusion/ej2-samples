@@ -58,7 +58,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
     `
         },
         exportPdf: {
-            serviceUrl: 'https://ej2services.syncfusion.com/js/development/api/RichTextEditor/ExportToPdf',
+            serviceUrl: hostUrl + 'api/RichTextEditor/ExportToPdf',
             fileName: 'RichTextEditor.pdf',
             stylesheet: `
         .e-rte-content{
@@ -117,7 +117,8 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         popupHeight: '200px',
         sortOrder: 'Ascending',
         target: editor.inputElement,
-        allowSpaces: true
+        allowSpaces: true,
+        suffixText: '&nbsp;'
     })
 
     mention.appendTo('#editorMention');
@@ -132,6 +133,9 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
             editor.dataBind();
             rteContainer.classList.remove('e-rte-code-mirror-enabled');
             editor.focusIn();
+            if (document.querySelector('.CodeMirror')) {
+                (document.querySelector('.CodeMirror') as HTMLElement).style.height = '300px';
+            }
         } else {
             rteContainer.classList.add('e-rte-code-mirror-enabled');
             rteContainer.classList.remove('e-source-code-enabled');
@@ -142,6 +146,9 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
             }
             else {
                 codeMirror.setValue(editor.value);
+            }
+            if (document.querySelector('.e-rte-full-screen')) {
+                (document.querySelector('.CodeMirror') as HTMLElement).style.height = 'auto';
             }
             codeMirror.focus();
         }
@@ -157,9 +164,6 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
     }
 
     function actionBeginHandler(e: ActionBeginEventArgs): void {
-        if (e.requestType === 'EnterAction' && mention.element.classList.contains('e-popup-open')) {
-            e.cancel = true;
-        }
         if (e.requestType === 'Maximize' || e.requestType === 'Minimize') {
             handleFullScreen(e);
         }
@@ -176,13 +180,16 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
             leftBar = document.querySelector('#left-sidebar');
             transformElement = document.querySelector('#right-pane');
         }
-        if (e.targetItem === 'Maximize' && sbCntEle != null || sbHdrEle != null) {
+        if (e.targetItem === 'Maximize' && (sbCntEle != null || sbHdrEle != null)) {
             if (Browser.isDevice && Browser.isIos) { addClass([sbCntEle, sbHdrEle], ['hide-header']); }
             addClass([leftBar], ['e-close']);
             removeClass([leftBar], ['e-open']);
             if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
             transformElement.style.transform = 'inherit';
-        } else if (e.targetItem === 'Minimize' && sbCntEle != null || sbHdrEle != null) {
+            if (document.querySelector('.CodeMirror')) {
+                (document.querySelector('.CodeMirror')  as HTMLElement).style.height = 'auto';
+            }
+        } else if (e.targetItem === 'Minimize' && (sbCntEle != null || sbHdrEle != null)) {
             if (Browser.isDevice && Browser.isIos) { removeClass([sbCntEle, sbHdrEle], ['hide-header']); }
             removeClass([leftBar], ['e-close']);
             if (!Browser.isDevice) {
@@ -190,6 +197,9 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
                 transformElement.style.marginLeft = leftBar.offsetWidth + 'px';
             }
             transformElement.style.transform = 'translateX(0px)';
+            if (document.querySelector('.CodeMirror')) {
+                (document.querySelector('.CodeMirror') as HTMLElement).style.height = '300px';
+            }
         }
     }
 

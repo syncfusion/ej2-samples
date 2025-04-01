@@ -3,18 +3,13 @@
 </div>
 <div id="action-description">
     <p>
-        This sample shows the rate of fruit production statistics with default line series and dash array in the chart. Dashed lines are animated by using CSS animation.
-
-
+        This sample illustrates global population trends from 1950 to 2100, with solid lines representing historical data and dashed lines for projections.
     </p>
 </div>
 <div id="description">
     <p>
-        In this example, you will see how to render and configure the line chart. Line charts are used to represent time-dependent data, showing trends in data at equal intervals. You can use
-        <code>dashArray</code>,
-        <code>width</code>,
-        <code>fill</code> properties to customize the line.
-        
+        In this example, you will see how to render and configure the line chart. Line charts are used to represent time-dependent data, showing trends in data at equal intervals.
+        You can use <code>DashArray</code>, <code>Width</code>, <code>Fill</code> properties to customize the line.
     </p>
     <p>
         <code>Tooltips</code> are enabled in this example.To see the tooltip in action, hover a point or tap on a point in touch enabled devices.
@@ -22,8 +17,7 @@
     <p style="font-weight: 500"><b>Injecting Module</b></p>
     <p>
         Chart component features are segregated into individual feature-wise modules. To use line series, we need to inject
-        <code>LineSeries</code> module using
-        <code>Chart.Inject(LineSeries)</code> method.
+        <code>LineSeries</code> module using <code>Chart.Inject(LineSeries)</code> method.
     </p>
     <p>
         More information on the dashed line series can be found in this
@@ -35,24 +29,19 @@
         padding: 0px !important;
     }
 
-    #container_Series_1{
-        stroke-dasharray: 10px 10px;
+    #container_Series_1, #container_Series_3, #container_Series_5, #container_Series_7, #container_Series_9, #container_Series_11 {
+        stroke-dasharray: 4px 4px;
         stroke-linejoin: round; stroke-linecap: round;
         -webkit-animation: dash 1s linear infinite;
         animation: dash 1s linear infinite;
     }
-
-    #container_Series_0_Point_3_Symbol {
-        -webkit-animation: opac 1s ease-out infinite;
-        animation: opac 1s ease-out infinite;
-    }
-
+ 
     @-webkit-keyframes dash {
         100% {
             stroke-dashoffset: -20px;
         }
     }
-
+ 
     @keyframes dash {
         100% {
             stroke-dashoffset: -20px;

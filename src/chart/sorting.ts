@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, StackingColumnSeries, Category, Legend, Tooltip, ILoadedEventArgs, ChartTheme, sort } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(StackingColumnSeries, Category, Legend, Tooltip);
 
 /**
@@ -62,13 +63,11 @@ Chart.Inject(StackingColumnSeries, Category, Legend, Tooltip);
         title: 'Vehicle Sales by Region',
         //Initializing User Interaction Tooltip
         tooltip: {
-            enable: true
+            enable: true,
+            enableHighlight: true
         },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

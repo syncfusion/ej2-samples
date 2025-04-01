@@ -6,14 +6,19 @@
     </div>
 </div>
 
-<div class="col-lg-4 property-section">
-    <div>
-        <select id="dateformats" class="form-control">
-            <option value="dd-MMM-yy hh:mm a">dd-MMM-yy hh:mm a</option>
-            <option value="yyyy-MM-dd HH:mm">yyyy-MM-dd HH:mm</option>
-            <option value="dd-MMMM HH:mm">dd-MMMM HH:mm</option>
-        </select>
+<div class="col-lg-4 property-panel">
+    <div class="property-panel-section">
+        <div class="property-panel-header">Properties</div>
+        <div class="property-panel-content">
+            <label class="example-label">Choose a display format</label>
+            <input id="displayFormatDateTimePicker" placeholder="Select a format">
+        </div>
+        <div class="property-panel-content">
+            <label class="multi-label">Choose input format</label>
+            <input id="inputFormatsDateTimePicker" placeholder="e.g. MM/dd/yyyy hh:mm tt">
+        </div>
     </div>
+</div>
 
 </div>
 <div id="action-description">
@@ -31,6 +36,12 @@
         using the
         <code>timeFormat</code> property to format the displayed time value in the popup list.
     </p>
+    <p>
+        Furthermore, this example showcases the flexible date value parsing functionality available in DateTimePicker
+        component.
+        By utilizing the <code>inputFormats</code> property, users can enter dates in various formats, which will be
+        automatically parsed and formatted according to the chosen date format.
+    </p>
 </div>
 <!-- custom code start -->
 <style>
@@ -44,6 +55,10 @@
         top: 55px;
         width: 200px;
         margin-left: 80px;
+    }
+
+    .multi-label {
+        margin-top: 30px;
     }
 </style>
 <!-- custom code end-->

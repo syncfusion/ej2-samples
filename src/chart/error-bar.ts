@@ -6,7 +6,7 @@ import {
     ILoadedEventArgs, ErrorBarMode, ErrorBarType, ErrorBarDirection,
 } from '@syncfusion/ej2-charts';
 import { Browser, EmitType } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors } from './theme-color';
+import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluentColors, fluentDarkColors, loadChartTheme } from './theme-color';
 Chart.Inject(ColumnSeries, Category, ErrorBar, Tooltip);
 /**
  * Sample for error bar
@@ -56,10 +56,7 @@ Chart.Inject(ColumnSeries, Category, ErrorBar, Tooltip);
         title: 'Quantity vs Items',
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            let selectedTheme: string = loadChartTheme(args);
             if (selectedTheme === 'bootstrap5' || selectedTheme === 'fluent') {
                 chart.series[0].fill = '#81CCBB';
                 chart.highlightColor = '#C7E9B6';

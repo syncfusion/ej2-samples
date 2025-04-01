@@ -5,6 +5,7 @@ import {
 } from '@syncfusion/ej2-charts';
 Chart.Inject(Category, ScatterSeries, SplineSeries, LineSeries, Trendlines, Legend, Tooltip);
 import { Browser } from '@syncfusion/ej2/base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Samples for Trend Lines
@@ -37,15 +38,12 @@ let series1: Object[] = [   { x : 1947, y : 4.76 },
             trendlines: [{ type: 'Linear', width: 3, name: 'Trends', fill: '#C64A75', enableTooltip: false }]
         }],
         //Initializing User Interaction Tooltip 
-        tooltip: { enable: true },  //Initializing Chart Title
+        tooltip: { enable: true, showNearestTooltip: true, enableHighlight: true },  //Initializing Chart Title
         width: Browser.isDevice ? '100%' : '75%',
         title: 'USD to INR Rates',
         legendSettings: { visible: true, shapeHeight: 15, shapeWidth: 15 }, chartArea: { border: { width: 0 } },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

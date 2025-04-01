@@ -32,4 +32,30 @@ import { DateRangePicker } from '@syncfusion/ej2-calendars';
         ]
     });
     daterangepicker.appendTo('#daterangepicker');
+    var labelsByLanguage:any = {
+        en: ['This Week', 'This Month', 'Last Month', 'Last Year'],
+        de: ['Diese Woche', 'Dieser Monat', 'Letzter Monat', 'Letztes Jahr'],
+        'fr-CH': ['Cette semaine', 'Ce mois-ci', 'Le mois dernier', 'L\'année dernière'],
+        ar: ['هذا الأسبوع', 'هذا الشهر', 'الشهر الماضي', 'السنة الماضية'],
+        zh: ['本周', '本月', '上个月', '去年'],
+    };
+    const cultureElement = document.getElementById("sb-setting-culture_hidden") || null;
+
+    if (cultureElement) {
+        cultureElement.addEventListener('change', function(event) {
+            var selectedLanguage = (event.target as HTMLSelectElement).value;
+            updatePresetLabels(selectedLanguage);
+        });
+    }
+
+    function updatePresetLabels(languageCode: string): void {
+        const newLabels = labelsByLanguage[languageCode] || labelsByLanguage['en'];
+    
+        for (let index = 0; index < daterangepicker.presets.length; index++) {
+            if (index >= newLabels.length) break; // Prevent out-of-bounds
+            daterangepicker.presets[index].label = newLabels[index];
+        }
+    
+        daterangepicker.refresh();
+    }
 };

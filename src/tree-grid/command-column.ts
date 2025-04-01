@@ -17,8 +17,8 @@ TreeGrid.Inject(Edit, CommandColumn);
                 allowAdding: true,
                 allowEditing: true,
                 allowDeleting: true,
-                mode: 'Row'
-
+                mode: 'Row',
+                allowEditOnDblClick: false
             },
             columns: [
                 {

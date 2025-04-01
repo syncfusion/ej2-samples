@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { ProgressBar, ILoadedEventArgs, ProgressTheme } from '@syncfusion/ej2-progressbar';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
+import { loadProgressBarTheme } from './theme-colors';
 
 /**
  * Sample for default bullet chart.
@@ -10,14 +11,11 @@ import { Button } from '@syncfusion/ej2-buttons';
 (window as any).default = (): void => {
     loadCultureFiles();
     let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
-        let selectedTheme: string = location.hash.split('/')[1];
-        selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-        args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+     let theme: string = loadProgressBarTheme(args);
         if (args.progressBar.theme === 'Material') {
             args.progressBar.trackColor = '#eee';
         }
-        if (selectedTheme === 'highcontrast') {
+        if (theme === 'highcontrast') {
             args.progressBar.trackColor = '#969696';
         }
     };

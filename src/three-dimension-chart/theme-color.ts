@@ -1,3 +1,6 @@
+import { EmitType } from "@syncfusion/ej2/base";
+import { Chart3DLoadedEventArgs, Chart3DPointRenderEventArgs, ChartTheme } from "@syncfusion/ej2/charts";
+
 /**
  * Initialize the Theme colors
  */
@@ -66,8 +69,8 @@ export let pointFluentDarkColors: string[] = ["#1AC9E6", "#DA4CB2", "#EDBB40", "
     "#7D39C0"];
 export let pointTailwindColors: string[] = ["#5A61F6", "#65A30D", "#334155", "#14B8A6", "#8B5CF6", "#0369A1", "#F97316", "#9333EA", "#F59E0B", "#15803D"];
 export let pointTailwindDarkColors: string[] = ["#8B5CF6", "#22D3EE", "#F87171", "#4ADE80", "#E879F9", "#FCD34D", "#F97316", "#2DD4BF", "#F472B6", "#10B981"];
-export let pointTailwind3Colors: string[] = ["rgba(47, 64, 116)", "rgba(3, 180, 180)", "rgba(13, 114, 222)", "rgba(255, 87, 51)", "rgba(214, 51, 132)", "rgba(243, 156, 18)", "rgba(239, 41, 31)", "rgba(145, 200, 34)", "rgba(47, 64, 116)", "rgba(3, 180, 180)"];
-export let pointTailwind3DarkColors: string[] = ["rgba(128, 41, 241)", "rgba(26, 188, 156)", "rgba(13, 114, 222)", "rgba(255, 87, 51)", "rgba(214, 51, 132)", "rgba(243, 156, 18)", "rgba(239, 41, 31)", "rgba(145, 200, 34)", "rgba(128, 41, 241)", "rgba(26, 188, 156)"];
+export let pointTailwind3Colors: string[] = ['#2F4074', '#03B4B4', '#0D72DE', '#FF5733', '#D63384', '#F39C12', '#EF291F', '#91C822', '#2F4074', '#03B4B4'];
+export let pointTailwind3DarkColors: string[] = ['#8029F1', '#1ABC9C', '#0D72DE', '#FF5733', '#D63384', '#F39C12', '#EF291F', '#91C822', '#8029F1', '#1ABC9C'];
 export let pointBootstrap5Colors: string[] = ['#FD7E14', '#6610F2', '#6F42C1', '#D63384', '#DC3545', '#FFC107', '#198754', '#0DCAF0', '#FD7E14', '#6610F2'];
 export let pointBootstrap5DarkColors: string[] = ['#FD7E14', '#6610F2', '#6F42C1', '#D63384', '#DC3545', '#FFC107', '#198754', '#0DCAF0', '#FD7E14', '#6610F2'];
 export let pointMaterial3Colors: string[] = ["#6355C7", "#00AEE0", "#FFB400", "#F7523F", "#963C70", "#FD7400", "#4BE0BC", "#2196F5", "#DE3D8A", "#162F88"];
@@ -78,3 +81,54 @@ export let pointFluent2HighContrastColors: string[] = ["#9BB449", "#2A72D5", "#4
     "#0B6A0B", "#C19C00"];
 export let pointFluent2DarkColors: string[] = ["#9BB449", "#2A72D5", "#43B786", "#3F579A", "#584EC6", "#E85F9C", "#6E7A89", "#EA6266",
     "#0B6A0B", "#C19C00"];
+
+    export let pointRender: EmitType<Chart3DPointRenderEventArgs> = (args: Chart3DPointRenderEventArgs): void => {
+        let selectedTheme: string = location.hash.split('/')[1];
+        selectedTheme = selectedTheme ? selectedTheme : 'Tailwind3';
+        if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
+            args.fill = pointFabricColors[args.point.index % 10];
+        } else if (selectedTheme === 'material-dark') {
+            args.fill = pointMaterialDarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'material') {
+            args.fill = pointMaterialColors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap5-dark') {
+            args.fill = pointBootstrap5DarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap5') {
+            args.fill = pointBootstrap5Colors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap') {
+            args.fill = pointBootstrapColors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap4') {
+            args.fill = pointBootstrapColors[args.point.index % 10];
+        } else if (selectedTheme === 'bootstrap-dark') {
+            args.fill = pointBootstrapColors[args.point.index % 10];
+        } else if (selectedTheme === 'highcontrast') {
+            args.fill = pointHighContrastColors[args.point.index % 10];
+        } else if (selectedTheme === 'fluent-dark') {
+            args.fill = pointFluentDarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'fluent') {
+            args.fill = pointFluentColors[args.point.index % 10];
+        } else if (selectedTheme === 'tailwind-dark') {
+            args.fill = pointTailwindDarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'tailwind') {
+            args.fill = pointTailwindColors[args.point.index % 10];
+        } else if (selectedTheme === 'material3') {
+            args.fill = pointMaterial3Colors[args.point.index % 10];
+        } else if (selectedTheme === 'material3-dark') {
+            args.fill = pointMaterial3DarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'fluent2') {
+            args.fill = pointFluent2Colors[args.point.index % 10];
+        } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
+            args.fill = pointFluent2HighContrastColors[args.point.index % 10];
+        } else if (selectedTheme === 'tailwind3-dark') {
+            args.fill = pointTailwind3DarkColors[args.point.index % 10];
+        } else if (selectedTheme === 'tailwind3') {
+            args.fill = pointTailwind3Colors[args.point.index % 10];
+        }
+    };
+
+ export function load3DChartTheme(args: Chart3DLoadedEventArgs) {
+        let selectedTheme: string = location.hash.split('/')[1];
+        selectedTheme = selectedTheme ? selectedTheme : 'Tailwind3';
+        args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
+            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+    }

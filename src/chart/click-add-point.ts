@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, LineSeries, DataLabel, Tooltip, ILoadedEventArgs, ChartTheme, IMouseEventArgs, IAxisRangeCalculatedEventArgs, Series } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, DataLabel, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for click to add a point.
@@ -32,12 +33,9 @@ let chartData: Object[] = [
         ],
         width: Browser.isDevice ? '100%' : '70%',
         title: 'User supplied data',
-        tooltip: { enable: true },
+        tooltip: { enable: true, enableHighlight: true },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         },
         chartMouseClick: (args: IMouseEventArgs) => {
             let isRemoved: boolean = false;

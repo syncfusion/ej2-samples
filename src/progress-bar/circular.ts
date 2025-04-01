@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { ProgressBar, ProgressAnnotation, ILoadedEventArgs, ProgressTheme } from '@syncfusion/ej2-progressbar';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
+import { loadProgressBarTheme } from './theme-colors';
 ProgressBar.Inject(ProgressAnnotation);
 
 /**
@@ -13,10 +14,7 @@ ProgressBar.Inject(ProgressAnnotation);
     let div: HTMLCollection = document.getElementsByClassName('progress-text-align');
 
     let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
-        let selectedTheme: string = location.hash.split('/')[1];
-        selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-        args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+        loadProgressBarTheme(args);
         if (args.progressBar.theme === 'HighContrast' || args.progressBar.theme === 'Bootstrap5Dark' || args.progressBar.theme === 'BootstrapDark' || args.progressBar.theme === 'FabricDark'
         || args.progressBar.theme === 'TailwindDark' || args.progressBar.theme === 'Tailwind3Dark' || args.progressBar.theme === 'MaterialDark' || args.progressBar.theme === 'FluentDark'|| args.progressBar.theme === 'Material3Dark' || args.progressBar.theme === 'Fluent2Dark' || args.progressBar.theme === 'Fluent2HighContrast') {
             for (let i: number = 0; i < div.length; i++) {

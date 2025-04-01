@@ -1,9 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { ChartTheme, DateTime, Chart, Zoom, LineSeries, ScrollBar, DataLabel, ILoadedEventArgs } from '@syncfusion/ej2-charts';
+import { ChartTheme, DateTime, Chart, Zoom, LineSeries, ScrollBar, DataLabel, ILoadedEventArgs, Tooltip } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { data } from './financial-data';
+import { loadChartTheme } from './theme-color';
 
-Chart.Inject(DateTime, DataLabel, LineSeries, Zoom, ScrollBar);
+Chart.Inject(DateTime, DataLabel, LineSeries, Zoom, ScrollBar, Tooltip);
 
 /**
  * Sample for Zooming in chart
@@ -25,11 +26,12 @@ Chart.Inject(DateTime, DataLabel, LineSeries, Zoom, ScrollBar);
             majorGridLines: { width: 0 },
             majorTickLines: { width: 0 },
             scrollbarSettings: {
-                enableZoom: false
+                enableZoom: false,
+                position: 'Bottom'
             }
         },
         primaryYAxis: {
-            title: 'Temperature',
+            title: 'Temperature Anomaly (°C)',
             intervalType: 'Months',
             labelFormat: '{value}°C',
             enableScrollbarOnZooming: false,
@@ -60,11 +62,9 @@ Chart.Inject(DateTime, DataLabel, LineSeries, Zoom, ScrollBar);
         title: Browser.isDevice ? 'Monthly Temperature Anomalies' : 'Global Warming: Monthly Temperature Anomalies',
         titleStyle: { textAlignment: Browser.isDevice ? 'Near' : 'Center' },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
-        }
+            loadChartTheme(args);
+        },
+        tooltip: { enable: true, showNearestTooltip: true, header: '<b>${point.x}</b>', format: 'Temperature: <b>${point.y}</b>', enableHighlight: true }
     });
     chart.appendTo('#container');
 };

@@ -70,7 +70,7 @@ import * as dataSource from './datasource.json';
         placeholder: 'Header Text ',
         change: changeColumns,
     });
-    keyObj.appendTo('#key');
+    keyObj.appendTo('#dropdownHeader');
     function changeContraintType(args: DropDownChangeArgs): void {
         kanbanObj.constraintType = args.value as ConstraintType;
     }

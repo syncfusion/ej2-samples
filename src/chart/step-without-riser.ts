@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, StepAreaSeries, DateTime, Tooltip, DataLabel, ChartTheme, ILoadedEventArgs, } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(StepAreaSeries, DateTime, Tooltip, DataLabel);
 let chartData: Object[] = [
     { x: new Date(1980, 0, 1), y: 23 },
@@ -79,21 +80,17 @@ let chartData: Object[] = [
             opacity: 0.1,
             border: { width: 2.5 },
             noRisers: true,
-            step: 'Center',
-            marker:{allowHighlight:false}
+            step: 'Center'
         }],
         title: 'Sales of Product Over Time',
         chartArea: { border: { width: 0 } },
         tooltip: {
-            enable: true, shared: true
+            enable: true, showNearestTooltip: true
         },
         legendSettings: {visible: false},
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

@@ -17,6 +17,7 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
     //Initialize Spreadsheet component
     let spreadsheet: Spreadsheet = new Spreadsheet({
         showRibbon: false,
+        enableContextMenu: false,
         showFormulaBar: false,
         cssClass: 'e-custom-spreadsheet',
         allowOpen: false,
@@ -105,7 +106,7 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
                 template: '<input />',
                 address: 'C2:C3'
             }, {
-                template: '<div><input type="radio" name="gender" value="male" /><input type="radio" name="gender" value="female"/></div>',
+                template: '<div style="padding-left: 2px"><input type="radio" name="gender" value="male" /><input type="radio" name="gender" value="female"/></div>',
                 address: 'C4'
             }, {
                 template: '<input />',
@@ -161,6 +162,10 @@ import { Spreadsheet, CellRenderEventArgs, BeforeSelectEventArgs } from '@syncfu
         created: () => {
             //Applies format to specified range
             spreadsheet.cellFormat({ fontWeight: 'bold' }, 'B2:B9');
+            spreadsheet.cellFormat({ verticalAlign: 'middle' }, 'B2:C9');
+        },
+        contextMenuBeforeOpen: (): void => {
+            spreadsheet.enableContextMenuItems(['Duplicate'], false, false);
         }
     });
     //Render initialized Spreadsheet component

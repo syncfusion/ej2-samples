@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import {
   Diagram,
   NodeModel,
+  FlipDirection
 } from '@syncfusion/ej2-diagrams';
 import { Toolbar } from '@syncfusion/ej2-navigations';
 import { NodeConstraints, UndoRedo } from '@syncfusion/ej2-diagrams';
@@ -186,7 +187,7 @@ function onItemClick(args: any) {
 function flipObjects(flipType: any) {
   let selectedObjects: any = diagram.selectedItems.nodes.concat((diagram.selectedItems as any).connectors);
   for (let i: number = 0; i < selectedObjects.length; i++) {
-    selectedObjects[i].flip = flipType === 'Flip Horizontal' ? 'Horizontal' : 'Vertical';
+    selectedObjects[i].flip ^= flipType === 'Flip Horizontal' ? FlipDirection.Horizontal : FlipDirection.Vertical;
   }
   diagram.dataBind();
 }

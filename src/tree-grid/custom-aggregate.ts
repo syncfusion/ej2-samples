@@ -66,7 +66,7 @@ let foods:  { [key: string]: Object }[] = [
             columns: [
                 { field: 'ID', headerText: 'S.No', width: 90, textAlign: 'Right' },
                 { field: 'Name', headerText: 'Shipment Name', width: 220 },
-                { field: 'category', headerText: 'Category', width: 250 },
+                { field: 'category', headerText: 'Category', width: 260, minWidth: 260 },
                 { field: 'units', headerText: 'Total Units', width: 130, type: 'number', textAlign: 'Right' },
                 { field: 'unitPrice', headerText: 'Unit Price($)', width: 110, type: 'number', format: 'C2', textAlign: 'Right' },
                 { field: 'price', headerText: 'Price($)', width: 110, textAlign: 'Right', type: 'number', format: 'C' },

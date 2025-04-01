@@ -39,7 +39,7 @@ TreeGrid.Inject(Sort, Page);
     let dropDownColumns: DropDownList = new DropDownList({
         dataSource: columnsName,
         fields: { text: 'name', value: 'id' },
-        width:'135px',
+        width:'140px',
         value: 'taskID'
     });
     dropDownColumns.appendTo('#columns');
@@ -47,7 +47,7 @@ TreeGrid.Inject(Sort, Page);
     let dropDownDirection: DropDownList = new DropDownList({
         dataSource: direction,
         fields: { text: 'name', value: 'id' },
-        width:'135px',
+        width:'140px',
         value: 'Ascending'
     });
     dropDownDirection.appendTo('#direction');

@@ -6,15 +6,13 @@ Chart.Inject(AreaSeries, DateTime, LineSeries, Crosshair, ChartAnnotation, Candl
 RangeNavigator.Inject(AreaSeries, DateTime, PeriodSelector, RangeTooltip);
 import { chartData } from './financial-data';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadRangeNavigatorTheme } from './theme-colors';
 
 /**
  * Sample for Area Series
  */
 
-let selectedTheme: string = location.hash.split('/')[1];
-selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+let theme: ChartTheme = loadRangeNavigatorTheme();
 
 (window as any).default = (): void => {
     loadCultureFiles();

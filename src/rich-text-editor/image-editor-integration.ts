@@ -54,7 +54,8 @@ import { getComponent } from '@syncfusion/ej2-base';
 
       let dialogObj: Dialog = new Dialog({
         buttons: dlgButtons,
-        open: OnOpen,
+        open:open,
+        beforeOpen: OnBeforeOpen,
         header: header,
         visible: false,
         showCloseIcon: true,
@@ -96,20 +97,21 @@ import { getComponent } from '@syncfusion/ej2-base';
       defaultRTE.formatter.enableUndo(defaultRTE);
       dispose();
       dialogObj.hide();
-      imageELement.crossOrigin = null;
     }
       
       function onCancel() {
         dispose();
         dialogObj.hide();
         isLoaded = true;
-        imageELement.crossOrigin = null;
+      }
+      function open() {
+        imageEditorObj.update();
+        imageEditorObj.open(dataURL);
       }
       function onclose() {
         dispose();
         dialogObj.hide();
         isLoaded = true;
-        imageELement.crossOrigin = null;
       }
       function dispose() {
         if (imageEditorObj !== null && imageEditorObj !== undefined) {
@@ -123,7 +125,7 @@ import { getComponent } from '@syncfusion/ej2-base';
         }
       }
       
-      function OnOpen() {
+      function OnBeforeOpen() {
         isLoaded = false;
         let selectNodes: Node[] =
         defaultRTE.formatter.editorManager.nodeSelection.getNodeCollection(range);
@@ -137,16 +139,13 @@ import { getComponent } from '@syncfusion/ej2-base';
         imageELement.onload = function () {
           ctx.drawImage(imageELement, 0, 0, canvas.width, canvas.height);
           dataURL = canvas.toDataURL();
-          if (!isLoaded) {
-            imageEditorObj = new ImageEditor({
-              height: '450px',
-              created: function () {
-                imageEditorObj.open(dataURL);
-              },
-            });
-            imageEditorObj.appendTo('#imageeditor');
-          }
         };
+        if (!isLoaded) {
+          imageEditorObj = new ImageEditor({
+            height: '450px'
+          });
+          imageEditorObj.appendTo('#imageeditor');
+        }
       }
     }
 };

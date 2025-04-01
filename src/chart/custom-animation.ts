@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, SplineSeries, DateTime, Legend, Tooltip, ILoadedEventArgs, Highlight, ChartTheme } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 Chart.Inject(SplineSeries, DateTime, Legend, Tooltip, Highlight);
 const chartData: Object[] = [
@@ -44,6 +45,9 @@ const chartData: Object[] = [
         chartArea: {
             border: {
                 width: 0
+            },
+            margin: { 
+                bottom: 12 
             }
         },
         //Initializing Chart Series
@@ -80,20 +84,18 @@ const chartData: Object[] = [
             }
         ],
         //Initializing Chart title
-        title: 'Almond Yield',
+        title: 'Almond Yield Comparison Across Countries (2010–2022)',
         legendSettings: { visible: true, enableHighlight: true },
         tooltip: {
             enable: true,
-            shared: true,
             header: '<b>Almond Yield - ${point.x}</b>',
-            format: '${series.name}: <b>${point.y}</b>'
+            format: '${series.name}: <b>${point.y}</b>',
+            enableHighlight: true, 
+            showNearestTooltip: true
         },
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
 
     });

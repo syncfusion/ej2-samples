@@ -8,6 +8,9 @@ import { TimePicker, ItemEventArgs } from '@syncfusion/ej2-calendars';
 (window as any).default = (): void => {
     loadCultureFiles();
 
+    //initial time variable declaration
+    let startTime: Date;
+    
     let timeObj: TimePicker = new TimePicker({
         placeholder: "Select a time",
         value: new Date(), itemRender: itemRanderHandler,
@@ -16,8 +19,7 @@ import { TimePicker, ItemEventArgs } from '@syncfusion/ej2-calendars';
     });
     timeObj.appendTo('#timepicker');
 
-    //initial time variable declaration
-    let startTime: Date;
+    
     // scrollTo value will be assigned only if the timepicker value is not null or undefined and is a valid value.
     function onOpen(args: any): void {
         // scrollTo value will be assigned only if the timepicker value is not null or undefined and is a valid value.

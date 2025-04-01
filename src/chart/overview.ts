@@ -14,6 +14,7 @@ import {
     AccumulationDataLabel, IAccLoadedEventArgs, AccumulationTheme
 } from '@syncfusion/ej2-charts';
 import { EmitType, setStyleAttribute } from '@syncfusion/ej2-base';
+import { loadAccumulationChartTheme, loadChartTheme, overViewPointrender } from './theme-color';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 
 /**
@@ -23,79 +24,6 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let layoutColor;
-    let onPointRender: EmitType<IAccPointRenderEventArgs> = (args: IAccPointRenderEventArgs): void => {
-        let selectedTheme = location.hash.split('/')[1];
-        selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-        if (selectedTheme.indexOf('dark') > -1) {
-            if (selectedTheme.indexOf('material') > -1) {
-                args.border.color = '#303030';
-                layoutColor = '#303030';
-            }
-            else if (selectedTheme.indexOf('bootstrap5') > -1) {
-                args.border.color = '#212529';
-                layoutColor = '#212529';
-            }
-            else if (selectedTheme.indexOf('bootstrap') > -1) {
-                args.border.color = '#1A1A1A';
-                layoutColor = '#1A1A1A';
-            }
-            else if (selectedTheme.indexOf('fabric') > -1) {
-                args.border.color = '#201f1f';
-                layoutColor = '#201f1f';
-            }
-            else if (selectedTheme.indexOf('fluent') > -1) {
-                args.border.color = '#252423';
-                layoutColor = '#252423';
-            }
-            else if (selectedTheme.indexOf('bootstrap') > -1) {
-                args.border.color = '#1A1A1A';
-                layoutColor = '#1A1A1A';
-            }
-            else if (selectedTheme.indexOf('tailwind') > -1) {
-                args.border.color = '#1F2937';
-                layoutColor = '#1F2937';
-            }
-            else {
-                args.border.color = '#222222';
-                layoutColor = '#222222';
-            }
-        }
-        else if (selectedTheme.indexOf('highcontrast') > -1) {
-            args.border.color = '#000000';
-            layoutColor = '#000000';
-        }
-        else if (selectedTheme.indexOf('fluent2-highcontrast') > -1) {
-            args.border.color = '#000000';
-            layoutColor = '#000000';
-        }
-        else {
-            args.border.color = '#FFFFFF';
-            layoutColor = '#FFFFFF';
-        }
-        if ((selectedTheme.indexOf('highcontrast') > -1 || selectedTheme.indexOf('dark') > -1) && document.getElementById('defaultLayout')) {
-            let el = document.getElementById('header1');
-            el.style.setProperty('color', '#F3F2F1');
-            let el1 = document.getElementById('header2');
-            el1.style.setProperty('color', '#F3F2F1');
-            let el2 = document.getElementById('header3');
-            el2.style.setProperty('color', '#F3F2F1');
-        }
-        if (document.getElementById('defaultLayout')) {
-            let element = document.getElementById('layout_0template');
-            element.style.setProperty('background', layoutColor);
-            let elementBody = document.getElementById('linechart');
-            elementBody.style.setProperty('background', layoutColor);
-            let element1 = document.getElementById('layout_1template');
-            element1.style.setProperty('background', layoutColor);
-            let element1Body = document.getElementById('pie');
-            element1Body.style.setProperty('background', layoutColor);
-            let element2 = document.getElementById('layout_2template');
-            element2.style.setProperty('background', layoutColor);
-            let element2Body = document.getElementById('chart');
-            element2Body.style.setProperty('background', layoutColor);
-        }
-    }
     let dashboardObject: DashboardLayout = new DashboardLayout({
 
         cellSpacing: [15, 15],
@@ -109,11 +37,11 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         },
         {
             'sizeX': Browser.isDevice ? 1 : 3, 'sizeY': Browser.isDevice ? 1 : 2, 'row': 0, 'col': Browser.isDevice ? 1 : 5,
-            header: '<div class="title" id="header2">Product Wise Sales - 2021</div>', content: '<div id="pie"  style="height:100%; width:100%"></div>'
+            header: '<div class="title" id="header2">Product Wise Sales - 2024</div>', content: '<div id="pie"  style="height:100%; width:100%"></div>'
         },
         {
             'sizeX': Browser.isDevice ? 1 : 8, 'sizeY': Browser.isDevice ? 1 : 3, 'row': Browser.isDevice ? 1 : 4, 'col': 0,
-            header: '<div class="title" id="header3">Monthly Sales for 2021</div>', content: '<div id="chart"  style="height:100%; width:100%"></div>'
+            header: '<div class="title" id="header3">Monthly Sales for 2024</div>', content: '<div id="chart"  style="height:100%; width:100%"></div>'
         }]
     });
     dashboardObject.appendTo('#defaultLayout');
@@ -130,32 +58,32 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             primaryYAxis: {
                 minimum: 0, maximum: 100, majorTickLines: { width: 0 }, labelFormat: '{value}%', lineStyle: { width: 0 }, labelStyle: { size: '11px' }, titleStyle: { size: '13px' },
             },
+            legendSettings: { padding:5, shapeHeight:8, shapeWidth:8, enableHighlight: true },
             width: '99%',
             height: '100%',
             //Initializing Chart Series
             series: [
                 {
-                    dataSource: [{ Period: '2017', Percentage: 60 },
-                    { Period: '2018', Percentage: 56 },
-                    { Period: '2019', Percentage: 71 },
-                    { Period: '2020', Percentage: 85 },
-                    { Period: '2021', Percentage: 73 },],
-                    type: "Column", name: "Online", xName: "Period", yName: "Percentage", fill: '#2485FA', marker: { dataLabel: { visible: true, position: 'Middle', font: { color: 'white' } } }
+                    dataSource: [{ Period: '2020', Percentage: 60 },
+                    { Period: '2021', Percentage: 56 },
+                    { Period: '2022', Percentage: 71 },
+                    { Period: '2023', Percentage: 85 },
+                    { Period: '2024', Percentage: 73 },],
+                    type: "Column", name: "Online", xName: "Period", yName: "Percentage", fill: '#2485FA', marker: { dataLabel: { visible: true, position: 'Middle', font: { color: 'white' } } },
+                    cornerRadius: { topLeft: 4, topRight: 4}
                 },
                 {
                     type: "Column", name: "Retail", xName: "Period", yName: "Percentage", fill: '#FEC200', marker: { dataLabel: { visible: true, position: 'Middle', font: { color: 'white' } } },
-                    dataSource: [{ Period: '2017', Percentage: 40 },
-                    { Period: '2018', Percentage: 44 },
-                    { Period: '2019', Percentage: 29 },
-                    { Period: '2020', Percentage: 15 },
-                    { Period: '2021', Percentage: 27 },]
+                    cornerRadius: { topLeft: 4, topRight: 4},
+                    dataSource: [{ Period: '2020', Percentage: 40 },
+                    { Period: '2021', Percentage: 44 },
+                    { Period: '2022', Percentage: 29 },
+                    { Period: '2023', Percentage: 15 },
+                    { Period: '2024', Percentage: 27 },]
                 },
             ],
             load: (args: any) => {
-                let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-                args.chart.theme = <any>(selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+                loadChartTheme(args);
 
             }
         });
@@ -182,7 +110,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
                 }
 
             ],
-            pointRender: onPointRender,
+            pointRender: overViewPointrender,
             tooltip: {
                 enable: true, format: "${point.tooltip}", enableHighlight: true
             },
@@ -194,10 +122,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             width: '99%',
             height: '100%',
             load: (args: IAccLoadedEventArgs) => {
-                let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-                args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+               loadAccumulationChartTheme(args);
             }
         });
         pie.appendTo('#pie');
@@ -208,7 +133,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
                 majorTickLines: { width: 0 },
                 minimum: 0, maximum: 12000, edgeLabelPlacement: 'Shift', labelFormat: '${value}', lineStyle: { width: 0 }, labelStyle: { size: '11px' }, titleStyle: { size: '13px' }
             },
-            legendSettings: { enableHighlight: true }, tooltip: { enable: true, shared: true, enableMarker: false },
+            legendSettings: { enableHighlight: true }, tooltip: { enable: true, showNearestTooltip: true, enableMarker: false, enableHighlight: true },
             //Initializing Primary X Axis
             primaryXAxis: {
                 majorTickLines: { width: 0 }, valueType: "Category", majorGridLines: { width: 0 }, labelStyle: { size: '11px' }
@@ -252,11 +177,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
             width: '99%',
             height: '100%',
             load: (args: ILoadedEventArgs) => {
-                let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-                args.chart.theme = (selectedTheme && selectedTheme.indexOf('fabric') > -1) ? 'Fabric' : 'Fluent2';
-                args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                    selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+                loadChartTheme(args);
             }
         });
         chart.appendTo('#chart');

@@ -2,6 +2,7 @@
     "name": "Chips",
     "directory": "chips",
     "category": "Buttons",
+    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -17,6 +18,13 @@
             "name": "API",
             "category": "Chips",
             "description": "This sample demonstrates common API of chip control. Select any combination of properties from the property pane to customize the appearance of chip."
+        },
+        {
+            "url": "draganddrop",
+            "name": "Draggable Chips",
+            "category": "Chips",
+            "type": "new",
+            "description": "This sample demonstrates the drag and drop functionalities of chips control."
         }
     ]
 }

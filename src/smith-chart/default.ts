@@ -7,6 +7,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Smithchart, SmithchartLegend, TooltipRender, ISmithchartLoadEventArgs,
     SmithchartTheme, RenderType} from '@syncfusion/ej2-charts/index';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { loadSmithChartTheme } from './theme-color';
 Smithchart.Inject(SmithchartLegend, TooltipRender);
 (window as any).default = (): void => {
     // custom code start
@@ -15,9 +16,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
     let smithchart: Smithchart = new Smithchart({
         // custom code start
         load: (args: ISmithchartLoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Material';
-            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
+            loadSmithChartTheme(args);
         },
         // custom code end
         title: {
@@ -35,7 +34,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                     { resistance: 0.3, reactance: 0.2 }, { resistance: 0, reactance: 0.15 },
                 ],
                 name: 'Transmission1',
-                enableAnimation: true,
+                enableAnimation: false,
                 tooltip: { visible: true },
                 marker: {
                     shape: 'Circle',
@@ -56,7 +55,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                     { resistance: 0.3, reactance: 0.1 }, { resistance: 0, reactance: 0.05 },
                 ],
                 name: 'Transmission2',
-                enableAnimation: true,
+                enableAnimation: false,
                 tooltip: { visible: true },
                 marker: {
                     shape: 'Circle',

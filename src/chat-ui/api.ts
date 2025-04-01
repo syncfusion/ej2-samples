@@ -1,4 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
+
 import { ChatUI, UserModel } from '@syncfusion/ej2-interactive-chat';
 import { Switch } from '@syncfusion/ej2-buttons';
 import { DropDownList, MultiSelect } from '@syncfusion/ej2-dropdowns';
@@ -7,7 +8,9 @@ import { communityMessagedata } from './messageData';
 /**
  * Api sample
  */
-(window as any).default = function() {
+(window as any).default = (): void => {
+    loadCultureFiles();
+    
     let chatUiInst = new ChatUI({
         messages: communityMessagedata,
         user: { user: 'Alice', id: 'admin' },
@@ -49,7 +52,7 @@ import { communityMessagedata } from './messageData';
         select: (args: { itemData: { value: string } }) => {
             let user: UserModel = {
                 user: args.itemData.value,
-                avatarBgColor: '#bacbe4'
+                avatarBgColor: '#87cefa'
             }
             if (['Laura', 'Charlie'].indexOf(args.itemData.value) !== -1) {
                 user.avatarBgColor = args.itemData.value === 'Charlie' ? '#e6cdde' : '#dec287';
@@ -61,4 +64,4 @@ import { communityMessagedata } from './messageData';
             chatUiInst.typingUsers = chatUiInst.typingUsers.filter(user => user.user !== args.itemData.value);
         }
     }).appendTo('#chat_typingUsers');
-}
+};

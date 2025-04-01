@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, StackingAreaSeries, Legend, DateTime, ILoadedEventArgs, ChartTheme, Highlight , Tooltip} from '@syncfusion/ej2-charts';
 Chart.Inject(StackingAreaSeries, Legend, DateTime, Highlight, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for Stacked-Area Series
@@ -94,13 +95,10 @@ import { Browser } from '@syncfusion/ej2-base';
         ],
         //Initializing Chart title
         title: 'Amount of Sales by Payment Mode',
-        width : Browser.isDevice ? '100%' : '75%',tooltip:{enable:true},
+        width : Browser.isDevice ? '100%' : '75%',tooltip: { enable: true, enableHighlight: true, showNearestTooltip: true },
         legendSettings:{enableHighlight:true},
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

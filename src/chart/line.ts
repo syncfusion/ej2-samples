@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, LineSeries, DateTime, Legend, Tooltip, ILoadedEventArgs, ChartTheme, ChartAnnotation, Highlight } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, Double, Legend, Tooltip, ILoadedEventArgs, Highlight } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-import { IAnnotationRenderEventArgs, ISeriesRenderEventArgs } from '@syncfusion/ej2/charts';
-Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
+import { loadChartTheme } from './theme-color';
+Chart.Inject(LineSeries, Double, Legend, Tooltip, Highlight);
 
 /**
  * Sample for Line series
@@ -13,7 +13,7 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
 
         //Initializing Primary X Axis
         primaryXAxis: {
-            valueType: 'DateTime',  labelFormat: 'y',
+            valueType: 'Double',
             majorGridLines: { width: 0 },
             edgeLabelPlacement: 'Shift'
         },
@@ -21,12 +21,12 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
         //Initializing Primary Y Axis
         primaryYAxis:
         {
+            title: 'Volume in million metric tons',
             labelFormat: '{value}',
-            title: 'Million Metric Tons',
             rangePadding: 'None',
             minimum: 0,
-            maximum: 20,
-            interval: 4,
+            maximum: 25,
+            interval: 5,
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 },
             minorTickLines: { width: 0 }
@@ -34,6 +34,9 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
         chartArea: {
             border: {
                 width: 0
+            },
+            margin: {
+                bottom: 12
             }
         },
         //Initializing Chart Series
@@ -41,7 +44,15 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
             {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2012, 6, 11), y: 5.3 },{ x: new Date(2013, 6, 11), y: 5.6 },{ x: new Date(2014, 6, 11), y: 5.9 },{ x: new Date(2015, 6, 11), y: 5.7 },{ x: new Date(2016, 6, 11), y: 7.8 },{ x: new Date(2017, 6, 11), y: 10.3 }, { x: new Date(2018, 6, 11), y: 15.5 }, { x: new Date(2019, 6, 11), y: 17.5 }, { x: new Date(2020, 6, 11), y: 19.5 }
+                    { x: 2016, y: 7.8 },
+                    { x: 2017, y: 10.3 },
+                    { x: 2018, y: 15.5 },
+                    { x: 2019, y: 17.5 },
+                    { x: 2020, y: 19.5 },
+                    { x: 2021, y: 23.0 },
+                    { x: 2022, y: 20.0 },
+                    { x: 2023, y: 19.0 },
+                    { x: 2024, y: 22.1 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
@@ -55,7 +66,15 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
             {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2012, 6, 11), y: 13.5 }, { x: new Date(2013, 6, 11), y: 12.4 }, { x: new Date(2014, 6, 11), y: 12.7 }, { x: new Date(2015, 6, 11), y: 12.5 }, { x: new Date(2016, 6, 11), y: 12.7 }, { x: new Date(2017, 6, 11), y: 13.7 }, { x: new Date(2018, 6, 11), y: 13.4 }, { x: new Date(2019, 6, 11), y: 12.9 }, { x: new Date(2020, 6, 11), y: 11.0 }
+                    { x: 2016, y: 4.8 },
+                    { x: 2017, y: 5.2 },
+                    { x: 2018, y: 6.2 },
+                    { x: 2019, y: 7.8 },
+                    { x: 2020, y: 9.3 },
+                    { x: 2021, y: 14.3 },
+                    { x: 2022, y: 15.6 },
+                    { x: 2023, y: 16.0 },
+                    { x: 2024, y: 17.0 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
@@ -64,12 +83,20 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
                     shape: 'Triangle',
                     isFilled: true
                 },
-                yName: 'y', name: 'Canada',
+                yName: 'y', name: 'Indonesia',
             },
             {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2012, 6, 11), y: 5.6 }, { x: new Date(2013, 6, 11), y: 4.7 }, { x: new Date(2014, 6, 11), y: 4.3 }, { x: new Date(2015, 6, 11), y: 3.8 }, { x: new Date(2016, 6, 11), y: 2.8 }, { x: new Date(2017, 6, 11), y: 2.8 }, { x: new Date(2018, 6, 11), y: 4.1 }, { x: new Date(2019, 6, 11), y: 6.8 }, { x: new Date(2020, 6, 11), y: 7.1 },
+                    { x: 2016, y: 14.6 },
+                    { x: 2017, y: 15.5 },
+                    { x: 2018, y: 15.4 },
+                    { x: 2019, y: 14.4 },
+                    { x: 2020, y: 11.6 },
+                    { x: 2021, y: 13.9 },
+                    { x: 2022, y: 12.1 },
+                    { x: 2023, y: 10.0 },
+                    { x: 2024, y: 10.8 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
@@ -78,12 +105,20 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
                     shape: 'Diamond',
                     isFilled: true
                 },
-                yName: 'y', name: 'Malaysia',
+                yName: 'y', name: 'France',
             },
             {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2012, 6, 11), y: 6.6 }, { x: new Date(2013, 6, 11), y: 6.8 }, { x: new Date(2014, 6, 11), y: 6.5 }, { x: new Date(2015, 6, 11), y: 5.5 }, { x: new Date(2016, 6, 11), y: 5.0 }, { x: new Date(2017, 6, 11), y: 6.8 }, { x: new Date(2018, 6, 11), y: 7.8 }, { x: new Date(2019, 6, 11), y: 7.3 }, { x: new Date(2020, 6, 11), y: 8.2 },
+                    { x: 2016, y: 8.9 },
+                    { x: 2017, y: 10.3 },
+                    { x: 2018, y: 10.8 },
+                    { x: 2019, y: 9.0 },
+                    { x: 2020, y: 7.9 },
+                    { x: 2021, y: 8.5 },
+                    { x: 2022, y: 7.4 },
+                    { x: 2023, y: 6.4 },
+                    { x: 2024, y: 7.1 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
@@ -92,12 +127,20 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
                     shape: 'Rectangle',
                     isFilled: true
                 },
-                yName: 'y', name: 'Egypt',
+                yName: 'y', name: 'Poland',
             },
             {
                 type: 'Line',
                 dataSource: [
-                    { x: new Date(2012, 6, 11), y: 2.3 }, { x: new Date(2013, 6, 11), y: 2.6 }, { x: new Date(2014, 6, 11), y: 4.4 }, { x: new Date(2015, 6, 11), y: 4.9 }, { x: new Date(2016, 6, 11), y: 4.8 }, { x: new Date(2017, 6, 11), y: 5.3 }, { x: new Date(2018, 6, 11), y: 6.2 }, { x: new Date(2019, 6, 11), y: 7.8 }, { x: new Date(2020, 6, 11), y: 9.3 }
+                    { x: 2016, y: 19.0 },
+                    { x: 2017, y: 20.0 },
+                    { x: 2018, y: 20.2 },
+                    { x: 2019, y: 18.4 },
+                    { x: 2020, y: 16.8 },
+                    { x: 2021, y: 18.5 },
+                    { x: 2022, y: 18.4 },
+                    { x: 2023, y: 16.3 },
+                    { x: 2024, y: 13.7 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
@@ -106,24 +149,25 @@ Chart.Inject(LineSeries, DateTime, Legend, Tooltip, ChartAnnotation, Highlight);
                     shape: 'Pentagon',
                     isFilled: true
                 },
-                yName: 'y', name: 'Indonesia',
+                yName: 'y', name: 'Mexico',
             }
         ],
         //Initializing Chart title
-        title: 'Crude Steel Production Annual Growth',
+        title: 'Annual Crude Steel Production by Country (2016–2024)', 
+        subTitle: 'Source: wikipedia.org',
         //Initializing User Interaction Tooltip
         legendSettings: { visible: true, enableHighlight: true },
         tooltip: {
             enable: true,
-            enableHighlight: true
+            enableHighlight: true,
+            showNearestTooltip: true,
+            header: '<b>${series.name}</b>', 
+            format: '${point.x} : <b>${point.y}M</b>'
         },
-        width : Browser.isDevice ? '100%' : '75%',
+        width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
-        },
+            loadChartTheme(args);
+        }
     });
     chart.appendTo('#container');
 };

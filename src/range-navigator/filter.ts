@@ -3,15 +3,13 @@ import { RangeNavigator, AreaSeries, DateTime, IChangedEventArgs, ChartTheme } f
 RangeNavigator.Inject(AreaSeries, DateTime);
 import { Browser, Fetch } from '@syncfusion/ej2-base';
 import { Grid } from '@syncfusion/ej2-grids';
+import { loadRangeNavigatorTheme } from './theme-colors';
 
 /**
  * Sample range navigator with filter functionalities
  */
 
-let selectedTheme: string = location.hash.split('/')[1];
-selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+let theme: ChartTheme = loadRangeNavigatorTheme();
 
 (window as any).default = (): void => {
     loadCultureFiles();

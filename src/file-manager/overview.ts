@@ -120,13 +120,20 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
         enableGestures: false,
         target: '.mainLayout-content',       
         position: 'Right',
-        mediaQuery:'(min-width: 700px)'
+        mediaQuery:'(min-width: 700px)',
+        open: function () {
+            if (leftSideObj.isOpen) {
+                const mainContent = document.querySelector('.mainLayout-content .e-content-animation') as HTMLElement;
+                if (mainContent && !mainContent.style.marginLeft) {
+                    mainContent.style.marginLeft = leftSideObj.element.offsetWidth + 'px';
+                }
+            }
+        },
     });
     rightSideObj.appendTo("#default_right_sidebar");
 
     let dlgObj: Dialog = new Dialog({
         header: 'Confirm delete',
-        content: "Are you sure you want to delete this file?",
         target: document.getElementById('filemanager')!,
         showCloseIcon: true,
         visible: false,
@@ -200,6 +207,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
                 else {
                     fileObject.path = '/';
                 }
+                fileObject.refreshFiles();
                 break;
                 
             case 'Recent':
@@ -307,6 +315,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
         if (selectedItems && fileObject.selectedItems.length > 1) {
             fileManagerContainer.style.margin = '0px 10px 0px 5px';
             multipleSelectionPane.style.display = 'block';
+            (document.getElementById('fileType') as any).innerHTML = "Details Pane";
             (document.getElementById('selected-count') as any).innerHTML = fileObject.selectedItems.length + ' items selected';
         } 
         else if (selectedItems && fileObject.selectedItems.length === 1) {
@@ -342,22 +351,27 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
 
             let lastFolderName = fileObject.path === '/' ? 'Drive' : getLastFolderName(fileObject.path);
             let currentFolderText = isFavorite ? 'Favorite' + ' ( ' + itemsCount + ' items' + ' )' : lastFolderName + ' ( ' + itemsCount + ' items' + ' )';
+            (document.getElementById('fileType') as any).innerHTML = "Details Pane";
             (document.getElementById('current-folder') as any).innerHTML = currentFolderText;
         }
     }
 
     function onFileLoad() {
         setTimeout(function() {
-            let detailsViewElement = (document.getElementById('filemanager_grid') as any).ej2_instances[0].element;
-            if (detailsViewElement) {
-                detailsViewElement.addEventListener('click', handleIconClick);
+            let iconElements = fileObject.element.querySelectorAll(".custom-icons");
+            for (let i = 0; i < iconElements.length; i++) {
+                iconElements[i].addEventListener('click', handleIconClick);
             }
         }, 0);
     }
 
     function onFileSelect() {
-        let selectedItem: any = fileObject.getSelectedFiles()[0];
-        viewPanedetails(selectedItem);
+        let selectedItem: any = fileObject.getSelectedFiles();
+        if (selectedItem.length > 0) {
+            var type = selectedItem[0].isFile ? 'file' : 'folder';
+            dlgObj.content = "Are you sure you want to delete this " + type + " ?";
+        }
+        viewPanedetails(selectedItem[0]);
     }
 
     function onToolbarClick(args: any) {
@@ -387,6 +401,10 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
         let action: any = target.getAttribute('data-action');
         let fileName: any = getFileNameFromElement(target);
         selectedItems = [fileName];
+        if (target.parentElement.classList.contains('custom-icons') && target.closest("tr").getAttribute("aria-selected")) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
         switch (action) {
             case 'delete':
                 dlgObj.visible = true;

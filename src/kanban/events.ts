@@ -12,7 +12,6 @@ import * as dataSource from './datasource.json';
     let kanbanObj: Kanban = new Kanban({ //Initialize Kanban control
         dataSource: data,
         keyField: 'Status',
-        height: 500,
         columns: [
             { headerText: 'To Do', keyField: 'Open', allowToggle: true },
             { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true },

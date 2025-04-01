@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart3D, StackingColumnSeries3D, Category3D, Tooltip3D, Legend3D, Chart3DLoadedEventArgs, Highlight3D, ChartTheme } from '@syncfusion/ej2-charts';
 Chart3D.Inject(StackingColumnSeries3D, Category3D, Tooltip3D, Legend3D, Highlight3D);
 import { Browser } from '@syncfusion/ej2-base';
+import { load3DChartTheme } from './theme-color';
 let chartData: any[] = [
     { x: '2013', y: 9628912, y1: 4298390, y2: 2842133, y3: 2006366 },
     { x: '2014', y: 9609326, y1: 4513769, y2: 3016710, y3: 2165566 },
@@ -47,10 +48,7 @@ let chartData: any[] = [
             }
         ],
         load: (args: Chart3DLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            load3DChartTheme(args);
         },
         width: Browser.isDevice ? '100%' : '75%',
         enableRotation: true,

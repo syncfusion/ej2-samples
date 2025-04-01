@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, DateTime, SplineAreaSeries, Legend, ILoadedEventArgs, ChartTheme, DateTimeCategory, Highlight, Tooltip } from '@syncfusion/ej2-charts';
 Chart.Inject(SplineAreaSeries, DateTime, Legend, DateTimeCategory, Highlight, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for Area Series
@@ -54,16 +55,13 @@ import { Browser } from '@syncfusion/ej2-base';
                 marker:{ visible: true, isFilled: true, height: 7, width: 7  ,shape:'Diamond'}
             },
         ],
-        tooltip:{enable: true },
+        tooltip:{ enable: true, enableHighlight: true, showNearestTooltip: true },
         //Initializing Chart title
         title: 'Inflation Rate in Percentage',
         width: Browser.isDevice ? '100%' : '75%',
         legendSettings:{enableHighlight: true},
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

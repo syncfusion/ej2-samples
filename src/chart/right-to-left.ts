@@ -3,6 +3,7 @@ import { ChartTheme, Chart, ColumnSeries, Category, Legend, DataLabel, Tooltip, 
     ILoadedEventArgs, IAxisLabelRenderEventArgs, } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, DataLabel, Category, Legend, Tooltip, Highlight);
 import { Browser, EmitType } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for Column Series
@@ -46,13 +47,10 @@ import { Browser, EmitType } from '@syncfusion/ej2-base';
         width: Browser.isDevice ? '100%' : '75%',
         legendSettings: { visible: true, enableHighlight: true},
         enableRtl: true,
-        title: 'Company Performance', tooltip: { enable: true },
+        title: 'Company Performance', tooltip: { enable: true, enableHighlight: true },
         axisLabelRender: labelRender,
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

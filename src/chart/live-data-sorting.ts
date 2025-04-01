@@ -1,36 +1,11 @@
 
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, ColumnSeries, Category, DataLabel, ILoadedEventArgs, IPointRenderEventArgs, IAxisRangeCalculatedEventArgs, ITextRenderEventArgs, sort, ChartTheme } from '@syncfusion/ej2-charts';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluent2Colors, fluent2DarkColors, pointTailwindColors, pointTailwindDarkColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
-import { EmitType, Browser } from '@syncfusion/ej2-base';
+import { Chart, ColumnSeries, Category, DataLabel, ILoadedEventArgs, IAxisRangeCalculatedEventArgs, ITextRenderEventArgs, sort, ChartTheme } from '@syncfusion/ej2-charts';
+import { loadChartTheme, pointRender } from './theme-color';
+import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(ColumnSeries, Category, DataLabel);
 
 let intervalId: number;
-let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
-    let selectedTheme: string = location.hash.split('/')[1];
-    selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-    if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
-        args.fill = fabricColors[args.point.index % 10];
-    } else if (selectedTheme === 'material') {
-        args.fill = materialColors[args.point.index % 10];
-    } else if (selectedTheme === 'highcontrast') {
-        args.fill = highContrastColors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent2') {
-        args.fill = fluent2Colors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent2-dark') {
-        args.fill = fluent2DarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind') {
-        args.fill = pointTailwindColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind-dark') {
-        args.fill = pointTailwindDarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind3') {
-        args.fill = pointTailwind3Colors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind3-dark') {
-        args.fill = pointTailwind3DarkColors[args.point.index % 10];
-    } else {
-        args.fill = bootstrapColors[args.point.index % 10];
-    }
-};
 
 let updatedData: Object[] = [
     { x: 'India', y: 97.21 },
@@ -189,7 +164,7 @@ let yearIndex: number = 2;
         ],
         chartArea: { border: { width: 0 } },
         title: 'Nitrogen Fertilizer Usage',
-        pointRender: labelRender,
+        pointRender: pointRender,
         width: Browser.isDevice ? '100%' : '75%',
         textRender: (args: ITextRenderEventArgs) => {
             if (Browser.isDevice) {
@@ -197,10 +172,7 @@ let yearIndex: number = 2;
             }
         },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
             updateClearInterval();
             intervalId = setInterval(function () {
                 let container: HTMLElement = document.getElementById('data-sorting-container');

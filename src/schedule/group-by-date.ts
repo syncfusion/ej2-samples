@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, ScheduleModel, Day, Week, Month, Agenda, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
 import { ChangeEventArgs, CheckBox } from '@syncfusion/ej2-buttons';
+import { extend } from '@syncfusion/ej2-base';
 
 /**
  * schedule resources group sample
@@ -10,6 +11,7 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).resourceData, null, true) as Record<string, any>[];
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
@@ -30,7 +32,7 @@ Schedule.Inject(Day, Week, Month, Agenda, Resize, DragAndDrop);
         }],
         views: ['Day', 'Week', 'Month', 'Agenda'],
         eventSettings: {
-            dataSource: (dataSource as any).resourceData,
+            dataSource: data,
             fields: {
                 subject: { title: 'Task', name: 'Subject' },
                 location: { title: 'Project Name', name: 'Location' },

@@ -8,7 +8,7 @@ import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { TextPosition, Alignment } from '@syncfusion/ej2-barcode-generator/src/barcode/enum/enum';
 import { TextBox, NumericTextBox, ChangedEventArgs, FormValidatorModel, FormValidator } from '@syncfusion/ej2-inputs';
 import { ChangeEventArgs as NumericChangeEventArgs } from '@syncfusion/ej2-inputs';
-import { CheckBox } from '@syncfusion/ej2-buttons';
+import { Button, CheckBox } from '@syncfusion/ej2-buttons';
 import { ColorPicker, ColorPickerEventArgs } from '@syncfusion/ej2-inputs';
 import { CheckBoxChangeEventArgs } from '@syncfusion/ej2-grids';
 
@@ -264,5 +264,9 @@ let barcode: BarcodeGenerator;
         }
     });
     textMarginBottom.appendTo('#TextMarginBottom');
-
+    const downloadButton = new Button({});
+    downloadButton.appendTo('#downloadBtn11');
+    document.getElementById('downloadBtn11').onclick = function () {
+        barcode.exportImage("Barcode", 'PNG');
+    };
 };

@@ -6,6 +6,7 @@ import {
     AccumulationDataLabel, IAccLoadedEventArgs, AccumulationTheme
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2/base';
+import { loadAccumulationChartTheme } from './theme-color';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 /**
  * Sample for Pie with Various Radius
@@ -46,10 +47,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         tooltip: {enable: true, format:'<b>${point.x}</b><br/>Area in square km: <b>${point.y} </b> <br/> Population density per square km: <b>${point.tooltip}</b>', enableHighlight: true},
         enableAnimation: true,
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadAccumulationChartTheme(args);
         }
     });
     pie.appendTo('#container');

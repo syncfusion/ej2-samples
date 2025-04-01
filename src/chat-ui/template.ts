@@ -1,10 +1,14 @@
- import { ChatUI } from '@syncfusion/ej2-interactive-chat';
+import { loadCultureFiles } from '../common/culture-loader';
+
+import { ChatUI } from '@syncfusion/ej2-interactive-chat';
 import { templateMessagedata } from './messageData';
 
 /**
  * Template sample
  */
-(window as any).default = function () {
+(window as any).default = (): void => {
+    loadCultureFiles();
+
     let templateChatUI = new ChatUI({
         headerText: 'Order Assistant',
         headerIconCss: 'chat-bot',
@@ -89,4 +93,4 @@ import { templateMessagedata } from './messageData';
         templateChatUI.addMessage(message);
         bindClickAction();
     }, 1500);
-}
+};

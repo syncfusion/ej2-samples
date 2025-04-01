@@ -4,6 +4,7 @@ import {
     Schedule, ScheduleModel, WorkWeek, Month, ResourceDetails, PopupOpenEventArgs, ActionEventArgs, EventFieldsMapping, RenderCellEventArgs
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 /**
  * schedule resources group sample
@@ -18,7 +19,7 @@ Schedule.Inject(WorkWeek, Month);
         getDoctorName?: Function;
         getDoctorLevel?: Function;
     }
-
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).doctorData, null, true) as Record<string, any>[];
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
@@ -40,7 +41,7 @@ Schedule.Inject(WorkWeek, Month);
         }],
         views: ['WorkWeek', 'Month'],
         eventSettings: {
-            dataSource: (dataSource as any).doctorData,
+            dataSource: data,
             fields: {
                 subject: { title: 'Service Type', name: 'Subject' },
                 location: { title: 'Patient Name', name: 'Location' },

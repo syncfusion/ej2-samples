@@ -63,7 +63,9 @@ Chart.Inject(LineSeries, Category, Legend, Tooltip);
         //Initializing User Interaction Tooltip
         tooltip: {
             enable: true,
-            template: '#Tooltip'
+            template: '#Tooltip',
+            showNearestTooltip: true,
+            enableHighlight: true
         },
        width: Browser.isDevice ? '100%' : '75%'
     });

@@ -7,6 +7,7 @@ import {
 } from '@syncfusion/ej2-charts';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2/base';
+import { loadAccumulationChartTheme } from './theme-color';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel, AccumulationAnnotation);
 /**
  * Sample fro Drill Down in Pie chart
@@ -49,10 +50,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         enableBorderOnMouseMove:false,
          // custom code start
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            let selectedTheme: string = loadAccumulationChartTheme(args);
             if (selectedTheme === 'highcontrast' || selectedTheme === 'fluent2-highcontrast') {
                 args.accumulation.annotations[0].content = '#white' ;
             }
@@ -109,10 +107,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         tooltip: { enable: false, format: '${point.x} <br> ${point.y} %' },
         title: 'Automobile Sales by Category',  enableBorderOnMouseMove:false,
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadAccumulationChartTheme(args);
         }
     };
     let pie: AccumulationChart = new AccumulationChart(instance); pie.appendTo('#container');

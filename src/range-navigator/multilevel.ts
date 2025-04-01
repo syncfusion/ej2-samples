@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { RangeNavigator, AreaSeries, DateTime, LineSeries, ChartTheme, RangeTooltip } from '@syncfusion/ej2-charts';
 RangeNavigator.Inject(AreaSeries, DateTime, LineSeries, RangeTooltip);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadRangeNavigatorTheme } from './theme-colors';
 
 /**
  * Sample for multi level labels without series
@@ -15,10 +16,7 @@ for (let j: number = 1; j < 1090; j++) {
     point = { x: new Date(2000, 0, j), y: value, z: value + 10 };
     data.push(point);
 }
-let selectedTheme: string = location.hash.split('/')[1];
-selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+let theme: ChartTheme = loadRangeNavigatorTheme();
 (window as any).default = (): void => {
     loadCultureFiles();
     let range: RangeNavigator = new RangeNavigator(

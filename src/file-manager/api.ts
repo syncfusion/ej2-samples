@@ -30,6 +30,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
     });
     fileObject.appendTo('#file');
 
+
     let rangeSelectionObj  : CheckBox = new CheckBox({ checked: true, change: onToolbarChange });
     rangeSelectionObj .appendTo('#rangeSelection');
     let checkBoxObj : CheckBox = new CheckBox({ checked: true, change: onToolbarChange });
@@ -77,5 +78,4 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
             }
         }
     }
-    
 };

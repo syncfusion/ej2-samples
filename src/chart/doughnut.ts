@@ -3,6 +3,7 @@ import {
     AccumulationTheme, AccumulationChart, AccumulationLegend, PieSeries, IAccLoadedEventArgs,
     AccumulationDataLabel
 } from '@syncfusion/ej2-charts';
+import { loadAccumulationChartTheme } from './theme-color';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel);
 /**
  * Sample for Doughnut chart
@@ -40,10 +41,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel);
         tooltip: { enable: false },
         title: 'Project Cost Breakdown',
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadAccumulationChartTheme(args);
         }
     });
     pie.appendTo('#container');

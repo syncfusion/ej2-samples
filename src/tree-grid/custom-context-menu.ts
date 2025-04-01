@@ -42,7 +42,8 @@ TreeGrid.Inject(Resize, ExcelExport, PdfExport, Edit, Page, ContextMenu, Sort);
                 }
                 if (elem.closest('.e-row')) {
                   if ( isNullOrUndefined(uid) ||
-                    isNullOrUndefined(getValue('hasChildRecords', treegrid.grid.getRowObjectFromUID(uid).data))) {
+                    isNullOrUndefined(getValue('hasChildRecords', treegrid.grid.getRowObjectFromUID(uid).data)) ||
+                    !getValue('hasChildRecords', treegrid.grid.getRowObjectFromUID(uid).data)) {
                     arg.cancel = true;
                   } else {
                     let flag: boolean = getValue('expanded', treegrid.grid.getRowObjectFromUID(uid).data);

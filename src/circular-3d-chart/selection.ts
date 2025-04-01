@@ -1,6 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { CircularChart3D, PieSeries3D, CircularChartDataLabel3D, CircularChartLegend3D, CircularChartTooltip3D, CircularChartHighlight3D, CircularChartSelection3D , CircularChart3DLoadedEventArgs, CircularChart3DTheme } from '@syncfusion/ej2-charts';
 import { Browser, EmitType } from '@syncfusion/ej2/base';
+import { loadCircular3DChartTheme } from './theme-colors';
+
 CircularChart3D.Inject( PieSeries3D, CircularChartDataLabel3D, CircularChartLegend3D, CircularChartTooltip3D, CircularChartHighlight3D, CircularChartSelection3D );
 /**
  * Sample for pie selection
@@ -49,10 +51,7 @@ CircularChart3D.Inject( PieSeries3D, CircularChartDataLabel3D, CircularChartLege
         tooltip: { enable: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>', header: "" },
         // Triggered animation complete, text render and load event
         load: (args: CircularChart3DLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <CircularChart3DTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadCircular3DChartTheme(args);
         },
     });
     pie.appendTo('#donut-container');

@@ -8,6 +8,7 @@ import { Smithchart, SmithchartLegend, TooltipRender, SmithchartExportType, ISmi
     SmithchartTheme } from '@syncfusion/ej2-charts/index';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { loadSmithChartTheme } from './theme-color';
 Smithchart.Inject(SmithchartLegend, TooltipRender);
 
 (window as any).default = (): void => {
@@ -17,9 +18,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
     let smithchart: Smithchart = new Smithchart({
         // custom code start
         load: (args: ISmithchartLoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Material';
-            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
+            loadSmithChartTheme(args);
         },
         // custom code end
         horizontalAxis: {
@@ -58,7 +57,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                     { resistance: 0.25, reactance: 0 },
                 ],
                 name: 'Transmission',
-                enableAnimation: true,
+                enableAnimation: false,
                 tooltip: { visible: true },
                 marker: {
                     shape: 'Circle',
@@ -81,7 +80,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
     });
     mode.appendTo('#mode');
     let togglebtn1: Button = new Button({
-         cssClass: 'e-info', isPrimary: true
+        iconCss: 'e-icons e-export-icon', cssClass: 'e-flat', isPrimary: true
     });
     togglebtn1.appendTo('#togglebtn1');
     document.getElementById('togglebtn1').onclick = () => {
@@ -89,7 +88,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
         smithchart.export(<SmithchartExportType>mode.value, fileName);
     };
     let togglebtn2: Button = new Button({
-         cssClass: 'e-info', isPrimary: true
+        cssClass: 'e-flat', iconCss: 'e-icons e-print-icon', isPrimary: true
     });
     togglebtn2.appendTo('#togglebtn2');
     document.getElementById('togglebtn2').onclick = () => {

@@ -3,6 +3,7 @@ import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple((window as any).ripple);
 import { CircularChart3D, PieSeries3D, CircularChartDataLabel3D, CircularChartLegend3D, CircularChartTooltip3D, CircularChartHighlight3D, CircularChart3DLoadedEventArgs, CircularChart3DTheme } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2/base';
+import { loadCircular3DChartTheme } from './theme-colors';
 CircularChart3D.Inject( PieSeries3D, CircularChartDataLabel3D, CircularChartLegend3D, CircularChartTooltip3D, CircularChartHighlight3D);
 /**
  * Sample for Pie with Various Radius
@@ -47,10 +48,7 @@ CircularChart3D.Inject( PieSeries3D, CircularChartDataLabel3D, CircularChartLege
         enableRotation: true,
         tilt: -45,
         load: (args: CircularChart3DLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <CircularChart3DTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadCircular3DChartTheme(args);
         }
     });
     pie.appendTo('#container');

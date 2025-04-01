@@ -23,9 +23,9 @@
         {
             "url": "line",
             "name": "Line",
-            "type": "update",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the line series.",
             "category": "Line Charts",
+            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -40,6 +40,7 @@
             "name": "Spline",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the spline series.",
             "category": "Line Charts",
+            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -368,21 +369,6 @@
             }
         },
         {
-            "url": "rounded-column",
-            "name": "Rounded Column",
-            "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the rounded column series.",
-            "category": "Bar Charts",
-            "api": {
-                "Chart": [
-                    "primaryXAxis",
-                    "primaryYAxis",
-                    "series",
-                    "tooltip",
-                    "legendSettings"
-                ]
-            }
-        },
-        {
             "url": "column-placement",
             "name": "Back to Back Column",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the column charts.",
@@ -399,7 +385,6 @@
         },
         {
             "url": "column-drilldown",
-            "type": "new",
             "name": "Column Drilldown",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the column series with drilldown.",
             "category": "Bar Charts",
@@ -474,10 +459,26 @@
             }
         },
         {
+            "url": "rounded-column",
+            "name": "Rounded Bar",
+            "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the rounded bar series.",
+            "category": "Bar Charts",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "tooltip",
+                    "legendSettings"
+                ]
+            }
+        },
+        {
             "url": "stacked-column",
             "name": "Stacked Column",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the stacking column series.",
             "category": "Bar Charts",
+            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -635,6 +636,7 @@
             "name": "Funnel",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the funnel charts.",
             "category": "Accumulation Charts",
+            "type": "update",
             "api": {
                 "AccumulationChart": [
                     "series",
@@ -648,7 +650,6 @@
             "name": "Pie with Legend",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the legends in pie charts.",
             "category": "Accumulation Charts",
-            "type": "update",
             "api": {
                 "AccumulationChart": [
                     "series",
@@ -1619,6 +1620,21 @@
                 ]
             }
         },
+        {
+            "url": "series-animation",
+            "name": "Animation",
+            "type": "new",
+            "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure series animation.",
+            "category": "Chart Customization",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "zoomSettings"
+                ]
+            }
+        },
 
         {
             "url": "print",
@@ -1696,7 +1712,6 @@
         },
         {
             "url": "cross-hair",
-            "type": "update",
             "name": "Crosshair",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates the crosshair behavior in chart.",
             "category": "User Interaction",
@@ -1726,9 +1741,24 @@
         },
         {
             "url": "zooming",
-            "type": "update",
             "name": "Zooming and Panning",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates the zooming and panning behavior in chart.",
+            "category": "User Interaction",
+            "type": "update",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "zoomSettings"
+                ]
+            }
+        },
+        {
+            "url": "pagination",
+            "name": "Pagination",
+            "type": "new",
+            "description": "This demo sample for Essential JavaScript2 Chart control demonstrates the pagination behavior in chart.",
             "category": "User Interaction",
             "api": {
                 "Chart": [

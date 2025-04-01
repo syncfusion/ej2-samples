@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { TreeGrid, Freeze, Sort } from '@syncfusion/ej2-treegrid';
-import { freezeDirection, Column} from '@syncfusion/ej2-grids'
+import { TreeGrid, Freeze, Sort, Column } from '@syncfusion/ej2-treegrid';
+import { freezeDirection} from '@syncfusion/ej2-grids'
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { sampleData } from './data-source';
@@ -79,7 +79,7 @@ TreeGrid.Inject(Freeze, Sort);
         value: 'taskName',
         change: (e: ChangeEventArgs) => {
             let columnName: any = e.value;
-            let column: Column = treegrid.grid.getColumnByField(columnName);
+            let column: Column = treegrid.getColumnByField(columnName);
             let value: string = column.freeze === undefined ? 'Center' : column.freeze;
             refresh = dropDownDirection.value === value;
             dropDownDirection.value = value;
@@ -96,15 +96,19 @@ TreeGrid.Inject(Freeze, Sort);
             if (refresh) {
                 let value: string = 'Left';
                 let columnName: any = columnChange.value;
-                let mvblColumns: Column[] = treegrid.grid.getMovableColumns();
+                let mvblColumns: Column[] = treegrid.getMovableColumns();
                 if (mvblColumns.length === 1 && columnName === mvblColumns[0].field && e.value !== mvblColumns[0].freeze) {
                     alertDialogObj.show();
                     refresh = false;
                     value = 'Center';
                     dropDownDirection.refresh();
                 } else {
-                    treegrid.grid.getColumnByField(columnName).freeze = e.value === 'Center' ? undefined : e.value as freezeDirection;
-                    treegrid.grid.refreshColumns();
+                    let columns : Column[] = treegrid.getColumns();
+                    let column = columns.find((col) => col.field === columnName);
+                    if (column) {
+                        column.freeze = e.value === 'Center' ? undefined : e.value as freezeDirection;
+                    }
+                    treegrid.columns = columns;
                 }
             }
             refresh = true;

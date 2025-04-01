@@ -9,6 +9,7 @@ import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents} from '@syncfusion/ej2-buttons';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
+import { loadSparkLineTheme } from './theme-color';
 Sparkline.Inject(SparklineTooltip);
 (window as any).default = (): void => {
     // custom code start
@@ -17,9 +18,7 @@ Sparkline.Inject(SparklineTooltip);
     let percentage: Sparkline = new Sparkline({
         // custom code start
         load: (args: ISparklineLoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Fluent2';
-            args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadSparkLineTheme(args);
         },
         // custom code end
         height: '200px',
@@ -74,9 +73,7 @@ Sparkline.Inject(SparklineTooltip);
     let sales: Sparkline = new Sparkline({
         // custom code start
         load: (args: ISparklineLoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Fluent2';
-            args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadSparkLineTheme(args);
         },
         // custom code end
         height: '200px',

@@ -57,7 +57,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 { field: 'TaskID', width: 80 },
                 { field: 'TaskName', headerText: 'Job Name', width: '250', clipMode: 'EllipsisWithTooltip', validationRules: { required: true, minLength: [5, 'Task name should have a minimum length of 5 characters'], } },
                 { field: 'StartDate' },
-                { field: 'EndDate', validationRules: { date: true, required: [customFn, 'Please enter a value greater than the start date.'] } },
+                { field: 'EndDate', validationRules: { required: [customFn, 'Please enter a value greater than the start date.'] } },
                 { field: 'Duration', validationRules: { required: true} },
                 { field: 'Progress', validationRules: { required: true, min: 0, max: 100 } },
                 { field: 'Predecessor' }
@@ -96,7 +96,8 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
     function customFn(args: any) {
         let endDate: Date;
         if (args.element && args.value) {
-            endDate = new Date(args.value);
+            let dateOptions = { format: gantt.dateFormat, type: 'dateTime', skeleton: 'yMd' };
+            endDate =  gantt.globalize.parseDate(args.value, dateOptions);
             if (!startDate && gantt.editModule.dialogModule['beforeOpenArgs']) {
                 startDate = gantt.editModule.dialogModule['beforeOpenArgs'].rowData['ganttProperties'].startDate;
                 endDate = (gantt.editModule.dialogModule['beforeOpenArgs'].rowData['ganttProperties'].endDate);

@@ -10,6 +10,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { EmitType } from '@syncfusion/ej2-base';
 import { CheckBox, ChangeEventArgs as CheckBoxChangeEvents} from '@syncfusion/ej2-buttons';
+import { loadSmithChartTheme } from './theme-color';
 Smithchart.Inject(SmithchartLegend, TooltipRender);
 (window as any).default = (): void => {
     // custom code start
@@ -18,9 +19,7 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
     let smithchart: Smithchart = new Smithchart({
         // custom code start
         load: (args: ISmithchartLoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Material';
-            args.smithchart.theme = <SmithchartTheme>(theme.charAt(0).toUpperCase() + theme.slice(1));
+            loadSmithChartTheme(args);
         },
         // custom code end
         horizontalAxis: {
@@ -48,7 +47,6 @@ Smithchart.Inject(SmithchartLegend, TooltipRender);
                 width: 2,
                 tooltip: { visible: true },
                 enableSmartLabels: false,
-                fill: '#0F94C4',
                 marker: {
                     shape: 'rectangle',
                     visible: true,

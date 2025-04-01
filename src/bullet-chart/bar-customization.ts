@@ -3,6 +3,7 @@ import { BulletChart, BulletTooltip, FeatureType, ChartTheme, IBulletLoadedEvent
 import { ColorPicker, ColorPickerEventArgs, Slider, SliderChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { Browser } from '@syncfusion/ej2-base';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
+import { loadBulletChartTheme } from './theme-color';
 BulletChart.Inject(BulletTooltip);
 
 /**
@@ -28,10 +29,7 @@ BulletChart.Inject(BulletTooltip);
         titleStyle: { textAlignment: 'Center', },
         orientation: 'Horizontal',
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
     });
     chart.appendTo('#dotCustomization');

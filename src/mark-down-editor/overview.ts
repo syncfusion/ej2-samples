@@ -4,7 +4,7 @@
 import { RichTextEditor, Link, Image, MarkdownEditor, Toolbar, Table , ToolbarType } from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs, isNullOrUndefined, addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { Splitter } from '@syncfusion/ej2-layouts';
-import * as Marked from 'marked';
+import  { marked } from 'marked';
 
 RichTextEditor.Inject(Link, Image, MarkdownEditor, Toolbar, Table);
 
@@ -49,7 +49,7 @@ let splitObj: Splitter;
         updateValue();
     }
     function updateValue(): void {
-        srcArea.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+        srcArea.innerHTML = marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
     }
     function updateOrientation(): void {
         if (Browser.isDevice) {

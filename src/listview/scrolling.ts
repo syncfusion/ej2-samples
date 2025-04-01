@@ -58,18 +58,21 @@ function loadTemplate(data: any) {
         template: loadTemplate,
         scroll: onListScroll,
         cssClass: 'e-list-template',
+        actionComplete: onActionComplete
     });
     //Render initialized ListView component
     listviewInstance.appendTo('#list-scrolling');
     
-    let ratingElements = listviewInstance.element.querySelectorAll('.ratings');
-    for (let i = 0; i < ratingElements.length; i++) {
-        let ratingObj: Rating = new Rating({
-            value: foodData[i].rating as number,
-            showTooltip: false,
-            readOnly: true
-        });
-        ratingObj.appendTo('#' + ratingElements[i].id)
+    function onActionComplete() { 
+        let ratingElements = listviewInstance.element.querySelectorAll('.ratings');
+        for (let i = 0; i < ratingElements.length; i++) {
+            let ratingObj: Rating = new Rating({
+                value: foodData[i].rating as number,
+                showTooltip: false,
+                readOnly: true
+            });
+            ratingObj.appendTo('#' + ratingElements[i].id)
+        }
     }
 
     function onListScroll(args: any) {

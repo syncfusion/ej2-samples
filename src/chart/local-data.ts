@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, LineSeries, DateTime, Legend, ILoadedEventArgs, ChartTheme, Tooltip, Crosshair, Highlight } from '@syncfusion/ej2-charts';
 Chart.Inject(LineSeries, DateTime, Legend, Tooltip, Crosshair, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for local data bind
@@ -88,10 +89,7 @@ for (i = 1; i < 500; i++) {
         }, legendSettings: { enableHighlight: true },
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

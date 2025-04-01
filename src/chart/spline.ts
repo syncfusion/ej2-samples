@@ -1,10 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, SplineSeries, ChartAnnotation, Category,
-    Legend, Tooltip, ILoadedEventArgs, ChartTheme, Highlight
+    Legend, Tooltip, ILoadedEventArgs, Highlight, Crosshair
 } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
-Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation, Highlight);
+import { loadChartTheme } from './theme-color';
+Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation, Highlight, Crosshair);
 
 /**
  * Sample for Spline Series
@@ -16,26 +17,35 @@ Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation, Highlight
         //Initializing Primary X Axis
         primaryXAxis: {
             valueType: 'Category',
-            interval: 1, majorGridLines: { width: 0 },
-            labelIntersectAction: 'Rotate90', majorTickLines: {width: 0}, minorTickLines: {width : 0}
+            interval: 1,
+            majorGridLines: { width: 0 },
+            labelIntersectAction: 'Rotate90',
+            majorTickLines: { width: 0 },
+            minorTickLines: { width: 0 }
         },
         chartArea: {
             border: {
                 width: 0
+            },
+            margin: {
+                bottom: 12
             }
         },
         //Initializing Annotations
         annotations: [{
             content: '<div id="chart_cloud"><img src="src/chart/images/cloud.png" alt="Cloud Picture" style="width: 41px; height: 41px"/></div>',
-            x: 'Sun', y: 2, coordinateUnits: 'Point', verticalAlignment: 'Top'
+            x: 'Jan', y: 22.75, coordinateUnits: 'Point', verticalAlignment: 'Middle'
         }, {
             content: '<div id="chart_cloud"><img src="src/chart/images/sunny.png" alt="Sunny Picture" style="width: 41px; height: 41px"/></div>',
-            x: 'Tue', y: 33, coordinateUnits: 'Point', verticalAlignment: 'Top'
+            x: 'Jul', y: 88.43, coordinateUnits: 'Point', verticalAlignment: 'Middle'
         }],
         //Initializing Primary Y Axis
         primaryYAxis:
         {
-            labelFormat: '{value}°C',
+            labelFormat: '{value}°F',
+            minimum: 0,
+            interval: 20,
+            title: 'Temperature (°F)',
             lineStyle: { width: 0 },
             majorTickLines: { width: 0 },
             minorTickLines: { width: 0 }
@@ -46,67 +56,88 @@ Chart.Inject(SplineSeries, Category, Legend, Tooltip, ChartAnnotation, Highlight
             {
                 type: 'Spline',
                 dataSource: [
-                    { x: 'Sun', y: 15 }, { x: 'Mon', y: 22 },
-                    { x: 'Tue', y: 32 },
-                    { x: 'Wed', y: 31 },
-                    { x: 'Thu', y: 29 }, { x: 'Fri', y: 24 },
-                    { x: 'Sat', y: 18 },
+                    { x: 'Jan', y: 41.02 },
+                    { x: 'Feb', y: 51.93 },
+                    { x: 'Mar', y: 56.39 },
+                    { x: 'Apr', y: 66.06 },
+                    { x: 'May', y: 74.64 },
+                    { x: 'Jun', y: 84.58 },
+                    { x: 'Jul', y: 88.43 },
+                    { x: 'Aug', y: 86.72 },
+                    { x: 'Sep', y: 81.86 },
+                    { x: 'Oct', y: 73.13 },
+                    { x: 'Nov', y: 55.54 },
+                    { x: 'Dec', y: 48.36 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
                     width: 7,
                     height: 7,
-                    isFilled:true
+                    isFilled: true
                 },
-                yName: 'y', name: 'Max Temp',
+                yName: 'y', name: 'Max Temp'
             },
             {
                 type: 'Spline',
                 dataSource: [
-                    { x: 'Sun', y: 10 }, { x: 'Mon', y: 18 },
-                    { x: 'Tue', y: 28 },
-                    { x: 'Wed', y: 28 },
-                    { x: 'Thu', y: 26 }, { x: 'Fri', y: 20 },
-                    { x: 'Sat', y: 15 }
+                    { x: 'Jan', y: 31.89 },
+                    { x: 'Feb', y: 40.82 },
+                    { x: 'Mar', y: 44.96 },
+                    { x: 'Apr', y: 53.64 },
+                    { x: 'May', y: 62.28 },
+                    { x: 'Jun', y: 71.80 },
+                    { x: 'Jul', y: 75.69 },
+                    { x: 'Aug', y: 73.99 },
+                    { x: 'Sep', y: 68.61 },
+                    { x: 'Oct', y: 58.95 },
+                    { x: 'Nov', y: 45.18 },
+                    { x: 'Dec', y: 38.21 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
                     width: 7,
                     height: 7,
-                    isFilled:true
+                    isFilled: true
                 },
-                yName: 'y', name: 'Avg Temp',
+                yName: 'y', name: 'Avg Temp'
             },
             {
                 type: 'Spline',
                 dataSource: [
-                    { x: 'Sun', y: 2 }, { x: 'Mon', y: 12 },
-                    { x: 'Tue', y: 22 },
-                    { x: 'Wed', y: 23 },
-                    { x: 'Thu', y: 19 }, { x: 'Fri', y: 13 },
-                    { x: 'Sat', y: 8 },
+                    { x: 'Jan', y: 22.75 },
+                    { x: 'Feb', y: 29.71 },
+                    { x: 'Mar', y: 33.53 },
+                    { x: 'Apr', y: 41.22 },
+                    { x: 'May', y: 49.87 },
+                    { x: 'Jun', y: 59.02 },
+                    { x: 'Jul', y: 62.94 },
+                    { x: 'Aug', y: 61.27 },
+                    { x: 'Sep', y: 55.36 },
+                    { x: 'Oct', y: 44.76 },
+                    { x: 'Nov', y: 34.79 },
+                    { x: 'Dec', y: 28.04 }
                 ],
                 xName: 'x', width: 2, marker: {
                     visible: true,
                     width: 7,
                     height: 7,
-                    isFilled:true
+                    isFilled: true
                 },
-                yName: 'y', name: 'Min Temp',
+                yName: 'y', name: 'Min Temp'
             }
         ],
 
         //Initializing Chart title
-        title: 'NC Weather Report - 2016',
-        legendSettings: {enableHighlight:true},
+        title: '2024 US Temperature Trends with Hottest Coldest and Average Records',
+        subTitle: 'Source: ncei.noaa.gov',
+        legendSettings: { enableHighlight: true },
         //Initializing User Interaction Tooltip
-        tooltip: { enable: true },
+        tooltip: { enable: true, showNearestTooltip: true, header: '<b>${point.x}<b>', format: '${series.name} : <b>${point.y}</b>', shared: true },
+        crosshair: { enable: true, lineType: 'Vertical', highlightCategory: true },
         width: Browser.isDevice ? '100%' : '75%',
+        height: '500px',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

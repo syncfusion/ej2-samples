@@ -428,10 +428,6 @@
                 {
                     "displayName": "print.html",
                     "path": "src/spreadsheet/print.html"
-                },
-                {
-                    "displayName": "printing-data.json",
-                    "path": "src/spreadsheet/print-data.json"
                 }
             ]
         }

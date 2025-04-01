@@ -3,6 +3,7 @@ import {
     Schedule, ScheduleModel, Day, WorkWeek, Month, TimelineViews, ResourceDetails, Resize, DragAndDrop
 } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 
 /**
  * schedule shared events sample
@@ -19,6 +20,7 @@ Schedule.Inject(Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop);
     }
 
     let monthEventTemplate: string = '<div class="subject">${Subject}</div>';
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).resourceConferenceData, null, true) as Record<string, any>[];
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
@@ -45,7 +47,7 @@ Schedule.Inject(Day, WorkWeek, Month, TimelineViews, Resize, DragAndDrop);
             textField: 'Text', idField: 'Id', colorField: 'Color'
         }],
         eventSettings: {
-            dataSource: (dataSource as any).resourceConferenceData,
+            dataSource: data,
             fields: {
                 subject: { title: 'Conference Name', name: 'Subject' },
                 description: { title: 'Summary', name: 'Description' },

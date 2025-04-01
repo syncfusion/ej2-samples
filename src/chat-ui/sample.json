@@ -19,15 +19,27 @@
             ]
         },
         {
+            "url": "loadOn-demand",
+            "name": "Load On-demand",
+            "category": "Chat UI",
+            "type": "new",
+            "api":{ "ChatUI": ["headerText", "headerIconCss","messages", "user", "loadOnDemand"] },
+            "description": "Showcases the load on demand features in the Chat UI control",
+            "sourceFiles": [
+                { "displayName": "loadOn-demand.ts", "path":"src/chat-ui/loadOn-demand.ts" },
+                { "displayName": "loadOn-demand.html", "path":"src/chat-ui/loadOn-demand.html" }
+            ]
+        },
+        {
             "url": "template",
             "name": "Template",
             "category": "Chat UI",
             "api":{ "ChatUI": ["messages", "user", "emptyChatTemplate", "messageTemplate", "timeBreakTemplate", "showTimeBreak", "headerText", "headerIconCss", "messageSend"] },
             "description": "Showcases the template UI's of the Chat UI control.",
             "sourceFiles": [
-                { "displayName": "template.js", "path":"src/chat-ui/template.js" },
+                { "displayName": "template.ts", "path":"src/chat-ui/template.ts" },
                 { "displayName": "template.html", "path":"src/chat-ui/template.html" },
-                { "displayName": "messageData.js", "path":"src/chat-ui/messageData.js" }
+                { "displayName": "messageData.ts", "path":"src/chat-ui/messageData.ts" }
             ]
         },
         {
@@ -49,9 +61,9 @@
             "api":{ "ChatUI": ["messages", "user", "timeStampFormat", "showTimeStamp", "headerText", "headerIconCss"] },
             "description": "Showcases the chat component integration with other Chat UI control",
             "sourceFiles": [
-                { "displayName": "chat-integration.js", "path":"src/chat-ui/chat-integration.js" },
+                { "displayName": "chat-integration.ts", "path":"src/chat-ui/chat-integration.ts" },
                 { "displayName": "chat-integration.html", "path":"src/chat-ui/chat-integration.html" },
-                { "displayName": "messageData.js", "path":"src/chat-ui/messageData.js" }
+                { "displayName": "messageData.ts", "path":"src/chat-ui/messageData.ts" }
             ]
         }
     ]

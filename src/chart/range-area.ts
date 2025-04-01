@@ -6,6 +6,7 @@ import {
 Chart.Inject(RangeAreaSeries, DateTime, DataLabel, LineSeries, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
 import { chartDataValues } from './financial-data';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for RangeArea series
@@ -54,17 +55,14 @@ import { chartDataValues } from './financial-data';
         width: Browser.isDevice ? '100%' : '75%',
         //Initializing Chart Title
         title: 'Temperature Variation by Month',
-        tooltip: { enableMarker:true, enable: true, shared: false, format: 'Temperature : <b>${point.low} - ${point.high}</b>',  header :'<b>${point.x}</b>'},
+        tooltip: { enableMarker:true, enable: true, showNearestTooltip: true, format: 'Temperature : <b>${point.low} - ${point.high}</b>',  header :'<b>${point.x}</b>'},
         seriesRender: (args: ISeriesRenderEventArgs) => {
             let areathemes: string[] = ['bootstrap5', 'bootstrap5dark', 'tailwind', 'tailwinddark', 'material', 'bootstrap4', 'bootstrap', 'bootstrapdark', 'fabric', 'fabricdark', 'highcontrast', 'fluent', 'fluentdark', 'fluent2', 'fluent2highcontrast', 'fluent2dark', 'tailwind3', 'tailwind3dark'];
             let borderColor: string[] = ['#FD7E14', '#FD7E14', '#5A61F6', '#8B5CF6', '#00bdae', '#a16ee5', '#a16ee5', '#a16ee5', '#4472c4', '#4472c4', '#79ECE4', '#1AC9E6', '#1AC9E6', '#6200EE', '#9BB449', '#9BB449', '#2F4074', '#8029F1'];
             args.series.border.color = borderColor[areathemes.indexOf(args.series.chart.theme.toLowerCase())];
         },
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         },
         legendSettings: {
             visible: false

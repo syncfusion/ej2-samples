@@ -71,6 +71,7 @@ let dropDownMode: DropDownList = new DropDownList({
     dataSource: mode,
     fields: { text: 'mode', value: 'id' },
     value: 'Parent',
+    width: 105,
     change: (e: ChangeEventArgs) => {
         let mode: any = <string>e.value;
         treegrid.copyHierarchyMode = mode;

@@ -5,6 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * sparkline axis type sample
  */
 import { Sparkline, SparklineTooltip, SparklineTheme, ISparklineLoadEventArgs } from '@syncfusion/ej2-charts/index';
+import { loadSparkLineTheme } from './theme-color';
 Sparkline.Inject(SparklineTooltip);
 // custom code start
 // tslint:disable:max-func-body-length
@@ -16,9 +17,7 @@ Sparkline.Inject(SparklineTooltip);
     let datetime: Sparkline = new Sparkline({
         // custom code start
         load: (args: ISparklineLoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Fluent2';
-            args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadSparkLineTheme(args);
         },
         // custom code end
         height: '100px',
@@ -61,9 +60,7 @@ Sparkline.Inject(SparklineTooltip);
     datetime.appendTo('#datetime');
     let category: Sparkline = new Sparkline({
         load: (args: ISparklineLoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Fluent2';
-            args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadSparkLineTheme(args);
         },
         height: '100px',
         width: '170px',
@@ -94,9 +91,7 @@ Sparkline.Inject(SparklineTooltip);
     category.appendTo('#category');
     let numeric: Sparkline = new Sparkline({
         load: (args: ISparklineLoadEventArgs) => {
-            let theme: string = location.hash.split('/')[1];
-            theme = theme ? theme : 'Fluent2';
-            args.sparkline.theme = <SparklineTheme>(theme.charAt(0).toUpperCase() + theme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadSparkLineTheme(args);
         },
         height: '100px',
         width: '170px',

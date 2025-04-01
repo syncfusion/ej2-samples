@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { BulletChart, BulletTooltip, ChartTheme, IBulletLoadedEventArgs } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { fabricColors, bootstrapColors, highContrastColors, materialColors, bootstarp5Colors, bootstarp5DarkColors, bootstrapDarkColors, tailwindColors, tailwindDarkColors, material3Colors, material3DarkColors, defaultColors, fluentColors, fluent2Colors, fluent2HighContrastColors, fluent2DarkColors, tailwind3Colors, tailwind3DarkColors } from './bullet-theme';
+import { loadBulletChartTheme } from './theme-color';
 BulletChart.Inject(BulletTooltip);
 
 /**
@@ -77,10 +78,7 @@ let data: Object[] = [
             { end: 45, opacity: 1, color: '#96B2D7' }
         ],
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, "Dark").replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
             let color: string[];
             switch (args.bulletChart.theme) {
                 case "Fabric":

@@ -1,12 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    ChartTheme, Chart, getSaturationColor, Category, ILoadedEventArgs,
-    IPointRenderEventArgs, BoxAndWhiskerSeries, Tooltip, getElement, BoxPlotMode
-} from '@syncfusion/ej2-charts';
-import { bubbleFabricColors, pointFabricColors, pointMaterialDarkColors, bubbleMaterialDarkColors, bubbleMaterialColors, pointMaterialColors, bubbleBootstrap5DarkColors, pointBootstrap5DarkColors, bubbleBootstrap5Colors, pointBootstrap5Colors, bubbleBootstrapColors, pointBootstrapColors, bubbleHighContrastColors, pointHighContrastColors, bubbleFluentDarkColors, pointFluentDarkColors, bubbleFluentColors, pointFluentColors, bubbleTailwindDarkColors, pointTailwindDarkColors, bubbleTailwindColors, pointTailwindColors, pointMaterial3Colors, pointMaterial3DarkColors, pointFluent2Colors, pointFluent2HighContrastColors, pointFluent2DarkColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
+    ChartTheme, Chart, Category, ILoadedEventArgs,
+    BoxAndWhiskerSeries, Tooltip} from '@syncfusion/ej2-charts';
+import { loadChartTheme, pointRender } from './theme-color';
 Chart.Inject(Category, BoxAndWhiskerSeries, Tooltip);
-import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import { EmitType } from '@syncfusion/ej2-base';
 import { Browser } from '@syncfusion/ej2/base';
 
 /**
@@ -14,65 +11,6 @@ import { Browser } from '@syncfusion/ej2/base';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let materialColors: string[] = ['#00bdae', '#404041', '#357cd2', '#e56590', '#f8b883', '#70ad47', '#dd8abd', '#7f84e8', '#7bb4eb',
-        '#ea7a57', '#404041', '#00bdae'];
-    let fabricColors: string[] = ['#4472c4', '#ed7d31', '#ffc000', '#70ad47', '#5b9bd5',
-        '#c1c1c1', '#6f6fe2', '#e269ae', '#9e480e', '#997300', '#4472c4', '#70ad47', '#ffc000', '#ed7d31'];
-    let bootstrapColors: string[] = ['#a16ee5', '#f7ce69', '#55a5c2', '#7ddf1e', '#ff6ea6',
-        '#7953ac', '#b99b4f', '#407c92', '#5ea716', '#b91c52'];
-    let fluentColors: string[] = ['#1AC9E6', '#4C6FB1', '#CC6952', '#3F579A', '#4EA09B', '#6E7A89', '#D4515C', '#E6AF5D', '#639751',
-        '#9D4D69'];
-    let fluentDarkColors: string[] = ['#1AC9E6', '#2A72D5', '#43B786', '#584EC6', '#E85F9C', '#6E7A89', '#EA6266', '#EBA844', '#26BC7A', 
-        '#BC4870'];
-    let fluent2Colors: string[] = ['#6200EE', '#09AF74', '#0076E5', '#CB3587', '#E7910F', '#0364DE', '#66CD15', '#F3A93C', '#107C10',
-        '#C19C00'];
-    let fluent2HighContrastColors: string[] = ['#9BB449', '#2A72D5', '#43B786', '#3F579A', '#584EC6', '#E85F9C', '#6E7A89', '#EA6266', 
-        '#0B6A0B', '#C19C00'];
-    let fluent2DarkColors: string[] = ['#9BB449', '#2A72D5', '#43B786', '#3F579A', '#584EC6', '#E85F9C', '#6E7A89', '#EA6266', 
-        '#0B6A0B', '#C19C00'];     
-    let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
-        let selectedTheme: string = location.hash.split('/')[1];
-        selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-        if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
-            args.fill = pointFabricColors[args.point.index % 10];
-        } else if (selectedTheme === 'material-dark') {
-            args.fill = pointMaterialDarkColors[args.point.index % 10];
-        } else if (selectedTheme === 'material') {
-            args.fill = pointMaterialColors[args.point.index % 10];
-        } else if (selectedTheme === 'bootstrap5-dark') {
-            args.fill = pointBootstrap5DarkColors[args.point.index % 10];
-        } else if (selectedTheme === 'bootstrap5') {
-            args.fill = pointBootstrap5Colors[args.point.index % 10];
-        } else if (selectedTheme === 'bootstrap') {
-            args.fill = pointBootstrapColors[args.point.index % 10];
-        } else if (selectedTheme === 'bootstrap4') {
-            args.fill = pointBootstrapColors[args.point.index % 10];
-        } else if (selectedTheme === 'bootstrap-dark') {
-            args.fill = pointBootstrapColors[args.point.index % 10];
-        } else if (selectedTheme === 'highcontrast') {
-            args.fill = pointHighContrastColors[args.point.index % 10];
-        } else if (selectedTheme === 'fluent-dark') {
-            args.fill = pointFluentDarkColors[args.point.index % 10];
-        } else if (selectedTheme === 'fluent') {
-            args.fill = pointFluentColors[args.point.index % 10];
-        } else if (selectedTheme === 'tailwind-dark') {
-            args.fill = pointTailwindDarkColors[args.point.index % 10];
-        } else if (selectedTheme === 'tailwind') {
-            args.fill = pointTailwindColors[args.point.index % 10];
-        } else if (selectedTheme === 'material3') {
-            args.fill = pointMaterial3Colors[args.point.index % 10];
-        } else if (selectedTheme === 'fluent2') {
-            args.fill = pointFluent2Colors[args.point.index % 10];
-        } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
-            args.fill = pointFluent2HighContrastColors[args.point.index % 10];
-        } else if (selectedTheme === 'material3-dark') {
-            args.fill = pointMaterial3DarkColors[args.point.index % 10];
-        } else if (selectedTheme === 'tailwind3-dark') {
-            args.fill = pointTailwind3DarkColors[args.point.index % 10];
-        } else if (selectedTheme === 'tailwind3') {
-            args.fill = pointTailwind3Colors[args.point.index % 10];
-        }
-    };
     let chart: Chart = new Chart({
         //Initializing Primary X and Y Axis
         primaryXAxis: {
@@ -95,7 +33,7 @@ import { Browser } from '@syncfusion/ej2/base';
             majorTickLines: { width: 0 },
             lineStyle: { width: 0 }
         },
-        pointRender: labelRender,
+        pointRender: pointRender,
         //Initializing Chart Series
         series: [
             {
@@ -127,10 +65,7 @@ import { Browser } from '@syncfusion/ej2/base';
         width: Browser.isDevice ? '100%' : '70%',
         title: 'Employee Age Group in Various Department',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         },
         legendSettings: {
             visible: false

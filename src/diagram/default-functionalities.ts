@@ -5,7 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 
 import {
   Diagram, NodeModel, UndoRedo, ConnectorModel, PointPortModel, SymbolPalette,
-  SymbolInfo, IDragEnterEventArgs, GridlinesModel, PaletteModel, FlowShapes, Node, PrintAndExport
+  SymbolInfo, IDragEnterEventArgs, GridlinesModel, PaletteModel, FlowShapes, Node, PrintAndExport, FlipDirection
 } from '@syncfusion/ej2-diagrams';
 import { addEvents } from './script/diagram-common';
 import { ConnectorConstraints, DiagramTools, IExportOptions, IScrollChangeEventArgs, ISelectionChangeEventArgs, NodeConstraints } from '@syncfusion/ej2-diagrams';
@@ -605,7 +605,7 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
   function flipObjects(flipType: any) {
     let selectedObjects = diagram.selectedItems.nodes.concat((diagram.selectedItems as any).connectors);
     for (let i: number = 0; i < selectedObjects.length; i++) {
-      selectedObjects[i].flip = flipType === 'Flip Horizontal' ? 'Horizontal' : 'Vertical';
+      selectedObjects[i].flip ^= flipType === 'Flip Horizontal' ? FlipDirection.Horizontal : FlipDirection.Vertical;
     }
     diagram.dataBind();
   }

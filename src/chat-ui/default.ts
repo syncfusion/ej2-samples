@@ -1,13 +1,15 @@
 import { loadCultureFiles } from '../common/culture-loader';
-  import { ChatUI, MessageModel } from '@syncfusion/ej2-interactive-chat';
+
+import { ChatUI, MessageModel } from '@syncfusion/ej2-interactive-chat';
 import { DropDownButton } from '@syncfusion/ej2-splitbuttons';
 import { chatMessagedata, defaultChatSuggestions } from './messageData';
 
 /**
  * Default sample
  */
-(window as any).default = function() {
-    // Define the type for chat user objects
+(window as any).default = (): void => {
+    loadCultureFiles();
+
     let chatUser1 = new ChatUI({
         headerText: 'Albert',
         headerIconCss: 'chat_user1_avatar',
@@ -92,4 +94,4 @@ import { chatMessagedata, defaultChatSuggestions } from './messageData';
 
     new DropDownButton(dropdownConfig(chatUser1), '#dduser1Menu');
     new DropDownButton(dropdownConfig(chatUser2), '#dduser2Menu');
-}
+};

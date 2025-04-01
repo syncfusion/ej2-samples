@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { ChartTheme, Chart, StackingColumnSeries, LineSeries, Tooltip, ILoadedEventArgs, Highlight } from '@syncfusion/ej2-charts';
 import { ColumnSeries, Category, Legend } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(StackingColumnSeries, LineSeries, Category, ColumnSeries, Tooltip, Legend, Highlight);
 
 /**
@@ -105,14 +106,12 @@ Chart.Inject(StackingColumnSeries, LineSeries, Category, ColumnSeries, Tooltip, 
             visible: true, enableHighlight: true
         },
         tooltip: {
-            enable: true
+            enable: true,
+            enableHighlight: true
         },
          // custom code start
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
          // custom code end
     });

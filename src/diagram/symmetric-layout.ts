@@ -103,6 +103,7 @@ function setNodeTemplate(node: NodeModel): void {
         format: '###.##',
         value: 80,
         step: 1,
+        min: 1,
     });
     springLength.appendTo('#springlength');
 
@@ -110,7 +111,7 @@ function setNodeTemplate(node: NodeModel): void {
         format: '###.##',
         value: 0.8,
         step: .1,
-        max: 3.5
+        min:0, max: 3.5
     });
     springfactor.appendTo('#springfactor');
 
@@ -118,6 +119,7 @@ function setNodeTemplate(node: NodeModel): void {
         format: '###.##',
         value: 500,
         step: 1,
+        min: 0,
     });
     maxiteration.appendTo('#maxiteration');
 

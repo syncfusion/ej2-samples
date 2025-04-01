@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
+import { Switch } from '@syncfusion/ej2-buttons';
 
 Grid.Inject(Page, Selection);
 
@@ -28,5 +29,21 @@ Grid.Inject(Page, Selection);
             ]
         });
     grid.appendTo('#Grid');
+
+    
+    let isEnableCache: Switch = new Switch({
+        change: cacheModeChange,
+    });
+    isEnableCache.appendTo("#checked");
+
+    function cacheModeChange(args: any) {
+        grid.dataSource = new DataManager({
+            url: hostUrl,
+            adaptor: new WebApiAdaptor,
+            crossDomain: true,
+            enableCache : args.checked
+        });
+    }
+
 };
 

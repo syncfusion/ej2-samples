@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart3D, StackingColumnSeries3D, Category3D, Legend3D, Tooltip3D, Chart3DLoadedEventArgs, Highlight3D, ChartTheme } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { load3DChartTheme } from './theme-color';
 Chart3D.Inject(StackingColumnSeries3D, Category3D, Legend3D, Tooltip3D, Highlight3D);
 
 /**
@@ -93,10 +94,7 @@ Chart3D.Inject(StackingColumnSeries3D, Category3D, Legend3D, Tooltip3D, Highligh
             enableHighlight: true
         },
         load: (args: Chart3DLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            load3DChartTheme(args);
         },
         axisLabelRender: function (args) {
             if (args.axis.name === 'primaryYAxis') {

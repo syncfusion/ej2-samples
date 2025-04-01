@@ -6,6 +6,7 @@ import {
 import { chartValue } from './financial-data';
 Chart.Inject(HiloOpenCloseSeries, Category, Tooltip, DateTime, Zoom, Logarithmic, Crosshair);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for Hilo Open Close series
@@ -51,10 +52,7 @@ import { Browser } from '@syncfusion/ej2-base';
             legendSettings: { visible: false }, width: Browser.isDevice ? '100%' : '75%',
              // custom code start
             load: (args: ILoadedEventArgs) => {
-                let selectedTheme: string = location.hash.split('/')[1];
-                selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-                args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+                loadChartTheme(args);
             }
              // custom code end
         });

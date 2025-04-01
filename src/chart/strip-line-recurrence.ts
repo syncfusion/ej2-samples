@@ -1,5 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { ChartTheme, Chart, ColumnSeries, Legend, Tooltip, ILoadedEventArgs, DateTime, StripLine, Highlight } from '@syncfusion/ej2-charts';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(ColumnSeries, DateTime, Legend, Tooltip, StripLine, Highlight);
 
 /**
@@ -47,13 +48,10 @@ Chart.Inject(ColumnSeries, DateTime, Legend, Tooltip, StripLine, Highlight);
             }
         ],
         //Initializing Chart title
-        title: 'World Pollution Report', tooltip: { enable: true, format: ' Year: <b>${point.x}</b><br> Tons Per Day: <b>${point.y}</b>' },
+        title: 'World Pollution Report', tooltip: { enable: true, format: ' Year: <b>${point.x}</b><br> Tons Per Day: <b>${point.y}</b>', enableHighlight: true },
         legendSettings:{ enableHighlight: true},
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

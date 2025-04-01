@@ -7,15 +7,13 @@ import { Switch, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 Chart.Inject(AreaSeries, DateTime, LineSeries, Crosshair, ChartAnnotation, CandleSeries, MomentumIndicator, Tooltip, Zoom);
 RangeNavigator.Inject(AreaSeries, DateTime, PeriodSelector, RangeTooltip, LineSeries);
 import { Browser, remove, Fetch } from '@syncfusion/ej2-base';
+import { loadRangeNavigatorTheme } from './theme-colors';
 
 /**
  * Sample for period selector
  */
 
-let selectedTheme: string = location.hash.split('/')[1];
-selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-let theme: ChartTheme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+let theme: ChartTheme = loadRangeNavigatorTheme();
 
 // tslint:disable-next-line:max-func-body-length
 let removeSecondaryElement: Function;

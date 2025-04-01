@@ -1,37 +1,13 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     Chart, DataLabel, ColumnSeries, Category, ILoadedEventArgs,
-    IPointRenderEventArgs, ChartTheme, MultiLevelLabel
+    ChartTheme, MultiLevelLabel
 } from '@syncfusion/ej2-charts';
-import { EmitType, Browser } from '@syncfusion/ej2-base';
-import { fabricColors, materialColors, bootstrapColors, highContrastColors, fluent2Colors, fluent2HighContrastColors, pointTailwindColors, pointTailwindDarkColors, pointTailwind3Colors, pointTailwind3DarkColors } from './theme-color';
+import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme, pointRender } from './theme-color';
 Chart.Inject(ColumnSeries, Category, DataLabel, MultiLevelLabel);
 
-let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs): void => {
-    let selectedTheme: string = location.hash.split('/')[1];
-    selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-    if (selectedTheme && selectedTheme.indexOf('fabric') > -1) {
-        args.fill = fabricColors[args.point.index % 10];
-    } else if (selectedTheme === 'material') {
-        args.fill = materialColors[args.point.index % 10];
-    } else if (selectedTheme === 'highcontrast') {
-        args.fill = highContrastColors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent2') {
-        args.fill = fluent2Colors[args.point.index % 10];
-    } else if (selectedTheme === 'fluent2-highcontrast' || selectedTheme === 'fluent2-dark') {
-        args.fill = fluent2HighContrastColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind') {
-        args.fill = pointTailwindColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind-dark') {
-        args.fill = pointTailwindDarkColors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind3') {
-        args.fill = pointTailwind3Colors[args.point.index % 10];
-    } else if (selectedTheme === 'tailwind3-dark') {
-        args.fill = pointTailwind3DarkColors[args.point.index % 10];
-    } else {
-        args.fill = bootstrapColors[args.point.index % 10];
-    }
-};
+
 /**
  * Sample for Smart Axis Labels
  */
@@ -121,14 +97,11 @@ let labelRender: EmitType<IPointRenderEventArgs> = (args: IPointRenderEventArgs)
         ],
         //Initializing Chart title
         title: 'Fruits and Vegetables - Season',
-        pointRender: labelRender,
+        pointRender: pointRender,
         legendSettings: { visible: false },
         width: Browser.isDevice ? '100%' : '75%',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

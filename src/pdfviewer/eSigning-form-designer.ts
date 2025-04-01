@@ -41,6 +41,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
   viewer.enableNavigationToolbar = false;
   viewer.enableAnnotationToolbar =false;
   viewer.downloadFileName = 'eSign_designMode.pdf';
+  viewer.zoomMode = "FitToPage";
   viewer.appendTo('#pdfViewer');
 
   let toolbarItems: ItemModel[] = [
@@ -259,7 +260,6 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
   }
 
   function documentLoaded(): void {
-    viewer.magnification.fitToPage();
     defaultZoomFactor = true;
     viewer.designerMode = true;
     initializeDraggable(textboxBtn.element, 'Textbox');

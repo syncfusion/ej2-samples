@@ -3,6 +3,7 @@ import { Tooltip, Crosshair, DateTime, ILoadedEventArgs, ChartTheme } from '@syn
 import { Chart, LineSeries, Legend, Highlight } from '@syncfusion/ej2-charts';
 import { john, andrew, thomas } from './trackball-data';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend ,Highlight);
 
 /**
@@ -71,10 +72,7 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend ,Highlight);
         //Initializing Chart title
         title: 'Average Sales per Person',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
             args.chart.width = Browser.isDevice ? '100%' : '75%';
         }
     });

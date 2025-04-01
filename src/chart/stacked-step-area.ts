@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, StackingStepAreaSeries, Legend, ILoadedEventArgs, ChartTheme, Highlight } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingStepAreaSeries, Legend, Highlight);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for StepArea Series
@@ -56,10 +57,7 @@ import { Browser } from '@syncfusion/ej2-base';
         width: Browser.isDevice ? '100%' : '75%',
         legendSettings:{enableHighlight: true},
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

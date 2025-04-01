@@ -6,6 +6,7 @@ import {
 } from '@syncfusion/ej2-charts';
 AccumulationChart.Inject(AccumulationLegend, Selection, PieSeries, AccumulationAnnotation, AccumulationDataLabel, AccumulationTooltip, AccumulationSelection);
 import { AccumulationSeries, IAccTextRenderEventArgs, IAnnotationRenderEventArgs } from '@syncfusion/ej2/charts';
+import { loadAccumulationChartTheme } from './theme-color';
 
 /**
  * Sample for Doughnut
@@ -131,10 +132,7 @@ let yearIndex = 2;
         },
         enableBorderOnMouseMove: false,
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-                selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadAccumulationChartTheme;
                 updateClearInterval();
                 intervalId = setInterval(function () {
                     let container = document.getElementById('donut-container');

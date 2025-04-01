@@ -48,6 +48,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     viewer.enableAnnotationToolbar =false;
     viewer.designerMode = true;
     viewer.downloadFileName = 'eSign_filling.pdf';
+    viewer.zoomMode = "FitToPage";
 
     viewer.appendTo('#pdfViewer');
 
@@ -395,7 +396,6 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     }
 
     function documentLoaded(): void {
-        viewer.magnification.fitToPage();
         viewer.designerMode = false;
         updateUserFormField();
     }

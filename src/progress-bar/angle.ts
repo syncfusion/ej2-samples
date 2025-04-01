@@ -1,7 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { ProgressBar, ProgressAnnotation, ILoadedEventArgs, ProgressTheme } from '@syncfusion/ej2-progressbar';
+import { ProgressBar, ProgressAnnotation, ILoadedEventArgs } from '@syncfusion/ej2-progressbar';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Button } from '@syncfusion/ej2-buttons';
+import { loadProgressBarTheme } from './theme-colors';
 ProgressBar.Inject(ProgressAnnotation);
 
 /**
@@ -31,11 +32,8 @@ ProgressBar.Inject(ProgressAnnotation);
     let annotationColors: string[] = ['#e91e63', '#0078D6', '#317ab9', '#007bff', '#4F46E5', '#FFD939', '#9A9A9A', '#22D3EE', '#0D6EFD', '#6750A4', '#D0BCFF', '#0F6CBD', '#1AEBFF', '#115EA3', '#6366F1'];
 
     let progressLoad: EmitType<ILoadedEventArgs> = (args: ILoadedEventArgs) => {
-        let selectedTheme: string = location.hash.split('/')[1];
-        selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-        args.progressBar.theme = <ProgressTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
-        switch (selectedTheme) {
+        let theme: string = loadProgressBarTheme(args);
+        switch (theme) {
             case 'material':
                 args.progressBar.annotations[0].content = annotationElementContent(annotationColors[0], args.progressBar.element.id);
                 break;

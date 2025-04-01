@@ -181,7 +181,6 @@
 		"textarea",
 		"aiassistview",
 		"ai",
-		"assistview",
-		null
+		"assistview"
 	]
 }

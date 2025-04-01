@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, StackingAreaSeries, DateTime, ILoadedEventArgs, Legend, ChartTheme, Highlight, Tooltip } from '@syncfusion/ej2-charts';
 Chart.Inject(StackingAreaSeries, DateTime, Legend, Highlight, Tooltip);
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 let chartData: any[] = [
     { x: new Date(2000, 0, 1), y: 0.61, y1: 0.03, y2: 0.48, y3: 0.23 },
     { x: new Date(2001, 0, 1), y: 0.81, y1: 0.05, y2: 0.53, y3: 0.17 },
@@ -65,13 +66,10 @@ let chartData: any[] = [
                 type: 'StackingArea100', name: 'Cash',border: {width: 0.5 , color: '#ffffff '}, opacity: 1,
             }
         ],
-        width : Browser.isDevice ? '100%' : '75%',tooltip:{enable:true},
+        width : Browser.isDevice ? '100%' : '75%',tooltip: { enable: true, enableHighlight: true, showNearestTooltip: true },
         legendSettings: {enableHighlight:true}, 
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         },
         //Initializing Chart Title
         title: 'Sales by Payment Mode'

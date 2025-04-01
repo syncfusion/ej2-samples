@@ -4,6 +4,7 @@ import {
     AccumulationTheme
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { loadAccumulationChartTheme } from './theme-color';
 AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
 
 /**
@@ -40,10 +41,7 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
         enableBorderOnMouseMove:false,
         //Initializing User Interaction Tooltip
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            let selectedTheme: string = loadAccumulationChartTheme(args);
             if(selectedTheme === 'bootstrap5-dark'){
                 args.chart.series[0].emptyPointSettings.fill = '#FF7F7F';
             }

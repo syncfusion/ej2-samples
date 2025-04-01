@@ -21,7 +21,7 @@ import { DatePicker } from '@syncfusion/ej2-calendars';
             { headerText: 'Menu', keyField: 'Menu' },
             { headerText: 'Order', keyField: 'Order' },
             { headerText: 'Ready to Serve', keyField: 'Ready to Serve' },
-            { headerText: 'Delivered', keyField: 'Delivered,Served' }
+            { headerText: 'Delivered', keyField: 'Delivered' }
         ],
         cardSettings: {
            headerField: 'Id',
@@ -34,7 +34,7 @@ import { DatePicker } from '@syncfusion/ej2-calendars';
         dialogOpen: onDialogOpen
         
     });
-    let categoryData: string[] = ['Menu', 'Order', 'Ready to Serve', 'Delivered','Served'];
+    let categoryData: string[] = ['Menu', 'Order', 'Ready to Serve', 'Delivered'];
     kanbanObj.appendTo('#Kanban'); //Render initialized Kanban control
             function onDialogOpen(args: DialogEventArgs): void {
                 if (args.requestType !== 'Delete') {

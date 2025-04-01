@@ -5,6 +5,7 @@ import {
 } from '@syncfusion/ej2-charts';
 import { checkBrowserInfo } from '@syncfusion/ej2/diagrams';
 import { Browser } from '@syncfusion/ej2/base';
+import { loadAccumulationChartTheme } from './theme-color';
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, AccumulationAnnotation, AccumulationTooltip);
 
 /**
@@ -51,10 +52,7 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
             visible: false,
         },
         load: (args: IAccLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.accumulation.theme = <AccumulationTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadAccumulationChartTheme(args);
         }
     });
     pie.appendTo('#container');

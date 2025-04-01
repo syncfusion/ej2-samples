@@ -4,6 +4,7 @@ import { RangeColumnSeries, DataLabel, ITextRenderEventArgs, ChartTheme } from '
 Chart.Inject(PolarSeries, Category, RadarSeries, RangeColumnSeries, DataLabel, Tooltip);
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadChartTheme } from './theme-color';
 
 /**
  * Sample for Polar Series with DrawType RangeColumn
@@ -56,10 +57,7 @@ import { Browser } from '@syncfusion/ej2-base';
         //Initializing Chart Title
         title: 'Temperatures of Germany',
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
     });
     chart.appendTo('#container');

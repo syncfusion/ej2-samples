@@ -3,6 +3,7 @@ import { CheckBox } from '@syncfusion/ej2-buttons';
 import { Query, Predicate } from '@syncfusion/ej2-data';
 import { Schedule, ScheduleModel, Day, Week, WorkWeek, Month, Agenda, Resize, MonthAgenda, DragAndDrop } from '@syncfusion/ej2-schedule';
 import * as dataSource from './datasource.json';
+import { extend } from '@syncfusion/ej2-base';
 /**
  * schedule resources sample
  */
@@ -15,6 +16,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, MonthAgenda, DragAndDrop, Re
         { OwnerText: 'Robert', OwnerId: 2, Color: '#df5286' },
         { OwnerText: 'Laura', OwnerId: 3, Color: '#865fcf' }
     ];
+    let data: Object[] = <Object[]>extend([], (dataSource as Record<string, any>).resourceSampleData, null, true) as Record<string, any>[];
     let scheduleOptions: ScheduleModel = {
         width: '100%',
         height: '650px',
@@ -25,7 +27,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, MonthAgenda, DragAndDrop, Re
             dataSource: ownerCollections,
             textField: 'OwnerText', idField: 'OwnerId', colorField: 'Color'
         }],
-        eventSettings: { dataSource: (dataSource as Record<string, any>).resourceSampleData }
+        eventSettings: { dataSource: data }
     };
 
     let scheduleObj: Schedule = new Schedule(scheduleOptions, document.getElementById('schedule'));

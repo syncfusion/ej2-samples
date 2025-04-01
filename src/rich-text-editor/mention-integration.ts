@@ -28,12 +28,7 @@ import { Mention } from '@syncfusion/ej2-dropdowns';
 
     let emailObj: Mention;
     let defaultRTE: RichTextEditor = new RichTextEditor({
-        placeholder: 'Type @ and tag the name',
-        actionBegin: (args) => {
-            if (args.requestType === 'EnterAction' && emailObj.element.classList.contains('e-popup-open')) {
-                args.cancel = true;
-            }
-        }
+        placeholder: 'Type @ and tag the name'
      });
     defaultRTE.appendTo('#mention_integration');
 
@@ -47,7 +42,8 @@ import { Mention } from '@syncfusion/ej2-dropdowns';
         popupWidth: '250px',
         popupHeight: '200px',
         target: defaultRTE.inputElement,
-        allowSpaces: true
+        allowSpaces: true,
+        suffixText: '&nbsp;'
 
     });
     emailObj.appendTo('#mentionEditor');

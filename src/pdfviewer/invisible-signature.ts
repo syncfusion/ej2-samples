@@ -8,7 +8,7 @@ import { ClickEventArgs, Button, CheckBox, ChangeEventArgs } from '@syncfusion/e
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Message } from '@syncfusion/ej2-notifications/src/message/message';
 
-PdfViewer.Inject(FormDesigner, FormFields, Toolbar, Magnification, Navigation, LinkAnnotation, Annotation, BookmarkView, ThumbnailView, Print, TextSearch, TextSelection, PageOrganizer);
+PdfViewer.Inject(FormDesigner, FormFields, Toolbar, Magnification, Navigation, LinkAnnotation, Annotation, BookmarkView, ThumbnailView, Print, TextSearch, PageOrganizer);
 
 
 /**
@@ -35,32 +35,41 @@ function downloadClicked(args: ClickEventArgs): void {
     viewer.download();
 }
 
-
-
 function openDocument(e: ClickEventArgs): void {
     document.getElementById('fileUpload').click();
 }
 function signDocument(e: ClickEventArgs): void {
-    viewer.serverActionSettings.download = 'AddSignature';
-    let data: any;
-    let base64data: any;
+    var url = "https://services.syncfusion.com/js/production/api/pdfviewer/AddSignature";
     viewer.saveAsBlob().then(function (value) {
-        data = value;
         var reader = new FileReader();
-        reader.readAsDataURL(data);
-        reader.onload = () => {
-
-            base64data = reader.result;
-            documentData = base64data;
-            viewer.load(base64data, null);
-            toolbarObj.items[1].disabled = true;
-            toolbarObj.items[2].disabled = false;
-            viewer.fileName = fileName;
-            viewer.downloadFileName = fileName;
+        reader.readAsDataURL(value);
+        reader.onload = function (e) {
+            var base64String = e.target ? e.target.result : null;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+            var requestData = JSON.stringify({ base64String: base64String });
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    documentData = xhr.responseText;
+                    viewer.load(xhr.responseText, null);
+                    toolbarObj.items[1].disabled = true;
+                    toolbarObj.items[2].disabled = false;
+                    viewer.fileName = fileName;
+                    viewer.downloadFileName = fileName;
+                }
+                else {
+                    console.error('Error in AddSignature API:', xhr.statusText);
+                }
+            };
+            xhr.onerror = function () {
+                console.error('Error reading Blob as Base64.', xhr.statusText);
+            };
+            xhr.send(requestData);
         };
-
+    }).catch(function (error) {
+        console.error('Error saving Blob:', error);
     });
-    viewer.serverActionSettings.download = 'Download';
 }
 function readFile(args: any): void {
     // tslint:disable-next-line
@@ -97,11 +106,12 @@ function readFile(args: any): void {
     viewer = new PdfViewer({
         enableToolbar: false,
         enableNavigationToolbar: false,
-        documentPath: 'InvisibleDigitalSignature.pdf',
         enableThumbnail: false,
-        serviceUrl: 'https://services.syncfusion.com/js/production/api/pdfviewer'
+        enableAnnotationToolbar: false,
+        documentPath: "https://cdn.syncfusion.com/content/pdf/InvisibleDigitalSignature.pdf",
+        resourceUrl: "https://cdn.syncfusion.com/ej2/27.2.2/dist/ej2-pdfviewer-lib"
     });
-    viewer.enableTextSelection=true;
+    viewer.enableTextSelection=false;
     viewer.downloadFileName = 'InvisibleDigitalSignature.pdf';
     viewer.addSignature = (args) => {
         let field: any;

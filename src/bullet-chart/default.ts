@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { BulletChart, BulletTooltip, IBulletLoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
+import { loadBulletChartTheme } from './theme-color';
 BulletChart.Inject(BulletTooltip);
 
 /**
@@ -22,10 +23,7 @@ BulletChart.Inject(BulletTooltip);
         { end: 300 }
         ],
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
         minimum: 0, maximum: 300, interval: 50,
         title: 'Revenue',
@@ -48,10 +46,7 @@ BulletChart.Inject(BulletTooltip);
         { end: 30 }
         ],
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
         minimum: 0, maximum: 30, interval: 5,
         labelFormat: '{value}%',
@@ -75,10 +70,7 @@ BulletChart.Inject(BulletTooltip);
         ],
         margin: { left: Browser.isDevice ? 10 : 21.5 },
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
         minimum: 0, maximum: 600, interval: 100,
         title: 'Avg Order Size',
@@ -101,10 +93,7 @@ BulletChart.Inject(BulletTooltip);
         ],
         margin: { left: Browser.isDevice ? 10 : 18 },
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
         enableGroupSeparator: true,
         minimum: 0, maximum: 2500, interval: 500,
@@ -128,10 +117,7 @@ BulletChart.Inject(BulletTooltip);
         ],
         margin: { left: Browser.isDevice ? 10 : 7 },
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Material';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/light/i, 'Light').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
         minimum: 0, maximum: 5, interval: 1,
         title: 'Cust Satisfication',

@@ -5,6 +5,7 @@ import { Internationalization, DateFormatOptions } from '@syncfusion/ej2-base';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { DatePicker, ChangedEventArgs } from '@syncfusion/ej2-calendars';
 import { NumericTextBox, ChangeEventArgs as NumericChange } from '@syncfusion/ej2-inputs';
+import { loadChartTheme } from './theme-color';
 Chart.Inject(DateTime, ScrollBar, Zoom, LineSeries, Tooltip);
 
 /**
@@ -42,7 +43,7 @@ Chart.Inject(DateTime, ScrollBar, Zoom, LineSeries, Tooltip);
         }],
         height: '450',
         title: 'Network Load',
-        tooltip: { enable: true, shared: true , header : '<b>${point.x}</b>', format : 'Server load : <b>${point.y}</b>'},
+        tooltip: { enable: true, showNearestTooltip: true, header : '<b>${point.x}</b>', format : 'Server load : <b>${point.y}</b>', enableHighlight: true },
         legendSettings: { visible: true }, 
         scrollEnd: (args: IScrollEventArgs) => {
             if (lazymode.value === 'Range') {
@@ -55,10 +56,7 @@ Chart.Inject(DateTime, ScrollBar, Zoom, LineSeries, Tooltip);
         width: '100%',
         // custom code start
         load: (args: ILoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.chart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, 'Dark').replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadChartTheme(args);
         }
         // custom code end
     });

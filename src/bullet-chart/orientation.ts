@@ -2,6 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { BulletChart, BulletTooltip, OrientationType, ChartTheme, IBulletLoadedEventArgs } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
+import { loadBulletChartTheme } from './theme-color';
 BulletChart.Inject(BulletTooltip);
 
 /**
@@ -24,10 +25,7 @@ BulletChart.Inject(BulletTooltip);
         { end: 30 }
         ],
         load: (args: IBulletLoadedEventArgs) => {
-            let selectedTheme: string = location.hash.split('/')[1];
-            selectedTheme = selectedTheme ? selectedTheme : 'Fluent2';
-            args.bulletChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() +
-            selectedTheme.slice(1)).replace(/-dark/i, "Dark").replace(/contrast/i, 'Contrast').replace(/-highContrast/i, 'HighContrast');
+            loadBulletChartTheme(args);
         },
         height: '400',
         minimum: 0, maximum: 30, interval: 5,

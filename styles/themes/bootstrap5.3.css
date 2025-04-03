@@ -1,0 +1,64 @@
+
+.bootstrap5\.3 .sb-badge {
+    border-radius: 2px;
+    font-size: 10px;
+    color: #ffffff;
+    padding: 2px 6px;
+    float: right;
+    align-items: center;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.bootstrap5\.3 .sb-home-text {
+  color: #393B3F;
+}
+.bootstrap5\.3 .sb-home-link {
+  color: #353A3F;
+}
+.bootstrap5\.3 .sb-bread-crumb .sb-bread-crumb-text>div {
+  color: #353A3F;
+}
+.bootstrap5\.3 .sb-content-tab>.e-tab>.e-tab-header>.e-items.e-toolbar-items>.e-toolbar-item.e-active>.e-tab-wrap>.e-text-wrap>.e-tab-text,
+.bootstrap5\.3 .sb-content-tab>.e-tab>.e-tab-header>.e-items.e-toolbar-items>.e-toolbar-item>.e-tab-wrap>.e-text-wrap>.e-tab-text:hover {
+  color: #316CF4;
+}
+.bootstrap5\.3 .control-name {
+  color: #316CF4;
+}
+.bootstrap5\.3 .sb-component-name {
+  color: #353A3F;
+}
+.bootstrap5\.3 .sb-left-pane .e-listview .e-list-group-item {
+  color: #222529;
+}
+.bootstrap5\.3 .sb-footer-links a {
+  color: #316CF4;
+}
+
+.bootstrap5\.3 .e-tab .sb-content-tab-header.e-tab-header::before {
+    border-width: 0;
+}
+
+.bootstrap5\.3 .e-tab .sb-content-tab-header.e-tab-header::before
+{
+    border-width:0;
+}
+
+.bootstrap5\.3 .e-samplestatus.new.tree, .bootstrap5\.3 .e-samplestatus.update.tree, .bootstrap5\.3 .e-samplestatus.preview.tree {
+    margin: 6px 0 0 0;
+    height: 22px;
+}
+
+.bootstrap5\.3 .e-samplestatus.new, .bootstrap5\.3 .e-samplestatus.update, .bootstrap5\.3 .e-samplestatus.preview {
+    margin: auto 0px;
+}
+.bootstrap5\.3.e-bigger .e-samplestatus.new, .bootstrap5\.3.e-bigger .e-samplestatus.update, .bootstrap5\.3.e-bigger .e-samplestatus.preview {
+    margin-top: 2px;
+}
+
+.bootstrap5\.3.e-bigger .e-samplestatus.new.tree, .bootstrap5\.3.e-bigger .e-samplestatus.update.tree, .bootstrap5\.3.e-bigger .e-samplestatus.preview.tree {
+    margin-right: -10px;
+    padding: 1px 4px;
+    height: 22px;
+}

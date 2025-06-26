@@ -2,8 +2,8 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor smart suggestion
  */
-import { RichTextEditor, Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar,EmojiPicker, PasteCleanup, FormatPainter, SlashMenu, SlashMenuItemSelectArgs} from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, EmojiPicker, PasteCleanup, FormatPainter, SlashMenu);
+import { RichTextEditor, Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar,EmojiPicker, PasteCleanup, FormatPainter, SlashMenu, SlashMenuItemSelectArgs, CodeBlock} from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, QuickToolbar, EmojiPicker, PasteCleanup, FormatPainter, SlashMenu, CodeBlock);
  
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -17,7 +17,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Table, Audio, Video, HtmlEditor, Qui
                 'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
                 'LowerCase', 'UpperCase', '|',
                 'Formats', 'Alignments', 'Blockquote', '|', 'NumberFormatList', 'BulletFormatList', '|',
-                'Outdent', 'Indent', '|', 'CreateLink', 'Image', 'Video', 'Audio', 'CreateTable', '|', 'FormatPainter', 'ClearFormat',
+                'Outdent', 'Indent', '|', 'CreateLink', 'Image', 'Video', 'Audio', 'CreateTable', 'CodeBlock', '|', 'FormatPainter', 'ClearFormat',
                 '|', 'EmojiPicker', '|',
                 'SourceCode', '|', 'Undo', 'Redo']
         },

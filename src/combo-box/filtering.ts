@@ -3,6 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * ComboBox Filtering Samples
  */
 import { ComboBox, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+import {NumericTextBox} from '@syncfusion/ej2-inputs';
 import { Query } from '@syncfusion/ej2-data';
 import * as data from './dataSource.json';
 
@@ -20,6 +21,7 @@ import * as data from './dataSource.json';
         popupHeight: '270px',
         // set true for enable the filtering support.
         allowFiltering: true,
+        debounceDelay :300,
         // bind the filtering event
         filtering: (e: FilteringEventArgs) => {
             let query: Query = new Query();
@@ -30,4 +32,13 @@ import * as data from './dataSource.json';
         }
     });
     comboBoxObj.appendTo('#country');
+    var numeric: NumericTextBox = new NumericTextBox({
+        value: 300,
+        min: 1,
+        format:'n0',
+        change: function (args) {
+            comboBoxObj.debounceDelay = args.value;
+        }
+    });
+    numeric.appendTo('#numeric');
 };

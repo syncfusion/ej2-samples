@@ -61,7 +61,7 @@ Chart.Inject(BarSeries, DataLabel, Category, Tooltip);
         title: 'Top Performing Market Sectors by Growth Rate (2024)',
         subTitle: 'Source: visualcapitalist.com',
         titleStyle: { position: 'Bottom' },
-        tooltip: { enable: true, header: "<b>${point.x}</b>", format: "Growth Rate : <b>${point.text}</b>" },
+        tooltip: { enable: true, header: Browser.isDevice ? "" : "<b>${point.x}</b>", format: "Growth Rate : <b>${point.text}</b>" },
         load: (args: ILoadedEventArgs) => {
             loadChartTheme(args);
         },

@@ -10,7 +10,7 @@ import { isNullOrUndefined } from '@syncfusion/ej2-base';
     let defaultRTE: RichTextEditor = new RichTextEditor({
         quickToolbarSettings: {
             image: [
-                'Replace', 'Align', 'Caption', 'Remove', 'InsertLink', 'OpenImageLink', '-',
+                'Replace', 'Align', 'Caption', 'Remove', 'InsertLink', 'OpenImageLink', '|',
                 'EditImageLink', 'RemoveImageLink', 'Display', 'AltText', 'Dimension',
                 {
                     tooltipText: 'Rotate Left',

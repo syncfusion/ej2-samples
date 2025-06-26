@@ -5,7 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 
 import {
   Diagram, NodeModel, UndoRedo, ConnectorModel, PointPortModel, SymbolPalette,
-  SymbolInfo, IDragEnterEventArgs, GridlinesModel, PaletteModel, FlowShapes, Node, PrintAndExport, FlipDirection
+  SymbolInfo, IDragEnterEventArgs, GridlinesModel, PaletteModel, FlowShapes, Node, PrintAndExport, FlipDirection,ITextEditEventArgs,Connector,
 } from '@syncfusion/ej2-diagrams';
 import { addEvents } from './script/diagram-common';
 import { ConnectorConstraints, DiagramTools, IExportOptions, IScrollChangeEventArgs, ISelectionChangeEventArgs, NodeConstraints } from '@syncfusion/ej2-diagrams';
@@ -40,7 +40,9 @@ function getNodeDefaults(node: NodeModel): NodeModel {
   if (node.width === undefined) {
     node.width = 145;
   }
-  node.style = { fill: '#357BD2', strokeColor: 'white' };
+  if (node.shape.type !== 'Text') {
+    node.style = { fill: '#357BD2', strokeColor: 'white' };
+  }
   for (let i: number = 0; i < node.annotations.length; i++) {
     node.annotations[i].style = {
       color: 'white',
@@ -65,6 +67,13 @@ function dragEnter(args: IDragEnterEventArgs): void {
     obj.offsetY += (obj.height - objHeight) / 2;
     obj.style = { fill: '#357BD2', strokeColor: 'white' };
   }
+}
+function textEdit(args: ITextEditEventArgs): void {
+  var obj = args.element;
+  obj.annotations[0].style = {
+    color: 'white',
+    fill: 'transparent',
+  };
 }
 
 //To set default values for elements in symbol palette.
@@ -250,6 +259,7 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     getNodeDefaults: getNodeDefaults,
     getConnectorDefaults: getConnectorDefaults,
     dragEnter: dragEnter,
+    textEdit: textEdit,
   });
   diagram.appendTo('#diagram');
 
@@ -446,6 +456,29 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
           .click();
         break;
     }
+    var selectedItems = diagram.selectedItems.nodes;
+    selectedItems = selectedItems.concat(
+      (diagram.selectedItems as any).connectors
+    );
+    if (selectedItems && selectedItems.length > 0) {
+      var obj = selectedItems[0];
+      if (obj instanceof Node) {
+        if (obj.constraints === (NodeConstraints.PointerEvents | NodeConstraints.Select | NodeConstraints.ReadOnly)) {
+          updateToolbarItems(["Cut", "Copy", "Delete", "Order", "Rotate", "Flip"], true)
+        }
+        else {
+          updateToolbarItems(["Cut", "Copy", "Delete", "Order", "Rotate", "Flip"], false)
+        }
+      }
+      else if (obj instanceof Connector) {
+        if ((obj as any).constraints === (ConnectorConstraints.PointerEvents | ConnectorConstraints.Select | ConnectorConstraints.ReadOnly)) {
+          updateToolbarItems(["Cut", "Copy", "Delete", "Order", "Rotate", "Flip"], true)
+        }
+        else {
+          updateToolbarItems(["Cut", "Copy", "Delete", "Order", "Rotate", "Flip"], false)
+        }
+      }
+    }
     diagram.dataBind();
   }
   //To enable and disable the toolbar items based on selection.
@@ -513,7 +546,31 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
 
   //To enable toolbar items.
   function enableItems() {
-    updateToolbarItems( ['Cut', 'Copy', 'Lock', 'Delete', 'Order', 'Rotate', 'Flip'],false);
+    var selectedItems = diagram.selectedItems.nodes;
+    selectedItems = selectedItems.concat((diagram.selectedItems as any).connectors);
+    let isSelectedItemLocked;
+    if (selectedItems && selectedItems.length > 0) {
+      var obj = selectedItems[0];
+      if (obj instanceof Node) {
+        if (obj.constraints === (NodeConstraints.PointerEvents | NodeConstraints.Select | NodeConstraints.ReadOnly)) {
+          isSelectedItemLocked = true;
+        }
+        else {
+          isSelectedItemLocked = false;
+        }
+      }
+      else if (obj instanceof Connector) {
+        if ((obj as any).constraints === (ConnectorConstraints.PointerEvents | ConnectorConstraints.Select | ConnectorConstraints.ReadOnly)) {
+          isSelectedItemLocked = true;
+        }
+        else {
+          isSelectedItemLocked = false;
+        }
+      }
+    }
+    if (!isSelectedItemLocked) {
+      updateToolbarItems(['Cut', 'Copy', 'Lock', 'Delete', 'Order', 'Rotate', 'Flip'], false);
+    }
   }
 
   //To disable toolbar items while multiselection.

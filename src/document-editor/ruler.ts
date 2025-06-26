@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { DocumentEditorContainer, Toolbar } from '@syncfusion/ej2-documenteditor';
+import { DocumentEditorContainer, Ribbon, Toolbar } from '@syncfusion/ej2-documenteditor';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { TitleBar } from './title-bar';
 import * as data from './data-default.json';
@@ -12,8 +12,8 @@ import * as data from './data-default.json';
     loadCultureFiles();
     let hostUrl: string = 'https://services.syncfusion.com/js/production/api/documenteditor/';
 
-    let container: DocumentEditorContainer = new DocumentEditorContainer({ serviceUrl:hostUrl, enableToolbar: true, height: '590px', documentEditorSettings: { showRuler: true } });
-    DocumentEditorContainer.Inject(Toolbar);
+    let container: DocumentEditorContainer = new DocumentEditorContainer({ serviceUrl: hostUrl, toolbarMode: 'Ribbon', enableToolbar: true, height: '590px', documentEditorSettings: { showRuler: true } });
+    DocumentEditorContainer.Inject(Toolbar, Ribbon);
     container.appendTo('#container');
 
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
@@ -25,10 +25,14 @@ import * as data from './data-default.json';
         titleBar.updateDocumentTitle();
         container.documentEditor.focusIn();
     };
-    let checkbox: CheckBox = new CheckBox({ label: 'Show ruler', checked: true, change: (args) => { 
-        container.documentEditorSettings.showRuler = args.checked;
-      }});
+    let checkbox: CheckBox = new CheckBox({
+        label: 'Show ruler', checked: true, change: (args) => {
+            container.documentEditorSettings.showRuler = args.checked;
+        }
+    });
 
     // Render initialized CheckBox.
     checkbox.appendTo('#checkbox');
+    titleBar.initializeRibbonSwitch(container);
+    titleBar.showButtons(false);
 };

@@ -1,0 +1,61 @@
+{
+    "name": "Block Editor",
+    "directory": "block-editor",
+    "category": "File Viewers & Editors",
+    "ftName": "BlockEditor",
+    "type": "preview",
+    "dataSourcePath": "src/block-editor/blockData.ts",
+    "samples": [
+        {
+            "url": "overview",
+            "name": "Overview",
+            "category": "Block Editor",
+            "api":{ "BlockEditor": ["blocks"] },
+            "description": "This demo describes basic and advanced features of the Block Editor control with all its tools and functionalities.",
+            "sourceFiles": [
+                { "displayName": "overview.ts", "path":"src/block-editor/overview.ts" },
+                { "displayName": "overview.html", "path":"src/block-editor/overview.html" },
+                { "displayName": "blockData.ts", "path":"src/block-editor/blockData.ts" }
+            ]
+        },
+        {
+            "url": "api",
+            "name": "API",
+            "category": "Block Editor",
+            "api":{ "BlockEditor": ["blocks", "readOnly", "enableDragDrop", "enableHtmlEncode", "gettsonData", "getBlockCount", "selectAllBlocks", "focusIn", "focusOut"] },
+            "description": "This demo covers important APIs of the tS Block Editor such as HTML encoding, read-only, Drag and Drop, and more.",
+            "sourceFiles": [
+                { "displayName": "api.ts", "path":"src/block-editor/api.ts" },
+                { "displayName": "api.html", "path":"src/block-editor/api.html" },
+                { "displayName": "blockData.ts", "path":"src/block-editor/blockData.ts" }
+            ]
+        },
+        {
+            "url": "events",
+            "name": "Events",
+            "category": "Block Editor",
+            "api":{
+                "BlockEditor": [
+                    "blocks",
+                    "created",
+                    "contentChanged",
+                    "selectionChanged",
+                    "blockAdded",
+                    "blockRemoved",
+                    "blockMoved",
+                    "blockDrag",
+                    "blockDragStart",
+                    "blockDrop",
+                    "focus",
+                    "blur"
+                ]
+            },
+            "description": "This demo covers events of Block Editor control.",
+            "sourceFiles": [
+                { "displayName": "events.ts", "path":"src/block-editor/events.ts" },
+                { "displayName": "events.html", "path":"src/block-editor/events.html" },
+                { "displayName": "blockData.ts", "path":"src/block-editor/blockData.ts" }
+            ]
+        }
+    ]
+}

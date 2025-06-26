@@ -20,57 +20,40 @@ let fluent2Colors: string[] = ["#6200EE", "#09AF74", "#0076E5", "#CB3587", "#E79
     let pie: AccumulationChart = new AccumulationChart({
         enableSmartLabels: true,
         annotations: [{
-            content: (Browser.isDevice) ? " " : "<div style='font-Weight:600;font-size:14px'>Browser<br>Market<br>Share</div>" ,
+            content: (Browser.isDevice) ? " " : "<div style='font-Weight:600;font-size:14px'>Internet Users <br> by Country<br>2025</div>" ,
             region:"Series",
-            x:"52%",
+            x:"50%",
             y:"50%"
         }],
         // Initialize the chart series
         series: [
             {
                 dataSource: [
-                    { 'x': 'Chrome', y: 57.28, text: '57.28%' },
-                    { 'x': 'UC Browser', y: 4.37, text: '4.37%' },
-                    { 'x': 'Internet Explorer', y: 6.12, text: '6.12%' },
-                    { 'x': 'QQ', y: 5.96, text: '5.96%' },
-                    { 'x': 'Edge', y: 7.48, text: '7.48%' },
-                    { 'x': 'Others', y: 14.06, text: '18.76%' },
+                    { 'x': 'China', y: 35, text: '35%' },
+                    { 'x': 'India', y: 30, text: '30%' },
+                    { 'x': 'USA', y: 10.7, text: '10.7%' },
+                    { 'x': 'Indonesia', y: 7, text: '7%' },
+                    { 'x': 'Brazil', y: 5.3, text: '5.3%' },
+                    { 'x': 'Others', y: 12, text: '12%' },
                 ],
-                xName: 'x', yName: 'y', startAngle: 30,explodeIndex:0,explode:false,
-                innerRadius: '50%', explodeOffset: '10%', radius: Browser.isDevice ? '80%' : '85%',
+                xName: 'x', yName: 'y',explodeIndex:0,explode:false,
+                innerRadius: '50%', borderRadius: 3, border: { color: '#ffffff', width: 1 },
                 dataLabel: {
-                    visible: true, position: 'Inside',
-                    font: { fontWeight: '600', color: '#ffffff' }, name: 'y', connectorStyle: { length: '20px', type: 'Curve' }
+                    visible: false
                 }
             }
         ],
-        pointRender: pieLegendPointRender,
-        title:Browser.isDevice ? "Browser Market Share" : '',
+        selectionMode: 'Point',
         legendSettings: {
             visible: true, toggleVisibility: false,
-            position: 'Bottom',
-            maximumColumns: Browser.isDevice ? 2 : 3,
-            fixedWidth: true
+            position: 'Bottom', textWrap: 'Wrap'
         },
-        enableBorderOnMouseMove:false,center:{ x: '50%', y: '50%'},
-        textRender: (args: IAccTextRenderEventArgs) => {
-            args.series.dataLabel.font.size = getFontSize(pie.initialClipRect.width);
-            args.text = args.text + '%';
-        },
+        enableBorderOnMouseMove:false,
         // Triggered animation complete, text render and load event
         load: (args: IAccLoadedEventArgs) => {
             loadAccumulationChartTheme(args);
         },
-        tooltip: { enable: true, enableHighlight: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>',header:""  },
+        tooltip: { enable: true, format: '<b>${point.x}</b><br>Percentage: <b>${point.y}%</b>',header:""  },
     });
     pie.appendTo('#donut-container'); 
-    function getFontSize(width: number): string {
-        if (width > 300) {
-            return '13px';
-        } else if (width > 250) {
-            return '8px';
-        } else {
-            return '6px';
-        }
-    }
 };

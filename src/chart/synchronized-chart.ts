@@ -15,6 +15,7 @@ let zoomPosition: number = 0;
  */
 (window as any).default = (): void => {
     loadCultureFiles();
+    charts =[];
     let chart: Chart = new Chart({
         primaryXAxis: {
             minimum: new Date(2023, 1, 18),

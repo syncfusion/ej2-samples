@@ -2,12 +2,14 @@
     "name": "Word Processor",
     "directory": "document-editor",
     "category": "File Viewers & Editors",
+    "type": "update",
     "hideOnDevice": true,
     "ftName": "document-editor",
     "samples": [
         {
             "url": "default",
             "name": "Default Functionalities",
+            "type": "update",
             "category": "Document Editor",
             "description": "The Document Editor component in JavaScript platform is used to create, edit, view, and print Word documents in web applications.",
             "api": {
@@ -255,7 +257,7 @@
             "url": "mail-merge",
             "name": "Mail Merge",
             "category": "Mail Merge",
-            "description": "The Document Editor component provides support to mail merge document with the help of Syncfusion® DocIO.",
+            "description": "The Document Editor component provides support to mail merge document with the help of Syncfusion DocIO.",
             "api": {
                 "DocumentEditor": [
                     "isReadOnly",
@@ -353,6 +355,13 @@
                     "enforcement"
                 ]
             }
+        },
+         {
+            "url": "ribbon-customization",
+            "name": "Ribbon Customization",
+            "type": "new",
+            "category": "Customization",
+            "description": "The Microsoft Word-like Ribbon UI in the Document Editor supports to customize the built-in tabs, groups and items."
         },
         {
             "url": "custom-context-menu",
@@ -711,8 +720,9 @@
         {
             "url": "autoshapes",
             "name": "Auto Shapes",
+            "type" : "update",
             "category": "Shapes",
-            "description": "The Document Editor component supports Auto shapes preservation",
+            "description": "The Document Editor component supports Auto shapes and Group shapes preservation",
             "api": {
                 "Editor": [
                     "insertShape"

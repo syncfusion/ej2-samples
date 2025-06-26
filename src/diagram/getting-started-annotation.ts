@@ -18,6 +18,8 @@ let diagram: Diagram;
 
 function selectionChange(arg: ISelectionChangeEventArgs): void {
     if (arg.state === 'Changed') {
+        const labelConstraints: any = document.getElementById("labelConstraints");
+        const labelConstraintsCheckbox = labelConstraints.ej2_instances ? (labelConstraints as any).ej2_instances[0] : labelConstraints
         // custom code start
         let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
         if (selectedElement.length) {
@@ -27,20 +29,30 @@ function selectionChange(arg: ISelectionChangeEventArgs): void {
         if (arg.newValue[0]) {
             let node: NodeModel = arg.newValue[0] as NodeModel;
             let annotations: ShapeAnnotationModel[] = node.annotations;
-            let offset: PointModel = annotations[0].offset;
-            if (offset.x === 0 && offset.y === 0) {
-                updateAnnotationPosition('left');
-            } else if (offset.x === 1 && offset.y === 0) {
-                updateAnnotationPosition('right');
-            } else if (offset.x === 0 && offset.y === 1) {
-                updateAnnotationPosition('bottomLeft');
-            } else if (offset.x === 1 && offset.y === 1) {
-                updateAnnotationPosition('bottomRight');
-            } else if (offset.x === 0.5 && offset.y === 0.5) {
-                updateAnnotationPosition('center');
-            } else if (offset.x === 0.5 && offset.y === 1) {
-                updateAnnotationPosition('bottomCenter');
+            if (annotations && annotations.length > 0) {
+                let offset: PointModel = annotations[0].offset;
+                if (offset.x === 0 && offset.y === 0) {
+                    updateAnnotationPosition('left');
+                } else if (offset.x === 1 && offset.y === 0) {
+                    updateAnnotationPosition('right');
+                } else if (offset.x === 0 && offset.y === 1) {
+                    updateAnnotationPosition('bottomLeft');
+                } else if (offset.x === 1 && offset.y === 1) {
+                    updateAnnotationPosition('bottomRight');
+                } else if (offset.x === 0.5 && offset.y === 0.5) {
+                    updateAnnotationPosition('center');
+                } else if (offset.x === 0.5 && offset.y === 1) {
+                    updateAnnotationPosition('bottomCenter');
+                }
+                // Label interaction checkbox sync
+                var hasInteraction = (node.annotations[0].constraints & AnnotationConstraints.Interaction) === AnnotationConstraints.Interaction;
+                labelConstraintsCheckbox.disabled = false;
+                labelConstraintsCheckbox.checked = hasInteraction;
             }
+        } else {
+            // No node selected - disable checkbox
+            labelConstraintsCheckbox.disabled = true;
+            labelConstraintsCheckbox.checked = false;
         }
         enableOptions(arg);
     }

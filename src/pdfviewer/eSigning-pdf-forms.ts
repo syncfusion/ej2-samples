@@ -75,22 +75,22 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
         dataSource: userDetails,
         fields: { text: 'Mail', value: 'Eimg'},
         index: 0,
-        width: '200px',
-        popupWidth: '215px',
+        width: '210px',
+        popupWidth: '210px',
         itemTemplate: (data: UserDetails) => `
             <div style="display:flex;">
                 <img class="empImage" style="border: 1px solid ${getBorderColor(data.Mail)};height:32px width:32px" src="src/pdfviewer/images/employees/${data.Eimg}.png" alt="employee" />
                 <div>
-                    <div class="ename" style="font-size:14px;height:18px;">${data.Name}</div>
+                    <div class="ename" style="font-size:14px;height:14px;">${data.Name}</div>
                     <div class="mail" style="font-size:12px;">${data.Mail}</div>
                 </div>
             </div>`,
         valueTemplate: (data: UserDetails) => `
             <div style="display:flex;">
-                <img class="value" style="border: 1px solid ${getBorderColor(data.Mail)}; margin: 0px 0px 5px 10px; border-radius:50%;" src="src/pdfviewer/images/employees/${data.Eimg}.png" height="32px" width="32px" alt="employee" />
+                <img class="value" style="border: 1px solid ${getBorderColor(data.Mail)}; margin-left: 3px;  border-radius:50%;" src="src/pdfviewer/images/employees/${data.Eimg}.png" height="30px"alt="employee" />
                 <div>
-                    <div class="name" style="font-size:12px;margin-left: 12px;">${data.Name}</div>
-                    <div class="mail" style="font-size:10px;margin-left: 12px;">${data.Mail}</div>
+                    <div class="name" style="font-size:12px;margin-left: 11px;">${data.Name}</div>
+                    <div class="mail" style="font-size:10px;margin-left: 10px;">${data.Mail}</div>
                 </div>
             </div>`,
     });

@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  *  Toolbar sample to demonstrate template functionalities.
  */
-import { Toolbar } from '@syncfusion/ej2-navigations';
+import { Toolbar, KeyDownEventArgs } from '@syncfusion/ej2-navigations';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { ComboBox } from '@syncfusion/ej2-dropdowns';
 import { TextBox } from '@syncfusion/ej2-inputs';
@@ -40,7 +40,7 @@ import { TextBox } from '@syncfusion/ej2-inputs';
                 type: 'Separator', align: 'Left'
             },
             {
-                showTextOn: 'Overflow', prefixIcon: 'e-icons e-zoom-out', tooltipText: 'Zoom Out', text: 'Zoom Out', align: 'Left'
+                showTextOn: 'Overflow', prefixIcon: 'e-icons e-zoom-out', tooltipText: 'Zoom Out', text: 'Zoom Out', align: 'Left', tabIndex: 0
             },
             {
                 showTextOn: 'Overflow', prefixIcon: 'e-icons e-zoom-in', tooltipText: 'Zoom In', text: 'Zoom In', align: 'Left'
@@ -52,7 +52,7 @@ import { TextBox } from '@syncfusion/ej2-inputs';
                 type: 'Separator', align: 'Left'
             },
             {
-                showTextOn: 'Overflow', cssClass: 'selection-tool', align: 'Left', prefixIcon: 'e-icons e-mouse-pointer', text: 'Selection', tooltipText: 'Text selection tool'
+                showTextOn: 'Overflow', cssClass: 'selection-tool', align: 'Left', prefixIcon: 'e-icons e-mouse-pointer', text: 'Selection', tooltipText: 'Text selection tool', tabIndex: 0
             },
             {
                 cssClass: 'pan-mode', showTextOn: 'Overflow', prefixIcon: 'e-icons e-pan', tooltipText: 'Pan Mode', text: 'Pan', align: 'Left'
@@ -70,13 +70,13 @@ import { TextBox } from '@syncfusion/ej2-inputs';
                 type: 'Separator'
             },
             {
-                prefixIcon: 'e-pv-comment-icon', showTextOn: 'Overflow', tooltipText: 'Add Comments', text: 'Add Comments', align: 'Left'
+                prefixIcon: 'e-pv-comment-icon', showTextOn: 'Overflow', tooltipText: 'Add Comments', text: 'Add Comments', align: 'Left', tabIndex: 0
             },
             {
                 type: 'Separator'
             },
             {
-                text: 'Submit Form', align: 'Left'
+                text: 'Submit Form', align: 'Left', tabIndex: 0
             },
             {
                 type: 'Input', tooltipText: 'Find Text', align: 'Right', overflow: 'Show', cssClass: 'find', template: new TextBox({ width: 125, placeholder: 'Find Text', created: OnCreateSearch })
@@ -90,11 +90,29 @@ import { TextBox } from '@syncfusion/ej2-inputs';
             {
                 showTextOn: 'Overflow', prefixIcon: 'e-icons e-download', tooltipText: 'Download file', text: 'Download', align: 'Right'
             },
-        ]
+        ],
+        keyDown: (args: KeyDownEventArgs) => {
+            if (args.originalEvent.action === 'moveRight') {
+                focusInputElement(args.nextItem, args);
+            } else if (args.originalEvent.action === 'moveLeft') {
+                focusInputElement(args.nextItem, args);
+            }        
+        },
+        allowKeyboard: true
     });
     toolbarObj.appendTo('#toolbar_template');
 
     function OnCreateSearch(): any {
         this.addIcon('prepend', 'e-icons e-search');
+    }
+
+    function focusInputElement(item: HTMLElement | null, args: KeyDownEventArgs) {
+        if (item && item.classList.contains('e-template')) {
+            const inputElement = item.querySelector('input');
+            if (inputElement) {
+                inputElement.focus();
+                args.cancel = true;
+            }
+        }
     }
 };

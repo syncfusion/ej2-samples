@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { DocumentEditorContainer, Toolbar, CommentDeleteEventArgs } from '@syncfusion/ej2-documenteditor';
+import { DocumentEditorContainer, Toolbar, CommentDeleteEventArgs, Ribbon } from '@syncfusion/ej2-documenteditor';
 import { TitleBar } from './title-bar';
 import * as data from './data-comments.json';
 import { DialogUtility } from '@syncfusion/ej2-popups';
@@ -34,14 +34,15 @@ import { DialogUtility } from '@syncfusion/ej2-popups';
         { "Name": "Donald Krish", "Eimg": "9", "EmailId": "donald@mycompany.com" },
         { "Name": "Yohana", "Eimg": "1", "EmailId": "yohana@mycompany.com" },
         { "Name": "Kevin Paul", "Eimg": "10", "EmailId": "kevin@mycompany.com" },
-        { "Name": "Andrew Fuller", "Eimg": "3", "EmailId": "andrew@mycompany.com"}
+        { "Name": "Andrew Fuller", "Eimg": "3", "EmailId": "andrew@mycompany.com" }
     ];
-    let container: DocumentEditorContainer = new DocumentEditorContainer({ serviceUrl:hostUrl,
-        enableToolbar: true, showPropertiesPane: false,
-        height: '590px', documentEditorSettings: { showRuler: true, mentionSettings: { dataSource: mentionData, fields: { text: 'Name' }} },
+    let container: DocumentEditorContainer = new DocumentEditorContainer({
+        serviceUrl: hostUrl,
+        enableToolbar: true, toolbarMode: 'Ribbon', showPropertiesPane: false,
+        height: '590px', documentEditorSettings: { showRuler: true, mentionSettings: { dataSource: mentionData, fields: { text: 'Name' } } },
         userColor: '#b70f34', commentDelete: commentDelete
     });
-    DocumentEditorContainer.Inject(Toolbar);
+    DocumentEditorContainer.Inject(Toolbar, Ribbon);
     container.appendTo('#container');
     container.documentEditor.currentUser = 'Nancy Davolio';
     let titleBar: TitleBar = new TitleBar(document.getElementById('documenteditor_titlebar'), container.documentEditor, true);
@@ -65,5 +66,7 @@ import { DialogUtility } from '@syncfusion/ej2-popups';
             });
         }
     }
+    titleBar.initializeRibbonSwitch(container);
+    titleBar.showButtons(false);
 };
 

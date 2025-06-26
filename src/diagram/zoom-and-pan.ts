@@ -9,7 +9,7 @@ import {
     ConnectorModel,
     NodeModel,
     SnapConstraints,
-    Container,
+    GroupableView,
     TextElement,
     StackPanel,
     ImageElement,
@@ -60,7 +60,7 @@ function selectionChange(args: ISelectionChangeEventArgs) {
 }
 
 // Sets the visual template for a node.
-function setNodeTemplate(node: NodeModel): Container {
+function setNodeTemplate(node: NodeModel): GroupableView {
     // Create an outer stack panel as content to contain image and text elements
     let content: StackPanel = new StackPanel();
     content.id = node.id + '_outerstack';

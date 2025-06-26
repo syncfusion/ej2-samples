@@ -4,6 +4,7 @@ import {
     AccumulationTheme
 } from '@syncfusion/ej2-charts';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
+import { Browser } from '@syncfusion/ej2/base';
 import { loadAccumulationChartTheme } from './theme-color';
 AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
 
@@ -17,16 +18,14 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
         //Initializing Series
         series: [
             {
-                type: 'Pie', xName: 'x', yName: 'y', 
+                type: 'Pie', xName: 'x', yName: 'y', radius: '80%', borderRadius: 3, border: { width: 1, color: 'white' },
                 dataSource: [
-                    { x: 'Rice', y: 80 }, { x: 'Wheat', y: null }, { x: 'Oil', y: 70 },
-                    { x: 'Corn', y: 60 }, { x: 'Gram', y: null },
-                    { x: 'Milk', y: 70 }, { x: 'Peas', y: 80 },
-                    { x: 'Fruit', y: 60 }, { x: 'Butter', y: null }
+                    { x: 'Action', y: 35,}, { x: 'Drama', y: 25 }, { x: 'Comedy', y: null },
+                    { x: 'Romance', y: 20 }, { x: 'Horror', y: 10 }, { x: 'Sci-Fi', y: null }
                 ],
                 dataLabel: {
                     visible: true, position: 'Inside', enableRotation: true, font: {
-                        fontWeight: '600',
+                        fontWeight: '600',  size: Browser.isDevice ? '8px' : '12px', 
                     }
                 },
                 emptyPointSettings: {
@@ -35,7 +34,7 @@ AccumulationChart.Inject(PieSeries, AccumulationDataLabel, AccumulationTooltip);
             },
         ],
         //Initializing title
-        title: 'Annual Product-Wise Profit Analysis',
+        title: 'Movie Genre Revenue Share',
         legendSettings: { visible: false },
         tooltip: { enable: true, format: '<b>${point.x}</b><br> Profit: <b>$${point.y}K</b>' , header:"", enableHighlight: true},
         enableBorderOnMouseMove:false,

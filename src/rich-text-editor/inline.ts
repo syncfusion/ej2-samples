@@ -14,9 +14,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, PasteClean
             onSelection: true
         },
         toolbarSettings: {
-            items: ['Bold', 'Italic', 'Underline',
-                'Formats', '-', 'Alignments', 'OrderedList', 'UnorderedList',
-                'CreateLink']
+            items: ['Formats', '|', 'Bold', 'Italic', 'Fontcolor', 'BackgroundColor', '|', 'CreateLink', 'Image', 'CreateTable', '|' , 'Unorderedlist', 'Orderedlist']
         },
         format: {
             width: 'auto'

@@ -5,7 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 
 import {
     Diagram, ConnectorModel, NodeModel, Overview, SnapConstraints,
-    Container, TextElement, StackPanel, ImageElement, DataBinding, HierarchicalTree,
+    GroupableView, TextElement, StackPanel, ImageElement, DataBinding, HierarchicalTree,
     TreeInfo, DiagramTools
 } from '@syncfusion/ej2-diagrams';
 import { DataManager } from '@syncfusion/ej2-data';
@@ -31,12 +31,12 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
 function layoutInfo(tree: TreeInfo): void {
 if (!tree.hasSubTree) {
     tree.orientation = "Vertical";
-    tree.type = "Right";
+    tree.type = "Alternate";
 }
 }
 
 // Funtion to add the Template of the Node.
-function setNodeTemplate(obj: NodeModel): Container {
+function setNodeTemplate(obj: NodeModel): GroupableView {
     // Create the outer container for the node content.
     let content: StackPanel = new StackPanel();
     content.id = obj.id + '_outerstack';

@@ -557,6 +557,9 @@
     border: none;
 }
 
+.e-ddl#search-input_popup .e-fixed-head {
+    visibility: hidden;
+}
 
 #search-input-wrapper .e-input-group.e-control-wrapper.e-ddl.e-input-focus::before,
 #search-input-wrapper .e-input-group.e-control-wrapper.e-ddl.e-input-focus::after {

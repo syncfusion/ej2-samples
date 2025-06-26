@@ -3,6 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * MultiSelect Filtering Sample
  */
 import { MultiSelect, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+import {NumericTextBox} from '@syncfusion/ej2-inputs';
 import { Query } from '@syncfusion/ej2-data';
 import * as data from './dataSource.json';
 
@@ -20,6 +21,7 @@ import * as data from './dataSource.json';
         fields: { text: 'Name', value: 'Code' },
         // set true for enable the filtering support.
         allowFiltering: true,
+        debounceDelay :300,
         // bind the filtering event
         filtering: (e: FilteringEventArgs) => {
             let query: Query = new Query();
@@ -30,4 +32,14 @@ import * as data from './dataSource.json';
         }
     });
     listObj.appendTo('#list');
+
+    var numeric: NumericTextBox = new NumericTextBox({
+        value: 300,
+        min: 1,
+        format:'n0',
+        change: function (args) {
+            listObj.debounceDelay = args.value;
+        }
+    });
+    numeric.appendTo('#numeric');
 };

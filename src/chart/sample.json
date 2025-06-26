@@ -2,8 +2,8 @@
     "name": "Chart",
     "directory": "chart",
     "category": "Data Visualization",
-    "type": "update",
     "ftName": "chart",
+	"type": "update",
     "samples": [
        
         {
@@ -25,7 +25,6 @@
             "name": "Line",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the line series.",
             "category": "Line Charts",
-            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -40,7 +39,6 @@
             "name": "Spline",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the spline series.",
             "category": "Line Charts",
-            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -478,7 +476,6 @@
             "name": "Stacked Column",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the stacking column series.",
             "category": "Bar Charts",
-            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -636,7 +633,6 @@
             "name": "Funnel",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the funnel charts.",
             "category": "Accumulation Charts",
-            "type": "update",
             "api": {
                 "AccumulationChart": [
                     "series",
@@ -1102,6 +1098,7 @@
         {
             "url": "live-stock-data",
             "name": "Live stock data",
+            "type": "update",
             "description": "This demo for Essential<sup>®</sup> JavaScript2 Chart control shows the real time charts",
             "category": "Real-time Charts",
             "api": {
@@ -1623,7 +1620,6 @@
         {
             "url": "series-animation",
             "name": "Animation",
-            "type": "new",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure series animation.",
             "category": "Chart Customization",
             "api": {
@@ -1744,7 +1740,6 @@
             "name": "Zooming and Panning",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates the zooming and panning behavior in chart.",
             "category": "User Interaction",
-            "type": "update",
             "api": {
                 "Chart": [
                     "primaryXAxis",
@@ -1757,7 +1752,6 @@
         {
             "url": "pagination",
             "name": "Pagination",
-            "type": "new",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates the pagination behavior in chart.",
             "category": "User Interaction",
             "api": {

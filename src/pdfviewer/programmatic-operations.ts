@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
     PdfViewer, Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkView,
-    ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer, HighlightSettings, UnderlineSettings, StrikethroughSettings, LineSettings, ArrowSettings, RectangleSettings, CircleSettings, PolygonSettings, DistanceSettings, PerimeterSettings, AreaSettings, RadiusSettings, VolumeSettings, FreeTextSettings, DynamicStampItem, SignStampItem, StandardBusinessStampItem, CustomStampSettings, InkAnnotationSettings, StickyNotesSettings, StampSettings,
+    ThumbnailView, Print, TextSelection, TextSearch, Annotation, FormFields, FormDesigner, PageOrganizer, HighlightSettings, UnderlineSettings, StrikethroughSettings, SquigglySettings, LineSettings, ArrowSettings, RectangleSettings, CircleSettings, PolygonSettings, DistanceSettings, PerimeterSettings, AreaSettings, RadiusSettings, VolumeSettings, FreeTextSettings, DynamicStampItem, SignStampItem, StandardBusinessStampItem, CustomStampSettings, InkAnnotationSettings, StickyNotesSettings, StampSettings,
     AnnotationSelectEventArgs,
     AnnotationMoveEventArgs,
     AnnotationResizeEventArgs,
@@ -37,7 +37,7 @@ import { change } from '@syncfusion/ej2-grids';
     loadCultureFiles();
     let viewer: PdfViewer = new PdfViewer();
 
-    viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/annotations.pdf";
+    viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/annotations-v3.pdf";
     viewer.resourceUrl = "https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib";
     viewer.annotationSelect = AnnotationSelectedEvent;
     viewer.annotationMove = AnnotationMoveEvent;
@@ -98,19 +98,23 @@ import { change } from '@syncfusion/ej2-grids';
     //here our code staring
     const syncfusionLogo = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAADJCAMAAABYMS1zAAAAllBMVEX///8rNXz2kh7b3OXQ0d8jLnlMU4wfK3hYXpH5+fvz8/bv7/SRlbYAAGyLj7GMkLBGToqdoLt4fKS1t8vIydoAGHEXJXUMHnP1hAD1jAD9483+9u7707L4sXSDh6s0PoL3oE76xpr4qV/97d/5vov96NYADW/2m0b7zaX2mTv4t3v5uYT83cL4rms+R4YAAGX2kjBubpsmc7m7AAAEKUlEQVR4nO3c6VbiQBAF4Dai7AiikCbIjuyK7/9ykziTCJLuVLUcu5O5938d8x2kUr0chEAQBEEQpBgJbD/A9RLMVnPbz3C1LHw5Gdh+iCtl7Xue3AxtP8ZVMpReGOlNC/DF2Xt/I+U295rlRHoxZ5ZzzXyWWELNZGn7eX6SYHdiidrA3vYT/SBT3zuPXNt+JOOsv1tCzSKnX5y9vLB4nr/N5TQw8NIwnjzksA3MV6mWqKnlrg0EM4UlmgbyNtu8KC2fs43tx2NlobFEnDzNNmst5bMN5EYzzLKEmlVOmtpgo/8n+/fFyUVTW6ob2ZlG5qCpBbpGdhbf/QXbjmoJNTvHZ5sp3ZI521S7oxY93biqwSga3Wr+/ppjyZptaq3XMjm9Rox569Or3p/Ufz51UtZqdPs2tYf+DTl3CaZdplc11Zj5kWnxtAs2q5hANSlr4+9UTc0mRjMp6zWqfRubmK2ZJdRs0lu0RQyrKX/TTBzDEKZLVeQxfWPdGoY0XSosqpnTFka55KdgVK8aSxizpvzPolxEW8LMLvf7qPHVS2hrn4ypRreAttYADF8y2qMBe615aoTRHgxYfGkOjwYfjnbpbHOc2U/YCwD9EYfVqZm4lZHE32ktttczW05T818yNjTsYkRwcVim+R+bZG1nWMakHpcpLJvMPU3rGLGXtC+OzL6CYh8jlqT5mbKf6QDm/PRfFcq5swsYEewyLaRTZycwYVPLOGyiHc+4gYkW0bpzwMym7BZG7DUaSdwvdwYTzjaqN45PvRfoDkbMD+kan3zI5BBGBIs0jU8/N3cJk3rqLDMmZXcxlws21pm5Y5jvCzY54xz8uYYRy8PpzcbsSdlpjAhO9m2OvLN/9zDRbBNzmLcaHcQks41cMOucxIh91NTkjFvmJkYMVlJKdpWjmOi8k3+3xFWMCAxuljiLMUmxMKP3Z3JeWzFm3KRX6a6bXDfVpw4jyWNxihq6i0BX1rBiVPVrFgRBkIKkVmekZlSV9OaAEwNLtfvxSE9ye7bFKPpIXpovjBxMBs1Ws0dOPxln3p7pVV/jjGSEvCd7ivnNQZNzUA4MMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwPzvmOcCYVoFwlRLXUZKcRmnqJtcBBoysnb+lxkRBEEQSuq3jNTjKk6RYVUt/Xl1qXbuK/R04qpHRlE7mQAYRZV2SfHEmtQajN+e7T/GmArnt2fjC8TipnedX6xVYxhTc3mUYIxms/GdSRUHwxg0gQEGGGCAAQYYYIABBhhggAEGGGCAAQYYYIABBhhggAEGGGCAAaaImELdA3i9I6f3henTq5pfNzTK9CqjGxqdt3ty2g8x5qNNrxonmAq96H5sgBH1EiPJPdhbTlVyq4lTVDK41YQgCIIgCIIgSFr+AKg+KPUzaG6DAAAAAElFTkSuQmCC";
     viewer.documentLoad = function (args) {
-        if (args.documentName === 'annotations.pdf') {
+        if (args.documentName === 'annotations-v3.pdf') {
             viewer.annotation.addAnnotation("Highlight", {
-                bounds: [{ x: 97, y: 610, width: 350, height: 14 }],
+                bounds: [{ x: 97, y: 610, width: 340, height: 14 }],
                 pageNumber: 1
             } as HighlightSettings);
             viewer.annotation.addAnnotation("Underline", {
-                bounds: [{ x: 97, y: 723, width: 353.5, height: 14 }],
+                bounds: [{ x: 97, y: 705, width: 346, height: 14 }],
                 pageNumber: 1
             } as UnderlineSettings);
             viewer.annotation.addAnnotation("Strikethrough", {
-                bounds: [{ x: 97, y: 836, width: 376.5, height: 14 }],
+                bounds: [{ x: 97, y: 800, width: 367, height: 14 }],
                 pageNumber: 1
             } as StrikethroughSettings);
+            viewer.annotation.addAnnotation("Squiggly", {
+                bounds: [{ x: 97, y: 895.5, width: 336, height: 14 }],
+                pageNumber: 1
+            } as SquigglySettings);
             viewer.annotation.addAnnotation("Line", {
                 offset: { x: 200, y: 230 },
                 pageNumber: 2,
@@ -535,6 +539,7 @@ import { change } from '@syncfusion/ej2-grids';
             case 'Highlight':
             case 'Underline':
             case 'Strikethrough':
+            case 'Squiggly':
                 {
                     (document.getElementById("strokethickenssIstrue") as HTMLElement).style.display = "none";
                     (document.getElementById("deladdboundsButtonsIstrue") as HTMLElement).style.display = "block";
@@ -559,6 +564,8 @@ import { change } from '@syncfusion/ej2-grids';
                     } else if (selectedAnnotation.annotationType === "Underline") {
                         selectedAnnotation.fillColor = "#00ff00";
                     } else if (selectedAnnotation.annotationType === "Strikethrough") {
+                        selectedAnnotation.fillColor = "#ff0000";
+                    } else if (selectedAnnotation.annotationType === "Squiggly") {
                         selectedAnnotation.fillColor = "#ff0000";
                     }
                     clearTable();
@@ -1016,11 +1023,11 @@ import { change } from '@syncfusion/ej2-grids';
             stateHasChanged = true;
             changeUpdateButton();
         }
-        else if ((property === 'x' || property === 'y') && (selectedAnnotation.annotationType != "Highlight" && selectedAnnotation.annotationType != "Underline" && selectedAnnotation.annotationType != "Strikethrough" && selectedAnnotation.annotationType != "Polygon" && selectedAnnotation.annotationType != "Perimeter" && selectedAnnotation.annotationType != "Area" && selectedAnnotation.annotationType != "Volume") && selectedAnnotation.annotationSelected && event.isInteracted) {
+        else if ((property === 'x' || property === 'y') && (selectedAnnotation.annotationType != "Highlight" && selectedAnnotation.annotationType != "Underline" && selectedAnnotation.annotationType != "Strikethrough" && selectedAnnotation.annotationType != "Squiggly" && selectedAnnotation.annotationType != "Polygon" && selectedAnnotation.annotationType != "Perimeter" && selectedAnnotation.annotationType != "Area" && selectedAnnotation.annotationType != "Volume") && selectedAnnotation.annotationSelected && event.isInteracted) {
             stateHasChanged = true;
             changeUpdateButton();
         }
-        else if((property === 'x' || property === 'y' || property === 'width' || property === 'height') && (selectedAnnotation.annotationType === "Highlight" || selectedAnnotation.annotationType === "Underline" || selectedAnnotation.annotationType === 'Strikethrough') && selectedAnnotation.annotationSelected && event.isInteracted) {
+        else if((property === 'x' || property === 'y' || property === 'width' || property === 'height') && (selectedAnnotation.annotationType === "Highlight" || selectedAnnotation.annotationType === "Underline" || selectedAnnotation.annotationType === 'Strikethrough' || selectedAnnotation.annotationType != "Squiggly") && selectedAnnotation.annotationSelected && event.isInteracted) {
             updateButton.disabled = true;
         }
     }
@@ -1074,7 +1081,7 @@ import { change } from '@syncfusion/ej2-grids';
         pageNumberObj.value = collection.pageNumber + 1;
         pageNumberObj.dataBind();
         findStampComments("Null");
-        if (collection.textMarkupAnnotationType === "Highlight" || collection.textMarkupAnnotationType === "Underline" || collection.textMarkupAnnotationType === "Strikethrough") {
+        if (collection.textMarkupAnnotationType === "Highlight" || collection.textMarkupAnnotationType === "Underline" || collection.textMarkupAnnotationType === "Strikethrough" || collection.textMarkupAnnotationType === "Squiggly") {
             annotationListObj.value = collection.textMarkupAnnotationType;
             selectedAnnotation.annotationType = collection.textMarkupAnnotationType;
             annotationListObj.dataBind()
@@ -1202,7 +1209,7 @@ import { change } from '@syncfusion/ej2-grids';
             }
         }
 
-        if (selectedAnnotation.annotationType === "Highlight" || selectedAnnotation.annotationType === "Underline" || selectedAnnotation.annotationType === "Strikethrough" && (collection.annotationAddMode === "Imported Annotation" || collection.annotationAddMode === "Existing Annotation")) {
+        if (selectedAnnotation.annotationType === "Highlight" || selectedAnnotation.annotationType === "Underline" || selectedAnnotation.annotationType === "Strikethrough" || selectedAnnotation.annotationType === "Squiggly" && (collection.annotationAddMode === "Imported Annotation" || collection.annotationAddMode === "Existing Annotation")) {
             selectedAnnotation.width = collection.bounds[0].Width;
             widthObj.value = collection.bounds[0].Width;
             widthObj.dataBind();
@@ -1220,7 +1227,7 @@ import { change } from '@syncfusion/ej2-grids';
             FillcolorpickerObj.dataBind();
 
         }
-        else if (selectedAnnotation.annotationType === "Highlight" || selectedAnnotation.annotationType === "Underline" || selectedAnnotation.annotationType === "Strikethrough" && (collection.annotationAddMode === "UI Drawn Annotation")) {
+        else if (selectedAnnotation.annotationType === "Highlight" || selectedAnnotation.annotationType === "Underline" || selectedAnnotation.annotationType === "Strikethrough" || selectedAnnotation.annotationType === "Squiggly" && (collection.annotationAddMode === "UI Drawn Annotation")) {
             selectedAnnotation.width = collection.bounds[0].width;
             widthObj.value = collection.bounds[0].width;
             widthObj.dataBind();
@@ -1357,7 +1364,7 @@ import { change } from '@syncfusion/ej2-grids';
         selectedAnnotation.thickness = collection.thickness;
         strokeThickenssObj.value = collection.thickness;
         strokeThickenssObj.dataBind();
-        if (selectedAnnotation.annotationType === "Highlight" || selectedAnnotation.annotationType === "Underline" || selectedAnnotation.annotationType === "Strikethrough") {
+        if (selectedAnnotation.annotationType === "Highlight" || selectedAnnotation.annotationType === "Underline" || selectedAnnotation.annotationType === "Strikethrough" || selectedAnnotation.annotationType === "Squiggly") {
             selectedAnnotation.fillColor = collection.color ? (collection.color.includes("rgba") ? rgbaStringToHex(collection.color) : collection.color) : "";;
             FillcolorpickerObj.value = collection.color ? (collection.color.includes("rgba") ? rgbaStringToHex(collection.color) : collection.color) : "";;
             FillcolorpickerObj.dataBind();
@@ -1598,7 +1605,13 @@ import { change } from '@syncfusion/ej2-grids';
         thickness: selectedAnnotation.thickness,
         strokeColor: selectedAnnotation.strokeColor,
         fillColor: selectedAnnotation.fillColor,
-        bounds: [{ x: selectedAnnotation.x, y: selectedAnnotation.y, width: selectedAnnotation.width, height: selectedAnnotation.height }],
+        bounds: (selectedAnnotation.bounds && selectedAnnotation.bounds.length > 0) ? selectedAnnotation.bounds.map((item) => ({ x: item.X, y: item.Y, width: item.Width, height: item.Height })) :
+            [{
+                x: selectedAnnotation.x,
+                y: selectedAnnotation.y,
+                width: selectedAnnotation.width,
+                height: selectedAnnotation.height
+            }],
         vertexPoints: selectedAnnotation.vertexPoints,
         fontFamily: selectedAnnotation.fontFamily,
         fontStyle: convertStyleToEnum(selectedAnnotation.fontStyle),
@@ -1699,7 +1712,7 @@ import { change } from '@syncfusion/ej2-grids';
     }
     function updateAnnotationSettings(annotation: any) {
         let currentAnnotation = annotation;
-        if (currentAnnotation.textMarkupAnnotationType === "Highlight" || currentAnnotation.textMarkupAnnotationType === "Underline" || currentAnnotation.textMarkupAnnotationType === "Strikethrough") {
+        if (currentAnnotation.textMarkupAnnotationType === "Highlight" || currentAnnotation.textMarkupAnnotationType === "Underline" || currentAnnotation.textMarkupAnnotationType === "Strikethrough" || currentAnnotation.textMarkupAnnotationType === "Squiggly") {
             currentAnnotation.bounds = [];
             currentAnnotation.color = selectedAnnotation.fillColor ? (selectedAnnotation.fillColor.includes("rgba") ? rgbaStringToHex(selectedAnnotation.fillColor) : selectedAnnotation.fillColor) : "";
             if (selectedAnnotation.bounds.length <= 1) {
@@ -1803,7 +1816,7 @@ import { change } from '@syncfusion/ej2-grids';
         
         currentAnnotation.opacity = Number(selectedAnnotation.opacity) / 100;
         currentAnnotation.thickness = selectedAnnotation.thickness;
-        if (currentAnnotation.textMarkupAnnotationType === "Highlight" || currentAnnotation.textMarkupAnnotationType === "Underline" || currentAnnotation.textMarkupAnnotationType === "Strikethrough") {
+        if (currentAnnotation.textMarkupAnnotationType === "Highlight" || currentAnnotation.textMarkupAnnotationType === "Underline" || currentAnnotation.textMarkupAnnotationType === "Strikethrough" || currentAnnotation.textMarkupAnnotationType === "Squiggly") {
             currentAnnotation.color = selectedAnnotation.fillColor ? (selectedAnnotation.fillColor.includes("rgba") ? rgbaStringToHex(selectedAnnotation.fillColor) : selectedAnnotation.fillColor) : "";
         }
         else {
@@ -2062,6 +2075,7 @@ import { change } from '@syncfusion/ej2-grids';
             case "Highlight":
             case "Underline":
             case "Strikethrough":
+            case "Squiggly":
                 viewer.annotation.addAnnotation(selectedAnnotation.annotationType, currentAnnotationSettings);
                 break;
             case "Rectangle":
@@ -2297,7 +2311,7 @@ import { change } from '@syncfusion/ej2-grids';
             } else if (shapeAnnotation === "CustomStamp") {
                 selectedAnnotation.width = 100;
                 selectedAnnotation.height = 100;
-            } else if (shapeAnnotation === "Highlight" || shapeAnnotation === "Underline" || shapeAnnotation === "Strikethrough") {
+            } else if (shapeAnnotation === "Highlight" || shapeAnnotation === "Underline" || shapeAnnotation === "Strikethrough" || shapeAnnotation === "Squiggly") {
                 selectedAnnotation.width = 100;
                 selectedAnnotation.height = 14;
             } else {
@@ -2322,7 +2336,7 @@ import { change } from '@syncfusion/ej2-grids';
         pageNumberObj.value = selectedAnnotation.pageNumber;
         pageNumberObj.dataBind();
         if (shapeAnnotation === "Highlight" || shapeAnnotation === "Underline" ||
-            shapeAnnotation === "Strikethrough" || shapeAnnotation === "FreeText" || shapeAnnotation === "Polygon" || shapeAnnotation === "Area" || shapeAnnotation === "Perimeter" || shapeAnnotation === "Volume") {
+            shapeAnnotation === "Strikethrough" || shapeAnnotation === "Squiggly" || shapeAnnotation === "FreeText" || shapeAnnotation === "Polygon" || shapeAnnotation === "Area" || shapeAnnotation === "Perimeter" || shapeAnnotation === "Volume") {
             selectedAnnotation.x = 10;
             selectedAnnotation.y = 10;
             selectedAnnotation.strokeColor = "#FF0000";
@@ -2357,6 +2371,8 @@ import { change } from '@syncfusion/ej2-grids';
             selectedAnnotation.fillColor = "#00ff00";
         } else if (selectedAnnotation.annotationType === "Strikethrough") {
             selectedAnnotation.fillColor = "#ff0000";
+        } else if (selectedAnnotation.annotationType === "Squiggly") {
+            selectedAnnotation.fillColor = "#ff0000";
         }
         FillcolorpickerObj.value = selectedAnnotation.fillColor;
         FillcolorpickerObj.dataBind();
@@ -2368,7 +2384,7 @@ import { change } from '@syncfusion/ej2-grids';
         }
         strokeColorObj.value = selectedAnnotation.strokeColor;
         strokeColorObj.dataBind();
-        if (shapeAnnotation === "Highlight" || shapeAnnotation === "Underline" || shapeAnnotation === "Strikethrough" || shapeAnnotation === "FreeText" || shapeAnnotation === "Polygon" || shapeAnnotation === "Perimeter" || shapeAnnotation === "Volume" || shapeAnnotation === "Area") {
+        if (shapeAnnotation === "Highlight" || shapeAnnotation === "Underline" || shapeAnnotation === "Strikethrough" || shapeAnnotation === "Squiggly" || shapeAnnotation === "FreeText" || shapeAnnotation === "Polygon" || shapeAnnotation === "Perimeter" || shapeAnnotation === "Volume" || shapeAnnotation === "Area") {
             selectedAnnotation.x = 10;
             selectedAnnotation.y = 10;
             selectedAnnotation.fillColor = "";

@@ -97,6 +97,12 @@ RichTextEditor.Inject(
         }
     }
 
+    function onDropDownClose() {
+        if (mailMergeEditor) {
+            mailMergeEditor.focusIn();
+        }
+    }
+
     function onItemSelect(args: MenuEventArgs): void {
         if (args.item.text != null) {
             const value = textToValueMap[args.item.text];
@@ -152,8 +158,8 @@ RichTextEditor.Inject(
                 'Image',
                 'CreateTable',
                 '|',
-                { tooltipText: 'Merge Data', template: '#merge_data' },
-                { tooltipText: 'Insert Field', template: '#insertField' },
+                { tooltipText: 'Merge Data', template: '#merge_data', command: 'Custom' },
+                { tooltipText: 'Insert Field', template: '#insertField', command: 'Custom' },
                 'SourceCode',
                 '|',
                 'Undo',
@@ -180,6 +186,7 @@ RichTextEditor.Inject(
         ],
         content: dropdownContent,
         select: onItemSelect,
+        close: onDropDownClose
     });
     insertField.appendTo('#insertField');
     document.getElementById('merge_data')?.addEventListener('click', onClickHandler);

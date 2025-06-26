@@ -18,30 +18,31 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, Acc
         series: [
             {
                 dataSource: [
-                    { x: 'Argentina', y: 505370, r: Browser.isDevice ? '110' : '100', text: 'Argentina'},
-                    { x: 'Belgium', y: 551500, r: Browser.isDevice ? '120' : '118.7', text: 'Belgium' },
-                    { x: 'Dominican Republic', y: 312685, r: '137.5', text: Browser.isDevice ? 'Dominican <br> Republic' :  'Dominican Republic'  },
-                    { x: 'Cuba', y: 350000, r: '124.6', text: 'Cuba' },
-                    { x: 'Egypt', y: 301000, r: '150.8', text: 'Egypt' },
-                    { x: 'Kazakhstan', y: 300000, r: '155.5',text: 'Kazakhstan'   },
-                    { x: 'Somalia', y: 357022, r: '160.6' , text: 'Somalia' }
+                    { x: 'Cuba', y: 103800, r: '106', text: 'CUB'},
+                    { x: 'Syria', y: 185178, r: '133', text: 'SYR'},
+                    { x: 'Benin', y: 112760, r: '128', text: 'BEN'},
+                    { x: 'Portugal', y: 91606, r: '114', text: 'POR'},
+                    { x: 'Austria', y: 82520, r: '111', text: 'AUS'},
+                    { x: 'Honduras', y: 111890, r: '97',text: 'HON'},
+                    { x: 'Azerbaijan', y: 82650, r: '125' , text: 'AZE'}
                 ],
                 radius: 'r', xName: 'x',tooltipMappingName:'r',
-                yName: 'y', innerRadius: '20%',
+                yName: 'y', innerRadius: '20%', borderRadius: 3, 
+                border: { color: '#ffffff', width: 1},
                 dataLabel: {
                     visible: true, position: Browser.isDevice ? 'Inside' : 'Outside',
-                    name: 'text',enableRotation: true,
-                    font: { fontWeight: '600' } ,
-                    connectorStyle:{type: 'Curve', length:'20px'}
+                    name: Browser.isDevice ? 'text' : 'x', textWrap: Browser.isDevice ? 'Wrap' : 'Normal',
+                    font: { size: Browser.isDevice ? '7px' : '12px', fontWeight: '600' } ,
+                    connectorStyle:{type: 'Curve', length: Browser.isDevice ? '10px' : '20px'}
                 },
             },
         ],
         enableSmartLabels: true,
         enableBorderOnMouseMove:false,
-        title:'Pie with different Radius',
+        title:'Global Distribution of Population and Land Area by Country - 2025',
+        subTitle: 'Source: wikipedia.org',
         legendSettings: {
-            visible: true,
-            reverse: true
+            visible: false
         },
         // Initialize tht tooltip
         tooltip: {enable: true, format:'<b>${point.x}</b><br/>Area in square km: <b>${point.y} </b> <br/> Population density per square km: <b>${point.tooltip}</b>', enableHighlight: true},

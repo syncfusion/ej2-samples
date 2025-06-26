@@ -18,13 +18,14 @@ MultiSelect.Inject(CheckBoxSelection);
         { Name: "JPG", Value: ".jpg" },
         { Name: "PNG", Value: ".png" },
         { Name: "SVG", Value: ".svg" },
-        { Name: "WebP", Value: ".webp" }
+        { Name: "WebP", Value: ".webp" },
+        { Name: "BMP", Value: ".bmp" }
     ];
 
     // Initial values
     let minFileSize = 1; // 1 KB
     let maxFileSize = 100; // 100 KB
-    let allowedExtensions = ".jpeg, .jpg, .png, .svg, .webp";
+    let allowedExtensions = ".jpeg, .jpg, .png, .svg, .webp, .bmp";
     let units: { text: string }[] = [{ text: 'KB' }, { text: 'MB' }];
     let defaultUnit: string = 'KB';
 
@@ -61,7 +62,7 @@ MultiSelect.Inject(CheckBoxSelection);
         value: allowedExtensions.split(', '),
         change: function (args: any) {
             if (args.value.length === 0) {
-                allowedExtensions = ".jpeg, .jpg, .png, .svg, .webp";
+                allowedExtensions = ".jpeg, .jpg, .png, .svg, .webp, .bmp";
               } else {
                 allowedExtensions = args.value.join(', ');
               }

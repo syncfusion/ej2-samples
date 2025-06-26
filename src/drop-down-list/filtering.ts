@@ -3,6 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * DropDownList Filtering Sample
  */
 import { DropDownList, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+import {NumericTextBox} from '@syncfusion/ej2-inputs';
 import { Query } from '@syncfusion/ej2-data';
 import * as data from './dataSource.json';
 
@@ -22,6 +23,7 @@ import * as data from './dataSource.json';
         popupHeight: '250px',
         // set true for enable the filtering support.
         allowFiltering: true,
+        debounceDelay :300,
         // bind the filtering event
         filtering: (e: FilteringEventArgs) => {
             let query: Query = new Query();
@@ -32,4 +34,13 @@ import * as data from './dataSource.json';
         }
     });
     dropDownListObj.appendTo('#country');
+    var numeric: NumericTextBox = new NumericTextBox({
+        value: 300,
+        min: 1,
+        format:'n0',
+        change: function (args) {
+            dropDownListObj.debounceDelay = args.value;
+        }
+    });
+    numeric.appendTo('#numeric');
 };

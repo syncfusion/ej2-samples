@@ -34,7 +34,7 @@ import { getComponent } from '@syncfusion/ej2-base';
               'Align',
               'Caption',
               'Remove',
-              '-',
+              '|',
               'InsertLink',
               'OpenImageLink',
               'EditImageLink',

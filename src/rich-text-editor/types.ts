@@ -63,6 +63,10 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, EmojiPicke
                 defaultRTE.toolbarSettings.type = ToolbarType.Scrollable;
                 defaultRTE.toolbarSettings.enableFloating = float.checked;
                 break;
+            case '4':
+                defaultRTE.toolbarSettings.type = ToolbarType.Popup;
+                defaultRTE.toolbarSettings.enableFloating = float.checked;
+                break;
         }
         defaultRTE.dataBind();
     }

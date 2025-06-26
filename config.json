@@ -181,6 +181,7 @@
 		"textarea",
 		"aiassistview",
 		"ai",
-		"assistview"
+		"assistview",
+		"blockData"
 	]
 }

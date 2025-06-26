@@ -224,7 +224,9 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
         snapSettings: { horizontalGridlines: gridlines, verticalGridlines: gridlines },
         // event triggers after the diagram elements finished loading using loadDiagram method
         loaded: function () {
-            diagram.select([diagram.nodes[0]]);
+            setTimeout(() => {
+                diagram.select([diagram.nodes[0]]);
+            }, 100);
         },
         // Sets default value for Connectors.
         getConnectorDefaults: getConnectorDefaults,

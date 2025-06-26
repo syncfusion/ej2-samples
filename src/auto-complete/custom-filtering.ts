@@ -3,6 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
  * AutoComplete Custom Filtering Sample
  */
 import { AutoComplete, FilteringEventArgs } from '@syncfusion/ej2-dropdowns';
+import {NumericTextBox} from '@syncfusion/ej2-inputs';
 import Fuse from 'fuse.js';
 import * as booksData from './dataSource.json';
 
@@ -16,6 +17,7 @@ import * as booksData from './dataSource.json';
         fields: { value: 'BookName' },
         // set placeholder to AutoComplete input element
         placeholder: 'e.g. Node.js Succinctly',
+        debounceDelay :300,
         //Bind the filter event
         filtering: (e: FilteringEventArgs) => {
             let options: Object = {
@@ -45,7 +47,15 @@ import * as booksData from './dataSource.json';
         }
     });
     atcObj.appendTo('#books');
-
+    let numeric: NumericTextBox = new NumericTextBox({
+        value: 300,
+        min: 1,
+        format:'n0',
+        change: function (args) {
+            atcObj.debounceDelay = args.value;
+        }
+    });
+    numeric.appendTo('#numeric');
     function highlightSearch(listItems: Element[], result: any): void {
         if (result.length > 0) {
             for (let i: number = 0; i < listItems.length; i++) {

@@ -59,7 +59,7 @@ diagram = new Diagram({
     height: '750px',
     //Disables all interactions except zoom/pan
     tool: DiagramTools.ZoomPan,
-    scrollSettings: { scrollLimit: 'Infinity' },
+    scrollSettings: { scrollLimit: 'Infinity', padding: { bottom: 50, right: 50 }, },
     layout: {
         type: 'Flowchart',
         orientation: 'TopToBottom',

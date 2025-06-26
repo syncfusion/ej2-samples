@@ -23,6 +23,14 @@
             "url": "loading-animation","name": "Loading Animation", "category": "Tree Grid","api":{"TreeGrid": ["columns", "dataSource","allowSorting","allowPaging", "allowFiltering", "loadingIndicator", "pageSettings"] },
             "description": "This example shows the loading indicator when tree grid loading and refreshing."
          },
+         { 
+            "url": "employee","name": "Employee Management", "type":"new", "category": "Product Use Case","api":{"TreeGrid": ["columns", "dataSource","allowSorting","allowPaging", "allowFiltering", "pageSettings"] },
+            "description": "The Syncfusion® TreeGrid demo presents a customizable, role-specific display of comprehensive employee data with features like dynamic column generation, sorting, filtering, and visual enhancements like progress bars."
+         },
+         { 
+            "url": "restuarant-menu","name": "Restaurant Menu", "type":"new", "category": "Product Use Case","api":{"TreeGrid": ["columns", "dataSource","rowTemplate","toolbar"] },
+            "description": "This demo for Essential<sup>®</sup> JS 2 Tree Grid component shows the loading indicator when tree grid loading and refreshing."
+         },
          {  
             "url":"localdata", "name": "Local Data", "category":"Data Binding","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","allowPaging","columns"] },
             "description": "This example shows the binding of an array of list objects in the Syncfusion<sup>®</sup> TypeScript Tree Grid control."
@@ -146,7 +154,7 @@
              "description": "This demo explains the default functionalities of filtering and how to define the template for filter bar in Syncfusion<sup>®</sup> TypeScript Tree Grid."
          },
          {
-             "url":"filter-menu", "name": "Menu Filter", "category":"Filtering","type":"update","api":{"TreeGrid":["dataSource","childMapping","allowPaging","columns","allowFiltering","treeColumnIndex","filterSettings"] },
+             "url":"filter-menu", "name": "Menu Filter", "category":"Filtering","api":{"TreeGrid":["dataSource","childMapping","allowPaging","columns","allowFiltering","treeColumnIndex","filterSettings"] },
              "description": "This demo explains how to filter the content using menu filter type of Syncfusion<sup>®</sup> TypeScript Tree Grid control."
          },
          {
@@ -165,6 +173,9 @@
             "url":"default-scrolling", "name": "Default Scrolling", "description":"This demo for Essential<sup>®</sup> JS 2 Tree Grid control shows the usage of horizontal and vertical scrollbars to view Tree Grid content that exceeds the Tree Grid area.", "category":"Scrolling","api":{"TreeGrid":["dataSource","height","width","columns"] } 
          },
          {
+            "url": "sticky-header", "name": "Sticky Header", "type": "new", "description": "This demo for Essential<sup>®</sup> JS 2 Tree Grid control shows the usage of the Sticky header scrolling to make the Tree Grid header visible while scroll its parent element.", "category": "Scrolling", "api": { "TreeGrid": ["dataSource", "enableStickyHeader", "width", "columns"] }
+         },
+         {
             "url":"frozen-column", "name": "Frozen Columns", "category":"Scrolling", "hideOnDevice": true, "api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
             "description": "This demo for Essential<sup>®</sup> JS 2 Tree Grid control shows frozen columns feature of Tree Grid. Scroll the movable content to view the frozen columns."
          },
@@ -174,6 +185,9 @@
          },
          {
             "url":"virtual-scrolling", "name": "Virtual Scrolling", "description":"This demo demonstrates how to use Essential<sup>®</sup> JS 2 Tree Grid to show a large data view without performance degradation by rendering only the required rows.", "category":"Scrolling","api":{"TreeGrid":["dataSource","enableVirtualization","dataBound","height","columns"] } 
+         },
+         {
+            "url": "loadonchilddemand", "name": "Load Child on Demand", "type": "new", "category": "Scrolling", "api": { "TreeGrid": ["dataSource", "enableVirtualization", "loadchildOnDemand", "columns", "treeColumnIndex", "hasChildMapping", "parentIdMapping", "idMapping", "height"] }, "description": "This example shows the binding of remote services by using the DataManager in the Syncfusion<sup>®</sup> Essential<sup>®</sup> JS2 Tree Grid."
          },
          {
             "url":"infinite-scrolling", "name": "Infinite Scrolling", "description":"This sample demonstrates the Tree Grid component with infinite scrolling feature.", "category":"Scrolling","api":{"TreeGrid":["dataSource","enableInfiniteScrolling","dataBound","height","columns"] }

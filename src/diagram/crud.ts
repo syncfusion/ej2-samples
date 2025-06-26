@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Databinding- Crud
  */
@@ -282,6 +283,7 @@ interface DataInfo {
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
+    loadCultureFiles();
     diagram = new Diagram({
         width: '100%',
         height: 600,

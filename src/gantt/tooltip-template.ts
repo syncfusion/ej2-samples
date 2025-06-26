@@ -54,10 +54,12 @@ function getTooltipData(startDate: Date, endDate: Date, tier: string) {
 }
 function generateTooltipMarkup(label: string, tooltipData: any) {
     const themeIsDark : boolean = document.body.classList.contains('tailwind3-dark') ||
+    document.body.classList.contains('fluent2-dark') ||
     document.body.classList.contains('material3-dark') ||
     document.body.classList.contains('bootstrap5.3-dark') ||
+    document.body.classList.contains('fluent2-highcontrast') ||
     document.body.classList.contains('highcontrast') ||
-    document.body.classList.contains('fluent2');
+    document.body.classList.contains('fluent2-dark');
 
     var borderColor : string = themeIsDark ?  'black' : 'white';
     return (

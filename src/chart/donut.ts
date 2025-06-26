@@ -17,30 +17,30 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
         // Initialize the chart series
         series: [
             {
-                dataSource: [{ x: 'Chrome', y: 61.3, text: Browser.isDevice? 'Chrome:<br> 61.3%' : 'Chrome: 61.3%' },
-                { x: 'Safari', y: 24.6, text: Browser.isDevice? 'Safari:<br> 24.6%' : 'Safari: 24.6%' },
-                { x: 'Edge', y: 5.0, text: 'Edge: 5.0%' },
-                { x: 'Samsung Internet', y: 2.7, text: Browser.isDevice? 'Samsung<br> Internet: 2.7%' : 'Samsung Internet: 2.7%' },
-                { x: 'Firefox', y: 2.6, text: Browser.isDevice? 'Firefox:<br> 2.6%' : 'Firefox: 2.6%' },
-                { x: 'Others', y: 3.6, text: Browser.isDevice? 'Others:<br> 3.6%' : 'Others: 3.6%' }
-                ], border: { width: 1 },
+                dataSource: [{ x: 'Chrome', y: 63.5, text: 'Chrome: 63.5%' },
+                { x: 'Safari', y: 25.0, text: 'Safari: 25.0%' },
+                { x: 'Samsung Internet', y: 6.0, text: 'Samsung Internet: 6.0%' },
+                { x: 'UC Browser', y: 2.5, text: 'UC Browser: 2.5%' },
+                { x: 'Opera', y: 1.5, text: 'Opera: 1.5%' },
+                { x: 'Others', y: 1.5, text: 'Others: 1.5%' }
+                ], border: { width: 1, color: '#ffffff' },
                 dataLabel: {
                     visible: true,
                     name: 'text',
                     position: 'Outside',
                     font: {
-                        fontWeight: '600',
+                        fontWeight: '600', size: Browser.isDevice ? '8px' : '12px'
                     },
-                    connectorStyle:{length:'20px', type: 'Curve'}
+                    connectorStyle:{length: Browser.isDevice ? '10px' : '20px', type: 'Curve'}
                 },
                 xName: 'x',
-                yName: 'y', startAngle: Browser.isDevice ? 30 : 62, radius: Browser.isDevice ? '40%' : '75%',
-                innerRadius: '65%', name: 'Project'
+                yName: 'y', startAngle: Browser.isDevice ? 70 : 60, radius: Browser.isDevice ? '40%' : '75%',
+                innerRadius: '65%', name: 'Project', explode: false, borderRadius: 3,
             }
         ],
         enableSmartLabels: true,
         centerLabel:{
-            text : 'Mobile<br>Browsers<br>Statistics',
+            text : 'Mobile<br>Browser<br>Statistics<br>2024',
             hoverTextFormat: '${point.x} <br> Browser Share <br> ${point.y}%',
             textStyle: {
                 fontWeight: '600',
@@ -51,6 +51,10 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
         legendSettings: {
             visible: false, position: 'Top'
         },
+        tooltip: { enable: true,
+            enableHighlight: true,
+            format: '<b>${point.x}</b><br>Browser Share: <b>${point.y}%</b>',
+            header:''},
         pointRender: donutPointRender,
          // custom code start
         load: (args: IAccLoadedEventArgs) => {

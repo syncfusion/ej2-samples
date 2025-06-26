@@ -321,8 +321,7 @@ let dashLineData: Object[] = [
       showNearestTooltip: true
     },
     legendSettings: {
-      visible: true,
-      enableHighlight: true
+      visible: true
     },
     crosshair: {
       enable: false,

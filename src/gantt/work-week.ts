@@ -4,6 +4,7 @@ import { projectNewData } from './data-source';
 import { extend } from '@syncfusion/ej2-base';
 import { MultiSelect, CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
 import {  SelectEventArgs, RemoveEventArgs  } from '@syncfusion/ej2-dropdowns';
+import { CheckBox } from '@syncfusion/ej2-buttons';
 
 /**
  * Default Gantt sample
@@ -86,4 +87,27 @@ MultiSelect.Inject(CheckBoxSelection);
         popupHeight: '350px'
     });
     checkList.appendTo('#WorkingDays');
+
+    
+    let weekendVisibilityCheckbox: CheckBox = new CheckBox({ checked: true });
+    weekendVisibilityCheckbox.appendTo('#toggleWeekendVisibility');
+    
+    document.getElementById('toggleWeekendVisibility').onclick = function () {
+        if (weekendVisibilityCheckbox.checked) {
+            gantt.timelineSettings.showWeekend = true;
+        } else {
+            gantt.timelineSettings.showWeekend = false;
+        }
+    };
+
+    let highlightWeekendsCheckbox: CheckBox = new CheckBox({ checked: true });
+    highlightWeekendsCheckbox.appendTo('#togglehighlightWeekends');
+
+    document.getElementById('togglehighlightWeekends').onclick = function () {
+        if (highlightWeekendsCheckbox.checked) {
+            gantt.highlightWeekends = true;
+        } else {
+            gantt.highlightWeekends = false;
+        }
+    };
 };

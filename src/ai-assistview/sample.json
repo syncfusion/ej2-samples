@@ -33,13 +33,25 @@
             "url": "streaming",
             "name": "Streaming Response",
             "category": "AI AssistView",
-            "type": "new",
             "api":{ "AIAssitView": ["promptRequest", "promptSuggestions", "bannerTemplate", "toolbarSettings"] },
             "description": "Showcases the AiAssistView control with its streaming support.",
             "sourceFiles": [
                 { "displayName": "streaming.ts", "path":"src/ai-assistview/streaming.ts" },
                 { "displayName": "streaming.html", "path":"src/ai-assistview/streaming.html" },
                 { "displayName": "promptResponseData.ts", "path":"src/ai-assistview/promptResponseData.ts" }   
+            ]
+        },
+        {
+            "url": "attachments",
+            "name": "File Attachments",
+            "category": "AI AssistView",
+            "type":"new",
+            "api": { "AIAssitView": ["promptRequest","promptSuggestions","attachmentSettings","enableAttachments","bannerTemplate"] },
+            "description": "Showcases the AiAssistView control with its attachment support.",
+            "sourceFiles": [
+                {"displayName": "attachments.ts","path": "src/ai-assistview/attachments.ts" },
+                {"displayName": "attachments.html","path": "src/ai-assistview/attachments.html"},
+                { "displayName": "promptResponseData.js", "path":"src/ai-assistview/promptResponseData.js" }
             ]
         },
         {

@@ -13,6 +13,7 @@ PdfViewer.Inject(Toolbar, Magnification, Navigation, LinkAnnotation, BookmarkVie
     let viewer: PdfViewer = new PdfViewer();
     viewer.documentPath = "https://cdn.syncfusion.com/content/pdf/pdf-succinctly.pdf";
     viewer.resourceUrl ="https://cdn.syncfusion.com/ej2/23.2.6/dist/ej2-pdfviewer-lib";
+    viewer.pageOrganizerSettings = { showImageZoomingSlider: true };
        
     var switchObj = new Switch({ value: 'Standalone Rendering', checked: true });
     switchObj.appendTo('#checked');

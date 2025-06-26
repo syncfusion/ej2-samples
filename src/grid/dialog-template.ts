@@ -42,7 +42,7 @@ Grid.Inject(Edit, Toolbar, Page, Sort, Filter);
                 },
                 {
                     field: 'OrderDate', headerText: 'Order Date',
-                    format: 'yMd', width: 170, validationRules: { date:  [true, 'Enter valid date'] }
+                    format: 'yMd', width: 170
                 },
                 {
                     field: 'ShipCountry', headerText: 'Ship Country', width: 150, defaultValue: ''

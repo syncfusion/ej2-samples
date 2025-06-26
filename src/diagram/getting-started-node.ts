@@ -18,8 +18,6 @@ let element: CheckBox;
 
  //Sets the default values of a nodes
 function getNodeDefaults(obj: NodeModel): NodeModel {
-    obj.width = 100;
-    obj.height = 100;
     obj.shape = { type: 'Basic', shape: 'Ellipse' };
     obj.style = { fill: '#37909A', strokeColor: '#024249' };
     obj.annotations[0].margin = { left: 10, right: 10 };
@@ -59,7 +57,7 @@ function setLockConstraints(args: CheckBoxChangeEventArgs): void {
             );
             node.constraints |= NodeConstraints.ReadOnly;
         } else {
-            node.constraints |= NodeConstraints.Default & ~NodeConstraints.ReadOnly;
+            node.constraints = NodeConstraints.Default;
         }
     }
 
@@ -74,7 +72,7 @@ function setLockConstraints(args: CheckBoxChangeEventArgs): void {
             );
             connector.constraints |= ConnectorConstraints.ReadOnly;
         } else {
-            connector.constraints |= ConnectorConstraints.Default & ~ConnectorConstraints.ReadOnly;
+            connector.constraints = ConnectorConstraints.Default;
         }
     }
     diagram.dataBind();
@@ -112,12 +110,12 @@ function applyNodeStyle(
     loadCultureFiles();
 
     let nodes: NodeModel[] = [
-        { id: 'sdlc', offsetX: 300, offsetY: 288, annotations: [{ content: 'SDLC' }] },
-        { id: 'support', offsetX: 150, offsetY: 250, annotations: [{ content: 'Support' }] },
-        { id: 'analysis', offsetX: 300, offsetY: 150, annotations: [{ content: 'Analysis' }] },
-        { id: 'design', offsetX: 450, offsetY: 250, annotations: [{ content: 'Design' }] },
-        { id: 'implement', offsetX: 400, offsetY: 400, annotations: [{ content: 'implement' }] },
-        { id: 'deploy', offsetX: 200, offsetY: 400, annotations: [{ content: 'Deploy' }] }
+        { id: 'sdlc', offsetX: 300, offsetY: 288, width: 100, height: 100, annotations: [{ content: 'SDLC' }] },
+        { id: 'support', offsetX: 150, offsetY: 250, width: 100, height: 100, annotations: [{ content: 'Support' }] },
+        { id: 'analysis', offsetX: 300, offsetY: 150, width: 100, height: 100, annotations: [{ content: 'Analysis' }] },
+        { id: 'design', offsetX: 450, offsetY: 250, width: 100, height: 100, annotations: [{ content: 'Design' }] },
+        { id: 'implement', offsetX: 400, offsetY: 400, width: 100, height: 100, annotations: [{ content: 'implement' }] },
+        { id: 'deploy', offsetX: 200, offsetY: 400, width: 100, height: 100, annotations: [{ content: 'Deploy' }] }
     ];
 
     let connections: ConnectorModel[] = [

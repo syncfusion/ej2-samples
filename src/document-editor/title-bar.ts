@@ -1,6 +1,6 @@
 import { createElement, Event, KeyboardEventArgs } from '@syncfusion/ej2-base';
-import { DocumentEditor, FormatType } from '@syncfusion/ej2-documenteditor';
-import { Button } from '@syncfusion/ej2-buttons';
+import { DocumentEditor, DocumentEditorContainer, FormatType } from '@syncfusion/ej2-documenteditor';
+import { Button, ChangeEventArgs, Switch } from '@syncfusion/ej2-buttons';
 import { DropDownButton, ItemModel } from '@syncfusion/ej2-splitbuttons';
 import { MenuEventArgs } from '@syncfusion/ej2-navigations';
 import { Dialog } from '@syncfusion/ej2-popups';
@@ -36,13 +36,13 @@ export class TitleBar {
         let openText: string;
         let documentTileText: string;
         if (!this.isRtl) {
-           downloadText = 'Download';
-           downloadToolTip = 'Download this document.';
-           printText = 'Print';
-           printToolTip = 'Print this document (Ctrl+P).';
-           closeToolTip = 'Close this document';
-           openText = 'Open';
-           documentTileText = 'Document Name. Click or tap to rename this document.';
+            downloadText = 'Download';
+            downloadToolTip = 'Download this document.';
+            printText = 'Print';
+            printToolTip = 'Print this document (Ctrl+P).';
+            closeToolTip = 'Close this document';
+            openText = 'Open';
+            documentTileText = 'Document Name. Click or tap to rename this document.';
         } else {
             downloadText = 'تحميل';
             downloadToolTip = 'تحميل هذا المستند';
@@ -62,21 +62,21 @@ export class TitleBar {
             titleCss = 'float:right;';
         }
         // tslint:disable-next-line:max-line-length
-        this.documentTitleContentEditor = createElement('div', { id: 'documenteditor_title_contentEditor', className: 'single-line', styles: titleCss  });
+        this.documentTitleContentEditor = createElement('div', { id: 'documenteditor_title_contentEditor', className: 'single-line', styles: titleCss });
         this.documentTitleContentEditor.appendChild(this.documentTitle);
         this.tileBarDiv.appendChild(this.documentTitleContentEditor);
         this.documentTitleContentEditor.setAttribute('title', documentTileText);
         let btnStyles: string = btnFloatStyle + 'background: transparent;box-shadow:none; font-family: inherit;border-color: transparent;'
             + 'border-radius: 2px;color:inherit;font-size:12px;text-transform:capitalize;height:28px;font-weight:400;margin-top: 2px;';
         // tslint:disable-next-line:max-line-length
-        this.close = this.addButton('e-icons e-close e-de-padding-right',"", btnStyles, 'de-close', closeToolTip, false) as Button;
+        this.close = this.addButton('e-icons e-close e-de-padding-right', "", btnStyles, 'de-close', closeToolTip, false) as Button;
         this.print = this.addButton('e-de-icon-Print ' + iconCss, printText, btnStyles, 'de-print', printToolTip, false) as Button;
         this.open = this.addButton('e-de-icon-Open ' + iconCss, openText, btnStyles, 'de-open', openText, false) as Button;
         let items: ItemModel[] = [
-            { text: 'Syncfusion® Document Text (*.sfdt)', id: 'sfdt' },
+            { text: 'Syncfusion Document Text (*.sfdt)', id: 'sfdt' },
             { text: 'Word Document (*.docx)', id: 'word' },
-            { text: 'Word Template (*.dotx)', id: 'dotx'},
-            { text: 'Plain Text (*.txt)', id: 'txt'}
+            { text: 'Word Template (*.dotx)', id: 'dotx' },
+            { text: 'Plain Text (*.txt)', id: 'txt' }
         ];
         // tslint:disable-next-line:max-line-length
         this.export = this.addButton('e-de-icon-Download ' + iconCss, downloadText, btnStyles, 'documenteditor-share', downloadToolTip, true, items) as DropDownButton;
@@ -85,7 +85,7 @@ export class TitleBar {
         } else {
             this.open.element.style.display = 'none';
         }
-        if(this.dialogComponent == null)
+        if (this.dialogComponent == null)
             this.close.element.style.display = 'none';
     }
     private setTooltipForPopup(): void {
@@ -157,7 +157,7 @@ export class TitleBar {
     private onPrint = (): void => {
         this.documentEditor.print();
     }
-    private onClose= (): void => {
+    private onClose = (): void => {
         this.dialogComponent.hide();
     }
     private onExportClick = (args: MenuEventArgs): void => {
@@ -180,5 +180,41 @@ export class TitleBar {
     private save = (format: string): void => {
         // tslint:disable-next-line:max-line-length
         this.documentEditor.save(this.documentEditor.documentName === '' ? 'sample' : this.documentEditor.documentName, format as FormatType);
+    }
+    public initializeRibbonSwitch(container: DocumentEditorContainer): void {
+        // Create the switch component
+        let switchObj: Switch = new Switch({
+            value: 'Toolbar Mode',
+            checked: true,
+            cssClass: 'buttonSwitch'
+        });
+
+        // Append the switch to the DOM
+        switchObj.appendTo('#toolbarSwitch');
+
+        // Add change event handler
+        switchObj.change = function (args: ChangeEventArgs) {
+            if (args.checked) {
+                container.toolbarMode = 'Ribbon';
+            }
+            else {
+                container.toolbarMode = 'Toolbar';
+            }
+
+
+            this.showButtons(container.toolbarMode !== 'Ribbon');
+
+        };
+    }
+    // Show/ Hide based on toolbar mode
+    public showButtons(show: boolean): void {
+        const displayStyle = show ? 'block' : 'none';
+
+        if (this.print) {
+            this.print.element.style.display = displayStyle;
+        }
+        if (this.export) {
+            this.export.element.style.display = displayStyle;
+        }
     }
 }

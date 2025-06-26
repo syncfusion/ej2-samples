@@ -2,7 +2,6 @@
     "name": "Chips",
     "directory": "chips",
     "category": "Buttons",
-    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -23,7 +22,6 @@
             "url": "draganddrop",
             "name": "Draggable Chips",
             "category": "Chips",
-            "type": "new",
             "description": "This sample demonstrates the drag and drop functionalities of chips control."
         }
     ]

@@ -1,0 +1,36 @@
+export declare function getTradeData(dataCount?: number): object;
+export declare let virtualData: Object[];
+export declare function dataSource(): void;
+export declare let productData: Object[];
+export declare let employeeData: Object[];
+export declare const orderDataSource: Object[];
+export declare const orderData: Object[];
+export declare const categoryData: Object[];
+export declare const customerData: Object[];
+export declare const data: Object[];
+export declare const data1: Object[];
+export declare const inventoryData: Object[];
+export interface ColumnSpanDataType {
+    EmployeeID: number;
+    EmployeeName: string;
+    '9:00': string;
+    '9:30': string;
+    '10:00': string;
+    '10:30': string;
+    '11:00': string;
+    '11:30': string;
+    '12:00': string;
+    '12:30': string;
+    '1:00': string;
+    '1:30': string;
+    '2:00': string;
+    '2:30': string;
+    '3:00': string;
+    '3:30': string;
+    '4:00': string;
+    '4:30': string;
+    '5:00': string;
+}
+export declare let columnSpanData: ColumnSpanDataType[];
+export declare const orderDetails: Object[];
+export declare let hierarchyOrderdata: Object[];

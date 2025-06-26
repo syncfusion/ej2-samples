@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Chart, ChartTheme, CandleSeries, DateTime, Crosshair, ChartAnnotation, ILoadedEventArgs, IAxisRangeCalculatedEventArgs, Series } from '@syncfusion/ej2-charts';
-Chart.Inject(CandleSeries, DateTime, Crosshair, ChartAnnotation);
+import { LastValueLabel } from '@syncfusion/ej2-charts';
+Chart.Inject(CandleSeries, DateTime, Crosshair, ChartAnnotation, LastValueLabel);
 import { Browser } from '@syncfusion/ej2-base';
 import { loadChartTheme } from './theme-color';
 
@@ -13,7 +14,7 @@ let getData = (): { series: Candlestick[] } => {
     let series: Candlestick[] = [];
     let point: Candlestick;
     for (let i: number = 0; i < 30; i++) {
-        value = 180 + Math.round((Math.random() * 25) * Math.sin(i * Math.PI / 8));
+        value = 180 + (Math.random() * 25) * Math.sin(i * Math.PI / 8);
         value = Math.max(140, Math.min(260, value));
         if (value > 260) {
             value = 260;
@@ -21,6 +22,7 @@ let getData = (): { series: Candlestick[] } => {
         if (value < 140) {
             value = 140;
         }
+        value += Math.random() * 0.1;
         let open: number = value + Math.round(Math.random() * 18);
         let low: number = Math.min(value, open) - Math.round(Math.random() * 6);
         let high: number = Math.min(220, Math.max(value, open) + Math.round(Math.random() * 15));
@@ -58,38 +60,15 @@ let pointAdded: boolean = false;
         series: [
             {
                 type: 'Candle', bearFillColor: '#2ecd71', bullFillColor: '#e74c3d', columnWidth: 0.4,
-                dataSource: data, xName: 'x', low: 'low', high: 'high', open: 'open', close: 'close'
+                dataSource: data, xName: 'x', low: 'low', high: 'high', open: 'open', close: 'close', lastValueLabel: { enable: true, background: 'red', dashArray: '3,2', lineWidth: 0.5, font: {size: '10px'} }
             }
         ],
         width: Browser.isDevice ? '100%' : '90%',
         title: 'AAPL Historical',
         crosshair: { enable: true, dashArray: '5,5' },
         pointRender: function (args) {
-            if (args.series.chart.enableRtl) {
-                args.series.chart.annotations[0].x = 0;
-            }
-            if (pointAdded && args.series.points[args.series.points.length - 1] === args.point) {
-                const firstPoint = args.series.chart.enableRtl ? args.series.points[args.series.points.length - 1].x : args.series.points[0].x;
-                args.series.chart.annotations[0].x = new Date(Number(firstPoint)).getTime() + (args.series.chart.enableRtl ? 2000 : 1000);
-                args.series.chart.annotations[0].y = args.point.close + 0.25;
-                args.series.chart.annotations[0].content = `<div style="width: ${args.series.chart.initialClipRect.width}px; height: 0; left: ${Browser.isDevice ? -10 : -16}px; position: absolute;">
-                <svg width="100%" height="2" style="display: block;">
-                  <line x1="0" y1="1" x2="${args.series.chart.initialClipRect.width}" y2="1" 
-                    style="stroke:#868180; stroke-width:0.75; stroke-dasharray:5,5;" />
-                </svg>
-              </div>
-              <div style="width: 40px; height: 18px; background-color: ${args.fill}; border: 1px solid rgba(48, 153, 245, 0.4); color: white; font-size: 11px; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 18px; position: absolute; left: ${(args.series.chart.enableRtl ? -args.series.chart.initialClipRect : args.series.chart.initialClipRect.width - 20)}px; top: -9px;">
-                ${(args.point.close as number).toFixed(2)}
-                </div>`;
-            }
+            args.series.lastValueLabel.background = args.fill;
         },
-        annotations: [{
-            x: new Date(2000, 5, 2, 2, 0, 1),
-            region: "Series",
-            coordinateUnits: 'Point',
-            y: 140,
-            content: `<div></div>`
-        }],
         load: (args: ILoadedEventArgs) => {
             loadChartTheme(args);
             stockClearInterval();
@@ -118,7 +97,7 @@ let pointAdded: boolean = false;
                         }
                     }
                     else {
-                        let change: number = Math.round((Math.random() < 0.49 ? 1 : -1) * Math.random() * 10);
+                        let change: number = (Math.random() < 0.49 ? 1 : -1) * Math.random() * 10;
                         value += change;
                         if (value > 260) {
                             value = 260;
@@ -126,6 +105,7 @@ let pointAdded: boolean = false;
                         if (value < 140) {
                             value = 140;
                         }
+                        value += Math.random() * 0.1;
                         let open: number = value + Math.round(Math.random() * 12);
                         let low: number = Math.min(value, open) - Math.round(Math.random() * 8);
                         let high: number = Math.max(value, open) + Math.round(Math.random() * 15);

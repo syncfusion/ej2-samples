@@ -36,8 +36,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     pivotObj.appendTo('#PivotView');
 
     let exportType: DropDownList = new DropDownList({
-        index: 0,
-        width: 160
+        index: 0
     });
     exportType.appendTo('#mode');
     let exportBtn: Button = new Button({

@@ -54,8 +54,6 @@ let data: any = (gData as any).data;
         mode: 'CheckBox',
         showDropDownIcon: true,
         enableSelectionOrder: false,
-        popupWidth: '150',
-        width: '150',
         value: ['Years', 'Months', 'Days'],
         placeholder: 'Select group',
         filterBarPlaceholder: 'Search group',
@@ -69,7 +67,6 @@ let data: any = (gData as any).data;
     dateGroup.appendTo('#dategroup');
 
     let numberGroup: NumericTextBox = new NumericTextBox({
-        width: '150',
         format: '###',
         min: 1,
         max: 10,

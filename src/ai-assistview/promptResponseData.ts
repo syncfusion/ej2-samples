@@ -60,49 +60,49 @@ export let streamingData: any = [
     },
     {
         prompt: "Prime number checking C# example?",
-        response: `<pre><code class=\"csharp language-csharp\">using System;
+response: `<pre><code class=\"csharp language-csharp\">using System;
 
-        class Program
-        {
-            static bool IsPrime(int n)
-            {
-                if (n <= 1) return false;
-                for (int i = 2; i <= Math.Sqrt(n); i++)
-                    if (n % i == 0) return false;
-                return true;
-            }
+class Program
+{
+    static bool IsPrime(int n)
+    {
+        if (n <= 1) return false;
+        for (int i = 2; i <= Math.Sqrt(n); i++)
+            if (n % i == 0) return false;
+        return true;
+    }
 
-            static void Main()
-            {
-                Console.WriteLine(IsPrime(11)); // True
-            }
-        }
-        </code></pre>`
+    static void Main()
+    {
+        Console.WriteLine(IsPrime(11)); // True
+    }
+}
+</code></pre>`
     },
     {
         prompt: "Generate Fibonacci sequence C# example?",
         response: `<pre><code class=\"csharp language-csharp\">using System;
 
-        class Program
+class Program
+{
+    static void Fibonacci(int n)
+    {
+        int a = 0, b = 1, c;
+        for (int i = 0; i < n; i++)
         {
-            static void Fibonacci(int n)
-            {
-                int a = 0, b = 1, c;
-                for (int i = 0; i < n; i++)
-                {
-                    Console.Write(a + \" \");
-                    c = a + b;
-                    a = b;
-                    b = c;
-                }
-            }
-
-            static void Main()
-            {
-                Fibonacci(10); // 0 1 1 2 3 5 8 13 21 34
-            }
+            Console.Write(a + \" \");
+            c = a + b;
+            a = b;
+            b = c;
         }
-        </code></pre>`
+    }
+
+    static void Main()
+    {
+        Fibonacci(10); // 0 1 1 2 3 5 8 13 21 34
+    }
+}
+</code></pre>`
     }
 ];
 

@@ -1,0 +1,13 @@
+export declare let communityMessagedata: any;
+export declare let chatMessagedata: any;
+export declare let integrationMessagedata: any;
+export declare let botMessagedata: any;
+export declare let botData: any;
+export declare let chatSuggestions: any;
+export declare let walterMessagedata: any;
+export declare let lauraMessagedata: any;
+export declare let teamsMessagedate: any;
+export declare let suyamaMessagedata: any;
+export declare let templateMessagedata: any;
+export declare let defaultChatSuggestions: any;
+export declare let integrationListTemplateData: any;

@@ -16,10 +16,10 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
     let pie: AccumulationChart = new AccumulationChart({
         //Initializing Series
         annotations: [{
-            content:  Browser.isDevice ? "<div style='font-Weight:700; font-size:11px;'>Browser<br>Market<br>Shares</div>" : "<div style='font-Weight:600; font-size:14px;'>Browser<br>Market<br>Shares</div>",
+            content:  Browser.isDevice ? "<div style='font-Weight:600; font-size:10px;'>Browser<br>Market<br>Shares</div>" : "<div style='font-Weight:600; font-size:14px;'>Browser<br>Market<br>Shares</div>",
             region: "Series",
-            x: Browser.isDevice ? "52%" :"50%",
-            y:Browser.isDevice ? "82%" : "85%"
+            x: "50%",
+            y: "85%"
         }],
         series: [
             {
@@ -35,19 +35,17 @@ AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationDataLabel, A
                 yName: 'y',
                 startAngle: 270,
                 endAngle: 90,
-                explode: false,radius : Browser.isDevice ? '85%' : '100%',
-                innerRadius: '40%', tooltipMappingName: 'tooltipMappingName',
+                explode: false,radius : '100%', borderRadius: 3,
+                innerRadius: '50%', border: { width: 1, color: '#ffffff' }, 
                 dataLabel: {
                     visible: true, position: 'Inside' ,
                     connectorStyle: { length: '10%' }, name: 'text', enableRotation:true,
-                    font: { fontWeight: '600' ,size: Browser.isDevice ? '8px' : '11px', color: '#ffffff'}
+                    font: { fontWeight: '600' ,size: Browser.isDevice ? '8px' : '11px'}
                 },
             }
         ],
         enableAnimation: false,
         enableBorderOnMouseMove:false,
-        //Initializing Tooltip
-        tooltip: { enable: true, enableHighlight: true, format: '<b>${point.x}</b><br>Browser Share: <b>${point.tooltip}</b>' },
         legendSettings: {
             visible: false,
         },

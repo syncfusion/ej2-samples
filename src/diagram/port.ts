@@ -228,7 +228,7 @@ export interface CustomPort extends PointPortModel {
     // NumericTextBox is used to apply the size of the Port.
     let portSizeNum: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
-        value: 6, min: 1, step: 1,
+        value: 6, min: 1, max: 30, step: 1,
         change: (args: NumericChangeEventArgs) => {
             applyPortStyle('size');
         }
@@ -238,7 +238,7 @@ export interface CustomPort extends PointPortModel {
     // NumericTextBox is used to apply the StrokeWidth of the Port.
     let portWidthNum: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
-        value: 1, step: 0.5, min: 0,
+        value: 1, step: 0.5, min: 1, max: 15,
         change: (args: NumericChangeEventArgs) => {
             applyPortStyle('strokewidth');
         }

@@ -107,8 +107,7 @@ let mdsource: HTMLElement;
         popupHeight: '200px',
         sortOrder: 'Ascending',
         target: markdownMention.inputElement,
-        allowSpaces: true,
-        suffixText: '&nbsp;'
+        allowSpaces: true
       });
       mention.appendTo('#editorMention');
       interface MentionUser {

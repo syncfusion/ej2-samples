@@ -62,6 +62,7 @@ import { loadCultureFiles } from '../common/culture-loader';
             click: () => {
                 const imageEditor: ImageEditor = getComponent(document.getElementById('image-editor'), 'image-editor') as ImageEditor;
                 imageEditor.reset();
+                imageEditor.select('circle');
             },
             buttonModel: { content: 'Reset', isPrimary: false, cssClass: 'e-custom-img-btn e-img-custom-reset' }
         },

@@ -18,7 +18,7 @@
             "url":"multi-format-viewer", "name": "Multi-Format Viewer", "description":"This sample demonstrates to loads various file types like PDFs, images, and Microsoft Office documents (Word, Excel, PowerPoint) into the PDF Viewer", "category": "File Management"
         },
         {
-            "url":"organize-pdf", "name": "Organize Pages" ,"description":"This sample demonstrates the page organization features of the PDF Viewer component, allowing users to effortlessly insert, delete, rearrange, copy, undo, redo, and rotate pages.", "category": "Editor"
+            "url":"organize-pdf", "name": "Organize Pages" , "type": "update", "description":"This sample demonstrates the page organization features of the PDF Viewer component, allowing users to effortlessly insert, delete, rearrange, copy, undo, redo, and rotate pages.", "category": "Editor"
         },
         {
             "url":"redaction" , "name": "Redaction" , "description": "This PDF viewer sample facilitates the permanent removal of sensitive or confidential data from PDF files." , "category":"Editor"
@@ -45,10 +45,10 @@
             "url":"eSigning-pdf-forms", "name": "eSigning PDF Forms" ,"description":"This sample demonstrates the creation of the supported Form fields in the PDF Viewer such as Textbox, Password, Checkbox, Radio Button, Drop Down, List box, Signature, and Initial. We can also customize these fields and can include new fields through the user interaction by switching to the designer mode.", "category": "PDF Form"
         },
         {
-            "url":"annotations", "name": "Annotations", "description":"This sample demonstrates the creation of different types of annotations such as Text Markup, Shapes, Measurements, Free text, Stamps, Handwritten signature, ink, and sticky notes in the PDF Viewer. And also we can customize the added annotations or we can include new annotations through user interaction from the PDF Viewer.", "category": "Annotation"
+            "url":"annotations", "name": "Annotations", "type": "update", "description":"This sample demonstrates the creation of different types of annotations such as Text Markup, Shapes, Measurements, Free text, Stamps, Handwritten signature, ink, and sticky notes in the PDF Viewer. And also we can customize the added annotations or we can include new annotations through user interaction from the PDF Viewer.", "category": "Annotation"
         },
         {
-            "url":"programmatic-operations", "name": "Programmatic Operations", "type": "new","description":"This sample showcases how to programmatically create or edit various types of annotations in the SfPdfViewer. These annotations include Text Markup, Shapes, Measurements, Free text, Stamps, Ink, and Sticky notes. Additionally, we can programmatically insert new annotations or programmatically update existing ones.", "category": "Annotation"
+            "url":"programmatic-operations", "name": "Programmatic Operations", "type": "update","description":"This sample showcases how to programmatically create or edit various types of annotations in the SfPdfViewer. These annotations include Text Markup, Shapes, Measurements, Free text, Stamps, Ink, and Sticky notes. Additionally, we can programmatically insert new annotations or programmatically update existing ones.", "category": "Annotation"
         },
         {
             "url":"hand-written", "name": "Handwritten Signature", "description":"This sample demonstrates the Handwritten signature and initial support of the PDF Viewer. The signature or initial support reduces the paperwork of reviewing the contents and it is verified digitally.", "category": "Signature"

@@ -3,10 +3,12 @@
     "directory": "rich-text-editor",
     "category": "File Viewers & Editors",
     "ftName": "wysiwyg-rich-text-editor",
+    "type":"update",
     "samples": [
         {
             "url": "tools",
             "name": "Overview",
+            "type": "update",
             "description": "This demo describes basic and advanced features of the JavaScript Rich Text Editor control (WYSIWYG HTML Editor) with all its tools and functionalities.",
             "category": "Rich Text Editor",
             "api": {
@@ -165,6 +167,7 @@
             "name": "IFrame",
             "description": "This demo shows how to render a JavaScript Rich Text Editor (iframe editor) that was designed by using the iframe element covering all tool functionalities.",
             "category": "Rich Text Editor",
+            "type": "update",
             "api": {
                 "RichTextEditor": [
                     "Inject",
@@ -540,8 +543,9 @@
         {
             "url": "types",
             "name": "Type",
-            "description": "This demo demonstrates different types and behaviors of a toolbar used in the JS HTML Editor such as expand/collapse, multirow, and floating.",
+            "description": "This demo demonstrates different types and behaviors of a toolbar used in the JS HTML Editor such as expand/collapse, multirow, floating and popup.",
             "category": "Toolbar",
+            "type": "update",
             "api": {
                 "RichTextEditor": [
                     "Inject",
@@ -597,6 +601,22 @@
                 ],
                 "ToolbarSettings": [
                     "items"
+                ]
+            }
+        },
+        {
+            "url": "bottom-toolbar",
+            "name": "Bottom Toolbar",
+            "description": "This demo demonstrates the bottom toolbar in the Rich Text Editor.",
+            "category": "Toolbar",
+            "type": "new",
+            "api": {
+                "RichTextEditor": [
+                    "toolbarSettings"
+                ],
+                "ToolbarSettings": [
+                    "items",
+                    "position"
                 ]
             }
         }

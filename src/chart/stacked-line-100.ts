@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, Category, Legend, Tooltip, ILoadedEventArgs, ILegendClickEventArgs, StackingLineSeries, Highlight } from '@syncfusion/ej2-charts';
+import { Chart, Category, Legend, Tooltip, ILoadedEventArgs, StackingLineSeries, Highlight } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { loadChartTheme } from './theme-color';
 Chart.Inject(StackingLineSeries, Category, Legend, Tooltip, Highlight);
@@ -87,7 +87,7 @@ let chartData4: Object[] = [
             },
             {
                 type: 'StackingLine100', dataSource: chartData4, marker: { isFilled: true, visible: true, shape: 'Triangle', width: 6, height: 6 },
-                xName: 'x', width: 3, yName: 'y', name: 'Armenia'
+                xName: 'x', width: 2, yName: 'y', name: 'Armenia'
 
             }
         ],
@@ -103,73 +103,6 @@ let chartData4: Object[] = [
         legendSettings: { enableHighlight: true },
         load: (args: ILoadedEventArgs) => {
             loadChartTheme(args);
-        },
-        legendClick: (args: ILegendClickEventArgs) => {
-            if (args.series.index === 0) {
-                if (args.chart.series[3].visible) {
-                    args.chart.series[3].width = 3;
-                    args.chart.series[0].width = 2;
-                } else if (args.chart.series[2].visible) {
-                    args.chart.series[2].width = 3;
-                    args.chart.series[0].width = 2;
-                } else if (args.chart.series[1].visible) {
-                    args.chart.series[1].width = 3;
-                    args.chart.series[0].width = 2;
-                } else {
-                    args.chart.series[0].width = 3;
-                }
-            }
-
-            if (args.series.index === 1) {
-                if (args.chart.series[3].visible) {
-                    args.chart.series[3].width = 3;
-                    args.chart.series[1].width = 2;
-                } else if (args.chart.series[2].visible) {
-                    args.chart.series[2].width = 3;
-                    args.chart.series[1].width = 2;
-                } else if (args.series.visible && args.chart.series[0].visible) {
-                    args.chart.series[0].width = 3;
-                    args.chart.series[1].width = 2;
-                } else {
-                    args.chart.series[1].width = 3;
-                    args.chart.series[0].width = 2;
-                }
-            }
-
-            if (args.series.index === 2) {
-                if (args.chart.series[3].visible) {
-                    args.chart.series[3].width = 3;
-                    args.chart.series[2].width = 2;
-                } else if (!args.series.visible) {
-                    args.chart.series[2].width = 3;
-                    args.chart.series[1].width = 2;
-                    args.chart.series[0].width = 2;
-                } else if (args.chart.series[1].visible) {
-                    args.chart.series[1].width = 3;
-                    args.chart.series[2].width = 2;
-                } else if (args.series.visible && args.chart.series[0].visible) {
-                    args.chart.series[0].width = 3;
-                    args.chart.series[2].width = 2;
-                }
-            }
-
-            if (args.series.index === 3) {
-                if (!args.series.visible) {
-                    args.chart.series[3].width = 3;
-                    args.chart.series[2].width = 2;
-                    args.chart.series[1].width = 2;
-                    args.chart.series[0].width = 2;
-                } else if (args.chart.series[2].visible) {
-                    args.chart.series[2].width = 3;
-                    args.chart.series[3].width = 2;
-                } else if (args.chart.series[1].visible) {
-                    args.chart.series[1].width = 3;
-                    args.chart.series[3].width = 2;
-                } else if (args.series.visible && args.chart.series[0].visible) {
-                    args.chart.series[0].width = 3;
-                    args.chart.series[3].width = 2;
-                }
-            }
         }
     });
     chart.appendTo('#container');

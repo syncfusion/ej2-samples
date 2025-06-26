@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Schedule, Day, Week, TimelineViews, Resize, DragAndDrop } from '@syncfusion/ej2-schedule';
 import { DropDownList, ChangeEventArgs as DropDownChangeArgs } from '@syncfusion/ej2-dropdowns';
 import { Internationalization, extend } from '@syncfusion/ej2-base';
@@ -8,8 +7,7 @@ import * as dataSource from './datasource.json';
  * schedule sample
  */
 Schedule.Inject(Day, Week, TimelineViews, Resize, DragAndDrop);
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     // custom code start
     let instance: Internationalization = new Internationalization();
     (window as TemplateFunction).majorSlotTemplate = (date: Date) => {

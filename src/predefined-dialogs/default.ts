@@ -17,7 +17,8 @@ import{DialogUtility} from '@syncfusion/ej2-popups';
             content: '10% of battery remaining',
             okButton: {click:alertBtnClick.bind(this)},
             position: { X: 'center', Y: 'center' },
-            closeOnEscape: true
+            closeOnEscape: true,
+            close: alertBtnClick
         });  
     }; 
     function alertBtnClick () {
@@ -36,7 +37,8 @@ import{DialogUtility} from '@syncfusion/ej2-popups';
             okButton: { click:confirmOkAction.bind(this)},
             cancelButton: { click:confirmCancelAction.bind(this)},
             position: { X: 'center', Y: 'center' },
-            closeOnEscape: true
+            closeOnEscape: true,
+            close: confirmCancelAction
         });
     };
     let confirmOkAction = () => {
@@ -60,7 +62,8 @@ import{DialogUtility} from '@syncfusion/ej2-popups';
             okButton: { click:promptOkAction.bind(this)},
             cancelButton: { click:promptCancelAction.bind(this)},
             position: { X: 'center', Y: 'center' },
-            closeOnEscape: true
+            closeOnEscape: true,
+            close : promptOkAction 
         });
     };
     function promptOkAction (){

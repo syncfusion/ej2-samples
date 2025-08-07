@@ -7,7 +7,7 @@ import { TitleBar } from './title-bar';
 import * as data from './data-default.json';
 
 import { loadCultureFiles } from '../common/culture-loader';
-import { RibbonGroupModel, RibbonItemModel, RibbonItemSize, RibbonItemType, RibbonTabModel } from '@syncfusion/ej2/ribbon';
+import { RibbonGroupModel, RibbonItemModel, RibbonItemSize, RibbonItemType, RibbonTabModel } from '@syncfusion/ej2-ribbon';
 
 DocumentEditorContainer.Inject(Ribbon);
 

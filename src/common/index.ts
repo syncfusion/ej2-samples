@@ -1811,7 +1811,7 @@ function parseHash(newHash: string, oldHash: string): void {
 
         } else {
             addSampleList(<Controls[]>samplesList); 
-
+            return;
         }
     }else{
         addRoutes(<Controls[]>samplesList);

@@ -12,8 +12,8 @@ import {
 AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
 Chart.Inject(SplineAreaSeries, DateTime, Legend);
 Chart.Inject(LineSeries, DateTime, Legend, Tooltip);
-import { Maps, MapAjax, Zoom, MapsTooltip, MapsTheme, ILoadEventArgs } from '@syncfusion/ej2-maps';
-Maps.Inject(Zoom, Legend, MapsTooltip);
+import { Maps, MapAjax, Zoom, MapsTooltip, MapsTheme, ILoadEventArgs, Marker } from '@syncfusion/ej2-maps';
+Maps.Inject(Zoom, Legend, MapsTooltip, Marker);
 import { ColumnSeries, Category, DataLabel, } from '@syncfusion/ej2-charts';
 Chart.Inject(ColumnSeries, DataLabel, Category, Legend, Tooltip);
 import expenseData from './expense-data';

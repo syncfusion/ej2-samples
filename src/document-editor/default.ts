@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { DocumentEditorContainer, Ribbon, Toolbar } from '@syncfusion/ej2-documenteditor';
 import { TitleBar } from './title-bar';
 import * as data from './data-default.json';
-import { Switch } from '@syncfusion/ej2/buttons';
+import { Switch } from '@syncfusion/ej2-buttons';
 
 
 /**

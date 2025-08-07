@@ -534,6 +534,11 @@ function openEditAnnotation(args:ClickEventArgs) {
     viewer.annotation.setAnnotationMode('Strikethrough');
   }
   
+  function squiggly(args:ClickEventArgs) {
+    disableInkAnnotation();
+    viewer.annotation.setAnnotationMode('Squiggly');
+  }
+
   function addLine(args:ClickEventArgs) {
     disableInkAnnotation();
     viewer.annotation.setAnnotationMode('Line');
@@ -762,6 +767,7 @@ function onSignatureClick(event : any): void{
             { prefixIcon:"e-icons e-highlight-color", click: highlight.bind(this), tooltipText:"Highlight", id:"highlight", align:"Center" },
             { prefixIcon: 'e-icons e-underline', click: underLine.bind(this), tooltipText: 'Underline', id: 'underline', align: 'Center' },
             { prefixIcon: 'e-icons e-strikethrough', click: strikeThrough.bind(this), tooltipText: 'Strikethrough', id: 'strikethrough', align: 'Center' },
+            { prefixIcon: 'e-icons e-squiggly', click: squiggly.bind(this), tooltipText: 'Squiggly', id: 'squiggly', align: 'Center' },
             { type: 'Separator', tooltipText: 'separator', align: 'Center' },
             { prefixIcon: 'e-icons e-line', click: addLine.bind(this), tooltipText: 'Add Line', id: 'line', align: 'Center' },
             { prefixIcon: 'e-icons e-arrow-right-up', click: addArrow.bind(this), tooltipText: 'Add Arrow', id: 'arrow', align: 'Center' },

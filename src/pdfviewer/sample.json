@@ -54,7 +54,7 @@
             "url":"hand-written", "name": "Handwritten Signature", "description":"This sample demonstrates the Handwritten signature and initial support of the PDF Viewer. The signature or initial support reduces the paperwork of reviewing the contents and it is verified digitally.", "category": "Signature"
         },
         {
-            "url":"invisible-signature", "name": "Invisible Signature" ,"description":"This sample demonstrates how to digitally sign a PDF document from code behind using Syncfusion's PDF Viewer and PDF Library", "category": "Signature"
+            "url":"invisible-digital-signature", "name": "Invisible Digital Signature" ,"description":"This sample demonstrates how to digitally sign a PDF document from code behind using Syncfusion's PDF Viewer and PDF Library", "category": "Signature"
         }
     ]
 }

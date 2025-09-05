@@ -14,7 +14,9 @@ Gantt.Inject(Sort, DayMarkers, Selection  );
     let gantt: Gantt = new Gantt(
         {
             dataSource: editingData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             allowSelection: true,
             allowSorting: true,
@@ -27,10 +29,10 @@ Gantt.Inject(Sort, DayMarkers, Selection  );
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID:'ParentId'
             },
             columns: [
-                { field: 'TaskID', headerText: 'ID', width: 80 },
+                { field: 'TaskID', visible:false ,headerText: 'ID', width: 80 },
                 { field: 'TaskName', headerText: 'TaskName', width: 250 },
                 { field: 'StartDate', headerText: 'StartDate' },
                 { field: 'EndDate', headerText: 'EndDate' },
@@ -43,14 +45,13 @@ Gantt.Inject(Sort, DayMarkers, Selection  );
             splitterSettings: {
                 columnIndex: 2
             },
-            projectStartDate: new Date('03/25/2024'),
-            projectEndDate: new Date('07/28/2024'),
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('09/01/2025'),
         });
     gantt.appendTo('#SortingAPI');
 
     let dropDownColumnList: DropDownList = new DropDownList({
         dataSource: [
-            { id: 'TaskID', type: 'TaskID' },
             { id: 'TaskName', type: 'TaskName' },
             { id: 'StartDate', type: 'StartDate' },
             { id: 'EndDate', type: 'EndDate' },
@@ -58,7 +59,7 @@ Gantt.Inject(Sort, DayMarkers, Selection  );
             { id: 'Progress', type: 'Progress' }
         ],
         popupWidth: '150px',
-        value: 'TaskID',
+        value: 'TaskName',
         fields: { text: 'type', value: 'id' },
     });
     dropDownColumnList.appendTo('#columns');

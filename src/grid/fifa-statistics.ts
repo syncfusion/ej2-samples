@@ -199,7 +199,7 @@ Grid.Inject(Sort);
             }
         }
         if (args.column?.field === 'BestPlayerAward') {
-            let rowIndex: number = parseInt(args.cell?.getAttribute('index') as string);
+            let rowIndex: number = parseInt(args.cell?.getAttribute('data-index') as string);
             if (rowIndex > 0) {
                 if (((this.currentViewData[rowIndex - 1] as FifaDetails)[args.column.field] as string) !== ((args.data as FifaDetails)[args.column.field] as string)) {
                     args.rowSpan = calculateRowspan(args, rowIndex);

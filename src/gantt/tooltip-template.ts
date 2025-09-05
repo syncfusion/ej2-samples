@@ -98,7 +98,9 @@ function generateTooltipMarkup(label: string, tooltipData: any) {
     let gantt: Gantt = new Gantt(
         {
             dataSource: tooltipData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             allowSelection: true,
             renderBaseline: true,
@@ -124,8 +126,8 @@ function generateTooltipMarkup(label: string, tooltipData: any) {
                 { field: 'Duration' },
                 { field: 'Predecessor' },
                 { field: 'Progress' },
-                { field: 'BaselineStartDate' },
-                { field: 'BaselineEndDate' },
+                { field: 'BaselineStartDate', width: 200 },
+                { field: 'BaselineEndDate', width: 200 },
                 { field: 'resources' },
             ],
             resourceFields: {
@@ -156,8 +158,8 @@ function generateTooltipMarkup(label: string, tooltipData: any) {
             splitterSettings: {
                 columnIndex: 2
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('05/04/2024')
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('06/01/2025'),
         });
     gantt.appendTo('#TooltipTemplate');
 };

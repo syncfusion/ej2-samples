@@ -42,9 +42,9 @@
          "description": "This example demonstrates the simple Gantt chart with summary task, child tasks, milestone tasks, dependencies with event markers of project"
       },
       {
-         "url": "editing",
-         "name": "Editing",
-         "category": "Gantt Chart",
+         "url": "default-editing",
+         "name": "Default Editing",
+         "category": "Editing",
          "api": {
             "Gantt": [
                "dataSource",
@@ -70,6 +70,37 @@
             ]
          },
          "description": "This example demonstrates the cell editing, dialog editing, taskbar editing and dependency editing support in Gantt"
+      },
+      {
+         "url": "dialog-editing",
+         "name": "Dialog Editing",
+         "category": "Editing",
+         "type": "new",
+         "api": {
+            "Gantt": [
+               "dataSource",
+               "height",
+               "taskFields",
+               "editSettings",
+               "toolbar",
+               "columns",
+               "treeColumnIndex",
+               "allowSelection",
+               "gridLines",
+               "resourceFields",
+               "resources",
+               "highlightWeekends",
+               "timelineSettings",
+               "labelSettings",
+               "projectStartDate",
+               "projectEndDate",
+               "addDialogFields",
+               "editDialogFields",
+               "eventMarkers",
+               "splitterSettings"
+            ]
+         },
+         "description": "This example demonstrates the dialog editing, taskbar editing and dependency editing support in Gantt"
       },
       {
          "url": "virtual-scroll",
@@ -286,7 +317,6 @@
          "url": "constraints",
          "name": "Constraints",
          "category": "Scheduling Concepts",
-         "type": "new",
          "api": {
             "Gantt": [
                "dataSource",
@@ -314,7 +344,6 @@
       {
          "url": "work-week",
          "name": "Workweek",
-         "type": "update",
          "category": "Scheduling Concepts",
          "api": {
             "Gantt": [
@@ -429,6 +458,7 @@
       {
          "url": "baseline",
          "name": "Baseline",
+         "type": "update",
          "category": "Scheduling Concepts",
          "api": {
             "Gantt": [
@@ -665,7 +695,6 @@
          "url":"wbs-column",
          "name": "WBS Column",
          "category":"Columns",
-         "type":"new",
          "api":{
             "Gantt":[
                "dataSource",
@@ -1061,6 +1090,7 @@
          "url": "selection",
          "name": "Selection",
          "category": "Miscellaneous",
+         "type":"update",
          "api": {
             "Gantt": [
                "dataSource",

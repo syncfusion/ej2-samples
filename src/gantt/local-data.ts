@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Selection, DayMarkers  } from '@syncfusion/ej2-gantt';
-import { projectNewData } from './data-source';
+import { localData } from './data-source';
 
 /**
  * Local data Gantt sample
@@ -11,8 +11,10 @@ Gantt.Inject(Selection, DayMarkers );
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
         {
-            dataSource: projectNewData,
-            height: '450px',
+            dataSource: localData,
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             allowSelection: true,
             treeColumnIndex: 1,
@@ -41,8 +43,8 @@ Gantt.Inject(Selection, DayMarkers );
             splitterSettings: {
                 position: "35%"
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#LocalData');
 };

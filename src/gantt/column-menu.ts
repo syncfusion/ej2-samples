@@ -12,7 +12,9 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             showColumnMenu: true,
             allowFiltering: true,
@@ -26,7 +28,7 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID:'ParentId'
             },
             columns: [
                 { field: 'TaskID', headerText: 'ID', width: 100 },
@@ -35,7 +37,7 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Progress' },
-                { field: 'Predecessor', headerText: 'Dependency' }
+                { field: 'Predecessor', headerText: 'Dependency', width:190 }
             ],
             columnMenuOpen: (args: ColumnMenuOpenEventArgs) => {
                 if (args.parentItem != null) {
@@ -49,8 +51,8 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
             splitterSettings: {
                 columnIndex: 4
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#ColumnMenu');
 };

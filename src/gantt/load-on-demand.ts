@@ -36,7 +36,7 @@ Gantt.Inject(Selection, VirtualScroll);
             parentID: 'parentID'
         },
         columns: [
-            { field: 'taskId', headerText: 'Task ID' },
+            { field: 'taskId', headerText: 'Task ID',width: 130 },
             { field: 'taskName', headerText: 'Task Name', allowReordering: false },
             { field: 'startDate', headerText: 'Start Date', allowSorting: false },
             { field: 'duration', headerText: 'Duration', allowEditing: false },
@@ -63,9 +63,9 @@ Gantt.Inject(Selection, VirtualScroll);
             }
         },
         treeColumnIndex: 1,
-        taskbarHeight: 20,
-        rowHeight: 40,
-        height: '460px',
+        height: '650px',
+        rowHeight:46,
+        taskbarHeight:25,
         projectStartDate: new Date('01/02/2000'),
         projectEndDate: new Date('12/01/2002'),
         });

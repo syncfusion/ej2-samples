@@ -12,7 +12,9 @@ Gantt.Inject(Selection, RowDD, Edit);
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             allowRowDragAndDrop: true,
             allowTaskbarDragAndDrop: true,
             treeColumnIndex: 1,
@@ -46,13 +48,13 @@ Gantt.Inject(Selection, RowDD, Edit);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID: 'ParentId'
             },
             labelSettings: {
                 leftLabel: 'TaskName'
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#DragAndDrop');
 };

@@ -15,7 +15,9 @@ Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar,
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             treeColumnIndex: 1,
             allowSelection: true,
@@ -66,15 +68,15 @@ Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar,
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID: 'ParentId'
             },
             columns: [
-                { field: 'TaskID', width: 75 },
+                { field: 'TaskID', width: 100 },
                 { field: 'TaskName', width: 250 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
-                { field: 'Predecessor' },
+                { field: 'Predecessor', width: 190 },
                 { field: 'Progress' },
             ],
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Search'],
@@ -90,8 +92,8 @@ Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar,
             splitterSettings: {
                 columnIndex: 2
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#Events');
     let clear: Button = new Button();

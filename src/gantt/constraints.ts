@@ -35,7 +35,9 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Indent', 'Outdent'],
             allowSelection: true,
             gridLines: 'Both',
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             treeColumnIndex: 1,
             highlightWeekends: true,
             timelineSettings: {
@@ -62,7 +64,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 { field: 'StartDate'},
                 { field: 'Duration'},
                 { field: 'ConstraintType',width: '180'},
-                { field: 'ConstraintDate'},
+                { field: 'ConstraintDate',width:200 },
                 { field: 'EndDate'},
                 { field: 'Predecessor' },
                 { field: 'Progress'},
@@ -75,7 +77,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 columnIndex: 4
             },
             projectStartDate: new Date('03/25/2025'),
-            projectEndDate: new Date('09/01/2025')
+            projectEndDate: new Date('09/10/2025')
     });
     gantt.appendTo('#Constraint');
     (window as any).getConstraintText = function (value: number): string {

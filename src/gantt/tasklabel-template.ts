@@ -26,10 +26,11 @@ Gantt.Inject(DayMarkers, Selection);
     let gantt: Gantt = new Gantt(
         {
             dataSource: labelData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             allowSelection: true,
-            rowHeight: 46,
             treeColumnIndex: 1,
             taskFields: {
                 id: 'TaskID',
@@ -65,8 +66,8 @@ Gantt.Inject(DayMarkers, Selection);
             splitterSettings: {
                 position: "35%"
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('05/04/2024')
+            projectStartDate: new Date('03/24/2025'),
+            projectEndDate: new Date('06/10/2025'),
         });
     gantt.appendTo('#TasklabelTemplate');
 };

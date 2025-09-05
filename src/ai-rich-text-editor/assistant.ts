@@ -1,15 +1,14 @@
-
 import { enableRipple } from '@syncfusion/ej2-base';
 enableRipple(true);
 
-import { RichTextEditor, Toolbar, Link, NodeSelection, Image, QuickToolbar, HtmlEditor, ToolbarClickEventArgs } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, NodeSelection, Image, QuickToolbar, HtmlEditor, Table, ToolbarClickEventArgs } from '@syncfusion/ej2-richtexteditor';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Skeleton, Toast } from '@syncfusion/ej2-notifications';
 import { Button, ChipList } from '@syncfusion/ej2-buttons';
 import { DropDownButton } from '@syncfusion/ej2/splitbuttons';
 
-RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor);
+RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor, Table);
 
 (window as any).default = (): void => {
 
@@ -74,11 +73,13 @@ RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor);
             items: [
                 {
                     tooltipText: 'AI Assistant',
+                    command: 'Custom',
                     template:
                         '<button class="e-tbar-btn e-btn" tabindex="-1" id="ai_assistant_button_tbar" style="width:100%"><div class="e-rte-dropdown-btn-text">AIAssistant</div></button>'
                 },
                 {
                     tooltipText: 'Rephrase',
+                    command: 'Custom',
                     template:
                         '<button class="e-tbar-btn e-btn" tabindex="-1" id="ai_rephrase_button_tbar" style="width:100%"><div class="e-tbar-btn-text">Rephrase</div></button>'
                 },

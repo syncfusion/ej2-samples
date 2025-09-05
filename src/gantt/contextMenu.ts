@@ -44,7 +44,7 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks',
+                parentID: 'ParentId',
                 notes: 'info',
                 resourceInfo: 'resources'
             },
@@ -86,7 +86,9 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll'],
             allowSelection: true,
             gridLines: 'Both',
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             treeColumnIndex: 1,
             resourceFields: {
                 id: 'resourceId',
@@ -103,12 +105,6 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                     unit: 'Day',
                 },
             },
-            eventMarkers: [
-                { day: '4/17/2024', label: 'Project approval and kick-off' },
-                { day: '5/3/2024', label: 'Foundation inspection' },
-                { day: '6/7/2024', label: 'Site manager inspection' },
-                { day: '7/16/2024', label: 'Property handover and sign-off' },
-            ],
             labelSettings: {
                 leftLabel: 'TaskName',
                 rightLabel: 'resources'
@@ -119,8 +115,8 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                 { type: 'Resources' },
                 { type: 'Notes' },
             ],
-            projectStartDate: new Date('03/25/2024'),
-            projectEndDate: new Date('07/28/2024')
+            projectStartDate: new Date('03/25/2025'),
+            projectEndDate: new Date('09/01/2025')
         });
     gantt.appendTo('#ContextMenu');
 };

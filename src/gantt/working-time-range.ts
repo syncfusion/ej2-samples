@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Selection, DayMarkers } from '@syncfusion/ej2-gantt';
 import {NumericTextBox} from '@syncfusion/ej2-inputs';
-import { projectNewData } from './data-source';
+import { workTimeRange } from './data-source';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
@@ -14,8 +14,10 @@ Gantt.Inject(Selection, DayMarkers);
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
         {
-            dataSource: projectNewData,
-            height: '450px',
+            dataSource: workTimeRange,
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -47,8 +49,8 @@ Gantt.Inject(Selection, DayMarkers);
                     unit: 'Hour'
                 }
             },
-            projectStartDate: new Date('04/02/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('04/02/2025'),
+            projectEndDate: new Date('04/28/2025')
         });
     gantt.appendTo('#WorkTimeRange');
     let workDays: any = [

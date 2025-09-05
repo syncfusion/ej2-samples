@@ -11,7 +11,9 @@ Gantt.Inject(Selection, Resize );
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             allowResizing: true,
             taskFields: {
@@ -22,7 +24,7 @@ Gantt.Inject(Selection, Resize );
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID: 'ParentId'
             },
             columns: [
                 { field: 'TaskID', headerText: 'ID', width: 80 , minWidth: 8},
@@ -35,13 +37,13 @@ Gantt.Inject(Selection, Resize );
             ],
             treeColumnIndex: 1,
             labelSettings: {
-                leftLabel: 'TaskName'
+                rightLabel: 'TaskName'
             },
             splitterSettings: {
                 columnIndex: 6
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/30/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#ColumnResize');
 };

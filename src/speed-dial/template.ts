@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Button, SpeedDial, SpeedDialItemModel } from '@syncfusion/ej2-buttons';
 import { TextBox } from '@syncfusion/ej2-inputs';
+import { Browser } from '@syncfusion/ej2/base';
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -78,13 +79,36 @@ import { TextBox } from '@syncfusion/ej2-inputs';
     })
     button.appendTo("#primarybtn");
 
-    document.getElementById('close-icon').onclick = (): void => {
-        popupTemp.hide();
-    }
+    document.getElementById('btn1').onclick = () => {
+        if (Browser.isDevice) {
+            document.getElementById('btn2').style.visibility = 'hidden';
+        }
+    };
 
-    document.getElementById('primarybtn').onclick = (): void => {
+    document.getElementById('close-icon').onclick = () => {
         popupTemp.hide();
-    }
+        if (Browser.isDevice) {
+            document.getElementById('btn2').style.visibility = 'visible';
+        }
+    };
+
+    document.getElementById('primarybtn').onclick = () => {
+        popupTemp.hide();
+        if (Browser.isDevice) {
+            document.getElementById('btn2').style.visibility = 'visible';
+        }
+    };
+
+    document.addEventListener('click', function (event) {
+        if (Browser.isDevice) {
+            const btn1 = document.getElementById('btn1');
+            const btn2 = document.getElementById('btn2');
+            const popup = document.querySelector('.popupSpeedDial');
+            if (btn2 && btn1 && !btn1.contains(event.target as Node) && (!popup || !popup.contains(event.target as Node))) {
+                btn2.style.visibility = 'visible';
+            }
+        }
+    });
 
 
 };

@@ -54,7 +54,8 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, Emo
         beforeSanitizeHtml: beforeSanitizeHtml,
         resizing: resizing,
         resizeStart: resizeStart,
-        resizeStop: resizeStop
+        resizeStop: resizeStop,
+        selectionChanged: selectionChanged
     });
     defaultRTE.appendTo('#defaultRTE');
     let clear: Button = new Button();
@@ -191,5 +192,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, Emo
     function actionCompleteHandler(): void {
         setTimeout(() => { defaultRTE.toolbarModule.refreshToolbarOverflow(); }, 400);
     }
-
+    function selectionChanged(): void {
+        appendElement('Rich Text Editor <b>selectionChanged</b> event called<hr>');
+    }
 };

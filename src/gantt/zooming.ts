@@ -12,7 +12,9 @@ Gantt.Inject(Toolbar);
     let gantt: Gantt = new Gantt(
         {
             dataSource: zoomingData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             treeColumnIndex: 1,
             taskFields: {
                 id: 'TaskID',
@@ -38,8 +40,10 @@ Gantt.Inject(Toolbar);
                 leftLabel: 'TaskName'
             },
             splitterSettings: {
-                position: "35%"
-            }
+                columnIndex: 3
+            },
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('06/01/2025'),
         });
     gantt.appendTo('#Zooming');
 };

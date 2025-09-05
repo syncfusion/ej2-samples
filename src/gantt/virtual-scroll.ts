@@ -24,21 +24,23 @@ Gantt.Inject(Selection, VirtualScroll);
         enableTimelineVirtualization: true,
         columns: [
             { field: 'TaskID' },
-            { field: 'TaskName' },
+            { field: 'TaskName', width: '200px' },
             { field: 'StartDate' },
             { field: 'Duration' },
             { field: 'Progress' },
         ],
         allowSelection: true,
         gridLines: 'Both',
-        height: '450px',
+        height: '650px',
+        rowHeight:46,
+        taskbarHeight:25,
         splitterSettings: {
             columnIndex: 2
         },
         labelSettings: {
             taskLabel: 'Progress'
         },
-        projectStartDate: new Date('04/01/2024'),
+        projectStartDate: new Date('04/01/2025'),
         projectEndDate: new Date('12/31/2030')
     });
     gantt.appendTo('#VirtualScroll');

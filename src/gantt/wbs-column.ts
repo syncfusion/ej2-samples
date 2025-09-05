@@ -35,7 +35,7 @@ Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Sort, ContextMenu);
             },
             columns: [
                 { field: 'TaskID', headerText: 'Task ID', visible: false },
-                { field: 'WBSCode', headerText: 'WBS Code',width: '150px'  },
+                { field: 'WBSCode', headerText: 'WBS Code',width: '200px'  },
                 { field: 'TaskName', headerText: 'Task Name', allowReordering: false, width: '260px'  },
                 { field: 'StartDate', headerText: 'Start Date', width: '140px'  },
                 { field: 'WBSPredecessor', headerText: 'WBS Predecessor',width: '190px' },
@@ -44,7 +44,7 @@ Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Sort, ContextMenu);
             ],
             eventMarkers: [
                {
-                   day: new Date('04/2/2024'),
+                   day: new Date('04/2/2025'),
                    label: 'Project Initiation'
                }
             ],
@@ -86,12 +86,12 @@ Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Sort, ContextMenu);
             labelSettings: {
                 taskLabel: '${Progress}%'
             },
-            taskbarHeight: 20,
-            rowHeight: 40,
-            height: '550px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             allowUnscheduledTasks: true,
-            projectStartDate: new Date('03/31/2024'),
-            projectEndDate: new Date('05/30/2024'),
+            projectStartDate: new Date('03/30/2025'),
+            projectEndDate: new Date('05/30/2025'),
         });
     gantt.appendTo('#ColumnWbs');
 

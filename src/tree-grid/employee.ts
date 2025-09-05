@@ -24,7 +24,7 @@ TreeGrid.Inject(Page, Freeze, Sort, Filter);
                 return [
                     ...baseColumns,
                     { field: 'Location', template: '#flagTemplate', headerText: 'Location', width: 200, clipMode: 'EllipsisWithTooltip' },
-                    { field: 'JoinDate', headerText: 'Date Joined', textAlign: 'Right', width: 185, format: { skeleton: 'yMd', type: 'date' }, clipMode: 'EllipsisWithTooltip' },
+                    { field: 'JoinDate', headerText: 'Date Joined', format: 'yMd', type:'date', clipMode: 'EllipsisWithTooltip', textAlign: 'Right', width: 185 },
                     { field: 'Salary', headerText: 'Salary Per Month', format: 'c0', textAlign: 'Right', width: 210, clipMode: 'EllipsisWithTooltip' },
                     { field: 'Email', template: '#emailTemplate', headerText: 'Email', textAlign: 'Center', width: 200, clipMode: 'EllipsisWithTooltip' },
                 ];
@@ -105,6 +105,7 @@ TreeGrid.Inject(Page, Freeze, Sort, Filter);
             treegrid.clearSorting();
             treegrid.columns = getColumns(viewer);
             treegrid.refreshColumns();
+            treegrid.refresh();
         } else {
             treegrid = new TreeGrid({
                 dataSource: employeeData,

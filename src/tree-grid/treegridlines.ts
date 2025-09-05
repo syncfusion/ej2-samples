@@ -43,8 +43,7 @@ TreeGrid.Inject( Page );
         value: 'Vertical',
         change: (e: ChangeEventArgs) => {
             let lines: any = <string>e.value;
-            treegrid.gridLines = lines;
-            treegrid.refresh();
+            treegrid.setProperties({ gridLines: lines }, false);
         },
     });
     dropDownListObject.appendTo('#ddlelement');

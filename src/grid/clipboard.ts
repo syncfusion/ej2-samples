@@ -53,6 +53,8 @@ Grid.Inject(Page, Toolbar, Sort, Filter, Edit);
                         let withHeader: boolean = args.item.id === 'copyHeader' ? true : false;
                         grid.copy(withHeader);
                     } else {
+                        alertDialogObj.content = args.item.id === 'copyHeader' ? 'Atleast one row should be selected to copy with header' : 'Atleast one row should be selected to copy';
+                        alertDialogObj.header = args.item.id === 'copyHeader' ? 'Copy with Header' : 'Copy';
                         alertDialogObj.show();
                     }
                 }

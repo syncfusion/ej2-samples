@@ -7,7 +7,7 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
  * Auto wrap sample
  */
 (window as any).default = (): void => {
-    let grid: TreeGrid = new TreeGrid(
+    let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: sampleData,
             childMapping: 'subtasks',
@@ -36,7 +36,7 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
                 }
             ]
         });
-    grid.appendTo('#Grid');
+    treegrid.appendTo('#TreeGrid');
 
     let dropDownColumns: DropDownList = new DropDownList({
         dataSource: [{ id: 'CellEditing', name: 'Cell Editing' }, {id: 'RowEditing', name: 'Row Editing'}],
@@ -45,13 +45,12 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
         width: 140,
         change: (e: ChangeEventArgs) => {
             if (e.value === 'CellEditing') {
-                grid.editSettings.mode = 'Cell';
-                grid.toolbar = ['Add', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'];
+                treegrid.editSettings.mode = 'Cell';
+                treegrid.toolbar = ['Add', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'];
             } else {
-                grid.editSettings.mode = 'Row';
-                grid.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'];
+                treegrid.editSettings.mode = 'Row';
+                treegrid.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'];
             }
-
         }
     });
     dropDownColumns.appendTo('#editmodes');

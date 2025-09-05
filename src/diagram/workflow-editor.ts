@@ -302,7 +302,6 @@ SymbolPalette.Inject(BpmnDiagrams);
   diagram.appendTo("#diagram");
 
   diagram.selectionChange = (args) => {
-    debugger;
     if (args.state !== "Changed") return;
     var connector = diagram.selectedItems.connectors[0];
     var handle = null;

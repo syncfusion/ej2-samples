@@ -11,13 +11,13 @@ enableRipple(false);
 /**
  * PivotView Default Sample.
  */
-PivotView.Inject(FieldList, VirtualScroll, GroupingBar, Toolbar, PDFExport, ExcelExport);
+PivotView.Inject(FieldList, GroupingBar, Toolbar, PDFExport, ExcelExport);
 
 (window as any).default = (): void => {
     loadCultureFiles();
     let pivotObj: PivotView = new PivotView({
         dataSourceSettings: {
-            url: 'https://ej2services.syncfusion.com/js/release/api/pivot/post',
+            url: 'https://ej2services.syncfusion.com/js/development/api/pivot/post',
             mode: 'Server',
             expandAll: false,
             enableSorting: true,
@@ -25,18 +25,21 @@ PivotView.Inject(FieldList, VirtualScroll, GroupingBar, Toolbar, PDFExport, Exce
             ],
             values: [
                 { name: 'Sold', caption: 'Units Sold' },
-                { name: 'Price', caption: 'Sold Amount' }
+                { name: 'Amount', caption: 'Sold Amount' }
             ],
-            rows: [{ name: 'ProductID', caption: 'Product ID' }, {name: 'Country'}],
-            drilledMembers: [{ name: 'ProductID', items: ['PRO-10001', 'PRO-10002', 'PRO-10003'] }],
-            formatSettings: [{ name: 'Price', format: 'C0' }, { name: 'Sold', format: 'N0' }],
-            filters: []
+            rows: [{ name: 'Country' }, {name: 'Products'}],
+            drilledMembers: [{ name: 'Country', items: ['France', 'Germany'] }],
+            formatSettings: [{ name: 'Amount', format: 'C0' }, { name: 'Sold', format: 'N0' }],
+            filters: [],
+            fieldMapping: [
+                { name: 'Product_Categories', groupName: 'Product Details'},
+                { name: 'Products', groupName: 'Product Details' }
+            ],
         },
         width: '100%',
         height: 450,
         showFieldList: true,
         showGroupingBar: true,
-        enableVirtualization: true,
         allowDataCompression: true,
         allowExcelExport: true,
         allowPdfExport: true,
@@ -86,7 +89,7 @@ PivotView.Inject(FieldList, VirtualScroll, GroupingBar, Toolbar, PDFExport, Exce
     pivotObj.appendTo('#PivotView');
 
     function gridToolbarClicked(args: any) {
-        if (pivotObj && pivotObj.gridSettings && pivotObj.gridSettings.layout !== args.item.id) {
+        if (pivotObj && pivotObj.gridSettings && pivotObj.gridSettings.layout !== args.item.id && (args.item.id == 'Compact' || args.item.id == 'Tabular')) {
             pivotObj.setProperties({
                 gridSettings: {
                     layout: args.item.id

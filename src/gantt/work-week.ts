@@ -27,7 +27,9 @@ MultiSelect.Inject(CheckBoxSelection);
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -37,11 +39,11 @@ MultiSelect.Inject(CheckBoxSelection);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID:'ParentId'
             },
             treeColumnIndex: 1,
             columns: [
-                { field: 'TaskID', width: 80 },
+                { field: 'TaskID', visible: false, width: 80 },
                 { field: 'TaskName',headerText: 'Name', width: 250 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
@@ -56,8 +58,8 @@ MultiSelect.Inject(CheckBoxSelection);
                 columnIndex: 1
             },
             workWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#WorkWeek');
     const select: any = (args: SelectEventArgs) => {

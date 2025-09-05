@@ -5,7 +5,7 @@ import { Button } from '@syncfusion/ej2-buttons';
 
     (window as TemplateFunction).getThumpImage = (index: number) => {
         const birds: string[] = ['cardinal', 'hunei', 'costa-rica', 'kaohsiung', 'bee-eater'];
-        return `src/carousel/images/${birds[index]}.png`;
+        return 'src/carousel/images/' + birds[index] + '.png';
     };
     interface TemplateFunction extends Window {
         getThumpImage?: Function;

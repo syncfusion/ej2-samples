@@ -19,7 +19,8 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
     let gantt: Gantt = new Gantt(
         {
             dataSource: templateData,
-            height: '450px',
+            height: '650px',
+            taskbarHeight:25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -53,8 +54,8 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
                 name: 'resourceName'
             },
             resources: editingResources,
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/24/2025'),
+            projectEndDate: new Date('07/06/2025')
         });
     gantt.appendTo('#ColumnTemplate');
 };

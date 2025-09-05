@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 
 import {
     Diagram,
@@ -121,10 +120,10 @@ function drop(args:any) {
             };
             treeObj.addNodes([item], targetNodeId, null);
             if (args.target instanceof Node && targetNodeId && id) {
-            connector = { sourceID: targetNodeId, targetID: id };
-            diagram.add(connector);
-            diagram.doLayout();
-             diagram.fitToPage();
+                connector = { sourceID: targetNodeId, targetID: id };
+                diagram.add(connector);
+                diagram.doLayout();
+                diagram.fitToPage();
             }
             index++;
             workingData.push(item);
@@ -306,7 +305,6 @@ function addNode(nodeId:any) {
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-    loadCultureFiles();
     // Initializtion of the diagram.
     diagram = new Diagram({
         width: '100%', height: '700px', snapSettings: { constraints: SnapConstraints.None },

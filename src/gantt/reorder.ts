@@ -33,7 +33,9 @@ Gantt.Inject(Selection, Reorder);
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             allowReordering: true,
             taskFields: {
@@ -44,7 +46,7 @@ Gantt.Inject(Selection, Reorder);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID: 'ParentId'
             },
             columns: [
                 { field: 'TaskID', headerText: 'ID', width: 100 },
@@ -57,7 +59,7 @@ Gantt.Inject(Selection, Reorder);
             ],
             treeColumnIndex: 1,
             labelSettings: {
-                leftLabel: 'TaskName'
+                rightLabel: 'TaskName'
             },
             splitterSettings: {
                 columnIndex: 4
@@ -69,8 +71,8 @@ Gantt.Inject(Selection, Reorder);
                     dropDownIndex.value = index.toString();
                 }
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/31/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#ReorderColumn');
 

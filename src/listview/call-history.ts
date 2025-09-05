@@ -4,17 +4,11 @@ import { loadCultureFiles } from '../common/culture-loader';
  */
 import { ListView } from '@syncfusion/ej2-lists';
 import { Tab, SelectEventArgs } from '@syncfusion/ej2-navigations';
-import { Browser } from '@syncfusion/ej2-base';
 import { callHistoryData } from './datasource';
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
-    if (!Browser.isDevice) {
-        document.getElementsByClassName('layoutWrapper')[0].classList.add('e-device-layout');
-    } else {
-        document.getElementsByClassName('tabContainer')[0].classList.add('e-visbile-layer');
-    }
     // Template of the list item
     let template: string = '<div class="e-list-wrapper e-list-avatar e-list-multi-line">' +
         '<span class="e-avatar e-icon"></span><span class="e-list-item-header">${text}</span> <span class="${type} e-list-content">' +

@@ -8,7 +8,7 @@
             </div>
         </div>
         <div style="display: flex;">
-            <label for="unchecked" id="ResourceMultiTaskbarallow" style="margin:0px 5px 0px 5px;font-size: 15px;"> Allow Taskbar Overlap </label>
+            <label for="unchecked" id="ResourceMultiTaskbarallow" style="font-size: 15px;margin-right: 5px;"> Allow Taskbar Overlap </label>
             <div>
             <input id="unchecked" type="checkbox">
             </div> 
@@ -46,18 +46,30 @@
         To edit,  inject the <code>Toolbar</code> module using the <code>Gantt.Inject(Toolbar)</code> method and <code>Edit</code> module
         using the <code>Gantt.Inject(Edit)</code> method.
     </p> 
+    <br>
+    <p>More information on the Essential<sup>®</sup> JS2 Gantt Chart can be found in this <a target="_blank" href="https://ej2.syncfusion.com/documentation/gantt/multi-taskbar">documentation section</a>.</p>
 </div>
 
 <style>
+    /* Fluent2 Theme */
     .fluent2 #ResourceMultiTaskbarallow ,
     .fluent2-dark #ResourceMultiTaskbarallow,
     .fluent2-highcontrast #ResourceMultiTaskbarallow{
-         padding: 5px;
+        padding: 5px;
+        font-size: 15px !important;
+        margin-right: -5px !important;
+        margin-top: 0px !important;
     }
     .e-bigger  {
             #ResourceMultiTaskbarallow {
             margin: 5px 5px 0px 5px !important;
         }
+    }
+    .bootstrap5\.3 #checkboxes{
+        margin-top: 0px !important;
+    }
+    .e-bigger.fluent2 #ResourceMultiTaskbarallow, .e-bigger.fluent2-dark #ResourceMultiTaskbarallow, .e-bigger.fluent2-highcontrast #ResourceMultiTaskbarallow {
+        margin: 5px -5px 0px 5px !important;
     }
 </style>
 

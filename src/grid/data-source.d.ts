@@ -77,3 +77,4 @@ export declare function createDetailSalesData(): void;
 export declare let pizzaData: Object[];
 export declare let stackedHeaderData: Object[];
 export declare const sales: object[];
+export declare let telecastData: Object[];

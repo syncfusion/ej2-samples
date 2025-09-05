@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Selection, Toolbar, CriticalPath, Edit } from '@syncfusion/ej2-gantt';
-import { projectNewData } from './data-source';
+import { criticalPathData } from './data-source';
 
 /**
  * Critical Path Gantt sample
@@ -11,8 +11,10 @@ Gantt.Inject(Selection, Toolbar, CriticalPath, Edit);
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
         {
-            dataSource: projectNewData,
-            height: '450px',
+            dataSource: criticalPathData,
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             enableCriticalPath: true,
             taskFields: {
                 id: 'TaskID',
@@ -22,7 +24,7 @@ Gantt.Inject(Selection, Toolbar, CriticalPath, Edit);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID: 'ParentId'
             },
             editSettings: {
                 allowAdding: true,
@@ -45,8 +47,8 @@ Gantt.Inject(Selection, Toolbar, CriticalPath, Edit);
             labelSettings: {
                 leftLabel: 'TaskName'
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('06/01/2025')
         });
     gantt.appendTo('#CriticalPath');
 };

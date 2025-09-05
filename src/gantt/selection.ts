@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Selection  } from '@syncfusion/ej2-gantt';
-import { Button } from '@syncfusion/ej2-buttons';
+import { Button, CheckBox } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { projectNewData } from './data-source';
 
@@ -14,7 +14,9 @@ Gantt.Inject(Selection);
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             allowSelection: true,
             treeColumnIndex: 1,
@@ -26,21 +28,32 @@ Gantt.Inject(Selection);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID: 'ParentId'
             },
             selectionSettings: {
                 mode: 'Row',
                 type: 'Single',
                 enableToggle: false
             },
+            allowResizing: true,
+            columns: [
+                { field: 'TaskID', width: 70 },
+                { field: 'TaskName', width: 250 },
+                { field: 'StartDate'},
+                { field: 'EndDate'},
+                { field: 'Duration'},
+                { field: 'Predecessor'},
+                { field: 'Progress'},
+            ],
+            enableHover: true,
             labelSettings: {
                 leftLabel: 'TaskName'
             },
             splitterSettings: {
                 columnIndex: 2
             },
-            projectStartDate: new Date('03/27/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#Selection');
 
@@ -49,6 +62,7 @@ Gantt.Inject(Selection);
             { id: 'Row', type: 'Row' },
             { id: 'Cell', type: 'Cell' }
         ],
+        width: '125px',
         popupWidth: '100px',
         value: 'Row',
         fields: { text: 'type', value: 'id' },
@@ -60,6 +74,7 @@ Gantt.Inject(Selection);
             { id: 'Single', type: 'Single' },
             { id: 'Multiple', type: 'Multiple' }
         ],
+        width: '125px',
         popupWidth: '100px',
         value: 'Single',
         fields: { text: 'type', value: 'id' },
@@ -71,6 +86,7 @@ Gantt.Inject(Selection);
             { id: true, type: 'Enable' },
             { id: false, type: 'Disable' }
         ],
+        width: '125px',
         popupWidth: '100px',
         value: false,
         fields: { text: 'type', value: 'id' },
@@ -88,4 +104,15 @@ Gantt.Inject(Selection);
         gantt.selectionSettings.type = type;
         gantt.selectionSettings.enableToggle = toggle;
     };
+
+    let hover: CheckBox = new CheckBox({ checked: true });
+    hover.appendTo('#hover');
+    document.getElementById('hover').onclick = function () {
+        if (hover.checked) {
+            gantt.enableHover = true;
+        } else {
+             gantt.enableHover = false;
+        }
+    };
+
 };

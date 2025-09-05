@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { PivotView, GroupingBar, FieldList, VirtualScroll , Toolbar, ExcelExport } from '@syncfusion/ej2-pivotview';
+import { PivotView, GroupingBar, FieldList, Toolbar, ExcelExport } from '@syncfusion/ej2-pivotview';
 import { enableRipple, Browser } from '@syncfusion/ej2-base';
 import { Menu } from '@syncfusion/ej2-navigations';
 enableRipple(false);
@@ -9,13 +9,13 @@ enableRipple(false);
 /**
  * PivotView Default Sample.
  */
-PivotView.Inject(FieldList, VirtualScroll, GroupingBar, ExcelExport, Toolbar);
+PivotView.Inject(FieldList, GroupingBar, ExcelExport, Toolbar);
 
 (window as any).default = (): void => {
     loadCultureFiles();
     let pivotObj: PivotView = new PivotView({
         dataSourceSettings: {
-            url: 'https://ej2services.syncfusion.com/js/release/api/pivot/post',
+            url: 'https://ej2services.syncfusion.com/js/development/api/pivot/post',
             mode: 'Server',
             expandAll: true,
             enableSorting: true,
@@ -23,17 +23,16 @@ PivotView.Inject(FieldList, VirtualScroll, GroupingBar, ExcelExport, Toolbar);
             ],
             values: [
                 { name: 'Sold', caption: 'Units Sold' },
-                { name: 'Price', caption: 'Sold Amount' }
+                { name: 'Amount', caption: 'Sold Amount' }
             ],
-            rows: [{ name: 'Country' }, {name: 'Product'}],
-            formatSettings: [{ name: 'Price', format: 'C0' }, { name: 'Sold', format: 'N0' }],
-            filters: [],
+            rows: [{ name: 'Country' }, {name: 'Products'}],
+            formatSettings: [{ name: 'Amount', format: 'C0' }, { name: 'Sold', format: 'N0' }],
+            filters: []
         },
         width: '100%',
         height: 450,
         showFieldList: true,
         showGroupingBar: true,
-        enableVirtualization: true,
         allowDataCompression: true,
         allowExcelExport: true,
         allowPdfExport: true,
@@ -51,8 +50,8 @@ PivotView.Inject(FieldList, VirtualScroll, GroupingBar, ExcelExport, Toolbar);
         },
         toolbarRender: function (args) {
             args.customToolbar.splice(0, 0, {
-                text: 'Excel Export',
-                tooltipText: 'Excel Export',
+                prefixIcon: 'e-menu-icon e-pivotview-excel-export e-icons',
+                tooltipText: 'Excel Export as Pivot',
                 click: toolbarClicked.bind(this),
             });
             args.customToolbar.splice(1, 0, {
@@ -94,7 +93,7 @@ PivotView.Inject(FieldList, VirtualScroll, GroupingBar, ExcelExport, Toolbar);
         pivotObj.exportAsPivot();
     }
     function gridToolbarClicked(args: any) {
-        if (pivotObj && pivotObj.gridSettings && pivotObj.gridSettings.layout !== args.item.id) {
+        if (pivotObj && pivotObj.gridSettings && pivotObj.gridSettings.layout !== args.item.id && (args.item.id == 'Compact' || args.item.id == 'Tabular')) {
             pivotObj.setProperties({
                 gridSettings: {
                     layout: args.item.id

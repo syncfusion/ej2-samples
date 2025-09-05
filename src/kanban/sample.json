@@ -3,6 +3,7 @@
     "directory": "kanban",
     "category": "Data Visualization",
     "ftName": "kanban",
+    "type": "update",
     "samples": [
         {
             "url": "overview",
@@ -122,6 +123,14 @@
             "category": "Columns",
             "description": "The example demonstrates how to show or hide the columns of JavaScript Kanban board dynamically, which is achieved from code using the public methods.",
             "api": { "Kanban": [ "dataSource", "keyField", "columns", "cardSettings" ] }
+        },
+        {
+            "url": "column-rearrangement",
+            "name": "Column Rearrangement",
+            "category": "Columns",
+            "description": "This example demonstrates the column rearrangement of the Kanban control. You can drag and drop the columns to rearrange them across multiple stages of the Kanban board.",
+            "api": { "Kanban": [ "dataSource", "keyField", "columns", "cardSettings", "allowColumnDragAndDrop" ] },
+            "type": "new"
         },
         {
             "url": "wip-validation",

@@ -56,6 +56,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         format: 'MMM yyyy',
         start: 'Year',
         depth: 'Year',
+        cssClass: 'pivot-datepicker',
         change: function (args) {
             startDate = args.value as Date;
         }
@@ -71,6 +72,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         format: 'MMM yyyy',
         start: 'Year',
         depth: 'Year',
+        cssClass: 'pivot-datepicker',
         change: function (args) {
             endDate = args.value as Date;
         }

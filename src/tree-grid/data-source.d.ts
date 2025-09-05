@@ -1,6 +1,6 @@
 export declare let employeeData: Object[];
 export declare let summaryRowData: Object[];
-export declare let summaryData: Object[];
+export declare let summaryData: object[];
 export declare let sampleData: Object[];
 export declare let dragData: Object[];
 export declare let textWrapData: Object[];

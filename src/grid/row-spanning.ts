@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, QueryCellInfoEventArgs, Freeze } from '@syncfusion/ej2-grids';
 import { columnSpanData, ColumnSpanDataType } from './data-source';
 
@@ -8,7 +7,6 @@ Grid.Inject(Freeze);
  * Grid Column spanning sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let grid: Grid = new Grid(
         {
             dataSource: columnSpanData,

@@ -3,7 +3,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { ChatUI, UserModel,MessageModel, MessageToolbarItemClickedEventArgs } from '@syncfusion/ej2-interactive-chat';
 import { Switch } from '@syncfusion/ej2-buttons';
 import { DropDownList, MultiSelect } from '@syncfusion/ej2-dropdowns';
-import { communityMessagedata } from './messageData';
+import { communityMessagedata, communityMessageAdmin, communityMessageUser1, communityMessageUser2, communityMessageUser3, communityMessageUser4 } from './messageData';
 
 /**
  * Api sample
@@ -12,6 +12,7 @@ import { communityMessagedata } from './messageData';
     loadCultureFiles();
     let chatUiInst = new ChatUI({
         messages: communityMessagedata,
+        mentionUsers: [ communityMessageAdmin, communityMessageUser1, communityMessageUser2, communityMessageUser3, communityMessageUser4 ],
         user: { user: 'Alice', id: 'admin' },
         headerIconCss: "chat_header_icon",
         headerText: 'Design Community',
@@ -32,6 +33,7 @@ import { communityMessagedata } from './messageData';
                         isForwarded: true,
                         isPinned: args.message.isPinned,
                         author: args.message.author,
+                        mentionUsers: args.message.mentionUsers,
                         text: args.message.text,
                         timeStamp: args.message.timeStamp,
                         timeStampFormat: args.message.timeStampFormat,
@@ -53,6 +55,14 @@ import { communityMessagedata } from './messageData';
         { id: 'chatFooter', checked: true, property: 'showFooter' },
         { id: 'compactmode', checked: false, property: 'enableCompactMode' }
     ];
+
+    const mentionUsers: any = {
+        'Alice Brown': communityMessageAdmin,
+        'Michale Suyama': communityMessageUser1,
+        'Charlie': communityMessageUser2,
+        'Janet': communityMessageUser3,
+        'Jordan Peele': communityMessageUser4
+    };
 
     chatProperties.forEach(toggle => {
         new Switch({
@@ -89,4 +99,18 @@ import { communityMessagedata } from './messageData';
             chatUiInst.typingUsers = chatUiInst.typingUsers.filter(user => user.user !== args.itemData.value);
         }
     }).appendTo('#chat_typingUsers');
+
+    new MultiSelect({
+        placeholder: 'Mention users...',
+        value: ["Alice Brown", "Michale Suyama", "Charlie", "Janet", "Jordan Peele"],
+        select: (args: { itemData: { value: string } }) => {
+            const user = mentionUsers[args.itemData.value];
+            chatUiInst.mentionUsers = [...chatUiInst.mentionUsers, user];
+            chatUiInst.dataBind();
+        },
+        removed: (args: { itemData: { value: string } }) => {
+            chatUiInst.mentionUsers = chatUiInst.mentionUsers.filter(user => user.user !== args.itemData.value);
+            chatUiInst.dataBind();
+        }
+    }, '#chat_mentionUsers');
 };

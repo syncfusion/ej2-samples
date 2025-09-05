@@ -33,30 +33,32 @@ let ganttChart: Gantt;
             duration: 'Duration',
             progress: 'Progress',
             dependency: 'Predecessor',
-            child: 'subtasks'
+            parentID:'ParentId'
         },
         columns: [
-            { field: 'TaskID', width: 80 },
+            { field: 'TaskID', width: 120 },
             { field: 'TaskName', headerText: 'Name', width: 250 },
             { field: 'StartDate' },
             { field: 'Duration' },
             { field: 'EndDate' },
             { field: 'Progress' },
-            { field: 'Predecessor' }
+            { field: 'Predecessor', type: 'string', width:190 }
         ],
         treeColumnIndex: 0,
         allowFiltering: true,
         includeWeekend: true,
-        height: '410px',
+        height: '650px',
+        rowHeight:46,
+        taskbarHeight:25,
         splitterSettings: {
-            columnIndex: 4
+            columnIndex: 2
         },
         rowSelected: rowSelectEvent,
         labelSettings: {
             rightLabel: 'TaskName'
         },
-        projectStartDate: new Date('04/01/2024'),
-        projectEndDate: new Date('07/06/2024')
+        projectStartDate: new Date('03/30/2025'),
+        projectEndDate: new Date('07/20/2025')
     });
     ganttChart.appendTo('#AdvancedFiltering');
 

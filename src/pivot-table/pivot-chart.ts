@@ -31,7 +31,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
       columns: [{ name: 'Country' }, { name: 'Products' }],
       valueSortSettings: { headerDelimiter: ' - ' },
       dataSource: Pivot_Data,
-      drilledMembers: [{ name: 'Year', items: ['FY 2015'] }],
+      drilledMembers: [{ name: 'Year', items: ['FY 2022'] }],
       formatSettings: [{ name: 'Amount', format: 'C' }],
       values: [{ name: 'Amount', caption: 'Sales Amount' }],
       filters: []

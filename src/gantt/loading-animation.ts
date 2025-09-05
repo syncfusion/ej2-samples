@@ -31,14 +31,16 @@ Gantt.Inject(Selection, VirtualScroll,Sort,Filter);
         loadingIndicator: { indicatorType: 'Shimmer' },
         columns: [
             { field: 'TaskID' },
-            { field: 'TaskName' },
-            { field: 'StartDate' },
+            { field: 'TaskName', width:'200px'},
+            { field: 'StartDate',width: 170 },
             { field: 'Duration' },
             { field: 'Progress' },
         ],
         allowSelection: true,
         gridLines: 'Both',
-        height: '450px',
+        height: '650px',
+        rowHeight:46,
+        taskbarHeight:25,
         splitterSettings: {
             columnIndex: 2
         },
@@ -51,6 +53,7 @@ Gantt.Inject(Selection, VirtualScroll,Sort,Filter);
         dataSource: indicatortypes,
         fields: { text: 'type', value: 'id' },
         value: 'Shimmer',
+        width: '125px',
         change: function (e:any) {
             if (dropDownMode.value === 'Shimmer') {
                 gantt.loadingIndicator.indicatorType = 'Shimmer';

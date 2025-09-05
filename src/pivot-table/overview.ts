@@ -4,10 +4,11 @@ import {
     ConditionalFormatting, IDataSet, RenameReportArgs, SaveReportArgs, FetchReportArgs, LoadReportArgs, NumberFormatting,
     VirtualScroll, Grouping, GroupingBar, DrillThrough, IAxisSet, PDFExport, ExcelExport
 } from '@syncfusion/ej2-pivotview';
-import { enableRipple, select, createElement } from '@syncfusion/ej2-base';
+import { enableRipple, select, createElement, Browser } from '@syncfusion/ej2-base';
 import { ILoadedEventArgs, ChartTheme } from '@syncfusion/ej2-charts';
 import * as data from './pivot-data/universitydata.json';
 import { ExcelQueryCellInfoEventArgs } from '@syncfusion/ej2-grids';
+
 enableRipple(false);
 
 PivotView.Inject(FieldList, CalculatedField, Toolbar, ConditionalFormatting, NumberFormatting, VirtualScroll, Grouping, GroupingBar, DrillThrough, PDFExport, ExcelExport);
@@ -99,6 +100,11 @@ let Universitydata: IDataSet[] = (data as any).data;
         },
         width: '100%',
         height: 600,
+        load: function (args: any): void {
+            if (Browser.isDevice) {
+                 args.dataSourceSettings.rows = [{ name: 'rank_display', caption: 'Rank', expandAll: true, allowDragAndDrop: false }];
+            }
+        },
         saveReport: function (args: SaveReportArgs): void {
             let reports: SaveReportArgs[] = [];
             let isSaved: boolean = false;

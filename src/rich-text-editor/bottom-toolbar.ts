@@ -73,20 +73,39 @@ RichTextEditor.Inject(HtmlEditor, Toolbar, QuickToolbar, FormatPainter, Table, L
     });
 
     chatUI.appendTo('#chatContainer');
+    function isValidContent(html: string): boolean {
+            if (!html || html.trim().length === 0)
+                return false;
+            const tempDiv: HTMLDivElement = document.createElement('div');
+            tempDiv.innerHTML = html;
+            // Check for meaningful text
+            const textContent: string = tempDiv.innerHTML.replace(/<br\s*\/?>/gi, '').replace(/&nbsp;/gi, '').replace(/<[^>]*>/g, '').trim();
+            if (textContent.length > 0)
+                return true;
+            // Check for media elements
+            const mediaTags: string[] = ['img', 'table', 'audio', 'video', 'iframe'];
+            for (var tag of mediaTags) {
+                if (tempDiv.getElementsByTagName(tag).length > 0)
+                    return true;
+            }
+            return false;
+    }
 
     document.addEventListener('click', (event: MouseEvent) => {
         const target = event.target as HTMLElement;
         if (target && target.id === 'sendMessage') {
             if (chatRTE?.value && chatRTE.value.length > 0) {
                 const value: string = chatRTE.value;
-                chatRTE.value = '';
-                chatRTE.dataBind();
-                chatUI.addMessage({
-                    author: currentUserModel,
-                    text: value
-                });
-                chatRTE.clearUndoRedo();
-                chatRTE.focusIn();
+                if (isValidContent(value)) {
+                    chatRTE.value = '';
+                    chatRTE.dataBind();
+                    chatUI.addMessage({
+                        author: currentUserModel,
+                        text: value
+                    });
+                    chatRTE.clearUndoRedo();
+                    chatRTE.focusIn();
+                }
             }
         } else if (target && target.id === 'cancelMessage') {
             chatRTE.value = '';

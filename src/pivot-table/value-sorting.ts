@@ -16,7 +16,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     let pivotObj: PivotView = new PivotView({
         dataSourceSettings: {
             valueSortSettings: {
-                columnHeaderText: 'FY 2015##In Stock',
+                columnHeaderText: 'FY 2022##In Stock',
                 headerDelimiter: '##',
                 columnSortOrder: 'Descending',
                 rowHeaderText: 'France',

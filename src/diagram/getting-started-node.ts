@@ -57,7 +57,13 @@ function setLockConstraints(args: CheckBoxChangeEventArgs): void {
             );
             node.constraints |= NodeConstraints.ReadOnly;
         } else {
-            node.constraints = NodeConstraints.Default;
+            node.constraints |= (
+                NodeConstraints.Resize |
+                NodeConstraints.Rotate |
+                NodeConstraints.Drag |
+                NodeConstraints.Delete
+            );
+            node.constraints &= ~NodeConstraints.ReadOnly;
         }
     }
 

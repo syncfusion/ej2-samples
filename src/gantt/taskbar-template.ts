@@ -22,13 +22,13 @@ Gantt.Inject(DayMarkers, Selection);
                 dependency: 'Predecessor'
             },
             columns: [
-                { field: 'TaskId', headerText: 'Event Id' },
+                { field: 'TaskId', headerText: 'Event Id', width: 130},
                 { field: 'TaskName', headerText: 'Event Name', width: '250', clipMode: 'EllipsisWithTooltip' },
                 { field: 'StartDate', headerText: 'Start Time' },
                 { field: 'EndDate', headerText: 'End Time' },
                 { field: 'Winner', headerText: 'Winner' },
                 { field: 'Movie', headerText: 'Movie' },
-                { field: 'Performance', headerText: 'Moments / Performance Details' }
+                { field: 'Performance', headerText: 'Moments / Performance Details', width:250 }
             ],
             splitterSettings: {
                 columnIndex: 1
@@ -39,7 +39,7 @@ Gantt.Inject(DayMarkers, Selection);
             dayWorkingTime: [{ from: 0, to: 24 }],
             durationUnit: 'Minute',
             timelineSettings: {
-                timelineUnitSize: 60,
+                timelineUnitSize: 70,
                 topTier: {
                     unit: 'Hour',
                     format: 'MMM dd, yyyy'
@@ -52,29 +52,29 @@ Gantt.Inject(DayMarkers, Selection);
             },
             eventMarkers: [
                 {
-                    day: new Date('03/05/2024 07:09:00 PM'),
+                    day: new Date('03/05/2025 07:09:00 PM'),
                     label: 'Performance'
                 }, {
-                    day: new Date('03/05/2024 07:46:00 PM'),
+                    day: new Date('03/05/2025 07:46:00 PM'),
                     label: 'Moments'
                 }, {
-                    day: new Date('03/05/2024 07:59:00 PM'),
+                    day: new Date('03/05/2025 07:59:00 PM'),
                     label: 'Performance'
                 }, {
-                    day: new Date('03/05/2024 08:08:00 PM'),
+                    day: new Date('03/05/2025 08:08:00 PM'),
                     label: 'Moments'
                 }, {
-                    day: new Date('03/05/2024 08:24:00 PM'),
+                    day: new Date('03/05/2025 08:24:00 PM'),
                     label: 'Moments'
                 }, {
-                    day: new Date('03/05/2024 08:31:00 PM'),
+                    day: new Date('03/05/2025 08:31:00 PM'),
                     label: 'Performance'
                 }, {
-                    day: new Date('03/05/2024 08:47:00 PM'),
+                    day: new Date('03/05/2025 08:47:00 PM'),
                     label: 'Moments'
                 }
             ],
-            height: '450px',
+            height: '650px',
             taskbarTemplate: '#childtask',
             milestoneTemplate: '#milestone',
             labelSettings: {
@@ -83,8 +83,8 @@ Gantt.Inject(DayMarkers, Selection);
             tooltipSettings: {
                 taskbar: '#tooltip',
             },
-            projectStartDate: new Date('03/05/2024 06:00 PM'),
-            projectEndDate: new Date('03/05/2024 09:50 PM')
+            projectStartDate: new Date('03/05/2025 06:00 PM'),
+            projectEndDate: new Date('03/05/2025 09:50 PM')
         });
     gantt.appendTo('#TaskbarTemplate');
 };

@@ -3,7 +3,6 @@
     "directory": "ai-assistview",
     "category": "Interactive Chat",
     "ftName": "AIAssitView",
-    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -45,7 +44,6 @@
             "url": "attachments",
             "name": "File Attachments",
             "category": "AI AssistView",
-            "type":"new",
             "api": { "AIAssitView": ["promptRequest","promptSuggestions","attachmentSettings","enableAttachments","bannerTemplate"] },
             "description": "Showcases the AiAssistView control with its attachment support.",
             "sourceFiles": [
@@ -68,7 +66,7 @@
         },
         {
             "url": "dialog",
-            "name": "Dialog",
+            "name": "Notes Assistant",
             "category": "Integration",
             "api":{ "AIAssitView": ["promptSuggestions", "prompts", "promptRequest", "toolbarSettings", "bannerTemplate", "responseToolbarSettings", "cssClass"] },
             "description": "Showcases the AiAssistView control with other component integration",

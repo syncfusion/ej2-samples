@@ -12,7 +12,9 @@ Gantt.Inject(Selection, DayMarkers);
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -22,11 +24,11 @@ Gantt.Inject(Selection, DayMarkers);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID:'ParentId'
             },
             treeColumnIndex: 1,
             columns: [
-                { field: 'TaskID', width: 80 },
+                { field: 'TaskID', visible:false ,width: 80 },
                 { field: 'TaskName',headerText: 'Name', width: 250 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
@@ -35,25 +37,29 @@ Gantt.Inject(Selection, DayMarkers);
                 { field: 'Progress' },
             ],
             labelSettings: {
-                leftLabel: 'TaskName'
+                rightLabel: 'TaskName'
             },
             holidays: [
                 {
-                    from: new Date('04/04/2024'),
-                    to: new Date('04/04/2024'),
-                    label: 'Local Holiday'
-                }, {
-                    from: new Date('04/19/2024'),
-                    to: new Date('04/19/2024'),
+                    from: new Date('03/28/2025'),
+                    to: new Date('03/28/2025'),
                     label: 'Good Friday'
+                },{
+                    from: new Date('03/30/2025'),
+                    to: new Date('03/30/2025'),
+                    label: 'Easter Sunday'
                 }, {
-                    from: new Date('04/30/2024'),
-                    to: new Date('04/30/2024'),
-                    label: 'Release Holiday'
-                },
+                    from: new Date('05/26/2025'),
+                    to: new Date('05/26/2025'),
+                    label: 'Memorial Day'
+                }, {
+                    from: new Date('07/04/2025'),
+                    to: new Date('07/04/2025'),
+                    label: 'Independence Day'
+                }, 
             ],
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            projectStartDate: new Date('03/25/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#Holidays');
 };

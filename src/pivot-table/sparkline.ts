@@ -26,12 +26,11 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             dataSource: Pivot_Data,
             rows: [{ name: 'Region' }, { name: 'Product' }],
             columns: [{ name: 'Year' }],
-            values: [{ name: 'Sales', caption: 'Sum of SALES' }, { name: 'Amount' }],
-            formatSettings: [{ name: 'Amount', format: 'C0' }, { name: 'Month' }],
-            sortSettings: [{ name: 'Month', membersOrder: ['January'] }],
+            values: [{ name: 'Amount' }],
+            formatSettings: [{ name: 'Amount', format: 'C0' }],
             expandAll: false,
             filters: [],
-            drilledMembers: [{ name: 'Region', items: ['Antarctica'] }]
+            drilledMembers: [{ name: 'Region', items: ['Asia'] }]
         },
         width: '100%',
         height: 450,
@@ -114,7 +113,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                     lowPointColor: 'red',
                     tiePointColor: 'pink',
                     tooltipSettings: {
-                        format: '${xval}: ${yval}',
+                        format: '${xval}: $ ${yval}',
                         visible: true,
                         trackLineSettings: {
                             visible: true,

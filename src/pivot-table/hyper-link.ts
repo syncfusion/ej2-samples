@@ -197,7 +197,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     valueInput2.appendTo('#hyperlink-value2');
     let textInput: MaskedTextBox = new MaskedTextBox({
         value: '',
-        placeholder: 'Example: "FY 2015.In Stock"',
+        placeholder: 'Example: "FY 2022.In Stock"',
         width: '100%'
     });
     textInput.appendTo('#hyperlink-text');

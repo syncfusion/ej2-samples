@@ -12,7 +12,9 @@ Gantt.Inject(Sort, DayMarkers, Selection );
     let gantt: Gantt = new Gantt(
         {
             dataSource: editingData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             highlightWeekends: true,
             allowSelection: true,
             allowSorting: true,
@@ -26,10 +28,10 @@ Gantt.Inject(Sort, DayMarkers, Selection );
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID:'ParentId'
             },
             columns: [
-                { field: 'TaskID' },
+                { field: 'TaskID' , visible:false},
                 { field: 'TaskName', width: 250 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
@@ -43,8 +45,8 @@ Gantt.Inject(Sort, DayMarkers, Selection );
                 columnIndex: 2
             },
             sortSettings: { columns: [{ field: 'TaskName', direction: 'Ascending' }, { field: 'TaskID', direction: 'Ascending' }] },
-            projectStartDate: new Date('03/25/2024'),
-            projectEndDate: new Date('07/28/2024'),
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('09/01/2025'),
         });
     gantt.appendTo('#Sorting');
 };

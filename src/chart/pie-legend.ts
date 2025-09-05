@@ -53,7 +53,7 @@ let fluent2Colors: string[] = ["#6200EE", "#09AF74", "#0076E5", "#CB3587", "#E79
         load: (args: IAccLoadedEventArgs) => {
             loadAccumulationChartTheme(args);
         },
-        tooltip: { enable: true, format: '<b>${point.x}</b><br>Percentage: <b>${point.y}%</b>',header:""  },
+        tooltip: { enable: true, format: '<b>${point.x}</b><br>Percentage: <b>${point.y}%</b>',header:"", enableHighlight: true },
     });
     pie.appendTo('#donut-container'); 
 };

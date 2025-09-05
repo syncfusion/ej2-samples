@@ -81,12 +81,15 @@ interface MyWindow extends Window {
     navigateSample: () => void;
     loadCultureFiles: () => void;
     apiList: any;
+    syncfusionLicenseKey:any;
     hashString: string;
 }
 loadCldr(numberingSystems, chinaCultureData, enCultureData, swissCultureDate, currencyData, deCultureData, arCultureData);
 L10n.load(Locale);
 setCulture('en');
-registerLicense('{SyncfusionJSLicensekey}');
+let licenseText: string = '{SyncfusionJSLicensekey}';
+window.syncfusionLicenseKey = licenseText;
+registerLicense(licenseText);
 let switcherPopup: Popup;
 let preventToggle: boolean;
 let themeSwitherPopup: Popup;
@@ -100,7 +103,7 @@ let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
 let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
 let themeList: HTMLElement = document.getElementById('themelist');
-var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind3', 'fluent2-highcontrast', 'highcontrast', 'tailwind', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind3-dark', 'tailwind-dark', 'fluent-dark'];
+var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind3', 'fluent2-highcontrast', 'highcontrast', 'tailwind', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind3-dark', 'tailwind-dark', 'fluent-dark','bootstrap5.3-dark','bootstrap5.3'];
 var themesToRedirect: string[] = ['material', 'material-dark', 'bootstrap4', 'bootstrap', 'bootstrap-dark', 'fabric', 'fabric-dark'];
 var darkIgnore = ['highcontrast', 'fluent2-highcontrast'];
 let themeDarkButton: HTMLElement = document.getElementById('sb-dark-theme');
@@ -126,6 +129,7 @@ let resetSearch: Element = select('.sb-reset-icon');
 let newYear: number = new Date().getFullYear();
 let copyRight: HTMLElement= document.querySelector('.sb-footer-copyright');
 copyRight.innerHTML = "Copyright © 2001 - " + newYear + " Syncfusion<sup>®</sup> Inc.";
+let isUpdatingFromUrl = false;
 
 /**
  * constant to process the sample url
@@ -280,6 +284,9 @@ function dynamicTabCreation(obj: any): void {
 }
 // tslint:disable-next-line:max-func-body-length
 function renderSbPopups(): void {
+    document.getElementById('sample-header').style.visibility = '';
+    document.getElementById('sb-popup-section').style.visibility = '';
+    document.getElementById('sb-left-pane').style.visibility = '';
     switcherPopup = new Popup(document.getElementById('sb-switcher-popup'), {
         relateTo: <HTMLElement>document.querySelector('.sb-header-text-right'), position: { X: 'left' },
         collision: { X: 'flip', Y: 'flip' },
@@ -360,8 +367,11 @@ function renderSbPopups(): void {
         change: (e: any) => { switchTheme(e.value); }
     });
     themeModeDropDown = new DropDownList({
-        index: (location.hash.split('/')[1] && location.hash.split('/')[1].includes('-dark')) ? 1 : 0,
-        change: (e: any) => { darkSwitch(); }
+	        index: selectedTheme.includes('-dark') ? 1 : 0,
+            change: function (e) {
+              if (isUpdatingFromUrl) {
+                return;}
+              darkSwitch() }
     });
     themeModeDropDown.appendTo('#sb-theme-mode');
     cultureDropDown = new DropDownList({
@@ -682,29 +692,59 @@ function loadThemeLinkCss(theme: string) {
     let doc: HTMLLinkElement = <HTMLLinkElement>document.getElementById('themelink');
     doc.setAttribute('href', './styles/' + theme + '.css');
 }
-function changeBodyClass(darkTheme:string){
-    darkTheme = darkTheme.includes('bootstrap5') ? darkTheme.replace('bootstrap5', 'bootstrap5.3') : darkTheme;
-    loadThemeLinkCss(darkTheme);
-        if (darkTheme.includes('-dark')) {
-            document.body.classList.replace(document.body.classList[1], darkTheme);
-            document.body.classList.add("e-dark-mode");
-            darkButton.innerHTML = "LIGHT";
-            document.getElementById("light-icon").style.display = "inline-block";
-            document.getElementById("dark-icon").style.display = "none";
-            darkTheme = darkTheme.includes('bootstrap5.3') ? 'bootstrap5-dark' : darkTheme;
-        }
-        else {
-            document.body.classList.remove('e-dark-mode');
-            document.body.classList.replace(document.body.classList[1], darkTheme);
-            darkButton.innerHTML = "DARK";
-            document.getElementById("light-icon").style.display = "none";
-            document.getElementById("dark-icon").style.display = "inline-block";
-            darkTheme = darkTheme.includes('bootstrap5.3') ? 'bootstrap5' : darkTheme;
-        }
-        selectedTheme=darkTheme;
-        setThemeDefault(darkTheme);
-        
+function changeBodyClass(darkTheme: string) {
+    if (darkTheme.includes('bootstrap5') && !darkTheme.includes('bootstrap5.3')) {
+        darkTheme = darkTheme.replace('bootstrap5', 'bootstrap5.3');
     }
+    loadThemeLinkCss(darkTheme);
+    // Remove only theme-related classes (preserve other classes like e-bigger)
+    for (let i = 0; i < themeCollection.length; i++) {
+        document.body.classList.remove(themeCollection[i]);
+        document.body.classList.remove(`${themeCollection[i]}-dark`);
+    }
+    document.body.classList.remove('e-dark-mode');
+    document.body.classList.add(darkTheme);
+    const isDark = darkTheme.includes('-dark');
+    if (isDark) {
+        document.body.classList.add('e-dark-mode');
+        if (darkButton) darkButton.innerHTML = "LIGHT";
+        if(isMobile){
+            themeDarkButton.style.display = "none";
+        }
+        const lightIcon = document.getElementById("light-icon");
+        const darkIcon = document.getElementById("dark-icon");
+        if (lightIcon) lightIcon.style.display = "inline-block";
+        if (darkIcon) darkIcon.style.display = "none";
+        darkTheme = darkTheme.includes('bootstrap5.3') ? 'bootstrap5-dark' : darkTheme;
+    } else {
+        if (darkButton) darkButton.innerHTML = "DARK";
+        if(isMobile){
+            themeDarkButton.style.display = "none";
+        }
+        const lightIcon = document.getElementById("light-icon");
+        const darkIcon = document.getElementById("dark-icon");
+        if (lightIcon) lightIcon.style.display = "none";
+        if (darkIcon) darkIcon.style.display = "inline-block";
+        darkTheme = darkTheme.includes('bootstrap5.3') ? 'bootstrap5' : darkTheme;
+    }
+    // Save theme state
+    selectedTheme = darkTheme;
+    setThemeDefault(darkTheme);
+    if (isMobile && themeModeDropDown) {
+        const isDark = selectedTheme.includes('-dark');
+        // Update mobile icon
+        const mobileModeIcon = document.getElementById('mobile-mode-icon');
+        if (mobileModeIcon) {
+            mobileModeIcon.className = `sb-icons pane-${isDark ? 'light-theme' : 'dark-theme'}`;
+        }
+        isUpdatingFromUrl = true;  // Set flag BEFORE updating
+        // Update the Syncfusion dropdown index
+        themeModeDropDown.index = isDark ? 1 : 0;
+        setTimeout(() => {
+            isUpdatingFromUrl = false;  // Reset flag AFTER update
+        }, 10);
+    }
+}
 function onsearchInputChange(e: any) {
     if (e.keyCode === 27 || e.keyCode === 13) {
         toggleSearchOverlay();
@@ -760,6 +800,18 @@ function setMouseOrTouch(e: MouseEvent): void {
 /**
  * button cick handlers
  */
+function UpdateLeftpaneLI() {
+    const currentUrl = window.location.hash.split('/')[2]?.toLowerCase() || '';
+    document.querySelectorAll('li[control-name]').forEach(li => {
+        li.classList.remove('e-active');
+    });
+    document.querySelectorAll('li[control-name]').forEach(li => {
+        const controlName = li.getAttribute('control-name');
+        if (controlName && currentUrl.toLowerCase() === controlName.toLowerCase()) {
+            li.classList.add('e-active');
+        }
+    });
+}
 function onNextButtonClick(arg: MouseEvent): void {
     addSampleList(<Controls[]>samplesList);
     sampleOverlay();
@@ -772,6 +824,7 @@ function onNextButtonClick(arg: MouseEvent): void {
     }
     window.hashString = location.hash;
     setSelectList();
+    UpdateLeftpaneLI();
 }
 
 function onPrevButtonClick(arg: MouseEvent): void {
@@ -786,6 +839,7 @@ function onPrevButtonClick(arg: MouseEvent): void {
     }
     window.hashString = location.hash;
     setSelectList();
+    UpdateLeftpaneLI();
 }
 /**
  * Resize event processing
@@ -945,6 +999,7 @@ function bindEvents(): void {
     inputele.addEventListener('keyup', onsearchInputChange);
     setResponsiveElement.addEventListener('click', setMouseOrTouch);
     select('#sb-left-back').addEventListener('click', showHideControlTree);
+    select('#sb-left-back').addEventListener('click', UpdateLeftpaneLI);
     leftToggle.addEventListener('click', toggleLeftPane);
     leftToggle.addEventListener('keydown', (e: any) => {
         if (e.keyCode === 'Enter' || e.keyCode === ' ') {
@@ -1108,7 +1163,8 @@ function loadTheme(theme: string): void {
             theme == 'bootstrap5.3-dark' ? themeList.querySelector('#bootstrap5').classList.add('active') :
                 themeList.querySelector('#' + theme.replace('-dark', ""))!.classList.add('active');
         }
-    }
+    } else{
+            themeDarkButton.style.display = "none";}
     let doc: HTMLFormElement = <HTMLFormElement>document.getElementById('themelink');
     doc.setAttribute('href', './styles/' + theme + '.css');
     let ajax: Ajax = new Ajax('./styles/' + theme + '.css', 'GET', true);
@@ -1433,7 +1489,7 @@ function routeDefault(): void {
 }
 function destroyControls(): void {
     const doControls = [
-        "Chart", "3D Chart", "3D Circular Chart", "Stock Chart", "Arc Gauge", "Circular Gauge",
+        "Chart", "chart3d", "3D Circular Chart", "Stock Chart", "Arc Gauge", "Circular Gauge",
         "Diagram", "HeatMap Chart", "Linear Gauge", "Maps", "Range Selector", "Smith Chart",
         "Barcode", "Sparkline Charts", "TreeMap", "Bullet Chart"
     ];
@@ -1799,7 +1855,7 @@ function parseHash(newHash: string, oldHash: string): void {
     let control: string = newHash.split('/')[1];
     let baseNewTheme: string = newTheme.replace('-dark', '');
     let baseOldTheme: string = selectedTheme.replace('-dark', '');
-    let componentsToAddRoutes= ["Chart", "3D Chart", "3D Circular Chart", "Stock Chart", "Arc Gauge", "Circular Gauge", "Diagram", "HeatMap Chart", "Linear Gauge", "Maps", "Range Selector", "Smith Chart", "Barcode", "Sparkline Charts", "TreeMap", "Bullet Chart"];  
+    let componentsToAddRoutes= ["Chart", "three-dimension-chart", "circular-3d-chart", "stock-chart", "arc-gauge", "circular-gauge", "Diagram", "heatmap-chart", "linear-gauge", "Maps", "range-navigator", "smith-chart", "Barcode", "sparkline", "TreeMap", "bullet-chart"];  
     if (baseNewTheme !== baseOldTheme && themeCollection.indexOf(newTheme) !== -1) {//only reload if the base theme is diff
             setThemeDefault(newTheme);
             location.reload();
@@ -1915,7 +1971,7 @@ function loadJSON(): void {
     overlay();
     changeMouseOrTouch(switchText);
     enableRipple(selectedTheme.indexOf('material') !== -1 || !selectedTheme);
-    localStorage.removeItem('ej2-switch');
+    //localStorage.removeItem('ej2-switch');
     loadTheme(getThemeDefault());//passing the theme from localstorage
 }
 function getThemeDefault(): string {

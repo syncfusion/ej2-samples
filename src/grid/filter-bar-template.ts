@@ -139,8 +139,8 @@ Grid.Inject(Filter, Page, Selection, Sort);
         if (args.keyCode === 13) {
             const target: Element = args.target as Element;
             const th: Element = closest(target, 'th');
-            if (th && th.classList.contains('e-filterbarcell') && th.hasAttribute('e-mappinguid')
-                && grid.getColumnByUid(th.getAttribute('e-mappinguid')).field === 'UnitPrice') {
+            if (th && th.classList.contains('e-filterbarcell') && th.hasAttribute('data-mappinguid')
+                && grid.getColumnByUid(th.getAttribute('data-mappinguid')).field === 'UnitPrice') {
                 args.cancel = true;
                 if (minTextBox.element.value || maxTextBox.element.value) {
                     const filterColumns: PredicateModel[] = grid.filterSettings.columns.filter(data => data.field !== 'UnitPrice');

@@ -83,7 +83,7 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers, CriticalPat
                 { field: "Progress" },
             ],
             splitterSettings: {
-                columnIndex: 2,
+                columnIndex: 3,
             },
             allowPdfExport: true,
             toolbar: ['PdfExport'],
@@ -159,7 +159,9 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers, CriticalPat
             queryTaskbarInfo: queryTaskbarInfo,
             allowSelection: true,
             gridLines: 'Both',
-            height: '445px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             treeColumnIndex: 1,
             resourceFields: {
                 id: 'resourceId',

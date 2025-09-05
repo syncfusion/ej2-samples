@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Sample for Symmentric layout.
  */
@@ -68,7 +67,6 @@ function setNodeTemplate(node: NodeModel): void {
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
-    loadCultureFiles();
     //Initializtion of the diagram.
     let diagram: Diagram = new Diagram({
         width: '100%', height: '550px',

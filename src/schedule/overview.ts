@@ -96,7 +96,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         let endDate: Date = new Date(weekDate.getFullYear(), weekDate.getMonth(), weekDate.getDate(), 11, 30);
         eventData.push({
             Id: 1,
-            Subject: eventSubjects[Math.floor(Math.random() * (24 - 0 + 1) + 0)],
+            Subject: 'Stand-Up Meeting',
             StartTime: startDate,
             EndTime: endDate,
             Location: '',

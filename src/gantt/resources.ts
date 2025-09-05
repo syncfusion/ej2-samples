@@ -129,7 +129,9 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
             },
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll'],
             allowSelection: true,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             treeColumnIndex: 1,
             highlightWeekends: true,
             columns: [
@@ -181,8 +183,8 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
                     },
                 },
                 { field: 'work', width: '110' },
-                { field: 'Duration', width: '100' },
-                { field: 'taskType', headerText: 'Task Type', width: '110' }
+                { field: 'Duration', width: 150 },
+                { field: 'taskType', headerText: 'Task Type', width: 150}
             ],
             labelSettings: {
                 rightLabel: 'resources',
@@ -191,8 +193,8 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
             splitterSettings: {
                 columnIndex: 2
             },
-            projectStartDate: new Date('03/28/2024'),
-            projectEndDate: new Date('07/28/2024')
+             projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('07/28/2025')
         });
     gantt.appendTo('#resource');
 };

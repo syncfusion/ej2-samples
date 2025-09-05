@@ -10,7 +10,7 @@ enableRipple(false);
 /**
  * PivotView Tabular Layout Sample.
  */
-PivotView.Inject(GroupingBar, FieldList);
+PivotView.Inject(FieldList);
 let Pivot_Data: IDataSet[] = (pivotData as any).data;
 (window as any).default = (): void => {
     loadCultureFiles();

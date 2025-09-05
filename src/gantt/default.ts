@@ -12,7 +12,9 @@ Gantt.Inject(Selection);
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
-            height: '450px',
+            height: '650px',
+            rowHeight:46,
+            taskbarHeight:25,
             taskFields: {
                 id: 'TaskID',
                 name: 'TaskName',
@@ -21,7 +23,7 @@ Gantt.Inject(Selection);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                child: 'subtasks'
+                parentID:'ParentId'
             },
             treeColumnIndex: 1,
             columns: [
@@ -36,8 +38,18 @@ Gantt.Inject(Selection);
             labelSettings: {
                 leftLabel: 'TaskName'
             },
-            projectStartDate: new Date('03/24/2024'),
-            projectEndDate: new Date('07/06/2024')
+            splitterSettings: {
+                columnIndex: 2
+            },
+            created:function() {
+                if(document.querySelector('.e-bigger'))
+                {
+                    gantt.rowHeight=48;
+                    gantt.taskbarHeight=28;
+                }
+            },
+            projectStartDate: new Date('03/26/2025'),
+            projectEndDate: new Date('07/20/2025')
         });
     gantt.appendTo('#DefaultFunctionalities');
 };

@@ -1,7 +1,6 @@
 {
     "name": "Pivot Table",
     "directory": "pivot-table",
-    "type": "update",
     "category": "Grids",
     "samples": [{
             "url": "overview",
@@ -59,7 +58,6 @@
         {
             "url": "server-side-aggregation",
             "name": "Server-side Aggregation",
-            "type": "update",
             "category": "Data Binding",
             "description": "This sample demonstrates the ability to use an external pivot engine to bind and populate data from a remote service and display it in the pivot table."
         },
@@ -84,7 +82,6 @@
         {
             "url": "pivot-chart-fieldlist",
             "name": "Pivot Chart with Field List",
-            "type": "new",
             "category": "Integration",
             "description": "This demo for Essential<sup>®</sup> JS2 Pivot Table control demonstrate the basic rendering of the pivot table data into a simple pivot chart with static field list"
         },
@@ -103,7 +100,6 @@
          {
             "url": "sparkline",
             "name": "Sparkline Chart",
-            "type": "new",
             "category": "Integration",
             "description": "This sample demonstrates how to embed sparkline charts inside Pivot Table cells to provide a visual representation of trends."
         },
@@ -188,7 +184,6 @@
         {
             "url": "value-sorting",
             "name": "Value Sorting",
-            "type": "update",
             "category": "Sorting",
             "description": "This demo for Essential<sup>®</sup> JS2 Pivot Table control shows sorting values on column or row wise in ascending or descending order"
         },
@@ -213,7 +208,6 @@
         {
             "url": "external-data-based-filtering",
             "name": "External Filtering",
-            "type": "new",
             "category": "Filtering",
             "description": "This sample demonstrates how to externally filter data using a date range in the Pivot Table."
         },
@@ -268,7 +262,6 @@
         {
             "url": "pivot-table-exporting",
             "name": "Export as Pivot",
-            "type": "new",
             "category": "Exporting",
             "description": "This demo for Essential<sup>®</sup> JS2 Pivot Table control demonstrate client-side exporting of the pivot table to Excel, CSV and PDF formats"
         }

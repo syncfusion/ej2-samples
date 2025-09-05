@@ -74,6 +74,7 @@
         {
             "url": "insert-media",
             "name": "Insert Media",
+            "type": "update",
             "description": "This demo shows how to insert audio and video, Embed video, upload audio and video, and more in Insert Media.",
             "category": "Rich Text Editor",
             "api": {
@@ -87,6 +88,16 @@
                 ],
                 "ToolbarSettings": [
                     "items"
+                ],
+                "InsertVideoSettings": [
+                    "saveUrl",
+                    "removeUrl",
+                    "path"
+                ],
+                "InsertAudioSettings": [
+                    "saveUrl",
+                    "removeUrl",
+                    "path"
                 ]
             }
         },
@@ -295,6 +306,7 @@
             "name": "Events",
             "description": "This demo explains client-side events of JavaScript HTML Text Editor that is triggered on editing and formatting operations with an event tracer.",
             "category": "Rich Text Editor",
+            "type":"update",
             "api": {
                 "RichTextEditor": [
                     "Inject",
@@ -545,7 +557,6 @@
             "name": "Type",
             "description": "This demo demonstrates different types and behaviors of a toolbar used in the JS HTML Editor such as expand/collapse, multirow, floating and popup.",
             "category": "Toolbar",
-            "type": "update",
             "api": {
                 "RichTextEditor": [
                     "Inject",
@@ -609,7 +620,6 @@
             "name": "Bottom Toolbar",
             "description": "This demo demonstrates the bottom toolbar in the Rich Text Editor.",
             "category": "Toolbar",
-            "type": "new",
             "api": {
                 "RichTextEditor": [
                     "toolbarSettings"

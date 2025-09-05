@@ -24,7 +24,7 @@ TreeGrid.Inject(Filter, Sort, Reorder);
                 field: 'name', headerText: 'Province', template: '#flagtemplate',
                 filter: { type: 'Excel', itemTemplate: '#flagtemplate' }, width: 210
             },
-            { field: 'population', headerText: 'Population (Million)', valueAccessor: populationValue, textAlign: 'Right', width: 188 },
+            { field: 'population', headerText: 'Population (Million)', valueAccessor: populationValue, textAlign: 'Right', width: 250 },
             { field: 'gdp', headerText: 'GDP Rate %', template: '#gdptemplate', allowFiltering: false, width: 120 },
             {
                 field: 'rating', headerText: 'Credit Rating', customAttributes: { class: 'ratingCircle' },
@@ -36,12 +36,12 @@ TreeGrid.Inject(Filter, Sort, Reorder);
             },
             { field: 'coordinates', headerText: 'Coordinates', allowSorting: false, template: '#locationtemplate', width: 220 },
             { field: 'area', headerText: 'Area', template: '#areatemplate', width: 140 },
-            { field: 'timezone', headerText: 'Time Zone', template: '#timezonetemplate', width: 150 }
+            { field: 'timezone', headerText: 'Time Zone', template: '#timezonetemplate', width: 180,clipMode: 'EllipsisWithTooltip', }
         ]
     });
     treeGridObj.appendTo('#TreeGrid');
 
-    (<{utcZone?: Function}>window).utcZone = (data: any) => {
+    (<{ utcZone?: Function }>window).utcZone = (data: any) => {
         let img: HTMLImageElement = document.createElement('img');
         img.src = 'src/tree-grid/images/__Normal.png';
         img.style.filter = "brightness(150%)";
@@ -49,7 +49,7 @@ TreeGrid.Inject(Filter, Sort, Reorder);
             img.className = 'negativeTimeZone';
         }
         return img.outerHTML;
-     };
+    };
 
     function populationValue(field: string, data: Object): number {
         return data[field] / 1000000;
@@ -73,7 +73,7 @@ TreeGrid.Inject(Filter, Sort, Reorder);
             if (args.data[args.column.field] <= 4) {
                 addClass([args.cell.querySelector('.bar')], ['progressdisable']);
             }
-            (args.cell.querySelector('.bar')as HTMLElement).style.width = args.data[args.column.field] * 10 + '%';
+            (args.cell.querySelector('.bar') as HTMLElement).style.width = args.data[args.column.field] * 10 + '%';
             args.cell.querySelector('.barlabel').textContent = args.data[args.column.field] + '%';
         }
     }

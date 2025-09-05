@@ -48,7 +48,6 @@ let template: string = '<div ${if(category!==null)} class = "clearfix desc e-lis
     let share: any = document.getElementsByClassName('share');
     let comments: any = document.getElementsByClassName('comments');
     let bookmark: any = document.getElementsByClassName('bookmark');
-    let description: any = document.getElementsByClassName('e-list-content');
     let timeStamp: any = document.getElementsByClassName('timeStamp');
 
     for (let i: number = 0; i < comments.length; i++) {
@@ -68,12 +67,6 @@ let template: string = '<div ${if(category!==null)} class = "clearfix desc e-lis
     for (let i: number = 0; i < share.length; i++) {
         share[i].setAttribute('title', 'We can customize this element to perform our own action');
         share[i].addEventListener('click', (event: any) => {
-            event.stopPropagation();
-        });
-    }
-
-    for (let i: number = 0; i < description.length; i++) {
-        description[i].addEventListener('click', (event: any) => {
             event.stopPropagation();
         });
     }

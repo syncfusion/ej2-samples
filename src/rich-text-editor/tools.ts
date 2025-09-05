@@ -24,7 +24,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         toolbarSettings: {
             items: ['Undo', 'Redo', '|', 'ImportWord', 'ExportWord', 'ExportPdf', '|',
                 'Bold', 'Italic', 'Underline', 'StrikeThrough', 'InlineCode', '|', 'CreateLink', 'Image', 'CreateTable', 'CodeBlock',
-                'HorizontalLine', 'Blockquote', '|', 'BulletFormatList', 'NumberFormatList', '|', 'Formats', 'Alignments', '|', 'Outdent', 'Indent', '|',
+                'HorizontalLine', 'Blockquote', '|', 'BulletFormatList', 'NumberFormatList', 'Checklist' , '|', 'Formats', 'Alignments', '|', 'Outdent', 'Indent', '|',
                 'FontColor', 'BackgroundColor', 'FontName', 'FontSize', '|', 'LowerCase', 'UpperCase', '|', 'SuperScript', 'SubScript', '|',
                 'EmojiPicker', 'FileManager', 'Video', 'Audio', '|', 'FormatPainter', 'ClearFormat',
                 '|', 'Print', 'FullScreen', '|', 'SourceCode']
@@ -76,7 +76,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
             }
         },
         quickToolbarSettings: {
-            table: ['Tableheader', 'TableRemove', '|', 'TableRows', 'TableColumns', 'TableCell', '|' , 'Styles', 'BackgroundColor', 'Alignments', 'TableCellVerticalAlign'],
+            table: ['Tableheader', 'TableRemove', '|', 'TableRows', 'TableColumns', 'TableCell', '|', 'TableEditProperties', 'Styles', 'BackgroundColor', 'Alignments', 'TableCellVerticalAlign'],
             text: ['Formats', '|', 'Bold', 'Italic', 'Fontcolor', 'BackgroundColor', '|', 'CreateLink', 'Image', 'CreateTable', 'Blockquote', '|' , 'Unorderedlist', 'Orderedlist', 'Indent', 'Outdent'],
             showOnRightClick: true,
         },
@@ -136,13 +136,14 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         } else {
             rteContainer.classList.add('e-rte-code-mirror-enabled');
             rteContainer.classList.remove('e-source-code-enabled');
+            const editorValue: string = (editor.element.querySelector('.e-rte-srctextarea') as HTMLTextAreaElement).value;
             if (!mirrorView) {
                 mirrorView = createElement('div', { className: 'rte-code-mirror', id: id, styles: 'display: none;' });
                 rteContainer.appendChild(mirrorView);
-                renderCodeMirror(mirrorView, editor.value === null ? '' : editor.value);
+                renderCodeMirror(mirrorView, editorValue === null ? '' : editorValue);
             }
             else {
-                codeMirror.setValue(editor.value);
+                codeMirror.setValue(editorValue);
             }
             if (document.querySelector('.e-rte-full-screen')) {
                 (document.querySelector('.CodeMirror') as HTMLElement).style.height = 'auto';

@@ -1,6 +1,6 @@
 <div class="control-section">
     <div align="center">
-        <h1 id="default" style="font-family: Segoe UI; font-weight: 500; font-style:normal; font-size:15px; margin-top: 10px;">Bitcoin (USD) Price Range</h1>
+        <div id="title">Bitcoin (USD) Price Range</div>
         <div id="container"></div>
     </div>
 </div>
@@ -35,6 +35,16 @@
 
     #container {
         transform: translate(0, 25%);
+    }
+
+    #title {
+        font-size: 15px;
+        font-style: normal;
+        font-family: "Segoe UI";
+        font-weight: 500;
+        text-anchor: middle;
+        transform: none;
+        opacity: 1;
     }
 
     #material-gradient-chart stop {

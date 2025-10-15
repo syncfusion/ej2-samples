@@ -182,8 +182,7 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers, CriticalPat
                 leftLabel: "#leftLabel",
                 rightLabel: "#rightLabel",
               },
-            projectStartDate: new Date('03/25/2025'),
-            projectEndDate: new Date('06/28/2025')
+            projectStartDate: new Date('03/25/2025')
         });
     gantt.appendTo('#advanceExport');
     let taskbarDragDrop: Switch = new Switch({

@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Selection, Sort, Filter, Column } from '@syncfusion/ej2-grids';
+import { Grid, Selection, Sort, Filter, Column, IFilterCreate } from '@syncfusion/ej2-grids';
 import { employeeDetail } from './data-source';
 import { ChipList } from '@syncfusion/ej2/buttons';
 import { createElement } from '@syncfusion/ej2-base';
@@ -21,7 +21,7 @@ Grid.Inject(Selection, Sort, Filter);
     let filter = {
         type: 'Menu',
         ui: {
-            create: (args: { target: Element; column: object }) => {
+            create: (args: IFilterCreate) => {
                 let flValInput: HTMLElement = createElement('input', {
                     className: 'flm-input',
                 });

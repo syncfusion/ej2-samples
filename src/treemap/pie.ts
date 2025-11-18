@@ -97,7 +97,7 @@ export function AccumulationChartRender(id: string): void {
     let chart: AccumulationChart = new AccumulationChart({
         background: 'transparent',
         tooltip: {
-            enable: true,
+            enable: false,
             format: '${point.x} : ${point.y}%'
         },
         legendSettings: {

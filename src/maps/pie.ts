@@ -81,7 +81,7 @@ let count: number = 0;
                 markerSettings: [
                     {
                         visible: true,
-                        template: '<div id="pieChart1" style="height:70px;width:70px;"></div>',
+                        template: '<div id="pieChart1" style="top:45px;left:65px;height:150px;width:200px;"></div>',
                         dataSource: [
                             { 'latitude': 61.938950426660604, 'longitude': 97.03125 }
                         ],
@@ -89,7 +89,7 @@ let count: number = 0;
                     },
                     {
                         visible: true,
-                        template: '  <div id="pieChart2" style="height:70px;width:70px;">',
+                        template: '  <div id="pieChart2" style="top:35px;left:65px;height:150px;width:200px;">',
                         dataSource: [
                             { 'latitude': 57.70414723434193, 'longitude': -114.08203125 }
                         ],
@@ -97,31 +97,31 @@ let count: number = 0;
                     },
                     {
                         visible: true,
-                        template: '<div id="pieChart3" style="top:10px;left:10px;height:70px;width:70px;"></div>',
+                        template: '<div id="pieChart3" style="top:-5px;left:10px;height:150px;width:200px;"></div>',
                         dataSource: [
-                            { 'latitude': 39.90973623453719, 'longitude': -103.0078125 }
+                            { 'latitude': 10.555037013237452, 'longitude': -64.1160548956648 }
                         ],
                         animationDuration: 0
                     },
                     {
                         visible: true,
-                        template: '<div id="pieChart4" style="height:70px;width:70px;"></div>',
+                        template: '<div id="pieChart4" style="top:-5px;left:55px;height:150px;width:200px;"></div>',
                         dataSource: [
-                            { 'latitude': 35.746512259918504, 'longitude': 102.216796875 }
+                            { 'latitude': 9.774059122564566, 'longitude': 108.77498325892299 }
                         ],
                         animationDuration: 0
                     },
                     {
                         visible: true,
-                        template: '<div id="pieChart5" style="height:70px;width:70px;"></div>',
+                        template: '<div id="pieChart5" style="top:-40px;left:85px;height:130px;width:200px;"></div>',
                         dataSource: [
-                            { 'latitude': -8.667918002363107, 'longitude': -52.55859375 }
+                            { 'latitude': -52.313430655959614, 'longitude': -66.26827567737013 }
                         ],
                         animationDuration: 0
                     },
                     {
                         visible: true,
-                        template: '<div id="pieChart6" style="height:70px;width:70px;"></div>',
+                        template: '<div id="pieChart6" style="top:35px;left:65px;height:150px;width:200px;"></div>',
                         dataSource: [
                             { 'latitude': -23.725011735951796, 'longitude': 132.978515625 }
                         ],

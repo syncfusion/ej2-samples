@@ -3,8 +3,10 @@
    "directory": "textbox",
    "category":"Inputs",
    "ftName": "textbox",
+   "type": "update",
    "samples" : [
     {"url":"default", "name": "Default Functionalities", "category":"TextBox", "description":"This example describes key features of JavaScript textbox such as a floating label, input group, placeholder, validation states, sizing, types, and more.", "api": { "TextBox": ["placeholder", "floatLabelType", "enableRtl"]}},
-    {"url":"multiline-textbox", "name": "Multiline TextBox", "category":"TextBox", "description":"The example exposes a JavaScript Multiline TextBox (textarea). It helps to render address, feedback, and more in HTML5 form with customizable rows and columns.", "api": { "TextBox": ["multiline", "value", "placeholder", "floatLabelType", "enabled", "enableRtl", "readonly"]}}
+    {"url":"multiline-textbox", "name": "Multiline TextBox", "category":"TextBox", "description":"The example exposes a JavaScript Multiline TextBox (textarea). It helps to render address, feedback, and more in HTML5 form with customizable rows and columns.", "api": { "TextBox": ["multiline", "value", "placeholder", "floatLabelType", "enabled", "enableRtl", "readonly"]}},
+    {"url": "adornments", "type": "new", "name": "Adornments", "category": "TextBox", "description":"The example exposes a JavaScript TextBox with adornments support. It helps to render custom elements before or after the input element.", "api": { "TextBox": ["prependTemplate", "appendTemplate"]}}
    ]
 }

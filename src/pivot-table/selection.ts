@@ -55,7 +55,6 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         floatLabelType: 'Auto',
         width: 150,
         change: function (args: ChangeEventArgs) {
-            pivotObj.gridSettings = { columnWidth: 240 };
             pivotObj.gridSettings.selectionSettings.mode = args.value as SelectionMode;
             pivotObj.renderModule.updateGridSettings();
         }

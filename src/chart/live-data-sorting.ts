@@ -5,7 +5,7 @@ import { loadChartTheme, pointRender } from './theme-color';
 import { Browser } from '@syncfusion/ej2-base';
 Chart.Inject(ColumnSeries, Category, DataLabel);
 
-let intervalId: number;
+let intervalId: ReturnType<typeof setTimeout> | number;
 
 let updatedData: Object[] = [
     { x: 'India', y: 97.21 },

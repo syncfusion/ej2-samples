@@ -59,9 +59,9 @@ import { defaultPromptResponseData, defaultSuggestions  } from './promptResponse
         let responseItemElem = `<div class="responseItemContent e-card">
                                     <div class="response-header"><b>Prompt:</b> ${prompt}</div>${separatorElem}
                                     <div class="content">
-                                        <div class="e-skeleton e-shimmer-wave" style="width: 100%; height: 20px;"></div>
-                                        <div class="e-skeleton e-shimmer-wave" style="width: 80%; height: 20px;"></div>
-                                        <div class="e-skeleton e-shimmer-wave" style="width: 100%; height: 20px;"></div>
+                                        <div class="e-skeleton e-skeleton-text e-shimmer-wave" style="width: 100%; height: 20px;"></div>
+                                        <div class="e-skeleton e-skeleton-text e-shimmer-wave" style="width: 80%; height: 20px;"></div>
+                                        <div class="e-skeleton e-skeleton-text e-shimmer-wave" style="width: 100%; height: 20px;"></div>
                                     </div>
                                     ${separatorElem}
                                     <div class="options">

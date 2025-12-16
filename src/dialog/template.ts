@@ -1,6 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
+import { SanitizeHtmlHelper } from '@syncfusion/ej2-base';
 
 /**
  * Template Dialog sample
@@ -40,13 +41,12 @@ let message: string = 'Greetings Nancy! When will you share me the source files 
     document.getElementById('sendButton').onclick = (): void => {
         updateTextValue();
     };
-
     function updateTextValue () : void {
         let enteredVal: HTMLInputElement = document.getElementById('inVal') as HTMLInputElement;
         let dialogTextElement: HTMLElement = document.getElementsByClassName('dialogText')[0] as HTMLElement;
         let dialogTextWrap : HTMLElement = document.getElementsByClassName('dialogContent')[0] as HTMLElement;
         if (enteredVal.value !== '') {
-            dialogTextElement.innerHTML = enteredVal.value;
+            dialogTextElement.innerHTML = SanitizeHtmlHelper.sanitize(enteredVal.value);
             enteredVal.value = '';
         }
     }

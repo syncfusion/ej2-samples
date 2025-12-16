@@ -5,7 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { RichTextEditor, Toolbar, Link, Image, MarkdownEditor, Table } from '@syncfusion/ej2-richtexteditor';
 import { MarkdownFormatter } from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs } from '@syncfusion/ej2-base';
-import * as Marked from 'marked';
+import { MarkdownConverter } from '@syncfusion/ej2-markdown-converter';
 
 RichTextEditor.Inject(Toolbar, Link, Image, MarkdownEditor, Table);
 
@@ -16,7 +16,7 @@ let mdsource: HTMLElement;
     loadCultureFiles();
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
-        height: '250px',
+        height: '520px',
         placeholder : "Enter your text here...",
         formatter: new MarkdownFormatter({ listTags: { 'OL': '1., 2., 3.'} }),
         toolbarSettings: {
@@ -49,7 +49,7 @@ let mdsource: HTMLElement;
         if (mdsource.classList.contains('e-active')) {
             let id: string = defaultRTE.getID() + 'html-view';
             let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
-            htmlPreview.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+            htmlPreview.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
         }
     }
     function fullPreview(): void {
@@ -75,7 +75,7 @@ let mdsource: HTMLElement;
             }
             textArea.style.display = 'none';
             htmlPreview.style.display = 'block';
-            htmlPreview.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+            htmlPreview.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
             mdsource.parentElement.title = 'Code View';
         }
     }

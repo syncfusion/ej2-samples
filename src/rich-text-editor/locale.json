@@ -115,6 +115,7 @@
             "removeTable": "Tabelle entfernen",
             "tableHeader": "Kopfzeile",
             "tableRemove": "Tabelle löschen",
+            "tableCell": "Zelle zusammenführen",
             "tableCellBackground": "Tabellenzellenhintergrund",
             "tableEditProperties": "Tabelle Eigenschaften bearbeiten",
             "styles": "Stile",
@@ -167,9 +168,8 @@
             "formatsDropDownHeading3": "Überschrift 3",
             "formatsDropDownHeading4": "Überschrift 4",
             "fontNameSegoeUI": "SegoeUI",
-            "fontNameArial": "Arial",
             "fontNameGeorgia": "Georgien",
-            "fontNameImpact": "Einfluss",
+            "fontNameImpact": "Auswirkungen",
             "fontNameTahoma": "Tahoma",
             "fontNameTimesNewRoman": "Times Neue Roman",
             "fontNameVerdana": "Verdana",
@@ -246,13 +246,14 @@
             "inlinecode": "Inline-Code",
             "codeBlock": "Codeblock einfügen",
             "checklist": "Checkliste",
-            "blockquote": "blockquote",
-            "horizontalLine": "Horizontale Linie"
+            "blockquote": "Blockquote",
+            "horizontalLine": "Horizontale Linie",
+            "lineHeight": "Zeilenhöhe"
         }
     },
     "ar": {
         "richtexteditor": {
-            "alignments": "المحاذاة",
+            "alignments": "التحالفات",
             "justifyLeft": "محاذاة إلى اليسار",
             "justifyCenter": "محاذاة مركز",
             "justifyRight": "محاذاة اليمين",
@@ -286,8 +287,8 @@
             "replace": "يحل محل",
             "numberFormatList": "قائمة تنسيق الأرقام",
             "bulletFormatList": "قائمة تنسيق التعداد النقطي",
-            "audioReplace": "استبدال",
-            "videoReplace": "استبدال",
+            "audioReplace": "يستبدل",
+            "videoReplace": "يستبدل",
             "videoAlign": "محاذاة",
             "videoDimension": "البعد",
             "audioRemove": "يزيل",
@@ -361,11 +362,12 @@
             "tableRows": "صف",
             "tableColumns": "عمود",
             "tableCellHorizontalAlign": "خلية الجدول الأفقي محاذاة",
-            "tableCellVerticalAlign": "محاذاة عمودية للجدول",
+            "tableCellVerticalAlign": "المحاذاة العمودية للجدول",
             "createTable": "اصنع جدول",
             "removeTable": "إزالة الجدول",
-            "tableHeader": "صف العنوان",
+            "tableHeader": "مقدمة الصف",
             "tableRemove": "حذف الجدول",
+            "tableCell": "دمج الخلايا",
             "tableCellBackground": "خلفية خلية الجدول",
             "tableEditProperties": "خصائص تحرير الجدول",
             "styles": "الأنماط",
@@ -403,7 +405,7 @@
             "tableStylesDropDownAlternateRows": "صفوف بديلة",
             "pasteFormat": "تنسيق لصق",
             "pasteFormatContent": "اختر إجراء التنسيق",
-            "plainText": "نص بسيط",
+            "plainText": "نص عادي",
             "cleanFormat": "نظيف",
             "keepFormat": "احتفظ",
             "pasteDialogOk": "حسنا",
@@ -421,13 +423,13 @@
             "fontNameArial": "آريال",
             "fontNameGeorgia": "جورجيا",
             "fontNameImpact": "أثر",
-            "fontNameTahoma": "طاهمه",
+            "fontNameTahoma": "Tahoma",
             "fontNameTimesNewRoman": "تايمز نيو رومان",
             "fontNameVerdana": "فاردانا",
             "formatsOLListNumber": "عدد",
             "formatsOLListLowerAlpha": "السفلى ألفا",
             "formatsOLListUpperAlpha": "العلوي",
-            "formatsOLListLowerRoman": "الرومانية السفلى",
+            "formatsOLListLowerRoman": "LowerRoman",
             "formatsOLListUpperRoman": "أبرومان",
             "formatsOLListLowerGreek": "اليونانية السفلى",
             "formatsULListDisc": "قرص",
@@ -498,7 +500,8 @@
             "codeBlock": "أدخل كتلة الشيفرة",
             "checklist": "قائمة التحقق",
             "blockquote": "اقتباس",
-            "horizontalLine": "خط أفقي"
+            "horizontalLine": "خط أفقي",
+            "lineHeight": "ارتفاع السطر"
         }
     },
     "en": {
@@ -617,6 +620,7 @@
             "removeTable": "Remove Table",
             "tableHeader": "Header Row",
             "tableRemove": "Delete Table",
+            "tableCell": "Merge Cell",
             "tableCellBackground": "Table Cell Background",
             "tableEditProperties": "Table Edit Properties",
             "styles": "Styles",
@@ -748,8 +752,9 @@
             "inlinecode": "Inline Code",
             "codeBlock": "Insert Code Block",
             "checklist": "Checklist",
-            "blockquote": "blockquote",
-            "horizontalLine": "Horizontal Line"
+            "blockquote": "Blockquote",
+            "horizontalLine": "Horizontal Line",
+            "lineHeight": "Line Height"
         }
     },
     "zh": {
@@ -868,6 +873,7 @@
             "removeTable": "刪除表",
             "tableHeader": "标题行",
             "tableRemove": "删除表",
+            "tableCell": "合并单元格",
             "tableCellBackground": "表單元格背景",
             "tableEditProperties": "表格編輯屬性",
             "styles": "款式",
@@ -920,7 +926,7 @@
             "formatsDropDownHeading3": "标题 3",
             "formatsDropDownHeading4": "标题 4",
             "fontNameSegoeUI": "SegoeUI",
-            "fontNameArial": "无",
+            "fontNameArial": "Arial",
             "fontNameGeorgia": "乔治亚",
             "fontNameImpact": "影响",
             "fontNameTahoma": "塔霍马",
@@ -1000,7 +1006,8 @@
             "codeBlock": "插入代码块",
             "checklist": "清单",
             "blockquote": "引用块",
-            "horizontalLine": "横线"
+            "horizontalLine": "横线",
+            "lineHeight": "行高"
         }
     },
     "fr-CH": {
@@ -1119,6 +1126,7 @@
             "removeTable": "Supprimer le tableau",
             "tableHeader": "Ligne d'en-tête",
             "tableRemove": "Supprimer le tableau",
+            "tableCell": "Fusionner les cellules",
             "tableCellBackground": "Fond de cellule de tableau",
             "tableEditProperties": "Propriétés de modification du tableau",
             "styles": "modes",
@@ -1247,11 +1255,12 @@
             "importWord": "Importer depuis Word",
             "exportWord": "Exporter vers Word",
             "exportPdf": "Exporter en PDF",
-            "inlinecode": "Code intégré",
+            "inlinecode": "Code en ligne",
             "codeBlock": "Insérer un bloc de code",
             "checklist": "Liste de vérification",
-            "blockquote": "blockquote",
-            "horizontalLine": "Ligne horizontale"
+            "blockquote": "citation en bloc",
+            "horizontalLine": "Ligne horizontale",
+            "lineHeight": "HauteurDeLigne"
         }
     }
 }

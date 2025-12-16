@@ -1,0 +1,38 @@
+<div class="control-section">
+    <div id="container"  align="center"></div>
+</div>
+<div id="action-description">
+    <p>
+        This sample shows the 2024 Olympic medal standings for the top 10 countries using a stacked Column chart. The x-axis uses label templates to display each country’s rank and name (with flag), enabling quick comparison of Gold, Silver, and Bronze totals.
+    </p>
+</div>
+<div id="description">
+    <p>
+        Use the axis label template feature to customize axis labels via the <code>labelTemplate</code> property on the chart axis. Templates can include HTML markup, conditional styling, and embedded icons or images (for example, country flags). This sample binds rank and country to the template while the series plot medal counts.
+    </p>
+    <p>
+        More information on the area series can be found in this 
+        <a target="_blank" href="https://ej2.syncfusion.com/documentation/chart/axis-labels" aria-label="Navigate to the documentation for Axis label in TypeScript Chart control">documentation section</a>.
+    </p>
+</div>
+<style>
+    #control-container {
+        padding: 0px !important;
+    }
+    .light-bg {
+        color: #000000;
+    }
+    .dark-bg {
+        color: #ffffff;
+    }
+</style>
+
+<script id="AxisLabelTemplate" type="text/x-template">
+  <div id="labelTemplate" class="light-bg" style="display:flex;align-items:center;gap:8px;border-radius:3px;width:130px;justify-content:space-between;">
+    <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0;">
+      <span style="font-size:12px;width:18px;text-align:right;display:inline-block;">${(value + 1)}.</span>
+      <span style="font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${label}</span>
+    </div>
+    <img src="src/chart/images/labelTemplate/${label}.png" alt="${label} flag" width="22" height="22" style="border-radius:50%" />
+  </div>
+</script>

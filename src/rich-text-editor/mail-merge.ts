@@ -13,6 +13,8 @@ import {
     PasteCleanup,
     ActionCompleteEventArgs,
     ActionBeginEventArgs,
+    ClipBoardCleanup,
+    AutoFormat
 } from '@syncfusion/ej2-richtexteditor';
 import { DropDownButton, MenuEventArgs } from '@syncfusion/ej2-splitbuttons';
 import { Mention } from '@syncfusion/ej2-dropdowns';
@@ -24,7 +26,9 @@ RichTextEditor.Inject(
     HtmlEditor,
     QuickToolbar,
     Table,
-    PasteCleanup
+    PasteCleanup,
+    ClipBoardCleanup,
+    AutoFormat
 );
 
 (window as any).default = (): void => {

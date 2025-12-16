@@ -3,7 +3,7 @@
     "directory": "chat-ui",
     "category": "Interactive Chat",
     "ftName": "chat-ui",
-    "type": "preview",
+    "type": "update",
     "dataSourcePath": "src/chat-ui/messageData.ts",
     "samples": [
         {
@@ -30,6 +30,18 @@
             ]
         },
         {
+            "url": "attachments",
+            "name": "File Attachments",
+            "category": "Chat UI",
+            "type": "new",
+            "api":{ "ChatUI": ["user", "attachmentSettings", "enableAttachments", "headerText", "headerIconCss", "emptyChatTemplate"] },
+            "description": "Showcases the chat component integration with other Chat UI control",
+            "sourceFiles": [
+                { "displayName": "attachments.js", "path":"src/chat-ui/attachments.js" },
+                { "displayName": "attachments.html", "path":"src/chat-ui/attachments.html" }
+            ]
+        },
+        {
             "url": "template",
             "name": "Template",
             "category": "Chat UI",
@@ -45,7 +57,6 @@
             "url": "api",
             "name": "API",
             "category": "Chat UI",
-            "type":"update",
             "api":{ "ChatUI": ["messages", "user", "timeStampFormat", "showTimeStamp", "headerText", "headerIconCss"] },
             "description": "Showcases the API combinations of the Chat UI control.",
             "sourceFiles": [

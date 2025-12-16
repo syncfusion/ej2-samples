@@ -5,7 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { RichTextEditor, Toolbar, Link, Image, MarkdownFormatter, MarkdownEditor} from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs } from '@syncfusion/ej2-base';
 RichTextEditor.Inject(Toolbar, Link, Image, MarkdownEditor);
-import * as Marked from 'marked';
+import { MarkdownConverter } from '@syncfusion/ej2-markdown-converter';
 import { Tooltip } from '@syncfusion/ej2-popups';
 
 
@@ -13,7 +13,6 @@ let textArea: HTMLTextAreaElement;
 let mdPreview: HTMLElement;
 let mdsource: HTMLElement;
 let tooltipObj: Tooltip;
-
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -62,7 +61,7 @@ let tooltipObj: Tooltip;
         if (mdsource.classList.contains('e-active')) {
             let id: string = defaultRTE.getID() + 'html-view';
             let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
-            htmlPreview.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+            htmlPreview.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
         }
     }
     function fullPreview(): void {
@@ -85,7 +84,7 @@ let tooltipObj: Tooltip;
             textArea.style.display = 'none';
             htmlPreview.style.display = 'block';
             tooltipObj.content = "Codeview";
-            htmlPreview.innerHTML = Marked.marked((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+            htmlPreview.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
         }
     }
 };

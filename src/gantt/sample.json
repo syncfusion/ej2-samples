@@ -75,7 +75,6 @@
          "url": "dialog-editing",
          "name": "Dialog Editing",
          "category": "Editing",
-         "type": "new",
          "api": {
             "Gantt": [
                "dataSource",
@@ -458,7 +457,6 @@
       {
          "url": "baseline",
          "name": "Baseline",
-         "type": "update",
          "category": "Scheduling Concepts",
          "api": {
             "Gantt": [
@@ -485,6 +483,7 @@
          "url": "event-markers",
          "name": "Event Markers",
          "category": "Scheduling Concepts",
+         "type": "update",
          "api": {
             "Gantt": [
                "dataSource",
@@ -726,6 +725,31 @@
             ]
          },
           "description": "This example demonstrates how to enable and automatically update the WBS (Work Breakdown Structure) column."
+      },
+      {
+         "url":"frozen-column",
+         "name": "Frozen Columns",
+         "category":"Columns",
+         "type": "new",
+         "api":{
+            "Gantt":[
+               "dataSource",
+               "taskFields",
+               "columns",
+               "toolbar",
+               "splitterSettings",
+               "gridLines",
+               "highlightWeekends",
+               "timelineSettings",
+               "labelSettings",
+               "taskbarHeight",
+               "rowHeight",
+               "height",
+               "projectStartDate",
+               "projectEndDate"
+            ]
+         },
+         "description": "This example demonstrates how to pin columns to the left or right, keeping key fields in view during horizontal scrolling."
       },
       {
          "url": "resources",
@@ -1090,7 +1114,6 @@
          "url": "selection",
          "name": "Selection",
          "category": "Miscellaneous",
-         "type":"update",
          "api": {
             "Gantt": [
                "dataSource",

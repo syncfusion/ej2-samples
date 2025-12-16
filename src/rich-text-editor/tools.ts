@@ -2,18 +2,19 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor overview sample
  */
-import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager, EmojiPicker, Audio, Video, FormatPainter, PasteCleanup, ActionBeginEventArgs, SlashMenu, ImportExport, CodeBlock } from '@syncfusion/ej2-richtexteditor';
+import { addClass, removeClass, Browser, getComponent } from '@syncfusion/ej2-base';
+import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager, EmojiPicker, Audio, Video, FormatPainter, PasteCleanup, ActionBeginEventArgs, SlashMenu, ImportExport, CodeBlock, ClipBoardCleanup, AutoFormat } from '@syncfusion/ej2-richtexteditor';
 import { createElement } from '@syncfusion/ej2-base';
 import { Editor as ICodeMirror } from 'codemirror';
 import { Mention } from '@syncfusion/ej2-dropdowns';
+import { Sidebar } from '@syncfusion/ej2-navigations';
 import * as CodeMirror from 'codemirror';
 
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
 
-RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager, EmojiPicker, Audio, Video, FormatPainter, PasteCleanup, SlashMenu, ImportExport, CodeBlock);
+RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, FileManager, EmojiPicker, Audio, Video, FormatPainter, PasteCleanup, SlashMenu, ImportExport, CodeBlock, ClipBoardCleanup, AutoFormat);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -24,7 +25,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         toolbarSettings: {
             items: ['Undo', 'Redo', '|', 'ImportWord', 'ExportWord', 'ExportPdf', '|',
                 'Bold', 'Italic', 'Underline', 'StrikeThrough', 'InlineCode', '|', 'CreateLink', 'Image', 'CreateTable', 'CodeBlock',
-                'HorizontalLine', 'Blockquote', '|', 'BulletFormatList', 'NumberFormatList', 'Checklist' , '|', 'Formats', 'Alignments', '|', 'Outdent', 'Indent', '|',
+                'HorizontalLine', 'Blockquote','|', 'LineHeight', 'Formats', 'Alignments', '|', 'BulletFormatList', 'NumberFormatList', 'Checklist' , '|', 'Outdent', 'Indent', '|',
                 'FontColor', 'BackgroundColor', 'FontName', 'FontSize', '|', 'LowerCase', 'UpperCase', '|', 'SuperScript', 'SubScript', '|',
                 'EmojiPicker', 'FileManager', 'Video', 'Audio', '|', 'FormatPainter', 'ClearFormat',
                 '|', 'Print', 'FullScreen', '|', 'SourceCode']
@@ -84,7 +85,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         enableTabKey: true,
         placeholder: 'Type something or use @ to tag a user...',
         actionBegin: actionBeginHandler,
-        actionComplete: actionCompleteHandler,
+        actionComplete: actionCompleteHandler
     });
     editor.appendTo('#defaultRTE');
 
@@ -171,6 +172,8 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         let sbHdrEle: HTMLElement = document.querySelector('.sb-header.e-view');
         let leftBar: HTMLElement;
         let transformElement: HTMLElement;
+        const sideBarElem: HTMLElement = document.body.querySelector('#left-sidebar');
+        const sideBar: Sidebar = getComponent(sideBarElem, 'sidebar');
         if (Browser.isDevice) {
             leftBar = document.querySelector('#right-sidebar');
             transformElement = document.querySelector('.sample-browser.e-view.e-content-animation');
@@ -180,8 +183,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         }
         if (e.targetItem === 'Maximize' && (sbCntEle != null || sbHdrEle != null)) {
             if (Browser.isDevice && Browser.isIos) { addClass([sbCntEle, sbHdrEle], ['hide-header']); }
-            addClass([leftBar], ['e-close']);
-            removeClass([leftBar], ['e-open']);
+            sideBar.hide();
             if (!Browser.isDevice) { transformElement.style.marginLeft = '0px'; }
             transformElement.style.transform = 'inherit';
             if (document.querySelector('.CodeMirror')) {
@@ -189,7 +191,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
             }
         } else if (e.targetItem === 'Minimize' && (sbCntEle != null || sbHdrEle != null)) {
             if (Browser.isDevice && Browser.isIos) { removeClass([sbCntEle, sbHdrEle], ['hide-header']); }
-            removeClass([leftBar], ['e-close']);
+            sideBar.show();
             if (!Browser.isDevice) {
                 addClass([leftBar], ['e-open']);
                 transformElement.style.marginLeft = leftBar.offsetWidth + 'px';

@@ -155,7 +155,13 @@ let barcode: DataMatrixGenerator;
     });
     barcodeValue.appendTo('#barcodeValue');
 
-
+    let input = document.getElementById("barcodeValue");
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+        }
+    });
+    
     let bgColor: ColorPicker = new ColorPicker({
         value: '#ffffff',
         change: (args: ColorPickerEventArgs) => {

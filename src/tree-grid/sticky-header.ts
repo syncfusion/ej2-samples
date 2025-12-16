@@ -17,7 +17,7 @@ import { sampleData } from './data-source';
             { field: 'duration', headerText: 'Duration', width: 110, textAlign: 'Right' },
             { field: 'progress', headerText: 'Progress', width: 110, textAlign: 'Right' },
             { field: 'priority', headerText: 'Priority', width: 110 },
-            { field: 'approved', headerText: 'Approved', width: 110, displayAsCheckBox: true, textAlign: 'Center' }
+            { field: 'approved', headerText: 'Approved', width: 120, displayAsCheckBox: true, textAlign: 'Center', clipMode: 'EllipsisWithTooltip' }
         ]
     });
     treeGridObj.appendTo('#TreeGrid');

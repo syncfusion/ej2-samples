@@ -1,0 +1,56 @@
+<div class="control-section diagram-distance-measurement">
+    <div class="content-wrapper" style="width: 100%">
+        <div id="distanceDiagram"></div>
+        <div class="distance-units">
+            <label class="distance-unit-label">Unit: </label>
+            <div id="unit-dropdown"></div>
+        </div>
+    </div>
+</div>
+
+<div id="action-description">
+    <p>
+      This sample uses the Syncfusion<sup>®</sup> EJ2 JavaScript Diagram component to demonstrate measuring and visualizing distances between elements with interactive connectors.
+    </p>
+</div>
+
+<div id="description">
+    <p>
+        In this demo, distance connectors are automatically generated and updated as users reposition the wall shapes. These connectors display dimensions between elements, with labels showing exact distances in inches, feet, and centimeters. The entire diagram is responsive, recalculating distances in real time to help users better understand spatial relationships and alignment.
+    </p>
+    <br>
+</div>
+
+<style>
+    .diagram-distance-measurement {
+        position: relative;
+    }
+
+    .diagram-distance-measurement .distance-units {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 7px;
+        background: #fafafa;
+        top: 60px;
+        right: 50px;
+        padding: 5px;
+        border: 0.5px solid #e0e0e0;
+    }
+
+    .diagram-distance-measurement .e-ddl.e-input-group .e-input-group-icon,
+    .e-ddl.e-input-group.e-control-wrapper .e-input-group-icon:hover {
+        color: #9CA3AF;
+    }
+
+    .diagram-distance-measurement .e-ddl.e-input-group.e-control-wrapper .e-input {
+        color: #9CA3AF;
+    }
+
+    .diagram-distance-measurement .distance-unit-label{
+        color: #333 !important;
+        margin-bottom: 0px !important;
+        margin-right: 10px !important;
+    }
+</style>

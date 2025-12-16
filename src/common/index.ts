@@ -81,7 +81,7 @@ interface MyWindow extends Window {
     navigateSample: () => void;
     loadCultureFiles: () => void;
     apiList: any;
-    syncfusionLicenseKey:any;
+    syncfusionLicenseKey: any;
     hashString: string;
 }
 loadCldr(numberingSystems, chinaCultureData, enCultureData, swissCultureDate, currencyData, deCultureData, arCultureData);
@@ -114,6 +114,8 @@ let cultureDropDown: DropDownList;
 let currencyDropDown: DropDownList;
 let contentTab: Tab;
 let sourceTab: Tab;
+let toastObjt: Toast | null = null;
+let isToastVisible = false;
 let sourceTabItems: object[] = [];
 let isExternalNavigation: boolean = true;
 let defaultTree: boolean = false;
@@ -130,7 +132,6 @@ let newYear: number = new Date().getFullYear();
 let copyRight: HTMLElement= document.querySelector('.sb-footer-copyright');
 copyRight.innerHTML = "Copyright © 2001 - " + newYear + " Syncfusion<sup>®</sup> Inc.";
 let isUpdatingFromUrl = false;
-
 /**
  * constant to process the sample url
  */
@@ -187,7 +188,8 @@ if (Browser.isDevice || isMobile) {
         showBackdrop: false,
         closeOnDocumentClick: false,
         enableGestures: false,
-        change:resizeFunction
+        change:resizeFunction,
+        created: resizeFunction
     });
     sidebar.appendTo('#left-sidebar');
 }
@@ -1489,7 +1491,7 @@ function routeDefault(): void {
 }
 function destroyControls(): void {
     const doControls = [
-        "Chart", "chart3d", "3D Circular Chart", "Stock Chart", "Arc Gauge", "Circular Gauge",
+        "Chart", "chart3d","3D Chart", "3D Circular Chart", "Stock Chart", "Arc Gauge", "Circular Gauge",
         "Diagram", "HeatMap Chart", "Linear Gauge", "Maps", "Range Selector", "Smith Chart",
         "Barcode", "Sparkline Charts", "TreeMap", "Bullet Chart"
     ];
@@ -1698,7 +1700,7 @@ function addRoutes(samplesList: Controls[]): void {
                 let title: HTMLElement = document.querySelector('title');
                 title.innerHTML = node.name + ' · ' + subNode.name + ' · Essential JS 2 · Syncfusion ';
                 // Only try to load -stack.json for controls that are not ai-* or are ai-assistview
-                if (!control.startsWith('ai-') || control === 'ai-assistview') {
+                if (!sample.startsWith('ai-') && (!control.startsWith('ai-') || control === 'ai-assistview')) {
                     let plunk: Ajax = new Ajax('src/' + control + '/' + sample + '-stack.json', 'GET', true);
                     let p3: Promise<Ajax> = plunk.send();
                     p3.then((result: Object) => {
@@ -1983,3 +1985,89 @@ function setThemeDefault(theme: string) {
 }
 loadJSON();
 
+select('.close-button').addEventListener('click', () => {
+    let banner = document.querySelector('.sb-token-header');
+    if (banner) {
+        banner.classList.add('sb-hide');
+    }
+});
+
+function contentTemplate(): HTMLElement {
+    const container = document.createElement('div');
+    container.className = 'ai-toast-container';
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'ai-content-text';
+
+    const title = document.createElement('div');
+    title.className = 'ai-content-title';
+    title.innerText = 'Explore AI Demos';
+
+    const message = document.createElement('div');
+    message.className = 'ai-content-message';
+    message.innerHTML = `
+        You can now explore our <strong>Smart AI demos</strong> with limited AI token usage.
+        Additionally, you can try out our <strong>
+        <a href="https://github.com/syncfusion/smart-ai-samples/tree/master/typescript" target="_blank" style="color: #007bff;">Syncfusion Smart AI Samples</a></strong> locally by using your own API key.
+    `;
+
+    textDiv.appendChild(title);
+    textDiv.appendChild(message);
+
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'toast-close-button';
+    closeBtn.innerText = '✕';
+    closeBtn.setAttribute('aria-label', 'Close');
+
+    container.appendChild(textDiv);
+    container.appendChild(closeBtn);
+
+    return container;
+}
+
+function attachCloseHandler() {
+    const closeBtn = toastObjt?.element.querySelector('.toast-close-button');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            toastObjt?.hide();
+            isToastVisible = false;
+        });
+    }
+}
+
+function showToast() {
+    if (!toastObjt) {
+        toastObjt = new Toast({
+            width: 420,
+            content: contentTemplate(),
+            position: { X: 'Right', Y: 'Top' },
+            timeOut: 0,
+            newestOnTop: true,
+            created: () => {
+                toastObjt?.show();
+                isToastVisible = true;
+                attachCloseHandler();
+            }
+        });
+        toastObjt.appendTo('#ai-toast');
+    } else if (!isToastVisible) {
+        toastObjt.show();
+        isToastVisible = true;
+        attachCloseHandler();
+    }
+}
+
+function hideToast() {
+    if (toastObjt && isToastVisible) {
+        toastObjt.hide();
+        isToastVisible = false;
+    }
+}
+
+window.addEventListener('hashchange', () => {
+    if (location.hash.includes('ai-')) {
+        showToast();
+    } else {
+        hideToast();
+    }
+});

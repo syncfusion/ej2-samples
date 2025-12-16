@@ -3,7 +3,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox, TextBox, ChangedEventArgs } from '@syncfusion/ej2-inputs';
 import { enableRipple } from '@syncfusion/ej2-base';
-
+import { serverAIRequest } from '../common/ai-service';
 
 enableRipple(true);
 
@@ -13,23 +13,11 @@ enableRipple(true);
 
 (window as any).default = (): void => {
 
-    const serverAIRequest = async (settings: any) => {
-        let output = '';
-        try {
-            console.log(settings);
-            const response = await (window as any).getAzureChatAIRequest(settings) as string;
-            console.log("Success:", response);
-            output = response;
-        } catch (error) {
-            console.error("Error:", error);
-        }
-        return output;
-    };
-
     let textareaObj: SmartTextArea = new SmartTextArea({
         placeholder: 'Enter your queries here',
         floatLabelType: 'Auto',
         rows:5,
+        cols: 100,
         userRole: 'Employee communicating with internal team',
         UserPhrases: [
             "Please find the attached report.",
@@ -94,7 +82,7 @@ enableRipple(true);
 
     let dropDownPresets: DropDownList = new DropDownList({
         dataSource: rolesData,
-        width:'75%',
+        width:'100%',
         placeholder: "Select a role",
         value: "Maintainer of an open-source project replying to GitHub issues",
         popupHeight: "200px",

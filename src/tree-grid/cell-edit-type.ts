@@ -12,6 +12,7 @@ TreeGrid.Inject(Toolbar, Edit);
             childMapping: 'subtasks',
             treeColumnIndex: 1,
             height: 400,
+            clipMode: 'EllipsisWithTooltip',
             editSettings: {
                 allowAdding: true,
                 allowEditing: true,
@@ -25,7 +26,7 @@ TreeGrid.Inject(Toolbar, Edit);
             columns: [
                 {
                     field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, textAlign: 'Right',
-                    validationRules: { required: true, number: true }, width: 70
+                    validationRules: { required: true, number: true }, width: 90
                 },
                 {
                     field: 'taskName', headerText: 'Task Name', editType: 'stringedit',

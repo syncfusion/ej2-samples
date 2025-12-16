@@ -1,335 +1,3 @@
-<!-- custom code start -->
-<style type="text/css">
-  .border {
-    border-color: #e0e0e0;
-    border: 1px solid #e0e0e0;
-    border-width: 1px 0px 0px 0px;
-  }
-
-  img {
-    width: 60px;
-    height: 60px;
-    vertical-align: baseline;
-    border-radius: 50px;
-    margin-left: 20px;
-    background-repeat: no-repeat;
-  }
-</style>
-<!-- custom code end -->
-<style>
-  .tailwind3-dark #TreeGrid .e-table td.border,
-  .fluent2-dark #TreeGrid .e-table td.border,
-  .bootstrap5\.3-dark #TreeGrid .e-table td.border,
-  .material3-dark #TreeGrid .e-table td.border,
-  .fluent2-highcontrast #TreeGrid .e-table td.border {
-    color: #fff;
-  }
-
-  #TreeGrid .e-gridheader .e-headercelldiv {
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    letter-spacing: 3.45px !important;
-  }
-
-  :root {
-    --green: #27ae60;
-    --red: #e74c3c;
-    --radius: 12px;
-    --grey-line: #e5e7eb;
-  }
-
-  [class*="veg-icon"],
-  [class*="e-veg-icon"],
-  [class*="e-nonveg-icon"] {
-    display: inline-block;
-    border-radius: 50%;
-  }
-
-  [class*="veg-icon"] {
-    width: 12px;
-    height: 12px;
-    margin: 0 0 4px 2px;
-  }
-
-  .material3 [class*="veg-icon"],
-  .tailwind3 [class*="veg-icon"] {
-    margin: 0 0 2px 2px;
-  }
-
-  .material3-dark [class*="veg-icon"] {
-    margin: 0 0 3px 2px;
-  }
-
-  .resmenu-veg-icon {
-    background: green;
-  }
-
-  .resmenu-nonveg-icon {
-    background: red;
-  }
-
-  [class*="FoodCategory_icon"] {
-    width: 20px;
-    height: 20px;
-    border: 2px solid;
-  }
-
-  .resmenu-FoodCategory_icon_veg {
-    border-color: green;
-  }
-
-  .resmenu-FoodCategory_icon_nonveg {
-    border-color: red;
-  }
-
-  .resmenu-e-veg-icon,
-  .resmenu-e-nonveg-icon {
-    border: 2px solid;
-    border-radius: 4px;
-    background: #fff;
-    position: relative;
-  }
-
-  .resmenu-e-veg-icon {
-    border-color: var(--green);
-  }
-
-  .resmenu-e-nonveg-icon {
-    border-color: var(--red);
-  }
-
-  .resmenu-e-veg-icon::after,
-  .resmenu-e-nonveg-icon::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-  }
-
-  .resmenu-e-veg-icon::after {
-    background: var(--green);
-  }
-
-  .resmenu-e-nonveg-icon::after {
-    background: var(--red);
-  }
-
-  .resmenu-price {
-    font-weight: bold;
-  }
-
-  .resmenu-old-price {
-    font-size: 12px;
-    text-decoration: line-through;
-    margin: 3px;
-  }
-
-  .resmenu-card {
-    width: 30vw;
-    padding: 10px;
-    margin-bottom: 50px;
-  }
-
-  .resmenu-info-separator {
-    margin: 20px 0 0 0;
-  }
-
-  .resmenu-cell {
-    border-bottom: 1px solid var(--grey-line);
-  }
- #cartbadge {
-    top: -14px;
-    font-size: 10px;
-  }
- 
-  .resmenu-image {
-    width: 110px;
-    height: 110px;
-    float: right;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border-radius: var(--radius);
-    margin: 20px;
-    transition: transform .3s;
-  }
-
-  .resmenu-image-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-  }
-
-  .resmenu-image-wrap:hover .resmenu-image {
-    transform: scale(1.2);
-  }
-
-  .resmenu-count {
-    margin: 10px 20px 0 0;
-  }
-
-  .resmenu-food-count {
-    width: 60px;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .resmenu-price-section {
-    text-align: right;
-    width: 28vw;
-  }
-
-  .resmenu-rating {
-    padding: 15px 0;
-    font-size: 13px;
-    font-weight: 400;
-  }
-
-  .resmenu-rating-value {
-    font-weight: 600;
-    font-size: 15px;
-  }
-
-  .resmenu-rating-thumbsup,
-  .resmenu-rating-count {
-    font-size: 15px;
-  }
-  
-  .resmenu-foodname {
-    font-weight: 600;
-    font-size: 18px;
-    margin-left: 7px;
-  }
-
-  .resmenu-fooddesc {
-    font-weight: 400;
-    letter-spacing: .45px;
-  }
-
-  .resmenu-title {
-    float: right;
-    margin: 5px 0 0 5px;
-    font-weight: bold;
-  }
-
-  .resmenu-parentfoodname {
-    height: 48px;
-    font-weight: 800;
-    font-size: 18px;
-  }
-
-  .treegrid-center-container .e-toolbar-right {
-    right: 20px !important;
-  }
-
-  #CartUpdate {
-    font-weight: 400;
-    font-size: 10px;
-  }
-
-  .treegrid-center-container,
-  .resmenu-toolbar-search {
-    width: 800px;
-    margin: 32px auto;
-  }
-
-  .resmenu-toolbar-search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 16px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  }
-
-  #search-autocomplete {
-    width: 100%;
-    padding: 25px 12px;
-    border-radius: 8px;
-    font-size: 16px;
-  }
-  
-  .material3 #search-autocomplete,
-  .material3-dark #search-autocomplete {
-    padding-top : 15px !important;
-    padding-bottom : 15px !important;
-    padding-left: 13px;
-  }
-
-  #ingredientsList .e-chip.e-outline {
-    color: #222 !important;
-    border-color: #ccc !important;
-    background: #D3D3D3 !important;
-    box-shadow: none !important;
-    cursor: default !important;
-    transition: none !important;
-  }
-
-  @media (max-width: 1200px) {
-
-    .treegrid-center-container,
-    .resmenu-toolbar-search {
-      width: 100%;
-      padding: 0 8px;
-      box-sizing: border-box;
-    }
-  }
-
-  #cartDialog_title {
-    text-align: center;
-  }
-
-  .treegrid-center-container .e-treegridexpand,
-  .treegrid-center-container .e-treegridcollapse {
-    vertical-align: middle !important;
-    margin-left: 7px;
-  }
-
-  #TreeGrid .e-toolbar {
-    height: 60px !important;
-  }
-
-  .resmenu-emptyRecord {
-    font-style: italic;
-    font-size: 20px;
-  }
-  @media (max-width: 450px) {
-    .resmenu-image {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .resmenu-count {
-        margin: 0 5px 0 0;
-    }
-    
-    .resmenu-price-section {
-        text-align: left;
-    }
-    }
-  .sample-order{
-      display: flex;   flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 15px;
-  }
-  .resmenu-order-no , .resmenu-order-date{
-      font-weight: bold;
-  }
-  .resmenu-order-no{
-      font-size: medium;
-  }
-  .resmenu-thank-note{
-      font-weight: bold;
-      font-style: italic;
-      margin: 30px;
-      justify-items: center;
-      font-size: medium;
-  }
-  #dialog-container td{
-      padding: 5px 0;
-  }
-</style>
 <script id="emptytemplate" type="text/x-template">
   <div class='emptyRecordTemplate'>
         <span class="resmenu-emptyRecord">Hmm... we could not find that dish. Want to try something else?</span>
@@ -387,6 +55,288 @@
       ${/if}
     </tr>
   </script>
+<style>
+    .border {
+    border-color: #e0e0e0;
+    border: 1px solid #e0e0e0;
+    border-width: 1px 0px 0px 0px;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    vertical-align: baseline;
+    border-radius: 50px;
+    margin-left: 20px;
+    background-repeat: no-repeat;
+  }
+  .tailwind3-dark #TreeGrid .e-table td.border,
+  .fluent2-dark #TreeGrid .e-table td.border,
+  .bootstrap5\.3-dark #TreeGrid .e-table td.border,
+  .material3-dark #TreeGrid .e-table td.border,
+  .fluent2-highcontrast #TreeGrid .e-table td.border {
+    color: #fff;
+  }
+  #TreeGrid .e-gridheader .e-headercelldiv {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 3.45px !important;
+  }
+  :root {
+    --green: #27ae60;
+    --red: #e74c3c;
+    --radius: 12px;
+    --grey-line: #e5e7eb;
+  }
+  [class*="veg-icon"],
+  [class*="e-veg-icon"],
+  [class*="e-nonveg-icon"] {
+    display: inline-block;
+    border-radius: 50%;
+  }
+  [class*="veg-icon"] {
+    width: 12px;
+    height: 12px;
+    margin: 0 0 4px 2px;
+  }
+  .material3 [class*="veg-icon"],
+  .tailwind3 [class*="veg-icon"] {
+    margin: 0 0 2px 2px;
+  }
+  .material3-dark [class*="veg-icon"] {
+    margin: 0 0 3px 2px;
+  }
+  .resmenu-veg-icon {
+    background: green;
+  }
+  .resmenu-nonveg-icon {
+    background: red;
+  }
+  [class*="FoodCategory_icon"] {
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+  }
+  .resmenu-FoodCategory_icon_veg {
+    border-color: green;
+  }
+  .resmenu-FoodCategory_icon_nonveg {
+    border-color: red;
+  }
+  .resmenu-e-veg-icon,
+  .resmenu-e-nonveg-icon {
+    border: 2px solid;
+    border-radius: 4px;
+    background: #fff;
+    position: relative;
+  }
+  .resmenu-e-veg-icon {
+    border-color: var(--green);
+  }
+  .resmenu-e-nonveg-icon {
+    border-color: var(--red);
+  }
+  .resmenu-e-veg-icon::after,
+  .resmenu-e-nonveg-icon::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+  }
+  .resmenu-e-veg-icon::after {
+    background: var(--green);
+  }
+  .resmenu-e-nonveg-icon::after {
+    background: var(--red);
+  }
+  .resmenu-price {
+    font-weight: bold;
+  }
+  .resmenu-old-price {
+    font-size: 12px;
+    text-decoration: line-through;
+    margin: 3px;
+  }
+  .resmenu-card {
+    width: 30vw;
+    padding: 10px;
+    margin-bottom: 50px;
+  }
+  .resmenu-info-separator {
+    margin: 20px 0 0 0;
+  }
+  .resmenu-cell {
+    border-bottom: 1px solid var(--grey-line);
+  }
+ #cartbadge {
+    top: -14px;
+    font-size: 10px;
+  }
+ 
+  .resmenu-image {
+    width: 110px;
+    height: 110px;
+    float: right;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius);
+    margin: 20px;
+    transition: transform .3s;
+  }
+  .resmenu-image-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  .resmenu-image-wrap:hover .resmenu-image {
+    transform: scale(1.2);
+  }
+  .resmenu-count {
+    margin: 10px 20px 0 0;
+  }
+  .resmenu-food-count {
+    width: 60px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .resmenu-price-section {
+    text-align: right;
+    width: 28vw;
+  }
+  .resmenu-rating {
+    padding: 15px 0;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .resmenu-rating-value {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .resmenu-rating-thumbsup,
+  .resmenu-rating-count {
+    font-size: 15px;
+  }
+  
+  .resmenu-foodname {
+    font-weight: 600;
+    font-size: 18px;
+    margin-left: 7px;
+  }
+  .resmenu-fooddesc {
+    font-weight: 400;
+    letter-spacing: .45px;
+  }
+  .resmenu-title {
+    float: right;
+    margin: 5px 0 0 5px;
+    font-weight: bold;
+  }
+  .resmenu-parentfoodname {
+    height: 48px;
+    font-weight: 800;
+    font-size: 18px;
+  }
+  .treegrid-center-container .e-toolbar-right {
+    right: 20px !important;
+  }
+  #CartUpdate {
+    font-weight: 400;
+    font-size: 10px;
+  }
+  .treegrid-center-container,
+  .resmenu-toolbar-search {
+    width: 800px;
+    margin: 32px auto;
+  }
+  .resmenu-toolbar-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  }
+  #search-autocomplete {
+    width: 100%;
+    padding: 25px 12px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .material3 #search-autocomplete,
+  .material3-dark #search-autocomplete {
+    padding-top : 15px !important;
+    padding-bottom : 15px !important;
+    padding-left: 13px;
+  }
+  #ingredientsList .e-chip.e-outline {
+    color: #222 !important;
+    border-color: #ccc !important;
+    background: #D3D3D3 !important;
+    box-shadow: none !important;
+    cursor: default !important;
+    transition: none !important;
+  }
+  @media (max-width: 1200px) {
+    .treegrid-center-container,
+    .resmenu-toolbar-search {
+      width: 100%;
+      padding: 0 8px;
+      box-sizing: border-box;
+    }
+  }
+  #cartDialog_title {
+    text-align: center;
+  }
+  .treegrid-center-container .e-treegridexpand,
+  .treegrid-center-container .e-treegridcollapse {
+    vertical-align: middle !important;
+    margin-left: 7px;
+  }
+  #TreeGrid .e-toolbar {
+    height: 60px !important;
+  }
+  .resmenu-emptyRecord {
+    font-style: italic;
+    font-size: 20px;
+  }
+  @media (max-width: 450px) {
+    .resmenu-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .resmenu-count {
+        margin: 0 5px 0 0;
+    }
+    
+    .resmenu-price-section {
+        text-align: left;
+    }
+    }
+  .sample-order{
+      display: flex;   flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 15px;
+  }
+  .resmenu-order-no , .resmenu-order-date{
+      font-weight: bold;
+  }
+  .resmenu-order-no{
+      font-size: medium;
+  }
+  .resmenu-thank-note{
+      font-weight: bold;
+      font-style: italic;
+      margin: 30px;
+      justify-items: center;
+      font-size: medium;
+  }
+  #dialog-container td{
+      padding: 5px 0;
+  }
+</style>  
 <div class="control-section">
   <div class="content-wrapper">
     <div class="treegrid-center-container">

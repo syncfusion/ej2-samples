@@ -85,7 +85,7 @@ import * as dataSource from './datasource.json';
 
     document.getElementById('validate').onclick = (): void => {
         let colindex: number = keyObj.index;
-        let colText: string = (<HTMLInputElement>document.getElementById('dropdownHeader')).value;
+        let colText: string = (<HTMLInputElement>document.getElementById('key')).value;
         let colmin: number = parseInt((<HTMLInputElement>document.getElementById('minIndex')).value, 10);
         let colmax: number = parseInt((<HTMLInputElement>document.getElementById('maxIndex')).value, 10);
         if (colText === '') {

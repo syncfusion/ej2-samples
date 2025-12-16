@@ -83,6 +83,7 @@ let tempChartExpenseDS: any = {};
 let tempChartLineDS: any = {};
 let curDateTime: any;
 let lineD: any = [];
+let isCreated = false;
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
@@ -110,61 +111,86 @@ let lineD: any = [];
   let diagram: Diagram = new Diagram({
     width: '100%', height: '900px', nodes: nodes,
     backgroundColor: '#F5F5F5',
-    nodeTemplate: '#nodetemplate', created: created
+    nodeTemplate: '#nodetemplate', created: created,
+    load: load
   });
   diagram.appendTo('#diagram');
   function created(): void {
     diagram.fitToPage();
+    getTotalExpense();
+    initialRender();
+    renderPieComponent();
+    renderGridComponent();
+    renderDateRangeComponent();
+    isCreated = true;
   }
-  getTotalExpense();
-  initialRender();
+  function load(): void {
+    if (isCreated) {
+      setTimeout(function () {
+        diagram.fitToPage();
+        getTotalExpense();
+        initialRender();
+        pie.appendTo('#pieChart');
+        renderGridComponent();
+        dateRangePickerObject.appendTo('#daterange');
+      }, 0);
+    }
+  }
 
-  pie = new AccumulationChart({
-    enableSmartLabels: true,
-    width: '100%',
-    height: '350px',
-    series: getSeries(),
-    legendSettings: { visible: true },
-    textRender: (args: IAccTextRenderEventArgs) => {
-      args.series.dataLabel.font.size = '13px';
-      pie.animateSeries = true;
-      if (args.text.indexOf('Others') > -1) {
-        args.text = 'Others';
-      }
-    },
-  });
-  pie.appendTo('#pieChart');
-  createLegendData('pie');
-  grid = new Grid({
-    width: '40%',
-    dataSource: pieRenderData,
-    rowTemplate: '#rowtemplate',
-    columns: [
-      { width: '10%', textAlign: 'Center' },
-      { width: '50%' },
-      { width: '20%' },
-      { width: '20%' }
-    ],
-  });
-  grid.appendTo('#grid');
-  dateRangePickerObject = new DateRangePicker({
-    format: 'MM/dd/yyyy',
-    change: onDateRangeChange,
-    startDate: window.startDate,
-    endDate: window.endDate,
-    min: new Date(2017, 0o5, 0o1),
-    max: new Date(2017, 10, 30),
-    showClearButton: false,
-    allowEdit: false,
-    presets: [
-      { label: 'Last Month', start: new Date('10/1/2017'), end: new Date('10/31/2017') },
-      { label: 'Last 3 Months', start: new Date('9/1/2017'), end: new Date('11/30/2017') },
-      { label: 'All Time', start: new Date('6/1/2017'), end: new Date('11/30/2017') }
-    ]
-  });
-  dateRangePickerObject.appendTo('#daterange');
-  window.startDate = dateRangePickerObject.startDate;
-  window.endDate = dateRangePickerObject.endDate;
+  function renderPieComponent(): void {
+    pie = new AccumulationChart({
+      enableSmartLabels: true,
+      width: '100%',
+      height: '350px',
+      series: getSeries(),
+      legendSettings: { visible: true },
+      textRender: (args: IAccTextRenderEventArgs) => {
+        args.series.dataLabel.font.size = '13px';
+        pie.animateSeries = true;
+        if (args.text.indexOf('Others') > -1) {
+          args.text = 'Others';
+        }
+      },
+    });
+    pie.appendTo('#pieChart');
+    createLegendData('pie');
+  }
+
+  function renderGridComponent(): void {
+    grid = new Grid({
+      width: '40%',
+      dataSource: pieRenderData,
+      rowTemplate: '#rowtemplate',
+      columns: [
+        { width: '10%', textAlign: 'Center' },
+        { width: '50%' },
+        { width: '20%' },
+        { width: '20%' }
+      ],
+    });
+    grid.appendTo('#grid');
+  }
+
+  function renderDateRangeComponent(): void {
+    dateRangePickerObject = new DateRangePicker({
+      format: 'MM/dd/yyyy',
+      change: onDateRangeChange,
+      startDate: window.startDate,
+      endDate: window.endDate,
+      min: new Date(2017, 0o5, 0o1),
+      max: new Date(2017, 10, 30),
+      showClearButton: false,
+      allowEdit: false,
+      presets: [
+        { label: 'Last Month', start: new Date('10/1/2017'), end: new Date('10/31/2017') },
+        { label: 'Last 3 Months', start: new Date('9/1/2017'), end: new Date('11/30/2017') },
+        { label: 'All Time', start: new Date('6/1/2017'), end: new Date('11/30/2017') }
+      ]
+    });
+    dateRangePickerObject.appendTo('#daterange');
+    window.startDate = dateRangePickerObject.startDate;
+    window.endDate = dateRangePickerObject.endDate;
+  }
 
   function getSeries(): object[] {
     let series: object[] = [

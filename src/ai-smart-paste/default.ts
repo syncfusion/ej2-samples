@@ -2,6 +2,7 @@ import { SmartPasteButton, ChatOptions } from "@syncfusion/ej2-buttons";
 import { TextArea, TextBox } from "@syncfusion/ej2-inputs";
 import { Button, ChipList, ClickEventArgs, RadioButton } from "@syncfusion/ej2-buttons";
 import { ComboBox } from "@syncfusion/ej2/dropdowns";
+import { serverAIRequest } from '../common/ai-service';
 
 (window as any).default = (): void => {
 
@@ -137,16 +138,3 @@ import { ComboBox } from "@syncfusion/ej2/dropdowns";
     },
     '#chip-choice');
 }
-
-export const serverAIRequest = async (options: ChatOptions) => {
-    let output: string | null = '';
-    try {
-        // console.log("input:", options);
-        output = await (window as any).getAzureChatAIRequest(options) as string;
-        output = output.replace('END_RESPONSE', '')
-        // console.log("Success:", output);
-    } catch (error) {
-        console.error("Error:", error);
-    }
-    return output;
-};

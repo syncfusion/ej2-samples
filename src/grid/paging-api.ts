@@ -98,7 +98,7 @@ Grid.Inject(Page, Selection, Sort, Filter, Edit, Toolbar);
     };
     function paging(args: PageEventArgs): void {
         if (args.requestType === 'paging') {
-            currentPage.value = parseInt(args.currentPage, 10);
+            currentPage.value = parseInt((args.currentPage as string), 10);
         }
     }
 };

@@ -20,7 +20,7 @@ Grid.Inject(Page, Selection, Toolbar, ColumnChooser, Sort, Filter, Edit);
             editSettings: { allowAdding: true, allowEditing: true, allowDeleting: true },
             toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'ColumnChooser'],
             columns: [
-                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', isPrimaryKey: true, validationRules: { required: true, number: true } },
+                { field: 'OrderID', headerText: 'Order ID', width: 120, textAlign: 'Right', isPrimaryKey: true, showInColumnChooser: false, validationRules: { required: true, number: true } },
                 { field: 'CustomerName', headerText: 'Customer Name', width: 150, showInColumnChooser: false, validationRules: { required: true, minLength: 5 } },
                 { field: 'OrderDate', headerText: 'Order Date', width: 130, format: 'yMd', textAlign: 'Right', editType: 'datepickeredit' },
                 { field: 'Freight', width: 120, format: 'C2', textAlign: 'Right', editType: 'numericedit', validationRules: { required: true, min: 0 } },

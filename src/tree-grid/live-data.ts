@@ -43,6 +43,7 @@ TreeGrid.Inject(Selection);
                     format: 'C2',
                     type: 'number',
                     textAlign: 'Right',
+                    clipMode: 'EllipsisWithTooltip'
                 },
                 {
                     field: 'Change',
@@ -55,7 +56,7 @@ TreeGrid.Inject(Selection);
                 {
                     field: 'PercentageChange',
                     headerText: '% Change',
-                    width: '110',
+                    width: '130',
                     format: 'N0',
                     textAlign: 'Right'
                 },

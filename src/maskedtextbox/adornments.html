@@ -1,0 +1,61 @@
+<div class="control-section">
+    <div class="content-wrapper">
+        <div class="mask-row">
+            <input id="mask" type="text" />
+        </div>
+    </div>
+</div>
+
+<div id="action-description">
+    <p>
+        This example highlights adornment support in the Syncfusion MaskedTextBox. Adornments let you place custom elements before or after the masked input by using the <code>prependTemplate</code> and <code>appendTemplate</code> properties such as prefixes, suffix labels, or action icons to provide context, guide entry, and offer quick actions, while preserving mask validation and float label behavior.
+    </p>
+</div>
+<div id="description">
+    <p>
+        This sample illustrates adornment integration in the Syncfusion MaskedTextBox via a prepended user icon and a appended send icon.
+    </p>
+</div>
+<style>
+    .content-wrapper div.mask-row {
+        max-width: 250px;
+        margin: 0 auto;
+        padding: 40px 0px 0px;
+    }
+    .multiline-property .left-side {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .multiline-property.property-panel-table div.multiline {
+        padding-left: 0px;
+    }
+    .mask-row label.e-float-text,
+    .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom,
+    .mask-row .e-float-input.e-control-wrapper:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom {
+        margin-top: -2px;
+    }
+    .bootstrap5\.3 .mask-row .e-prepend-template,
+    .bootstrap5\.3-dark .mask-row .e-prepend-template,
+    .tailwind3 .mask-row .e-prepend-template,
+    .tailwind3-dark .mask-row .e-prepend-template {
+        padding-right: 0 !important;
+    }
+    .fluent2 .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom,
+    .fluent2-dark .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom,
+    .fluent2-highcontrast .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom {
+        top: -8px !important;
+    }
+    .e-bigger.material3 .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom,
+    .e-bigger.material3-dark .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom {
+        top: -3px !important;
+    }
+    .e-bigger.bootstrap5\.3 .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom,
+    .e-bigger.bootstrap5\.3-dark .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom {
+        top: 20px !important;
+    }
+    .e-bigger.fluent2 .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom,
+    .e-bigger.fluent2-dark .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom,
+    .e-bigger.fluent2-highcontrast .mask-row .e-float-input:not(.e-error):not(.e-input-focus) input:not(:focus):valid~label.e-float-text.e-label-bottom {
+        margin-top: 0 !important;
+    }
+</style>

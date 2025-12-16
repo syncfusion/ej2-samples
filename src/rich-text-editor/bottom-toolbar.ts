@@ -2,10 +2,10 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { ChatUI, MessageModel, UserModel } from '@syncfusion/ej2-interactive-chat';
 import {
     RichTextEditor, HtmlEditor, Toolbar, QuickToolbar, FormatPainter, Link,
-    Image, Table, Audio, Video, PasteCleanup , EmojiPicker
+    Image, Table, Audio, Video, PasteCleanup , EmojiPicker, ClipBoardCleanup, AutoFormat
 } from '@syncfusion/ej2-richtexteditor';
 
-RichTextEditor.Inject(HtmlEditor, Toolbar, QuickToolbar, FormatPainter, Table, Link, Image, Audio, Video, PasteCleanup, EmojiPicker);
+RichTextEditor.Inject(HtmlEditor, Toolbar, QuickToolbar, FormatPainter, Table, Link, Image, Audio, Video, PasteCleanup, EmojiPicker, ClipBoardCleanup, AutoFormat);
 
 (window as any).default = (): void => {
     loadCultureFiles();

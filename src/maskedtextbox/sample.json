@@ -2,7 +2,8 @@
     "name": "Input Mask",
     "directory": "maskedtextbox",
     "category": "Inputs",
-     "ftName": "maskedtextbox", 
+    "ftName": "maskedtextbox",
+    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -24,6 +25,14 @@
             "category": "Input Mask",
             "description":"This sample demonstrates the usage of different mask formats through the properties panel. You can also get the value and raw value of the masked textbox.",
             "api":{"MaskedTextBox":["mask","floatLabelType","change","promptChar","getMaskedValue","value"] }
+        },
+        {
+            "url": "adornments",
+            "name": "Adornments",
+            "type": "new",
+            "category": "Input Mask",
+            "description":"The example exposes a JavaScript Masked TextBox with adornments support. It helps to render custom elements before or after the input element.",
+            "api": { "MaskedTextBox": ["prependTemplate", "appendTemplate"]}
         }
     ]
 }

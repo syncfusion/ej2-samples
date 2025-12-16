@@ -1,10 +1,8 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { InputObject, TextBox } from  '@syncfusion/ej2-inputs';
 /**
  *   Sample for CSS input boxes.
  */
-(window as any).default = (): void => {
-    loadCultureFiles();
+(window as any).default = () => {
     let outlineTextBox: TextBox = new TextBox({
         placeholder: 'Outlined',
         cssClass: 'e-outline',

@@ -80,9 +80,9 @@ function connectorDefaults(connector: ConnectorModel): ConnectorModel {
         let target: HTMLElement = args.target as HTMLElement;
         // custom code start
         // Styling the selected appearence
-        let selectedElement: HTMLCollection = document.getElementsByClassName('e-selected-style');
+        let selectedElement: HTMLCollection = document.getElementsByClassName('diagram-selected-style');
         if (selectedElement.length) {
-            selectedElement[0].classList.remove('e-selected-style');
+            selectedElement[0].classList.remove('diagram-selected-style');
         }
         // custom code end
         // Changes appearence of tree

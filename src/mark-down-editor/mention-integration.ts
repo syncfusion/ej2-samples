@@ -5,7 +5,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { RichTextEditor, Toolbar, Link, Image, MarkdownEditor, Table } from '@syncfusion/ej2-richtexteditor';
 import { MarkdownFormatter } from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs } from '@syncfusion/ej2-base';
-import * as Marked from 'marked';
+import { MarkdownConverter } from '@syncfusion/ej2-markdown-converter';
 import { Mention } from '@syncfusion/ej2-dropdowns';
 
 RichTextEditor.Inject(Toolbar, Link, Image, MarkdownEditor, Table);
@@ -51,7 +51,7 @@ let mdsource: HTMLElement;
         if (mdsource.classList.contains('e-active')) {
             let id: string = markdownMention.getID() + 'html-view';
             let htmlPreview: HTMLElement = markdownMention.element.querySelector('#' + id);
-            htmlPreview.innerHTML = Marked.marked((markdownMention.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+            htmlPreview.innerHTML = MarkdownConverter.toHtml((markdownMention.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
         }
     }
     function fullPreview(): void {
@@ -77,7 +77,7 @@ let mdsource: HTMLElement;
             }
             textArea.style.display = 'none';
             htmlPreview.style.display = 'block';
-            htmlPreview.innerHTML = Marked.marked((markdownMention.contentModule.getEditPanel() as HTMLTextAreaElement).value);
+            htmlPreview.innerHTML = MarkdownConverter.toHtml((markdownMention.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
             mdsource.parentElement.title = 'Code View';
         }
     }

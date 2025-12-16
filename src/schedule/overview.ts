@@ -68,7 +68,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
     });
     defaultAppBarObj.appendTo('#defaultAppBar');
 
-    let liveTimeInterval: number;
+    let liveTimeInterval: ReturnType<typeof setTimeout> | number;
     let updateLiveTime: Function = (): void => {
         let scheduleTimezone: string = scheduleObj ? scheduleObj.timezone : 'Etc/GMT';
         let timeBtn: Element = document.querySelector('.current-time');
@@ -372,7 +372,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Year, Agenda, TimelineViews, Timelin
         destroyed: () => {
             menuObj.destroy();
             if (liveTimeInterval) {
-                clearInterval(liveTimeInterval as number);
+                clearInterval(liveTimeInterval);
             }
         }
     });

@@ -4,7 +4,7 @@
     "category": "File Viewers & Editors",
     "ftName": "BlockEditor",
     "type": "preview",
-    "dataSourcePath": "src/block-editor/blockData.ts",
+    "dataSourcePath": "src/block-editor/blockData.json",
     "samples": [
         {
             "url": "overview",
@@ -15,19 +15,32 @@
             "sourceFiles": [
                 { "displayName": "overview.ts", "path":"src/block-editor/overview.ts" },
                 { "displayName": "overview.html", "path":"src/block-editor/overview.html" },
-                { "displayName": "blockData.ts", "path":"src/block-editor/blockData.ts" }
+                { "displayName": "blockData.json", "path":"src/block-editor/blockData.json" }
+            ]
+        },
+        {
+            "url": "pastesettings",
+            "name": "Paste Cleanup",
+            "category": "Block Editor",
+            "type":"new",
+            "api":{ "BlockEditor": ["pasteSettings"] },
+            "description": "This demo covers important Paste Settings of the TS Block control.",
+            "sourceFiles": [
+                { "displayName": "pastesettings.ts", "path":"src/block-editor/pastesettings.ts" },
+                { "displayName": "pastesettings.html", "path":"src/block-editor/pastesettings.html" },
+                { "displayName": "blockData.json", "path":"src/block-editor/blockData.json" }
             ]
         },
         {
             "url": "api",
             "name": "API",
             "category": "Block Editor",
-            "api":{ "BlockEditor": ["blocks", "readOnly", "enableDragDrop", "enableHtmlEncode", "gettsonData", "getBlockCount", "selectAllBlocks", "focusIn", "focusOut"] },
-            "description": "This demo covers important APIs of the tS Block Editor such as HTML encoding, read-only, Drag and Drop, and more.",
+            "api":{ "BlockEditor": ["blocks", "readOnly", "enableDragDrop", "getJsonData", "getBlockCount", "selectAllBlocks"] },
+            "description": "This demo covers important APIs of the TS Block Editor such as read-only, Drag and Drop, and more.",
             "sourceFiles": [
                 { "displayName": "api.ts", "path":"src/block-editor/api.ts" },
                 { "displayName": "api.html", "path":"src/block-editor/api.html" },
-                { "displayName": "blockData.ts", "path":"src/block-editor/blockData.ts" }
+                { "displayName": "blockData.json", "path":"src/block-editor/blockData.json" }
             ]
         },
         {
@@ -38,23 +51,61 @@
                 "BlockEditor": [
                     "blocks",
                     "created",
-                    "contentChanged",
+                    "blockChange",
                     "selectionChanged",
-                    "blockAdded",
-                    "blockRemoved",
-                    "blockMoved",
-                    "blockDrag",
+                    "blockDragging",
                     "blockDragStart",
-                    "blockDrop",
+                    "blockDropped",
                     "focus",
-                    "blur"
+                    "blur",
+                    "beforePaste",
+                    "afterPaste"
                 ]
             },
             "description": "This demo covers events of Block Editor control.",
             "sourceFiles": [
                 { "displayName": "events.ts", "path":"src/block-editor/events.ts" },
                 { "displayName": "events.html", "path":"src/block-editor/events.html" },
-                { "displayName": "blockData.ts", "path":"src/block-editor/blockData.ts" }
+                { "displayName": "blockData.json", "path":"src/block-editor/blockData.json" }
+            ]
+        },
+        {
+          "url": "template-gallery",
+          "name": "Template Gallery",
+          "type": "new",
+          "category": "Use Cases",
+          "api": {
+            "BlockEditor": [
+              "blocks",
+              "renderBlocksFromJson"
+            ]
+          },
+          "description": "This demo covers a Template Gallery built with the Block Editor.",
+          "sourceFiles": [
+            { "displayName": "template-gallery.ts", "path": "src/block-editor/template-gallery.ts" },
+            { "displayName": "template-gallery.html", "path": "src/block-editor/template-gallery.html" },
+            { "displayName": "blockData.json", "path": "src/block-editor/blockData.json" }
+          ]
+        },
+        {
+          "url": "markdownBlocks",
+          "name": "Markdown Blocks",
+          "type": "new",
+          "category": "Use Cases",
+          "api": {
+            "BlockEditor": [
+              "blocks",
+              "inlineToolbar",
+              "commandMenu",
+              "parseHtmlToBlocks",
+              "renderBlocksFromJson",
+              "getDataAsHtml"
+            ]
+          },
+          "description": "This demo covers a fully-featured documentation viewer built with the Block Editor, including sidebar navigation, breadcrumb, Markdown loading, and download as Markdown.",
+          "sourceFiles": [
+            { "displayName": "markdownBlocks.ts", "path": "src/block-editor/markdownBlocks.ts" },
+            { "displayName": "markdownBlocks.html", "path": "src/block-editor/markdownBlocks.html" }
             ]
         }
     ]

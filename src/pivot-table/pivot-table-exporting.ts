@@ -15,7 +15,7 @@ PivotView.Inject(FieldList, GroupingBar, ExcelExport, Toolbar);
     loadCultureFiles();
     let pivotObj: PivotView = new PivotView({
         dataSourceSettings: {
-            url: 'https://ej2services.syncfusion.com/js/development/api/pivot/post',
+            url: 'https://services.syncfusion.com/js/production/api/pivot/post',
             mode: 'Server',
             expandAll: true,
             enableSorting: true,

@@ -2,10 +2,10 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor insert emoticons sample
  */
-import { RichTextEditor, Toolbar, Link, NodeSelection, Image, QuickToolbar, HtmlEditor , EmojiPicker, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, NodeSelection, Image, QuickToolbar, HtmlEditor , EmojiPicker, PasteCleanup, Table, Video, Audio, ClipBoardCleanup, AutoFormat } from '@syncfusion/ej2-richtexteditor';
 import { Dialog } from '@syncfusion/ej2-popups';
 import { Tab } from '@syncfusion/ej2-navigations';
-RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor, EmojiPicker, PasteCleanup, Table, Video, Audio);
+RichTextEditor.Inject(Toolbar, Link, Image, QuickToolbar, HtmlEditor, EmojiPicker, PasteCleanup, Table, Video, Audio, ClipBoardCleanup, AutoFormat);
 
 //tslint:disable:max-func-body-length
 (window as any).default = (): void => {

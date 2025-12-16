@@ -12,7 +12,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let reminderInterval: number;
+    let reminderInterval: ReturnType<typeof setTimeout> | number;
     let data: Record<string, any>[] = getReminderEvents();
     let scheduleObj: Schedule = new Schedule({
         height: '550px',
@@ -22,7 +22,7 @@ Schedule.Inject(Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop);
             reminderInterval = setInterval(refreshEventReminder, 5000);
         },
         destroyed: () => {
-            clearInterval(reminderInterval as number);
+            clearInterval(reminderInterval);
         }
     });
     scheduleObj.appendTo('#Schedule');

@@ -26,7 +26,7 @@ let splineData: Object[] = [
     { x: new Date(2024, 5, 6, 6, 7, 33), y: 75 }
 ];
 
-let intervalId: number;
+let intervalId: ReturnType<typeof setTimeout> | number;
 
 (window as any).default = (): void => {
     loadCultureFiles();

@@ -1,0 +1,64 @@
+<div class="control-section">
+    <div class="attachment-chatui">
+        <div id="chatAttachment"></div>
+    </div>
+</div>
+
+<style>
+    .attachment-chatui {
+        height: 500px;
+        width: 40%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+    }
+    .attachment-chatui .chat_user_avatar {
+        background-image: url('./src/chat-ui/images/paul_wilson.png');
+        background-color: unset;
+    } 
+    .attachment-chatui .emptyChatText {
+        font-size: 16px;
+        font-style: italic;
+    }
+    .attachment-chatui .emptychat-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        padding: 10px;
+    }
+    .attachment-chatui .chat-text-content {
+        display: flex;
+        align-items: center;
+    }
+    .attachment-chatui .emptyChatText {
+        font-size: 14px;
+        font-weight: 500;
+        margin-left: 10px;
+    }
+    .attachment-chatui .emptyChatMessage {
+        font-size: 14px;
+        text-align: center;
+    }
+    @media only screen and (max-width: 850px) {
+        .attachment-chatui {
+            flex-direction: column;
+            height: 500px;
+            width: 70%;
+        }
+    }
+</style>
+
+<div id="action-description">
+    <p>This example demonstrates the ability for users to attach files during chat interactions, which helps provide additional context to the conversation.</p>
+</div>
+<div id="description">
+    <p>
+        In this example, the <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/chat-ui/#enableattachments">enableAttachments</a> property is set to <code>true</code> to allow users to attach files in the chat interface. The <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/chat-ui/#attachmentsettings">attachmentSettings</a> property is used to configure the <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/chat-ui/attachmentSettings/#saveurl">saveUrl</a> and <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/chat-ui/attachmentSettings/#removeurl">removeUrl</a>, enabling file upload functionality.
+    </p>    
+    <p>
+        Various file types such as images, videos, and documents can be attached. You can use the <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/chat-ui/attachmentSettings/#allowedfiletypes">allowedFileTypes</a> property within <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/chat-ui/#attachmentsettings">attachmentSettings</a> to restrict uploads to specific file types. Additionally, the <a target="_blank" href="https://ej2.syncfusion.com/documentation/api/chat-ui/#emptychattemplate">emptyChatTemplate</a> property is used to customize the banner displayed before starting a conversation.
+    </p>
+</div>

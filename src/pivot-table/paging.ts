@@ -21,7 +21,7 @@ PivotView.Inject(Pager);
     let pagerViewData: string[] = ['Row', 'Column', 'Both'];
 
     let remoteData: DataManager = new DataManager({
-		url: 'https://ej2services.syncfusion.com/js/development/api/order',
+		url: 'https://services.syncfusion.com/js/production/api/order',
 		adaptor: new WebApiAdaptor,
 		crossDomain: true
 	});

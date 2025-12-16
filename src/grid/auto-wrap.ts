@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
+import { Grid, Page, Selection, Sort, Filter } from '@syncfusion/ej2-grids';
 import { inventoryData } from './data-source';
 
-Grid.Inject(Page, Selection);
+Grid.Inject(Page, Selection, Sort, Filter);
 /**
  * Auto wrap sample
  */
@@ -13,12 +13,15 @@ Grid.Inject(Page, Selection);
             dataSource: inventoryData,
             allowPaging: true,
             allowTextWrap: true,
+            allowSorting: true,
+            allowFiltering: true,
+            filterSettings: {type: 'Menu'},
             columns: [
-                { field: 'Inventor', headerText: 'Inventor Name', width: 140 },
-                { field: 'NumberofPatentFamilies', headerText: 'No of Patent Families', width: 185, textAlign: 'Right' },
+                { field: 'Inventor', headerText: 'Inventor Name', width: 155 },
+                { field: 'NumberofPatentFamilies', headerText: 'No of Patent Families', width: 200, textAlign: 'Right' },
                 { field: 'Country', headerText: 'Country', width: 120 },
                 { field: 'Active', headerText: 'Active', width: 130 },
-                { field: 'Mainfieldsofinvention', headerText: 'Main fields of invention', width: 180 },
+                { field: 'Mainfieldsofinvention', headerText: 'Main Fields of Invention (Primary patent technology areas)', width: 180 },
             ],
             pageSettings: { pageCount: 5 }
         });

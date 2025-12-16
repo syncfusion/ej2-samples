@@ -327,10 +327,24 @@
             "type": "new"
         },
         {
+            "url": "family-tree",
+            "name": "Family Tree Diagram",
+            "description": "Visualize family relationships with Syncfusion® EJ2 JavaScript Diagram. Arrange members in a complex hierarchical layout, showing names, tenure, and clear connections between spouses and children.",
+            "category": "Use Case Diagram",
+            "type": "new"
+        },
+        {
+            "url": "serpentine-diagram",
+            "name": "Serpentine Diagram",
+            "description": "Visualizes a serpentine layout with custom arrangement showcasing 20 key medical research breakthroughs that revolutionized healthcare from 1796 to 1996 achieved with Diagram component",
+            "category": "Use Case Diagram",
+            "type": "new"
+        },
+        {
             "url": "angle-diagram",
             "name": "Solar Panel Angle",
             "description": "Demonstrate a smart solar panel tilt system using Syncfusion® EJ2 JavaScript Diagram. Interactively adjust panel angles, track efficiency, and optimize based on sun position and location.",
-            "category": "Use Case Diagram",
+            "category": "Real-time Diagrams",
             "type": "new"
         },
         {

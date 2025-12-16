@@ -81,8 +81,11 @@
         "ControlName" : "Block Editor",
         "Samples" : {
            "overview": "Overview",
+           "pastesettings": "Paste Cleanup",
            "api":"API",
-           "events":"Events"
+           "events":"Events",
+           "template-gallery":"Template Gallery",
+           "markdownBlocks":"Markdown Blocks"
         }
     },
     "breadcrumb" : {
@@ -209,15 +212,15 @@
             "smart-labels": "Smart Labels",
             "drill-down-pie": "Drilldown",
             "grouping": "Grouping",
-            "pie-empty-point": "Empty Points",
-            "polar-line": "Line",
-            "polar-spline": "Spline",
-            "polar-area": "Area",
-            "polar-stacking-area": "Stacked Area",
-            "polar-scatter": "Scatter",
-            "polar-column": "Column",
+            "pie-empty-point": "Pie Empty Points",
+            "polar-line": "Polar Line",
+            "polar-spline": "Polar Spline",
+            "polar-area": "Polar Area",
+            "polar-stacking-area": "Polar Stacking Area",
+            "polar-scatter": "Polar Scatter",
+            "polar-column": "Polar Column",
             "polar-stacking-column": "Wind Rose",
-            "polar-range-column": "Range Column",
+            "polar-range-column": "Polar Range Column",
             "local-data": "Local Data",
             "remote-data": "Remote Data",
             "lazy-loading": "Lazy Loading",
@@ -626,7 +629,10 @@
             "streaming": "Streaming Response",
             "attachments": "File Attachments",
             "template": "Template",
-            "dialog": "Notes Assistant"
+            "dialog": "Notes Assistant",
+            "ai-models": "Multiple AI Models",
+            "ai-speech-to-text": "Speech To Text",
+            "ai-text-to-speech": "Text To Speech"
         }
     },
     "heatmap-chart": {
@@ -1025,7 +1031,7 @@
             "group-by-child": "Hierarchical Grouping ",
             "cell-template": "Cell",
             "date-header-template": "Date Header",
-            "event-template": "Events",
+            "event-template": "Event Template",
             "tooltip": "Tooltip",
             "editor-validation": "Field Validation",
             "editor-custom-field": "Additional Fields",
@@ -1089,7 +1095,7 @@
             "events": "Events",
             "thumb-customization": "Thumb",
             "selection-bar-customization": "Bar",
-            "ticks-customization": "Ticks",
+            "ticks-customization": "Ticks Customization",
             "tooltip-customization": "Tooltip",
             "azure-pricing": "Cloud Pricing"
         }
@@ -1346,6 +1352,7 @@
         "Samples": {
             "default": "Default Functionalities",
             "loadOn-demand": "Load On-demand",
+            "attachments": "File Attachments",
             "template": "Template",
             "api": "API",
             "chat-integration": "Use Case"

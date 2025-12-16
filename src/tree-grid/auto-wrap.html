@@ -1,47 +1,39 @@
 <style>
-    .datalink {
-        text-align: right;
-        padding-top: 25px;
-    }
-    @media screen and (max-width: 480px) {
-        .datalink {
-            padding-bottom: 0;
-            padding-top: 15px;
-        }
-    }
+    .e-bigger .e-treegrid .e-treegridexpand,
+    .e-bigger .e-treegrid .e-treegridcollapse {
+     width: 18px;
+   }
 </style>
-<style>
-     .e-bigger .e-treegrid .e-treegridexpand,
-     .e-bigger .e-treegrid .e-treegridcollapse {
-      width: 18px;
-    }
-</style>
+
 <div class="control-section">
     <div class="content-wrapper">
-        <div id="Grid"></div>
-        <div class="datalink">Source:
-            <a href="https://en.wikipedia.org/wiki/List_of_prolific_inventors " target="_blank">
-            Wikipedia: List of Prolific inventors</a>
+        <div id="TreeGrid">
         </div>
     </div>
 </div>
-
+<!-- custom code start -->
 <div id="action-description">
-    <p>This sample demonstrates the Tree Grid component with the auto wrap column cell feature. 
-        In this sample, you can see that Task Name column cell content exceeded the available width hence it has been wrapped into multiple lines.
-    </p>
+        <p>This sample demonstrates the Tree Grid with the text wrap option enabled
+        for both headers and cell content. This setting ensures that long header
+        text and cell values are fully visible by wrapping onto multiple lines
+        instead of being truncated with an ellipsis. </p>
 </div>
 
 <div id="description">
-    <p>Auto wrap cell content can be enabled using <code>allowTextWrap</code> property of the Tree Grid. Setting this property will wrap cell text on multiple lines. 
-        This feature is useful to view the cell content when it exceeds the cell width.</p>
-    <p>Setting this property will wrap the text in both content cell and header cell.</p>
-    <p>In this demo, the <code>allowTextWrap</code> property is enabled, and you can also see that the Task Name column whose content exceeded the cell width is wrapped into multiple lines.
-    </p>
+    <p>In this demo, the <strong>"Title"</strong> and <strong>"Description"</strong> columns
+        exceeds the available width, so its header and cell content are wrapped
+        across multiple lines for better readability. Text wrapping is enabled
+        by setting the Tree Grid's <code><a aria-label="API link for documentation"
+                target="_blank" class="code"
+                href="https://ej2.syncfusion.com/documentation/api/treegrid/index-default#allowtextwrap">allowTextWrap</a></code>
+        property to <strong>true</strong>, which automatically applies wrapping
+        to both header and cell content.</p>
     <p>
-        More information about Auto wrap cells can be found in this
-        <a target="_blank" 
-        href="https://ej2.syncfusion.com/documentation/treegrid/cell/auto-wrap">
-        documentation section</a>.
+        More information about text wrap can be found in this
+        <a target="_blank"
+            href="https://ej2.syncfusion.com/documentation/treegrid/cell/cell#auto-wrap">
+            documentation
+        </a>section.
     </p>
 </div>
+<!-- custom code end -->

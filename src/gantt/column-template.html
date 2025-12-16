@@ -6,9 +6,9 @@
 </div>
 
 <script type="text/x-template" id="columnTemplate">
-    ${if(ganttProperties.resourceNames)}
+    ${if(resources)}
       <div class="image">
-           <img src="src/gantt/images/${ganttProperties.resourceNames}.png" style="height:40px;width:40px" alt="${ganttProperties.resourceNames}"/><div style="display:inline-block;width:100%;position:relative;${isRtl()}">${ganttProperties.resourceNames}</div>
+           <img src="src/gantt/images/${resources}.png" style="height:40px;width:40px" alt="${resources}"/><div style="display:inline-block;width:100%;position:relative;${isRtl()}">${resources}</div>
        </div>
    ${/if}
 </script>

@@ -1,0 +1,170 @@
+<div class="control-section blockeditor-marked">
+  <div id="sidebar-treeview" class="sidebar-content">
+    <div class="sidebar-header">
+      <span id="sidebar-header-text">Markdown Templates</span>
+    </div>
+    <div class="sb-rightpane-collapsed"><div class="labelchoose">Markdown Templates</div></div>
+    <div class="main-menu">
+      <button class="e-icons e-chevron-left e-btn e-round closebutton" id="left-toc-closebtn" type="button"></button>
+      <div id="main-treeview"></div>
+    </div>
+  </div>
+
+  <div id="content_container" class="block-content">
+    <div class="stick">
+      <div id="toolbar"></div>
+      <div class="breadcrumbcontent">
+        <div id="breadcrumb"></div>
+      </div>
+    </div>
+    <div class="markeditor">
+      <div id="block-editor"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .blockeditor-marked .sidebar-content {
+    overflow: visible;
+    margin-top: 20px;
+    border: 1px solid #dee2e6;
+    height: 95%;
+  }
+  .blockeditor-marked{
+    height:680px;
+    overflow: hidden;
+  }
+  .blockeditor-marked .block-content {
+    border: 1px solid #dee2e6;
+    border-left: none;
+  }
+  .blockeditor-marked .main-menu .e-list-parent.e-ul {
+    overflow: hidden;
+  }
+  .blockeditor-marked .e-sidebar.e-left.e-transition.e-close {
+    transition: transform 2.5s ease, visibility 1200ms;
+  }
+  .blockeditor-marked .sidebar-content .main-menu .closebutton {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border-radius:100% ;
+    z-index: 9;
+    display: flex;
+    align-items: center;
+    top: 28px;
+    cursor: pointer;
+  }
+  .blockeditor-marked .sidebar-content .main-menu #main-treeview {
+    border: none;
+  }
+  .blockeditor-marked .sb-rightpane-collapsed {
+    width:33px;
+    height:200px;
+    position:absolute;
+    z-index:1001;
+    pointer-events: none;
+  }
+  .blockeditor-marked .sb-rightpane-collapsed .labelchoose {
+    transform:translate(-50%,-50%)rotate(-90deg);
+    margin-top: 190px;
+    margin-left: 16px;
+    white-space: nowrap;
+    font-size: 14px;
+    pointer-events: none;
+  }
+  .blockeditor-marked .sidebar-content .main-menu .closebutton.expand-mode {
+    transform: rotate(180deg);
+  }
+  .blockeditor-marked .block-content .e-breadcrumb {
+    pointer-events: none;
+  }
+  .blockeditor-marked .block-content .stick {
+    position: sticky;
+    top: 0;
+    z-index:10 ;
+    height: 48px;
+    background: var(--color-sf-content-bg-color-alt1);
+  }
+  .blockeditor-marked .stick .block-content .e-chevron-right {
+    font-size: 10px ;
+  }
+  .blockeditor-marked .e-content-animation {
+    transition: none;
+    transform: none;
+  }
+  .blockeditor-marked .sidebar-content .sidebar-header {
+    background-color: #f8f9fa;
+    padding: 12px 16px;
+    border-bottom: 1px solid #dee2e6;
+    z-index: 8;
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+    user-select: none;
+    height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  body[class*="dark"] .blockeditor-marked .sidebar-content .sidebar-header,
+  body[class*="high"] .blockeditor-marked .sidebar-content .sidebar-header {
+    background-color: unset;
+    color: unset;
+  }
+  .blockeditor-marked .sidebar-content .sidebar-header span {
+    pointer-events: none;
+  }
+  .blockeditor-marked #sidebar-treeview.e-dock.e-close .sidebar-header {
+    display: none;
+  }
+  .blockeditor-marked #sidebar-treeview:not(.e-close) .labelchoose {
+    display: none;
+  }
+  .tailwind3-dark .blockeditor-marked .sidebar-content #left-toc-closebtn {
+    background: rgb(73 76 80);
+  }
+</style>
+
+<div id="action-description">
+  <p>
+    This sample demonstrates the Markdown templates viewer built with Block Editor,
+    complete with a sidebar navigation tree, breadcrumb, and Markdown loading, editing and Download as Markdown
+    capabilities.
+  </p>
+</div>
+
+<div id="description">
+  <p>
+    The Block Editor Documentation Preview is a powerful, interactive
+    documentation system that combines
+    <code>BlockEditor</code> with a collapsible sidebar, tree
+    navigation, and Markdown rendering.
+    It allows users to view, edit, and download documentation articles
+    written in Markdown format.
+  </p>
+  <p>Key features demonstrated in this sample:</p>
+  <ul>
+    <li><strong>Sidebar with TreeView Navigation</strong>: Hierarchical menu
+      using <code>TreeView</code> to browse documentation sections.</li>
+    <li><strong>Markdown Loading</strong>: Loads <code>.md</code> files
+      from the <code>assets</code> folder.</li>
+    <li><strong>Markdown to BlockEditor Conversion</strong>: Converts
+      Markdown to rich editable blocks using the Markdown Converter and <code>parseHtmlToBlocks()</code>.
+    </li>
+    <li><strong>Download as Markdown</strong>: Export current editor content
+      back to clean Markdown using <code>TurndownService</code>.</li>
+    <li><strong>Dockable & Responsive Sidebar</strong>: Collapsible sidebar with
+      smooth open/close animation and mobile-friendly behavior.</li>
+    <li><strong>Real-time Editing</strong>: Full Block Editor experience
+      formatting, lists, code blocks, mentions, slash commands, and more.</li>
+    <li><strong>Clean UI with Toolbar</strong>: Professional layout with
+      breadcrumb and download button using Toolbar and Breadcrumb
+      components.</li>
+  </ul>
+  <p>
+    This sample serves as a complete template for building internal
+    documentation portals, knowledge bases,
+    technical wikis, or product guides using the Block
+    Editor.
+  </p>
+</div>

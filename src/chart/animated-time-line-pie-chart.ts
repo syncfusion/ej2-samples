@@ -103,7 +103,7 @@ let updatedData10 = [
     { x: 'Netflix', y: 328.8713	 }
 ];
 
-let intervalId: number;
+let intervalId: ReturnType<typeof setTimeout> | number;
 let yearIndex = 2;
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {

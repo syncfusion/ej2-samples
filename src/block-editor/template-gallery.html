@@ -1,0 +1,246 @@
+<div class="control-section blockeditor-template">
+
+  <!-- Smart Scroll Wrapper -->
+  <div class="cards-wrapper" style="position: relative;">
+    <div class="fade left"></div>
+
+    <div id="cards-container" class="cards-container">
+      <div class="template-card active" title="Blank Page" data-id="blank" tabindex="0">
+        <div class="card-icon-left"><span class="icon">📃</span></div>
+        <div class="card-content">
+          <div class="card-title">Blank Page</div>
+          <div class="card-subtitle">Start from scratch</div>
+        </div>
+      </div>
+
+      <div class="template-card" title="Project Brief" data-id="brief" tabindex="0">
+        <div class="card-icon-left"><span class="icon">📝️</span></div>
+        <div class="card-content">
+          <div class="card-title">Project Brief</div>
+          <div class="card-subtitle">Plan, organize, and track</div>
+        </div>
+      </div>
+
+      <div class="template-card" title="Team Decisions" data-id="decisions" tabindex="0">
+        <div class="card-icon-left"><span class="icon">🦄</span></div>
+        <div class="card-content">
+          <div class="card-title">Team Decisions</div>
+          <div class="card-subtitle">Ideate and decide</div>
+        </div>
+      </div>
+
+      <div class="template-card" title="Project Planning" data-id="planning" tabindex="0">
+        <div class="card-icon-left"><span class="icon">💎</span></div>
+        <div class="card-content">
+          <div class="card-title">Project Planning</div>
+          <div class="card-subtitle">Collaborate</div>
+        </div>
+      </div>
+
+      <div class="template-card" title="Meeting Notes" data-id="meeting" tabindex="0">
+        <div class="card-icon-left"><span class="icon">✏️</span></div>
+        <div class="card-content">
+          <div class="card-title">Meeting Notes</div>
+          <div class="card-subtitle">Sync and share</div>
+        </div>
+      </div>
+    </div>
+
+  <div class="header-label" contenteditable="true">
+    <span class="selectedTitle" aria-placeholder="Untitled"></span>
+  </div>
+  <div class="editor-host">
+    <div id="block-editor"></div>
+  </div>
+
+    <div class="fade right"></div>
+  </div>
+</div>
+<style>
+  .blockeditor-template .cards-container {
+    display: flex;
+    gap: 8px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+  }
+
+  .blockeditor-template .cards-wrapper{
+    overflow-x: hidden;
+  }
+
+  .template-card {
+    max-width: 180px;
+    min-width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    user-select: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .blockeditor-template .header-label {
+    padding: 15px 20px;
+  }
+
+  .blockeditor-template {
+    margin: 10px;
+    border: 1px solid #dee2e6;
+  }
+
+  .blockeditor-template .fade {
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+  }
+
+  .blockeditor-template .fade.left {
+    left: 0;
+    background: linear-gradient(to right, #f8f9fa 30%, transparent 100%);
+  }
+
+  .blockeditor-template .fade.right {
+    right: 0;
+    background: linear-gradient(to left, #f8f9fa 30%, transparent 100%);
+  }
+
+  .blockeditor-template .selectedTitle {
+    font-family: var(--fontFamilyBase, var(--fontFamilyBase, var(--ms-themeFontFamilyBody)));
+    font-size: 2.25em;
+    font-weight: 600;
+    color: var(--ms-themeColorBodyText, var(--colorNeutralForeground1, var(--ms-themeColorPaletteNeutralPrimary, #323130)));
+    line-height: 48px;
+    width: 100%;
+    widows: 1;
+    orphans: 1;
+  }
+
+
+  .template-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .template-card.active {
+    border: 1px solid #007bff;
+    box-shadow: 0 0 0 1px rgba(0, 123, 255, 0.2);
+  }
+
+  .blockeditor-template .card-icon-left {
+    margin-right: 10px;
+  }
+
+  .blockeditor-template .icon {
+    font-size: 28px;
+  }
+
+  .blockeditor-template .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .blockeditor-template .card-subtitle {
+    font-size: 10px;
+    color: #666;
+  }
+
+  body[class*="dark"] .template-card,
+  body[class*="high"] .template-card {
+    background-color: var(--color-sf-content-bg-color);
+  }
+
+  body[class*="dark"] .blockeditor-template .card-subtitle, body[class*="dark"] .blockeditor-template .card-title, body[class*="dark"] .blockeditor-template .selectedTitle,
+  body[class*="high"] .blockeditor-template .card-subtitle, body[class*="high"] .blockeditor-template .card-title, body[class*="high"] .blockeditor-template .selectedTitle {
+    color: #fff;
+  }
+  
+  body[class*="high"] .blockeditor-template {
+    background: var(--color-sf-content-bg-color);
+  }
+
+  @media (max-width: 650px) {
+    .blockeditor-template .cards-container {
+      align-items: center;
+      justify-content: center;
+    }
+
+    .template-card {
+      justify-content: center;
+    }
+
+    .template-card .card-content {
+      display: none;
+    }
+    .blockeditor-template .card-icon-left {
+      margin-right: 0;
+    }
+  }
+
+  /* Default styles (for >900px): show full text, no truncation needed */
+  .template-card .card-content {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .template-card .card-title,
+  .template-card .card-subtitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+  }
+
+  /* Between 650px and 900px: Show text but truncate with ellipsis when it overflows */
+  @media (min-width: 650px) and (max-width: 1050px) {
+    .template-card {
+      min-width: 100px;    
+      max-width: 200px;
+    }
+
+    .template-card .card-content {
+      display: block;  
+    }
+  }
+</style>
+<div id="action-description">
+  <p>This sample demonstrates a Template Gallery for the Block Editor; use the horizontal card rail to choose a
+    template, load its blocks into the editor, and customize the content with slash <code>(/)</code> commands, lists, and inline
+    formatting.</p>
+</div>
+<div id="description">
+  <p>
+    This sample implements a Template Gallery for the Block Editor. A horizontal set of cards acts as a template picker;
+    selecting a card loads its predefined block structure into the editor without reloading the page.
+  </p>
+  <ul>
+    <li><b>Interactive cards:</b> Each card is focusable and clickable, with active styling for the selected template.
+    </li>
+    <li><b>Dynamic loading:</b> Clicking a card calls
+      <a target="_blank" href="https://ej2.syncfusion.com/angular/documentation/api/blockeditor/index-default#renderblocksfromjson">
+        renderBlocksFromJson
+      </a> to populate the editor with that template’s blocks.</li>
+    <li><b>Responsive behavior:</b> A ResizeObserver re-evaluates when to enable horizontal scrolling as the viewport
+      changes.</li>
+    <li><b>Templates included:</b> Blank Page, Project Brief, Team Decisions, Project Planning, and Meeting Notes.</li>
+  </ul>
+  <p>
+    Use this gallery to kickstart common document plan projects, record decisions, run meetings, and more then tailor
+    the content with headings, lists, checklists, and rich inline styles.
+  </p>
+</div>

@@ -17,7 +17,7 @@ const updatedData: Object[] = [
     { x: 'Food', y: 45 }
 ];
 
-let intervalId: number;
+let intervalId: ReturnType<typeof setTimeout> | number;
 (window as any).default = (): void => {
     loadCultureFiles();
     let chart: Chart = new Chart({

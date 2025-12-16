@@ -104,7 +104,6 @@ Schedule.Inject(Day, Week, Agenda, TimelineViews, ExcelExport, Print);
     startHour: '08:00',
     endHour: '18:00',
     timeScale: { slotCount: 3 },
-    allowOverlap: false,
     views: [
       { option: 'Day' },
       { option: 'Week' },
@@ -140,6 +139,7 @@ Schedule.Inject(Day, Week, Agenda, TimelineViews, ExcelExport, Print);
     eventRendered: onEventRendered,
     cellClick: onCellClick,
     popupClose: onPopupClose,
+    actionBegin: onActionBegin,
     actionComplete: onActionComplete
   });
 
@@ -205,6 +205,23 @@ Schedule.Inject(Day, Week, Agenda, TimelineViews, ExcelExport, Print);
   let draggedItemSpeakers: object[];
   let draggedItemDescription: string;
   let selectedUnplannedEventItem: number = 0;
+
+  function onActionBegin(args: ActionEventArgs): void {
+    if (args.requestType === 'eventCreate') {
+      const data: Record<string, any> = args.data;
+      const roomId: number = data[0].RoomId;
+      const startTime: Date = data[0].StartTime;
+      const endTime: Date = data[0].EndTime;
+      const isRoomFiltered: boolean = (scheduleObj.resourceCollection[0].dataSource as Record<string, any>[]).length === 1;
+      const isRoomAvailable: boolean = scheduleObj.isSlotAvailable(startTime, endTime, !isRoomFiltered ? roomId - 1 : 0);
+      if (!isRoomAvailable) {
+        args.cancel = true;
+        alertDialog.content = 'Room is already booked for the selected time slot.';
+        alertDialog.show();
+        return;
+      }
+    }
+  }
 
   function onActionComplete(args: ActionEventArgs): void {
     if (args.requestType === 'toolBarItemRendered') {
@@ -363,15 +380,12 @@ Schedule.Inject(Day, Week, Agenda, TimelineViews, ExcelExport, Print);
         const endTime: Date = args.data.EndTime;
         const capacity: number = args.data.Capacity;
 
-        const isRoomFiltered: boolean = (scheduleObj.resourceCollection[0].dataSource as Record<string, any>[]).length === 1;
-
-        const isRoomAvailable: boolean = scheduleObj.isSlotAvailable(startTime, endTime, !isRoomFiltered ? roomId - 1 : 0) &&
-          startTime.getHours() >= 8 &&
+        const isAvailableTime: boolean = startTime.getHours() >= 8 &&
           (endTime.getHours() < 18 || (endTime.getHours() === 18 && endTime.getMinutes() === 0));
 
         const isCapacityAvailable: boolean = checkRoomCapacity(capacity, roomId);
 
-        if (!isRoomAvailable) {
+        if (!isAvailableTime) {
           const timeElement: Element = args.element.querySelector('.e-start-end-row');
           if (!args.element.querySelector('.time-alert')) {
             const newDiv: HTMLElement = document.createElement('div');
@@ -397,7 +411,7 @@ Schedule.Inject(Day, Week, Agenda, TimelineViews, ExcelExport, Print);
           if (capAlert) capAlert.remove();
         }
 
-        if (!isRoomAvailable || !isCapacityAvailable) {
+        if (!isAvailableTime || !isCapacityAvailable) {
           args.cancel = true;
           return;
         }

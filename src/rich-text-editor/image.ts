@@ -1,8 +1,8 @@
 /**
  * Rich Text Editor Image sample
  */
-import { RichTextEditor, Toolbar, Image,  Link, HtmlEditor, QuickToolbar, NodeSelection, PasteCleanup, Table, Video, Audio } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Image,  Link, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio );
+import { RichTextEditor, Toolbar, Image,  Link, HtmlEditor, QuickToolbar, NodeSelection, PasteCleanup, Table, Video, Audio, ClipBoardCleanup, AutoFormat } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Image,  Link, HtmlEditor, QuickToolbar, PasteCleanup, Table, Video, Audio, ClipBoardCleanup, AutoFormat );
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';

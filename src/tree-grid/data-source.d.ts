@@ -37,4 +37,6 @@ interface FoodMenuItem {
     ingredients: string[];
 }
 export declare let foodMenu: FoodMenuItem[];
+export declare let wrapData: object[];
+export declare let rowSpanData: object[];
 export {};

@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { AIAssistView, PromptRequestEventArgs, ToolbarItemClickedEventArgs } from "@syncfusion/ej2-interactive-chat";
 import { streamingSuggestions, streamingData } from './promptResponseData';
-import * as Marked from 'marked';
+import { MarkdownConverter } from "@syncfusion/ej2-markdown-converter";
 
 /**
  * streaming sample
@@ -38,7 +38,7 @@ import * as Marked from 'marked';
                 lastResponse += response[i];
                 i++;
                 if (i % responseUpdateRate === 0 || i === responseLength) {
-                    const htmlResponse: string = Marked.marked(lastResponse);
+                    const htmlResponse: string | Promise<string> = MarkdownConverter.toHtml(lastResponse);
                     streamingAIAssistView.addPromptResponse(htmlResponse, i === responseLength);
                     streamingAIAssistView.scrollToBottom();
                 }

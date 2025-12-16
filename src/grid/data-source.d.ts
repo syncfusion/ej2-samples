@@ -78,3 +78,5 @@ export declare let pizzaData: Object[];
 export declare let stackedHeaderData: Object[];
 export declare const sales: object[];
 export declare let telecastData: Object[];
+export declare let ordersTrackData: Object[];
+export declare let supportData: any[];

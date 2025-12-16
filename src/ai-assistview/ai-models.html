@@ -1,0 +1,193 @@
+<div class="control-section">
+  <div class="ai-model">
+    <div id="aiAssistView">
+      <div class="ai-assist-header">
+        <button id="togglebtn"></button>
+        <div id="ai-model-dropdown"></div>
+      </div>
+    </div>
+  </div>
+  <div id="assistantSidebar">
+    <div class="assistant-sidebar-header">
+      <div class="header-left">
+        <span id="icon-assist"
+          class="header-icon e-icons e-assistview-icon"></span>
+        <span class="header-title">AI Assist</span>
+      </div>
+      <button id="closebtn"></button>
+    </div>
+    <div class="assistant-sidebar-content">
+      <button id="newthreadbtn"></button>
+      <div id="conversation-list"></div>
+    </div>
+  </div>
+  <script id="bannerTemplate" type="text/x-jsrender">
+  <div class="banner-content e-no-content">
+    <div class="e-icons e-assistview-icon"></div>
+    <h3 class="ai-assist-banner-subtitle">Chat with AI Model</h3>
+  </div>
+</script>
+  <div id="toast"></div>
+</div>
+<style>
+.ai-model {
+  height: 500px;
+  width: 96%;
+  margin: 12px auto;
+  overflow: hidden;
+}
+.ai-model #aiAssistView {
+  border: 1px solid #dee2e6;
+}
+.ai-model .banner-content {
+  text-align: center;
+}
+.ai-model .banner-content.e-no-content {
+  height: 25vh;
+}
+.ai-model .banner-content .e-assistview-icon:before {
+  font-size: 40px;
+}
+#ai-model-dropdown{
+  width:200px;
+}
+#assistantSidebar {
+  border: 1px solid #dee2e6;
+  border-right: none;
+}
+.assistant-sidebar-header {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 17px;
+  border-bottom: 1px solid #dee2e6;
+}
+.header-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.header-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+.new-thread-btn {
+  border: none;
+  text-align: start;
+  margin-top: 2px;
+  width: 100%;
+}
+.new-thread-btn .e-icons {
+  padding-left: 8px;
+  padding-bottom: 3px;
+  margin-right: 8px;
+  font-weight: bold;
+}
+#conversation-list {
+  border: none;
+  padding-top: 5px;
+}
+.e-view-content {
+  height: 90% !important;
+}
+#assistantSidebar .e-toolbar .e-toolbar-item:not(.e-separator):not(.e-spacer) {
+  padding: 8px 0;
+  margin: 0;
+}
+#assistantSidebar.e-close .assistant-sidebar-content .new-thread-btn,
+#assistantSidebar.e-close .e-toolbar-left .e-toolbar-item {
+  display: none;
+}
+#assistantSidebar.e-close .e-toolbar-items .e-toolbar-right {
+  left: 16px;
+}
+.e-listview .e-list-item {
+  border: none;
+}
+#assistantSidebar .e-toolbar-item .e-tbar-btn:hover .e-icons {
+  color: #6c757d;
+}
+.banner-content .e-assistview-icon:before {
+  font-size: 25px;
+}
+.header-left {
+  display: flex;
+  cursor: default;
+}
+.toast-content {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.ai-assist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px;
+  height: 50px;
+  gap:50px;
+  border-bottom: 1px solid #dee2e6;
+}
+.assistant-sidebar-content {
+  padding: 5px;
+}
+#assistantSidebar .assistant-sidebar-content .e-text-content {
+  display: flex;
+  align-items: center;
+}
+#assistantSidebar .assistant-sidebar-content .e-text-content .delete-icon {
+  padding: 3px 5px 0 5px;
+}
+.e-dark-mode .ai-model #aiAssistView,
+.e-dark-mode #assistantSidebar{
+  border: 1px solid #666;
+}
+.e-dark-mode #assistantSidebar .assistant-sidebar-header ,
+.e-dark-mode .ai-model .ai-assist-header {
+  border-bottom: 1px solid #666;
+}
+@media screen and (max-width: 680px) {
+  .ai-model {
+    width: 100%;
+    margin: 0;
+  }
+  #ai-model-dropdown {
+    margin-left: 50px;
+  }
+  .e-sidebar-container .e-main-content.e-content-animation {
+    margin-left: 0 !important;
+  }
+  #close {
+    display: block;
+  }
+}
+@media screen and (min-width: 681px) { 
+  #close {
+    display: none; 
+  }
+}
+</style>
+
+<div id="action-description">
+  <p>
+    This example demonstrates the <strong>AI AssistView</strong> designed to
+    integrate multiple AI models:
+    <code>Azure OpenAI</code>, <code>Gemini</code> and <code>DeepSeek</code>.
+  </p>
+</div>
+<div id="description">
+  <p>
+    In this example, the <strong>AI AssistView</strong> with a responsive
+    sidebar, AI models dropdown and Markdown streaming to deliver an AI-powered
+    chat interface.
+  </p>
+  <ul>
+    <li>Switch between providers (Azure OpenAI, Gemini and DeepSeek) via a dropdown menu, with toast notifications confirming selection.</li>
+    <li>Enter your API key(s) to enable live, dynamic responses from the
+      selected provider.</li>
+    <li>Stream AI responses with auto-scroll and rich Markdown rendering using
+      <code>marked</code>.</li>
+    <li>Create, select, and delete conversations with conversations stored in
+      the localStorage.</li>
+  </ul>
+</div>

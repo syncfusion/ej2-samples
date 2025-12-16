@@ -1,11 +1,9 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import {NumericTextBox} from '@syncfusion/ej2-inputs';
 /**
  * Custom format NumericTextBox sample
  */
 
 (window as any).default = (): void => {
-    loadCultureFiles();
 
     // Render the Numeric Textbox
     let numeric: NumericTextBox = new NumericTextBox({

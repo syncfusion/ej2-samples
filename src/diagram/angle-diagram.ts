@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 /**
- * Angle Diagram
+ * Solar Angle Diagram
  */
 
 import {
@@ -25,7 +25,9 @@ CircularGauge.Inject(Annotations);
     let angleNumeric: NumericTextBox;
     // Flag to prevent recursive updates when programmatically changing NumericTextBox value
     let suppressAngleChange = false;
-
+    // Angle constants for UI/model mapping
+    const RELATIVE_MIN = -57; // relative UI angle min (maps to 303 deg)
+    const RELATIVE_MAX = 43;  
     // Solar calculation data
     const solarData: SolarCalculationData = {
         currentAngle: 303,
@@ -49,200 +51,87 @@ CircularGauge.Inject(Annotations);
         { name: 'Phoenix', latitude: 33.4484, longitude: -112.0740, angle: 100 }
     ];
 
-  const centerSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">            <g filter=\"url(#filter0_d_1423_96)\">                <circle cx=\"37.9998\" cy=\"38\" r=\"17.2727\" fill=\"url(#paint0_radial_1423_96)\" />            </g>            <g filter=\"url(#filter1_d_1423_96)\">                <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M38.0001 6.33331C36.4102 6.33331 35.1213 7.62219 35.1213 9.2121V14.9697C35.1213 16.5596 36.4102 17.8485 38.0001 17.8485C39.59 17.8485 40.8788 16.5596 40.8788 14.9697V9.2121C40.8788 7.62219 39.59 6.33331 38.0001 6.33331ZM60.3915 15.6082C59.2672 14.484 57.4445 14.484 56.3202 15.6082L52.249 19.6794C51.1248 20.8037 51.1248 22.6264 52.249 23.7507C53.3733 24.8749 55.196 24.8749 56.3203 23.7507L60.3915 19.6794C61.5157 18.5552 61.5157 16.7325 60.3915 15.6082ZM66.7877 35.1212C68.3776 35.1212 69.6665 36.41 69.6665 38C69.6665 39.5899 68.3776 40.8787 66.7877 40.8787H61.0301C59.4402 40.8787 58.1513 39.5899 58.1513 38C58.1513 36.41 59.4402 35.1212 61.0301 35.1212H66.7877ZM15.6077 15.6083C14.4834 16.7326 14.4834 18.5553 15.6077 19.6796L19.6789 23.7508C20.8031 24.875 22.6259 24.875 23.7501 23.7508C24.8744 22.6265 24.8744 20.8038 23.7501 19.6796L19.6789 15.6083C18.5547 14.4841 16.7319 14.4841 15.6077 15.6083ZM35.1213 61.0302C35.1213 59.4403 36.4102 58.1514 38.0001 58.1514C39.59 58.1514 40.8788 59.4403 40.8788 61.0302V66.7878C40.8788 68.3777 39.59 69.6666 38.0001 69.6666C36.4102 69.6666 35.1213 68.3777 35.1213 66.7878V61.0302ZM23.7511 52.2492C22.6269 51.125 20.8041 51.125 19.6799 52.2492L15.6087 56.3204C14.4844 57.4447 14.4844 59.2674 15.6087 60.3917C16.7329 61.5159 18.5557 61.5159 19.6799 60.3917L23.7511 56.3204C24.8754 55.1962 24.8754 53.3735 23.7511 52.2492ZM14.9696 35.1212C16.5595 35.1212 17.8484 36.41 17.8484 38C17.8484 39.5899 16.5595 40.8787 14.9696 40.8787H9.21204C7.62213 40.8787 6.33325 39.5899 6.33325 38C6.33325 36.41 7.62213 35.1212 9.21204 35.1212H14.9696ZM52.2491 52.2492C51.1248 53.3734 51.1248 55.1962 52.2491 56.3204L56.3203 60.3916C57.4445 61.5159 59.2673 61.5159 60.3915 60.3916C61.5157 59.2674 61.5157 57.4447 60.3915 56.3204L56.3203 52.2492C55.196 51.125 53.3733 51.125 52.2491 52.2492Z\" fill=\"url(#paint1_linear_1423_96)\" />            </g>            <defs>                <filter id=\"filter0_d_1423_96\" x=\"16.9271\" y=\"16.9272\" width=\"42.9899\" height=\"42.9899\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_1423_96\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_1423_96\" result=\"shape\" />                </filter>                <filter id=\"filter1_d_1423_96\" x=\"2.53325\" y=\"2.53331\" width=\"71.7777\" height=\"71.7777\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_1423_96\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_1423_96\" result=\"shape\" />                </filter>                <radialGradient id=\"paint0_radial_1423_96\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(41.9506 27.1674) rotate(180) scale(32.7949)\">                    <stop stop-color=\"#FFF4C3\" />                    <stop offset=\"0.16\" stop-color=\"#FFE036\" />                    <stop offset=\"1\" stop-color=\"#FA761C\" />                </radialGradient>                <linearGradient id=\"paint1_linear_1423_96\" x1=\"66.8754\" y1=\"5.38557\" x2=\"10.5535\" y2=\"67.6553\" gradientUnits=\"userSpaceOnUse\">                    <stop stop-color=\"#FFBA24\" />                    <stop offset=\"1\" stop-color=\"#FF5500\" />                </linearGradient>            </defs>        </svg>";
-const eastSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">            <g clip-path=\"url(#clip0_7964_371)\">                <g filter=\"url(#filter0_d_7964_371)\">                    <path d=\"M14.9707 35.1214C16.5606 35.1214 17.8496 36.4104 17.8496 38.0003C17.8494 39.59 16.5605 40.8792 14.9707 40.8792H9.21289C7.62318 40.8791 6.33416 39.59 6.33398 38.0003C6.33398 36.4105 7.62307 35.1215 9.21289 35.1214H14.9707ZM66.7881 35.1214C68.3778 35.1216 69.666 36.4105 69.666 38.0003C69.6658 39.5899 68.3777 40.879 66.7881 40.8792H61.0303C59.4405 40.8792 58.1515 39.5901 58.1514 38.0003C58.1514 36.4104 59.4404 35.1214 61.0303 35.1214H66.7881ZM15.6074 15.6087C16.7317 14.4845 18.5545 14.4845 19.6787 15.6087L23.75 19.68C24.8737 20.8041 24.8737 22.6262 23.75 23.7503C22.6259 24.8744 20.803 24.8751 19.6787 23.7513L15.6074 19.68C14.4832 18.5558 14.4832 16.7329 15.6074 15.6087ZM56.3203 15.6087C57.4445 14.4845 59.2674 14.4845 60.3916 15.6087C61.5158 16.7329 61.5158 18.5558 60.3916 19.68L56.3203 23.7513C55.1962 24.8749 53.3741 24.8749 52.25 23.7513C51.1258 22.627 51.1258 20.8042 52.25 19.68L56.3203 15.6087ZM38.001 6.33331C39.5907 6.33352 40.8789 7.62244 40.8789 9.21222V14.97C40.8787 16.5597 39.5906 17.8487 38.001 17.8489C36.4112 17.8489 35.1222 16.5598 35.1221 14.97V9.21222C35.1221 7.62231 36.4111 6.33331 38.001 6.33331Z\" fill=\"url(#paint0_linear_7964_371)\" />                </g>                <g filter=\"url(#filter1_d_7964_371)\">                    <path d=\"M56.9995 63.3337C58.1653 63.3337 59.1106 64.2783 59.1108 65.444C59.1108 66.61 58.1654 67.5554 56.9995 67.5554H23.2222C22.0562 67.5554 21.1108 66.61 21.1108 65.444C21.1111 64.2783 22.0564 63.3337 23.2222 63.3337H56.9995ZM37.9995 50.6667C39.1654 50.6667 40.1108 51.6121 40.1108 52.778C40.1107 53.9438 39.1654 54.8893 37.9995 54.8893H4.22217C3.05631 54.8893 2.11097 53.9438 2.11084 52.778C2.11084 51.6121 3.05623 50.6667 4.22217 50.6667H37.9995ZM71.7778 50.6667C72.9437 50.6668 73.8892 51.6122 73.8892 52.778C73.889 53.9438 72.9436 54.8892 71.7778 54.8893H46.4438C45.2782 54.8891 44.3336 53.9437 44.3335 52.778C44.3335 51.6122 45.2781 50.6669 46.4438 50.6667H71.7778Z\" fill=\"url(#paint1_radial_7964_371)\" />                </g>                <g filter=\"url(#filter2_d_7964_371)\">                    <path d=\"M38 20.7271C47.5394 20.7271 55.2733 28.4602 55.2734 37.9996C55.2734 39.4562 55.0924 40.8709 54.7529 42.2222H21.248C20.9085 40.8709 20.7275 39.4562 20.7275 37.9996C20.7277 28.4603 28.4607 20.7273 38 20.7271Z\" fill=\"url(#paint2_radial_7964_371)\" />                </g>            </g>            <defs>                <filter id=\"filter0_d_7964_371\" x=\"2.53398\" y=\"2.53331\" width=\"71.7765\" height=\"42.9903\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_371\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_371\" result=\"shape\" />                </filter>                <filter id=\"filter1_d_7964_371\" x=\"-1.68916\" y=\"46.8667\" width=\"80.2228\" height=\"25.3331\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_371\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_371\" result=\"shape\" />                </filter>                <filter id=\"filter2_d_7964_371\" x=\"16.9275\" y=\"16.9271\" width=\"42.9903\" height=\"29.9396\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_371\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_371\" result=\"shape\" />                </filter>                <linearGradient id=\"paint0_linear_7964_371\" x1=\"66.875\" y1=\"5.81636\" x2=\"42.3723\" y2=\"55.4803\" gradientUnits=\"userSpaceOnUse\">                    <stop stop-color=\"#FFBA24\" />                    <stop offset=\"1\" stop-color=\"#FF5500\" />                </linearGradient>                <radialGradient id=\"paint1_radial_7964_371\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(49.6112 64.3887) rotate(-168.69) scale(48.441 24.199)\">                    <stop stop-color=\"#FFBA24\" />                    <stop offset=\"1\" stop-color=\"#FF5500\" />                </radialGradient>                <radialGradient id=\"paint2_radial_7964_371\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(41.9513 27.1673) rotate(180) scale(32.7953 32.7951)\">                    <stop stop-color=\"#FFF4C3\" />                    <stop offset=\"0.16\" stop-color=\"#FFE036\" />                    <stop offset=\"1\" stop-color=\"#FA761C\" />                </radialGradient>                <clipPath id=\"clip0_7964_371\">                    <rect width=\"76\" height=\"76\" fill=\"white\" />                </clipPath>            </defs>        </svg>";
-const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">            <g clip-path=\"url(#clip0_7964_385)\">                <g filter=\"url(#filter0_d_7964_385)\">                    <path d=\"M56.9998 61.2225C58.1655 61.2225 59.1108 62.1672 59.1111 63.3329C59.1111 64.4988 58.1657 65.4442 56.9998 65.4442H23.2224C22.0565 65.4442 21.1111 64.4988 21.1111 63.3329C21.1113 62.1672 22.0566 61.2225 23.2224 61.2225H56.9998ZM37.9998 48.5555C39.1657 48.5555 40.1111 49.5009 40.1111 50.6669C40.111 51.8327 39.1656 52.7782 37.9998 52.7782H4.22241C3.05655 52.7782 2.11119 51.8327 2.11108 50.6669C2.11108 49.5009 3.05648 48.5555 4.22241 48.5555H37.9998ZM71.7781 48.5555C72.9438 48.5557 73.8884 49.5011 73.8884 50.6669C73.8883 51.8326 72.9438 52.778 71.7781 52.7782H48.5554C47.3896 52.7782 46.4442 51.8327 46.4441 50.6669C46.4441 49.501 47.3895 48.5556 48.5554 48.5555H71.7781Z\" fill=\"url(#paint0_radial_7964_385)\" />                </g>                <g filter=\"url(#filter1_d_7964_385)\">                    <path d=\"M37.7803 8.17151C51.8926 8.17156 63.333 19.6119 63.333 33.7242C63.333 35.8791 63.0648 37.9713 62.5625 39.9703H12.998C12.4958 37.9713 12.2275 35.8791 12.2275 33.7242C12.2275 19.6119 23.6679 8.17151 37.7803 8.17151Z\" fill=\"url(#paint1_radial_7964_385)\" />                </g>            </g>            <defs>                <filter id=\"filter0_d_7964_385\" x=\"-1.68892\" y=\"44.7555\" width=\"80.2218\" height=\"25.3331\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_385\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_385\" result=\"shape\" />                </filter>                <filter id=\"filter1_d_7964_385\" x=\"8.42754\" y=\"4.37151\" width=\"59.5499\" height=\"40.2433\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_385\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_385\" result=\"shape\" />                </filter>                <radialGradient id=\"paint0_radial_7964_385\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(39.8314 62.2776) rotate(-165.864) scale(38.8982 23.931)\">                    <stop stop-color=\"#FFBA24\" />                    <stop offset=\"1\" stop-color=\"#FF5500\" />                </radialGradient>                <radialGradient id=\"paint1_radial_7964_385\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(46.0737 36.9531) rotate(-153.435) scale(41.1658 41.1657)\">                    <stop stop-color=\"#FFF4C3\" />                    <stop offset=\"0.28125\" stop-color=\"#FFE036\" />                    <stop offset=\"0.598958\" stop-color=\"#FA761C\" />                </radialGradient>                <clipPath id=\"clip0_7964_385\">                    <rect width=\"76\" height=\"76\" fill=\"white\" />                </clipPath>            </defs>        </svg>";  // SVG templates for sun icons (omitted for brevity, assume they are correctly defined)
-  
+    const centerSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">            <g filter=\"url(#filter0_d_1423_96)\">                <circle cx=\"37.9998\" cy=\"38\" r=\"17.2727\" fill=\"url(#paint0_radial_1423_96)\" />            </g>            <g filter=\"url(#filter1_d_1423_96)\">                <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M38.0001 6.33331C36.4102 6.33331 35.1213 7.62219 35.1213 9.2121V14.9697C35.1213 16.5596 36.4102 17.8485 38.0001 17.8485C39.59 17.8485 40.8788 16.5596 40.8788 14.9697V9.2121C40.8788 7.62219 39.59 6.33331 38.0001 6.33331ZM60.3915 15.6082C59.2672 14.484 57.4445 14.484 56.3202 15.6082L52.249 19.6794C51.1248 20.8037 51.1248 22.6264 52.249 23.7507C53.3733 24.8749 55.196 24.8749 56.3203 23.7507L60.3915 19.6794C61.5157 18.5552 61.5157 16.7325 60.3915 15.6082ZM66.7877 35.1212C68.3776 35.1212 69.6665 36.41 69.6665 38C69.6665 39.5899 68.3776 40.8787 66.7877 40.8787H61.0301C59.4402 40.8787 58.1513 39.5899 58.1513 38C58.1513 36.41 59.4402 35.1212 61.0301 35.1212H66.7877ZM15.6077 15.6083C14.4834 16.7326 14.4834 18.5553 15.6077 19.6796L19.6789 23.7508C20.8031 24.875 22.6259 24.875 23.7501 23.7508C24.8744 22.6265 24.8744 20.8038 23.7501 19.6796L19.6789 15.6083C18.5547 14.4841 16.7319 14.4841 15.6077 15.6083ZM35.1213 61.0302C35.1213 59.4403 36.4102 58.1514 38.0001 58.1514C39.59 58.1514 40.8788 59.4403 40.8788 61.0302V66.7878C40.8788 68.3777 39.59 69.6666 38.0001 69.6666C36.4102 69.6666 35.1213 68.3777 35.1213 66.7878V61.0302ZM23.7511 52.2492C22.6269 51.125 20.8041 51.125 19.6799 52.2492L15.6087 56.3204C14.4844 57.4447 14.4844 59.2674 15.6087 60.3917C16.7329 61.5159 18.5557 61.5159 19.6799 60.3917L23.7511 56.3204C24.8754 55.1962 24.8754 53.3735 23.7511 52.2492ZM14.9696 35.1212C16.5595 35.1212 17.8484 36.41 17.8484 38C17.8484 39.5899 16.5595 40.8787 14.9696 40.8787H9.21204C7.62213 40.8787 6.33325 39.5899 6.33325 38C6.33325 36.41 7.62213 35.1212 9.21204 35.1212H14.9696ZM52.2491 52.2492C51.1248 53.3734 51.1248 55.1962 52.2491 56.3204L56.3203 60.3916C57.4445 61.5159 59.2673 61.5159 60.3915 60.3916C61.5157 59.2674 61.5157 57.4447 60.3915 56.3204L56.3203 52.2492C55.196 51.125 53.3733 51.125 52.2491 52.2492Z\" fill=\"url(#paint1_linear_1423_96)\" />            </g>            <defs>                <filter id=\"filter0_d_1423_96\" x=\"16.9271\" y=\"16.9272\" width=\"42.9899\" height=\"42.9899\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_1423_96\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_1423_96\" result=\"shape\" />                </filter>                <filter id=\"filter1_d_1423_96\" x=\"2.53325\" y=\"2.53331\" width=\"71.7777\" height=\"71.7777\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_1423_96\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_1423_96\" result=\"shape\" />                </filter>                <radialGradient id=\"paint0_radial_1423_96\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(41.9506 27.1674) rotate(180) scale(32.7949)\">                    <stop stop-color=\"#FFF4C3\" />                    <stop offset=\"0.16\" stop-color=\"#FFE036\" />                    <stop offset=\"1\" stop-color=\"#FA761C\" />                </radialGradient>                <linearGradient id=\"paint1_linear_1423_96\" x1=\"66.8754\" y1=\"5.38557\" x2=\"10.5535\" y2=\"67.6553\" gradientUnits=\"userSpaceOnUse\">                    <stop stop-color=\"#FFBA24\" />                    <stop offset=\"1\" stop-color=\"#FF5500\" />                </linearGradient>            </defs>        </svg>";
+    const eastSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">            <g clip-path=\"url(#clip0_7964_371)\">                <g filter=\"url(#filter0_d_7964_371)\">                    <path d=\"M14.9707 35.1214C16.5606 35.1214 17.8496 36.4104 17.8496 38.0003C17.8494 39.59 16.5605 40.8792 14.9707 40.8792H9.21289C7.62318 40.8791 6.33416 39.59 6.33398 38.0003C6.33398 36.4105 7.62307 35.1215 9.21289 35.1214H14.9707ZM66.7881 35.1214C68.3778 35.1216 69.666 36.4105 69.666 38.0003C69.6658 39.5899 68.3777 40.879 66.7881 40.8792H61.0303C59.4405 40.8792 58.1515 39.5901 58.1514 38.0003C58.1514 36.4104 59.4404 35.1214 61.0303 35.1214H66.7881ZM15.6074 15.6087C16.7317 14.4845 18.5545 14.4845 19.6787 15.6087L23.75 19.68C24.8737 20.8041 24.8737 22.6262 23.75 23.7503C22.6259 24.8744 20.803 24.8751 19.6787 23.7513L15.6074 19.68C14.4832 18.5558 14.4832 16.7329 15.6074 15.6087ZM56.3203 15.6087C57.4445 14.4845 59.2674 14.4845 60.3916 15.6087C61.5158 16.7329 61.5158 18.5558 60.3916 19.68L56.3203 23.7513C55.1962 24.8749 53.3741 24.8749 52.25 23.7513C51.1258 22.627 51.1258 20.8042 52.25 19.68L56.3203 15.6087ZM38.001 6.33331C39.5907 6.33352 40.8789 7.62244 40.8789 9.21222V14.97C40.8787 16.5597 39.5906 17.8487 38.001 17.8489C36.4112 17.8489 35.1222 16.5598 35.1221 14.97V9.21222C35.1221 7.62231 36.4111 6.33331 38.001 6.33331Z\" fill=\"url(#paint0_linear_7964_371)\" />                </g>                <g filter=\"url(#filter1_d_7964_371)\">                    <path d=\"M56.9995 63.3337C58.1653 63.3337 59.1106 64.2783 59.1108 65.444C59.1108 66.61 58.1654 67.5554 56.9995 67.5554H23.2222C22.0562 67.5554 21.1108 66.61 21.1108 65.444C21.1111 64.2783 22.0564 63.3337 23.2222 63.3337H56.9995ZM37.9995 50.6667C39.1654 50.6667 40.1108 51.6121 40.1108 52.778C40.1107 53.9438 39.1654 54.8893 37.9995 54.8893H4.22217C3.05631 54.8893 2.11097 53.9438 2.11084 52.778C2.11084 51.6121 3.05623 50.6667 4.22217 50.6667H37.9995ZM71.7778 50.6667C72.9437 50.6668 73.8892 51.6122 73.8892 52.778C73.889 53.9438 72.9436 54.8892 71.7778 54.8893H46.4438C45.2782 54.8891 44.3336 53.9437 44.3335 52.778C44.3335 51.6122 45.2781 50.6669 46.4438 50.6667H71.7778Z\" fill=\"url(#paint1_radial_7964_371)\" />                </g>                <g filter=\"url(#filter2_d_7964_371)\">                    <path d=\"M38 20.7271C47.5394 20.7271 55.2733 28.4602 55.2734 37.9996C55.2734 39.4562 55.0924 40.8709 54.7529 42.2222H21.248C20.9085 40.8709 20.7275 39.4562 20.7275 37.9996C20.7277 28.4603 28.4607 20.7273 38 20.7271Z\" fill=\"url(#paint2_radial_7964_371)\" />                </g>            </g>            <defs>                <filter id=\"filter0_d_7964_371\" x=\"2.53398\" y=\"2.53331\" width=\"71.7765\" height=\"42.9903\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_371\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_371\" result=\"shape\" />                </filter>                <filter id=\"filter1_d_7964_371\" x=\"-1.68916\" y=\"46.8667\" width=\"80.2228\" height=\"25.3331\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_371\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_371\" result=\"shape\" />                </filter>                <filter id=\"filter2_d_7964_371\" x=\"16.9275\" y=\"16.9271\" width=\"42.9903\" height=\"29.9396\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_371\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_371\" result=\"shape\" />                </filter>                <linearGradient id=\"paint0_linear_7964_371\" x1=\"66.875\" y1=\"5.81636\" x2=\"42.3723\" y2=\"55.4803\" gradientUnits=\"userSpaceOnUse\">                    <stop stop-color=\"#FFBA24\" />                    <stop offset=\"1\" stop-color=\"#FF5500\" />                </linearGradient>                <radialGradient id=\"paint1_radial_7964_371\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(49.6112 64.3887) rotate(-168.69) scale(48.441 24.199)\">                    <stop stop-color=\"#FFBA24\" />                    <stop offset=\"1\" stop-color=\"#FF5500\" />                </radialGradient>                <radialGradient id=\"paint2_radial_7964_371\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(41.9513 27.1673) rotate(180) scale(32.7953 32.7951)\">                    <stop stop-color=\"#FFF4C3\" />                    <stop offset=\"0.16\" stop-color=\"#FFE036\" />                    <stop offset=\"1\" stop-color=\"#FA761C\" />                </radialGradient>                <clipPath id=\"clip0_7964_371\">                    <rect width=\"76\" height=\"76\" fill=\"white\" />                </clipPath>            </defs>        </svg>";
+    const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">            <g clip-path=\"url(#clip0_7964_385)\">                <g filter=\"url(#filter0_d_7964_385)\">                    <path d=\"M56.9998 61.2225C58.1655 61.2225 59.1108 62.1672 59.1111 63.3329C59.1111 64.4988 58.1657 65.4442 56.9998 65.4442H23.2224C22.0565 65.4442 21.1111 64.4988 21.1111 63.3329C21.1113 62.1672 22.0566 61.2225 23.2224 61.2225H56.9998ZM37.9998 48.5555C39.1657 48.5555 40.1111 49.5009 40.1111 50.6669C40.111 51.8327 39.1656 52.7782 37.9998 52.7782H4.22241C3.05655 52.7782 2.11119 51.8327 2.11108 50.6669C2.11108 49.5009 3.05648 48.5555 4.22241 48.5555H37.9998ZM71.7781 48.5555C72.9438 48.5557 73.8884 49.5011 73.8884 50.6669C73.8883 51.8326 72.9438 52.778 71.7781 52.7782H48.5554C47.3896 52.7782 46.4442 51.8327 46.4441 50.6669C46.4441 49.501 47.3895 48.5556 48.5554 48.5555H71.7781Z\" fill=\"url(#paint0_radial_7964_385)\" />                </g>                <g filter=\"url(#filter1_d_7964_385)\">                    <path d=\"M37.7803 8.17151C51.8926 8.17156 63.333 19.6119 63.333 33.7242C63.333 35.8791 63.0648 37.9713 62.5625 39.9703H12.998C12.4958 37.9713 12.2275 35.8791 12.2275 33.7242C12.2275 19.6119 23.6679 8.17151 37.7803 8.17151Z\" fill=\"url(#paint1_radial_7964_385)\" />                </g>            </g>            <defs>                <filter id=\"filter0_d_7964_385\" x=\"-1.68892\" y=\"44.7555\" width=\"80.2218\" height=\"25.3331\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_385\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_385\" result=\"shape\" />                </filter>                <filter id=\"filter1_d_7964_385\" x=\"8.42754\" y=\"4.37151\" width=\"59.5499\" height=\"40.2433\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">                    <feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\" />                    <feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\" />                    <feOffset dx=\"0.422222\" dy=\"0.422222\" />                    <feGaussianBlur stdDeviation=\"2.11111\" />                    <feComposite in2=\"hardAlpha\" operator=\"out\" />                    <feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0.156863 0 0 0 0 0.305882 0 0 0 0.25 0\" />                    <feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow_7964_385\" />                    <feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow_7964_385\" result=\"shape\" />                </filter>                <radialGradient id=\"paint0_radial_7964_385\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(39.8314 62.2776) rotate(-165.864) scale(38.8982 23.931)\">                    <stop stop-color=\"#FFBA24\" />                    <stop offset=\"1\" stop-color=\"#FF5500\" />                </radialGradient>                <radialGradient id=\"paint1_radial_7964_385\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(46.0737 36.9531) rotate(-153.435) scale(41.1658 41.1657)\">                    <stop stop-color=\"#FFF4C3\" />                    <stop offset=\"0.28125\" stop-color=\"#FFE036\" />                    <stop offset=\"0.598958\" stop-color=\"#FA761C\" />                </radialGradient>                <clipPath id=\"clip0_7964_385\">                    <rect width=\"76\" height=\"76\" fill=\"white\" />                </clipPath>            </defs>        </svg>";  // SVG templates for sun icons (omitted for brevity, assume they are correctly defined)
 
     let diagramCreated = false;
 
-    // Initialize diagram with solar panel setup
-    function initializeDiagram(): void {
-        const nodes: NodeModel[] = [
-            // Title
-            {
-                id: 'title',
-                width: 450,
-                height: 80,
-                offsetX: 485,
-                offsetY: 135,
-                constraints: NodeConstraints.None,
-                shape: { type: 'Text', content: 'SMART SOLAR PANEL TILT SYSTEM' },
-                style: {
-                    color: '#2c3e50',
-                    fill: 'transparent',
-                    fontFamily: 'Segoe UI',
-                    fontSize: 26,
-                    bold: true,
-                }
-            },
-            // East sun
-            {
-                id: 'eastSun',
-                width: 60,
-                height: 60,
-                offsetX: 221,
-                offsetY: 422,
-                constraints: NodeConstraints.None,
-                shape: {
-                    type: 'Native',
-                    content: eastSunSvg
-                }
-            },
-            // Center sun (noon)
-            {
-                id: 'centerSun',
-                width: 60,
-                height: 60,
-                offsetX: 483,
-                offsetY: 293,
-                constraints: NodeConstraints.None,
-                shape: {
-                    type: 'Native',
-                    content: centerSunSvg
-                }
-            },
-            // West sun
-            {
-                id: 'westSun',
-                width: 60,
-                height: 45,
-                offsetX: 731,
-                offsetY: 422,
-                constraints: NodeConstraints.None,
-                shape: {
-                    type: 'Native',
-                    content: westSunSvg
-                }
-            },
-            // Labels
-            {
-                id: 'eastLabel',
-                width: 60,
-                height: 30,
-                offsetX: 238,
-                offsetY: 365,
-                constraints: NodeConstraints.None,
-                shape: { type: 'Text', content: 'EAST' },
-                style: {
-                    color: '#34495e',
-                    fill: 'transparent',
-                    fontFamily: 'Segoe UI',
-                    fontSize: 14,
-                    bold: true,
-                }
-            },
-            {
-                id: 'westLabel',
-                width: 60,
-                height: 30,
-                offsetX: 725,
-                offsetY: 365,
-                constraints: NodeConstraints.None,
-                shape: { type: 'Text', content: 'WEST' },
-                style: {
-                    color: '#34495e',
-                    fill: 'transparent',
-                    fontFamily: 'Segoe UI',
-                    fontSize: 14,
-                    bold: true,
-                }
-            },
-            // Ground line
-            {
-                id: 'groundLine',
-                width: 500,
-                height: 5,
-                offsetX: 489,
-                offsetY: 657,
-                constraints: NodeConstraints.None,
-                style: {
-                    fill: '#2E485F',
-                    strokeColor: '#2E485F',
-                    strokeWidth: 2
-                }
-            },
-            // Support structure
-            {
-                id: 'supportPost',
-                width: 215,
-                height: 185,
-                offsetX: 465,
-                offsetY: 565,
-                constraints: NodeConstraints.None,
-                shape: {
-                    type: 'Image',
-                    source: './src/diagram/Images/angle/panelSupport.png'
-                },
-                style: {
-                    fill: 'transparent',
-                    strokeColor: 'transparent',
-                }
-            },
-            // Solar panel (main interactive element)
-            {
-                id: 'solarPanelFrame',
-                width: 260,
-                height: 50,
-                offsetX: 478.25,
-                offsetY: 485,
-                rotateAngle: solarData.currentAngle,
-                constraints: (NodeConstraints.Default | NodeConstraints.ReadOnly) & ~NodeConstraints.Drag,
-                pivot: { x: 0.5, y: 0.8 },
-                shape: {
-                    type: 'Image',
-                    source: './src/diagram/Images/angle/solarPanel.png'
-                },
-                style: {
-                    fill: 'transparent',
-                    strokeColor: 'transparent'
-                }
-            },
-            // Pivot point
-            {
-                id: 'pivotPoint',
-                width: 16,
-                height: 16,
-                offsetX: 478.5,
-                offsetY: 488,
-                constraints: NodeConstraints.None,
-                shape: { type: 'Basic', shape: 'Ellipse' },
-                style: {
-                    fill: '#FF5F1F',
-                    strokeColor: '#2E485F',
-                    strokeWidth: 1
-                }
-            },
-            // Location
-            {
-                id: 'location',
-                offsetX: 1130,
-                offsetY: 100,
-                width: 300,
-                height: 150,
-                constraints: NodeConstraints.None,
-                shape: {
-                    type: 'HTML',
-                    content: `
+    function createTextNode(id: string, width: number, height: number, offsetX: number, offsetY: number, content: string, style: NodeModel['style'], constraints: NodeConstraints = NodeConstraints.None): NodeModel {
+        return {
+            id, width, height, offsetX, offsetY,
+            constraints,
+            shape: { type: 'Text', content },
+            style
+        } as NodeModel;
+    }
+    function createNativeNode(id: string, width: number, height: number, offsetX: number, offsetY: number, svgContent: string, constraints: NodeConstraints = NodeConstraints.None): NodeModel {
+        return {
+            id, width, height, offsetX, offsetY,
+            constraints,
+            shape: { type: 'Native', content: svgContent }
+        } as NodeModel;
+    }
+    function createImageNode(id: string, width: number, height: number, offsetX: number, offsetY: number, source: string, rotateAngle?: number, constraints?: NodeConstraints, pivotX?: number, pivotY?: number): NodeModel {
+        const node: NodeModel = {
+            id, width, height, offsetX, offsetY,
+            shape: { type: 'Image', source },
+            style: { fill: 'transparent', strokeColor: 'transparent' }
+        } as NodeModel;
+        if (typeof rotateAngle === 'number') node.rotateAngle = rotateAngle;
+        if (typeof constraints === 'number') node.constraints = constraints;
+        if (typeof pivotX === 'number' && typeof pivotY === 'number') node.pivot = { x: pivotX, y: pivotY };
+        if (!node.constraints) node.constraints = NodeConstraints.None;
+        return node;
+    }
+    function createEllipseNode(id: string, width: number, height: number, offsetX: number, offsetY: number, fill: string, strokeColor: string, strokeWidth: number, constraints: NodeConstraints = NodeConstraints.None): NodeModel {
+        return {
+            id, width, height, offsetX, offsetY,
+            constraints,
+            shape: { type: 'Basic', shape: 'Ellipse' },
+            style: { fill, strokeColor, strokeWidth }
+        } as NodeModel;
+    }
+    function createHtmlNode(id: string, width: number, height: number, offsetX: number, offsetY: number, html: string, constraints: NodeConstraints = NodeConstraints.None): NodeModel {
+        return {
+            id, width, height, offsetX, offsetY,
+            constraints,
+            shape: { type: 'HTML', content: html }
+        } as NodeModel;
+    }
+    function createRectNode(id: string, width: number, height: number, offsetX: number, offsetY: number, fill: string, strokeColor: string, strokeWidth: number, constraints: NodeConstraints = NodeConstraints.None): NodeModel {
+        return {
+            id, width, height, offsetX, offsetY,
+            constraints,
+            style: { fill, strokeColor, strokeWidth }
+        } as NodeModel;
+    }
+    function createConnectorBezier(id: string, spx: number, spy: number, tpx: number, tpy: number, c1x: number, c1y: number, c2x: number, c2y: number, strokeColor: string, strokeWidth: number, dash: string, opacity: number): ConnectorModel {
+        return {
+            id,
+            zIndex: 1,
+            type: 'Bezier',
+            constraints: ConnectorConstraints.None,
+            sourcePoint: { x: spx, y: spy },
+            targetPoint: { x: tpx, y: tpy },
+            segments: [{ type: 'Bezier', point1: { x: c1x, y: c1y }, point2: { x: c2x, y: c2y } }],
+            style: { strokeColor, strokeWidth, strokeDashArray: dash, opacity },
+            sourceDecorator: { shape: 'None' },
+            targetDecorator: { shape: 'None' }
+        } as ConnectorModel;
+    }
+
+    function getLocationHtml(): string {
+        return `
                 <div class="angle-control-section" style="height:150px; width:300px">
                     <div class="angle-control-label" style="font-size:18px; font-weight:600">
                         Select location
                     </div>
                     <div id="locationDropdown"></div>
-                </div>`
-                }
-            },
-            // Efficiency
-            {
-                id: 'efficiency',
-                offsetX: 1130,
-                offsetY: 383,
-                width: 300,
-                height: 350,
-                constraints: NodeConstraints.None,
-                shape: {
-                    type: 'HTML',
-                    content: `
+                </div>`;
+    }
+    function getEfficiencyHtml(): string {
+        return `
             <div class="efficiency-section" style="width:300px; height:345px;">
                 <h3 class="angle-control-label" style="font-size:18px; font-weight:600">
                     System Efficiency
@@ -253,56 +142,60 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
                 <div style="width:250px;">
                     <div id="performanceMessage"></div>
                 </div>
-            </div>`
-                }
-            },
+            </div>`;
+    }
+    function getAngleHtml(): string {
+        return `
+            <div class="angle-control-section" style="width: 300px; height: 185px;">
+                <div class="angle-control-label" style="font-size:18px; font-weight:600">
+                    Tilt Angle
+                </div>
+                <div>
+                    <input id="angleValue" style="height:40px !important;font-size:large" />
+                </div>
+                <div class="angle-description" id="angleDescription">${getAngleDescription()}</div>
+            </div>`;
+    }
+
+    // Initialize diagram with solar panel setup
+    function initializeDiagram(): void {
+        const nodes: NodeModel[] = [
+            // Title
+            createTextNode('title', 450, 80, 485, 135, 'SMART SOLAR PANEL TILT SYSTEM', {
+                color: '#2c3e50', fill: 'transparent', fontFamily: 'Segoe UI', fontSize: 26, bold: true
+            }),
+            // East sun
+            createNativeNode('eastSun', 60, 60, 221, 422, eastSunSvg),
+            // Center sun (noon)
+            createNativeNode('centerSun', 60, 60, 483, 293, centerSunSvg),
+            // West sun
+            createNativeNode('westSun', 60, 45, 731, 422, westSunSvg),
+            // Labels
+            createTextNode('eastLabel', 60, 30, 238, 365, 'EAST', {
+                color: '#34495e', fill: 'transparent', fontFamily: 'Segoe UI', fontSize: 14, bold: true
+            }),
+            createTextNode('westLabel', 60, 30, 725, 365, 'WEST', {
+                color: '#34495e', fill: 'transparent', fontFamily: 'Segoe UI', fontSize: 14, bold: true
+            }),
+            // Ground line
+            createRectNode('groundLine', 500, 5, 489, 657, '#2E485F', '#2E485F', 2),
+            // Support structure
+            createImageNode('supportPost', 215, 185, 465, 565, './src/diagram/Images/angle/panelSupport.png'),
+            // Solar panel (main interactive element)
+            createImageNode('solarPanelFrame', 260, 50, 478.25, 485, './src/diagram/Images/angle/solarPanel.png', solarData.currentAngle, ((NodeConstraints.Default | NodeConstraints.ReadOnly) & ~NodeConstraints.Drag), 0.5, 0.8),
+            // Pivot point
+            createEllipseNode('pivotPoint', 16, 16, 478.5, 488, '#FF5F1F', '#2E485F', 1),
+            // Location
+            createHtmlNode('location', 300, 150, 1130, 100, getLocationHtml()),
+            // Efficiency
+            createHtmlNode('efficiency', 300, 350, 1130, 383, getEfficiencyHtml()),
             // Angle - UPDATED HTML CONTENT
-            {
-                id: 'angle',
-                offsetX: 1130,
-                offsetY: 680,
-                width: 300,
-                height: 185,
-                constraints: NodeConstraints.None,
-                shape: {
-                    type: 'HTML',
-                    content: `
-<div class="angle-control-section" style="width: 300px; height: 185px;">
-  <div class="angle-control-label" style="font-size:18px; font-weight:600">
-      Tilt Angle
-  </div>
-  <div>
-      <input id="angleValue" style="height:40px !important;font-size:large" />
-  </div>
-  <div class="angle-description" id="angleDescription">${getAngleDescription()}</div>
-</div>`
-                }
-            },
+            createHtmlNode('angle', 300, 185, 1130, 680, getAngleHtml()),
         ];
 
         const connectors: ConnectorModel[] = [
             // Sun path
-            {
-                id: 'sunPath',
-                zIndex: 1,
-                type: 'Bezier',
-                constraints: ConnectorConstraints.None,
-                sourcePoint: { x: 221, y: 422 },
-                targetPoint: { x: 731, y: 422 },
-                segments: [{
-                    type: 'Bezier',
-                    point1: { x: 350, y: 260 },
-                    point2: { x: 610, y: 260 },
-                }],
-                style: {
-                    strokeColor: '#3498db',
-                    strokeWidth: 3,
-                    strokeDashArray: '10,5',
-                    opacity: 0.8
-                },
-                sourceDecorator: { shape: 'None' },
-                targetDecorator: { shape: 'None' }
-            }
+            createConnectorBezier('sunPath', 221, 422, 731, 422, 350, 260, 610, 260, '#3498db', 3, '10,5', 0.8)
         ];
 
         // Initialize diagram
@@ -312,13 +205,18 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
             nodes: nodes,
             connectors: connectors,
             scrollChange: () => {
-                if ((locationDropdown as any)?.isPopupOpen) {
+                if (locationDropdown && (locationDropdown as any)?.isPopupOpen) {
                     locationDropdown.hidePopup();
                 }
             },
             snapSettings: { constraints: SnapConstraints.None },
             selectedItems: { constraints: SelectorConstraints.Rotate },
             rotateChange: onRotationChange,
+            click: () => {
+                // Prevent losing selection of the solar panel node
+                const solarPanelNode = diagram.getObject('solarPanelFrame') as NodeModel;
+                if (solarPanelNode) diagram.select([solarPanelNode]);
+            },
             created: () => {
                 diagramCreated = true;
                 diagram.fitToPage();
@@ -354,7 +252,7 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
             if (args.source && args.source.nodes && args.source.nodes[0]) {
                 const node: NodeModel = args.source.nodes[0];
                 if (node.id === 'solarPanelFrame') {
-                    solarData.currentAngle = parseInt(args.newValue.rotateAngle.toString());
+                    solarData.currentAngle = Math.round(args.newValue.rotateAngle) % 360;
                     angleCalculation();
                     calculateSolarPosition();
                     calculateEfficiency();
@@ -366,8 +264,7 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
                 const selectedNode: NodeModel = args.source.nodes[0];
                 if (selectedNode.id === 'solarPanelFrame') {
                     const proposedAngle: number = args.newValue.rotateAngle;
-                    let normalizedAngle = proposedAngle % 360;
-                    if (normalizedAngle < 0) normalizedAngle += 360;
+                    const normalizedAngle = normalizeAngle(proposedAngle);
 
                     // Allow angles between 303-360 and 0-44 only
                     if (!((normalizedAngle >= 303 && normalizedAngle <= 360) ||
@@ -378,7 +275,26 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
             }
         }
     }
-
+    /**
+     * normalizeAngle
+     * Normalizes any angle (positive or negative) into the [0, 360) range.
+     */
+    function normalizeAngle(angle: number): number {
+        let a = angle % 360;
+        if (a < 0) a += 360;
+        return a;
+    }
+    /**
+     * relativeToDiagramAngle
+     * Converts a relative UI angle in [-57..43] into a diagram rotateAngle in [303..360) U [0..43].
+     * - Negative values wrap into 303..359 (e.g., -57 => 303).
+     * - Non-negative values remain 0..43.
+     */
+    function relativeToDiagramAngle(relative: number): number {
+        const r = Math.round(Math.max(RELATIVE_MIN, Math.min(RELATIVE_MAX, relative)));
+        // normalizeAngle will wrap negatives into the upper band [303..360)
+        return normalizeAngle(r);
+    }
     // Initialize location dropdown
     function initializeLocationDropdown(): void {
         const locationOptions = locationData.map(location => ({
@@ -504,13 +420,13 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
 
     // Initialize performance message
     function initializePerformanceMessage(): void {
-        const efficiencyMsg: { message: string, severity: string } = getPerformanceMessage();
+        const efficiencyMsg: { message: string, severity: Severity } = getPerformanceMessage();
         if (performanceMessage) {
             performanceMessage.destroy();
         }
         performanceMessage = new Message({
             content: efficiencyMsg.message,
-            severity: efficiencyMsg.severity as Severity, // Cast to Severity enum
+            severity: efficiencyMsg.severity, // Cast to Severity enum
             showIcon: true,
             cssClass: 'performance-message',
             visible: true,
@@ -586,14 +502,9 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
     // Apply relative angle (-57..43) -> rotateAngle [303..360, 0..43]
     function applyRelativeAngle(val: number | null | undefined) {
         if (typeof val !== 'number') return;
-
-        let r = Math.round(val);
-        // Ensure the value is clamped before storing as last valid
-        if (r < -57) r = -57;
-        if (r > 43) r = 43;
         // Convert the relative angle back to diagram's rotation angle (0-360)
-        const rotateAngle = (r < 0) ? (r + 360) : r;
-        solarData.currentAngle = rotateAngle % 360;
+        const rotateAngle = relativeToDiagramAngle(val);
+        solarData.currentAngle = rotateAngle;
 
         updateDiagram();
         angleCalculation();
@@ -627,7 +538,7 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
         const selectedDateForCalculation: Date = new Date(solarData.selectedDateTime);
         const startOfYearForCalculation: Date = new Date(selectedDateForCalculation.getFullYear(), 0, 1);
 
-        const dayOfYear: number = Math.ceil((selectedDateForCalculation.getTime() - startOfYearForCalculation.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+        const dayOfYear: number = Math.floor((selectedDateForCalculation.getTime() - startOfYearForCalculation.getTime()) / (1000 * 60 * 60 * 24)) + 1;
         const declination: number = 23.45 * Math.PI / 180.0 * Math.sin(2 * Math.PI * (284 + dayOfYear) / 365.0);
         const hourAngle: number = 0; // Solar noon
         const elevation: number = Math.asin(Math.sin(declination) * Math.sin(lat) +
@@ -646,33 +557,65 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
         }
     }
 
-    function calculateEfficiency() {
+    function calculateEfficiency(): void {
         if (solarData.sunElevation <= 0) {
             solarData.efficiency = 0;
             solarData.incidenceAngle = 90;
             return;
         }
-        const panelTiltRad: number = solarData.intPanelAngleDeg * Math.PI / 180.0;
-        const sunElevRad: number = solarData.sunElevation * Math.PI / 180.0;
-        const azimuthDiff: number = 0; // Assuming panels are always facing south or sun azimuth is aligned.
 
-        let cosIncidence: number =
+        // Base calculations
+        const panelTiltRad = (solarData.intPanelAngleDeg * Math.PI) / 180.0;
+        const sunElevRad = (solarData.sunElevation * Math.PI) / 180.0;
+        const azimuthDiff = 0;
+
+        let cosIncidence =
             Math.sin(sunElevRad) * Math.cos(panelTiltRad) +
             Math.cos(sunElevRad) * Math.sin(panelTiltRad) * Math.cos(azimuthDiff);
         cosIncidence = Math.max(0, Math.min(1, cosIncidence));
-        solarData.incidenceAngle = Math.acos(cosIncidence) * 180.0 / Math.PI;
+        solarData.incidenceAngle = (Math.acos(cosIncidence) * 180.0) / Math.PI;
 
-        const irradianceFactor: number = Math.min(1.0, solarData.solarIrradiance / 900.0);
-        const temperatureFactor: number = 0.95; // set to 1.0 for more lift
-        const systemLossFactor: number = 0.95;
-        const optimalAngleDiff: number = Math.abs(solarData.intPanelAngleDeg - solarData.optimalTilt);
-        const optimalAngleFactor: number = Math.max(0.9, 1.0 - (optimalAngleDiff / 90.0) * 0.2); // Penalize deviation from optimal tilt
+        const irradianceFactor = Math.min(1.0, solarData.solarIrradiance / 900.0);
+        const temperatureFactor = 0.95;
+        const systemLossFactor = 0.95;
 
-        let eff = 100.0 * cosIncidence * irradianceFactor * temperatureFactor * systemLossFactor * optimalAngleFactor;
+        const optimalAngleDiff = Math.abs(
+            solarData.intPanelAngleDeg - solarData.optimalTilt
+        );
+        const optimalAngleFactor = Math.max(
+            0.9,
+            1.0 - (optimalAngleDiff / 90.0) * 0.2
+        );
 
-        if (optimalAngleDiff < 5) {
-            // Give a small bonus for being very close to optimal
-            eff = Math.min(100, eff * 1.08);
+        let eff =
+            100.0 *
+            cosIncidence *
+            irradianceFactor *
+            temperatureFactor *
+            systemLossFactor *
+            optimalAngleFactor;
+
+        if (optimalAngleDiff < 5) eff = Math.min(100, eff * 1.08);
+
+        // Gradual noon uplift
+        const noonAngle = solarData.currentAngle;
+        const d = Math.min(noonAngle, 360 - noonAngle);
+        const strongFloorWindowDeg = 10;
+        const noonWindowDeg = 15;
+
+        if (d <= noonWindowDeg) {
+            const weight = 0.5 * (1 + Math.cos((Math.PI * d) / noonWindowDeg));
+            const t = Math.min(1, d / strongFloorWindowDeg);
+            const minAtD = 65 + (60 - 65) * t;
+            const maxAtD = 75 + (68 - 75) * t;
+            const noonTarget = minAtD + (maxAtD - minAtD) * irradianceFactor;
+
+            const blended = eff + (noonTarget - eff) * weight;
+            let uplifted = Math.max(eff, blended);
+            if (d <= strongFloorWindowDeg)
+            uplifted = Math.max(uplifted, irradianceFactor);
+
+            eff = Math.min(100, uplifted);
         }
 
         solarData.efficiency = Math.max(0, Math.min(100, eff));
@@ -750,20 +693,20 @@ const westSunSvg: string = "<svg width=\"76\" height=\"76\" viewBox=\"0 0 76 76\
         else return 'Steep Tilt';
     }
 
-    function getPerformanceMessage(): { message: string, severity: string } {
+    function getPerformanceMessage(): { message: string, severity: Severity } {
         if (solarData.efficiency > 60) {
-            return { message: 'Excellent Performance', severity: 'Success' };
+            return { message: 'Excellent Performance', severity: Severity.Success };
         } else if (solarData.efficiency > 40) {
-            return { message: 'Fair Performance', severity: 'Warning' };
+            return { message: 'Fair Performance', severity: Severity.Warning };
         } else {
-            return { message: 'Poor Performance', severity: 'Error' };
+            return { message: 'Poor Performance', severity: Severity.Error };
         }
     }
 
     function getLocationData(locationName: string): LocationData {
         return locationData.find(loc =>
             loc.name.toLowerCase() === locationName.toLowerCase()
-        )!; // Non-null assertion as it's assumed a valid location name will be passed
+        )!;
     }
 
     // Initial calculations (moved after all functions are defined)

@@ -14,7 +14,7 @@ Gantt.Inject(DayMarkers, Selection);
     span.style.marginLeft = '5px';
     span.style.marginRight = '5px';
     for (let index: number = 0; index < value.length; index++) {
-        img.src = 'https://ej2.syncfusion.com/demos/src/gantt/images/' + value[index].resourceName + '.png';
+        img.src = 'src/gantt/images/' + value[index].resourceName + '.png';
         img.alt = value[index].resourceName;
         span.innerHTML = value[index].resourceName;
         out = out + img.outerHTML + span.outerHTML;

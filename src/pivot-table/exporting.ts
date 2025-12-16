@@ -1,11 +1,11 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { PivotView, FieldList, IDataSet } from '@syncfusion/ej2-pivotview';
+import { PivotView, FieldList, IDataSet, ExcelExport } from '@syncfusion/ej2-pivotview';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Button } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
 import * as pivotData from './pivot-data/Pivot_Data.json';
 enableRipple(false);
-PivotView.Inject(FieldList);
+PivotView.Inject(FieldList, ExcelExport);
 
 /**
  * PivotView Exporting Sample.

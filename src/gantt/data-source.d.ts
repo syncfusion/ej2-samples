@@ -37,3 +37,5 @@ export declare let localData: Object[];
 export declare let undoRedoData: Object[];
 export declare let dialogData: Object[];
 export declare let dataResources: Object[];
+export declare let frozenColumnsData: object[];
+export declare let EventmarkerData: any[];

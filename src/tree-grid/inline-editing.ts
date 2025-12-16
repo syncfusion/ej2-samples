@@ -25,7 +25,7 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
             columns: [
                 {
                     field: 'taskID', headerText: 'Task ID', isPrimaryKey: true, textAlign: 'Right',
-                    validationRules: { required: true, number: true}, width: 90
+                    validationRules: { required: true, number: true}, width: 140
                 },
                 { field: 'taskName', headerText: 'Task Name', editType: 'stringedit', width: 220, validationRules: {required: true} },
                 { field: 'startDate', headerText: 'Start Date', textAlign: 'Right', width: 130, editType: 'datepickeredit',

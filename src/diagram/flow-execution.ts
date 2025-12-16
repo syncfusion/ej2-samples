@@ -36,6 +36,8 @@ let diagram: Diagram;
         }
         connector.style = { strokeWidth: 2,strokeColor: '#8D8D8D' };
         let annotation: PathAnnotationModel = {};
+        annotation.content = content;
+        annotation.style = { fill: 'white' };
         connector.annotations = [annotation];
         connector.targetDecorator = { style: { strokeColor: '#8D8D8D', fill: '#8D8D8D' } };
        

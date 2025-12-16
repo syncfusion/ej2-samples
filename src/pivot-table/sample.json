@@ -2,6 +2,7 @@
     "name": "Pivot Table",
     "directory": "pivot-table",
     "category": "Grids",
+    "type": "update",
     "samples": [{
             "url": "overview",
             "name": "Overview",
@@ -66,6 +67,13 @@
             "name": "OLAP",
             "category": "Data Binding",
             "description": "This demo for Essential<sup>®</sup> JS2 Pivot Table control demonstrate the basic rendering of the pivot table with olap datasource"
+        },
+        {
+            "url": "dynamic-binding",
+            "name": "Dynamic Binding",
+            "type": "new",
+            "category": "Data Binding",
+            "description": "Pivot Table demo for dynamic data loading from JSON, CSV, and OLAP(XMLA) sources, with toolbar options to save and reload reports as JSON files."
         },
         {
             "url": "performance",

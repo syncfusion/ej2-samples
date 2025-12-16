@@ -3,8 +3,8 @@ import { loadCultureFiles } from '../common/culture-loader';
  * RichTextEditor Online Html Editor sample
  */
 import { createElement, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, ToolbarType, Table, PasteCleanup,EmojiPicker, Audio ,Video, FormatPainter } from '@syncfusion/ej2-richtexteditor';
-RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, PasteCleanup, EmojiPicker, Audio ,Video, FormatPainter);
+import { RichTextEditor, Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, ToolbarType, Table, PasteCleanup,EmojiPicker, Audio ,Video, FormatPainter, ClipBoardCleanup, AutoFormat } from '@syncfusion/ej2-richtexteditor';
+RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Table, PasteCleanup, EmojiPicker, Audio ,Video, FormatPainter, ClipBoardCleanup, AutoFormat);
 import { Splitter } from '@syncfusion/ej2-layouts';
 import * as CodeMirror from 'codemirror';
 import 'codemirror/mode/javascript/javascript';

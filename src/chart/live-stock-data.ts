@@ -9,7 +9,7 @@ import { loadChartTheme } from './theme-color';
  * Sample of candle updates for a few seconds.
  */
 let value: number = 180;
-let intervalId: number;
+let intervalId: ReturnType<typeof setTimeout> | number;
 let getData = (): { series: Candlestick[] } => {
     let series: Candlestick[] = [];
     let point: Candlestick;

@@ -25,7 +25,7 @@ Grid.Inject(VirtualScroll, Edit, Toolbar);
                 { field: 'SNo', headerText: 'S.No', width: 140, isPrimaryKey: true, validationRules: { required: true, digits: true } },
                 { field: 'FIELD1', headerText: 'Player Name', width: 140, validationRules: { required: true } },
                 { field: 'FIELD2', headerText: 'Year', width: 120, textAlign: 'Right' },
-                { field: 'FIELD3', headerText: 'Sports', width: 160, textAlign: 'Right', editType: 'dropdownedit', validationRules: { required: true } },
+                { field: 'FIELD3', headerText: 'Sports', width: 160, textAlign: 'Right', editType: 'dropdownedit' },
                 { field: 'FIELD4', headerText: 'Country', width: 160, textAlign: 'Right', editType: 'dropdownedit' },
                 { field: 'FIELD5', headerText: 'LGID', width: 120, textAlign: 'Right' },
                 { field: 'FIELD6', headerText: 'GP', width: 120, textAlign: 'Right' },

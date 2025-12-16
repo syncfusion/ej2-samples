@@ -5,7 +5,7 @@ import { Skeleton } from '@syncfusion/ej2-notifications';
     loadCultureFiles();
     let skeletonCircleSmall: Skeleton = new Skeleton({
         shape: 'Circle',
-        width: "3rem"
+        width: "1.875rem"
     });
     skeletonCircleSmall.appendTo("#skeletonCircleSmall");
     
@@ -29,7 +29,7 @@ import { Skeleton } from '@syncfusion/ej2-notifications';
     
     let skeletonSquareSmall: Skeleton = new Skeleton({
         shape: 'Square',
-        width: "3rem"
+        width: "1.875rem"
     });
     skeletonSquareSmall.appendTo("#skeletonSquareSmall");
     

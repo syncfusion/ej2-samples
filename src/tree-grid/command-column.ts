@@ -39,7 +39,7 @@ TreeGrid.Inject(Edit, CommandColumn);
                     validationRules: { number: true, min: 0 }, edit: { params: { format: 'n' } }
                 },
                 {
-                    headerText: 'Manage Records', width: 130,
+                    headerText: 'Manage Records', width: 140,
                     commands: [{ type: 'Edit', buttonOption: { iconCss: ' e-icons e-edit', cssClass: 'e-flat' } },
                         { type: 'Delete', buttonOption: { iconCss: 'e-icons e-delete', cssClass: 'e-flat' } },
                         { type: 'Save', buttonOption: { iconCss: 'e-icons e-update', cssClass: 'e-flat' } },

@@ -1,6 +1,10 @@
 <div class="col-lg-12 control-section" id="default">
-    <div class="content-wrapper">
-        <img src='src/ai-smart-textarea/images/smarttextarea.gif' width='100%' height='100%' alt="Showcase Smart TextArea Gif"></img>
+    <div class="ai-content-wrapper">
+        <div class="ai-example-label">Select a role</div>
+        <div id='container' style="width:75%;">
+            <input type="text" id='user-role' />
+        </div>
+        <textarea id="smart-textarea"></textarea>
     </div>
 </div>
 
@@ -16,3 +20,18 @@
         The Smart TextArea uses AI to offer real-time sentence suggestions based on the user's input and role, helping users complete sentences more quickly and accurately.
     </p>
 </div>
+<style>
+    .ai-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 50px 0px;
+        border-radius: 10px;
+    }
+
+    .ai-example-label {
+        width: 75%;
+        font-weight: 700;
+    }
+</style>

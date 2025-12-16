@@ -38,13 +38,14 @@
 .sb-header {
     height: 48px;
     background: #FFFFFF;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
     z-index: 1001;
     opacity: 100;
 }
 
 
-.sb-header-left, .sb-header-right {
+.sb-header-left,
+.sb-header-right {
     height: 100%;
 }
 
@@ -82,17 +83,18 @@
     display: none;
 }
 
-.product-style a{
-   padding-right: 15px;
-   font-family:Roboto;
-   font-weight: 500;
-   font-size: 13px;
-   color: #363636;
-   text-align: center;
-   text-decoration: none;
+.product-style a {
+    padding-right: 15px;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 13px;
+    color: #363636;
+    text-align: center;
+    text-decoration: none;
 }
+
 .product-style a:hover {
-    color:#3C78EF;
+    color: #3C78EF;
 }
 
 .sb-download-btn a {
@@ -152,7 +154,9 @@
     margin: 0;
 }
 
-.category-allcontrols a, .category-text a, .crumb-sample {
+.category-allcontrols a,
+.category-text a,
+.crumb-sample {
     display: table;
     opacity: 0.87;
     font-family: Roboto;
@@ -178,12 +182,12 @@
     font-size: 15px;
     vertical-align: bottom;
     /* padding-top: 5px; */
-} 
+}
 
 .content {
-overflow: auto;
-height: calc(100% - 50px);
-top: 50px;
+    overflow: auto;
+    height: calc(100% - 50px);
+    top: 50px;
 }
 
 
@@ -193,7 +197,7 @@ top: 50px;
 }
 
 .div {
-  display: block;
+    display: block;
 }
 
 .crumb-sample {
@@ -229,7 +233,7 @@ top: 50px;
     padding-left: 20px;
     padding-top: 30px;
     opacity: 0.87;
-    font-family:Roboto;
+    font-family: Roboto;
     font-weight: 700;
     font-size: 15px;
     color: #000000;
@@ -237,7 +241,7 @@ top: 50px;
 }
 
 .layout {
-    display:inline-block;
+    display: inline-block;
     cursor: pointer;
 }
 
@@ -282,7 +286,8 @@ top: 50px;
     padding-top: 2px 5px 0px 5px;
 }
 
-.sb-navigation-next a, .sb-navigation-prev a{
+.sb-navigation-next a,
+.sb-navigation-prev a {
     color: #636363;
     text-decoration: none;
 }
@@ -297,9 +302,9 @@ top: 50px;
 }
 
 #next-sample:hover,
-#prev-sample:hover{
-background-color: #D8D8D8;
-text-decoration: none; 
+#prev-sample:hover {
+    background-color: #D8D8D8;
+    text-decoration: none;
 }
 
 .sb-sample-navigation {
@@ -320,7 +325,7 @@ a.e-disabled {
     opacity: 0.35;
 }
 
-.resmenu-rating-thumbsup{
-	position: relative;
+.resmenu-rating-thumbsup {
+    position: relative;
     top: -2px;
 }

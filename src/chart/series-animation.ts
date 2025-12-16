@@ -311,15 +311,15 @@ let scatterdata4: DataPoint[] = shuffleArray<DataPoint>([
     { x: '10', y: 65, y1: 30 },
 ]);
 
-let splineIntervalId: number;
-let lineIntervalId: number;
-let columnIntervalId: number;
-let areaIntervalId: number;
-let barIntervalId: number;
-let rangeIntervalId: number;
-let stepLineIntervalId: number;
-let scatterIntervalId: number;
-let bubbleIntervalId: number;
+let splineIntervalId: ReturnType<typeof setTimeout> | number;
+let lineIntervalId: ReturnType<typeof setTimeout> | number;
+let columnIntervalId: ReturnType<typeof setTimeout> | number;
+let areaIntervalId: ReturnType<typeof setTimeout> | number;
+let barIntervalId: ReturnType<typeof setTimeout> | number;
+let rangeIntervalId: ReturnType<typeof setTimeout> | number;
+let stepLineIntervalId: ReturnType<typeof setTimeout> | number;
+let scatterIntervalId: ReturnType<typeof setTimeout> | number;
+let bubbleIntervalId: ReturnType<typeof setTimeout> | number;
 
 (window as any).default = (): void => {
 const tabObj = new Tab({ heightAdjustMode: 'None', overflowMode: 'Scrollable', height: '500px',headerPlacement: 'Top',

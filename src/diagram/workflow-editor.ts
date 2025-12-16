@@ -13,7 +13,7 @@ SymbolPalette.Inject(BpmnDiagrams);
   // Initialize variables
   let flowTimeOut1: any, flowTimeOut2: any;
   let isPaused = false;
-  let animationIntervals: number[] = [];
+  let animationIntervals: any[] = [];
   const connectorBeforeAnimationColor = "#B0B0B0";
   const connectorDuringAnimationColor = "#FF7F50";
   const connectorAfterAnimationColor = "green";
@@ -463,7 +463,7 @@ SymbolPalette.Inject(BpmnDiagrams);
     lastAnn.style.color = connectorAnnotationColor;
     diagram.dataBind();
 
-    const flowInterval = setInterval(() => {
+    let flowInterval = setInterval(() => {
       if (isPaused) {
         return;
       }

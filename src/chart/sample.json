@@ -1443,6 +1443,21 @@
             }
         },
         {
+            "url": "axis-label-template",
+            "name": "Axis Label Template",
+            "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to render and configure the axis label template in charts.",
+            "category": "Chart Axes",
+            "type": "new",
+            "api": {
+                "Chart": [
+                    "primaryXAxis",
+                    "primaryYAxis",
+                    "series",
+                    "tooltip"
+                ]
+            }
+        },
+        {
             "url": "multi-level-label",
             "name": "Multi Level Labels",
             "description": "This demo sample for Essential<sup>®</sup> JavaScript2 Chart control demonstrates how to group the axis labels .",
@@ -1607,7 +1622,6 @@
             "name": "No Data Template",
             "description": "This demo sample for Essential JavaScript2 Chart control demonstrates how to render and configure the empty points.",
             "category": "Chart Customization",
-            "type": "new",
             "api": {
                 "Chart": [
                     "primaryXAxis",

@@ -1,0 +1,79 @@
+<div class="col-lg-12 control-section">
+    <div class="content-wrapper">
+        <div class="row custom-margin e-prependtemplate">
+            <input id="prepend" type="text" />
+        </div>
+        <div class="row custom-margin e-appendtemplate">
+            <input id="append" type="text" />
+        </div>
+        <div class="row custom-margin custom-margin-row e-icontemplate">
+            <input id="icontemplate" type="text" />
+        </div>
+    </div>
+</div>
+
+<div id="action-description">
+    <p>This example highlights adornment support in the Syncfusion Numeric TextBox. Adornments let you place custom elements before or after the input by using the <code>prependTemplate</code> and <code>appendTemplate</code> properties of Numeric Textbox such as currency symbols, unit labels or action icons to provide context, trigger actions, and improve input clarity and efficiency.</p>
+</div>
+
+<div id="description">
+    <p>
+        This sample demonstrates adornment support in the Syncfusion Numeric TextBox by adding custom elements or icons before and after the input. It includes prepended menu and search icons for price, an appended “kg” label, and icon actions to reset, decrement, or increment values, with the first two fields synchronized.
+    </p>
+</div>
+
+
+<style>
+    .content-wrapper {
+        width: 35%;
+        margin: 0 auto;
+        min-width: 250px;
+    }
+    .custom-margin {
+        margin: 25px 0;
+    }
+    .e-icons.e-search {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+    .e-numeric.e-control-wrapper.e-input-group .e-input-group-icon {
+        background-color: rgba(0,0,0,0) !important;
+    }
+    .bootstrap5\.3 .e-icontemplate .e-numerictextbox,
+    .bootstrap5\.3 .e-prependtemplate .e-numerictextbox,
+    .bootstrap5\.3-dark .e-icontemplate .e-numerictextbox,
+    .bootstrap5\.3-dark .e-prependtemplate .e-numerictextbox,
+    .tailwind3 .e-icontemplate .e-numerictextbox,
+    .tailwind3 .e-prependtemplate .e-numerictextbox,
+    .tailwind3-dark .e-icontemplate .e-numerictextbox,
+    .tailwind3-dark .e-prependtemplate .e-numerictextbox {
+        padding-left: 0 !important;
+    }
+    .fluent2 .e-icontemplate .e-prepend-template,
+    .fluent2-dark .e-icontemplate .e-prepend-template,
+    .fluent2-highcontrast .e-icontemplate .e-prepend-template,
+    .fluent2 .e-prependtemplate .e-prepend-template,
+    .fluent2-dark .e-prependtemplate .e-prepend-template,
+    .fluent2-highcontrast .e-prependtemplate .e-prepend-template {
+        padding-left: 8px !important;
+    }
+    .fluent2 .e-appendtemplate .e-numerictextbox,
+    .fluent2-dark .e-appendtemplate .e-numerictextbox,
+    .fluent2-highcontrast .e-appendtemplate .e-numerictextbox {
+        padding-left: 8px !important;
+    }
+    .material3 .e-icontemplate .e-prepend-template,
+    .material3-dark .e-icontemplate .e-prepend-template,
+    .material3 .e-prependtemplate .e-prepend-template,
+    .material3-dark .e-prependtemplate .e-prepend-template {
+        padding-left: 0 !important;
+    }
+    .e-bigger.tailwind3 .e-prependtemplate .e-prepend-template,
+    .e-bigger.tailwind3-dark .e-prependtemplate .e-prepend-template {
+        padding-left: 11px !important;
+    }
+    .e-icontemplate .e-icons.e-reset,
+    .e-icontemplate .e-icons.e-horizontal-line,
+    .e-icontemplate .e-icons.e-plus {
+        cursor: pointer;
+    }
+</style>

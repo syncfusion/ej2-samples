@@ -270,10 +270,10 @@ import expenseData from './expense-data';
         },
         layers: [
             {
-                shapeData: new MapAjax('./src/dashboard-layout/worldmap.json'),
+                shapeData: new MapAjax('https://ej2.syncfusion.com/demos/src/dashboard-layout/worldmap.json'),
                 shapePropertyPath: 'continent',
                 shapeDataPath: 'continent',
-                dataSource: new MapAjax('./src/dashboard-layout/datasource.json'),
+                dataSource: new MapAjax('https://ej2.syncfusion.com/demos/src/dashboard-layout/datasource.json'),
                 shapeSettings: {
                     colorValuePath: 'color',
                 },

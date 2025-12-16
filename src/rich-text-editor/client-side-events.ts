@@ -3,10 +3,10 @@ import { loadCultureFiles } from '../common/culture-loader';
  * Rich Text Editor client side events samples
  */
 import { addClass, removeClass, Browser } from '@syncfusion/ej2-base';
-import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, EmojiPicker, PasteCleanup, Audio ,Video, FormatPainter, FileManager } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, EmojiPicker, PasteCleanup, Audio ,Video, FormatPainter, FileManager, ClipBoardCleanup, AutoFormat } from '@syncfusion/ej2-richtexteditor';
 import { ActionBeginEventArgs, ActionCompleteEventArgs } from '@syncfusion/ej2-richtexteditor';
 import { Button } from '@syncfusion/ej2-buttons';
-RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, EmojiPicker, PasteCleanup, Audio ,Video, FormatPainter, FileManager);
+RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, EmojiPicker, PasteCleanup, Audio ,Video, FormatPainter, FileManager, ClipBoardCleanup, AutoFormat);
 
 //tslint:disable:max-func-body-length
 (window as any).default = (): void => {

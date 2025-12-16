@@ -2,7 +2,6 @@
     "name": "Smart TextArea",
     "directory": "ai-smart-textarea",
     "category": "Smart Controls",
-    "type": "preview",
     "samples": [
         {
             "url": "default",
@@ -10,7 +9,7 @@
             "category": "Smart TextArea",
             "sourceFiles":[
                 { "displayName": "smart-textarea.ts", "path":"src/ai-smart-textarea/default.ts" },
-                { "displayName": "smart-textarea.html", "path":"src/ai-smart-textarea/ai-default.html" }
+                { "displayName": "smart-textarea.html", "path":"src/ai-smart-textarea/default.html" }
             ],
             "description": " This example demonstrates how to use the Smart Text Area component, including its key properties and functionalities. The component supports various features such as inline suggestions and real-time input handling."
         }

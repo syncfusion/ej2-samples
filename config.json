@@ -182,6 +182,8 @@
 		"aiassistview",
 		"ai",
 		"assistview",
-		"blockData"
+		"blockData",
+		"Sankey",
+		"sankey"
 	]
 }

@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Filter, Toolbar, IActionBeginEventArgs, Selection } from '@syncfusion/ej2-gantt';
+import { Gantt, Filter, Toolbar, IActionBeginEventArgs, Selection, Resize } from '@syncfusion/ej2-gantt';
 import { filteredData } from './data-source';
 import { getValue } from '@syncfusion/ej2-base';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
@@ -8,7 +8,7 @@ import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
  * Filtering Gantt sample
  */
 
-Gantt.Inject(Filter, Toolbar, Selection);
+Gantt.Inject(Filter, Toolbar, Selection, Resize);
 (window as any).default = (): void => {
     loadCultureFiles();
     let type: { [key: string]: Object }[] = [
@@ -43,6 +43,7 @@ Gantt.Inject(Filter, Toolbar, Selection);
             ],
             treeColumnIndex: 0,
             allowFiltering: true,
+            allowResizing: true,
             filterSettings: { type: 'Menu',hierarchyMode:'Parent'},
             includeWeekend: true,
             height: '650px',
@@ -78,6 +79,10 @@ Gantt.Inject(Filter, Toolbar, Selection);
                     getValue('filterModel', args).dlgDiv.querySelector('.e-datetimepicker').ej2_instances[0].dataBind();
                 }
             },
+            dataBound: () => {
+                var columns = ['StartDate', 'EndDate'];
+                gantt.autoFitColumns(columns);
+            }
         });
     gantt.appendTo('#Filtering');
     let dropDownType: DropDownList = new DropDownList({

@@ -17,12 +17,18 @@ import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
             removeUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Remove'
         },
         removing: onFileRemove,
-        dropArea: dropElement
+        dropArea: dropElement,
+        failure: onFailure
     });
     uploadObj.appendTo('#fileupload');
 
     function onFileRemove(args: RemovingEventArgs) : void {
         args.postRawFile = false;
+    }
+    function onFailure(args: any): void {
+        if (args.response && args.response.statusText !== '') {
+            args.statusText = args.response.statusText;
+        }
     }
     // initialize check box component
     let checkBoxObj: CheckBox = new CheckBox({

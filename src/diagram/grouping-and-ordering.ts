@@ -18,6 +18,31 @@ let diagram: Diagram;
 let toolbarEditor: Toolbar;
 let drawingNode: any;
 
+//Adds EventListener based on device's viewport width.
+function addEventsGroup() {
+    const isMobile = window.matchMedia('(max-width:550px)').matches;
+    if (isMobile) {
+        var paletteIcon = document.getElementById('palette-icon');
+        if (paletteIcon) {
+            paletteIcon.addEventListener('click', openPaletteGroup, false);
+        }
+    }
+}
+
+//Toggles the visibility of the palette space on mobile devices when the palette icon is clicked.
+function openPaletteGroup() {
+    const paletteSpace = document.getElementById('palette-space');
+    const isMobile = window.matchMedia('(max-width:550px)').matches;
+    if (isMobile) {
+        if (!paletteSpace.classList.contains('sb-mobile-palette-open')) {
+            paletteSpace.classList.add('sb-mobile-palette-open');
+        }
+        else {
+            paletteSpace.classList.remove('sb-mobile-palette-open');
+        }
+    }
+}
+
 // Creates a basic shape node for the diagram.
 const createNode = (id: string, offsetX: number, offsetY: number, width: number, height: number, shape: BasicShapes,
     annotations: any[] = [], cornerRadius: number = 0): NodeModel => (
@@ -499,4 +524,5 @@ function handleToolbarClick(args: any) {
         ],
     });
     toolbarEditor.appendTo('#toolbarEditor');
+    addEventsGroup();
 };

@@ -1,8 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Chart, LineSeries, Double, Legend, Tooltip, ILoadedEventArgs, Highlight } from '@syncfusion/ej2-charts';
+import { Chart, LineSeries, Double, Legend, Tooltip, ILoadedEventArgs, Highlight, SeriesLabel } from '@syncfusion/ej2-charts';
 import { Browser } from '@syncfusion/ej2-base';
 import { loadChartTheme } from './theme-color';
-Chart.Inject(LineSeries, Double, Legend, Tooltip, Highlight);
+Chart.Inject(LineSeries, Double, Legend, Tooltip, Highlight, SeriesLabel);
 
 /**
  * Sample for Line series
@@ -61,7 +61,7 @@ Chart.Inject(LineSeries, Double, Legend, Tooltip, Highlight);
                     shape: 'Circle',
                     isFilled: true
                 },
-                yName: 'y', name: 'Vietnam',
+                yName: 'y', name: 'Vietnam', labelSettings: {visible: true}
             },
             {
                 type: 'Line',
@@ -83,7 +83,7 @@ Chart.Inject(LineSeries, Double, Legend, Tooltip, Highlight);
                     shape: 'Triangle',
                     isFilled: true
                 },
-                yName: 'y', name: 'Indonesia',
+                yName: 'y', name: 'Indonesia', labelSettings: {visible: true}
             },
             {
                 type: 'Line',
@@ -105,7 +105,7 @@ Chart.Inject(LineSeries, Double, Legend, Tooltip, Highlight);
                     shape: 'Diamond',
                     isFilled: true
                 },
-                yName: 'y', name: 'France',
+                yName: 'y', name: 'France', labelSettings: {visible: true}
             },
             {
                 type: 'Line',
@@ -127,7 +127,7 @@ Chart.Inject(LineSeries, Double, Legend, Tooltip, Highlight);
                     shape: 'Rectangle',
                     isFilled: true
                 },
-                yName: 'y', name: 'Poland',
+                yName: 'y', name: 'Poland', labelSettings: {visible: true}
             },
             {
                 type: 'Line',
@@ -149,7 +149,7 @@ Chart.Inject(LineSeries, Double, Legend, Tooltip, Highlight);
                     shape: 'Pentagon',
                     isFilled: true
                 },
-                yName: 'y', name: 'Mexico',
+                yName: 'y', name: 'Mexico', labelSettings: {visible: true}
             }
         ],
         //Initializing Chart title

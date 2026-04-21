@@ -3,7 +3,6 @@
     "directory": "chat-ui",
     "category": "Interactive Chat",
     "ftName": "chat-ui",
-    "type": "update",
     "dataSourcePath": "src/chat-ui/messageData.ts",
     "samples": [
         {
@@ -33,7 +32,6 @@
             "url": "attachments",
             "name": "File Attachments",
             "category": "Chat UI",
-            "type": "new",
             "api":{ "ChatUI": ["user", "attachmentSettings", "enableAttachments", "headerText", "headerIconCss", "emptyChatTemplate"] },
             "description": "Showcases the chat component integration with other Chat UI control",
             "sourceFiles": [

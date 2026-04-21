@@ -80,3 +80,5 @@ export declare const sales: object[];
 export declare let telecastData: Object[];
 export declare let ordersTrackData: Object[];
 export declare let supportData: any[];
+export declare let virtualOrderData: any[];
+export declare function createVirtualOrderData(): void;

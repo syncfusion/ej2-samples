@@ -14,8 +14,12 @@ import * as data from './blockData.json';
     let overviewBlockEditor: BlockEditor = new BlockEditor({
         blocks: blocksFromJson,
         users:blockForUser,
+        imageBlockSettings: {
+            saveUrl: 'https://services.syncfusion.com/js/production/api/RichTextEditor/SaveFile',
+            path: 'https://services.syncfusion.com/js/production/RichTextEditor/'
+        },
         inlineToolbarSettings: {
-            items: [ 'Bold', 'Italic', 'Underline', 'Strikethrough', 'Uppercase', 'Lowercase', 'Subscript', 'Superscript', 'Color', 'Backgroundcolor' ]
+            items: [ 'Transform' ,'Bold', 'Italic', 'Underline', 'Strikethrough', 'Uppercase', 'Lowercase', 'Subscript', 'Superscript', 'InlineCode', 'Link', 'Color', 'Backgroundcolor' ]
         }
     });    
     overviewBlockEditor.appendTo('#block-editor');

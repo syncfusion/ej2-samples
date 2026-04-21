@@ -32,9 +32,15 @@ PivotView.Inject(FieldList, GroupingBar, Toolbar, PDFExport, ExcelExport);
             formatSettings: [{ name: 'Amount', format: 'C0' }, { name: 'Sold', format: 'N0' }],
             filters: [],
             fieldMapping: [
-                { name: 'Product_Categories', groupName: 'Product Details'},
-                { name: 'Products', groupName: 'Product Details' }
-            ],
+                {
+                    name: 'ProductCategories',
+                    caption: 'Product Categories',
+                    groupName: 'Product Details'
+                },
+                { name: 'Products', groupName: 'Product Details' },
+                { name: 'OrderSource', caption: 'Order Source' },
+                { name: 'InStock', caption: 'In Stock' }
+            ]
         },
         width: '100%',
         height: 450,

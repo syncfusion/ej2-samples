@@ -99,7 +99,7 @@ function updateAnnotation(value: string, fontSize?: number, fontFamily?: string)
                     node.annotations[0].width = 25;
                     node.annotations[0].height = 25;
                     node.annotations[0].template =
-                        '<img src="src/diagram/Images/annotation/' + fontFamily + '.svg" style="width:100%;height:100%" />';
+                        '<img src="https://ej2.syncfusion.com/demos/src/diagram/Images/annotation/' + fontFamily + '.svg" style="width:100%;height:100%" />';
                 }
             } else if (value === 'interaction') {
                 node.annotations[0].constraints = node.annotations[0].constraints ^ AnnotationConstraints.Interaction;

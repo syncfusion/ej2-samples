@@ -39,12 +39,12 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
     fileObject.appendTo('#file');
     function onSuccess() {
         if (!document.getElementById('dropButton').classList.contains('e-dropdown-btn')) {
-            let items: ItemModel[] = [{ text: 'Folder' }, { text: 'Files' }];
+            let items: ItemModel[] = [{ text: fileObject.localeObj.getConstant('Folder') }, { text: fileObject.localeObj.getConstant('File') }];
             let drpDownBtn: DropDownButton = new DropDownButton({
                     items: items,
                     iconCss: 'e-icons e-fe-upload',
                     select: (args) => {
-                        if (args.item.text === 'Folder') {
+                        if (args.item.text === fileObject.localeObj.getConstant('Folder')) {
                             fileObject.uploadSettings.directoryUpload = true;
                         } else {
                             fileObject.uploadSettings.directoryUpload = false;

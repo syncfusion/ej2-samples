@@ -406,7 +406,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                     id: 'Verticalphase', addInfo: { tooltip: 'Vertical phase' },
                     shape: {
                         type: 'SwimLane',
-                        phases: [{ style: { strokeWidth: 1, strokeDashArray: '3,3'}, }],
+                        phases: [{ style: { strokeWidth: 1}, }],
                         annotations: [{ text: '' }],
                         orientation: 'Vertical', isPhase: true
                     },
@@ -416,7 +416,7 @@ function getConnectorDefaults(connector: ConnectorModel): ConnectorModel {
                     id: 'Horizontalphase', addInfo: { tooltip: 'Horizontal phase' },
                     shape: {
                         type: 'SwimLane',
-                        phases: [{ style: { strokeWidth: 1, strokeDashArray: '3,3'}, }],
+                        phases: [{ style: { strokeWidth: 1}, }],
                         annotations: [{ text: '' }],
                         orientation: 'Horizontal', isPhase: true
                     },

@@ -22,10 +22,15 @@ import { Uploader, RemovingEventArgs } from '@syncfusion/ej2-inputs';
         },
         files: preloadFiles,
         removing: onFileRemove,
-        dropArea: dropElement
+        dropArea: dropElement,
+        failure: onFailure
     });
     uploadObj.appendTo('#fileupload');
-
+    function onFailure(args: any): void {
+        if (args.response && args.response.statusText !== '') {
+            args.statusText = args.response.statusText;
+        }
+    }
     function onFileRemove(args: RemovingEventArgs) : void {
         args.postRawFile = false;
     }

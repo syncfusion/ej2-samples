@@ -293,7 +293,7 @@ import expenseData from './expense-data';
                             { latitude: 51.5326602, longitude: -0.1262422, name: 'London' }
                         ],
                         shape: 'Image',
-                        imageUrl: 'https://ej2.syncfusion.com/demos/src/maps/images/ballon.png',
+                        imageUrl: 'src/maps/images/ballon.png',
                         height: 20,
                         width: 20,
                         offset: {

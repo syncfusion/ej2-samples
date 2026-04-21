@@ -571,6 +571,9 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     if (!isSelectedItemLocked) {
       updateToolbarItems(['Cut', 'Copy', 'Lock', 'Delete', 'Order', 'Rotate', 'Flip'], false);
     }
+    else {
+      updateToolbarItems(['Lock'], false);
+    }
   }
 
   //To disable toolbar items while multiselection.

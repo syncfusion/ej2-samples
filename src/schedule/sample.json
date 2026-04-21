@@ -3,6 +3,7 @@
     "directory": "schedule",
     "category": "Calendars",
     "ftName": "scheduler",
+    "type":"update",
     "samples": [
         {
             "url": "overview",
@@ -114,6 +115,28 @@
                     "cellClick",
                     "eventRendered",
                     "dragStop"
+                ]
+            }
+        },
+        {
+            "url": "scheduler-with-chart",
+            "name": "Scheduler with Chart",
+            "category": "Product Use Case",
+            "hideOnDevice": true,
+            "type":"new",
+            "description": "This demo shows driver and truck details in a scheduler, with a chart that toggles to summarize each driver's capacity or trip count.",
+            "api": {
+                "Schedule": [
+                    "actionComplete",
+                    "height",
+                    "width",
+                    "resourceHeaderTemplate",
+                    "eventSettings",
+                    "selectedDate",
+                    "renderCell",
+                    "actionComplete",
+                    "group",
+                    "resources"
                 ]
             }
         },

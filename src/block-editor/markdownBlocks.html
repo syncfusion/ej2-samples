@@ -16,6 +16,7 @@
       <div class="breadcrumbcontent">
         <div id="breadcrumb"></div>
       </div>
+      <button id="downloadBtn" class="downloadbutton" type="button" title="Download Markdown"></button>
     </div>
     <div class="markeditor">
       <div id="block-editor"></div>
@@ -29,6 +30,7 @@
     margin-top: 20px;
     border: 1px solid #dee2e6;
     height: 95%;
+    z-index: 20 !important;
   }
   .blockeditor-marked{
     height:680px;
@@ -40,6 +42,9 @@
   }
   .blockeditor-marked .main-menu .e-list-parent.e-ul {
     overflow: hidden;
+  }
+  .blockeditor-marked .block-content .downloadbutton{
+    box-shadow: none;
   }
   .blockeditor-marked .e-sidebar.e-left.e-transition.e-close {
     transition: transform 2.5s ease, visibility 1200ms;
@@ -76,15 +81,13 @@
   .blockeditor-marked .sidebar-content .main-menu .closebutton.expand-mode {
     transform: rotate(180deg);
   }
-  .blockeditor-marked .block-content .e-breadcrumb {
+  .blockeditor-marked .block-content .breadcrumbcontent {
     pointer-events: none;
   }
   .blockeditor-marked .block-content .stick {
     position: sticky;
     top: 0;
     z-index:10 ;
-    height: 48px;
-    background: var(--color-sf-content-bg-color-alt1);
   }
   .blockeditor-marked .stick .block-content .e-chevron-right {
     font-size: 10px ;
@@ -106,11 +109,6 @@
     display: flex;
     align-items: center;
   }
-  body[class*="dark"] .blockeditor-marked .sidebar-content .sidebar-header,
-  body[class*="high"] .blockeditor-marked .sidebar-content .sidebar-header {
-    background-color: unset;
-    color: unset;
-  }
   .blockeditor-marked .sidebar-content .sidebar-header span {
     pointer-events: none;
   }
@@ -122,6 +120,13 @@
   }
   .tailwind3-dark .blockeditor-marked .sidebar-content #left-toc-closebtn {
     background: rgb(73 76 80);
+  }
+  .e-bigger.material3 .e-treeview .e-list-item .e-text-content,
+  .e-bigger.fluent2 .e-treeview .e-list-item .e-ul,
+  .e-bigger.fluent2 .e-treeview .e-list-item .e-text-content,
+  .e-bigger.fluent2-highcontrast .e-treeview .e-list-item .e-ul,
+  .e-bigger.fluent2-highcontrast .e-treeview .e-list-item .e-text-content{
+    padding-left: 20px;
   }
 </style>
 

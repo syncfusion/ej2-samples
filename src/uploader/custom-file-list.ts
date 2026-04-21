@@ -16,7 +16,7 @@ import { createElement, isNullOrUndefined, detach, EventHandler } from '@syncfus
             saveUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Save',
             removeUrl: 'https://services.syncfusion.com/js/production/api/FileUploader/Remove'
         }, dropArea: dropElement, selected: onFileSelect, progress: onFileUpload, success: onUploadSuccess,
-        failure: onUploadFailed, removing: onFileRemove,
+        failure: onUploadFailed, removing: onFileRemove
     });
     uploadObj.appendTo('#fileupload');
     document.getElementById('browse').onclick = () => {
@@ -119,6 +119,9 @@ import { createElement, isNullOrUndefined, detach, EventHandler } from '@syncfus
         li.querySelector('.file-name ').classList.add('upload-fails');
         if (args.operation === 'upload') {
             detach(li.querySelector('.progress-bar-container'));
+        }
+        if (args.response && args.response.statusText !== '') {
+            args.statusText = args.response.statusText;
         }
     }
     function removeFiles(args : any) : void {

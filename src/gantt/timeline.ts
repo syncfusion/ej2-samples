@@ -1,15 +1,17 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Selection, Sort, TimelineViewMode, DayMarkers } from '@syncfusion/ej2-gantt';
+import { Gantt, Selection, TimelineViewMode, DayMarkers } from '@syncfusion/ej2-gantt';
 import { projectData } from './data-source';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { DropDownList, ChangeEventArgs as dropdownEvent } from '@syncfusion/ej2-dropdowns';
 import { CheckBox } from '@syncfusion/ej2-buttons';
+import { DateRangePicker } from '@syncfusion/ej2-calendars';
+import { isNullOrUndefined } from '@syncfusion/ej2-base';
 
 /**
  * Timeline customization Gantt sample
  */
 
-Gantt.Inject(Selection, Sort, DayMarkers);
+Gantt.Inject(Selection, DayMarkers);
 /* tslint:disable-next-line:max-func-body-length */
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -188,40 +190,6 @@ Gantt.Inject(Selection, Sort, DayMarkers);
     });
     bottomTierUnit.appendTo('#btUnit');
 
-    let topTier: CheckBox = new CheckBox({ checked: true });
-    topTier.appendTo('#topTierCheck');
-
-    let bottomTier: CheckBox = new CheckBox({ checked: true });
-    bottomTier.appendTo('#bottomTierCheck');
-
-    document.getElementById('topTierCheck').onclick = () => {
-        if (topTier.checked) {
-            gantt.timelineSettings.topTier.unit = 'Week';
-            topTierCount.enabled = true;
-            topTierformat.enabled = true;
-            topTierUnit.enabled = true;
-        } else {
-            gantt.timelineSettings.topTier.unit = 'None';
-            topTierCount.enabled = false;
-            topTierformat.enabled = false;
-            topTierUnit.enabled = false;
-        }
-    };
-
-    document.getElementById('bottomTierCheck').onclick = () => {
-        if (bottomTier.checked) {
-            gantt.timelineSettings.bottomTier.unit = 'Day';
-            bottomTierCount.enabled = true;
-            bottomTierformat.enabled = true;
-            bottomTierUnit.enabled = true;
-        } else {
-            gantt.timelineSettings.bottomTier.unit = 'None';
-            bottomTierCount.enabled = false;
-            bottomTierformat.enabled = false;
-            bottomTierUnit.enabled = false;
-        }
-    };
-
     let unitWidthNumObj: NumericTextBox = new NumericTextBox({
         min: 10,
         format: 'n',
@@ -274,4 +242,14 @@ Gantt.Inject(Selection, Sort, DayMarkers);
             gantt.enableMultiTaskbar = false;
         }
     };
+
+    let timelineDateRangePicker: DateRangePicker = new DateRangePicker({
+        startDate: new Date('02/05/2025'),
+        endDate: new Date('03/23/2025'),
+        change: (args: any) => {
+            gantt.timelineSettings.viewStartDate = isNullOrUndefined(args.startDate) ? 'auto' : args.startDate;;
+            gantt.timelineSettings.viewEndDate = isNullOrUndefined(args.endDate) ? 'auto' : args.endDate; ;
+        }
+    });
+    timelineDateRangePicker.appendTo('#timelineDateRange');
 };

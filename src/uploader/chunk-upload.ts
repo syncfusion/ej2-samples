@@ -20,10 +20,16 @@ import { isNullOrUndefined } from '@syncfusion/ej2-base';
         chunkFailure: onBeforeFailure,
         dropArea: dropElement,
         pausing: onPausing,
-        resuming: onResuming
+        resuming: onResuming,
+        failure: onFailure
     });
     uploadObj.appendTo('#fileupload');
     let isInteraction: boolean = false;
+    function onFailure(args: any): void {
+        if (args.response && args.response.statusText !== '') {
+            args.statusText = args.response.statusText;
+        }
+    }
     // to update flag variable for automatic pause and resume
     function onPausing(args: any): void {
         if (args.event !== null && !navigator.onLine) {

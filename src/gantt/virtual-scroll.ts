@@ -30,7 +30,6 @@ Gantt.Inject(Selection, VirtualScroll);
             { field: 'Progress' },
         ],
         allowSelection: true,
-        gridLines: 'Both',
         height: '650px',
         rowHeight:46,
         taskbarHeight:25,

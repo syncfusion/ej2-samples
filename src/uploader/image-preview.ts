@@ -149,6 +149,9 @@ import { detach, Browser, createElement, isNullOrUndefined, EventHandler } from 
             EventHandler.remove(li.querySelector('#iconUpload'), 'click', uploadFile);
             (li.querySelector('.progressbar') as HTMLElement).style.visibility = 'hidden';
         }
+        if (args.response && args.response.statusText !== '') {
+            args.statusText = args.response.statusText;
+        }
     }
     function readURL(li: HTMLElement, args: any): void {
         let preview: HTMLImageElement = li.querySelector('.upload-image');

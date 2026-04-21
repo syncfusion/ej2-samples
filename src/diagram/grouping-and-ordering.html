@@ -1,56 +1,101 @@
-
+<link href="https://ej2.syncfusion.com/demos/src/diagram/styles/diagram-common.css" rel="stylesheet">
 <style>
      /* For toolbar width and height */
      .diagram-toolbar-container {
         width: 100% ;
        height: 44px;
     }
-    /* Symbol palette alignment */
-    .diagram-palette-parent {
+    .diagram-group #palette-space {
         background-color:#fafafa;
         width: 255px!important;
         float: left;
-        height:calc(100% - 28px);
+        height: 74%;
     }
     /* Diagram alignment */
-    .db-diagram-container {
+    .diagram-group .db-diagram-container {
         width:calc(100% - 260px);
         height: 100%;
         float: right;
     }
+    .diagram-group .sb-mobile-palette {
+        width: 100%;
+        height: 559px;
+        float: left;
+    }
+
+    .diagram-group .sb-mobile-palette-bar {
+        display: none;
+    }
+
+    .diagram-group .sb-mobile-diagram {
+        width: calc(100% - 260px);
+        height: 559px;
+        float: left;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-left: none;
+    }
+
+    @media (max-width: 550px) {
+        .diagram-group .sb-mobile-palette {
+            z-index: 19;
+            position: absolute;
+            transition: transform 300ms linear, visibility 0s linear 300ms;
+            width: 39%;
+            height: 100%;
+        }
+        .diagram-group .sb-mobile-diagram {
+            width: 100%;
+        }
+        .diagram-group .sb-mobile-palette-bar {
+            display: block;
+            width: 100%;
+            background: #fafafa;
+            padding: 10px 10px;
+            border: 0.5px solid #e0e0e0;
+            min-height: 40px;
+        }
+    }
 </style>
-<div class="control-section" style="width: 100%">
-        <div class="diagram-toolbar-container">
-            <div id="toolbarEditor"></div>
+<div class="control-section diagram-group" style="width: 100%">
+    <div class="diagram-toolbar-container">
+        <div id="toolbarEditor"></div>
+    </div>
+    <div>
+        <div class="sb-mobile-palette-bar">
+            <div id="palette-icon" role="button" class="e-ddb-icons1 e-toggle-palette"></div>
         </div>
-        <div>
-            <div class="diagram-palette-parent">
-                <div id="symbolpalette"></div>
-            </div>
-            <div class="db-diagram-container">
-                <div id="diagram"></div>
-            </div>
+        <div id="palette-space" class="sb-mobile-palette">
+            <div id="symbolpalette"></div>
         </div>
-        <div id="action-description">
-            <p>
-                This sample illustrates how to group, ungroup, and order commands with the diagram.
-            </p>
+        <div class="db-diagram-container sb-mobile-diagram">
+            <div id="diagram"></div>
         </div>
-        <div id="description">
-            <p>
-                The <code>group</code> method groups diagram nodes and connectors into a single entity.
-            </p>
-            <p>
-                The <code>unGroup</code> method ungroups nodes and/or connectors that have been previously grouped together using the group method.
-            </p>
-            <p> 
-                The <code>moveForward</code> and <code>bringToFront</code> methods adjust the visual order of nodes or connectors within a diagram. This method takes a single parameter that specifies the node or connector that you want to bring forward in the order. 
-            <p>
-                The <code>sendBackward</code> and <code>sendToBack</code> method allows you to send a selected object to the back of the z-order (the order in which objects are stacked on top of one another).
-            </p>
-            <p>
-                In this sample, node annotation styles such as font family, font size, bold, italic, underline, and fontcolor can be customized.
-            </p>
-            <br>
-        </div>
-</div>    
+    </div>
+    <div id="action-description">
+        <p>
+            This sample illustrates how to group, ungroup, and order commands with the diagram.
+        </p>
+    </div>
+    <div id="description">
+        <p>
+            The <code>group</code> method groups diagram nodes and connectors into a single entity.
+        </p>
+        <p>
+            The <code>unGroup</code> method ungroups nodes and/or connectors that have been previously grouped together
+            using the group method.
+        </p>
+        <p>
+            The <code>moveForward</code> and <code>bringToFront</code> methods adjust the visual order of nodes or
+            connectors within a diagram. This method takes a single parameter that specifies the node or connector that
+            you want to bring forward in the order.
+        <p>
+            The <code>sendBackward</code> and <code>sendToBack</code> method allows you to send a selected object to the
+            back of the z-order (the order in which objects are stacked on top of one another).
+        </p>
+        <p>
+            In this sample, node annotation styles such as font family, font size, bold, italic, underline, and
+            fontcolor can be customized.
+        </p>
+        <br>
+    </div>
+</div>

@@ -10,7 +10,7 @@ let nestAcrdn: Accordion;
 (window as any).default = (): void => {
     loadCultureFiles();
 
-    let fetch: Fetch = new Fetch('./src/accordion/fetch-content.html', 'GET', "application/json",);
+    let fetch: Fetch = new Fetch('//ej2.syncfusion.com/demos/src/accordion/fetch-content.html','GET');
     fetch.send().then();
     fetch.onSuccess = (data: string): void => {
         //Initialize Accordion component

@@ -168,6 +168,127 @@
         "EndTime": "2021-01-16T09:00:00.000Z",
         "CategoryColor": "#7fa900"
     }],
+    "truckData": [{
+        "Id": 1,
+        "Subject": "Long haul trip",
+        "Description": "Longest trip for load goods",
+        "StartTime": "2026-01-14T21:00:00Z",
+        "EndTime": "2026-01-16T02:00:00Z",
+        "Driver": "Ben Smith",
+        "DriverID": 1
+    }, {
+        "Id": 2,
+        "Subject": "Delivery to New York",
+        "Description": "Deliver Electronics to New York",
+        "StartTime": "2026-01-13T13:00:00Z",
+        "EndTime": "2026-01-17T01:00:00Z",
+        "Driver": "Sarah Johnson",
+        "DriverID": 2
+    }, {
+        "Id": 3,
+        "Subject": "Cross-country route",
+        "Description": "Supply goods to the other country route",
+        "StartTime": "2026-01-12T19:10:00Z",
+        "EndTime": "2026-01-14T23:00:00Z",
+        "Driver": "Mike Chen",
+        "DriverID": 3
+    }, {
+        "Id": 4,
+        "Subject": "Refrigerated goods",
+        "Description": "Supply the Diary and Refrigerated Goods",
+        "StartTime": "2026-01-13T03:00:00Z",
+        "EndTime": "2026-01-16T14:00:00Z",
+        "Driver": "Emma Davis",
+        "DriverID": 4
+    }, {
+        "Id": 5,
+        "Subject": "Container transport",
+        "Description": "Provide Container Support for another truck",
+        "StartTime": "2026-01-12T15:00:00Z",
+        "EndTime": "2026-01-14T22:00:00Z",
+        "Driver": "Carlos Rodriguez",
+        "DriverID": 5
+    }, {
+        "Id": 6,
+        "Subject": "Furniture delivery",
+        "Description": "Deliver Furniture",
+        "StartTime": "2026-01-16T20:00:00Z",
+        "EndTime": "2026-01-17T03:00:00Z",
+        "Driver": "Olivia Wilson",
+        "DriverID": 6
+    }, {
+        "Id": 7,
+        "Subject": "Food products",
+        "Description": "Load the Food Products",
+        "StartTime": "2026-01-12T07:00:00Z",
+        "EndTime": "2026-01-16T04:00:00Z",
+        "Driver": "James Taylor",
+        "DriverID": 7
+    }, {
+        "Id": 8,
+        "Subject": "Construction materials",
+        "Description": "Deliver Construction Materials to Site",
+        "StartTime": "2026-01-15T11:00:00Z",
+        "EndTime": "2026-01-16T20:00:00Z",
+        "Driver": "Sophia Martinez",
+        "DriverID": 8
+    }, {
+        "Id": 9,
+        "Subject": "Medical supplies",
+        "Description": "Supply Medicine to the Hospital",
+        "StartTime": "2026-01-12T20:00:00Z",
+        "EndTime": "2026-01-17T02:00:00Z",
+        "Driver": "Daniel Lee",
+        "DriverID": 9
+    }, {
+        "Id": 10,
+        "Subject": "Retail goods",
+        "Description": "Supply the Goods to the grocery store",
+        "StartTime": "2026-01-20T14:00:00Z",
+        "EndTime": "2026-01-23T03:00:00Z",
+        "Driver": "Ava Thompson",
+        "DriverID": 10
+    }, {
+        "Id": 11,
+        "Subject": "Get the Goods from NewYork",
+        "Description": "Get goods for Market",
+        "StartTime": "2026-01-18T11:00:00Z",
+        "EndTime": "2026-01-20T19:00:00Z",
+        "Driver": "Sarah Johnson",
+        "DriverID": 2
+    }, {
+        "Id": 12,
+        "Subject": "Furniture Transport",
+        "Description": "Provide Furniture Transport to Shop",
+        "StartTime": "2026-01-16T15:00:00Z",
+        "EndTime": "2026-01-17T05:00:00Z",
+        "Driver": "Carlos Rodriguez",
+        "DriverID": 5
+    }, {
+        "Id": 13,
+        "Subject": "Food products",
+        "Description": "Deliver the Food Products",
+        "StartTime": "2026-01-17T20:00:00Z",
+        "EndTime": "2026-01-18T05:00:00Z",
+        "Driver": "James Taylor",
+        "DriverID": 7
+    }, {
+        "Id": 14,
+        "Subject": "Food products",
+        "Description": "Load the Food Products",
+        "StartTime": "2026-01-12T06:00:00Z",
+        "EndTime": "2026-01-13T12:00:00Z",
+        "Driver": "Ava Thompson",
+        "DriverID": 10
+    }, {
+        "Id": 15,
+        "Subject": "Retail goods",
+        "Description": "Get the Goods from the grocery store",
+        "StartTime": "2026-01-17T13:00:00Z",
+        "EndTime": "2026-01-18T15:00:00Z",
+        "Driver": "Ava Thompson",
+        "DriverID": 10
+    }],
     "timelineData": [{
         "Id": 25,
         "Subject": "Sky Gazers",
@@ -4746,7 +4867,7 @@
     ],
     "holidayList": [
         {
-            "Id": 1,
+            "Id": 1001,
             "Subject": "New Year's Day",
             "StartTime": "2024-01-01T00:00:00",
             "EndTime": "2024-01-01T23:59:00",
@@ -4756,7 +4877,7 @@
             "isHoliday": true
         },
         {
-            "Id": 2,
+            "Id": 1002,
             "Subject": "Makar Sankranti",
             "StartTime": "2024-01-14T00:00:00",
             "EndTime": "2024-01-14T23:59:00",
@@ -4766,7 +4887,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 3,
+            "Id": 1003,
             "Subject": "Republic Day",
             "StartTime": "2024-01-26T00:00:00",
             "EndTime": "2024-01-26T23:59:00",
@@ -4776,7 +4897,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 4,
+            "Id": 1004,
             "Subject": "Maha Shivaratri",
             "StartTime": "2024-03-08T00:00:00",
             "EndTime": "2024-03-08T23:59:00",
@@ -4786,7 +4907,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 5,
+            "Id": 1005,
             "Subject": "Holi",
             "StartTime": "2024-03-25T00:00:00",
             "EndTime": "2024-03-25T23:59:00",
@@ -4796,7 +4917,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 6,
+            "Id": 1006,
             "Subject": "Good Friday",
             "StartTime": "2024-03-29T00:00:00",
             "EndTime": "2024-03-29T23:59:00",
@@ -4806,7 +4927,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 7,
+            "Id": 1007,
             "Subject": "Eid al-Fitr",
             "StartTime": "2024-04-10T00:00:00",
             "EndTime": "2024-04-10T23:59:00",
@@ -4816,7 +4937,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 8,
+            "Id": 1008,
             "Subject": "Buddha Purnima",
             "StartTime": "2024-04-23T00:00:00",
             "EndTime": "2024-04-23T23:59:00",
@@ -4826,7 +4947,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 9,
+            "Id": 1009,
             "Subject": "Raksha Bandhan",
             "StartTime": "2024-08-19T00:00:00",
             "EndTime": "2024-08-19T23:59:00",
@@ -4836,7 +4957,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 10,
+            "Id": 1010,
             "Subject": "Janmashtami",
             "StartTime": "2024-08-26T00:00:00",
             "EndTime": "2024-08-26T23:59:00",
@@ -4846,7 +4967,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 11,
+            "Id": 1011,
             "Subject": "Independence Day",
             "StartTime": "2024-08-15T00:00:00",
             "EndTime": "2024-08-15T23:59:00",
@@ -4856,7 +4977,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 12,
+            "Id": 1012,
             "Subject": "Ganesh Chaturthi",
             "StartTime": "2024-09-07T00:00:00",
             "EndTime": "2024-09-07T23:59:00",
@@ -4866,7 +4987,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 13,
+            "Id": 1013,
             "Subject": "Gandhi Jayanti",
             "StartTime": "2024-10-02T00:00:00",
             "EndTime": "2024-10-02T23:59:00",
@@ -4876,7 +4997,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 14,
+            "Id": 1014,
             "Subject": "Dussehra",
             "StartTime": "2024-10-13T00:00:00",
             "EndTime": "2024-10-13T23:59:00",
@@ -4886,7 +5007,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 15,
+            "Id": 1015,
             "Subject": "Diwali",
             "StartTime": "2024-11-01T00:00:00",
             "EndTime": "2024-11-01T23:59:00",
@@ -4896,7 +5017,7 @@
             "IsReadonly": true
         },
         {
-            "Id": 16,
+            "Id": 1016,
             "Subject": "Christmas Day",
             "StartTime": "2024-12-25T00:00:00",
             "EndTime": "2024-12-25T23:59:00",

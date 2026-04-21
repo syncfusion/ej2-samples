@@ -39,4 +39,7 @@ interface FoodMenuItem {
 export declare let foodMenu: FoodMenuItem[];
 export declare let wrapData: object[];
 export declare let rowSpanData: object[];
+export declare const virtualScrollData: any[];
+export declare const parentMap: Map<number, number>;
+export declare let virtualDataSource: () => void;
 export {};

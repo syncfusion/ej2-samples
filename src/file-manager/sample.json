@@ -1,7 +1,6 @@
 {
     "name": "File Manager",
     "directory": "file-manager",
-    "type":"update",
     "category": "Navigation",
     "ftName": "file-manager",
     "samples": [
@@ -50,7 +49,6 @@
             "url": "directory-upload",
             "name": "Directory upload",
             "category": "File Manager",
-            "type":"update",
             "api": { "FileManager": ["ajaxSettings", "view"] },
             "description": "This example demonstrates how to upload the folder (directory) in a JavaScript File Manager."
         },
@@ -58,7 +56,6 @@
             "url": "sequential-upload",
             "name": "Sequential Upload",
             "category": "File Manager",
-            "type": "new",
             "api": { "FileManager": ["ajaxSettings"] },
             "description":"This example demonstrates enabling sequential file uploads in the JavaScript File Manager. By setting uploadSettings.sequentialUpload to true, files are uploaded one at a time in the order they were added, preserving sequence, reducing concurrent network usage, and providing more predictable progress."
         },
@@ -72,7 +69,6 @@
         {
             "url": "template",
             "name": "Template",
-            "type":"new",
             "category": "File Manager",
             "api": { "FileManager": ["ajaxSettings"] },
             "description":"This example demonstrates how to use the template property to customize the navigation pane, large icons, and details view in a JavaScript (TypeScript) File Manager."
@@ -88,7 +84,6 @@
             "url": "access-control",
             "name": "Access Control",
             "category": "Use Case",
-            "type":"update",
             "api": { "FileManager": ["ajaxSettings"] },
             "description": "This example of File Manager component shows how to restrict the file operations."
         },

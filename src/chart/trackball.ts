@@ -68,7 +68,7 @@ Chart.Inject(LineSeries, DateTime, Tooltip, Crosshair, Legend ,Highlight);
         //Initializing User Interaction Tooltip and Crosshair
         tooltip: { enable: true, shared: true },
         legendSettings: { enableHighlight: true },
-        crosshair: { enable: true, lineType: 'Vertical' },
+        crosshair: { enable: true, lineType: 'Vertical', snapToData: true },
         //Initializing Chart title
         title: 'Average Sales per Person',
         load: (args: ILoadedEventArgs) => {

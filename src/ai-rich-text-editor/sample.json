@@ -2,13 +2,11 @@
     "name": "Rich Text Editor",
     "directory": "ai-rich-text-editor",
     "category": "Smart AI Solutions",
-    "type": "update",
     "samples": [
         {
             "url": "assistant",
             "name": "AI Assistant",
             "category": "Rich Text Editor",
-            "type": "update",
             "sourceFiles": [
                 { "displayName": "ai-assistant.ts", "path": "src/ai-rich-text-editor/assistant.ts" },
                 { "displayName": "ai-assistant.html", "path": "src/ai-rich-text-editor/assistant.html" },

@@ -137,6 +137,7 @@ function handleToolbarClick(args: any) {
         // Pan tool action
         case 'Pan Tool':
             diagram.tool = DiagramTools.ZoomPan;
+            diagram.clearSelection();
             break;
 
         // Reset action

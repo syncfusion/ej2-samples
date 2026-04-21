@@ -1493,7 +1493,7 @@ function destroyControls(): void {
     const doControls = [
         "Chart", "chart3d","3D Chart", "3D Circular Chart", "Stock Chart", "Arc Gauge", "Circular Gauge",
         "Diagram", "HeatMap Chart", "Linear Gauge", "Maps", "Range Selector", "Smith Chart",
-        "Barcode", "Sparkline Charts", "TreeMap", "Bullet Chart"
+        "Barcode", "Sparkline Charts", "TreeMap", "Bullet Chart", "Sankey"
     ];
     const elementList: HTMLElement[] = selectAll('.e-control', document.getElementById('control-content'));
     for (const control of elementList) {
@@ -1857,7 +1857,7 @@ function parseHash(newHash: string, oldHash: string): void {
     let control: string = newHash.split('/')[1];
     let baseNewTheme: string = newTheme.replace('-dark', '');
     let baseOldTheme: string = selectedTheme.replace('-dark', '');
-    let componentsToAddRoutes= ["Chart", "three-dimension-chart", "circular-3d-chart", "stock-chart", "arc-gauge", "circular-gauge", "Diagram", "heatmap-chart", "linear-gauge", "Maps", "range-navigator", "smith-chart", "Barcode", "sparkline", "TreeMap", "bullet-chart"];  
+    let componentsToAddRoutes= ["Chart", "three-dimension-chart", "circular-3d-chart", "stock-chart", "arc-gauge", "circular-gauge", "Diagram", "heatmap-chart", "linear-gauge", "Maps", "range-navigator", "smith-chart", "Barcode", "sparkline", "TreeMap", "bullet-chart", "sankey"];  
     if (baseNewTheme !== baseOldTheme && themeCollection.indexOf(newTheme) !== -1) {//only reload if the base theme is diff
             setThemeDefault(newTheme);
             location.reload();
@@ -2065,6 +2065,19 @@ function hideToast() {
 }
 
 window.addEventListener('hashchange', () => {
+    let isAiAssistView = location.hash.includes('/ai-assistview/');
+    let isAiAssistViewSample =
+        location.hash.includes('ai-text-to-speech.html') ||
+        location.hash.includes('ai-speech-to-text.html') ||
+        location.hash.includes('ai-models.html');
+    if (isAiAssistView) {
+        if (isAiAssistViewSample) {
+            showToast();
+        } else {
+            hideToast();
+        }
+        return;
+    }
     if (location.hash.includes('ai-')) {
         showToast();
     } else {

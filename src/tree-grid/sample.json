@@ -2,8 +2,8 @@
     "name": "Tree Grid",
     "directory": "tree-grid",
     "category": "Grids",
-    "type":"update",
     "ftName": "tree-grid",
+    "type":"update",
     "samples": [
          {  
             "url": "treegrid-overview", "name": "Overview", "category":"Tree Grid","api":{"TreeGrid":["dataSource","childMapping","height","columns","allowReordering","allowFiltering","allowSorting","filterSettings","queryCellInfo"] },
@@ -79,7 +79,7 @@
             "description": "This demo explains the default functionalities of the Column Menu in Syncfusion<sup>®</sup> TypeScript Tree Grid control."
          },
          {
-            "url":"auto-wrap", "name": "Auto Wrap Column Cells", "category":"Columns","type":"update","api":{"TreeGrid":["dataSource", "childMapping", "treeColumnIndex","allowPaging","allowTextWrap","columns","pageSettings"] },
+            "url":"auto-wrap", "name": "Auto Wrap Column Cells", "category":"Columns","api":{"TreeGrid":["dataSource", "childMapping", "treeColumnIndex","allowPaging","allowTextWrap","columns","pageSettings"] },
             "description": "This demo explains how to wrap the content of columns within the specified width of Tree Grid columns in Syncfusion<sup>®</sup> TypeScript Tree Grid control." 
          },
          {  
@@ -119,7 +119,7 @@
             "description": "This demo shows how to set different row height to the rows of Syncfusion<sup>®</sup> TypeScript Tree Grid control."
          },
          {
-            "url": "row-spanning", "name": "Row Spanning (API)", "category": "Rows", "type": "new", "api": {"TreeGrid":["dataSource","childMapping","treeColumnIndex","enableRowSpan","enableColumnSpan","rowHeight"]},
+            "url": "row-spanning", "name": "Row Spanning (API)", "category": "Rows", "api": {"TreeGrid":["dataSource","childMapping","treeColumnIndex","enableRowSpan","enableColumnSpan","rowHeight"]},
             "description": "This demo demonstrates how to use rowspan and colspan API in the TreeGrid."
          },
          {
@@ -192,7 +192,7 @@
             "description": "This demo for Essential<sup>®</sup> JS 2 Tree Grid control shows frozen columns feature of Tree Grid with Freeze direction Left/Right."
          },
          {
-            "url":"virtual-scrolling", "name": "Virtual Scrolling", "description":"This demo demonstrates how to use Essential<sup>®</sup> JS 2 Tree Grid to show a large data view without performance degradation by rendering only the required rows.", "category":"Scrolling","api":{"TreeGrid":["dataSource","enableVirtualization","dataBound","height","columns"] } 
+            "url":"virtual-scrolling", "name": "Virtual Scrolling", "type":"update", "description":"This demo demonstrates how to use Essential<sup>®</sup> JS 2 Tree Grid to show a large data view without performance degradation by rendering only the required rows.", "category":"Scrolling","api":{"TreeGrid":["dataSource","enableVirtualization","dataBound","height","columns"] } 
          },
          {
             "url": "loadonchilddemand", "name": "Load Child on Demand", "category": "Scrolling", "api": { "TreeGrid": ["dataSource", "enableVirtualization", "loadchildOnDemand", "columns", "treeColumnIndex", "hasChildMapping", "parentIdMapping", "idMapping", "height"] }, "description": "This example shows the binding of remote services by using the DataManager in the Syncfusion<sup>®</sup> Essential<sup>®</sup> JS2 Tree Grid."

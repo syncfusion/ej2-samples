@@ -68,8 +68,14 @@ type TemplateItem = {
       if (!templateData.index) templateData.index = idx;
 
       card.addEventListener('click', () => {
-        blockEditorInstance.focusIn();
         loadPage(templateData);
+      });
+
+      card.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          loadPage(templateData);
+        }
       });
     });
   }

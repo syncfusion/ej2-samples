@@ -6,7 +6,7 @@ import {
 } from '@syncfusion/ej2-navigations';
 import { Button } from '@syncfusion/ej2-buttons';
 import { MarkdownConverter } from "@syncfusion/ej2-markdown-converter";
-
+let turndownService: any = null;
 
 type TreeNode = {
   id: string;
@@ -59,10 +59,50 @@ type TreeNode = {
   });
   breadcrumb.appendTo('#breadcrumb');
 
+  // Download button
+  const downloadBtn = new Button({
+    iconCss: 'e-icons e-download',
+    cssClass: 'downloadbutton'
+  });
+  downloadBtn.appendTo('#downloadBtn');
+
+  // Turndown will be loaded dynamically via script tags (matches the JS sample)
+  function loadExternalFile(): void {
+    const head = document.getElementsByTagName('head')[0];
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/turndown/dist/turndown.js';
+    script.onload = () => {
+      const pluginScript = document.createElement('script');
+      pluginScript.src = 'https://unpkg.com/turndown-plugin-gfm/dist/turndown-plugin-gfm.js';
+      pluginScript.onload = () => {
+        try {
+          const TurndownCtor = (window as any).TurndownService || (window as any).turndown || (window as any).default;
+          turndownService = new TurndownCtor({
+            codeBlockStyle: 'fenced',
+            emDelimiter: '_',
+            bulletListMarker: '-',
+            headingStyle: 'atx'
+          });
+          const plugin = (window as any).gfm || (window as any).turndownPluginGfm || (window as any).turndownPluginGfm;
+          if (plugin) {
+            if (typeof plugin === 'function') (turndownService as any).use(plugin);
+            else if (plugin.gfm) (turndownService as any).use(plugin.gfm);
+            else (turndownService as any).use(plugin);
+          }
+        } catch (e) {
+          try { turndownService = new ((window as any).TurndownService)(); } catch (e2) { turndownService = null; }
+        }
+      };
+      head.appendChild(pluginScript);
+    };
+    head.appendChild(script);
+  }
+
   // Toolbar with templates
   const toolbar = new Toolbar({
     items: [
-      { align: 'Left', template: '#breadcrumb' as any }
+      { align: 'Left', template: '#breadcrumb' as any },
+      { align: 'Right', template: '#downloadBtn' as any }
     ]
   });
   toolbar.appendTo('#toolbar');
@@ -82,6 +122,11 @@ type TreeNode = {
   sidebar.appendTo('#sidebar-treeview');
 
   const closeBtnEl = document.getElementById('left-toc-closebtn');
+
+  if (closeBtnEl && window.innerWidth < 600) {
+    closeBtnEl.style.left = '18px';
+    closeBtnEl.classList.add('expand-mode');
+  }
 
   // TreeView
   const treeview = new TreeView({
@@ -264,7 +309,7 @@ type TreeNode = {
   const inlineToolbarItems = ['Bold', 'Italic', 'Underline', 'Strikethrough'];
 
   const blockEditor: BlockEditor = new BlockEditor({
-    height: '597px',
+    height: '602px',
     inlineToolbarSettings: {
       popupWidth: '180px',
       enable: true,
@@ -274,6 +319,42 @@ type TreeNode = {
     blocks: []
   });
   blockEditor.appendTo('#block-editor');
+  // Load turndown and its plugin dynamically (mirrors markdownBlocks copy.js)
+  loadExternalFile();
+
+  // Download current editor content as Markdown
+  function downloadMarkdown(): void {
+    let htmlContent = '';
+    try {
+      htmlContent = (blockEditor as any).getDataAsHtml();
+    } catch (e) {
+      return;
+    }
+    const markdown = turndownService.turndown(htmlContent || '');
+    let fileName = 'document.md';
+    const lastCrumb = breadcrumbItems && breadcrumbItems[breadcrumbItems.length - 1] && (breadcrumbItems[breadcrumbItems.length - 1].text as string | undefined);
+    if (lastCrumb) {
+      const safe = (lastCrumb as string).replace(/[\\/:*?"<>|]+/g, '').trim() || 'document';
+      fileName = `${safe}.md`;
+    }
+    const blob = new Blob([markdown], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    try {
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+    } finally {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  // Wire download handler to the button element
+  if (downloadBtn.element) {
+    downloadBtn.element.addEventListener('click', downloadMarkdown);
+  }
 
   function loadContent(mdFile: string): void {
   fetch(mdFile)

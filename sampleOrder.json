@@ -635,6 +635,13 @@
             "ai-text-to-speech": "Text To Speech"
         }
     },
+    "inline-ai-assist": {
+        "ControlName": "Inline AI Assist",
+        "Samples": {
+            "ai-overview": "Overview",
+            "ai-rich-text-editor": "Rich Text Editor"
+        }
+    },
     "heatmap-chart": {
         "ControlName": "Heatmap Chart",
         "Samples": {
@@ -996,6 +1003,15 @@
             "markdown-editor": "Overview",
             "markdown-editor-preview": "Preview",
             "markdown-editor-custom-format": "Custom Format"
+        }
+    },
+    "sankey": {
+        "ControlName": "Sankey",
+        "Samples": {
+            "default": "Default",
+            "orientation": "Vertical",
+            "right-to-left": "RTL",
+            "print-export": "Print and Export"
         }
     },
     "schedule": {

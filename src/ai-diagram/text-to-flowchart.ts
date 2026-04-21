@@ -10,7 +10,7 @@ import { InputEventArgs, TextBox, Uploader } from '@syncfusion/ej2/inputs';
 import { ClickEventArgs, ItemModel, Toolbar } from '@syncfusion/ej2/navigations';
 import { Dialog } from '@syncfusion/ej2/popups';
 import { DropDownButton, MenuEventArgs } from '@syncfusion/ej2/splitbuttons';
-
+import { serverAIRequest } from '../common/ai-service';
 
 Diagram.Inject(UndoRedo, DataBinding, PrintAndExport,FlowchartLayout);
 
@@ -32,7 +32,7 @@ const flowChartData: FlowChartNode[] = [
 { id: "C", name: "Already a customer?", shape: "Decision", color: "#2F95D8", parentId: ["B"], arrowType: "single-line-arrow", stroke: "#333", strokeWidth: 2 },
 { id: "D", name: "Create an account", shape: "Rectangle", color: "#70AF16", parentId: ["C"], label: ["No"], arrowType: "single-line-arrow", stroke: "#333", strokeWidth: 2 },
 { id: "E", name: "Enter login information", shape: "Rectangle", color: "#70AF16", parentId: ["C"], label: ["Yes"], arrowType: "single-line-arrow", stroke: "#333", strokeWidth: 2 },
-{ id: "F", name: "Search for the book in the search bar", shape: "Predefined Process", color: "#1759B7", parentId: ["E", "D"], arrowType: "single-line-arrow", label: ["", ""], stroke: "#333", strokeWidth: 2 },
+{ id: "F", name: "Search for the book in the search bar", shape: "Rectangle", color: "#1759B7", parentId: ["E", "D"], arrowType: "single-line-arrow", label: ["", ""], stroke: "#333", strokeWidth: 2 },
 { id: "G", name: "Select the preferred book", shape: "Rectangle", color: "#1759B7", parentId: ["F"], arrowType: "single-line-arrow", stroke: "#333", strokeWidth: 2 },
 { id: "H", name: "Is the book new or used?", shape: "Rectangle", color: "#2F95D8", parentId: ["G"], arrowType: "single-line-arrow", stroke: "#333", strokeWidth: 2 },
 { id: "I", name: "Select the new book", shape: "Rectangle", color: "#70AF16", parentId: ["H"], label: ["Yes"], arrowType: "single-line-arrow", stroke: "#333", strokeWidth: 2 },
@@ -47,9 +47,9 @@ const flowChartData: FlowChartNode[] = [
 (window as any).default = (): void => {
 
   //Sets the default values of a connector
-  function getConnectorDefaults(obj: Connector): ConnectorModel {
-    obj.type = 'Orthogonal';
-    return obj;
+  function getConnectorDefaults(connector: Connector): ConnectorModel {
+    connector.type = 'Orthogonal';
+    return connector;
   }
   
   //Sets the Node style for DragEnter element.
@@ -67,8 +67,8 @@ const flowChartData: FlowChartNode[] = [
     }
   }
   
-  function getFlowShape(id: string, shapeType: FlowShapes): NodeModel {
-    let flowshape: NodeModel = { id: id, shape: { type: 'Flow', shape: shapeType } };
+  function getFlowShape(id: string, shapeType: FlowShapes, tooltipContent: string): NodeModel {
+    let flowshape: NodeModel = { id: id, shape: { type: 'Flow', shape: shapeType }, tooltip: {content: tooltipContent} };
     return flowshape;
   }
   
@@ -85,6 +85,7 @@ const flowChartData: FlowChartNode[] = [
       symbol.width = 50;
       symbol.height = 50;
     }
+    symbol.constraints = NodeConstraints.Default | NodeConstraints.Tooltip;
   }
   
   function getSymbolInfo(symbol: NodeModel): SymbolInfo {
@@ -93,99 +94,29 @@ const flowChartData: FlowChartNode[] = [
   
   
   // tslint:disable-next-line:max-func-body-length
-  
-  let bounds = {
-    x: 240,
-    y: 122,
-    width: 719,
-    height: 700,
-    top: 122,
-    right: 959,
-    bottom: 822,
-    left: 240
-  }
-  let centerX: number = bounds.width / 2;
-  let interval: number[] = [
-    1, 9, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75
-  ];
-  
-  let gridlines: GridlinesModel = { lineColor: '#e0e0e0', lineIntervals: interval };
-  
-  let rotateItems: any = [
-    { iconCss: 'e-icons e-transform-right', text: 'Rotate Clockwise' },
-    { iconCss: 'e-icons e-transform-left', text: 'Rotate Counter-Clockwise' }
-  ];
-  let flipItems: any = [
-    { iconCss: 'e-icons e-flip-horizontal', text: 'Flip Horizontal' },
-    { iconCss: 'e-icons e-flip-vertical', text: 'Flip Vertical' }
-  ];
-  let alignItems: any = [
-    {
-      iconCss: 'sf-icon-align-left-1', text: 'Align Left',
-    },
-    {
-      iconCss: 'sf-icon-align-center-1', text: 'Align Center',
-    },
-    {
-      iconCss: 'sf-icon-align-right-1', text: 'Align Right',
-    },
-    {
-      iconCss: 'sf-icon-align-top-1', text: 'Align Top',
-    },
-    {
-      iconCss: 'sf-icon-align-middle-1', text: 'Align Middle',
-    },
-    {
-      iconCss: 'sf-icon-align-bottom-1', text: 'Align Bottom',
-    },
-  ];
-  let distributeItems: any = [
-    { iconCss: 'sf-icon-distribute-vertical', text: 'Distribute Objects Vertically', },
-    { iconCss: 'sf-icon-distribute-horizontal', text: 'Distribute Objects Horizontally', },
-  ];
-  let orderItems: any = [
-    { iconCss: 'e-icons e-bring-forward', text: 'Bring Forward' },
-    { iconCss: 'e-icons e-bring-to-front', text: 'Bring To Front' },
-    { iconCss: 'e-icons e-send-backward', text: 'Send Backward' },
-    { iconCss: 'e-icons e-send-to-back', text: 'Send To Back' }
-  ];
+
   let zoomMenuItems: ItemModel[] = [
     { text: 'Zoom In' }, { text: 'Zoom Out' }, { text: 'Zoom to Fit' }, { text: 'Zoom to 50%' },
     { text: 'Zoom to 100%' }, { text: 'Zoom to 200%' },
   ];
-  let conTypeItems: any = [
-    { text: 'Straight', iconCss: 'e-icons e-line' },
-    { text: 'Orthogonal', iconCss: 'sf-icon-orthogonal' },
-    { text: 'Bezier', iconCss: 'sf-icon-bezier' }
-  ];
-  let shapesItems: any = [
-    { text: 'Rectangle', iconCss: 'e-rectangle e-icons' },
-    { text: 'Ellipse', iconCss: ' e-circle e-icons' },
-    { text: 'Polygon', iconCss: 'e-line e-icons' }
-  ];
+
   let exportItems: ItemModel[] = [
     { text: 'JPG' }, { text: 'PNG' }, { text: 'SVG' }
   ];
-  let groupItems: any = [
-    { text: 'Group', iconCss: 'e-icons e-group-1' }, { text: 'Ungroup', iconCss: 'e-icons e-ungroup-1' }
-  ];
-  
+
   let diagram: Diagram | any;
   
   //Initializes diagram control
   diagram = new Diagram({
     width: '100%', height: '900px',
-    // nodes: nodes, connectors: connectors,
     drawingObject: {},
-    selectionChange: selectionChange,
-    historyChange: historyChange,
     tool: DiagramTools.Default,
-    snapSettings: { horizontalGridlines: gridlines, verticalGridlines: gridlines },
-    scrollSettings: { scrollLimit: 'Infinity' },
+    scrollSettings: { scrollLimit: 'Diagram' },
+    rulerSettings: { showRulers: true },
     layout: {
-      type: 'FlowChart',
+      type: 'Flowchart',
       orientation: 'TopToBottom',
-      flowChartSettings: {
+      flowChartLayoutSettings: {
         yesBranchDirection: 'LeftInFlow',
         noBranchDirection: 'RightInFlow',
         yesBranchValues: ['Yes', 'True'],
@@ -194,11 +125,10 @@ const flowChartData: FlowChartNode[] = [
       verticalSpacing: 50,
       horizontalSpacing: 50
     } as any,
-    // rulerSettings:{showRulers:true},
     dataSourceSettings: {
       id: 'id',
       parentId: 'parentId',
-      dataManager: new DataManager(flowChartData)
+      dataSource: new DataManager(flowChartData)
     },
     scrollChange: function (args: IScrollChangeEventArgs) {
       if (args.panState !== 'Start') {
@@ -216,7 +146,7 @@ const flowChartData: FlowChartNode[] = [
   diagram.appendTo('#diagram');
   
   //Button
-  let button = new Fab({ isPrimary: true, content: 'AI Assist', iconCss: 'e-icons e-aiassist-chat' });
+  let button = new Fab({ isPrimary: true, content: 'AI Assist', iconCss: 'e-icons e-assistview-icon', target: "#diagram" });
   button.appendTo('#ai-assist');
   
   //Initialize Toolbar component
@@ -224,50 +154,16 @@ const flowChartData: FlowChartNode[] = [
     clicked: function (args: any) { toolbarClick(args); },
     created: function () {
       if (diagram !== undefined) {
-        let conTypeBtn: DropDownButton = new DropDownButton({
-          items: conTypeItems, iconCss: 'e-ddb-icons e-connector e-icons',
-          select: function (args) { onConnectorSelect(args); }
-        });
-        conTypeBtn.appendTo('#conTypeBtn');
+
         let btnZoomIncrement: DropDownButton = new DropDownButton({
           items: zoomMenuItems, content: Math.round(diagram.scrollSettings.currentZoom * 100) + ' %', select: zoomChange,
         });
         btnZoomIncrement.appendTo('#btnZoomIncrement');
-        let shapesBtn: DropDownButton = new DropDownButton({
-          items: shapesItems, iconCss: 'e-shapes e-icons',
-          select: function (args) { onShapesSelect(args); }
-        });
-        shapesBtn.appendTo('#shapesBtn');
+
         let exportBtn: DropDownButton = new DropDownButton({
           items: exportItems, iconCss: 'e-ddb-icons e-export', select: function (args) { onselectExport(args); },
         });
         exportBtn.appendTo('#exportBtn');
-  
-        let groupBtn: DropDownButton = new DropDownButton({
-          items: groupItems, iconCss: 'e-icons e-group-1', select: function (args) { onSelectGroup(args); }
-        });
-        groupBtn.appendTo('#groupBtn');
-        let alignBtn: DropDownButton = new DropDownButton({
-          items: alignItems, iconCss: 'sf-icon-align-center-1', select: function (args) { onSelectAlignObjects(args); }
-        });
-        alignBtn.appendTo('#alignBtn');
-  
-        let distributeBtn: DropDownButton = new DropDownButton({
-          items: distributeItems, iconCss: 'sf-icon-distribute-vertical', select: function (args) { onSelectDistributeObjects(args); }
-        });
-        distributeBtn.appendTo('#distributeBtn');
-        let orderBtn: DropDownButton = new DropDownButton({
-          items: orderItems, iconCss: 'e-icons e-order', select: function (args) { onSelectOrder(args); }
-        });
-        orderBtn.appendTo('#orderBtn');
-        let rotateBtn: DropDownButton = new DropDownButton({
-          items: rotateItems, iconCss: 'e-icons e-repeat', select: function (args) { onSelectRotate(args); }
-        });
-        rotateBtn.appendTo('#rotateBtn');
-        let flipBtn: DropDownButton = new DropDownButton({
-          items: flipItems, iconCss: 'e-icons e-flip-horizontal', select: function (args) { onSelectFlip(args); }
-        });
-        flipBtn.appendTo('#flipBtn');
         refreshOverflow();
       }
   
@@ -292,100 +188,20 @@ const flowChartData: FlowChartNode[] = [
       { prefixIcon: 'e-icons e-circle-add', tooltipText: 'New Diagram' },
       { prefixIcon: 'e-icons e-folder-open', tooltipText: 'Open Diagram', },
       { prefixIcon: 'e-icons e-save', tooltipText: 'Save Diagram' },
+      { type: 'Separator' },
       { prefixIcon: 'e-print e-icons', tooltipText: 'Print Diagram' },
       { type: 'Input', tooltipText: 'Export Diagram', template: '<button id="exportBtn" style="width:100%;"></button>' },
       { type: 'Separator' },
-      { disabled: true, prefixIcon: 'e-cut e-icons', tooltipText: 'Cut', cssClass: 'tb-item-middle tb-item-lock-category' },
-      { disabled: true, prefixIcon: 'e-copy e-icons', tooltipText: 'Copy', cssClass: 'tb-item-middle tb-item-lock-category' },
-      { prefixIcon: 'e-icons e-paste', tooltipText: 'Paste', disabled: true },
-      { type: 'Separator' },
-      { disabled: true, prefixIcon: 'e-icons e-undo tb-icons', tooltipText: 'Undo', cssClass: 'tb-item-start tb-item-undo' },
-      { disabled: true, prefixIcon: 'e-icons e-redo tb-icons', tooltipText: 'Redo', cssClass: 'tb-item-end tb-item-redo' },
-      { type: 'Separator', },
       { prefixIcon: 'e-pan e-icons', tooltipText: 'Pan Tool', cssClass: 'tb-item-start pan-item' },
       { prefixIcon: 'e-mouse-pointer e-icons', tooltipText: 'Select Tool', cssClass: 'tb-item-middle tb-item-selected' },
-      { tooltipText: 'Draw Connectors', template: '<button id="conTypeBtn" style="width:100%;"></button>', cssClass: 'tb-item-middle' },
-      { tooltipText: 'Draw Shapes', template: '<button id="shapesBtn" style="width:100%;"></button>', cssClass: 'tb-item-middle' },
-      { prefixIcon: 'e-caption e-icons', tooltipText: 'Text Tool', cssClass: 'tb-item-end' },
       { type: 'Separator', },
-      { disabled: true, prefixIcon: 'e-icons e-lock', tooltipText: 'Lock', cssClass: 'tb-item-middle tb-item-lock-category' },
-      { disabled: true, prefixIcon: 'e-trash e-icons', tooltipText: 'Delete', cssClass: 'tb-item-middle tb-item-lock-category' },
-      { type: 'Separator', align: 'Center' },
-  
-      { disabled: true, type: 'Input', tooltipText: 'Align Objects', template: '<button id="alignBtn" style="width:100%;"></button>', cssClass: 'tb-item-middle  tb-item-align-category' },
-      { disabled: true, type: 'Input', tooltipText: 'Distribute Objects', template: '<button id="distributeBtn" style="width:100%;"></button>', cssClass: 'tb-item-middle tb-item-space-category' },
-      { type: 'Separator', },
-      { disabled: true, type: 'Input', tooltipText: 'Order Commands', template: '<button id="orderBtn" style="width:100%;"></button>', cssClass: 'tb-item-middle tb-item-lock-category' },
-      { type: 'Separator' },
-      { disabled: true, type: 'Input', tooltipText: 'Group/Ungroup', template: '<button id="groupBtn" style="width:100%;"></button>', cssClass: 'tb-item-middle tb-item-align-category' },
-      { type: 'Separator' },
-      { disabled: true, type: 'Input', tooltipText: 'Rotate', template: '<button id="rotateBtn" style="width:100%;"></button>', cssClass: 'tb-item-middle tb-item-lock-category' },
-      { type: 'Separator' },
-      { disabled: true, type: 'Input', tooltipText: 'Flip', template: '<button id="flipBtn" style="width:100%;"></button>', cssClass: 'tb-item-middle tb-item-lock-category' },
-      { type: 'Separator' },
       {
-        cssClass: 'tb-item-end tb-zoom-dropdown-btn', template: '<button id="btnZoomIncrement"></button>',
+        cssClass: 'tb-item-end tb-zoom-dropdown-btn', template: '<button id="btnZoomIncrement"></button>', align: "Right",
       },
     ];
     return items;
   }
-  
-  function selectionChange(args: ISelectionChangeEventArgs) {
-    if (args.state === 'Changed') {
-      let selectedItems: NodeModel[] = diagram.selectedItems.nodes;
-      selectedItems = selectedItems.concat(
-        (diagram.selectedItems as any).connectors
-      );
-      if (selectedItems.length === 0) {
-        toolbarObj.items[6].disabled = true;
-        toolbarObj.items[7].disabled = true;
-        toolbarObj.items[19].disabled = true;
-        toolbarObj.items[20].disabled = true;
-        toolbarObj.items[25].disabled = true;
-        toolbarObj.items[29].disabled = true;
-        toolbarObj.items[31].disabled = true;
-        disableMultiselectedItems();
-      }
-      if (selectedItems.length === 1) {
-        enableItems();
-        disableMultiselectedItems();
-  
-        if (
-          selectedItems[0].children !== undefined &&
-          selectedItems[0].children.length > 0
-        ) {
-          toolbarObj.items[27].disabled = false;
-        } else {
-          toolbarObj.items[27].disabled = true;
-        }
-      }
-  
-      if (selectedItems.length > 1) {
-        enableItems();
-        toolbarObj.items[22].disabled = false;
-        toolbarObj.items[23].disabled = false;
-        toolbarObj.items[27].disabled = false;
-        if (selectedItems.length > 2) {
-          toolbarObj.items[23].disabled = false;
-        } else {
-          toolbarObj.items[23].disabled = true;
-        }
-      }
-    }
-  }
-  
-  function historyChange() {
-    if (diagram.historyManager.undoStack.length > 0) {
-      toolbarObj.items[10].disabled = false;
-    } else {
-      toolbarObj.items[10].disabled = true;
-    }
-    if (diagram.historyManager.redoStack.length > 0) {
-      toolbarObj.items[11].disabled = false;
-    } else {
-      toolbarObj.items[11].disabled = true;
-    }
-  }
+
   //Sets the default values of a node
   function getNodeDefaults(node: NodeModel): NodeModel {
     if (node.width === undefined) {
@@ -393,6 +209,11 @@ const flowChartData: FlowChartNode[] = [
     } if((node.shape as FlowShapeModel).type === 'Flow' && (node.shape as FlowShapeModel).shape === 'Decision') {
       node.height = 80;
     }
+    else {
+        node.height = 50;
+    }
+    node.constraints = NodeConstraints.Default;
+    node.tooltip.content = "";
     return node;
   }
   let uploadObject: Uploader = new Uploader({
@@ -411,63 +232,22 @@ const flowChartData: FlowChartNode[] = [
     options.pageWidth = diagram.pageSettings.width;
     diagram.print(options);
   }
-  function enableItems() {
-    toolbarObj.items[6].disabled = false;
-    toolbarObj.items[7].disabled = false;
-    toolbarObj.items[19].disabled = false;
-    toolbarObj.items[20].disabled = false;
-    toolbarObj.items[25].disabled = false;
-    toolbarObj.items[29].disabled = false;
-    toolbarObj.items[31].disabled = false;
-  }
-  function disableMultiselectedItems() {
-    toolbarObj.items[22].disabled = true;
-    toolbarObj.items[23].disabled = true;
-    toolbarObj.items[27].disabled = true;
-  }
+
   function toolbarClick(args: ClickEventArgs) {
     let item = args.item.tooltipText;
     switch (item) {
-      case 'Undo':
-        diagram.undo();
-        break;
-      case 'Redo':
-        diagram.redo();
-        break;
-      case 'Lock':
-        lockObject();
-        break;
-      case 'Cut':
-        diagram.cut();
-        toolbarObj.items[8].disabled = false;
-        break;
-      case 'Copy':
-        diagram.copy();
-        toolbarObj.items[8].disabled = false;
-        break;
-      case 'Paste':
-        diagram.paste();
-        break;
-      case 'Delete':
-        diagram.remove();
-        break;
       case 'Select Tool':
         diagram.clearSelection();
         diagram.tool = DiagramTools.Default;
-        break;
-      case 'Text Tool':
-        diagram.clearSelection();
-        diagram.selectedItems.userHandles = [];
-        diagram.drawingObject = { shape: { type: 'Text' } };
-        diagram.tool = DiagramTools.ContinuousDraw;
+        changeToolbarSelection('Select Tool');
         break;
       case 'Pan Tool':
         diagram.clearSelection();
         diagram.tool = DiagramTools.ZoomPan;
+        changeToolbarSelection('Pan Tool');
         break;
       case 'New Diagram':
         diagram.clear();
-        historyChange();
         break;
       case 'Print Diagram':
         printDiagram();
@@ -483,6 +263,16 @@ const flowChartData: FlowChartNode[] = [
     }
     diagram.dataBind();
   }
+  function changeToolbarSelection(tool: string) {
+    let items = toolbarObj.items;
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].tooltipText === tool) {
+        items[i].cssClass = 'tb-item-selected';
+      } else {
+        items[i].cssClass = '';
+      }
+    }
+  }
   function zoomChange(args: MenuEventArgs) {
     let zoomCurrentValue: DropDownButton = (document.getElementById("btnZoomIncrement") as any).ej2_instances[0];
     let currentZoom: number = diagram.scrollSettings.currentZoom;
@@ -497,40 +287,38 @@ const flowChartData: FlowChartNode[] = [
         zoomCurrentValue.content = (diagram.scrollSettings.currentZoom * 100).toFixed() + '%';
         break;
       case 'Zoom to Fit':
-        zoom.zoomFactor = 1 / currentZoom - 1;
-        diagram.zoomTo(zoom);
-        zoomCurrentValue.content = diagram.scrollSettings.currentZoom;
+        diagram.fitToPage();
         break;
       case 'Zoom to 50%':
         if (currentZoom === 0.5) {
           currentZoom = 0;
-          zoom.zoomFactor = (0.5 / currentZoom) - 1;
+          zoom.zoomFactor = (0.5 / currentZoom - 1);
           diagram.zoomTo(zoom);
         }
         else {
-          zoom.zoomFactor = (0.5 / currentZoom) - 1;
+          zoom.zoomFactor = (0.5 / currentZoom - 1);
           diagram.zoomTo(zoom);
         }
         break;
       case 'Zoom to 100%':
         if (currentZoom === 1) {
           currentZoom = 0;
-          zoom.zoomFactor = (1 / currentZoom) - 1;
+          zoom.zoomFactor = (1 / currentZoom - 1);
           diagram.zoomTo(zoom);
         }
         else {
-          zoom.zoomFactor = (1 / currentZoom) - 1;
+          zoom.zoomFactor = (1 / currentZoom - 1);
           diagram.zoomTo(zoom);
         }
         break;
       case 'Zoom to 200%':
         if (currentZoom === 2) {
           currentZoom = 0;
-          zoom.zoomFactor = (2 / currentZoom) - 1;
+          zoom.zoomFactor = (2 / currentZoom - 1);
           diagram.zoomTo(zoom);
         }
         else {
-          zoom.zoomFactor = (2 / currentZoom) - 1;
+          zoom.zoomFactor = (2 / currentZoom - 1);
           diagram.zoomTo(zoom);
         }
         break;
@@ -539,21 +327,7 @@ const flowChartData: FlowChartNode[] = [
     zoomCurrentValue.content = Math.round(diagram.scrollSettings.currentZoom * 100) + ' %';
   
   }
-  function onConnectorSelect(args: MenuEventArgs) {
-    diagram.clearSelection();
-    diagram.drawingObject = { type: args.item.text };
-    diagram.tool = DiagramTools.ContinuousDraw;
-    diagram.selectedItems.userHandles = [];
-    diagram.dataBind();
-  }
-  
-  function onShapesSelect(args: MenuEventArgs) {
-    diagram.clearSelection();
-    diagram.drawingObject = { shape: { shape: args.item.text } };
-    diagram.tool = DiagramTools.ContinuousDraw;
-    diagram.selectedItems.userHandles = [];
-    diagram.dataBind();
-  }
+
   //Export the diagraming object based on the format.
   function onselectExport(args: MenuEventArgs) {
     let exportOptions: IExportOptions = {};
@@ -564,67 +338,7 @@ const flowChartData: FlowChartNode[] = [
     exportOptions.margin = { left: 0, top: 0, bottom: 0, right: 0 };
     diagram.exportDiagram(exportOptions);
   }
-  
-  function onSelectGroup(args: MenuEventArgs) {
-    if (args.item.text === 'Group') {
-      diagram.group();
-    }
-    else if (args.item.text === 'Ungroup') {
-      diagram.unGroup();
-    }
-  }
-  
-  function onSelectAlignObjects(args: MenuEventArgs) {
-    let item: string = args.item.text as string;
-    let alignType = item.replace('Align', '');
-    let alignType1 = alignType.charAt(0).toUpperCase() + alignType.slice(1);
-    diagram.align(alignType1.trim());
-  }
-  function onSelectDistributeObjects(args: MenuEventArgs) {
-    if (args.item.text === 'Distribute Objects Vertically') {
-      diagram.distribute('BottomToTop');
-    }
-    else {
-      diagram.distribute('RightToLeft');
-    }
-  }
-  function onSelectOrder(args: MenuEventArgs) {
-    switch (args.item.text) {
-      case 'Bring Forward':
-        diagram.moveForward();
-        break;
-      case 'Bring To Front':
-        diagram.bringToFront();
-        break;
-      case 'Send Backward':
-        diagram.sendBackward();
-        break;
-      case 'Send To Back':
-        diagram.sendToBack();
-        break;
-    }
-  }
-  
-  function onSelectRotate(args: MenuEventArgs) {
-    if (args.item.text === 'Rotate Clockwise') {
-      diagram.rotate(diagram.selectedItems, 90);
-    }
-    else {
-      diagram.rotate(diagram.selectedItems, -90);
-    }
-  }
-  function onSelectFlip(args: MenuEventArgs) {
-    flipObjects(args.item.text as string);
-  }
-  
-  // To flip diagram objects
-  function flipObjects(flipType: string) {
-    let selectedObjects = diagram.selectedItems.nodes.concat((diagram.selectedItems as any).connectors);
-    for (let i: number = 0; i < selectedObjects.length; i++) {
-      selectedObjects[i].flip = flipType === 'Flip Horizontal' ? 'Horizontal' : 'Vertical';
-    }
-    diagram.dataBind();
-  }
+
   function onUploadSuccess(args: any) {
     let file = args.file;
     let rawFile = file.rawFile;
@@ -652,52 +366,30 @@ const flowChartData: FlowChartNode[] = [
       ele.remove();
     }
   }
-  
-  // To lock diagram object
-  function lockObject() {
-    for (let i: number = 0; i < diagram.selectedItems.nodes.length; i++) {
-      let node = diagram.selectedItems.nodes[i];
-      if (node.constraints & NodeConstraints.Drag) {
-        node.constraints = NodeConstraints.PointerEvents | NodeConstraints.Select;
-      } else {
-        node.constraints = NodeConstraints.Default;
-      }
-    }
-    for (let j: number = 0; j < diagram.selectedItems.connectors.length; j++) {
-      let connector = diagram.selectedItems.connectors[j];
-      if (connector.constraints & ConnectorConstraints.Drag) {
-        connector.constraints = ConnectorConstraints.PointerEvents | ConnectorConstraints.Select;
-      } else {
-        connector.constraints = ConnectorConstraints.Default;
-      }
-    }
-    diagram.dataBind();
-  }
-  
-  
+
   //Initialize the flowshapes for the symbol palatte
   let flowShapes: NodeModel[] = [
-    getFlowShape('Terminator', 'Terminator'),
-    getFlowShape('Process', 'Process'),
-    getFlowShape('Decision', 'Decision'),
-    getFlowShape('Document', 'Document'),
-    getFlowShape('PreDefinedProcess', 'PreDefinedProcess'),
-    getFlowShape('PaperTap', 'PaperTap'),
-    getFlowShape('DirectData', 'DirectData'),
-    getFlowShape('SequentialData', 'SequentialData'),
-    getFlowShape('Sort', 'Sort'),
-    getFlowShape('MultiDocument', 'MultiDocument'),
-    getFlowShape('Collate', 'Collate'),
-    getFlowShape('Or', 'Or'),
-    getFlowShape('Extract', 'Extract'),
-    getFlowShape('Merge', 'Merge'),
-    getFlowShape('OffPageReference', 'OffPageReference'),
-    getFlowShape('SequentialAccessStorage', 'SequentialAccessStorage'),
-    getFlowShape('Annotation', 'Annotation'),
-    getFlowShape('Annotation2', 'Annotation2'),
-    getFlowShape('Data', 'Data'),
-    getFlowShape('Card', 'Card'),
-    getFlowShape('Delay', 'Delay'),
+    getFlowShape('Terminator', 'Terminator', 'Terminator'),
+    getFlowShape('Process', 'Process', 'Process'),
+    getFlowShape('Decision', 'Decision', 'Decision'),
+    getFlowShape('Document', 'Document', 'Document'),
+    getFlowShape('PreDefinedProcess', 'PreDefinedProcess', 'Predefined Process'),
+    getFlowShape('PaperTap', 'PaperTap', 'Paper Tap'),
+    getFlowShape('DirectData', 'DirectData', 'Direct Data'),
+    getFlowShape('SequentialData', 'SequentialData', 'Sequential Data'),
+    getFlowShape('Sort', 'Sort', 'Sort'),
+    getFlowShape('MultiDocument', 'MultiDocument', 'Multi Document'),
+    getFlowShape('Collate', 'Collate', 'Collate'),
+    getFlowShape('Or', 'Or', 'Or'),
+    getFlowShape('Extract', 'Extract', 'Extract'),
+    getFlowShape('Merge', 'Merge', 'Merge'),
+    getFlowShape('OffPageReference', 'OffPageReference', 'Off-Page Reference'),
+    getFlowShape('SequentialAccessStorage', 'SequentialAccessStorage', 'Sequential Access Storage'),
+    getFlowShape('Annotation', 'Annotation', 'Annotation'),
+    getFlowShape('Annotation2', 'Annotation2', 'Annotation2'),
+    getFlowShape('Data', 'Data', 'Data'),
+    getFlowShape('Card', 'Card', 'Card'),
+    getFlowShape('Delay', 'Delay', 'Delay'),
   ];
   
   //Initializes connector symbols for the symbol palette
@@ -708,7 +400,7 @@ const flowChartData: FlowChartNode[] = [
       style: { strokeWidth: 1, strokeColor: '#757575' }
     },
     {
-      id: 'link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
+      id: 'Link2', type: 'Orthogonal', sourcePoint: { x: 0, y: 0 }, targetPoint: { x: 60, y: 60 },
       style: { strokeWidth: 2, strokeColor: '#757575' }, targetDecorator: { shape: 'Arrow' }
     },
     {
@@ -740,19 +432,19 @@ const flowChartData: FlowChartNode[] = [
   // Dialog
   
   let dialog: Dialog = new Dialog({
-    header: '<span class="e-icons e-aiassist-chat" style="color: black;width:20px; font-size: 16px;"></span> AI Assist',
+    header: '<span class="e-icons e-assistview-icon" style="color: black;width:20px; font-size: 16px;"></span> AI Assist',
     showCloseIcon: true,
     isModal: true,
     content: `<p style="margin-bottom: 10px;font-weight:bold;">Suggested Prompts</p>
-      <button id="btn2" style="flex: 1; overflow: visible; border-radius: 8px;margin-bottom: 10px;">Flowchart for online shopping</button>
-      <button id="btn1" style="flex: 1; overflow: visible; border-radius: 8px;margin-bottom: 10px;">Flowchart for Mobile banking registration</button>
+      <button id="btn1" style="flex: 1; overflow: visible; border-radius: 8px;margin-bottom: 10px;">Flowchart for online shopping</button>
+      <button id="btn2" style="flex: 1; overflow: visible; border-radius: 8px;margin-bottom: 10px;">Flowchart for Mobile banking registration</button>
       <button id="btn3" style="flex: 1; overflow: visible; border-radius: 8px;margin-bottom: 10px;">Flowchart for Bus ticket booking</button>
       <div style="display: flex; align-items: center; margin-top: 20px;">
       <input type="text" id="textBox" class="db-openai-textbox" style="flex: 1;" />
-      <button id="db-send" style="margin-left: 2px; height: 32px; width: 32px;"></button>
+      <button id="diagram-db-send" style="margin-left: 2px; height: 32px; width: 32px;"></button>
       </div>
       `,
-    target: document.getElementById('control-section') as HTMLElement,
+    target: '#diagram-space',
     width: '540px',
     visible: false,
     height: '310px',
@@ -765,7 +457,7 @@ const flowChartData: FlowChartNode[] = [
   btn1.appendTo('#btn1');
   btn2.appendTo('#btn2');
   btn3.appendTo('#btn3');
-  sendButton.appendTo('#db-send');
+  sendButton.appendTo('#diagram-db-send');
   let textBox = new TextBox({ placeholder: 'Please enter your prompt here...', width: 450, input: onTextBoxChange });
   textBox.appendTo('#textBox');
   let msgBtn1 = (document.getElementById('btn1') as HTMLInputElement);
@@ -778,7 +470,7 @@ const flowChartData: FlowChartNode[] = [
     }
   }
   
-  let dbSend = document.getElementById('db-send') as HTMLInputElement;
+  let dbSend = document.getElementById('diagram-db-send') as HTMLInputElement;
   if (dbSend) {
     dbSend.onclick = () => {
         dialog.hide();
@@ -797,19 +489,19 @@ const flowChartData: FlowChartNode[] = [
   if (msgBtn1) {
     msgBtn1.onclick = () => {
         dialog.hide();
-        convertTextToFlowChart(msgBtn1.value);
+        convertTextToFlowChart(msgBtn1.innerText);
     }
   }
   if (msgBtn2) {
       msgBtn2.onclick = () => {
           dialog.hide();
-          convertTextToFlowChart(msgBtn2.value);
+          convertTextToFlowChart(msgBtn2.innerText);
       }
   }
   if (msgBtn3) {
     msgBtn3.onclick = () => {
         dialog.hide();
-        convertTextToFlowChart(msgBtn3.value);
+        convertTextToFlowChart(msgBtn3.innerText);
     }
   }
   
@@ -864,15 +556,16 @@ const flowChartData: FlowChartNode[] = [
               
               Note: Please ensure the generated code matches the title "${inputText}" and follows the format given above. Provide only the Mermaid flowchart code, without any additional explanations, comments, or text.
               `
-  
-  
       }
     ],
    }
   
     try {
-      const jsonResponse = await (window as any).getAzureChatAIRequest(options);
-      diagram.loadDiagramFromMermaid(jsonResponse);
+      let jsonResponse = await serverAIRequest(options);
+      if (jsonResponse) {
+        jsonResponse = jsonResponse.replace('```mermaid', '').replace('```', '');
+        diagram.loadDiagramFromMermaid(jsonResponse);
+      }
       hideLoading();
   
     } catch (error) {

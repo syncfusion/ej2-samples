@@ -642,6 +642,7 @@ SymbolPalette.Inject(BpmnDiagrams);
           break;
         case "Pan":
           diagram.tool = DiagramTools.ZoomPan;
+          diagram.clearSelection();
           break;
       }
     },

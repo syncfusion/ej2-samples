@@ -14,7 +14,8 @@ import { Dialog } from '@syncfusion/ej2-popups';
         autoUpload: false,
         selected: onFileSelect,
         allowedExtensions: 'image/*',
-        multiple: false
+        multiple: false,
+        failure: onFailure
 
     });
     uploadObj.appendTo('#fileupload');
@@ -48,7 +49,11 @@ import { Dialog } from '@syncfusion/ej2-popups';
     };
 
     let formObj: FormValidator = new FormValidator('#form1', options);
-
+    function onFailure(args: any): void {
+        if (args.response && args.response.statusText !== '') {
+            args.statusText = args.response.statusText;
+        }
+    }
     function onFormSubmit(): void {
     let formStatus: Boolean = formObj.validate();
     if (formStatus) {

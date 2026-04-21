@@ -136,7 +136,12 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         currentData = data; shouldAutoConfig = true; pivot.refresh();
     }
 
-    function applyReportSettings(pv: PivotView, reportSettings: DataSourceSettingsModel, isOlapReport: boolean, entireReportSettings: any) {
+    function applyReportSettings(
+        pv: PivotView,
+        reportSettings: DataSourceSettingsModel,
+        isOlapReport: boolean,
+        entireReportSettings: any
+    ) {
         return new Promise<void>(function (resolve) {
             if (isOlapReport) {
                 currentData = [];
@@ -144,41 +149,110 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                 pv.dataType = 'olap';
                 pv.loadPersistData(JSON.stringify(entireReportSettings));
                 pv.refresh();
-                shouldAutoConfig = false; pv.refresh(); resolve();
+                shouldAutoConfig = false;
+                pv.refresh();
+                resolve();
             } else {
                 cleanOlapForRelational();
-                var maybeDataUrl = (reportSettings as any).dataUrl || (reportSettings as any).url;
-                var maybeCsvUrl = (reportSettings as any).csvUrl;
-                var finalize = function () {
-                    entireReportSettings.dataSourceSettings.dataSource = dataSource;
-                    pv.loadPersistData(JSON.stringify(entireReportSettings));
-                    shouldAutoConfig = false; pv.refresh(); resolve();
+
+                const maybeDataUrl =
+                    (reportSettings as any).dataUrl || (reportSettings as any).url;
+                const maybeCsvUrl = (reportSettings as any).csvUrl;
+
+                const isRemoteLoad = !!maybeDataUrl || !!maybeCsvUrl;
+
+                const finalize = () => {
+                    const hasGlobalData = Array.isArray(dataSource) ? dataSource.length > 0 : !!dataSource;
+
+                    const hasInlineIncoming =
+                        Array.isArray(reportSettings.dataSource) &&
+                        (reportSettings.dataSource as IDataSet[]).length > 0;
+
+                    if (!isRemoteLoad && !hasInlineIncoming && hasGlobalData) {
+                        if (reportSettings) {
+                            reportSettings.dataSource = dataSource;
+                        }
+                        if (entireReportSettings && entireReportSettings.dataSourceSettings) {
+                            entireReportSettings.dataSourceSettings.dataSource = dataSource;
+                        }
+                    }
+
+                    try {
+                        if (entireReportSettings && entireReportSettings.dataSourceSettings) {
+                            pv.loadPersistData(JSON.stringify(entireReportSettings));
+                        } else {
+                            pv.dataSourceSettings = reportSettings;
+                        }
+                    } catch {
+                        pv.dataSourceSettings = reportSettings;
+                    }
+
+                    shouldAutoConfig = false;
+                    pv.refresh();
+                    resolve();
                 };
-                if (!reportSettings.dataSource || (reportSettings.dataSource as IDataSet[]).length === 0) {
+
+                const hasInline =
+                    Array.isArray(reportSettings.dataSource) &&
+                    (reportSettings.dataSource as IDataSet[]).length > 0;
+
+                if (!hasInline) {
                     if (maybeDataUrl) {
-                        fetch(maybeDataUrl, { cache: 'no-store' }).then(function (r1) {
-                            if (!r1.ok) return r1.text().then(function (t) { throw new Error('HTTP ' + r1.status + ': ' + r1.statusText); });
-                            return r1.json();
-                        }).then(function (j) {
-                            var arr = Array.isArray(j) ? j : (j && j.data ? j.data : j);
-                            if (!Array.isArray(arr) || !arr.length || typeof arr[0] !== 'object') throw new Error('Invalid JSON at dataUrl.');
-                            reportSettings.type = 'JSON'; reportSettings.dataSource = arr; currentData = arr; finalize();
-                        }).catch(function () {
-                            reportSettings.dataSource = currentData; reportSettings.type = pv.dataSourceSettings.type || 'JSON'; finalize();
-                        });
+                        fetch(maybeDataUrl, { cache: 'no-store' })
+                            .then(function (r1) {
+                                if (!r1.ok)
+                                    return r1.text().then(function () {
+                                        throw new Error('HTTP ' + r1.status + ': ' + r1.statusText);
+                                    });
+                                return r1.json();
+                            })
+                            .then(function (j) {
+                                const arr = Array.isArray(j) ? j : (j && j.data ? j.data : j);
+                                if (!Array.isArray(arr) || !arr.length || typeof arr[0] !== 'object') {
+                                    throw new Error('Invalid JSON at dataUrl.');
+                                }
+                                reportSettings.type = 'JSON';
+                                reportSettings.dataSource = arr;
+                                currentData = arr;
+                                finalize();
+                            })
+                            .catch(function () {
+                                reportSettings.dataSource = currentData;
+                                reportSettings.type = pv.dataSourceSettings.type || 'JSON';
+                                finalize();
+                            });
                     } else if (maybeCsvUrl) {
-                        fetch(maybeCsvUrl, { cache: 'no-store' }).then(function (r2) {
-                            if (!r2.ok) return r2.text().then(function (t) { throw new Error('HTTP ' + r2.status + ': ' + r2.statusText); });
-                            return r2.text();
-                        }).then(function (t) {
-                            var csvArray = parseCSV(t);
-                            if (!csvArray.length) throw new Error('CSV appears empty.');
-                            reportSettings.type = 'CSV'; reportSettings.dataSource = csvArray; currentData = csvArray as any; finalize();
-                        }).catch(function () {
-                            reportSettings.dataSource = currentData; reportSettings.type = pv.dataSourceSettings.type || 'JSON'; finalize();
-                        });
-                    } else { reportSettings.dataSource = currentData; reportSettings.type = pv.dataSourceSettings.type || 'JSON'; finalize(); }
-                } else { currentData = reportSettings.dataSource as any; reportSettings.type = reportSettings.type || 'JSON'; finalize(); }
+                        fetch(maybeCsvUrl, { cache: 'no-store' })
+                            .then(function (r2) {
+                                if (!r2.ok)
+                                    return r2.text().then(function () {
+                                        throw new Error('HTTP ' + r2.status + ': ' + r2.statusText);
+                                    });
+                                return r2.text();
+                            })
+                            .then(function (t) {
+                                const csvArray = parseCSV(t);
+                                if (!csvArray.length) throw new Error('CSV appears empty.');
+                                reportSettings.type = 'CSV';
+                                reportSettings.dataSource = csvArray;
+                                currentData = csvArray as any;
+                                finalize();
+                            })
+                            .catch(function () {
+                                reportSettings.dataSource = currentData;
+                                reportSettings.type = pv.dataSourceSettings.type || 'JSON';
+                                finalize();
+                            });
+                    } else {
+                        reportSettings.dataSource = currentData;
+                        reportSettings.type = pv.dataSourceSettings.type || 'JSON';
+                        finalize();
+                    }
+                } else {
+                    currentData = reportSettings.dataSource as any;
+                    reportSettings.type = reportSettings.type || 'JSON';
+                    finalize();
+                }
             }
         });
     }
@@ -187,38 +261,80 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         var cleanUrl = (url || '').trim();
         if (!cleanUrl) return Promise.reject(new Error('Empty URL'));
         if (kind === 'CSV') {
-            if (!/\.csv(\?|$)/i.test(cleanUrl)) {
-                return Promise.reject(new Error('Only .csv URLs are allowed for the CSV data source.'));
-            }
-            return fetch(cleanUrl, { cache: 'no-store' }).then(function (rc) {
-                if (!rc.ok) return rc.text().then(function () { throw new Error('HTTP ' + rc.status + ': ' + rc.statusText); });
-                return rc.text();
-            }).then(function (csv) {
-                var arr = parseCSV(csv);
-                resetPivot();
-                setPivotData('CSV', arr as any);
-                return;
-            });
-        }
-        else {
-            return fetch(cleanUrl, { cache: 'no-store' }).then(function (rj) {
-                if (!rj.ok) return rj.text().then(function (t) { throw new Error('HTTP ' + rj.status + ': ' + rj.statusText); });
-                return rj.json();
-            }).then(function (json): void | Promise<void> {
-                var unwrapped = (json && typeof json === 'object' && 'record' in json) ? json.record : json;
-                var looksLikeReport = !Array.isArray(unwrapped) && (unwrapped.dataSourceSettings || unwrapped.rows || unwrapped.columns || unwrapped.values || unwrapped.url || unwrapped.providerType);
-                if (looksLikeReport) {
-                    var reportSettings = unwrapped.dataSourceSettings || unwrapped;
-                    var isOlapReport = reportSettings && reportSettings.providerType === 'SSAS';
-                    return applyReportSettings(pivot, reportSettings, isOlapReport, unwrapped);
-                }
-                var arr2 = Array.isArray(unwrapped) ? unwrapped : (unwrapped && unwrapped.data ? unwrapped.data : unwrapped);
-                if (!Array.isArray(arr2) || !arr2.length || typeof arr2[0] !== 'object') throw new Error('Invalid JSON: expected array or report.');
-                lastRemote = { kind: 'JSON', url: cleanUrl };
-                resetPivot();
-                setPivotData('JSON', arr2);
-                return;
-            });
+            return fetch(cleanUrl, { cache: 'no-store' })
+                .then(function (rc) {
+                    if (!rc.ok)
+                        return rc.text().then(function () {
+                            throw new Error('HTTP ' + rc.status + ': ' + rc.statusText);
+                        });
+                    return rc.text();
+                })
+                .then(function (csv) {
+                    var arr = parseCSV(csv);
+                    resetPivot();
+                    setPivotData('CSV', arr as any);
+                    return;
+                });
+        } else {
+            return fetch(cleanUrl, { cache: 'no-store' })
+                .then(function (rj) {
+                    if (!rj.ok)
+                        return rj.text().then(function () {
+                            throw new Error('HTTP ' + rj.status + ': ' + rj.statusText);
+                        });
+                    return rj.json();
+                })
+                .then(function (json): void | Promise<void> {
+                    var unwrapped =
+                        json && typeof json === 'object' && 'record' in json
+                            ? json.record
+                            : json;
+
+                    var looksLikeReport =
+                        !Array.isArray(unwrapped) &&
+                        (unwrapped.dataSourceSettings ||
+                            unwrapped.rows ||
+                            unwrapped.columns ||
+                            unwrapped.values ||
+                            unwrapped.url ||
+                            unwrapped.providerType);
+
+                    if (looksLikeReport) {
+                        var reportSettings = unwrapped.dataSourceSettings || unwrapped;
+                        var isOlapReport =
+                            reportSettings && reportSettings.providerType === 'SSAS';
+
+                        if ((reportSettings as any).dataUrl) {
+                            lastRemote = { kind: 'JSON', url: (reportSettings as any).dataUrl };
+                        } else if ((reportSettings as any).csvUrl) {
+                            lastRemote = { kind: 'CSV', url: (reportSettings as any).csvUrl };
+                        } else {
+                            lastRemote = { kind: 'JSON', url: cleanUrl };
+                        }
+
+                        dataSource = undefined;
+
+                        return applyReportSettings(
+                            pivot,
+                            reportSettings,
+                            isOlapReport,
+                            unwrapped
+                        );
+                    }
+
+                    var arr2 = Array.isArray(unwrapped)
+                        ? unwrapped
+                        : unwrapped && unwrapped.data
+                            ? unwrapped.data
+                            : unwrapped;
+
+                    if (!Array.isArray(arr2) || !arr2.length || typeof arr2[0] !== 'object')
+                        throw new Error('Invalid JSON: expected array or report.');
+                    lastRemote = { kind: 'JSON', url: cleanUrl };
+                    resetPivot();
+                    setPivotData('JSON', arr2);
+                    return;
+                });
         }
     }
 
@@ -293,7 +409,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         if (shouldAutoConfig && pivot && (!pivot.dataSourceSettings.values || pivot.dataSourceSettings.values.length === 0)) {
             shouldAutoConfig = false;
             if (pivot.pivotFieldListModule && pivot.pivotFieldListModule.dialogRenderer) {
-                setTimeout(function(){ pivot.pivotFieldListModule.dialogRenderer.onShowFieldList(); }, 0);
+                setTimeout(function () { pivot.pivotFieldListModule.dialogRenderer.onShowFieldList(); }, 0);
             }
         }
     }
@@ -317,9 +433,9 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             let parsed = JSON.parse(persisted);
             try {
                 var isOlapReport = parsed && parsed.dataSourceSettings && parsed.dataSourceSettings.providerType === 'SSAS';
-                if (!isOlapReport && parsed && parsed.dataSourceSettings) { 
+                if (!isOlapReport && parsed && parsed.dataSourceSettings) {
                     dataSource = parsed.dataSourceSettings.dataSource;
-                    parsed.dataSourceSettings.dataSource = []; 
+                    parsed.dataSourceSettings.dataSource = [];
                 }
                 parsed.pivotValues = [];
             } catch (_) { reportSettings = pivot.dataSourceSettings || {}; }

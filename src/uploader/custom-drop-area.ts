@@ -71,6 +71,9 @@ import { detach } from '@syncfusion/ej2-base';
         let li: HTMLElement = getLiElement(args);
         li.querySelector('.upload-status').innerHTML = args.file.status;
         li.querySelector('.upload-status').classList.add('upload-failed');
+        if (args.response && args.response.statusText !== '') {
+            args.statusText = args.response.statusText;
+        }
     }
 
     function onUploadInProgress(args: any) : void {

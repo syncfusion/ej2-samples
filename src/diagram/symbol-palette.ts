@@ -22,6 +22,31 @@ let symbolSize: number = 50;
 let htmlSymbolWidth: number = 91;
 let htmlSymbolHeight: number = 100;
 
+//Adds EventListener based on device's viewport width.
+function addEventsSymbol() {
+    const isMobile = window.matchMedia('(max-width:550px)').matches;
+    if (isMobile) {
+        const paletteIcon = document.getElementById('palette-icon');
+        if (paletteIcon) {
+            paletteIcon.addEventListener('click', openPaletteSymbol, false);
+        }
+    }
+}
+
+//Toggles the visibility of the palette space on mobile devices when the palette icon is clicked.
+function openPaletteSymbol() {
+    const paletteSpace = document.getElementById('palette-space');
+    const isMobile = window.matchMedia('(max-width:550px)').matches;
+    if (isMobile) {
+        if (!paletteSpace.classList.contains('sb-mobile-palette-open')) {
+            paletteSpace.classList.add('sb-mobile-palette-open');
+        }
+        else {
+            paletteSpace.classList.remove('sb-mobile-palette-open');
+        }
+    }
+}
+
 //Initialize the flowshapes for the symbol palatte
 let flowShapes: NodeModel[] = [
     { id: 'Terminator', shape: { type: 'Flow', shape: 'Terminator' } },
@@ -263,4 +288,5 @@ function onHeaderIconChange(args: ChangeEventArgs): void {
         }
     });
     showSearch.appendTo('#showsearch');
+    addEventsSymbol();
 };

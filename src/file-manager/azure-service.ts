@@ -8,7 +8,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let hostUrl: string = 'https://ej2-azure-aspcore-service.azurewebsites.net/';
+    let hostUrl: string = 'https://azure-service.syncfusion.com/';
     let fileObject: FileManager = new FileManager({
         ajaxSettings: {
             url: hostUrl + 'api/AzureFileManager/AzureFileOperations',

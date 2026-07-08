@@ -24,7 +24,7 @@ let barcode: BarcodeGenerator;
         mode: 'SVG',
         invalid: invalidInput,
     });
-    barcode.appendTo('#barcode');
+    barcode.appendTo('#barcode_code128A');
     let canShowError: boolean = false;
 
     let customFn: (args: { [key: string]: string }) => boolean = (args: { [key: string]: string }) => {
@@ -44,7 +44,7 @@ let barcode: BarcodeGenerator;
             }
         },
         focusout(args: any): void {
-            displayText.value = barcode.value = (document.getElementById('barcodeValue') as HTMLInputElement).value;
+            displayText.value = barcode.value = (document.getElementById('barcodeValue_code128A') as HTMLInputElement).value;
             barcode.dataBind();
         },
 
@@ -73,11 +73,11 @@ let barcode: BarcodeGenerator;
     ];
 
     function updatePosition(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textPosition') as any).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textPosition_code128A') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.position = (positionValue.value) as TextPosition;
     }
     function updateAlignt(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textAlignment') as any).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textAlignment_code128A') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.alignment = (positionValue.value) as Alignment;
     }
 
@@ -92,7 +92,7 @@ let barcode: BarcodeGenerator;
             updatePosition(args.value.toString());
         }
     });
-    textPosition.appendTo('#textPosition');
+    textPosition.appendTo('#textPosition_code128A');
 
     //DropDownList used to apply for fontFamily of the Annotation
     let textAlign: DropDownList = new DropDownList({
@@ -104,7 +104,7 @@ let barcode: BarcodeGenerator;
             updateAlignt(args.value.toString());
         }
     });
-    textAlign.appendTo('#textAlignment');
+    textAlign.appendTo('#textAlignment_code128A');
 
     let barcodeValue: TextBox = new TextBox({
         value: 'SYNCFUSION',
@@ -113,9 +113,9 @@ let barcode: BarcodeGenerator;
             displayText.value = args.value.toString();
         }
     });
-    barcodeValue.appendTo('#barcodeValue');
+    barcodeValue.appendTo('#barcodeValue_code128A');
 
-    let input = document.getElementById("barcodeValue");
+    let input = document.getElementById("barcodeValue_code128A");
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault()
@@ -128,7 +128,7 @@ let barcode: BarcodeGenerator;
             barcode.backgroundColor = args.currentValue.hex;
         }
     });
-    bgColor.appendTo('#bgColor');
+    bgColor.appendTo('#bgColor_code128A');
 
     let displayText: TextBox = new TextBox({
         value: 'SYNCFUSION',
@@ -136,7 +136,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.text = args.value.toString();
         }
     });
-    displayText.appendTo('#displayText');
+    displayText.appendTo('#displayText_code128A');
 
 
 
@@ -146,7 +146,7 @@ let barcode: BarcodeGenerator;
             barcode.foreColor = args.currentValue.hex;
         }
     });
-    foreColor.appendTo('#foreColor');
+    foreColor.appendTo('#foreColor_code128A');
 
 
 
@@ -157,7 +157,7 @@ let barcode: BarcodeGenerator;
             barcode.width = args.value.toString();
         }
     });
-    barcodeWidth.appendTo('#width');
+    barcodeWidth.appendTo('#width_code128A');
 
     let barcodeHeight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -166,7 +166,7 @@ let barcode: BarcodeGenerator;
             barcode.height = args.value.toString();
         }
     });
-    barcodeHeight.appendTo('#height');
+    barcodeHeight.appendTo('#height_code128A');
 
     let marginLeft: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -176,7 +176,7 @@ let barcode: BarcodeGenerator;
             barcode.margin.left = args.value;
         }
     });
-    marginLeft.appendTo('#marginLeft');
+    marginLeft.appendTo('#marginLeft_code128A');
 
     let marginRight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -186,7 +186,7 @@ let barcode: BarcodeGenerator;
             barcode.margin.right = args.value;
         }
     });
-    marginRight.appendTo('#MarginRight');
+    marginRight.appendTo('#MarginRight_code128A');
 
     let marginTop: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -196,7 +196,7 @@ let barcode: BarcodeGenerator;
             barcode.margin.top = args.value;
         }
     });
-    marginTop.appendTo('#marginTop');
+    marginTop.appendTo('#marginTop_code128A');
 
 
 
@@ -208,7 +208,7 @@ let barcode: BarcodeGenerator;
             barcode.margin.bottom = args.value;
         }
     });
-    marginBottom.appendTo('#MarginBottom');
+    marginBottom.appendTo('#MarginBottom_code128A');
 
 
 
@@ -218,7 +218,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.visibility = args.checked;
         }
     });
-    textVisibility.appendTo('#textVisibility');
+    textVisibility.appendTo('#textVisibility_code128A');
 
 
     let svgMode: CheckBox = new CheckBox({
@@ -227,7 +227,7 @@ let barcode: BarcodeGenerator;
             barcode.mode = args.checked ? 'SVG' : 'Canvas';
         }
     });
-    svgMode.appendTo('#svgMode');
+    svgMode.appendTo('#svgMode_code128A');
 
 
 
@@ -238,7 +238,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.margin.left = args.value;
         }
     });
-    textmarginLeft.appendTo('#TextmarginLeft');
+    textmarginLeft.appendTo('#TextmarginLeft_code128A');
 
     let textMarginRight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -247,7 +247,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.margin.right = args.value;
         }
     });
-    textMarginRight.appendTo('#TextMarginRight');
+    textMarginRight.appendTo('#TextMarginRight_code128A');
 
     let textmarginTop: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -256,7 +256,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.margin.top = args.value;
         }
     });
-    textmarginTop.appendTo('#TextmarginTop');
+    textmarginTop.appendTo('#TextmarginTop_code128A');
 
 
 
@@ -267,10 +267,10 @@ let barcode: BarcodeGenerator;
             barcode.displayText.margin.bottom = args.value;
         }
     });
-    textMarginBottom.appendTo('#TextMarginBottom');
+    textMarginBottom.appendTo('#TextMarginBottom_code128A');
     const downloadButton = new Button({});
-    downloadButton.appendTo('#downloadBtn7');
-    document.getElementById('downloadBtn7').onclick = function () {
+    downloadButton.appendTo('#downloadBtn7_code128A');
+    document.getElementById('downloadBtn7_code128A').onclick = function () {
         barcode.exportImage("Barcode", 'PNG');
     };
 };

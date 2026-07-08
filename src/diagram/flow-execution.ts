@@ -13,7 +13,7 @@ import {
 } from '@syncfusion/ej2-diagrams';
 import { RadioButton, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
-import { FlowShapes } from '@syncfusion/ej2/diagrams';
+import { FlowShapes } from '@syncfusion/ej2-diagrams';
 
 enableRipple(true);
 

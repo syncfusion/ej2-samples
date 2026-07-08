@@ -1,0 +1,167 @@
+{
+    "build_grid": {
+        "components": ["grid", "tree-grid","pivot-table", "ai-grid", "ai-tree-grid", "ai-pivot-table"],
+        "sample": ["grid.min.js", "treegrid.min.js", "pivotview.min.js"],
+        "sampleOrder": {
+            "Smart AI Solutions": ["Data Grid", "Tree Grid", "Pivot Table"],
+            "Grids": [
+                "Data Grid",
+                "Tree Grid", 
+                "Pivot Table"
+            ]
+        },
+        "defaultComponent": "grid",
+        "defaultSample": "grid-overview.html"
+    },
+    "build_filemanager": {
+        "components": ["file-manager"],
+        "sample": ["filemanager.min.js"],
+        "sampleOrder": {
+            "Navigation": ["File Manager"]
+        },
+        "defaultComponent": "file-manager",
+        "defaultSample": "overview.html"
+    },
+    "build_gantt": {
+        "components": ["gantt", "kanban", "ai-gantt", "ai-kanban"],
+        "sample": ["gantt.min.js", "kanban.min.js"],
+        "sampleOrder": {
+            "Smart AI Solutions": ["Gantt Chart", "Kanban"],
+            "Calendars": ["Gantt Chart"],
+            "Data Visualization": ["Kanban"]
+        },
+        "defaultComponent": "gantt",
+        "defaultSample": "default.html"
+    },
+    "build_diagram": {
+        "components": ["diagram", "ai-diagram"],
+        "sample": ["diagrams.min.js"],
+        "sampleOrder": {
+            "Smart AI Solutions": [ "Diagram" ],
+            "Data Visualization": ["Diagram"]
+        },
+        "defaultComponent": "diagram",
+        "defaultSample": "default-functionalities.html"
+    },
+    "build_RTE": {
+        "components": ["rich-text-editor", "block-editor", "ai-rich-text-editor"],
+        "sample": ["richtexteditor.min.js", "blockeditor.min.js"],
+        "sampleOrder": {
+            "File Viewers & Editors": ["Rich Text Editor", "Block Editor"]
+        },
+        "defaultComponent": "rich-text-editor",
+        "defaultSample": "tools.html"
+    },
+    "build_scheduler": {
+        "components": ["schedule", "calendar", "datepicker", "daterangepicker", "datetimepicker", "timepicker", "ai-schedule"],
+        "sample": ["schedule.min.js", "calendars.min.js"],
+        "sampleOrder": {
+            "Smart AI Solutions": [ "Scheduler" ],
+            "Calendars": ["Scheduler", "Calendar", "DatePicker", "DateRangePicker", "DateTimePicker", "TimePicker"]
+        },
+        "defaultComponent": "schedule",
+        "defaultSample": "overview.html"
+    },
+    "build_ui_smart_components": {
+        "components": ["ai-smart-paste", "ai-smart-textarea", "ai-assistview", "chat-ui", "inline-ai-assist"],
+        "sample": [ "interactive.min.js" ],
+        "sampleOrder": {
+            "Smart Controls": ["Smart Paste", "Smart TextArea"],
+            "Interactive Chat": [ "AI AssistView", "Chat UI", "Inline AI Assist"]
+        },
+        "defaultComponent": "ai-smart-paste",
+        "defaultSample": "default.html"
+    },
+    "build_charts": {
+        "components": ["chart", "three-dimension-chart", "circular-3d-chart", "sankey", "stock-chart", "arc-gauge", "circular-gauge", "linear-gauge", "heatmap-chart", "maps", "range-navigator", "smith-chart", "sparkline", "barcode", "treemap", "bullet-chart", "dashboard-layout", "ai-maps"],
+        "sample": [ "charts.min.js", "circulargauge.min.js", "lineargauge.min.js", "heatmap.min.js", "maps.min.js", "rangenavigators.min.js", "smithchart.min.js", "sparkline.min.js", "barcode.min.js", "treemap.min.js", "layouts.min.js"],
+        "sampleOrder": {
+            "Smart AI Solutions": ["Maps"],
+            "Data Visualization": ["Chart", "3D Chart", "3D Circular Chart", "Stock Chart", "Arc Gauge", "Circular Gauge", "HeatMap Chart", "Linear Gauge", "Maps", "Range Selector", "Smith Chart", "Barcode", "Sparkline Charts", "TreeMap", "Bullet Chart", "Sankey"],
+            "Layout": ["Dashboard Layout"]
+        },
+        "defaultComponent": "chart",
+        "defaultSample": "overview.html"
+    },
+    "build_ui_components": {
+        "components": [
+            "button",
+            "chips",
+            "floating-action-button",
+            "speed-dial",
+            "calendar",
+            "datepicker",
+            "daterangepicker",
+            "datetimepicker",
+            "timepicker",
+            "auto-complete",
+            "list-box",
+            "combo-box",
+            "drop-down-list",
+            "multi-select",
+            "drop-down-tree",
+            "mention",
+            "multicolumn-combobox",
+            "inplace-editor",
+            "speech-to-text",
+            "textbox",
+            "textarea",
+            "maskedtextbox",
+            "numerictextbox",
+            "color-picker",
+            "uploader",
+            "slider",
+            "signature",
+            "rating",
+            "otp-input",
+            "avatar",
+            "card",
+            "dialog",
+            "predefined-dialogs",
+            "listview",
+            "tooltip",
+            "splitter",
+            "dashboard-layout",
+            "timeline",
+            "accordion",
+            "appbar",
+            "breadcrumb",
+            "carousel",
+            "context-menu",
+            "menu",
+            "sidebar",
+            "tab",
+            "toolbar",
+            "treeview",
+            "ribbon",
+            "stepper",
+            "message",
+            "badge",
+            "toast",
+            "progress-bar",
+            "skeleton",
+            "query-builder",
+            "image-editor",
+            "form-validator",
+            "ai-querybuilder",
+            "ai-combo-box",
+            "ai-image-editor"
+        ],
+        "sample": [ "buttons.min.js", "calendars.min.js", "dropdown.min.js", "lists.min.js", "inplace.min.js", "rangenavigators.min.js", "cards.min.js", "progressbar.min.js", "querybuilder.min.js", "image.min.js", "layouts.min.js"],
+        "sampleOrder": {
+            "Smart AI Solutions": ["Query Builder", "ComboBox", "ai-image-editor"],
+            "Forms": ["Form Validation", "Query Builder"],
+            "File Viewers & Editors": ["Image Editor"],
+            "Calendars": ["Calendar", "DatePicker", "DateRangePicker", "DateTimePicker", "TimePicker"],
+            "Buttons": ["Button", "Chips", "Floating Action Button", "SpeedDial"],
+            "Dropdowns": ["AutoComplete", "ComboBox", "Dropdown List", "Dropdown Tree", "MultiSelect Dropdown", "List Box", "Mention", "MultiColumn Combobox"],
+            "Navigation": ["Accordion", "AppBar", "Breadcrumb", "Carousel", "Context Menu", "Menu Bar", "Sidebar", "Tabs", "Toolbar", "TreeView", "Ribbon", "Stepper"],
+            "Notifications": ["Badge", "Message", "Toast", "Progress Bar", "Skeleton"],
+            "Inputs": ["TextBox", "TextArea", "Input Mask", "Numeric Textbox", "Color Picker", "File Upload", "Range Slider", "Signature", "In-place Editor", "Rating", "OTP Input", "Speech To Text"],
+            "Layout": ["Avatar", "Card", "Dialog", "Predefined Dialogs", "ListView", "Tooltip", "Splitter", "Dashboard Layout", "Timeline"]
+        },
+        "defaultComponent": "button",
+        "defaultSample": "default.html"
+    }
+}
+ 

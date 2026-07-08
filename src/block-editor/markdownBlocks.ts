@@ -25,13 +25,13 @@ type TreeNode = {
     {
       id: 'Team_Sessions',
       name: 'Team Sessions',
-      mdFile: './src/block-editor/Team Sessions.md',
+      mdFile: 'https://ej2.syncfusion.com/demos/src/block-editor/Team%20Sessions.md',
       selected: true,
       expanded: true,
       children: [
-        { id: '1', name: 'Meeting minutes.md', mdFile: './src/block-editor/Meeting minutes.md' },
-        { id: '2', name: 'Brain storming.md', mdFile: './src/block-editor/Brain storming.md' },
-        { id: '3', name: 'Retrospective.md', mdFile: './src/block-editor/Retrospective.md' }
+        { id: '1', name: 'Meeting minutes.md', mdFile: 'https://ej2.syncfusion.com/demos/src/block-editor/Meeting%20minutes.md' },
+        { id: '2', name: 'Brain storming.md', mdFile: 'https://ej2.syncfusion.com/demos/src/block-editor/Brain%20storming.md' },
+        { id: '3', name: 'Retrospective.md', mdFile: 'https://ej2.syncfusion.com/demos/src/block-editor/Retrospective.md' }
       ]
     }
   ];
@@ -110,7 +110,7 @@ type TreeNode = {
   // Sidebar
   const sidebar = new Sidebar({
     enableDock: true,
-    width: '220px',
+    width: '240px',
     dockSize: '33px',
     enableGestures: false,
     mediaQuery: '(min-width: 600px)',
@@ -145,7 +145,7 @@ type TreeNode = {
         breadcrumbItems = [{ text: 'Team' }, { text: 'Team Sessions' }];
         breadcrumb.items = breadcrumbItems;
         breadcrumb.dataBind();
-        loadContent('./src/block-editor/Team Sessions.md');
+        loadContent('https://ej2.syncfusion.com/demos/src/block-editor/Team%20Sessions.md');
         return;
       }
 
@@ -178,7 +178,7 @@ type TreeNode = {
     setTimeout(() => {
       treeview.expandAll();
       if (closeBtnEl) {
-        closeBtnEl.style.left = '202px';
+        closeBtnEl.style.left = '225px';
         closeBtnEl.classList.remove('expand-mode');
       }
       (treeview.element as HTMLElement).style.display = 'block';
@@ -376,7 +376,7 @@ type TreeNode = {
 
   // Initial content load
   setTimeout(() => {
-    loadContent('./src/block-editor/Team Sessions.md');
+    loadContent('https://ej2.syncfusion.com/demos/src/block-editor/Team%20Sessions.md');
     breadcrumbItems = [{ text: 'Team' }, { text: 'Team Sessions' }];
     breadcrumb.items = breadcrumbItems;
     breadcrumb.dataBind();

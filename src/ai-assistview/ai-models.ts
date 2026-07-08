@@ -5,35 +5,26 @@ import { DropDownList } from "@syncfusion/ej2-dropdowns";
 import { Button } from "@syncfusion/ej2-buttons";
 import { ListView } from "@syncfusion/ej2-lists";
 import { Toast } from "@syncfusion/ej2-notifications";
-import { marked } from 'marked';
-import { getGeminiAIAssit, getdeepSeekAIAssit, getAzureOpenAIAssist, type AzureOpenAIRequest } from './service';
+import { getAIResponse } from '../common/ai-service';
 
 (window as any).default = (): void => {
     loadCultureFiles();
-    let geminiApiKey: string = '';
-    let geminiModel: string = '';
-    let deepseekApiKey: string = '';
-    let azureApiKey: string = ''; // or put a dedicated Azure key here
-    let azureEndpoint: string = ''; // REPLACE
-    let azureDeployment: string = ''; // REPLACE with your exact deployment name
-    let azureApiVersion: string = ''; // ensure supported by your resource
 
     let suggestions: string[] = [
         'What are the best tools for organizing tasks?',
-        'How can I maintain work-life balance?',
+        'How can I maintain work-life balance?'
     ];
 
     let selectedConvId: string = '';
     let listData: any[] = [];
-    let stopStreaming: boolean = false;
     let isMobile: boolean = false;
     let aiAssistViewInst: AIAssistView;
     let sideObj: Sidebar;
     let toastObj: Toast;
     let models: any[] = [
+        { id: 'openai', name: 'GPT-4o-mini(Azure)' },
         { id: 'gemini', name: 'Gemini 2.5 Flash' },
-        { id: 'deepseek', name: 'DeepSeek-R1' },
-        { id: 'openai', name: 'GPT-4o-mini(Azure)' }
+        { id: 'deepseek', name: 'DeepSeek-R1' }
     ];
     let selectedModel: string = 'openai';
 
@@ -58,7 +49,7 @@ import { getGeminiAIAssit, getdeepSeekAIAssit, getAzureOpenAIAssist, type AzureO
         }
     }
 
-    function promptRequest(args: PromptRequestEventArgs) {
+    async function promptRequest(args: PromptRequestEventArgs) {
         if (!args.prompt || !args.prompt.trim()) {
             return;
         }
@@ -67,18 +58,13 @@ import { getGeminiAIAssit, getdeepSeekAIAssit, getAzureOpenAIAssist, type AzureO
         }
         updateBannerStyle();
         updateConversationName(args.prompt);
-        if (selectedModel === 'gemini') {
-            handleGeminiRequest(args);
-        } 
-        else if(selectedModel === 'deepseek') {
-            handleDeepSeekRequest(args);
-        }
-        else {
-            handleOpenAIRequest(args);
-        }
+        const abortController: AbortController = new AbortController();
+        var response = selectedModel === 'openai' ? await getAIResponse(args, abortController) : '⚠️ Something went wrong while connecting to the AI service. Please check your API key.';
+        aiAssistViewInst.addPromptResponse(response);
+        checkAndUpdateLocalStorage();
     }
 
-     // Toggles the sidebar on mobile when the close button is pressed
+    // Toggles the sidebar on mobile when the close button is pressed
     function btnClick() {
         if (isMobile) {
             sideObj.toggle();
@@ -112,7 +98,7 @@ import { getGeminiAIAssit, getdeepSeekAIAssit, getAzureOpenAIAssist, type AzureO
 
             const toggleButtonElement = document.getElementById('togglebtn') as HTMLElement;
             if (toggleButtonElement) toggleButtonElement.style.display = 'none';
-
+            
             const closeButtonElement = document.getElementById('closebtn') as HTMLElement;
             if (closeButtonElement) closeButtonElement.style.display = 'none';
         }
@@ -256,102 +242,6 @@ import { getGeminiAIAssit, getdeepSeekAIAssit, getAzureOpenAIAssist, type AzureO
         return newId;
     }
 
-    function handleStopResponse() {
-        stopStreaming = true;
-    }
-
-    async function streamAIResponse(fullResponse: string): Promise<string> {
-        let streamedResponseText = '';
-        if (fullResponse) {
-            await new Promise(resolve => setTimeout(resolve, 300));
-            let i = 0;
-            while (i < fullResponse.length && !stopStreaming) {
-                streamedResponseText += fullResponse[i];
-                i++;
-                aiAssistViewInst.addPromptResponse(
-                    marked.parse(streamedResponseText),
-                    false
-                );
-                aiAssistViewInst.scrollToBottom();
-                await new Promise(resolve => setTimeout(resolve, 10));
-            }
-        }
-        return streamedResponseText;
-    }
-
-    async function handleGeminiRequest(args: PromptRequestEventArgs): Promise<void> {
-        stopStreaming = false;
-        if (!aiAssistViewInst) return;
-        try {
-            const fullResponse = await getGeminiAIAssit(geminiApiKey, geminiModel, args.prompt!);
-            const streamedText = await streamAIResponse(fullResponse);
-            if (!stopStreaming) {
-                aiAssistViewInst.addPromptResponse(
-                    marked.parse(streamedText),
-                    true
-                );
-                checkAndUpdateLocalStorage();
-            }
-        } catch (error) {
-            setTimeout(() => {
-                const errorMessage = '⚠️ Something went wrong while connecting to the Gemini service. Please check your API key.';
-                aiAssistViewInst.addPromptResponse(marked.parse(errorMessage), true);
-                checkAndUpdateLocalStorage();
-            },1000);
-        }
-    }
-
-    // Sends a prompt to DeepSeek, streams the response, and finalizes it if not stopped
-    async function handleDeepSeekRequest(args: PromptRequestEventArgs): Promise<void> {
-        stopStreaming = false;
-        if (!aiAssistViewInst) return;
-        try {
-            const fullResponse = await getdeepSeekAIAssit(deepseekApiKey, args.prompt!);
-            const streamedText = await streamAIResponse(fullResponse);
-            if (!stopStreaming) {
-                aiAssistViewInst.addPromptResponse(
-                    marked.parse(streamedText),
-                    true
-                );
-                checkAndUpdateLocalStorage();
-            }
-        } catch (error) {
-            setTimeout(() => {
-                const errorMessage = '⚠️ Something went wrong while connecting to the DeepSeek service. Please check your API key.';
-                aiAssistViewInst.addPromptResponse(marked.parse(errorMessage), true);
-                checkAndUpdateLocalStorage();
-            },1000);
-        }
-    }
-
-    async function handleOpenAIRequest(args: PromptRequestEventArgs): Promise<void> {
-        stopStreaming = false;
-        if (!aiAssistViewInst) return;
-        try {
-            const fullResponse = await getAzureOpenAIAssist({
-                apiKey: azureApiKey,
-                endpoint: azureEndpoint,
-                deployment: azureDeployment,
-                apiVersion: azureApiVersion,
-                prompt: args.prompt!
-            } as AzureOpenAIRequest)
-            const streamedText = await streamAIResponse(fullResponse);
-            if (!stopStreaming) {
-                aiAssistViewInst.addPromptResponse(
-                    marked.parse(streamedText),
-                    true
-                );
-                checkAndUpdateLocalStorage();
-            }
-        } catch (error) {
-            setTimeout(() => {
-            const errorMessage = '⚠️ Something went wrong while connecting to the OpenAI service. Please check your API key.';
-            aiAssistViewInst.addPromptResponse(errorMessage, true);
-            checkAndUpdateLocalStorage();
-            },1000);
-        }
-    }
-
     // Binds click handlers to per-item delete icons in the conversation list
     function refreshDeleteListeners(): void {
         const deletes = document.querySelectorAll('.delete-icon');
@@ -368,10 +258,10 @@ import { getGeminiAIAssit, getdeepSeekAIAssit, getAzureOpenAIAssist, type AzureO
     // Instantiate the AIAssistView component and attach to DOM
     aiAssistViewInst = new AIAssistView({
         bannerTemplate: "#bannerTemplate",
+        enableStreaming: true,
         promptSuggestions: suggestions,
         promptRequest: promptRequest,
         showHeader: false,
-        stopRespondingClick: handleStopResponse,
         width: 'auto',
         enableAttachments: true,
         attachmentSettings: {
@@ -401,12 +291,13 @@ import { getGeminiAIAssit, getdeepSeekAIAssit, getAzureOpenAIAssist, type AzureO
             selectedModel = args.value as string;
             const modelName = models.find(m => m.id === selectedModel)?.name || 'the selected model';
             toastObj.show({
-                content: `<div class="toast-content"><span class="e-icons e-magic-wand"> </span> <span>You are using <b>${modelName}</b> with standard access</span></div>`
+                content: '<div class="toast-content"><span class="e-icons e-magic-wand"> </span> <span>You are using <b>' + modelName + '</b> with standard access</span></div>'
             });
         }
     });
     modelDropdown.appendTo('#ai-model-dropdown');
 
+    // Sidebar component setup
     sideObj = new Sidebar({
         width: "250px",
         target: ".ai-model",
@@ -460,7 +351,7 @@ import { getGeminiAIAssit, getdeepSeekAIAssit, getAzureOpenAIAssist, type AzureO
         deleteConversation(convId);
     });
 
-     // General-purpose toast instance
+    // General-purpose toast instance
     toastObj = new Toast({
         position: { X: 'right', Y: 'Top' },
         target: ".e-view-content",

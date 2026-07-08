@@ -1,11 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
 import { multiTaskbarData, resources } from './data-source';
-
 import { Gantt, Selection, DayMarkers, Toolbar, Edit, Resize, RowDD } from '@syncfusion/ej2-gantt';
-import { CheckBox, Switch } from '@syncfusion/ej2-buttons';
+import { Switch } from '@syncfusion/ej2-buttons';
 /**
- *  ResourceView Gantt sample
+ *  Resource Multitaskbar Gantt sample
  */
 Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize, RowDD);
 (window as any).default = (): void => {
@@ -17,7 +15,7 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize, RowDD);
             viewType: 'ResourceView',
             enableMultiTaskbar: true,
             showOverAllocation: true,
-            taskType:'FixedWork',
+            taskType: 'FixedWork',
             taskFields: {
                 id: 'TaskID',
                 name: 'TaskName',
@@ -46,12 +44,12 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize, RowDD);
             },
             columns: [
                 { field: 'TaskID', visible: false },
-                { field: 'TaskName', headerText: 'Name', width: 250 },
+                { field: 'TaskName', headerText: 'Name', width: 280 },
                 { field: 'work', headerText: 'Work' },
                 { field: 'Progress' },
                 { field: 'resourceGroup', headerText: 'Group' },
                 { field: 'StartDate' },
-                { field: 'Duration' },
+                { field: 'Duration' }
             ],
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll'],
             labelSettings: {
@@ -65,8 +63,8 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize, RowDD);
             highlightWeekends: true,
             treeColumnIndex: 1,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             projectStartDate: new Date('03/26/2025'),
             projectEndDate: new Date('05/30/2025')
         });
@@ -75,7 +73,7 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize, RowDD);
     let taskbarDragDrop: Switch = new Switch({ value: 'allowTaskbarDragAndDrop', change: dragDropChange});
     taskbarDragDrop.appendTo('#checked');
 
-    let taskbarOverlap: Switch = new Switch({ value: 'allowTaskbarOverlap',checked: true, change: overlapChange });
+    let taskbarOverlap: Switch = new Switch({ value: 'allowTaskbarOverlap', checked: true, change: overlapChange });
     taskbarOverlap.appendTo('#unchecked');
 
     function dragDropChange(args: any) {

@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Resize, Sort, Group, Filter, ColumnMenu, Page, Edit, Toolbar, ColumnMenuClickEventArgs } from '@syncfusion/ej2-grids';
 import { orderDetails } from './data-source';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
@@ -9,7 +8,6 @@ Grid.Inject(Resize, Sort, Group, Filter, ColumnMenu, Page, Edit, Toolbar);
  * Column menu in grid sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let columnMenuOptions: { [key: string]: Object }[] = [
         { id: 'Default', text: 'Default' },
         { id: 'Custom', text: 'Custom' },

@@ -9,7 +9,7 @@ import {
     DecoratorModel, PointModel, SymbolInfo, PortVisibility, SnapConstraints, PointPortModel
 } from '@syncfusion/ej2-diagrams';
 import { addEvents } from './script/diagram-common';
-import { Shapes, UmlActivityShapes } from '@syncfusion/ej2/diagrams';
+import { Shapes, UmlActivityShapes } from '@syncfusion/ej2-diagrams';
 
 Diagram.Inject(UndoRedo, DiagramContextMenu);
 
@@ -109,18 +109,18 @@ function setPaletteNodeDefaults(symbol: NodeModel): NodeModel {
 
     // Initializes nodes representing the flow of a customer service call process
     let nodes: NodeModel[] = [
-        createNode("Start", 300, 20, "InitialNode"),
-        createNode("ReceiveCall", 300, 100, "Action", 105, 40, "Receive Customer Call"),
-        createNode("ForkNode", 300, 170, "ForkNode", 70, 10),
-        createNode("Determine", 190, 250, "Action", 105, 40, "Determine Type of Call"),
-        createNode("Log", 410, 250, "Action", 105, 40, "Customer Logging a Call"),
-        createNode("Decision", 190, 350, "Decision", 50, 50),
-        createNode("transfer_sales", 100, 450, "Action", 105, 40, "Transfer the Call to Sales"),
-        createNode("transfer_desk", 280, 450, "Action", 105, 40, "Transfer the Call to Help Desk"),
-        createNode("MergeNode", 190, 540, "MergeNode", 50, 50),
-        createNode("JoinNode", 300, 630, "JoinNode", 70, 10),
-        createNode("CloseCall", 300, 710, "Action", 105, 40, "Close Call"),
-        createNode("FinalNode", 300, 800, "FinalNode")
+        createNode("Start", 550, 20, "InitialNode"),
+        createNode("ReceiveCall", 550, 100, "Action", 105, 40, "Receive Customer Call"),
+        createNode("ForkNode", 550, 170, "ForkNode", 70, 10),
+        createNode("Determine", 440, 250, "Action", 105, 40, "Determine Type of Call"),
+        createNode("Log", 660, 250, "Action", 105, 40, "Customer Logging a Call"),
+        createNode("Decision", 440, 350, "Decision", 50, 50),
+        createNode("transfer_sales", 350, 450, "Action", 105, 40, "Transfer the Call to Sales"),
+        createNode("transfer_desk", 530, 450, "Action", 105, 40, "Transfer the Call to Help Desk"),
+        createNode("MergeNode", 440, 540, "MergeNode", 50, 50),
+        createNode("JoinNode", 550, 630, "JoinNode", 70, 10),
+        createNode("CloseCall", 550, 710, "Action", 105, 40, "Close Call"),
+        createNode("FinalNode", 550, 800, "FinalNode")
     ];
 
     // Creates a UML activity diagram connector with specified properties

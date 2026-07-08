@@ -1,11 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Internationalization } from '@syncfusion/ej2-base';
-import { Gantt,Selection} from '@syncfusion/ej2-gantt';
+import { Gantt, Selection } from '@syncfusion/ej2-gantt';
 import { timelineTemplateData } from './data-source';
 
 /**
- * Tasklabel Template Gantt sample
+ * Timeline Template Gantt sample
  */
+
 Gantt.Inject(Selection);
 
 // Create an Internationalization instance
@@ -79,28 +80,28 @@ function parseDateString(dateString: any) {
             showColumnMenu: false,
             timelineSettings: {
                 topTier: {
-                    unit: 'Day',
+                    unit: 'Day'
                 },
-                timelineUnitSize: 200,
+                timelineUnitSize: 200
             },
             labelSettings: {
                 leftLabel: 'TaskName',
                 taskLabel: 'Progress'
             },
             columns: [
-                { field: 'TaskID', headerText: 'Task ID' ,visible: false},
-                { field: 'TaskName', headerText: 'Task Name', width: 300},
+                { field: 'TaskID', headerText: 'Task ID' , visible: false },
+                { field: 'TaskName', headerText: 'Task Name', width: 300 },
                 { field: 'StartDate', headerText: 'Start Date'},
                 { field: 'Duration', headerText: 'Duration'},
-                { field: 'Progress', headerText: 'Progress'},
+                { field: 'Progress', headerText: 'Progress'}
             ],
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             allowUnscheduledTasks: true,
             projectStartDate: new Date('03/29/2025 01:00:00 PM'),
             projectEndDate: new Date('04/23/2025'),
-            timelineTemplate:"#TimelineTemplates"
+            timelineTemplate: "#TimelineTemplates"
         });
     gantt.appendTo('#Timeline');
 };

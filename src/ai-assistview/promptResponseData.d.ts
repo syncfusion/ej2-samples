@@ -1,6 +1,16 @@
 export declare let defaultPromptResponseData: any;
 export declare let defaultSuggestions: any;
+export declare let overviewSuggestions: any;
 export declare let streamingData: any;
 export declare let streamingSuggestions: any;
 export declare let assistantSuggestions: any;
 export declare let assistantResponses: any;
+export declare let generativeSuggestions: any;
+export declare let chartBlockData: any;
+export declare let promptsData: any;
+export declare let cardBlockData: any;
+export declare let gridBlockData: any;
+export declare let toolSystemPrompt: string;
+export declare let modelIcons: any;
+export declare let notionSuggestions: any;
+export declare let iconMapByIndex: any;

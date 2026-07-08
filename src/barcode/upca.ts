@@ -25,7 +25,7 @@ let barcode: BarcodeGenerator;
         invalid: invalidInput,
         mode: 'SVG',
     });
-    barcode.appendTo('#barcode');
+    barcode.appendTo('#barcode_upca');
 
     let canShowError: boolean = false;
 
@@ -46,7 +46,7 @@ let barcode: BarcodeGenerator;
             }
         },
         focusout(args: any): void {
-            displayText.value = barcode.value = (document.getElementById('barcodeValue') as HTMLInputElement).value;
+            displayText.value = barcode.value = (document.getElementById('barcodeValue_upca') as HTMLInputElement).value;
             barcode.dataBind();
         },
 
@@ -74,11 +74,11 @@ let barcode: BarcodeGenerator;
     ];
 
     function updatePosition(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textPosition') as any).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textPosition_upca') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.position = (positionValue.value) as TextPosition;
     }
     function updateAlignt(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textAlignment') as any).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textAlignment_upca') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.alignment = (positionValue.value) as Alignment;
     }
 
@@ -93,7 +93,7 @@ let barcode: BarcodeGenerator;
             updatePosition(args.value.toString());
         }
     });
-    textPosition.appendTo('#textPosition');
+    textPosition.appendTo('#textPosition_upca');
 
     //DropDownList used to apply for fontFamily of the Annotation
     let textAlign: DropDownList = new DropDownList({
@@ -105,14 +105,14 @@ let barcode: BarcodeGenerator;
             updateAlignt(args.value.toString());
         }
     });
-    textAlign.appendTo('#textAlignment');
+    textAlign.appendTo('#textAlignment_upca');
 
     let barcodeValue: TextBox = new TextBox({
         value: '72527273070',
     });
-    barcodeValue.appendTo('#barcodeValue');
+    barcodeValue.appendTo('#barcodeValue_upca');
 
-    let input = document.getElementById("barcodeValue");
+    let input = document.getElementById("barcodeValue_upca");
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault()
@@ -125,7 +125,7 @@ let barcode: BarcodeGenerator;
             barcode.backgroundColor = args.currentValue.hex;
         }
     });
-    bgColor.appendTo('#bgColor');
+    bgColor.appendTo('#bgColor_upca');
 
     let displayText: TextBox = new TextBox({
         value: '72527273070',
@@ -135,7 +135,7 @@ let barcode: BarcodeGenerator;
             }
         }
     });
-    displayText.appendTo('#displayText');
+    displayText.appendTo('#displayText_upca');
 
 
 
@@ -145,7 +145,7 @@ let barcode: BarcodeGenerator;
             barcode.foreColor = args.currentValue.hex;
         }
     });
-    foreColor.appendTo('#foreColor');
+    foreColor.appendTo('#foreColor_upca');
 
 
 
@@ -156,7 +156,7 @@ let barcode: BarcodeGenerator;
             barcode.width = args.value.toString();
         }
     });
-    barcodeWidth.appendTo('#width');
+    barcodeWidth.appendTo('#width_upca');
 
     let barcodeHeight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -165,7 +165,7 @@ let barcode: BarcodeGenerator;
             barcode.height = args.value.toString();
         }
     });
-    barcodeHeight.appendTo('#height');
+    barcodeHeight.appendTo('#height_upca');
 
     let marginLeft: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -175,7 +175,7 @@ let barcode: BarcodeGenerator;
             barcode.margin.left = args.value;
         }
     });
-    marginLeft.appendTo('#marginLeft');
+    marginLeft.appendTo('#marginLeft_upca');
 
     let marginRight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -185,7 +185,7 @@ let barcode: BarcodeGenerator;
             barcode.margin.right = args.value;
         }
     });
-    marginRight.appendTo('#MarginRight');
+    marginRight.appendTo('#MarginRight_upca');
 
     let marginTop: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -195,7 +195,7 @@ let barcode: BarcodeGenerator;
             barcode.margin.top = args.value;
         }
     });
-    marginTop.appendTo('#marginTop');
+    marginTop.appendTo('#marginTop_upca');
 
 
 
@@ -207,7 +207,7 @@ let barcode: BarcodeGenerator;
             barcode.margin.bottom = args.value;
         }
     });
-    marginBottom.appendTo('#MarginBottom');
+    marginBottom.appendTo('#MarginBottom_upca');
 
 
 
@@ -217,7 +217,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.visibility = args.checked;
         }
     });
-    textVisibility.appendTo('#textVisibility');
+    textVisibility.appendTo('#textVisibility_upca');
 
 
     let svgMode: CheckBox = new CheckBox({
@@ -226,7 +226,7 @@ let barcode: BarcodeGenerator;
             barcode.mode = args.checked ? 'SVG' : 'Canvas';
         }
     });
-    svgMode.appendTo('#svgMode');
+    svgMode.appendTo('#svgMode_upca');
 
 
 
@@ -237,7 +237,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.margin.left = args.value;
         }
     });
-    textmarginLeft.appendTo('#TextmarginLeft');
+    textmarginLeft.appendTo('#TextmarginLeft_upca');
 
     let textMarginRight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -246,7 +246,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.margin.right = args.value;
         }
     });
-    textMarginRight.appendTo('#TextMarginRight');
+    textMarginRight.appendTo('#TextMarginRight_upca');
 
     let textmarginTop: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -255,7 +255,7 @@ let barcode: BarcodeGenerator;
             barcode.displayText.margin.top = args.value;
         }
     });
-    textmarginTop.appendTo('#TextmarginTop');
+    textmarginTop.appendTo('#TextmarginTop_upca');
 
 
 
@@ -266,10 +266,10 @@ let barcode: BarcodeGenerator;
             barcode.displayText.margin.bottom = args.value;
         }
     });
-    textMarginBottom.appendTo('#TextMarginBottom');
+    textMarginBottom.appendTo('#TextMarginBottom_upca');
     const downloadButton = new Button({});
-    downloadButton.appendTo('#downloadBtn14');
-    document.getElementById('downloadBtn14').onclick = function () {
+    downloadButton.appendTo('#downloadBtn14_upca');
+    document.getElementById('downloadBtn14_upca').onclick = function () {
         barcode.exportImage("Barcode", 'PNG');
     };
 };

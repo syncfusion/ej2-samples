@@ -1,16 +1,11 @@
-/**
- * resource.ts file
- */
 import { loadCultureFiles } from '../common/culture-loader';
-/**
- * resource.ts file
- */
 import { resourceAllocationData, resourceAllocationResources } from './data-source';
-
 import { Gantt, Selection, DayMarkers, Toolbar, Edit } from '@syncfusion/ej2-gantt';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { DataManager } from '@syncfusion/ej2-data';
-
+/**
+ * resource Gantt sample
+ */
 Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -130,8 +125,8 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll'],
             allowSelection: true,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             treeColumnIndex: 1,
             highlightWeekends: true,
             columns: [
@@ -182,9 +177,9 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
                         },
                     },
                 },
-                { field: 'work', width: '110' },
+                { field: 'work', width: 110 },
                 { field: 'Duration', width: 150 },
-                { field: 'taskType', headerText: 'Task Type', width: 150}
+                { field: 'taskType', headerText: 'Task Type', width: 150 }
             ],
             labelSettings: {
                 rightLabel: 'resources',
@@ -193,7 +188,7 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit);
             splitterSettings: {
                 columnIndex: 2
             },
-             projectStartDate: new Date('03/26/2025'),
+            projectStartDate: new Date('03/26/2025'),
             projectEndDate: new Date('07/28/2025')
         });
     gantt.appendTo('#resource');

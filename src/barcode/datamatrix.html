@@ -113,10 +113,21 @@
             width: 50%;
             height: 50%;
         }
+
+        @media (max-width: 550px) {
+            .sb-mobile-right-pane {
+                width: 100% !important;
+            }
+
+            .e-sidebar.e-right.e-open, .e-sidebar.e-left.e-open {
+                width: 85% !important;
+            }
+        }
+        
     </style>
     <div class="content-wrapper" style="width: 100%;height: 590px;">
         <div class='center'>
-            <div class='centercontrol' id="barcode"></div>
+            <div class='centercontrol' id="barcode_datamatrix"></div>
         </div>
 
     </div>
@@ -126,7 +137,7 @@
     <div class="property-panel-header">
         Appearance
     </div>
-    <div id="propertypanel">
+    <div id="propertypanel_datamatrix">
         <div class="property-section-content">
             <div class="row sb-child-row">
                 <div class="col-xs-2 top barcode-panel-left">
@@ -134,8 +145,8 @@
                 </div>
                 <div class="col-xs-10 barcode-panel-left">
                     <form id="form-element" class="form-horizontal">
-                        <div id='barcodevaluediv'>
-                            <input type="text" id="barcodeValue" name="password" class="form-control" />
+                        <div id='barcodevaluediv_datamatrix'>
+                            <input type="text" id="barcodeValue_datamatrix" name="password" class="form-control" />
                         </div>
                     </form>
                 </div>
@@ -146,7 +157,7 @@
                         Width
                     </div>
                     <div class="col-xs-4 barcode-panel-left">
-                        <input type="text" id='width' />
+                        <input type="text" id='width_datamatrix' />
                     </div>
                 </div>
                 <div>
@@ -154,7 +165,7 @@
                         Height
                     </div>
                     <div class="col-xs-4 barcode-panel-left">
-                        <input type="text" id='height' />
+                        <input type="text" id='height_datamatrix' />
 
                     </div>
                 </div>
@@ -162,12 +173,12 @@
 
             <div class="row sb-child-row" style="padding-top: 10px;">
                 <div class="col-xs-6 barcode-panel-left">
-                    <div class="col-xs-12 barcode-panel-left" ><input type="checkbox" id="textVisibility" unchecked="false">
+                    <div class="col-xs-12 barcode-panel-left" ><input type="checkbox" id="textVisibility_datamatrix" unchecked="false">
                         <div style="padding-left: 4px; vertical-align:middle; display: inline-block;">Text Visibility</div>
                     </div>
                 </div>
                 <div class="col-xs-6 barcode-panel-left">
-                    <div class="col-xs-12 barcode-panel-left"><input type="checkbox" id="svgMode" unchecked="false">
+                    <div class="col-xs-12 barcode-panel-left"><input type="checkbox" id="svgMode_datamatrix" unchecked="false">
                         <div style="padding-left: 4px; vertical-align:middle; display: inline-block;" >SVG Mode</div>
                         </div>
                 </div>
@@ -177,11 +188,11 @@
                 <div style="padding-top: 10px;">
                     <div class="col-xs-3 barcode-panel-left" style="padding-top: 5px;">BG Color</div>
                     <div class="col-xs-3 barcode-panel-left">
-                        <input id='bgColor' type="color" />
+                        <input id='bgColor_datamatrix' type="color" />
                     </div>
                     <div class="col-xs-3 barcode-panel-left" style="padding-top: 5px;">Fore Color</div>
                     <div class="col-xs-3" style="padding-left: 2px;">
-                        <input id='foreColor' type="color" />
+                        <input id='foreColor_datamatrix' type="color" />
                     </div>
                 </div>
             </div>
@@ -191,11 +202,11 @@
             <div class="row sb-child-row">
                 <div class="col-xs-2 top barcode-panel-left"> Left</div>
                 <div class="col-xs-4 barcode-panel-left">
-                    <input type="text" id='marginLeft' />
+                    <input type="text" id='marginLeft_datamatrix' />
                 </div>
                 <div class="col-xs-2 top barcode-panel-left">Right</div>
                 <div class="col-xs-4 barcode-panel-left">
-                    <input type="text" id='MarginRight' />
+                    <input type="text" id='MarginRight_datamatrix' />
                 </div>
             </div>
         </div>
@@ -203,12 +214,12 @@
             <div class="col-xs-2 top barcode-panel-left">Top</div>
             <div class="col-xs-4 barcode-panel-left">
                 <div style="padding-bottom: 8px">
-                    <input type="text" id='marginTop' />
+                    <input type="text" id='marginTop_datamatrix' />
                 </div>
             </div>
             <div class="col-xs-2 top barcode-panel-left">Bottom</div>
             <div class="col-xs-4 barcode-panel-left">
-                <input type="text" id='MarginBottom' />
+                <input type="text" id='MarginBottom_datamatrix' />
                 <!-- </div> -->
             </div>
         </div>
@@ -216,7 +227,7 @@
             <div class="col-xs-2 top barcode-panel-left">Size</div>
             <div class="col-xs-10">
                 <div style="padding-bottom: 8px">
-                    <input type="text" id='MatrixSize' />
+                    <input type="text" id='MatrixSize_datamatrix' />
                 </div>
             </div>
         </div>
@@ -224,13 +235,13 @@
             <div class="col-xs-2 top barcode-panel-left">Encoding</div>
             <div class="col-xs-10">
                 <div style="padding-bottom: 8px">
-                    <input type="text" id='PdfDataMatrixEncoding' />
+                    <input type="text" id='PdfDataMatrixEncoding_datamatrix' />
                 </div>
             </div>
         </div>
         <div class="row sb-child-row">
             <div class="col-xs-6 top barcode-panel-left">
-                <button id="downloadBtn10">Download</button>
+                <button id="downloadBtn10_datamatrix">Download</button>
             </div>
         </div>
     </div>

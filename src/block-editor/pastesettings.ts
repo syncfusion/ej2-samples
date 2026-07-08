@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 import { BlockEditor } from "@syncfusion/ej2-blockeditor"
-import { DropDownList } from '@syncfusion/ej2/dropdowns';
+import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import * as data from './blockData.json';
 
 (window as any).default = (): void => {
@@ -36,31 +36,19 @@ import * as data from './blockData.json';
     }
     overviewBlockEditor.dataBind();
   }
-  var allowedStylePropsElem = document.getElementById('allowedStyleProperties');
+  
   var deniedTagsElem = document.getElementById('deniedTags');
 
-  allowedStylePropsElem.addEventListener('blur', (e: FocusEvent) => {
-    onPasteCleanupSettingsChange((e.target as HTMLInputElement).value, 'allowedStyles');
-    overviewBlockEditor.dataBind();
-  });
   deniedTagsElem.addEventListener('blur', (e: FocusEvent) => {
-    onPasteCleanupSettingsChange((e.target as HTMLInputElement).value, 'deniedTags');
+    onPasteCleanupSettingsChange((e.target as HTMLInputElement).value);
     overviewBlockEditor.dataBind();
   });
 
   // Update the specified paste settings property with parsed array value and rebind the editor
-  function onPasteCleanupSettingsChange(value: string, settingsProperty: string): void {
+  function onPasteCleanupSettingsChange(value: string): void {
     if (!isNullOrUndefined(value)) {
       const arrayValue = value.split(',').map((item) => item.trim().replace(/^['"]|['"]$/g, '')).filter((prop) => prop !== '');
-
-      switch (settingsProperty) {
-        case 'deniedTags':
           overviewBlockEditor.pasteCleanupSettings.deniedTags = arrayValue;
-          break;
-        case 'allowedStyles':
-          overviewBlockEditor.pasteCleanupSettings.allowedStyles = arrayValue;
-          break;
-      }
       overviewBlockEditor.dataBind();
     }
   }

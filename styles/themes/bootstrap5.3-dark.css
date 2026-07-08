@@ -5,6 +5,25 @@
 .bootstrap5\.3-dark #search-input_popup .e-list-group-item {
     background: #212529;
 }
+
+.bootstrap5\.3-dark .sb-products-popup {
+    background: #212529;
+    border: 1px solid #495057;
+    color: #ffffff;
+}
+
+.bootstrap5\.3-dark .sb-products-popup li {
+    color: #ffffff;
+}
+
+.bootstrap5\.3-dark .sb-products-popup li:hover {
+    background: #3d3f42;
+}
+
+.bootstrap5\.3-dark .sb-products-popup li.active {
+    color: #0d6efd;
+}
+
 .bootstrap5\.3-dark .sb-home,
 .bootstrap5\.3-dark .sb-home{
     color:#ffffff
@@ -67,6 +86,8 @@ body.bootstrap5\.3-dark,
 .bootstrap5\.3-dark .sb-content-tab > .e-tab.e-nested > .e-tab-header > .e-items.e-toolbar-items > .e-toolbar-item > .e-tab-wrap > .e-text-wrap > .e-tab-text,
 .bootstrap5\.3-dark .sb-theme-popup li.active .sb-theme-select,
 .bootstrap5\.3-dark .sb-theme-popup li:hover.active .sb-theme-select,
+.bootstrap5\.3-dark .sb-products-popup li.active .sb-products-select,
+.bootstrap5\.3-dark .sb-products-popup li:hover.active .sb-products-select,
 .bootstrap5\.3-dark #search-input_popup .e-list-group-item {
     color: #0d6efd;
 }
@@ -148,6 +169,7 @@ body.bootstrap5\.3-dark,
 .bootstrap5\.3-dark .sb-setting-btn.active,
 .bootstrap5\.3-dark .sb-switch-popup li:hover,
 .bootstrap5\.3-dark .theme-wrapper:hover,
+.bootstrap5\.3-dark .products-wrapper:hover,
 .bootstrap5\.3-dark .theme-wrapper.active,
 .bootstrap5\.3-dark .sb-theme-popup li:hover,
 .bootstrap5\.3-dark .sb-search-result .e-list-item:hover,
@@ -227,6 +249,9 @@ body.bootstrap5\.3-dark,
 .bootstrap5\.3-dark .sb-theme-select{
     color:transparent
 }
+.bootstrap5\.3-dark .sb-products-select{
+    color:transparent
+}
 .bootstrap5\.3-dark .sb-content-tab > .e-tab.e-nested > .e-tab-header > .e-items.e-toolbar-items > .e-toolbar-item.e-active > .e-tab-wrap > .e-text-wrap > .e-tab-text,
 .bootstrap5\.3-dark .sb-content-tab > .e-tab.e-nested > .e-tab-header > .e-items.e-toolbar-items > .e-toolbar-item > .e-tab-wrap > .e-text-wrap > .e-tab-text:hover,
 .bootstrap5\.3-dark .sb-search-result .e-list-group-item,
@@ -267,6 +292,10 @@ body.bootstrap5\.3-dark,
 }
 
 .bootstrap5\.3-dark .sb-theme-popup li:hover .sb-theme-select {
+    color:transparent;
+}
+
+.bootstrap5\.3-dark .sb-products-popup li:hover .sb-products-select {
     color:transparent;
 }
 

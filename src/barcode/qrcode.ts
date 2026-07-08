@@ -28,7 +28,7 @@ let barcode: QRCodeGenerator;
         mode: 'SVG',
         value: 'Syncfusion',
     });
-    barcode.appendTo('#barcode');
+    barcode.appendTo('#barcode_qrcode');
     let canShowError: boolean = false;
 
     let customFn: (args: { [key: string]: string }) => boolean = (args: { [key: string]: string }) => {
@@ -48,7 +48,7 @@ let barcode: QRCodeGenerator;
             }
         },
         focusout(args: any): void {
-            barcode.value = (document.getElementById('barcodeValue') as HTMLInputElement).value;
+            barcode.value = (document.getElementById('barcodeValue_qrcode') as HTMLInputElement).value;
             barcode.dataBind();
         },
 
@@ -87,11 +87,11 @@ let barcode: QRCodeGenerator;
     ];
 
     function updatePosition(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textPosition') as any).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textPosition_qrcode') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.position = (positionValue.value) as TextPosition;
     }
     function updateAlignt(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textAlignment') as any).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textAlignment_qrcode') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.alignment = (positionValue.value) as Alignment;
     }
 
@@ -106,7 +106,7 @@ let barcode: QRCodeGenerator;
             updatePosition(args.value.toString());
         }
     });
-    textPosition.appendTo('#textPosition');
+    textPosition.appendTo('#textPosition_qrcode');
 
     //DropDownList used to apply for fontFamily of the Annotation
     let textAlign: DropDownList = new DropDownList({
@@ -118,14 +118,14 @@ let barcode: QRCodeGenerator;
             updateAlignt(args.value.toString());
         }
     });
-    textAlign.appendTo('#textAlignment');
+    textAlign.appendTo('#textAlignment_qrcode');
 
     let barcodeValue: TextBox = new TextBox({
         value: 'Syncfusion',
     });
-    barcodeValue.appendTo('#barcodeValue');
+    barcodeValue.appendTo('#barcodeValue_qrcode');
 
-    let input = document.getElementById("barcodeValue");
+    let input = document.getElementById("barcodeValue_qrcode");
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault()
@@ -138,7 +138,7 @@ let barcode: QRCodeGenerator;
             barcode.backgroundColor = args.currentValue.hex;
         }
     });
-    bgColor.appendTo('#bgColor');
+    bgColor.appendTo('#bgColor_qrcode');
 
 
 
@@ -150,7 +150,7 @@ let barcode: QRCodeGenerator;
             barcode.foreColor = args.currentValue.hex;
         }
     });
-    foreColor.appendTo('#foreColor');
+    foreColor.appendTo('#foreColor_qrcode');
 
 
 
@@ -161,7 +161,7 @@ let barcode: QRCodeGenerator;
             barcode.width = args.value.toString();
         }
     });
-    barcodeWidth.appendTo('#width');
+    barcodeWidth.appendTo('#width_qrcode');
 
     let barcodeHeight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -170,7 +170,7 @@ let barcode: QRCodeGenerator;
             barcode.height = args.value.toString();
         }
     });
-    barcodeHeight.appendTo('#height');
+    barcodeHeight.appendTo('#height_qrcode');
 
     let marginLeft: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -180,7 +180,7 @@ let barcode: QRCodeGenerator;
             barcode.margin.left = args.value;
         }
     });
-    marginLeft.appendTo('#marginLeft');
+    marginLeft.appendTo('#marginLeft_qrcode');
 
     let marginRight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -190,7 +190,7 @@ let barcode: QRCodeGenerator;
             barcode.margin.right = args.value;
         }
     });
-    marginRight.appendTo('#MarginRight');
+    marginRight.appendTo('#MarginRight_qrcode');
 
     let version: NumericTextBox = new NumericTextBox({
         format: '###.##',
@@ -200,7 +200,7 @@ let barcode: QRCodeGenerator;
             barcode.version = (Number(args.value));
         }
     });
-    version.appendTo('#Version');
+    version.appendTo('#Version_qrcode');
 
     let errorCorrection: DropDownList = new DropDownList({
         dataSource: errorCorrectionLevel,
@@ -209,7 +209,7 @@ let barcode: QRCodeGenerator;
             barcode.errorCorrectionLevel = (Number(args.itemData.value));
         }
     });
-    errorCorrection.appendTo('#errorCorrection');
+    errorCorrection.appendTo('#errorCorrection_qrcode');
 
     let marginTop: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -219,7 +219,7 @@ let barcode: QRCodeGenerator;
             barcode.margin.top = args.value;
         }
     });
-    marginTop.appendTo('#marginTop');
+    marginTop.appendTo('#marginTop_qrcode');
 
 
 
@@ -231,7 +231,7 @@ let barcode: QRCodeGenerator;
             barcode.margin.bottom = args.value;
         }
     });
-    marginBottom.appendTo('#MarginBottom');
+    marginBottom.appendTo('#MarginBottom_qrcode');
 
 
 
@@ -241,7 +241,7 @@ let barcode: QRCodeGenerator;
             barcode.displayText.visibility = args.checked;
         }
     });
-    textVisibility.appendTo('#textVisibility');
+    textVisibility.appendTo('#textVisibility_qrcode');
 
     let logo: CheckBox = new CheckBox({
         checked: true,
@@ -251,7 +251,7 @@ let barcode: QRCodeGenerator;
             }
         }
     });
-    logo.appendTo('#logo');
+    logo.appendTo('#logo_qrcode');
 
 
     let svgMode: CheckBox = new CheckBox({
@@ -260,7 +260,7 @@ let barcode: QRCodeGenerator;
             barcode.mode = args.checked ? 'SVG' : 'Canvas';
         }
     });
-    svgMode.appendTo('#svgMode');
+    svgMode.appendTo('#svgMode_qrcode');
 
 
 
@@ -271,7 +271,7 @@ let barcode: QRCodeGenerator;
             barcode.displayText.margin.left = args.value;
         }
     });
-    textmarginLeft.appendTo('#TextmarginLeft');
+    textmarginLeft.appendTo('#TextmarginLeft_qrcode');
 
     let textMarginRight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -280,7 +280,7 @@ let barcode: QRCodeGenerator;
             barcode.displayText.margin.right = args.value;
         }
     });
-    textMarginRight.appendTo('#TextMarginRight');
+    textMarginRight.appendTo('#TextMarginRight_qrcode');
 
     let textmarginTop: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -289,7 +289,7 @@ let barcode: QRCodeGenerator;
             barcode.displayText.margin.top = args.value;
         }
     });
-    textmarginTop.appendTo('#TextmarginTop');
+    textmarginTop.appendTo('#TextmarginTop_qrcode');
 
 
 
@@ -300,10 +300,10 @@ let barcode: QRCodeGenerator;
             barcode.displayText.margin.bottom = args.value;
         }
     });
-    textMarginBottom.appendTo('#TextMarginBottom');
+    textMarginBottom.appendTo('#TextMarginBottom_qrcode');
     const downloadButton = new Button({});
-    downloadButton.appendTo('#downloadBtn13');
-    document.getElementById('downloadBtn13').onclick = function () {
+    downloadButton.appendTo('#downloadBtn13_qrcode');
+    document.getElementById('downloadBtn13_qrcode').onclick = function () {
         barcode.exportImage("SyncFusionQR", 'PNG');
     };
 };

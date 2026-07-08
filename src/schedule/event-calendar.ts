@@ -123,7 +123,8 @@ Schedule.Inject(Week, Day, Month, Agenda, TimelineMonth, Year, DragAndDrop, Resi
 
     const leftSidebar: Sidebar = new Sidebar({
         width: '300px',
-        target: '.main-content'
+        target: '.main-content',
+        enableGestures: false
     });
     leftSidebar.appendTo('#sidebar-left');
 
@@ -132,6 +133,7 @@ Schedule.Inject(Week, Day, Month, Agenda, TimelineMonth, Year, DragAndDrop, Resi
         target: '.main-content',
         position: 'Right',
         type: 'Push',
+        enableGestures: false,
         isOpen: false,
         created: (): void => {
             const open: HTMLElement = rightSidebar.element.parentElement.querySelector('#plannedOpen');
@@ -210,6 +212,7 @@ Schedule.Inject(Week, Day, Month, Agenda, TimelineMonth, Year, DragAndDrop, Resi
     }
 
     const calendarsList: ListView = new ListView({
+        cssClass: 'event-resourceList',
         dataSource: calendars,
         template: "<div class='calendar-list-item'><div class='calendar-name' title='${name}'>${name}</div>${if(id !== 1)}<div class='calendar-buttons'><span id='calendar-edit-btn' class='e-icons e-edit' data-calendar-id='${id}'></span><span id='calendar-delete-btn' class='e-icons e-trash' data-calendar-id='${id}'></span></div>${/if}</div>",
         headerTemplate: '<div class="calendars-list-header"><div class="header-text">Calendars</div><div class="header-icon e-icons e-plus"></div></div>',

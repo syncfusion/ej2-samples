@@ -24,7 +24,7 @@ let barcode: DataMatrixGenerator;
         displayText: { visibility: false },
         height: 150, width: 200,
     });
-    barcode.appendTo('#barcode');
+    barcode.appendTo('#barcode_datamatrix');
     let canShowError: boolean = false;
 
     let customFn: (args: { [key: string]: string }) => boolean = (args: { [key: string]: string }) => {
@@ -44,7 +44,7 @@ let barcode: DataMatrixGenerator;
             }
         },
         focusout(args: any): void {
-            barcode.value = (document.getElementById('barcodeValue') as HTMLInputElement).value;
+            barcode.value = (document.getElementById('barcodeValue_datamatrix') as HTMLInputElement).value;
             barcode.dataBind();
         },
 
@@ -117,11 +117,11 @@ let barcode: DataMatrixGenerator;
     ];
 
     function updatePosition(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textPosition') as any).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textPosition_datamatrix') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.position = (positionValue.value) as TextPosition;
     }
     function updateAlignt(value: string): void {
-        let positionValue: TextBox = ((document.getElementById('textAlignment') as any).ej2_instances[0]) as TextBox;
+        let positionValue: TextBox = ((document.getElementById('textAlignment_datamatrix') as any).ej2_instances[0]) as TextBox;
         barcode.displayText.alignment = (positionValue.value) as Alignment;
     }
 
@@ -136,7 +136,7 @@ let barcode: DataMatrixGenerator;
             updatePosition(args.value.toString());
         }
     });
-    textPosition.appendTo('#textPosition');
+    textPosition.appendTo('#textPosition_datamatrix');
 
     //DropDownList used to apply for fontFamily of the Annotation
     let textAlign: DropDownList = new DropDownList({
@@ -148,14 +148,14 @@ let barcode: DataMatrixGenerator;
             updateAlignt(args.value.toString());
         }
     });
-    textAlign.appendTo('#textAlignment');
+    textAlign.appendTo('#textAlignment_datamatrix');
 
     let barcodeValue: TextBox = new TextBox({
         value: 'Syncfusion',
     });
-    barcodeValue.appendTo('#barcodeValue');
+    barcodeValue.appendTo('#barcodeValue_datamatrix');
 
-    let input = document.getElementById("barcodeValue");
+    let input = document.getElementById("barcodeValue_datamatrix");
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault()
@@ -168,7 +168,7 @@ let barcode: DataMatrixGenerator;
             barcode.backgroundColor = args.currentValue.hex;
         }
     });
-    bgColor.appendTo('#bgColor');
+    bgColor.appendTo('#bgColor_datamatrix');
 
 
 
@@ -180,7 +180,7 @@ let barcode: DataMatrixGenerator;
             barcode.foreColor = args.currentValue.hex;
         }
     });
-    foreColor.appendTo('#foreColor');
+    foreColor.appendTo('#foreColor_datamatrix');
 
 
 
@@ -191,7 +191,7 @@ let barcode: DataMatrixGenerator;
             barcode.width = args.value.toString();
         }
     });
-    barcodeWidth.appendTo('#width');
+    barcodeWidth.appendTo('#width_datamatrix');
 
     let barcodeHeight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -200,7 +200,7 @@ let barcode: DataMatrixGenerator;
             barcode.height = args.value.toString();
         }
     });
-    barcodeHeight.appendTo('#height');
+    barcodeHeight.appendTo('#height_datamatrix');
 
     let marginLeft: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -210,7 +210,7 @@ let barcode: DataMatrixGenerator;
             barcode.margin.left = args.value;
         }
     });
-    marginLeft.appendTo('#marginLeft');
+    marginLeft.appendTo('#marginLeft_datamatrix');
 
     let marginRight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -220,7 +220,7 @@ let barcode: DataMatrixGenerator;
             barcode.margin.right = args.value;
         }
     });
-    marginRight.appendTo('#MarginRight');
+    marginRight.appendTo('#MarginRight_datamatrix');
 
     let size: DropDownList = new DropDownList({
         dataSource: matrixSize,
@@ -229,7 +229,7 @@ let barcode: DataMatrixGenerator;
             barcode.size = (Number(args.itemData.value));
         }
     });
-    size.appendTo('#MatrixSize');
+    size.appendTo('#MatrixSize_datamatrix');
 
     let encoding: DropDownList = new DropDownList({
         dataSource: pdfDataMatrixEncodingValue,
@@ -238,7 +238,7 @@ let barcode: DataMatrixGenerator;
             barcode.encoding = ((args.itemData.value.toString()) as DataMatrixEncoding);
         }
     });
-    encoding.appendTo('#PdfDataMatrixEncoding');
+    encoding.appendTo('#PdfDataMatrixEncoding_datamatrix');
 
     let marginTop: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -248,7 +248,7 @@ let barcode: DataMatrixGenerator;
             barcode.margin.top = args.value;
         }
     });
-    marginTop.appendTo('#marginTop');
+    marginTop.appendTo('#marginTop_datamatrix');
 
 
 
@@ -260,7 +260,7 @@ let barcode: DataMatrixGenerator;
             barcode.margin.bottom = args.value;
         }
     });
-    marginBottom.appendTo('#MarginBottom');
+    marginBottom.appendTo('#MarginBottom_datamatrix');
 
 
 
@@ -270,7 +270,7 @@ let barcode: DataMatrixGenerator;
             barcode.displayText.visibility = args.checked;
         }
     });
-    textVisibility.appendTo('#textVisibility');
+    textVisibility.appendTo('#textVisibility_datamatrix');
 
 
     let svgMode: CheckBox = new CheckBox({
@@ -279,7 +279,7 @@ let barcode: DataMatrixGenerator;
             barcode.mode = args.checked ? 'SVG' : 'Canvas';
         }
     });
-    svgMode.appendTo('#svgMode');
+    svgMode.appendTo('#svgMode_datamatrix');
 
 
 
@@ -290,7 +290,7 @@ let barcode: DataMatrixGenerator;
             barcode.displayText.margin.left = args.value;
         }
     });
-    textmarginLeft.appendTo('#TextmarginLeft');
+    textmarginLeft.appendTo('#TextmarginLeft_datamatrix');
 
     let textMarginRight: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -299,7 +299,7 @@ let barcode: DataMatrixGenerator;
             barcode.displayText.margin.right = args.value;
         }
     });
-    textMarginRight.appendTo('#TextMarginRight');
+    textMarginRight.appendTo('#TextMarginRight_datamatrix');
 
     let textmarginTop: NumericTextBox = new NumericTextBox({
         enabled: true, format: '###.##',
@@ -308,7 +308,7 @@ let barcode: DataMatrixGenerator;
             barcode.displayText.margin.top = args.value;
         }
     });
-    textmarginTop.appendTo('#TextmarginTop');
+    textmarginTop.appendTo('#TextmarginTop_datamatrix');
 
 
 
@@ -319,10 +319,11 @@ let barcode: DataMatrixGenerator;
             barcode.displayText.margin.bottom = args.value;
         }
     });
-    textMarginBottom.appendTo('#TextMarginBottom');
+    textMarginBottom.appendTo('#TextMarginBottom_datamatrix');
     const downloadButton = new Button({});
-    downloadButton.appendTo('#downloadBtn10');
-    document.getElementById('downloadBtn10').onclick = function () {
+    downloadButton.appendTo('#downloadBtn10_datamatrix');
+    document.getElementById('downloadBtn10_datamatrix').onclick = function () {
         barcode.exportImage("DataMatrix", 'PNG');
     };
 };
+

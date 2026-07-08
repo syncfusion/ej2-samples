@@ -3,7 +3,7 @@ import { Gantt, Selection, DayMarkers } from '@syncfusion/ej2-gantt';
 import { EventmarkerData } from './data-source';
 
 /**
- * Default Gantt sample
+ * Event Markers Gantt sample
  */
 
 Gantt.Inject(Selection, DayMarkers);
@@ -13,8 +13,8 @@ Gantt.Inject(Selection, DayMarkers);
         {
             dataSource: EventmarkerData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -39,17 +39,17 @@ Gantt.Inject(Selection, DayMarkers);
             treeColumnIndex: 1,
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName',headerText: 'Name', width: 250 },
+                { field: 'TaskName', headerText: 'Name', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor' },
-                { field: 'Progress' },
+                { field: 'Progress' }
             ],
             labelSettings: {
                 leftLabel: 'TaskName'
             },
-            splitterSettings:{
+            splitterSettings: {
                 columnIndex: 2
             },
             eventMarkers: [

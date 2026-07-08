@@ -1,7 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Selection, Toolbar, DayMarkers, Edit, Filter, Sort, ContextMenu } from '@syncfusion/ej2-gantt';
 import { WBSData } from './data-source';
-import { CheckBox, Switch } from '@syncfusion/ej2-buttons';
+import { Switch } from '@syncfusion/ej2-buttons';
+
 /**
  * Column WBS Gantt sample
  */
@@ -35,12 +36,12 @@ Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Sort, ContextMenu);
             },
             columns: [
                 { field: 'TaskID', headerText: 'Task ID', visible: false },
-                { field: 'WBSCode', headerText: 'WBS Code',width: '200px'  },
-                { field: 'TaskName', headerText: 'Task Name', allowReordering: false, width: '260px'  },
+                { field: 'WBSCode', headerText: 'WBS Code', width: '130px'  },
+                { field: 'TaskName', headerText: 'Task Name', allowReordering: false, width: '280px'  },
                 { field: 'StartDate', headerText: 'Start Date', width: '140px'  },
-                { field: 'WBSPredecessor', headerText: 'WBS Predecessor',width: '190px' },
+                { field: 'WBSPredecessor', headerText: 'WBS Predecessor', width: '190px' },
                 { field: 'Duration', headerText: 'Duration', allowEditing: false , width: '130px'},
-                { field: 'Progress', headerText: 'Progress'},
+                { field: 'Progress', headerText: 'Progress'}
             ],
             eventMarkers: [
                {
@@ -53,10 +54,9 @@ Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Sort, ContextMenu);
                (gantt.element.getElementsByClassName('e-gantt-right-arrow')[0] as HTMLElement).style.top = '131px';
             },
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll'],
-            allowPdfExport: true,
             allowSelection: true,
             splitterSettings: {
-                columnIndex: 4,
+                columnIndex: 4
             },
             selectionSettings: {
                 mode: 'Row',
@@ -87,20 +87,20 @@ Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Sort, ContextMenu);
                 taskLabel: '${Progress}%'
             },
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             allowUnscheduledTasks: true,
             projectStartDate: new Date('03/30/2025'),
-            projectEndDate: new Date('05/30/2025'),
+            projectEndDate: new Date('05/30/2025')
         });
     gantt.appendTo('#ColumnWbs');
 
-let columnAutoUpdate: Switch = new Switch({ value: 'autoUpdateWbs', checked: true, change: autoUpdate });
-columnAutoUpdate.appendTo('#unchecked');
+    let columnAutoUpdate: Switch = new Switch({ value: 'autoUpdateWbs', checked: true, change: autoUpdate });
+    columnAutoUpdate.appendTo('#unchecked');
 
-function autoUpdate(args: any) {
-    let gantt = (document.getElementsByClassName('e-gantt')[0] as any).ej2_instances[0];
-    gantt.enableAutoWbsUpdate = args.checked;
-}
+    function autoUpdate(args: any) {
+        let gantt = (document.getElementsByClassName('e-gantt')[0] as any).ej2_instances[0];
+        gantt.enableAutoWbsUpdate = args.checked;
+    }
 
 };

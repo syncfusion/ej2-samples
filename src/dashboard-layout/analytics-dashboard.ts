@@ -7,9 +7,9 @@ import { Sidebar } from '@syncfusion/ej2-navigations';
 import { AutoComplete } from '@syncfusion/ej2-dropdowns';
 import {
     AccumulationChart, AccumulationLegend, PieSeries, AccumulationTooltip,
-    AccumulationDataLabel, IAccLoadedEventArgs, AccumulationTheme
+    AccumulationDataLabel, IAccLoadedEventArgs, AccumulationTheme, AccumulationSelection
 } from '@syncfusion/ej2-charts';
-AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel);
+AccumulationChart.Inject(AccumulationLegend, PieSeries, AccumulationTooltip, AccumulationDataLabel, AccumulationSelection);
 Chart.Inject(SplineAreaSeries, DateTime, Legend);
 Chart.Inject(LineSeries, DateTime, Legend, Tooltip);
 import { Maps, MapAjax, Zoom, MapsTooltip, MapsTheme, ILoadEventArgs, Marker } from '@syncfusion/ej2-maps';

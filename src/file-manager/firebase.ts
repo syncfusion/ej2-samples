@@ -8,7 +8,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let hostUrl: string = 'https://realtime-firebase.azurewebsites.net/';
+    let hostUrl: string = 'https://firebase-service.syncfusion.com/';
     let fileObject: FileManager = new FileManager({
         ajaxSettings: {
             url: hostUrl + 'api/FirebaseProvider/FirebaseRealtimeFileOperations',

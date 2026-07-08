@@ -8,7 +8,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let hostUrl: string = 'https://amazons3.azurewebsites.net/api/AmazonS3Provider/';
+    let hostUrl: string = 'https://amazon-service.syncfusion.com/api/AmazonS3Provider/';
     let fileObject: FileManager = new FileManager({
         ajaxSettings: {
             url: hostUrl + 'AmazonS3FileOperations',

@@ -1,9 +1,5 @@
 <style>
-    /* Container for diagram and property panel */
-    .control-section {
-        width: 75%;
-        float: left; /* Keep the diagram section on the left */
-    }
+
     .property-panel-header {
         font-size: larger;
     }
@@ -13,13 +9,11 @@
         background: white;
     }
 
-    /* Property panel style */
-    .property-section {
-        width: 24%; /* Adjusted to fill the remaining space */
-        float: right; /* Ensure the property panel is on the right */
-        padding: 10px;
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+        padding-top: 8px;
     }
-
     /* Align labels and inputs within the property panel */
     .property-panel-content .row {
         margin-left: 0;
@@ -51,7 +45,7 @@
 
 <div>
 
-<div class="control-section">
+<div class=" col-lg-9 control-section">
 <div class="diagram-content-wrapper" style="width:100%;background: white">
     <div id="diagram" class="flow-diagram-container"></div>
 </div>
@@ -92,7 +86,7 @@
         <br>
     </div>
 </div>
-<div class="property-section">
+<div class="col-lg-3 property-section">
     <div class="property-panel-header">
        Properties
     </div>

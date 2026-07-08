@@ -399,6 +399,8 @@ import { loadCultureFiles } from '../common/culture-loader';
           ~ConnectorConstraints.Drag;
       }
     }
+    diagram.fitToPage();
+
   },
   // Settings to display rulers in the diagram
   rulerSettings: { showRulers: true },

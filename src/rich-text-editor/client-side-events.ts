@@ -11,7 +11,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, Emo
 //tslint:disable:max-func-body-length
 (window as any).default = (): void => {
     loadCultureFiles();
-    const hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
+    const hostUrl: string = 'https://services.syncfusion.com/js/production/';
     let defaultRTE: RichTextEditor = new RichTextEditor({
         toolbarSettings: {
             items: ['Bold', 'Italic', 'Underline', 'StrikeThrough', 'SuperScript', 'SubScript', '|',
@@ -24,12 +24,11 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, QuickToolbar, Table, Emo
         },
         fileManagerSettings: {
             enable: true,
-            path: '/Pictures/Food',
             ajaxSettings: {
-              url: hostUrl + 'api/FileManager/FileOperations',
-              getImageUrl: hostUrl + 'api/FileManager/GetImage',
-              uploadUrl: hostUrl + 'api/FileManager/Upload',
-              downloadUrl: hostUrl + 'api/FileManager/Download',
+              url: hostUrl + 'api/RichTextEditor/FileOperations',
+              getImageUrl: hostUrl + 'api/RichTextEditor/GetImage',
+              uploadUrl: hostUrl + 'api/RichTextEditor/Upload',
+              downloadUrl: hostUrl + 'api/RichTextEditor/Download',
             },
         },
         created: create,

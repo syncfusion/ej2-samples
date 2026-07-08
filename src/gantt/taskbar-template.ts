@@ -23,12 +23,12 @@ Gantt.Inject(DayMarkers, Selection);
             },
             columns: [
                 { field: 'TaskId', headerText: 'Event Id', width: 130},
-                { field: 'TaskName', headerText: 'Event Name', width: '250', clipMode: 'EllipsisWithTooltip' },
+                { field: 'TaskName', headerText: 'Event Name', width: 250, clipMode: 'EllipsisWithTooltip' },
                 { field: 'StartDate', headerText: 'Start Time' },
                 { field: 'EndDate', headerText: 'End Time' },
                 { field: 'Winner', headerText: 'Winner' },
                 { field: 'Movie', headerText: 'Movie' },
-                { field: 'Performance', headerText: 'Moments / Performance Details', width:250 }
+                { field: 'Performance', headerText: 'Moments / Performance Details', width: 250 }
             ],
             splitterSettings: {
                 columnIndex: 1
@@ -54,22 +54,28 @@ Gantt.Inject(DayMarkers, Selection);
                 {
                     day: new Date('03/05/2025 07:09:00 PM'),
                     label: 'Performance'
-                }, {
+                },
+                {
                     day: new Date('03/05/2025 07:46:00 PM'),
                     label: 'Moments'
-                }, {
+                },
+                {
                     day: new Date('03/05/2025 07:59:00 PM'),
                     label: 'Performance'
-                }, {
+                },
+                {
                     day: new Date('03/05/2025 08:08:00 PM'),
                     label: 'Moments'
-                }, {
+                },
+                {
                     day: new Date('03/05/2025 08:24:00 PM'),
                     label: 'Moments'
-                }, {
+                },
+                {
                     day: new Date('03/05/2025 08:31:00 PM'),
                     label: 'Performance'
-                }, {
+                },
+                {
                     day: new Date('03/05/2025 08:47:00 PM'),
                     label: 'Moments'
                 }
@@ -78,10 +84,10 @@ Gantt.Inject(DayMarkers, Selection);
             taskbarTemplate: '#childtask',
             milestoneTemplate: '#milestone',
             labelSettings: {
-                leftLabel: 'TaskName',
+                leftLabel: 'TaskName'
             },
             tooltipSettings: {
-                taskbar: '#tooltip',
+                taskbar: '#tooltip'
             },
             projectStartDate: new Date('03/05/2025 06:00 PM'),
             projectEndDate: new Date('03/05/2025 09:50 PM')

@@ -1,5 +1,5 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Sort, SortDirection, DayMarkers, Selection  } from '@syncfusion/ej2-gantt';
+import { Gantt, Sort, SortDirection, DayMarkers, Selection } from '@syncfusion/ej2-gantt';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { editingData } from './data-source';
@@ -8,15 +8,15 @@ import { editingData } from './data-source';
  * Sorting API Gantt sample
  */
 
-Gantt.Inject(Sort, DayMarkers, Selection  );
+Gantt.Inject(Sort, DayMarkers, Selection);
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
         {
             dataSource: editingData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             allowSelection: true,
             allowSorting: true,
@@ -29,15 +29,15 @@ Gantt.Inject(Sort, DayMarkers, Selection  );
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                parentID:'ParentId'
+                parentID: 'ParentId'
             },
             columns: [
-                { field: 'TaskID', visible:false ,headerText: 'ID', width: 80 },
+                { field: 'TaskID', visible: false , headerText: 'ID', width: 80 },
                 { field: 'TaskName', headerText: 'TaskName', width: 250 },
                 { field: 'StartDate', headerText: 'StartDate' },
                 { field: 'EndDate', headerText: 'EndDate' },
                 { field: 'Duration', headerText: 'Duration' },
-                { field: 'Progress', headerText: 'Progress' },
+                { field: 'Progress', headerText: 'Progress' }
             ],
             labelSettings: {
                 leftLabel: 'TaskName'
@@ -46,7 +46,7 @@ Gantt.Inject(Sort, DayMarkers, Selection  );
                 columnIndex: 2
             },
             projectStartDate: new Date('03/26/2025'),
-            projectEndDate: new Date('09/01/2025'),
+            projectEndDate: new Date('09/01/2025')
         });
     gantt.appendTo('#SortingAPI');
 
@@ -60,18 +60,18 @@ Gantt.Inject(Sort, DayMarkers, Selection  );
         ],
         popupWidth: '150px',
         value: 'TaskName',
-        fields: { text: 'type', value: 'id' },
+        fields: { text: 'type', value: 'id' }
     });
     dropDownColumnList.appendTo('#columns');
 
     let dropDownDirectionList: DropDownList = new DropDownList({
         dataSource: [
             { id: 'Ascending', type: 'Ascending' },
-            { id: 'Descending', type: 'Descending' },
+            { id: 'Descending', type: 'Descending' }
         ],
         popupWidth: '150px',
         value: 'Ascending',
-        fields: { text: 'type', value: 'id' },
+        fields: { text: 'type', value: 'id' }
     });
     dropDownDirectionList.appendTo('#direction');
 

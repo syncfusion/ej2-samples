@@ -2,9 +2,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, ContextMenu, ContextMenuClickEventArgs, Filter, Sort, Freeze, QueryCellInfoEventArgs } from '@syncfusion/ej2-grids';
 import { sales } from './data-source';
 import { CategorySeries, ChartChanges, ChartPopupArgs, GridChart, UpdateChartArgs } from '@syncfusion/ej2-grid-chart';
-import { AccumulationChartModel, ChartModel, IAccLoadedEventArgs, ILoadedEventArgs } from '@syncfusion/ej2/charts';
+import { AccumulationChartModel, ChartModel, IAccLoadedEventArgs, ILoadedEventArgs } from '@syncfusion/ej2-charts';
 import { loadAccumulationChartTheme, loadChartTheme } from './grid-chart-theme-color';
-import { isNullOrUndefined } from '@syncfusion/ej2/base';
+import { isNullOrUndefined } from '@syncfusion/ej2-base';
 
 Grid.Inject(ContextMenu, Filter, Sort, Freeze);
 

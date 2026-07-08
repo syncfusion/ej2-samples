@@ -81,6 +81,7 @@ function onDocumentClick(args: MouseEvent): void {
 function onDiagramCreate(args: Object): void {
     diagram.drawingObject = { shape: { type: 'Basic', shape: 'Rectangle' } };
     diagram.tool = DiagramTools.ContinuousDraw;
+    diagram.fitToPage();
 }
 
 // Function to handle tool type change

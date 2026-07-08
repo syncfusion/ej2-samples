@@ -55,6 +55,7 @@ interface Controls {
 }
 
 interface Samples {
+    dir: string;
     url: string;
     uid: string;
     type: string;
@@ -87,12 +88,11 @@ interface MyWindow extends Window {
 loadCldr(numberingSystems, chinaCultureData, enCultureData, swissCultureDate, currencyData, deCultureData, arCultureData);
 L10n.load(Locale);
 setCulture('en');
-let licenseText: string = '{SyncfusionJSLicensekey}';
-window.syncfusionLicenseKey = licenseText;
-registerLicense(licenseText);
+registerLicense((window as any).syncfusionLicenseKey);
 let switcherPopup: Popup;
 let preventToggle: boolean;
 let themeSwitherPopup: Popup;
+let productsSwitherPopup: Popup;
 let openedPopup: any;
 let searchPopup: AutoComplete;
 let settingsPopup: Popup;
@@ -101,6 +101,7 @@ let sidebar: Sidebar;
 let settingsidebar: Sidebar;
 let searchInstance: any;
 let headerThemeSwitch: HTMLElement = document.getElementById('header-theme-switcher');
+let headerProductsSwitch: HTMLElement = document.getElementById('header-products-switcher');
 let settingElement: HTMLElement = <HTMLElement>select('.sb-setting-btn');
 let themeList: HTMLElement = document.getElementById('themelist');
 var themeCollection = ['material3', 'bootstrap5', 'fluent2', 'tailwind3', 'fluent2-highcontrast', 'highcontrast', 'tailwind', 'fluent', 'material3-dark',  'bootstrap5-dark', 'fluent2-dark', 'tailwind3-dark', 'tailwind-dark', 'fluent-dark','bootstrap5.3-dark','bootstrap5.3'];
@@ -110,6 +111,7 @@ let themeDarkButton: HTMLElement = document.getElementById('sb-dark-theme');
 let darkButton: HTMLElement = document.getElementById('sb-dark-span');
 let themeModeDropDown: DropDownList;
 let themeDropDown: DropDownList;
+let productsDropDown: DropDownList;
 let cultureDropDown: DropDownList;
 let currencyDropDown: DropDownList;
 let contentTab: Tab;
@@ -300,6 +302,11 @@ function renderSbPopups(): void {
         relateTo: <HTMLElement>document.querySelector('.theme-wrapper'), position: { X: 'left', Y: 'bottom' },
         collision: { X: 'flip', Y: 'flip' }
     });
+    productsSwitherPopup = new Popup(document.getElementById('products-switcher-popup'), {
+        offsetY: 2,
+        relateTo: <HTMLElement>document.querySelector('.products-wrapper'), position: { X: 'left', Y: 'bottom' },
+        collision: { X: 'flip', Y: 'flip' }
+    });
     searchPopup = new AutoComplete(
         {
             dataSource: [],
@@ -364,6 +371,7 @@ function renderSbPopups(): void {
     searchPopup.hidePopup();
     switcherPopup.hide();
     themeSwitherPopup.hide();
+    productsSwitherPopup.hide();
     themeDropDown = new DropDownList({
         index: themeCollection.indexOf(selectedTheme.split('-')[0]),
         change: (e: any) => { switchTheme(e.value); }
@@ -414,8 +422,21 @@ function renderSbPopups(): void {
             inputElement.dispatchEvent(new Event('input'));
         }
     }
+    // Products dropdown for mobile
+    productsDropDown = new DropDownList({
+        index: 0,
+        change: (e: any) => {
+            let productUrl = getProductUrl(e.value);
+            if (productUrl) {
+                window.open(productUrl, '_blank');
+                // Reset the dropdown selection
+                productsDropDown.value = '';
+            }
+        }
+    });
     cultureDropDown.appendTo('#sb-setting-culture');
     currencyDropDown.appendTo('#sb-setting-currency');
+    productsDropDown.appendTo('#sb-setting-products');
     themeDropDown.appendTo('#sb-setting-theme');
     /**
      * Render tab for content
@@ -604,6 +625,11 @@ function sbHeaderClick(action: string, preventSearch?: boolean | any): void {
             setPressedAttribute(headerThemeSwitch);
             curPopup = themeSwitherPopup;
             break;
+        case 'changeProducts':
+            headerProductsSwitch.classList.toggle('active');
+            setPressedAttribute(headerProductsSwitch);
+            curPopup = productsSwitherPopup;
+            break;
         case 'toggleSettings':
             settingElement.classList.toggle('active');
             setPressedAttribute(settingElement);
@@ -613,8 +639,10 @@ function sbHeaderClick(action: string, preventSearch?: boolean | any): void {
     }
     if (action === 'closePopup') {
         headerThemeSwitch.classList.remove('active');
+        headerProductsSwitch.classList.remove('active');
         settingElement.classList.remove('active');
         setPressedAttribute(headerThemeSwitch);
+        setPressedAttribute(headerProductsSwitch);
         setPressedAttribute(settingElement);
         if (settingsidebar.isOpen && preventSearch && preventSearch.target && preventSearch.target.closest !== undefined &&
             (preventSearch.target.closest('#sb-setting-theme_popup') || preventSearch.target.closest('#sb-setting-culture_popup') ||
@@ -967,6 +995,31 @@ function bindEvents(): void {
             sbHeaderClick('changeTheme');
         }
     });
+    headerProductsSwitch.addEventListener('click', (e: MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        sbHeaderClick('changeProducts');
+    });
+    headerProductsSwitch.addEventListener('keydown', (e: any) => {
+        if (e.keyCode === 'Enter' || e.keyCode === ' ') {
+            sbHeaderClick('changeProducts');
+        }
+    });
+    // Products list click handler
+    let productsList = document.getElementById('products-list');
+    if (productsList) {
+        productsList.addEventListener('click', (e: MouseEvent) => {
+            let target = e.target as HTMLElement;
+            if (target.tagName === 'A') {
+                e.preventDefault();
+                let productName = target.getAttribute('data-product');
+                let productUrl = getProductUrl(productName);
+                if (productUrl) {
+                    window.open(productUrl, '_blank');
+                }
+            }
+        });
+    }
     themeList.addEventListener('click', changeTheme);
     // tslint:disable
     document.addEventListener('click', sbHeaderClick.bind(this, 'closePopup'));
@@ -1346,16 +1399,25 @@ function getTreeviewList(list: any[]): Controls[] | { [key: string]: Object }[] 
                     'control-name': list[i].directory,
                 }
             });
-        controlSampleData[list[i].directory] = getSamples(list[i].samples);
+        controlSampleData[list[i].directory] = getSamples(list[i].samples, list[i].directory);
     }
     return tempList;
 }
 
-function getSamples(samples: any): any {
+function getSamples(samples: any, groupPath?: string): any {
     let tempSamples: any = [];
+    let groupName: string = '';
+    let sampleNameAttr: string = '';
+    let isAISample: boolean = !!groupPath && groupPath.startsWith('ai-') && ['ai-assistview', 'ai-smart-paste', 'ai-smart-textarea'].indexOf(groupPath) === -1;
     for (let i: number = 0; i < samples.length; i++) {
         tempSamples[i] = samples[i];
+        groupName = samples[i].dir;
+        sampleNameAttr = samples[i].name.toLowerCase().replace(/ /g, '-');
         tempSamples[i].data = { 'sample-name': samples[i].url, 'data-path': '/' + samples[i].dir + '/' + samples[i].url + '.html' };
+        if (isAISample) {
+            tempSamples[i].data['group-name'] = groupName;
+            tempSamples[i].data['ai-sample-name'] = sampleNameAttr;
+        }
     }
     return tempSamples;
 }
@@ -1416,15 +1478,37 @@ function viewSwitch(from: HTMLElement, to: HTMLElement, reverse: boolean): void 
     anim.animate(to, { name: reverse ? 'SlideLeftIn' : 'SlideRightIn' });
 }
 
+function updateGroupItemAttributes(): void {
+    const groupItems: NodeListOf<Element> = document.querySelectorAll('#controlList .e-list-group-item.e-level-1');
+    groupItems.forEach((groupItem: Element) => {
+        let sibling: Element = groupItem.nextElementSibling;
+        while (sibling && !sibling.classList.contains('e-list-group-item')) {
+            if (!groupItem.hasAttribute('group-name')) {
+                const groupName: string = sibling.getAttribute('group-name');
+                if (groupName) {
+                    groupItem.setAttribute('group-name', groupName);
+                }
+            }
+            sibling.removeAttribute('group-name');
+            sibling = sibling.nextElementSibling;
+        }
+    });
+}
+
 function setSelectList(): void {
     let hString: string = window.hashString || location.hash;
     let hash: string[] = hString.split('/');
     let list: ListView = (select('#controlList') as any).ej2_instances[0];
-    let control: Element = select('[control-name="' + hash[2] + '"]');
+    let controlName: string = hash[2];
+    if (controlName && controlName.startsWith('ai-') && ['ai-assistview', 'ai-smart-paste', 'ai-smart-textarea'].indexOf(controlName) === -1) {
+        controlName = 'ai-grid';
+    }
+    let control: Element = select('[control-name="' + controlName + '"]');
     const eles = document.querySelectorAll('#controlList .e-list-item.e-level-1');
     for (const ele of eles as any) {
         ele.tabIndex = 0;
     }
+    updateGroupItemAttributes();
     if (control) {
         let data: any = list.dataSource;
         let samples: any = controlSampleData[control.getAttribute('control-name')];
@@ -1488,6 +1572,17 @@ function routeDefault(): void {
             reloadPageForRedirection=true;
         }
     });
+}
+/**
+ * Get product URL based on product name
+ */
+function getProductUrl(productName: string): string {
+    const productUrlMap: { [key: string]: string } = {
+        'pdf': 'https://document.syncfusion.com/demos/pdf-viewer/javascript/#/tailwind3/pdfviewer/default.html',
+        'spreadsheet': 'https://document.syncfusion.com/demos/spreadsheet-editor/javascript/#/tailwind3/spreadsheet/default.html',
+        'docx': 'https://document.syncfusion.com/demos/docx-editor/javascript/#/tailwind3/document-editor/default.html'
+    };
+    return productUrlMap[productName] || '';
 }
 function destroyControls(): void {
     const doControls = [
@@ -1587,7 +1682,7 @@ function addSampleList(samplesList: Controls[]): void {
         const dataManager: DataManager = new DataManager((node as any).samples);
         const samples: Samples[] = <Samples[]>dataManager.executeLocal(new Query().sortBy('order', 'ascending'));
         for (let subNode of samples) {
-            const control: string = node.directory;
+            const control: string = subNode.dir || node.directory;
             const sample: string = subNode.url;
             samplePath = samplePath.concat(control + '/' + sample);
             const selectedTheme: string = location.hash.split('/')[1] || getThemeDefault();
@@ -1604,7 +1699,7 @@ function addRoutes(samplesList: Controls[]): void {
         let samples: Samples[] & { [key: string]: Object }[] = <Samples[] & { [key: string]: Object }[]>
             dataManager.executeLocal(new Query().sortBy('order', 'ascending'));
         for (let subNode of samples) {
-            let control: string = node.directory;
+            let control: string = subNode.dir || node.directory;
             let sample: string = subNode.url;
             samplePath = samplePath.concat(control + '/' + sample);
             let sampleName: string = node.name + ' / ' + ((node.name !== subNode.category) ?
@@ -1847,9 +1942,17 @@ function overlay(): void {
 }
 
 function checkSampleLength(directory: string): boolean {
-    let data: DataManager = new DataManager(samplesList as any);
-    let controls: Controls[] = <Controls[]>data.executeLocal(new Query().where('directory', 'equal', directory));
-    return controls[0].samples.length > 1;
+    const data: DataManager = new DataManager(samplesList as any);
+    const controls: Controls[] =
+        <Controls[]>data.executeLocal(new Query().where('directory', 'equal', directory));
+
+    // ✅ Preserve existing behavior if control exists
+    if (controls.length && controls[0]?.samples) {
+        return controls[0].samples.length > 1;
+    }
+
+    // ✅ If control does not exist (ai-diagram case), fail safely
+    return false;
 }
 
 function parseHash(newHash: string, oldHash: string): void {

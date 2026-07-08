@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Selection } from '@syncfusion/ej2-grids';
 import { pizzaData } from './data-source';
-import { ChipList } from '@syncfusion/ej2/buttons';
+import { ChipList } from '@syncfusion/ej2-buttons';
 
 Grid.Inject(Page, Selection);
 /**

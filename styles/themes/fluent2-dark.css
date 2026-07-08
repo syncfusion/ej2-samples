@@ -26,7 +26,28 @@
     margin: 2px 0px !important;
 }
 
+.fluent2-dark .sb-products-popup {
+    background: #2b2b2b;
+    border: 1px solid #515151;
+    color: #ffffff;
+}
+
+.fluent2-dark .sb-products-popup li {
+    color: #ffffff;
+}
+
+.fluent2-dark .sb-products-popup li:hover {
+    background: #414141;
+}
+
+.fluent2-dark .sb-products-popup li.active {
+    color: #6ac5ff;
+}
+
 .fluent2-dark .sb-theme-select{
+    color:transparent
+}
+.fluent2-dark .sb-products-select{
     color:transparent
 }
 
@@ -201,6 +222,7 @@ color:white;
 .fluent2-dark .sb-switch-popup li:hover,
 .fluent2-dark .theme-wrapper:hover,
 .fluent2-dark .theme-wrapper.active,
+.fluent2-dark .products-wrapper:hover,
 .fluent2-dark .sb-theme-popup li:hover,
 .fluent2-dark .sb-search-result .e-list-item:hover,
 .fluent2-dark .sb-switch-btn:hover,

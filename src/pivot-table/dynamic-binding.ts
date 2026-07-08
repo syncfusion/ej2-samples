@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { PivotView, IDataSet, PivotEngine, DataSourceType, OlapEngine, FieldList, CalculatedField, ConditionalFormatting, NumberFormatting, PDFExport, ExcelExport, Toolbar } from '@syncfusion/ej2-pivotview';
 import { Browser, enableRipple } from '@syncfusion/ej2-base';
 import * as pivotData from './pivot-data/Pivot_Data.json';
-import { Dialog, DialogUtility } from '@syncfusion/ej2/popups';
+import { Dialog, DialogUtility } from '@syncfusion/ej2-popups';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Menu } from '@syncfusion/ej2-navigations';
@@ -55,8 +55,30 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             var dialog = new Dialog({
                 header: title || 'Prompt', content: wrapper, isModal: true, showCloseIcon: true, visible: true, target: document.body, width: '480px',
                 buttons: [
-                    { click: function () { resolved = true; var v = input.value; dialog.hide(); resolve(v); }, buttonModel: { content: 'OK', isPrimary: true } },
-                    { click: function () { resolved = true; dialog.hide(); resolve(null); }, buttonModel: { content: 'Cancel' } }
+                    {
+                        click: function () {
+                            resolved = true;
+                            var v = input.value;
+                            dialog.hide();
+                            resolve(v);
+                        },
+                        isFlat: false,
+                        buttonModel: {
+                            content: 'OK',
+                            isPrimary: true,
+                        },
+                    },
+                    {
+                        click: function () {
+                            resolved = true;
+                            dialog.hide();
+                            resolve(null);
+                        },
+                        isFlat: false,
+                        buttonModel: {
+                            content: 'Cancel',
+                        },
+                    },
                 ],
                 created: function () { setTimeout(function () { input.focus(); input.select(); }, 0); },
                 close: function () { if (!resolved) { resolve(null); } dialog.destroy(); try { host.remove(); } catch (_) { } }
@@ -68,7 +90,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     var defaultUrls = {
         CSV: 'https://cdn.syncfusion.com/data/sales-analysis.csv',
         JSON: 'https://cdn.syncfusion.com/data/sales-analysis.json',
-        REPORT: 'https://api.jsonbin.io/v3/b/6912d9ecd0ea881f40e12335'
+        REPORT: 'https://cdn.syncfusion.com/data/report.json'
     };
 
     var pivot: PivotView;
@@ -151,6 +173,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                 pv.refresh();
                 shouldAutoConfig = false;
                 pv.refresh();
+                pv.engineModule = new PivotEngine();
                 resolve();
             } else {
                 cleanOlapForRelational();
@@ -217,8 +240,10 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                                 finalize();
                             })
                             .catch(function () {
-                                reportSettings.dataSource = currentData;
-                                reportSettings.type = pv.dataSourceSettings.type || 'JSON';
+                                if (!(reportSettings.url !== '' && reportSettings.type === 'CSV')) {
+                                    reportSettings.dataSource = currentData;
+                                    reportSettings.type = pv.dataSourceSettings.type || 'JSON';
+                                }
                                 finalize();
                             });
                     } else if (maybeCsvUrl) {
@@ -244,8 +269,12 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                                 finalize();
                             });
                     } else {
-                        reportSettings.dataSource = currentData;
-                        reportSettings.type = pv.dataSourceSettings.type || 'JSON';
+                        if (reportSettings.type === 'JSON' && !reportSettings.url) {
+                            reportSettings.dataSource = Pivot_Data;
+                        } else {
+                            reportSettings.dataSource = currentData;
+                            reportSettings.type = pv.dataSourceSettings.type || 'JSON';
+                        }
                         finalize();
                     }
                 } else {
@@ -298,12 +327,15 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                             unwrapped.values ||
                             unwrapped.url ||
                             unwrapped.providerType);
-
+                    if (unwrapped && unwrapped.chartSettings && unwrapped.chartSettings.zoomSettings) {
+                        unwrapped.chartSettings.zoomSettings.toolbarPosition = {};
+                        unwrapped.chartSettings.zoomSettings.accessibility = {};
+                    }
                     if (looksLikeReport) {
                         var reportSettings = unwrapped.dataSourceSettings || unwrapped;
                         var isOlapReport =
                             reportSettings && reportSettings.providerType === 'SSAS';
-
+                        reportSettings.dataSource = Pivot_Data;
                         if ((reportSettings as any).dataUrl) {
                             lastRemote = { kind: 'JSON', url: (reportSettings as any).dataUrl };
                         } else if ((reportSettings as any).csvUrl) {
@@ -555,7 +587,39 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
                 container.appendChild(addLabel('Cubes')); var cubeDropEl = document.createElement('input'); container.appendChild(cubeDropEl);
                 var errorEl = document.createElement('div'); errorEl.className = 'error-message'; errorEl.style.gridColumn = '1 / span 2'; errorEl.style.marginTop = '6px'; errorEl.textContent = ''; container.appendChild(errorEl);
 
-                var dialog = new Dialog({ header: 'Connect to OLAP(XMLA)', content: container, isModal: true, showCloseIcon: true, visible: true, width: '620px', target: document.body, buttons: [{ buttonModel: { content: 'OK', isPrimary: true }, click: onOk }, { buttonModel: { content: 'Cancel' }, click: function () { dialog.hide(); } }], close: function () { dialog.destroy(); host.remove(); } });
+                var dialog = new Dialog({
+                    header: 'Connect to OLAP(XMLA)',
+                    content: container,
+                    isModal: true,
+                    showCloseIcon: true,
+                    visible: true,
+                    width: '620px',
+                    target: document.body,
+                    buttons: [
+                        {
+                            click: onOk,
+                            isFlat: false,
+                            buttonModel: {
+                                content: 'OK',
+                                isPrimary: true,
+                                disabled: true
+                            },
+                        },
+                        {
+                            click: function () {
+                                dialog.hide();
+                            },
+                            isFlat: false,
+                            buttonModel: {
+                                content: 'Cancel',
+                            },
+                        },
+                    ],
+                    close: function () {
+                        dialog.destroy();
+                        host.remove();
+                    },
+                });
                 dialog.appendTo(host);
 
                 var connectBtn = new Button({ content: 'Connect', isPrimary: true }, connectBtnEl);
@@ -574,11 +638,12 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
 
                         discoverDataSources(urlInput.value.trim()).then(function (list) {
                             if (!list.length) { errorEl.textContent = 'No data sources found.'; return; }
-                            dsDrop.placeholder = 'Select data source'; dsDrop.dataSource = list; dsDrop.enabled = true; dsDrop.dataBind();
-                        }).catch(function (e: any) { errorEl.textContent = 'Connect failed: ' + e.message + '. If the browser blocks this due to CORS, configure a proxy base URL and try again.'; })
+                            dsDrop.placeholder = 'Select data source'; dsDrop.dataSource = list; dialog[`btnObj`][0].disabled = false; dsDrop.enabled = true; dsDrop.dataBind();
+                        }).catch(function (e: any) { dialog[`btnObj`][0].disabled = true; errorEl.textContent = 'Connect failed: ' + e.message + '. If the browser blocks this due to CORS, configure a proxy base URL and try again.'; })
                             .then(function () { if (connectBtn && connectBtn.setProperties) { connectBtn.setProperties({ content: 'Connect' }); connectBtn.dataBind(); } connectBtn.disabled = false; }, function () { if (connectBtn && connectBtn.setProperties) { connectBtn.setProperties({ content: 'Connect' }); connectBtn.dataBind(); } connectBtn.disabled = false; });
                     } catch (e: any) {
                         errorEl.textContent = 'Connect failed: ' + e.message;
+                        dialog[`btnObj`][0].disabled = true;
                         if (connectBtn && connectBtn.setProperties) { connectBtn.setProperties({ content: 'Connect' }); connectBtn.dataBind(); }
                         connectBtn.disabled = false;
                     }

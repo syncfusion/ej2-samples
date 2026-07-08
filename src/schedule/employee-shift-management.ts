@@ -130,50 +130,30 @@ Schedule.Inject(TimelineViews, Agenda, Resize, DragAndDrop);
         { name: 'Receptionist', id: 8, groupId: 3 }
     ];
 
-    const imagePath: string = 'src/schedule/images/';
-    const salamanImage: string = `${imagePath}salman@3x.png`;
-    const brianImage: string = `${imagePath}brian@3x.png`;
-    const jakeImage: string = `${imagePath}jake@3x.png`;
-    const jenniferImage: string = `${imagePath}Jennifer.png`;
-    const davidImage: string = `${imagePath}David.png`;
-    const williammImage: string = `${imagePath}William.png`;
-    const emmaImage: string = `${imagePath}Emma.png`;
-    const lilyImage: string = `${imagePath}Lily.png`;
-    const avaImage: string = `${imagePath}Ava.png`;
-    const graceImage: string = `${imagePath}Grace.png`;
-    const michaelImage: string = `${imagePath}Michael.png`;
-    const thomasImage: string = `${imagePath}Thomas.png`;
-    const rickyImage: string = `${imagePath}Ricky.png`;
-    const jamesImage: string = `${imagePath}James.png`;
-    const benjaminImage: string = `${imagePath}Benjamin.png`;
-    const oliviaImage: string = `${imagePath}Olivia.png`;
-    const chloeImage: string = `${imagePath}Chloe.png`;
-
-
     const employeeImages: EmployeeImage[] = [
-        { name: 'John', image: `${imagePath}robert.png` },
-        { name: 'Nashil', image: `${imagePath}nancy.png` },
-        { name: 'Jennifer', image: jenniferImage },
-        { name: 'William', image: williammImage },
-        { name: 'David', image: davidImage },
-        { name: 'Michael', image: michaelImage },
-        { name: 'Thomas', image: thomasImage },
-        { name: 'Daniel', image: `${imagePath}robson.png` },
-        { name: 'Mark', image: `${imagePath}will-smith.png` },
-        { name: 'Brian', image: brianImage },
-        { name: 'Kevin', image: `${imagePath}alice.png` },
-        { name: 'Salman', image: salamanImage },
-        { name: 'Emma', image: emmaImage },
-        { name: 'Lily', image: lilyImage },
-        { name: 'Ava', image: avaImage },
-        { name: 'Grace', image: graceImage },
-        { name: 'Zoe', image: `${imagePath}laura.png` },
-        { name: 'James', image: jamesImage },
-        { name: 'Benjamin', image: benjaminImage },
-        { name: 'Olivia', image: oliviaImage },
-        { name: 'Chloe', image: chloeImage },
-        { name: 'Ricky', image: rickyImage },
-        { name: 'Jake', image: jakeImage }
+        { name: 'John', image: `robert` },
+        { name: 'Nashil', image: `nancy` },
+        { name: 'Jennifer', image: `Jennifer` },
+        { name: 'William', image: `William` },
+        { name: 'David', image: `David` },
+        { name: 'Michael', image: `Michael` },
+        { name: 'Thomas', image: `Thomas` },
+        { name: 'Daniel', image: `robson` },
+        { name: 'Mark', image: `will-smith` },
+        { name: 'Brian', image: `brian@3x` },
+        { name: 'Kevin', image: `alice` },
+        { name: 'Salman', image: `salman@3x` },
+        { name: 'Emma', image: `Emma` },
+        { name: 'Lily', image: `Lily` },
+        { name: 'Ava', image: `Ava` },
+        { name: 'Grace', image: `Grace` },
+        { name: 'Zoe', image: `laura` },
+        { name: 'James', image: `James` },
+        { name: 'Benjamin', image: `Benjamin` },
+        { name: 'Olivia', image: `Olivia` },
+        { name: 'Chloe', image: `Chloe` },
+        { name: 'Ricky', image: `Ricky` },
+        { name: 'Jake', image: `jake@3x` }
     ];
 
     // Doctors data
@@ -203,7 +183,6 @@ Schedule.Inject(TimelineViews, Agenda, Resize, DragAndDrop);
     const doctorsTreeFields = { dataSource: doctorsData, id: 'Id', text: 'Name' };
     const nursesTreeFields = { dataSource: nursesData, id: 'Id', text: 'Name' };
     const staffsTreeFields = { dataSource: staffsData, id: 'Id', text: 'Name' };
-    const defaultImage = `${imagePath}default.png`;
 
     const employeeImageMap: Record<string, string> = employeeImages.reduce((map, emp) => {
         map[emp.name.toLowerCase()] = emp.image;
@@ -213,7 +192,7 @@ Schedule.Inject(TimelineViews, Agenda, Resize, DragAndDrop);
     // Update ImageSrc for all staff members in allData array
     allData.forEach((staff: StaffMember) => {
         const key = staff.Name.trim().toLowerCase();
-        staff.ImageSrc = employeeImageMap[key] || defaultImage;
+        staff.ImageSrc = employeeImageMap[key];
     });
 
     const getEventElement = (props: EventProps, element: HTMLElement): HTMLElement => {
@@ -236,7 +215,7 @@ Schedule.Inject(TimelineViews, Agenda, Resize, DragAndDrop);
         const staffImage = document.createElement('img');
         staffImage.className = 'staff-image';
         if (imageUrl) {
-            staffImage.src = imageUrl;
+            staffImage.src = `src/schedule/images/${imageUrl}.png`;
         }
 
         const staffInfo = document.createElement('div');

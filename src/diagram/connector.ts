@@ -22,6 +22,7 @@ let targetDecoratorSize:  NumericTextBox;
 let segmentDecoratorSize:  NumericTextBox;
 function created(): void {
     diagram.updateViewPort();
+    diagram.fitToPage();
 }
 
 //Sets the default values of nodes

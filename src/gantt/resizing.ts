@@ -1,19 +1,20 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Selection, Resize } from '@syncfusion/ej2-gantt';
+import { Gantt, Resize } from '@syncfusion/ej2-gantt';
 import { projectNewData } from './data-source';
 
 /**
  *  Resize support in Gantt sample
  */
-Gantt.Inject(Selection, Resize );
+
+Gantt.Inject(Resize);
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             allowResizing: true,
             taskFields: {
@@ -27,8 +28,8 @@ Gantt.Inject(Selection, Resize );
                 parentID: 'ParentId'
             },
             columns: [
-                { field: 'TaskID', headerText: 'ID', width: 80 , minWidth: 8},
-                { field: 'TaskName', headerText: 'Job Name', width: 250, minWidth: 120, maxWidth: 300 },
+                { field: 'TaskID', headerText: 'ID', width: 80, minWidth: 8 },
+                { field: 'TaskName', headerText: 'Job Name', width: 280, minWidth: 120, maxWidth: 300 },
                 { field: 'StartDate', width: 135, minWidth: 8 },
                 { field: 'EndDate', width: 135, minWidth: 8 },
                 { field: 'Duration', allowResizing: false, width: 120 },

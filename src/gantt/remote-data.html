@@ -26,9 +26,10 @@
 <div id="description">
     <p>
         The <code>dataSource</code> property in Gantt Chart can be assigned with the instance of
-        <code>DataManager</code> to bind remote data.
-        The DataManager, which will act as an interface between the service endpoint and the Gantt Chart, will require
-        the below minimal information to interact with service endpoint properly.
+        <code>DataManager</code> to bind remote data. The DataManager, which will act as an interface between the service
+        endpoint and the Gantt Chart, will require the below minimal information to interact with service endpoint properly.
+    </p>
+    <ul>
         <li><code>DataManager->url</code> - Defines the service endpoint to fetch data</li>
         <li><code>DataManager->adaptor</code> - Defines the adaptor option. By default, ODataAdaptor is used for remote binding.</li>
         Adaptor is responsible for processing response and request from/to the service endpoint.
@@ -38,14 +39,16 @@
         <li><code>ODataV4Adaptor</code> - Use this to interact with OData V4 endpoints.</li>
         <li><code>WebApiAdaptor</code> - Use this to interact with Web API created under OData standards.</li>
         <li><code>WebMethodAdaptor</code> - Use this to interact with web methods.</li>
+    </ul>
+    <p>
         In this demo, remote data is bound by assigning service data as an instance of <code>DataManager</code> to the <code>dataSource</code> property.
         More information on the data binding can be found in this documentation section.
     </p>
     <p style="font-weight: 500">Injecting Module:</p>
     <p>
-        Gantt control features are segregated into individual feature-wise modules. To use a selection, inject the
-        <code>Selection</code> module using the <code>Gantt.Inject(Selection)</code> method
+        Gantt component features are segregated into individual feature-wise modules. To use a selection, virtual scroll and markers features, inject the
+        <code>Selection</code>, <code>VirtualScroll</code>, and <code>DayMarkers</code> modules using the <code>Gantt.Inject(Selection)</code>, <code>Gantt.Inject(VirtualScroll)</code>
+        and <code>Gantt.Inject(DayMarkers)</code> methods.
     </p>
-    <br>
     <p>More information on the Essential<sup>®</sup> JS2 Gantt Chart can be found in this <a target="_blank" href="https://ej2.syncfusion.com/documentation/gantt/data-binding#remote-data">documentation section</a>.</p>
 </div>

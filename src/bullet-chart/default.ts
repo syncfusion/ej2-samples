@@ -105,7 +105,7 @@ BulletChart.Inject(BulletTooltip);
 
     let chart5: BulletChart = new BulletChart({
         width: Browser.isDevice ? '100%' : '80%',
-        tooltip: { enable: false },
+        tooltip: { enable: true },
         dataSource: [{ value: 4.9, target: 4 }],
         valueField: 'value',
         targetField: 'target',

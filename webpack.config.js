@@ -59,8 +59,13 @@ function webpackConfig(conf) {
         var dirname = samplesList[i].directory;
         var samples = samplesList[i].samples;
         for (var j = 0; samples && j < samples.length; j++) {
-            var entryPoint = 'src/' + dirname + '/' + samples[j].url;
-            conf.entry['src/'+ dirname + '/' +samples[j].url] = './' + entryPoint;
+            var sample = samples[j];
+            // ✅ SAFE FIX: respect sample.dir ONLY for webpack resolution
+            var resolvedDir = sample.dir && sample.dir !== dirname ? sample.dir : dirname;
+            var entryKey = 'src/' + dirname + '/' + sample.url;
+            var entryPath = './src/' + resolvedDir + '/' + sample.url;
+
+            conf.entry[entryKey] = entryPath;
         }
     }
     return conf;

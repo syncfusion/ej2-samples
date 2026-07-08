@@ -1,9 +1,8 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Edit, Selection, Toolbar, DayMarkers } from '@syncfusion/ej2-gantt';
 import { constraintData } from './data-source';
-
 /**
- * Editing Gantt sample
+ * Constraints Gantt sample
  */
 Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
 
@@ -22,8 +21,8 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 constraintType: 'ConstraintType',
                 constraintDate: 'ConstraintDate',
                 dependency: 'Predecessor',
-                parentID: 'parentID',
-                notes: 'info',
+                parentID: 'ParentID',
+                notes: 'info'
             },
             editSettings: {
                 allowAdding: true,
@@ -46,7 +45,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                     format: 'MMM dd, y',
                 },
                 bottomTier: {
-                    unit: 'Day',
+                    unit: 'Day'
                 }
             },
             eventMarkers: [
@@ -54,34 +53,34 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 day: new Date('03/25/2025'),
                 label: 'Project StartDate'
               }, {
-                day: new Date('08/31/2025'),
+                day: new Date('09/06/2025'),
                 label: 'Project EndDate'
               }
            ],
             columns: [
-                { field: 'TaskID', visible: false},
-                { field: 'TaskName', headerText: 'Job Name', width: '200', clipMode: 'EllipsisWithTooltip'},
-                { field: 'StartDate'},
-                { field: 'Duration'},
-                { field: 'ConstraintType',width: '180'},
-                { field: 'ConstraintDate',width:200 },
-                { field: 'EndDate'},
+                { field: 'TaskID', visible: false },
+                { field: 'TaskName', headerText: 'Job Name', width: 230, clipMode: 'EllipsisWithTooltip' },
+                { field: 'StartDate' },
+                { field: 'Duration' },
+                { field: 'ConstraintType', width: 180 },
+                { field: 'ConstraintDate', width: 200 },
+                { field: 'EndDate' },
                 { field: 'Predecessor' },
-                { field: 'Progress'},
+                { field: 'Progress'}
             ],
             labelSettings: {
                 leftLabel: 'TaskName',
-                rightLabel: '#rightLabel',
+                rightLabel: '#rightLabel'
             },
             splitterSettings: {
                 columnIndex: 4
             },
             projectStartDate: new Date('03/25/2025'),
-            projectEndDate: new Date('09/10/2025')
+            projectEndDate: new Date('09/06/2025')
     });
     gantt.appendTo('#Constraint');
     (window as any).getConstraintText = function (value: number): string {
-         const map: { [key: number]: string } = {
+        const map: { [key: number]: string } = {
             0: 'As Soon As Possible',
             1: 'As Late As Possible',
             2: 'Must Start On',

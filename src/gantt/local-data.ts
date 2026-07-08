@@ -1,20 +1,20 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Selection, DayMarkers  } from '@syncfusion/ej2-gantt';
+import { Gantt, Selection, DayMarkers } from '@syncfusion/ej2-gantt';
 import { localData } from './data-source';
 
 /**
  * Local data Gantt sample
  */
 
-Gantt.Inject(Selection, DayMarkers );
+Gantt.Inject(Selection, DayMarkers);
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
         {
             dataSource: localData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             allowSelection: true,
             treeColumnIndex: 1,
@@ -30,12 +30,12 @@ Gantt.Inject(Selection, DayMarkers );
             },
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName', width: 250 },
+                { field: 'TaskName', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor' },
-                { field: 'Progress' },
+                { field: 'Progress' }
             ],
             labelSettings: {
                 leftLabel: 'TaskName'

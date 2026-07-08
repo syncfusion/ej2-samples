@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Selection, VirtualScroll, QueryCellInfoEventArgs } from '@syncfusion/ej2-grids';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
@@ -9,7 +8,6 @@ Grid.Inject(Selection, VirtualScroll);
  * Live Data sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     const getTradeData: object = [
         {
             id: 1,

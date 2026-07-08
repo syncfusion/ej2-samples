@@ -11,7 +11,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView);
         { text: 'Refresh', iconCss: 'e-icons e-refresh' },
         { text: 'Delete', iconCss: 'e-icons e-trash' },
     ];
-    const hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
+    const hostUrl: string = 'https://physical-service.syncfusion.com/';
 
     const fileManager = new FileManager({
         ajaxSettings: {
@@ -180,7 +180,8 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView);
             "mp3": "background-audio",
             "docx": "background-doc",
             "txt": "background-txt",
-            "xlsx": "background-xlsx"
+            "xlsx": "background-xlsx",
+            "zip": "background-zip"
         };
 
         if (!item.isFile) return "file-icon background-folder";

@@ -14,8 +14,8 @@ Gantt.Inject(Filter, Toolbar, DayMarkers, Selection);
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             allowSelection: true,
             allowFiltering: true,
@@ -32,12 +32,12 @@ Gantt.Inject(Filter, Toolbar, DayMarkers, Selection);
             },
             columns: [
                 { field: 'TaskID', width: 100 },
-                { field: 'TaskName', width: 250 },
+                { field: 'TaskName', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor', width: 190 },
-                { field: 'Progress' },
+                { field: 'Progress' }
             ],
             labelSettings: {
                 leftLabel: 'TaskName'

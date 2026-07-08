@@ -1,14 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
 import { resourcesData, resourceCollection } from './data-source';
-
 import { Gantt, Selection, DayMarkers, Toolbar, Edit, Resize } from '@syncfusion/ej2-gantt';
-
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 
 /**
- *  ResourceView Gantt sample
+ *  Resource view Gantt sample
  */
+
 Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize);
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -46,12 +44,12 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize);
             },
             columns: [
                 { field: 'TaskID', visible: false },
-                { field: 'TaskName', headerText: 'Name', width: 250 },
+                { field: 'TaskName', headerText: 'Name', width: 280 },
                 { field: 'work', headerText: 'Work' },
                 { field: 'Progress' },
                 { field: 'resourceGroup', headerText: 'Group' },
                 { field: 'StartDate' },
-                { field: 'Duration' },
+                { field: 'Duration' }
             ],
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll',
             { text: 'Show/Hide Overallocation', tooltipText: 'Show/Hide Overallocation', id: 'showhidebar' }],
@@ -72,8 +70,8 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, Resize);
             highlightWeekends: true,
             treeColumnIndex: 1,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             projectStartDate: new Date('03/26/2025'),
             projectEndDate: new Date('05/18/2025')
         });

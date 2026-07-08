@@ -68,12 +68,12 @@ RichTextEditor.Inject(Toolbar, Link, Image, Count, HtmlEditor, QuickToolbar, Tab
         },
         enableXhtml: true,
         fileManagerSettings: {
-            enable: true, path: '/Pictures/Food',
+            enable: true,
             ajaxSettings: {
-                url: 'https://ej2-aspcore-service.azurewebsites.net/api/FileManager/FileOperations',
-                getImageUrl: 'https://ej2-aspcore-service.azurewebsites.net/api/FileManager/GetImage',
-                uploadUrl: 'https://ej2-aspcore-service.azurewebsites.net/api/FileManager/Upload',
-                downloadUrl: 'https://ej2-aspcore-service.azurewebsites.net/api/FileManager/Download'
+                url: hostUrl + 'api/RichTextEditor/FileOperations',
+                getImageUrl: hostUrl + 'api/RichTextEditor/GetImage',
+                uploadUrl: hostUrl + 'api/RichTextEditor/Upload',
+                downloadUrl: hostUrl + 'api/RichTextEditor/Download'
             }
         },
         quickToolbarSettings: {

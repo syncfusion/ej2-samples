@@ -24,7 +24,7 @@ MultiSelect.Inject(CheckBoxSelection);
             { Id: 'format1', Text: 'dd/MMM/yy hh:mm a' },
             { Id: 'format2', Text: 'yyyy-MM-dd' },
             { Id: 'format3', Text: 'dd-MMMM-yyyy' },
-             { Id: 'format4', Text: 'yyyy/MM/dd HH:mm' }
+            { Id: 'format4', Text: 'yyyy/MM/dd HH:mm' }
         ],
         fields: { text: 'Text', value: 'Id' },
         change: (args: DropDownChangeEventArgs) => {

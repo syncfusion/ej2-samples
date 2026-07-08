@@ -1,15 +1,13 @@
 import { loadCultureFiles } from '../common/culture-loader';
-
 import { Gantt, Edit, Selection, Toolbar, DayMarkers } from '@syncfusion/ej2-gantt';
 import { editingData, editingResources } from './data-source';
-
 /**
  * Editing Gantt sample
  */
 Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
 (window as any).default = (): void => {
     loadCultureFiles();
-    let startDate :any;
+    let startDate: Date;
     let gantt: Gantt = new Gantt(
         {
             dataSource: editingData,
@@ -22,7 +20,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                parentID:'ParentId',
+                parentID: 'ParentId',
                 notes: 'info',
                 resourceInfo: 'resources'
             },
@@ -37,35 +35,35 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
             allowSelection: true,
             gridLines: 'Both',
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             treeColumnIndex: 1,
             resourceFields: {
                 id: 'resourceId',
                 name: 'resourceName'
             },
             resources: editingResources,
-            created:function() {
+            created: function() {
                 if(document.querySelector('.e-bigger'))
                 {
-                  gantt.rowHeight=48;
-                  gantt.taskbarHeight=28;
+                  gantt.rowHeight = 48;
+                  gantt.taskbarHeight = 28;
                 }
             },
             highlightWeekends: true,
             timelineSettings: {
                 topTier: {
                     unit: 'Week',
-                    format: 'MMM dd, y',
+                    format: 'MMM dd, y'
                 },
                 bottomTier: {
-                    unit: 'Day',
+                    unit: 'Day'
                 },
             },
             enableHover: true,
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName', headerText: 'Job Name', width: '250', clipMode: 'EllipsisWithTooltip', validationRules: { required: true, minLength: [5, 'Task name should have a minimum length of 5 characters'], } },
+                { field: 'TaskName', headerText: 'Job Name', width: 260, clipMode: 'EllipsisWithTooltip', validationRules: { required: true, minLength: [5, 'Task name should have a minimum length of 5 characters'] } },
                 { field: 'StartDate' },
                 { field: 'EndDate', validationRules: { required: [customFn, 'Please enter a value greater than the start date.'] } },
                 { field: 'Duration', validationRules: { required: true} },
@@ -80,12 +78,12 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 { type: 'General', headerText: 'General' },
                 { type: 'Dependency' },
                 { type: 'Resources' },
-                { type: 'Notes' },
+                { type: 'Notes' }
             ],
             splitterSettings: {
                 columnIndex: 3
             },
-            actionBegin: function (args) {
+            actionBegin: function (args: any) {
                 if (args.columnName === "EndDate" || args.requestType === "beforeOpenAddDialog" || args.requestType === "beforeOpenEditDialog") {
                     startDate = args.rowData.ganttProperties.startDate;
                 }
@@ -94,7 +92,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 }
             },
             projectStartDate: new Date('03/26/2025'),
-            projectEndDate: new Date('09/10/2025'),
+            projectEndDate: new Date('09/10/2025')
         });
     gantt.appendTo('#Editing');
     function customFn(args: any) {

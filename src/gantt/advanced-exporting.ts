@@ -1,19 +1,15 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, ExcelExport, Selection, Toolbar, PdfExport, PdfExportProperties,DayMarkers,CriticalPath } from '@syncfusion/ej2-gantt';
-import { editingData, editingResources,pdfExportData } from './data-source';
+import { Gantt, Selection, Toolbar, PdfExport, PdfExportProperties, DayMarkers, CriticalPath } from '@syncfusion/ej2-gantt';
+import { editingResources, pdfExportData } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 import { Switch } from '@syncfusion/ej2-buttons';
-import {
-    PdfColor,
-    PdfFontStyle,
-    PdfPen,
-    PdfDashStyle,
-  } from "@syncfusion/ej2-pdf-export";
+import { PdfColor, PdfFontStyle, PdfPen, PdfDashStyle } from "@syncfusion/ej2-pdf-export";
 
 /**
- * Editing Gantt sample
+ * Advanced Exporting Gantt sample
  */
-Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers, CriticalPath);
+
+Gantt.Inject(Selection, Toolbar, PdfExport, DayMarkers, CriticalPath);
 (<{ getResourceElements?: Function }>window).getResourceElements = (value: any) => {
   let out: string = '';
   let img: HTMLImageElement = document.createElement('img');
@@ -34,155 +30,156 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers, CriticalPat
     let isFitToWidth: boolean;
     let gantt: Gantt = new Gantt(
         {
-            dataSource: pdfExportData,
-            enableCriticalPath: true,
-            dateFormat: 'MMM dd, y',
-            taskFields: {
-                id: 'TaskID',
-                name: 'TaskName',
-                startDate: 'StartDate',
-                endDate: 'EndDate',
-                duration: 'Duration',
-                progress: 'Progress',
-                dependency: 'Predecessor',
-                child: 'subtasks',
-                resourceInfo: 'resources'
-            },
-            eventMarkers: [
-                {
-                  day: new Date("04/09/2025"),
-                  label: "Research phase",
-                },
-                {
-                  day: new Date("06/20/2025"),
-                  label: "Sales and marketing phase",
-                },
-              ],
-            holidays: [
-                {
-                  from: new Date("04/04/2025"),
-                  to: new Date("04/04/2025"),
-                  label: "Local Holiday",
-                },
-                {
-                  from: new Date("04/19/2025"),
-                  to: new Date("04/19/2025"),
-                  label: "Good Friday",
-                },
-                {
-                  from: new Date("04/30/2025"),
-                  to: new Date("04/30/2025"),
-                  label: "Release Holiday",
-                },
-              ],
-            columns: [
-                { field: "TaskID", width: 80 },
-                { field: "TaskName", width: 250 },
-                { field: "StartDate" },
-                { field: "EndDate" },
-                { field: "Progress" },
-            ],
-            splitterSettings: {
-                columnIndex: 3,
-            },
-            allowPdfExport: true,
-            toolbar: ['PdfExport'],
-            toolbarClick: (args?: ClickEventArgs) => {
-                if (args.item.id === 'advanceExport_pdfexport') {
-                    const borderWidth = 1;
-                    const borderColor = new PdfColor(227, 22, 91);
-                    const pdfpen = new PdfPen(borderColor, borderWidth);
-                    pdfpen.dashStyle = PdfDashStyle.Dash;
-                    let exportProperties: PdfExportProperties = {
-                      pageSize: "A2",
-                      fileName: "Product Development Report.pdf.pdf",
-                      ganttStyle: {
-                        eventMarker: {
-                          label: {
-                            fontColor: new PdfColor(33, 33, 33),
-                            fontStyle: PdfFontStyle.Bold,
-                            backgroundColor: new PdfColor(253, 191, 100),
-                          },
-                          lineStyle: pdfpen,
-                        },
-                        holiday: {
-                          fontColor: new PdfColor(33, 33, 33),
-                          backgroundColor: new PdfColor(243, 244, 246),
-                        },
-                      },
-                      header: {
-                        fromTop: 0,
-                        height: 150,
-                        contents: [
-                          {
-                            type: 'Text',
-                            value:'Product Development Lifecycle Gantt Chart Report March 2025 - June 2025',
-                            position: { x: 20, y: 20 },
-                            style: { textBrushColor: '#00008B', fontSize: 24 },
-                          },
-                          {
-                            type: 'Line',
-                            style: { penColor: '#00008B', penSize: 2, dashStyle: 'Solid' },
-                            points: { x1: 20, y1: 70, x2: 755, y2: 70 }, 
-                          },
-                        ],
-                      },
-                      footer: {
-                        fromBottom: 160,
-                        height: 100,
-                        contents: [
-                          {
-                            type: 'Text',
-                            value: "© 2025 Syncfusion Inc. All Rights Reserved.\n" +
-                              "Generated on: " + new Date().toLocaleString('en-US', {
-                                month: 'long',
-                                day: '2-digit',
-                                year: 'numeric',
-                                hour: '2-digit',
-                                minute: '2-digit',
-                                second: '2-digit',
-                                hour12: true
-                              }),
-                            position: { x: 1950, y: 40 },
-                            style: { textBrushColor: '#3a435e', fontSize: 20 },
-                          }
-                        ]
-                      },
-                      fitToWidthSettings: {
-                        isFitToWidth: isFitToWidth
-                      },
-                    };
-                    gantt.pdfExport(exportProperties);
-                  };
-            },
-            pdfQueryTaskbarInfo: pdfQueryTaskbarInfo,
-            queryTaskbarInfo: queryTaskbarInfo,
-            allowSelection: true,
-            gridLines: 'Both',
-            height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
-            treeColumnIndex: 1,
-            resourceFields: {
-                id: 'resourceId',
-                name: 'resourceName'
-            },
-            resources: editingResources,
-            highlightWeekends: true,
-            timelineSettings: {
-                topTier: {
-                    unit: 'Week',
-                    format: 'MMM dd, y',
-                },
-                bottomTier: {
-                    unit: 'Day',
-                },
-            },
-            labelSettings: {
-                leftLabel: "#leftLabel",
-                rightLabel: "#rightLabel",
+          dataSource: pdfExportData,
+          enableCriticalPath: true,
+          dateFormat: 'MMM dd, y',
+          taskFields: {
+              id: 'TaskID',
+              name: 'TaskName',
+              startDate: 'StartDate',
+              endDate: 'EndDate',
+              duration: 'Duration',
+              progress: 'Progress',
+              dependency: 'Predecessor',
+              child: 'subtasks',
+              resourceInfo: 'resources'
+          },
+          eventMarkers: [
+              {
+                day: new Date("04/09/2025"),
+                label: "Research phase"
               },
-            projectStartDate: new Date('03/25/2025')
+              {
+                day: new Date("06/20/2025"),
+                label: "Sales and marketing phase"
+              },
+            ],
+          holidays: [
+              {
+                from: new Date("04/04/2025"),
+                to: new Date("04/04/2025"),
+                label: "Local Holiday"
+              },
+              {
+                from: new Date("04/19/2025"),
+                to: new Date("04/19/2025"),
+                label: "Good Friday"
+              },
+              {
+                from: new Date("04/30/2025"),
+                to: new Date("04/30/2025"),
+                label: "Release Holiday"
+              },
+            ],
+          columns: [
+              { field: "TaskID", width: 80 },
+              { field: "TaskName", width: 280 },
+              { field: "StartDate" },
+              { field: "EndDate" },
+              { field: "Progress" }
+          ],
+          splitterSettings: {
+              columnIndex: 3
+          },
+          allowPdfExport: true,
+          toolbar: ['PdfExport'],
+          toolbarClick: (args?: ClickEventArgs) => {
+            if (args.item.id === 'advanceExport_pdfexport') {
+              const borderWidth = 1;
+              const borderColor = new PdfColor(227, 22, 91);
+              const pdfPen = new PdfPen(borderColor, borderWidth);
+              pdfPen.dashStyle = PdfDashStyle.Dash;
+              let exportProperties: PdfExportProperties = {
+                pageSize: "A2",
+                fileName: "Product Development Report.pdf",
+                ganttStyle: {
+                  eventMarker: {
+                    label: {
+                      fontColor: new PdfColor(33, 33, 33),
+                      fontStyle: PdfFontStyle.Bold,
+                      backgroundColor: new PdfColor(253, 191, 100)
+                    },
+                    lineStyle: pdfPen,
+                  },
+                  holiday: {
+                    fontColor: new PdfColor(33, 33, 33),
+                    backgroundColor: new PdfColor(243, 244, 246)
+                  },
+                },
+                header: {
+                  fromTop: 0,
+                  height: 150,
+                  contents: [
+                    {
+                      type: 'Text',
+                      value:'Product Development Lifecycle Gantt Chart Report March 2025 - June 2025',
+                      position: { x: 20, y: 20 },
+                      style: { textBrushColor: '#00008B', fontSize: 24 }
+                    },
+                    {
+                      type: 'Line',
+                      style: { penColor: '#00008B', penSize: 2, dashStyle: 'Solid' },
+                      points: { x1: 20, y1: 70, x2: 755, y2: 70 },
+                    },
+                  ],
+                },
+                footer: {
+                  fromBottom: 160,
+                  height: 100,
+                  contents: [
+                    {
+                      type: 'Text',
+                      value: "© 2025 Syncfusion Inc. All Rights Reserved.\n" +
+                        "Generated on: " + new Date().toLocaleString('en-US', {
+                          month: 'long',
+                          day: '2-digit',
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit',
+                          hour12: true
+                        }),
+                      position: { x: 1950, y: 40 },
+                      style: { textBrushColor: '#3a435e', fontSize: 20 }
+                    }
+                  ]
+                },
+                fitToWidthSettings: {
+                  isFitToWidth: isFitToWidth
+                },
+              };
+              gantt.pdfExport(exportProperties);
+            };
+          },
+          pdfQueryTaskbarInfo: pdfQueryTaskbarInfo,
+          queryTaskbarInfo: queryTaskbarInfo,
+          allowSelection: true,
+          gridLines: 'Both',
+          height: '650px',
+          rowHeight: 46,
+          taskbarHeight: 25,
+          treeColumnIndex: 1,
+          resourceFields: {
+              id: 'resourceId',
+              name: 'resourceName'
+          },
+          resources: editingResources,
+          highlightWeekends: true,
+          timelineSettings: {
+              topTier: {
+                  unit: 'Week',
+                  format: 'MMM dd, y'
+              },
+              bottomTier: {
+                  unit: 'Day'
+              },
+              viewEndDate: new Date('05/31/2025')
+          },
+          labelSettings: {
+            leftLabel: "#leftLabel",
+            rightLabel: "#rightLabel"
+          },
+          projectStartDate: new Date('03/25/2025'),
         });
     gantt.appendTo('#advanceExport');
     let taskbarDragDrop: Switch = new Switch({
@@ -207,7 +204,7 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers, CriticalPat
             {
               base64: args.data.taskData.resourcesImage,
               width: 20,
-              height: 20,
+              height: 20
             },
           ];
           if (args.data.ganttProperties.taskId === 7) {

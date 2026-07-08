@@ -3,7 +3,7 @@ import { Grid, Filter, Page, Selection, Sort, PredicateModel, KeyboardEventArgs,
 import { productData } from './data-source';
 import { NumericTextBox, TextBox } from '@syncfusion/ej2-inputs';
 import { ChangeEventArgs, DropDownList } from '@syncfusion/ej2-dropdowns';
-import { closest } from '@syncfusion/ej2/base';
+import { closest } from '@syncfusion/ej2-base';
 
 Grid.Inject(Filter, Page, Selection, Sort);
 

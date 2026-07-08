@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Grid, Filter, Page, Selection, FilterType, Sort } from '@syncfusion/ej2-grids';
-import { CheckBox } from '@syncfusion/ej2/buttons';
-import { remove } from '@syncfusion/ej2/base';
-import { DataManager, Query, UrlAdaptor } from '@syncfusion/ej2/data';
+import { CheckBox } from '@syncfusion/ej2-buttons';
+import { remove } from '@syncfusion/ej2-base';
+import { DataManager, Query, UrlAdaptor } from '@syncfusion/ej2-data';
 
 Grid.Inject(Filter, Page, Selection, Sort);
 
@@ -29,6 +29,7 @@ Grid.Inject(Filter, Page, Selection, Sort);
             allowFiltering: true,
             allowSorting: true,
             filterSettings: { type: 'Menu' },
+            clipMode: 'EllipsisWithTooltip',
             columns: [
                 { field: 'EmployeeID', headerText: 'Employee ID', isPrimaryKey: true, width: '120' },
                 { field: 'Employees', headerText: 'Employee Name', width: '150' },
@@ -52,24 +53,42 @@ Grid.Inject(Filter, Page, Selection, Sort);
             grid.clearFiltering();
             let propertyTbody: HTMLElement = document.querySelector('#property tbody') as HTMLElement;
             if (dropSelectedValue === 'Excel' || dropSelectedValue === 'CheckBox') {
-                if (propertyTbody.children.length < 2) {
-                    let temp: HTMLTemplateElement = document.getElementsByTagName("template")[0];
-                    var cloneTemplate: any = temp.content.cloneNode(true);
-                    propertyTbody.appendChild(cloneTemplate.querySelector("tr.infinite-row"));
+                if (propertyTbody.children.length < 3) {
+                    let templates: HTMLCollectionOf<HTMLTemplateElement> = document.getElementsByTagName("template") as HTMLCollectionOf<HTMLTemplateElement>;
+
+                    // Add infinite scroll row
+                    var cloneInfiniteTemplate: any = templates[0].content.cloneNode(true);
+                    propertyTbody.appendChild(cloneInfiniteTemplate.querySelector("tr.infinite-row"));
                     const enableInfiniteLoad: CheckBox = new CheckBox({
                         change: (e: any) => {
                             grid.filterSettings.enableInfiniteScrolling = e.checked;
                         }
                     });
                     enableInfiniteLoad.appendTo('#dataloadtype');
+
+                    // Add immediate filter row
+                    var cloneImmediateTemplate: any = templates[1].content.cloneNode(true);
+                    propertyTbody.appendChild(cloneImmediateTemplate.querySelector("tr.immediate-row"));
+                    const immediateFilterCheckbox: CheckBox = new CheckBox({
+                        change: (e: any) => {
+                            grid.filterSettings.mode = e.checked ? 'Immediate' : 'Default';
+                        }
+                    });
+                    immediateFilterCheckbox.appendTo('#immediateFilter');
                 } else {
-                    const enableInfiniteLoad: CheckBox = document.getElementById('dataloadtype')['ej2_instances'][0] as CheckBox;
+                    const immediateFilterCheckbox: CheckBox = (document.getElementById('immediateFilter') as any)['ej2_instances'][0] as CheckBox;
+                    immediateFilterCheckbox.checked = false;
+                    grid.filterSettings.mode = 'Default';
+
+                    const enableInfiniteLoad: CheckBox = (document.getElementById('dataloadtype') as any)['ej2_instances'][0] as CheckBox;
                     enableInfiniteLoad.checked = false;
                     grid.filterSettings.enableInfiniteScrolling = false;
                 }
             } else {
+                grid.filterSettings.mode = 'Default';
                 grid.filterSettings.enableInfiniteScrolling = false;
                 remove(document.querySelector('#property tbody tr.infinite-row'));
+                remove(document.querySelector('#property tbody tr.immediate-row'));
             }
         }
     });

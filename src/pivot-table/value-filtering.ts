@@ -18,7 +18,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     loadCultureFiles();
     let fieldCollections: { [key: string]: FilterModel } = {};
     let operators: string[] = ['Equals', 'DoesNotEquals', 'GreaterThan', 'GreaterThanOrEqualTo',
-        'LessThan', 'LessThanOrEqualTo', 'Between', 'NotBetween'];
+        'LessThan', 'LessThanOrEqualTo', 'Between', 'NotBetween', 'Top', 'Bottom'];
     let fields: string[] = ['Country', 'Products', 'Year'];
     let measures: { [key: string]: Object }[] = [
         { value: 'In_Stock', text: 'In Stock' },
@@ -70,7 +70,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         value: 'In_Stock',
         width: '100%',
         change: (args: ChangeEventArgs) => {
-            setFilters(fieldsddl.value as string, args.value as string, operatorddl.value as Operators, valueInput1.value.toString(), valueInput2.value.toString());
+            setFilters(fieldsddl.value as string, args.value as string, operatorddl.value as Operators, valueInput1?.value?.toString(), valueInput2?.value?.toString());
         }
     });
     measuresddl.appendTo('#value-measures');
@@ -83,7 +83,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             } else {
                 (document.querySelector('.input2cls') as HTMLElement).style.display = 'none';
             }
-            setFilters(fieldsddl.value as string, measuresddl.value as string, args.value as Operators, valueInput1.value.toString(), valueInput2.value.toString());
+            setFilters(fieldsddl.value as string, measuresddl.value as string, args.value as Operators, valueInput1?.value?.toString(), valueInput2?.value?.toString());
         }
     });
     operatorddl.appendTo('#value-conditions');
@@ -91,7 +91,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         value: 0,
         placeholder: "Example: 9590",
         change: (e: NumericEventArgs) => {
-            setFilters(fieldsddl.value as string, measuresddl.value as string, operatorddl.value as Operators, e.value.toString(), valueInput2.value.toString());
+            setFilters(fieldsddl.value as string, measuresddl.value as string, operatorddl.value as Operators, e?.value?.toString(), valueInput2?.value?.toString());
         },
         width: '100%'
     });
@@ -100,7 +100,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         value: 0,
         placeholder: "Example: 17500",
         change: (e: NumericEventArgs) => {
-            setFilters(fieldsddl.value as string, measuresddl.value as string, operatorddl.value as Operators, valueInput1.value.toString(), e.value.toString());
+            setFilters(fieldsddl.value as string, measuresddl.value as string, operatorddl.value as Operators, valueInput1?.value?.toString(), e?.value?.toString());
         },
         width: '100%'
     });
@@ -131,8 +131,8 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             type: 'Value',
             measure: measuresddl.value as string,
             condition: operatorddl.value as Operators,
-            value1: valueInput1.value === null ? '1' : valueInput1.value.toString(),
-            value2: valueInput2.value === null ? '1' : valueInput2.value.toString()
+            value1: valueInput1.value === null ? '1' : valueInput1?.value?.toString(),
+            value2: valueInput2.value === null ? '1' : valueInput2?.value?.toString()
         }];
         pivotObj.dataSourceSettings.filterSettings = filterOptions;
     };

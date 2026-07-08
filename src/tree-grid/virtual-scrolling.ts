@@ -117,8 +117,8 @@ if (virtualScrollData.length === 0) {
                 {
                     field: 'Name',
                     headerText: 'Type',
-                    width: '150',
-                    editType: 'dropdownedit'
+                    editType: 'dropdownedit',
+                    width: '150'
                 },
                 {
                     field: 'Status',
@@ -134,8 +134,8 @@ if (virtualScrollData.length === 0) {
                     headerText: 'Region',
                     width: '180',
                     template: regionTemplate,
-                    validationRules: { required: true },
-                    editType: 'dropdownedit'
+                    editType: 'dropdownedit',
+                    validationRules: { required: true }
                 },
                 {
                     field: 'Environment',
@@ -268,7 +268,7 @@ if (virtualScrollData.length === 0) {
     treegrid.appendTo('#TreeGrid');
 
     treegrid.actionBegin = (args: any)=> {
-        if(args.requestType === 'save') {
+        if(args.requestType === 'save' && args.action !== 'edit') {
             args.data.TaskID = 10000 + Math.floor(Math.random() * 10001);
         }
     };

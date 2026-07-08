@@ -189,6 +189,10 @@
     font-size: 25px;
 }
 
+.sb-icon-Products:before {
+  content: "\e92f";
+}
+
 .sb-switch-popup {
     background-color: #FFFFFF;
     border: 1px solid #CCCCCC;
@@ -308,11 +312,11 @@
 }
 
 .sb-settings-wrapper {
-    padding: 0 20px 0px 10px;
+    padding: 0 5px 0px 5px;
 }
 
 .sb-search-wrapper {
-    padding: 0px 10px 0px 24px;
+    padding: 0px 9px 0px 9px;
 }
 
 .sb-search-btn,
@@ -321,6 +325,7 @@
     height: 27px;
     text-align: center;
     border-radius: 2px;
+    margin-right: 2px;
 }
 
 .sb-switch-btn {
@@ -328,8 +333,8 @@
     align-items: center;
     justify-content: space-between;
     margin-top: 1px;
-    margin-left: 5px;
-    margin-right: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
     background: transparent;
     height: 32px;
     padding: 8px;
@@ -379,9 +384,27 @@
 }
 
 .sb-theme-text {
-    font-size: 13px;
+    font-size: 12px;
     font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
     opacity: 54;
+    margin-right: 4px;
+    white-space: nowrap;
+}
+
+.sb-products-text {
+    font-size: 12px;
+    font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
+    opacity: 54;
+    margin-right: 4px;
+    display: none;
+}
+
+.sb-theme-switch,
+.sb-products-switch {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .sb-header-right .sb-icons {
@@ -393,7 +416,7 @@
     border-left: 1px solid rgb(196, 196, 196);
     height: 32px;
     margin-top: 8px;
-    padding-right: 22px;
+    padding-right: 5px;
 }
 
 #search-input-wrapper .sb-reset-icon {
@@ -468,26 +491,58 @@
 }
 
 .theme-wrapper:hover,
-.theme-wrapper.active {
+.theme-wrapper.active,
+.products-wrapper:hover{ 
     background-color: rgb(216, 216, 216);
 }
 
 .theme-wrapper {
     height: 32px;
-    width: 150px;
+    width: auto;
+    min-width: 130px;
     margin-top: 5px;
-    margin-right: 10px;
+    margin-right: 2px;
     cursor: default;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
     border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.products-wrapper {
+    height: 32px;
+    width: auto;
+    min-width: 35px;
+    margin-top: 5px;
+    margin-right: 2px;
+    cursor: default;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .theme-wrapper>div {
-    float: left;
+    float: none;
     padding-left: 3px;
     line-height: 32px;
     letter-spacing: .5px;
+    display: flex;
+    align-items: center;
+}
+
+.products-wrapper>div {
+    float: none;
+    padding-left: 3px;
+    line-height: 32px;
+    letter-spacing: .5px;
+    display: flex;
+    align-items: center;
 }
 
 .sb-download-btn {
@@ -553,6 +608,36 @@
     cursor: default;
 }
 
+.sb-products-popup {
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.36);
+    border-radius: 4px;
+    width: 200px;
+    z-index: 1001;
+}
+
+.sb-products-popup li {
+    line-height: 30px;
+    cursor: default;
+    padding: 4px 38px 6px 15px;
+    font-size: 14px;
+}
+
+.sb-products-popup li:hover {
+    background: rgb(238, 238, 238);
+}
+
+.sb-products-popup li.active {
+    font-weight: 500;
+}
+
+.sb-products-popup li a {
+    text-decoration: none;
+    color: inherit;
+    cursor: default;
+}
+
 .sb-theme-popup {
     background: #FFFFFF;
     border: 1px solid #CCCCCC;
@@ -565,7 +650,25 @@
 .sb-theme-popup li {
     line-height: 30px;
     cursor: default;
-    padding-top: 0px;
+    padding-top: 4px;
+}
+
+.sb-products-popup li {
+    line-height: 30px;
+    cursor: default;
+    padding: 4px 38px 6px 15px;
+    font-size: 14px;
+}
+
+.sb-products-popup li:hover {
+    background: rgb(238, 238, 238);
+}
+
+.sb-products-select {
+    padding-left: 3px;
+    vertical-align: middle;
+    font-size: 24px;
+    color: #ffffff;
 }
 
 .sb-theme-select {
@@ -791,6 +894,10 @@
 }
 
 .sb-setting-theme-section {
+    display: none;
+}
+
+.sb-setting-products-section {
     display: none;
 }
 
@@ -1470,8 +1577,14 @@ button#tab-navigation-prev {
 }
 
 @media (max-width: 764px) {
+    .products-wrapper {
+        display: none;
+    }
     .theme-wrapper {
         display: none;
+    }
+    .sb-setting-products-section {
+        display: block;
     }
     .sb-setting-theme-section {
         display: block;
@@ -1481,13 +1594,21 @@ button#tab-navigation-prev {
     }
 }
 
+@media (min-width: 900px) {
+    .sb-theme-text,
+    .sb-products-text {
+        display: inline;
+    }
+}
+
 .sb-mobilefooter {
     display: none;
 }
 
 @media (max-width: 550px) {
     .e-ddl.e-popup,
-    #sb-setting-theme_popup {
+    #sb-setting-theme_popup,
+    #sb-setting-products_popup {
         z-index: 100001;
     }
     .sb-left-pane {
@@ -1577,11 +1698,13 @@ button#tab-navigation-prev {
         height: 100%;
         float: right;
         z-index: 10000;
+        overflow: visible;
     }
     .sb-mobile-preference {
         width: 100%;
         height: 100%;
         position: absolute;
+        overflow: visible;
     }
     .sb-setting-header {
         padding: 16px 0px 16px 18px;
@@ -1591,10 +1714,36 @@ button#tab-navigation-prev {
     .sb-setting-content {
         padding-left: 18px;
         padding-top: 0px;
+        overflow: visible;
     }
     .sb-setting-theme-section {
         display: block;
         padding: 16px 0px;
+        overflow: visible;
+    }
+    .sb-setting-products-section {
+        display: block;
+        padding: 16px 0px;
+        overflow: visible;
+    }
+    .sb-icon-Dropdown {
+        padding-right: 10px;
+    }
+    .sb-icon-Dropdown:before {
+        font-size: 25px;
+    }
+    #sb-setting-theme_popup {
+        width: 200px !important;
+        z-index: 100001 !important;
+    }
+    #sb-setting-products {
+        width: 100%;
+        height: 32px;
+        border-radius: 3px;
+    }
+    #sb-setting-products_popup {
+        width: 200px !important;
+        z-index: 100001 !important;
     }
     .sb-icon-Palette {
         padding-right: 10px;
@@ -1630,6 +1779,7 @@ button#tab-navigation-prev {
         box-shadow: none;
         width: 280px;
         height: 100%;
+        overflow: visible;
     }
     .property-panel-section,
     .property-section {
@@ -1905,7 +2055,8 @@ aside#settings {
 }
 
 .sb-control-navigation .e-treeview .tree-text {
-    width: calc(100% - 69px);
+    max-width: 100%;
+    width: fit-content;
     text-overflow: ellipsis;
     overflow: hidden;
 }

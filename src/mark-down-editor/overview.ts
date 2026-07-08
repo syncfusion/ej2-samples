@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Rich Text Editor Markdown Preview Sample
  */
-import { RichTextEditor, Link, Image, MarkdownEditor, Toolbar, Table , ToolbarType } from '@syncfusion/ej2-richtexteditor';
+import { RichTextEditor, Link, Image, MarkdownEditor, Toolbar, Table , ToolbarType, MarkdownFormatter } from '@syncfusion/ej2-richtexteditor';
 import { createElement, KeyboardEventArgs, isNullOrUndefined, addClass, removeClass, Browser } from '@syncfusion/ej2-base';
 import { Splitter } from '@syncfusion/ej2-layouts';
 import { MarkdownConverter } from '@syncfusion/ej2-markdown-converter';
@@ -101,6 +101,7 @@ Inline code: Use \`npm install @syncfusion/ej2-richtexteditor\``;
     defaultRTE = new RichTextEditor({
         height: '100%',
         placeholder : "Enter your text here...",
+        formatter: new MarkdownFormatter({ listTags: { 'OL': '1., 2., 3.'} }),
         floatingToolbarOffset: 0,
         editorMode: 'Markdown',
         toolbarSettings: {
@@ -127,7 +128,7 @@ Inline code: Use \`npm install @syncfusion/ej2-richtexteditor\``;
         updateValue();
     }
     function updateValue(): void {
-        srcArea.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
+        srcArea.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value, { lineBreak: true }) as string;
     }
     function updateOrientation(): void {
         if (Browser.isDevice) {

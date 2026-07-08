@@ -165,6 +165,9 @@ export interface CustomPort extends PointPortModel {
             connector.style = { strokeColor: '#8cdcef', strokeWidth: 1 };
             connector.targetDecorator = { width: 5, height: 5, style: { fill: '#8cdcef', strokeColor: '#8cdcef' } };
         },
+        created: function(){
+            diagram.fitToPage();
+        }
     });
     diagram.appendTo('#diagram');
 

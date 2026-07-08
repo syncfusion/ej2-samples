@@ -219,25 +219,37 @@ export interface EmployeeInfo {
     diagram.appendTo('#diagram');
 
     // Create a new instance of Toolbar functionality
+    // Detect mobile view based on window width
+    const isMobileView = window.innerWidth <= 550;
+    
+    // Conditionally build items array - exclude FitToPage and its separator on mobile
+    const toolbarItems: any[] = [
+        { id: 'ZoomIn', type: 'Button', tooltipText: 'Zoom In', prefixIcon: 'e-icons e-zoom-in' },
+        { id: 'ZoomOut', type: 'Button', tooltipText: 'Zoom Out', prefixIcon: 'e-icons e-zoom-out' },
+        { type: 'Separator' },
+        { id: 'Select', type: 'Button', tooltipText: 'Select', prefixIcon: 'e-icons e-mouse-pointer' },
+        { id: 'PanTool', type: 'Button', tooltipText: 'Pan Tool', prefixIcon: 'e-icons e-pan' },
+        { type: 'Separator' },
+        { id: 'Reset', type: 'Button', tooltipText: 'Reset', prefixIcon: 'e-icons e-reset' },
+    ];
+    
+    // Add FitToPage and separator only on desktop view
+    if (!isMobileView) {
+        toolbarItems.push({ id: 'FitToPage', type: 'Button', tooltipText: 'Fit To Page', prefixIcon: 'e-icons e-zoom-to-fit' });
+        toolbarItems.push({ type: 'Separator' });
+    }
+    
+    // Add the remaining items
+    toolbarItems.push(
+        { id: 'BringIntoView', type: 'Button', tooltipText: 'Bring Into View', prefixIcon: 'e-icons e-bring-to-view', disabled: true },
+        { id: 'BringIntoCenter', type: 'Button', tooltipText: 'Bring Into Center', prefixIcon: 'e-icons e-bring-to-center', disabled: true }
+    );
+    
     toolbarObj = new Toolbar({
-
         // Specify the function to handle item clicks
         clicked: handleToolbarClick,
-
         // Define the items to be displayed in the toolbar
-        items: [
-            { id: 'ZoomIn', type: 'Button', tooltipText: 'Zoom In', prefixIcon: 'e-icons e-zoom-in' },
-            { id: 'ZoomOut', type: 'Button', tooltipText: 'Zoom Out', prefixIcon: 'e-icons e-zoom-out' },
-            { type: 'Separator' },
-            { id: 'Select', type: 'Button', tooltipText: 'Select', prefixIcon: 'e-icons e-mouse-pointer' },
-            { id: 'PanTool', type: 'Button', tooltipText: 'Pan Tool', prefixIcon: 'e-icons e-pan' },
-            { type: 'Separator' },
-            { id: 'Reset', type: 'Button', tooltipText: 'Reset', prefixIcon: 'e-icons e-reset' },
-            { id: 'FitToPage', type: 'Button', tooltipText: 'Fit To Page', prefixIcon: 'e-icons e-zoom-to-fit' },
-            { type: 'Separator' },
-            { id: 'BringIntoView', type: 'Button', tooltipText: 'Bring Into View', prefixIcon: 'e-icons e-bring-to-view', disabled: true },
-            { id: 'BringIntoCenter', type: 'Button', tooltipText: 'Bring Into Center', prefixIcon: 'e-icons e-bring-to-center', disabled: true }
-        ]
+        items: toolbarItems
     });
     toolbarObj.appendTo('#toolbar');
 };

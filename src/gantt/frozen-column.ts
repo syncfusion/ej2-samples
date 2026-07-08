@@ -3,7 +3,12 @@ import { Gantt, Toolbar, Edit, Freeze, ColumnModel} from '@syncfusion/ej2-gantt'
 import { ChangeEventArgs, DropDownList } from '@syncfusion/ej2-dropdowns';
 import { frozenColumnsData, resourceCollection } from './data-source';
 import { freezeDirection } from '@syncfusion/ej2-grids';
-Gantt.Inject( Toolbar, Edit, Freeze);
+
+/**
+ * Frozen Column Gantt sample
+ */
+
+Gantt.Inject(Toolbar, Edit, Freeze);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -17,14 +22,14 @@ Gantt.Inject( Toolbar, Edit, Freeze);
         { id: 'Predecessor', name: 'Dependency'},
         { id: 'Resources', name: 'Assignee' },
         { id: 'Designation', name: 'Designation' },
-        { id: 'Status', name: 'Status' },
+        { id: 'Status', name: 'Status' }
     ]
  
     let directions: { [key: string]: Object }[] = [
         { id: 'Left', name: 'Left' },
         { id: 'Right', name: 'Right' },
         { id: 'Fixed', name: 'Fixed' },
-        { id: 'None', name: 'None' },
+        { id: 'None', name: 'None' }
     ];
     
     let ColumnsDropdown: DropDownList = new DropDownList({
@@ -65,29 +70,28 @@ Gantt.Inject( Toolbar, Edit, Freeze);
             progress: 'Progress',
             dependency:'Predecessor',
             parentID: 'ParentID',
-            resourceInfo: 'Resources',
+            resourceInfo: 'Resources'
         },
         resources: resourceCollection,
         resourceFields: {
             id: 'resourceId',
-            name: 'resourceName',
+            name: 'resourceName'
         },
         columns: [
             { field: 'TaskID', headerText: 'Task ID', freeze: 'Left', },
-            { field: 'TaskName', headerText: 'Task Name', width: 150, freeze: 'Left'},
+            { field: 'TaskName', headerText: 'Task Name', width: 200, freeze: 'Left'},
             { field: 'StartDate', headerText: 'Start Date', },
             { field: 'Duration', headerText: 'Duration',},
             { field: 'EndDate', headerText: 'End Date', },
             { field: 'Progress', headerText: 'Progress', },
             { field: 'Predecessor', headerText: 'Dependency' },
-            { field: 'Resources', headerText: 'Assignee', freeze: 'Right' },
+            { field: 'Resources', headerText: 'Assignee', freeze: 'Right', width: 200 },
             { field: 'Designation', headerText: 'Designation' },
-            { field: 'Status', headerText: 'Status', },
-        
+            { field: 'Status', headerText: 'Status' }
         ],
         treeColumnIndex: 1,
         splitterSettings: {
-            position: "70%",
+            position: "70%"
         },
         toolbar: [
             {
@@ -121,15 +125,13 @@ Gantt.Inject( Toolbar, Edit, Freeze);
             }
         },
         labelSettings: {
-            leftLabel: 'TaskName',
             taskLabel: 'Progress'
         },
-        rowHeight:46,
-        taskbarHeight:25,
+        rowHeight: 46,
+        taskbarHeight: 25,
         height: '650px',
         projectStartDate: new Date('02/27/2025'),
-        projectEndDate: new Date('05/04/2025'),
+        projectEndDate: new Date('05/04/2025')
     });
- 
     gantt.appendTo('#frozenColumns');
 };

@@ -21,6 +21,8 @@ let datasrc: object[];
 let data1: object[] = [];
 (window as any).default = (): void => {
     loadCultureFiles();
+    datasrc = [];
+    data1 = [];
     let value: object;
     let j: number = 2100;
     let fetchApi: Fetch = new Fetch('./src/range-navigator/data-source/period-data.json', 'GET');

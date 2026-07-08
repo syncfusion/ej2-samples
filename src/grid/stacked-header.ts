@@ -2,8 +2,8 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Selection, Resize, Sort, Filter, Edit, Toolbar, Column, ColumnChooser } from '@syncfusion/ej2-grids';
 import { stackedHeaderData } from './data-source';
 import { TreeView } from '@syncfusion/ej2-navigations';
-import { Button } from '@syncfusion/ej2/buttons';
-import { Rating } from '@syncfusion/ej2/inputs';
+import { Button } from '@syncfusion/ej2-buttons';
+import { Rating } from '@syncfusion/ej2-inputs';
 
 Grid.Inject(Page, Selection, Resize, Sort, Filter, Edit, Toolbar, ColumnChooser);
 /**

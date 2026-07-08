@@ -1,7 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, DayMarkers, Selection } from '@syncfusion/ej2-gantt';
 import { labelData, editingResources } from './data-source';
-
 /**
  * Tasklabel Template Gantt sample
  */
@@ -27,8 +26,8 @@ Gantt.Inject(DayMarkers, Selection);
         {
             dataSource: labelData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             allowSelection: true,
             treeColumnIndex: 1,
@@ -45,13 +44,13 @@ Gantt.Inject(DayMarkers, Selection);
             },
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName', width: 250 },
+                { field: 'TaskName', width: 270 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor' },
                 { field: 'Progress' },
-                { field: 'resources' },
+                { field: 'resources' }
             ],
             resourceFields: {
                 id: 'resourceId',
@@ -64,10 +63,10 @@ Gantt.Inject(DayMarkers, Selection);
                 taskLabel: '${Progress}%'
             },
             splitterSettings: {
-                position: "35%"
+                columnIndex: 3
             },
             projectStartDate: new Date('03/24/2025'),
-            projectEndDate: new Date('06/10/2025'),
+            projectEndDate: new Date('06/10/2025')
         });
     gantt.appendTo('#TasklabelTemplate');
 };

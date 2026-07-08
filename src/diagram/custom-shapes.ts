@@ -83,11 +83,12 @@ let tempChartExpenseDS: any = {};
 let tempChartLineDS: any = {};
 let curDateTime: any;
 let lineD: any = [];
-let isCreated = false;
+
 
 // tslint:disable-next-line:max-func-body-length
 (window as any).default = (): void => {
   //   loadCultureFiles();
+  let isCreated = false;
   let shape: HtmlModel = { type: 'HTML' };
   let constraints: any = NodeConstraints.Default & ~NodeConstraints.Resize & ~NodeConstraints.Rotate;
   let nodes: NodeModel[] = [{
@@ -250,37 +251,12 @@ let isCreated = false;
       )
       .then((e: any) => {
         getColumnChartIncomeDS(e);
-        columnChartObj.setProperties({
-          //Initializing Chart Series
-          primaryXAxis: { labelFormat: "MMM", valueType: "DateTime", edgeLabelPlacement: "Shift" },
-          //Initializing Primary Y Axis
-          primaryYAxis: { title: "Amount", labelFormat: "c0" },
-          useGroupingSeparator: true,
-          series: [
-            {
-              type: "Column", dataSource: columnIncomeDS, legendShape: "Circle", xName: "DateTime", width: 2, yName: "Amount", name: "Income",
-              marker: { visible: true, height: 10, width: 10 }, fill: "#A16EE5", border: { width: 0.5, color: "#A16EE5" }, animation: { enable: false }
-            },
-            {
-              type: "Column", dataSource: columnExpenseDS, legendShape: "Circle", xName: "DateTime", width: 2, yName: "Amount", name: "Expense",
-              marker: { visible: true, height: 10, width: 10 }, fill: "#4472C4", animation: { enable: false }
-            }
-          ]
-        });
+        columnChartObj.series[0].dataSource = columnIncomeDS;
+        columnChartObj.series[1].dataSource = columnExpenseDS;
         columnChartObj.refresh();
         lineD = [];
         getLineChartDS();
-        linechartObj.setProperties({
-          //Initializing Chart Series
-          series: [{
-            type: "Area", dataSource: lineDS, xName: "DateTime", width: 2, marker: {
-              visible: true, width: 10, height: 10, fill: "white",
-              border: { width: 2, color: "#0470D8" }
-            }, legendShape: "Circle", yName: "Amount", name: "Amount", fill: "rgba(4, 112, 216, 0.3)",
-            border: { width: 0.5, color: "#0470D8" }
-          }
-          ]
-        });
+        linechartObj.series[0].dataSource = lineDS;
         linechartObj.refresh();
       });
     getTotalExpense();

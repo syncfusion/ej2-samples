@@ -109,6 +109,9 @@ export const serverAIRequest = async (settings: any): Promise<any> => {
             document.querySelector('.banner-message').innerHTML = error.message;
             document.querySelector('.sb-token-header').classList.remove('sb-hide');
         }
+        else if (error.message.includes('Failed to fetch')) {
+            console.warn("To test these samples locally, configure and use your own API key.");
+        }
         else {
             console.error('There was a problem with your fetch operation:', error);
         }
@@ -140,7 +143,11 @@ export const getOpenAiModelRTE = async (subQuery: string, promptQuery: string): 
         if (error.message.includes('token limit')) {
             document.querySelector('.banner-message').innerHTML = error.message;
             document.querySelector('.sb-token-header').classList.remove('sb-hide');
-        } else {
+        }
+        else if (error.message.includes('Failed to fetch')) {
+            console.warn("To test these samples locally, configure and use your own API key.");
+        } 
+        else {
             console.error('There was a problem with your fetch operation:', error);
         }  
     }
@@ -170,6 +177,9 @@ export const OpenAiModelKanban = async (promptQuery: string): Promise<any> => {
             document.querySelector('.banner-message').innerHTML = error.message;
             document.querySelector('.sb-token-header').classList.remove('sb-hide');
         }
+        else if (error.message.includes('Failed to fetch')) {
+            console.warn("To test these samples locally, configure and use your own API key.");
+        }
         else {
             console.error('There was a problem with your fetch operation:', error);
         }
@@ -179,5 +189,138 @@ export const OpenAiModelKanban = async (promptQuery: string): Promise<any> => {
 export async function getUserID(): Promise<string> {
     return fingerPrint();
 }
+
+function getFileExtension(fileName: string): string {
+    return fileName.split('.').pop()?.toLowerCase() ?? '';
+}
+
+function isTextFile(fileName: string) {
+    const textExtensions: string[] = ['txt', 'md', 'css', 'html', 'json', 'xml', 'js', 'ts', 'jsx', 'tsx', 'py', 'java', 'cpp', 'c', 'h', 'cs', 'rb', 'php', 'csv', 'readme', 'doc', 'docx'];
+    const ext = getFileExtension(fileName);
+    return textExtensions.includes(ext);
+}
+
+function isImageFile(fileName: string) {
+    const imageExtensions: string[] = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'svg'];
+    const ext = getFileExtension(fileName);
+    return imageExtensions.includes(ext);
+}
+
+async function getFileContext( attachedFiles: any ): Promise<any> {
+
+    const fileContents: any = [];
+
+    const filePromises: Promise<void>[] = attachedFiles.map(
+        (file: any) =>
+            new Promise<void>((resolve, reject) => {
+                if (!file.rawFile) {
+                    resolve();
+                    return;
+                }
+                const reader = new FileReader();
+                const fileName = file.name;
+                reader.onload = (e: ProgressEvent<FileReader>) => {
+                    const fileType: 'text' | 'image' | 'binary' = isTextFile(fileName) ? 'text' : isImageFile(fileName) ? 'image' : 'binary';
+                    fileContents.push({
+                        name: fileName,
+                        type: file.type,
+                        fileType,
+                        content: e.target?.result ?? null
+                    });
+                    resolve();
+                };
+                reader.onerror = () => {
+                    reject(
+                        new Error(`Error reading file: ${fileName}`)
+                    );
+                };
+                if (isTextFile(fileName)) {
+                    reader.readAsText(file.rawFile);
+                } else {
+                    reader.readAsDataURL(file.rawFile);
+                }
+            })
+    );
+    await Promise.all(filePromises);
+    return fileContents;
+}
+
+export async function getAIResponse(args: any, abortController: any): Promise<any> {
+    try {
+        let aiPrompt: any = args.prompt;
+        let fileContents: any = [];
+        if (args.attachedFiles && args.attachedFiles.length > 0) {
+            fileContents = await getFileContext(args.attachedFiles);
+            let attachedFileContext = 'Attached Files:\n';
+            fileContents.forEach(function(file: any) {
+                attachedFileContext += '\n--- File: ' + file.name + ' (Type: ' + file.type + ', File Type: ' + file.fileType + ') ---\n';
+                
+                if (file.fileType === 'text') {
+                    attachedFileContext += file.content + '\n';
+                } else if (file.fileType === 'image') {
+                    attachedFileContext += '[Image file: ' + file.name + ' - Base64 encoded data available]\n';
+                    attachedFileContext += file.content + '\n';
+                } else {
+                    attachedFileContext += '[Binary file: ' + file.name + ' - Please process this file]\n';
+                    attachedFileContext += file.content.substring(0, 500) + '...\n';
+                }
+            });
+            aiPrompt = attachedFileContext + '\n\nUser Prompt: ' + args.prompt;
+        }
+        const userID = await getUserID();
+        if (!userID) {
+            return 'Failed to generate user ID. Please try again later.';
+        }
+        const abortSignal = abortController ? abortController.signal : undefined;
+        var systemPrompt = args.systemPrompt || 'You are a helpful assistant.';
+        let requestBody: any = {
+            visitorId: userID,
+            messages: {
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: aiPrompt }
+                ]
+            },
+            fileContents: [] as any[]
+        };
+        if (fileContents && fileContents.length > 0) {
+            requestBody.fileContents = fileContents;
+        }
+        const response = await fetch(AI_SERVICE_URL + '/api/chat', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody),
+            signal: abortSignal
+        });
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || ("HTTP Error " + response.status));
+        }
+        const result = await response.json();
+        if (args.systemPrompt) {
+            return result;
+        }
+        if (result && result.response) {
+            const aiResponse = result.response.replace('END_INSERTION', '');
+            return aiResponse;
+        }
+    } catch (error: any) {
+        if (error.name === "AbortError") {
+            return null;
+        } else if (error.message && error.message.indexOf("token limit") !== -1) {
+            const bannerElement = document.querySelector(".banner-message");
+            if (bannerElement) { bannerElement.innerHTML = error.message; }
+            const headerElement = document.querySelector(".sb-header1");
+            if (headerElement) { headerElement.classList.remove("sb-hide"); }
+            return error.message;
+        }
+        else if (error.message.includes('Failed to fetch')) {
+            console.warn("To test these samples locally, configure and use your own API key.");
+        }
+        return 'We could not reach the AI service; please try again later.';
+    }
+};
 
 export const AI_SERVICE_URL: string = 'https://ai-samples-server-f5hta2h9g5aqhcfg.southindia-01.azurewebsites.net'

@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Selection, RowSelectEventArgs, Toolbar, ExcelExport, PdfExport, ExcelExportProperties, PdfExportProperties } from '@syncfusion/ej2-grids';
 import { data, customerData } from './data-source';
-import { Button, CheckBox } from '@syncfusion/ej2/buttons';
+import { Button, CheckBox } from '@syncfusion/ej2-buttons';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 
 Grid.Inject(Selection, Toolbar, ExcelExport, PdfExport);

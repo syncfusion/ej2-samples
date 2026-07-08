@@ -18,39 +18,39 @@ Gantt.Inject(Selection, DayMarkers);
     let yearformat: { [key: string]: Object }[] = [
         { id: 'MMM "yy', format: 'Jan "18' },
         { id: 'y', format: '2018' },
-        { id: 'MMMM, y', format: 'January, 18' },
+        { id: 'MMMM, y', format: 'January, 18' }
     ];
     let monthformat: { [key: string]: Object }[] = [
         { id: 'MMM dd, yyyy', format: 'Jan 01, 2018' },
         { id: 'MMMM', format: 'January' },
-        { id: 'MMM', format: 'Jan' },
+        { id: 'MMM', format: 'Jan' }
     ];
     let weekformat: { [key: string]: Object }[] = [
         { id: 'MMM dd, yyyy', format: 'Jan 01, 2019' },
         { id: 'EEE MMM dd, "yy', format: 'Mon Jan 01, "19' },
-        { id: 'EEE MMM dd', format: 'Mon Jan 01' },
+        { id: 'EEE MMM dd', format: 'Mon Jan 01' }
     ];
     let dayformat: { [key: string]: Object }[] = [
         { id: '', format: 'M' },
         { id: 'EEE', format: 'Mon' },
-        { id: 'dd', format: '01' },
+        { id: 'dd', format: '01' }
     ];
     let hourformat: { [key: string]: Object }[] = [
         { id: 'hh', format: '00' },
         { id: 'hh : mm a', format: '00 : 00 AM' },
-        { id: 'h : mm a', format: '0 : 00 AM' },
+        { id: 'h : mm a', format: '0 : 00 AM' }
     ];
     let unit: { [key: string]: Object }[] = [
         { id: 'Year', unit: 'Year' },
         { id: 'Month', unit: 'Month' },
         { id: 'Week', unit: 'Week' },
         { id: 'Day', unit: 'Day' },
-        { id: 'Hour', unit: 'Hour' },
+        { id: 'Hour', unit: 'Hour' }
     ];
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectData,
-            taskFields  : {
+            taskFields: {
                 id: 'taskID',
                 name: 'taskName',
                 startDate: 'startDate',
@@ -58,34 +58,34 @@ Gantt.Inject(Selection, DayMarkers);
                 duration: 'duration',
                 progress: 'progress',
                 dependency: 'predecessor',
-                child: 'subtasks',
+                child: 'subtasks'
             },
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
-            projectStartDate: new Date('02/05/2025'),
-            projectEndDate: new Date('03/23/2025'),
             timelineSettings: {
                 topTier: {
                     format: 'MMM dd, yyyy',
-                    unit: 'Week',
+                    unit: 'Week'
                 },
                 bottomTier: {
-                    unit: 'Day',
-                }
+                    unit: 'Day'
+                },
+                viewStartDate: new Date('02/09/2025'),
+                viewEndDate: new Date('03/23/2025')
             },
             splitterSettings: {
                 columnIndex: 1
             },
             treeColumnIndex: 1,
             labelSettings: {
-                rightLabel: 'taskName',
+                rightLabel: 'taskName'
             },
             columns: [
                 { field: 'taskID', visible: false },
                 { field: 'taskName', headerText: 'Name', width: 250 },
-                { field: 'StartDate', headerText: 'Start Date', type: 'date', format: 'yMd' },
+                { field: 'startDate', headerText: 'Start Date', type: 'date', format: 'yMd' },
                 { field: 'endDate', headerText: 'End Date', type: 'date', format: 'yMd' },
                 { field: 'duration', headerText: 'Duration' },
                 { field: 'predecessor', headerText: 'Dependency' },
@@ -219,7 +219,7 @@ Gantt.Inject(Selection, DayMarkers);
             bootomCellUnit = bottomUnit;
         }
         if (bootomCellUnit === 'Year') {
-             unitWidth = 2000;
+            unitWidth = 2000;
         } else if (bootomCellUnit === 'Month') {
             unitWidth = 300;
         } else if (bootomCellUnit === 'Week') {
@@ -243,12 +243,14 @@ Gantt.Inject(Selection, DayMarkers);
         }
     };
 
+    let startDate: Date = new Date('02/05/2025');
+    let endDate: Date = new Date('03/23/2025');
     let timelineDateRangePicker: DateRangePicker = new DateRangePicker({
-        startDate: new Date('02/05/2025'),
-        endDate: new Date('03/23/2025'),
+        startDate: startDate,
+        endDate: endDate,
         change: (args: any) => {
-            gantt.timelineSettings.viewStartDate = isNullOrUndefined(args.startDate) ? 'auto' : args.startDate;;
-            gantt.timelineSettings.viewEndDate = isNullOrUndefined(args.endDate) ? 'auto' : args.endDate; ;
+            gantt.timelineSettings.viewStartDate = isNullOrUndefined(args.startDate) ? startDate : args.startDate;
+            gantt.timelineSettings.viewEndDate = isNullOrUndefined(args.endDate) ? endDate : args.endDate;
         }
     });
     timelineDateRangePicker.appendTo('#timelineDateRange');

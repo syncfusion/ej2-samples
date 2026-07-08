@@ -82,7 +82,10 @@ export interface EmployeeInfo {
         },
         //Defines the default node and connector properties
         getNodeDefaults: nodeDefaults,
-        getConnectorDefaults: connectorDefaults
+        getConnectorDefaults: connectorDefaults,
+        created: function(){
+            diagram.fitToPage();
+        }
     });
     diagram.appendTo('#diagram');
 

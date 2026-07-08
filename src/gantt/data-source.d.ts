@@ -39,3 +39,5 @@ export declare let dialogData: Object[];
 export declare let dataResources: Object[];
 export declare let frozenColumnsData: object[];
 export declare let EventmarkerData: any[];
+export declare let infiniteTimelineScrollData: Object[];
+export declare let baselineTemplateData: any[];

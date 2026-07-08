@@ -8,6 +8,7 @@ import { projectNewData } from './data-source';
 /**
  *  Hide/Show columns support in Gantt sample
  */
+
 Gantt.Inject(Selection);
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -24,8 +25,8 @@ Gantt.Inject(Selection);
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -45,8 +46,8 @@ Gantt.Inject(Selection);
                 columnIndex: 3
             },
             columns: [
-                { field: 'TaskID', headerText: 'ID', width: 100 },
-                { field: 'TaskName', headerText: 'Name', width: 250 },
+                { field: 'TaskID', headerText: 'ID', width: 70 },
+                { field: 'TaskName', headerText: 'Name', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },

@@ -1,12 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Selection, DayMarkers } from '@syncfusion/ej2-gantt';
-import {NumericTextBox} from '@syncfusion/ej2-inputs';
+import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { workTimeRange } from './data-source';
 import { Button } from '@syncfusion/ej2-buttons';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Default Gantt sample
+ * Working time range Gantt sample
  */
 
 Gantt.Inject(Selection, DayMarkers);
@@ -16,8 +16,8 @@ Gantt.Inject(Selection, DayMarkers);
         {
             dataSource: workTimeRange,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -30,12 +30,12 @@ Gantt.Inject(Selection, DayMarkers);
                 child: 'subtasks'
             },
             columns: [
-                { field: 'TaskName',headerText: 'Name', width: 270 },
+                { field: 'TaskName',headerText: 'Name', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor' },
-                { field: 'Progress' },
+                { field: 'Progress' }
             ],
             durationUnit: 'Hour',
             labelSettings: {
@@ -49,8 +49,11 @@ Gantt.Inject(Selection, DayMarkers);
                     unit: 'Hour'
                 }
             },
+            splitterSettings: {
+                columnIndex: 1
+            },
             projectStartDate: new Date('04/02/2025'),
-            projectEndDate: new Date('04/28/2025')
+            projectEndDate: new Date('04/15/2025')
         });
     gantt.appendTo('#WorkTimeRange');
     let workDays: any = [
@@ -58,7 +61,7 @@ Gantt.Inject(Selection, DayMarkers);
         { id: 'Tuesday', day: 'Tuesday' },
         { id: 'Wednesday', day: 'Wednesday' },
         { id: 'Thursday', day: 'Thursday' },
-        { id: 'Friday', day: 'Friday' },
+        { id: 'Friday', day: 'Friday' }
     ];
      const change1: any = (args: any) => {
         let startTime = ((<any>document.getElementById('WorkStartTime'))).ej2_instances[0].value;

@@ -237,7 +237,10 @@ function enableOptions(arg: ISelectionChangeEventArgs): void {
         getNodeDefaults: getNodeDefaults,
         //Sets the default values of a connector
         getConnectorDefaults: getConnectorDefaults,
-        snapSettings: { constraints: SnapConstraints.None }
+        snapSettings: { constraints: SnapConstraints.None },
+        created: function(){
+            diagram.fitToPage();
+        }
     });
     diagram.appendTo('#diagram');
     diagram.select([diagram.nodes[0]]);

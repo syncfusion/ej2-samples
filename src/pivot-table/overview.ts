@@ -229,7 +229,7 @@ let Universitydata: IDataSet[] = (data as any).data;
             columnWidth: 120, rowHeight: 36, allowSelection: true,
             selectionSettings: { mode: 'Cell', type: 'Single', cellSelectionMode: 'Box' },
             excelQueryCellInfo: function (args: ExcelQueryCellInfoEventArgs): void {
-                if ((args.cell as IAxisSet).axis === 'value' && (args.cell as IAxisSet).value === undefined) {
+                if ((args.cell as IAxisSet).axis === 'value' && args.value === undefined) {
                     args.style.numberFormat = undefined;
                 }
             }

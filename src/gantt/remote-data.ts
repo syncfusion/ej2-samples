@@ -44,8 +44,8 @@ Gantt.Inject(Selection, DayMarkers, VirtualScroll);
         {
             dataSource: loadGantt(recordCount),
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             taskFields: {
                 id: 'TaskId',
                 name: 'TaskName',
@@ -58,9 +58,9 @@ Gantt.Inject(Selection, DayMarkers, VirtualScroll);
             },
             columns: [
                 { field: 'TaskId' },
-                { field: 'TaskName', headerText: 'Project Activity', width: '250', clipMode: 'EllipsisWithTooltip' },
-                { field: 'StartDate', headerText: 'Planned Start Date',width: 200 },
-                { field: 'Duration', headerText: 'Duration' ,width: 160},
+                { field: 'TaskName', headerText: 'Project Activity', width: 270, clipMode: 'EllipsisWithTooltip' },
+                { field: 'StartDate', headerText: 'Planned Start Date', width: 200 },
+                { field: 'Duration', headerText: 'Duration' , width: 160 },
                 { field: 'Progress', headerText: 'Completion (%)', width: 200 }
             ],
             splitterSettings:{
@@ -76,7 +76,7 @@ Gantt.Inject(Selection, DayMarkers, VirtualScroll);
                 timelineUnitSize: 50,
                 topTier: {
                     unit: 'Week',
-                    format: 'MMM dd, y',
+                    format: 'MMM dd, y'
                 },
                 bottomTier: {
                     unit: 'Day',

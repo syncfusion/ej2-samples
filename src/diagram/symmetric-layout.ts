@@ -91,7 +91,10 @@ function setNodeTemplate(node: NodeModel): void {
         getConnectorDefaults: getConnectorDefaults,
         //Set the Node Template to diagram  .
         setNodeTemplate: setNodeTemplate,
-        tool: DiagramTools.ZoomPan
+        tool: DiagramTools.ZoomPan,
+        created: function(){
+            diagram.fitToPage();
+        }
     });
     diagram.appendTo('#diagram');
     diagram.pan(0, 0);

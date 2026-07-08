@@ -1,13 +1,10 @@
-/**
- * resource.ts file
- */
 import { loadCultureFiles } from '../common/culture-loader';
-/**
- * resource.ts file
- */
 import { splitTasksData } from './data-source';
-
 import { Gantt, Selection, DayMarkers, Toolbar, Edit, ContextMenu } from '@syncfusion/ej2-gantt';
+
+/**
+ * Split Tasks Gantt sample
+ */
 
 Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, ContextMenu);
 (window as any).default = (): void => {
@@ -35,7 +32,7 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, ContextMenu);
             },
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName', headerText: 'Job Name', width: '250', clipMode: 'EllipsisWithTooltip' },
+                { field: 'TaskName', headerText: 'Job Name', width: 250, clipMode: 'EllipsisWithTooltip' },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
@@ -46,8 +43,8 @@ Gantt.Inject(Selection, DayMarkers, Toolbar, Edit, ContextMenu);
             enableContextMenu: true,
             allowSelection: true,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             treeColumnIndex: 1,
             highlightWeekends: true,
             splitterSettings: {

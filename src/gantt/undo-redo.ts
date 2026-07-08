@@ -1,19 +1,19 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Selection, Filter, Sort, ColumnMenu, Resize,Edit,Reorder,UndoRedo,ContextMenu,Toolbar, DayMarkers } from '@syncfusion/ej2-gantt';
+import { Gantt, Filter, Sort, ColumnMenu, Resize, Edit, Reorder, UndoRedo, ContextMenu, Toolbar, DayMarkers, Selection } from '@syncfusion/ej2-gantt';
 import { undoRedoData } from './data-source';
-
+import { ClickEventArgs } from '@syncfusion/ej2-navigations';
 /**
- *  Column menu Gantt sample
+ *  Undo Redo Gantt sample
  */
-Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize,Edit,Reorder,UndoRedo,ContextMenu,Toolbar,DayMarkers );
+Gantt.Inject(Filter, Sort, ColumnMenu, Resize, Edit, Reorder, UndoRedo, ContextMenu, Toolbar, DayMarkers, Selection );
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
         {
             dataSource: undoRedoData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             showColumnMenu: true,
             enableContextMenu: true,
@@ -50,9 +50,9 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize,Edit,Reorder,UndoRedo,C
             ],
             toolbar: [ "Add", "Edit", "Update", "Delete", "Cancel",
                 { text: "Undo", tooltipText: "Undo", id: "Undo" },
-                { text: "Redo", tooltipText: "Redo", id: "Redo" },],
+                { text: "Redo", tooltipText: "Redo", id: "Redo" }],
             undoRedoActions:['Sorting','Add','ColumnReorder','ColumnResize','ColumnState','Delete','Edit','Filtering','Indent','Outdent','NextTimeSpan','PreviousTimeSpan','RowDragAndDrop','Search'],
-            toolbarClick: function (args) {
+            toolbarClick: function (args: ClickEventArgs) {
               if (args.item.text === "Undo") {
                 gantt.undo();
               } else if (args.item.text === "Redo") {
@@ -109,7 +109,6 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize,Edit,Reorder,UndoRedo,C
           undoBtn.style.pointerEvents = "none";
         } else {
           undoBtn.classList.remove("e-overlay");
-          undoBtn.classList.remove("e-overlay");
           undoBtn.style.cursor = "pointer";
           undoBtn.style.pointerEvents = "auto";
         }
@@ -136,58 +135,58 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize,Edit,Reorder,UndoRedo,C
       } else {
         undoBtn.style.boxShadow = ""; // Clears inline style
       }
-  setBadge(undoBtn, undoCount);
-  setBadge(redoBtn, redoCount);
-}
+    setBadge(undoBtn, undoCount);
+    setBadge(redoBtn, redoCount);
+  }
 
-    function setBadge(button: any, count: any) {
-      if (!button) return;
-      var badge = button.querySelector(".e-badge.e-badge-danger.e-badge-notification.e-badge-overlap.e-badge-circle");
-      if (!badge) {
-        badge = document.createElement("span");
-        badge.className = "e-badge e-badge-danger e-badge-notification e-badge-overlap e-badge-circle";
-        button.appendChild(badge);
-      }
-      var tailwind3 = document.body.classList.contains('tailwind3') || 
-      document.body.classList.contains('tailwind3-dark');
-      var bootstrap5 = document.body.classList.contains('bootstrap5.3') ||
-      document.body.classList.contains('bootstrap5.3-dark');
-      var material3 = document.body.classList.contains('material3-dark') || 
-      document.body.classList.contains('material3');
-      var fluent2 = document.body.classList.contains('fluent2-dark') || 
-      document.body.classList.contains('fluent2');
-      var fluent = document.body.classList.contains('fluent-dark') ||
-      document.body.classList.contains('fluent');
-      if (tailwind3){
-        badge.style.backgroundColor = "#c2410c";
-        badge.style.color = "#fff";
-        badge.style.marginTop = "3px";
-        badge.style.paddingTop = "2px";
-      }
-      else if (bootstrap5){
-        badge.style.backgroundColor = "#ffc107";
-        badge.style.color = "#000";
-        badge.style.paddingTop = "3px";
-        badge.style.marginTop = "6px";
-      }
-      else if (fluent2){
-        badge.style.backgroundColor = "#fde300";
-        badge.style.color = "#000";
-        badge.style.paddingTop = "4px";
-        badge.style.marginTop = "6px";
-      }
-      else if(fluent) {
-        badge.style.backgroundColor = "#fde300";
-        badge.style.color = "#000";
-        badge.style.paddingTop = "2px";
-        badge.style.marginTop = "8px";
-      }
-      else if (material3){
-        badge.style.backgroundColor = "#b3261e";
-        badge.style.color = "#fff";
-        badge.style.paddingTop = "4px";
-      }
-      badge.textContent = count;
-      badge.style.display = count > 0 ? "inline-block" : "none";
+  function setBadge(button: any, count: any) {
+    if (!button) return;
+    var badge = button.querySelector(".e-badge.e-badge-danger.e-badge-notification.e-badge-overlap.e-badge-circle");
+    if (!badge) {
+      badge = document.createElement("span");
+      badge.className = "e-badge e-badge-danger e-badge-notification e-badge-overlap e-badge-circle";
+      button.appendChild(badge);
     }
+    var tailwind3 = document.body.classList.contains('tailwind3') || 
+    document.body.classList.contains('tailwind3-dark');
+    var bootstrap5 = document.body.classList.contains('bootstrap5.3') ||
+    document.body.classList.contains('bootstrap5.3-dark');
+    var material3 = document.body.classList.contains('material3-dark') || 
+    document.body.classList.contains('material3');
+    var fluent2 = document.body.classList.contains('fluent2-dark') || 
+    document.body.classList.contains('fluent2');
+    var fluent = document.body.classList.contains('fluent-dark') ||
+    document.body.classList.contains('fluent');
+    if (tailwind3){
+      badge.style.backgroundColor = "#c2410c";
+      badge.style.color = "#fff";
+      badge.style.marginTop = "3px";
+      badge.style.paddingTop = "2px";
+    }
+    else if (bootstrap5){
+      badge.style.backgroundColor = "#ffc107";
+      badge.style.color = "#000";
+      badge.style.paddingTop = "3px";
+      badge.style.marginTop = "6px";
+    }
+    else if (fluent2){
+      badge.style.backgroundColor = "#fde300";
+      badge.style.color = "#000";
+      badge.style.paddingTop = "4px";
+      badge.style.marginTop = "6px";
+    }
+    else if(fluent) {
+      badge.style.backgroundColor = "#fde300";
+      badge.style.color = "#000";
+      badge.style.paddingTop = "2px";
+      badge.style.marginTop = "8px";
+    }
+    else if (material3){
+      badge.style.backgroundColor = "#b3261e";
+      badge.style.color = "#fff";
+      badge.style.paddingTop = "4px";
+    }
+    badge.textContent = count;
+    badge.style.display = count > 0 ? "inline-block" : "none";
+  }
 };

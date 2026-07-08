@@ -82,3 +82,17 @@ export declare let ordersTrackData: Object[];
 export declare let supportData: any[];
 export declare let virtualOrderData: any[];
 export declare function createVirtualOrderData(): void;
+export declare let salesDataSource: any[];
+export declare function createSalesDataSource(): void;
+export declare let OrderedData: any[];
+export declare let inventoryStoreData: {
+    ID: string;
+    Product: string;
+    Category: string;
+    UnitPrice: number;
+    VendorA: number;
+    VendorB: number;
+    VendorC: number;
+    VendorD: number;
+}[];
+export declare let appointmentData: any[];

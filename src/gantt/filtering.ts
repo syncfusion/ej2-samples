@@ -19,7 +19,7 @@ Gantt.Inject(Filter, Toolbar, Selection, Resize);
         { id: 'Parent', type: 'Parent' },
         { id: 'Child', type: 'Child' },
         { id: 'Both', type: 'Both' },
-        { id: 'None', type: 'None' },
+        { id: 'None', type: 'None' }
     ];
     let gantt: Gantt = new Gantt(
         {
@@ -32,33 +32,33 @@ Gantt.Inject(Filter, Toolbar, Selection, Resize);
                 endDate: 'EndDate',
                 duration: 'Duration',
                 dependency: 'Predecessor',
-                child: 'subtasks',
+                child: 'subtasks'
             },
             columns: [
-                { field: 'TaskName', headerText: 'Task Name', width: '250', clipMode: 'EllipsisWithTooltip' },
+                { field: 'TaskName', headerText: 'Task Name', width: 250, clipMode: 'EllipsisWithTooltip' },
                 { field: 'StartDate', headerText: 'Start Date' },
                 { field: 'Duration', headerText: 'Duration' },
                 { field: 'EndDate', headerText: 'End Date' },
-                { field: 'Predecessor', headerText: 'Predecessor', width:190  }
+                { field: 'Predecessor', headerText: 'Predecessor', width: 190  }
             ],
             treeColumnIndex: 0,
             allowFiltering: true,
             allowResizing: true,
-            filterSettings: { type: 'Menu',hierarchyMode:'Parent'},
+            filterSettings: { type: 'Menu', hierarchyMode: 'Parent'},
             includeWeekend: true,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             timelineSettings: {
                 timelineUnitSize: 70,
                 topTier: {
                     format: 'MMM dd, yyyy',
-                    unit: 'Day',
+                    unit: 'Day'
                 },
                 bottomTier: {
                     unit: 'Hour',
                     format: 'h.mm a'
-                },
+                }
             },
             splitterSettings: {
                 columnIndex: 2
@@ -66,7 +66,7 @@ Gantt.Inject(Filter, Toolbar, Selection, Resize);
             durationUnit: 'Hour',
             dayWorkingTime: [{ from: 1, to: 24 }],
             labelSettings: {
-                rightLabel: 'TaskName',
+                rightLabel: 'TaskName'
             },
             projectStartDate: new Date('07/16/2025 02:00:00 AM'),
             projectEndDate: new Date('07/25/2025'),

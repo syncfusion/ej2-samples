@@ -1,12 +1,12 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Selection, Edit, Toolbar } from '@syncfusion/ej2-gantt';
+import { Gantt, Selection, Edit, Toolbar, DayMarkers } from '@syncfusion/ej2-gantt';
 import { taskModeData } from './data-source';
 
 /**
- * Default Gantt sample
+ * Task Scheduling Mode Gantt sample
  */
 
-Gantt.Inject(Selection, Edit, Toolbar);
+Gantt.Inject(Selection, Edit, Toolbar, DayMarkers);
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
@@ -15,8 +15,8 @@ Gantt.Inject(Selection, Edit, Toolbar);
         allowSorting: true,
         enableContextMenu: true,
         height: '650px',
-        rowHeight:46,
-        taskbarHeight:25,
+        rowHeight: 46,
+        taskbarHeight: 25,
         allowSelection: true,
         highlightWeekends: true,
         taskFields: {
@@ -28,14 +28,14 @@ Gantt.Inject(Selection, Edit, Toolbar);
             endDate: 'EndDate',
             dependency: 'Predecessor',
             child: 'Children',
-            manual: 'isManual',
+            manual: 'isManual'
         },
         taskMode : 'Custom',
         toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Search'],
         columns: [
             { field: 'TaskID', visible: false},
-            {field: 'TaskName'},
-            { field: 'isManual'}
+            {field: 'TaskName', width: 130 },
+            { field: 'isManual', width: 120 }
         ],
         validateManualTasksOnLinking: true,
         treeColumnIndex: 1,
@@ -49,10 +49,10 @@ Gantt.Inject(Selection, Edit, Toolbar);
             leftLabel: 'TaskName'
         },
         splitterSettings: {
-            position: '35%'
+            columnIndex: 2,
         },
         projectStartDate: new Date("02/18/2025"),
-        projectEndDate: new Date('03/30/2025'),
+        projectEndDate: new Date('03/30/2025')
     });
     gantt.appendTo('#TaskMode');
 };

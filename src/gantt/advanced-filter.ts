@@ -9,6 +9,7 @@ import { Sidebar } from '@syncfusion/ej2-navigations';
 /**
  * Advanced Filtering Gantt sample
  */
+
 Gantt.Inject(Selection, Filter);
 
 let searchQuery: any;
@@ -42,14 +43,14 @@ let ganttChart: Gantt;
             { field: 'Duration' },
             { field: 'EndDate' },
             { field: 'Progress' },
-            { field: 'Predecessor', type: 'string', width:190 }
+            { field: 'Predecessor', type: 'string', width: 190 }
         ],
         treeColumnIndex: 0,
         allowFiltering: true,
         includeWeekend: true,
         height: '650px',
-        rowHeight:46,
-        taskbarHeight:25,
+        rowHeight: 46,
+        taskbarHeight: 25,
         splitterSettings: {
             columnIndex: 2
         },
@@ -58,7 +59,7 @@ let ganttChart: Gantt;
             rightLabel: 'TaskName'
         },
         projectStartDate: new Date('03/30/2025'),
-        projectEndDate: new Date('07/20/2025')
+        projectEndDate: new Date('06/21/2025')
     });
     ganttChart.appendTo('#AdvancedFiltering');
 

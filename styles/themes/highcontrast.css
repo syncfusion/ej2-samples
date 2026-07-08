@@ -2,6 +2,24 @@
     color: #fff;
 }
 
+.highcontrast .sb-products-popup {
+    background: #000000;
+    border: 1px solid #FFFF00;
+    color: #ffffff;
+}
+
+.highcontrast .sb-products-popup li {
+    color: #ffffff;
+}
+
+.highcontrast .sb-products-popup li:hover {
+    background: #003399;
+}
+
+.highcontrast .sb-products-popup li.active {
+    color: #FFFF00;
+}
+
 .highcontrast .e-samplestatus.new.tree, .highcontrast .e-samplestatus.update.tree, .highcontrast .e-samplestatus.preview.tree {
     margin: 8px 0;
     height: 22px;

@@ -13,8 +13,8 @@ Gantt.Inject(Selection, RowDD, Edit);
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             allowRowDragAndDrop: true,
             allowTaskbarDragAndDrop: true,
             treeColumnIndex: 1,
@@ -33,7 +33,7 @@ Gantt.Inject(Selection, RowDD, Edit);
             },
             columns: [
                 { field: 'TaskID', headerText: 'ID', width: 80 },
-                { field: 'TaskName', headerText: 'Name', width: 250 },
+                { field: 'TaskName', headerText: 'Name', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },

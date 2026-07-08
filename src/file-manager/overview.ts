@@ -1,7 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { FileManager, Toolbar, NavigationPane, DetailsView, ContextMenu } from '@syncfusion/ej2-filemanager';
 import { TreeView, Sidebar } from '@syncfusion/ej2-navigations';
-import { Button } from '@syncfusion/ej2-buttons';
 import { Dialog } from '@syncfusion/ej2-popups';
 FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
 
@@ -10,7 +9,7 @@ FileManager.Inject(Toolbar, NavigationPane, DetailsView, ContextMenu);
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-    let hostUrl: string = 'https://ej2-aspcore-service.azurewebsites.net/';
+    let hostUrl: string = 'https://physical-service.syncfusion.com/';
     let favoriteFiles: any = {};
     let selectedItems: string[] = [];
     let isFavoriteAjax: boolean = false;

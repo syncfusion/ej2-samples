@@ -2,13 +2,9 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, VirtualScroll, Selection } from '@syncfusion/ej2-gantt';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
 
-
 /**
-
- * Default Gantt sample
-
+ * Load on Demand Gantt sample
  */
-
 
 Gantt.Inject(Selection, VirtualScroll);
 
@@ -36,7 +32,7 @@ Gantt.Inject(Selection, VirtualScroll);
             parentID: 'parentID'
         },
         columns: [
-            { field: 'taskId', headerText: 'Task ID',width: 130 },
+            { field: 'taskId', headerText: 'Task ID', width: 130 },
             { field: 'taskName', headerText: 'Task Name', allowReordering: false },
             { field: 'startDate', headerText: 'Start Date', allowSorting: false },
             { field: 'duration', headerText: 'Duration', allowEditing: false },
@@ -45,7 +41,7 @@ Gantt.Inject(Selection, VirtualScroll);
         allowSelection: true,
         enableVirtualization: true,
         splitterSettings: {
-            columnIndex: 3,
+            columnIndex: 3
         },
         tooltipSettings: {
             showTooltip: true
@@ -64,10 +60,10 @@ Gantt.Inject(Selection, VirtualScroll);
         },
         treeColumnIndex: 1,
         height: '650px',
-        rowHeight:46,
-        taskbarHeight:25,
+        rowHeight: 46,
+        taskbarHeight: 25,
         projectStartDate: new Date('01/02/2000'),
-        projectEndDate: new Date('12/01/2002'),
-        });
+        projectEndDate: new Date('12/01/2002')
+    });
     gantt.appendTo('#LoadonDemand');
 };

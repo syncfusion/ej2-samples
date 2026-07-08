@@ -1,14 +1,15 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { ActionEventArgs } from '@syncfusion/ej2-grids';
-import { Gantt, Selection, Reorder } from '@syncfusion/ej2-gantt';
+import { Gantt, Reorder } from '@syncfusion/ej2-gantt';
 import { Column} from '@syncfusion/ej2-treegrid';
 import { projectNewData } from './data-source';
 
 /**
  *  Reorder Gantt sample
  */
-Gantt.Inject(Selection, Reorder);
+
+Gantt.Inject(Reorder);
 (window as any).default = (): void => {
     loadCultureFiles();
     let columnNames: { [key: string]: Object }[] = [
@@ -34,8 +35,8 @@ Gantt.Inject(Selection, Reorder);
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             allowReordering: true,
             taskFields: {
@@ -50,7 +51,7 @@ Gantt.Inject(Selection, Reorder);
             },
             columns: [
                 { field: 'TaskID', headerText: 'ID', width: 100 },
-                { field: 'TaskName', headerText: 'Name', width: 250 },
+                { field: 'TaskName', headerText: 'Name', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
@@ -62,7 +63,7 @@ Gantt.Inject(Selection, Reorder);
                 rightLabel: 'TaskName'
             },
             splitterSettings: {
-                columnIndex: 4
+                columnIndex: 3
             },
             actionComplete: (args: ActionEventArgs) => {
                 if (args.requestType === 'reorder') {

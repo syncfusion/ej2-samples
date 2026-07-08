@@ -1,9 +1,9 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { IDataSet, PivotView } from '@syncfusion/ej2-pivotview';
 import { enableRipple } from '@syncfusion/ej2-base';
-import { DatePicker } from '@syncfusion/ej2/calendars';
+import { DatePicker } from '@syncfusion/ej2-calendars';
 import { Button } from '@syncfusion/ej2-buttons';
-import { DataManager, JsonAdaptor, Query } from '@syncfusion/ej2/data';
+import { DataManager, JsonAdaptor, Query } from '@syncfusion/ej2-data';
 import * as pivotData from './pivot-data/dateFilterData.json';
 enableRipple(false);
 
@@ -67,7 +67,7 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         placeholder: "Choose an end date",
         min: new Date(2019, 1, 1),
         max: new Date(2024, 11, 31),
-        value: endDate,
+        value: new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()),
         width: 200,
         format: 'MMM yyyy',
         start: 'Year',
@@ -90,8 +90,8 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     // Function to apply the date filtering
     function applyDateFilter() {
         if (startDate && endDate) {
-            startDate.setHours(0, 0, 0, 0);
-            endDate.setHours(23, 59, 59, 999);
+            startDate = new Date(startDate.getFullYear(), startDate.getMonth(), 1);
+            endDate = new Date(endDate.getFullYear(), endDate.getMonth() + 1, 0, 23, 59, 59, 999);
             let pivotData = (Pivot_Data as any).map((item: any) => ({
                 ...item,
                 OrderDate: new Date(item.OrderDate),

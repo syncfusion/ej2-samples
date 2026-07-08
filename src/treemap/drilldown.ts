@@ -36,13 +36,6 @@ let prevTime: Date; let curTime: Date;
                 args.treemap.levels[2].showHeader = false;
             }
         },
-        // show the tooltip level two
-        tooltipRendering: (args: ITreeMapTooltipRenderEventArgs) => {
-            //tslint:disable-next-line
-            if (args.item['groupIndex'] !== 2) {
-                args.cancel = true;
-            }
-        },
         load: treemapload,
         palette: ['#9999ff', '#CCFF99', '#FFFF99', '#FF9999', '#FF99FF', '#FFCC66'],
         titleSettings: {

@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Filter, Page, Selection, Sort } from '@syncfusion/ej2-grids';
 import { categoryData } from './data-source';
 import { CheckBox } from '@syncfusion/ej2-buttons';
@@ -9,7 +8,6 @@ Grid.Inject(Filter, Page, Selection, Sort);
  * Filtering sample
  */
 (window as any).default = (): void => {
-    loadCultureFiles();
     let grid: Grid = new Grid(
         {
             dataSource: categoryData,

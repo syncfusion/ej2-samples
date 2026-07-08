@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Selection, Reorder, Sort, Resize, ContextMenu } from '@syncfusion/ej2-gantt';
-import { ColumnMenu, Toolbar, Edit, Filter, DayMarkers } from '@syncfusion/ej2-gantt';
-import {Button} from '@syncfusion/ej2-buttons';
+import { Gantt, Selection, Reorder, Sort, Resize, ContextMenu, 
+    ColumnMenu, Toolbar, Edit, DayMarkers } from '@syncfusion/ej2-gantt';
+import { Button } from '@syncfusion/ej2-buttons';
 import { projectNewData } from './data-source';
 import { ColumnMenuOpenEventArgs } from '@syncfusion/ej2-grids';
 
@@ -9,15 +9,15 @@ import { ColumnMenuOpenEventArgs } from '@syncfusion/ej2-grids';
  * Events Gantt sample
  */
 
-Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar, Edit, Filter, DayMarkers );
+Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar, Edit, DayMarkers );
 (window as any).default = (): void => {
     loadCultureFiles();
     let gantt: Gantt = new Gantt(
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             treeColumnIndex: 1,
             allowSelection: true,
@@ -72,19 +72,19 @@ Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar,
             },
             columns: [
                 { field: 'TaskID', width: 100 },
-                { field: 'TaskName', width: 250 },
+                { field: 'TaskName', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor', width: 190 },
-                { field: 'Progress' },
+                { field: 'Progress' }
             ],
             toolbar: ['Add', 'Edit', 'Update', 'Delete', 'Cancel', 'ExpandAll', 'CollapseAll', 'Search'],
             editSettings: {
                 allowEditing: true,
                 allowAdding: true,
                 allowDeleting: true,
-                allowTaskbarEditing: true,
+                allowTaskbarEditing: true
             },
             labelSettings: {
                 leftLabel: 'TaskName'
@@ -99,7 +99,7 @@ Gantt.Inject(Selection, Reorder, Sort, Resize, ContextMenu, ColumnMenu, Toolbar,
     let clear: Button = new Button();
     clear.appendTo('#clear');
     document.getElementById('clear').onclick = () => {
-    document.getElementById('EventLog').innerHTML = '';
+        document.getElementById('EventLog').innerHTML = '';
     };
     function columnMenuOpen(args: ColumnMenuOpenEventArgs): void {
         if (args.parentItem != null) {

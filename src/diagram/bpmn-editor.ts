@@ -652,7 +652,7 @@ function contextMenuOpen(args: DiagramBeforeMenuOpenEventArgs): void {
         dragEnter: dragEnter
     });
     diagram.appendTo('#diagram');
-    diagram.fitToPage({ mode: 'Width' });
+    diagram.fitToPage();
 
     //Initializes the symbol palette
     let palette: SymbolPalette = new SymbolPalette({

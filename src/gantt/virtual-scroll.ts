@@ -3,8 +3,9 @@ import { Gantt, Selection, VirtualScroll } from '@syncfusion/ej2-gantt';
 import { virtualData } from './data-source';
 
 /**
- * Virtual scroll sample
+ * Virtual scroll Gantt sample
  */
+
 Gantt.Inject(Selection, VirtualScroll);
 
 (window as any).default = (): void => {
@@ -24,15 +25,15 @@ Gantt.Inject(Selection, VirtualScroll);
         enableTimelineVirtualization: true,
         columns: [
             { field: 'TaskID' },
-            { field: 'TaskName', width: '200px' },
+            { field: 'TaskName', width: 300 },
             { field: 'StartDate' },
             { field: 'Duration' },
             { field: 'Progress' },
         ],
         allowSelection: true,
         height: '650px',
-        rowHeight:46,
-        taskbarHeight:25,
+        rowHeight: 46,
+        taskbarHeight: 25,
         splitterSettings: {
             columnIndex: 2
         },
@@ -40,7 +41,7 @@ Gantt.Inject(Selection, VirtualScroll);
             taskLabel: 'Progress'
         },
         projectStartDate: new Date('04/01/2025'),
-        projectEndDate: new Date('12/31/2030')
+        projectEndDate: new Date('12/31/2029')
     });
     gantt.appendTo('#VirtualScroll');
 };

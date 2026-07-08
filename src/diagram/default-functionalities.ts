@@ -2,10 +2,10 @@ import { loadCultureFiles } from '../common/culture-loader';
 /**
  * Default FlowShape sample
  */
-
+import { Dialog } from '@syncfusion/ej2-popups';
 import {
   Diagram, NodeModel, UndoRedo, ConnectorModel, PointPortModel, SymbolPalette,
-  SymbolInfo, IDragEnterEventArgs, GridlinesModel, PaletteModel, FlowShapes, Node, PrintAndExport, FlipDirection,ITextEditEventArgs,Connector,
+  SymbolInfo, IDragEnterEventArgs, GridlinesModel, PaletteModel, FlowShapes, Node, PrintAndExport, FlipDirection, ITextEditEventArgs, Connector,
 } from '@syncfusion/ej2-diagrams';
 import { addEvents } from './script/diagram-common';
 import { ConnectorConstraints, DiagramTools, IExportOptions, IScrollChangeEventArgs, ISelectionChangeEventArgs, NodeConstraints } from '@syncfusion/ej2-diagrams';
@@ -101,38 +101,6 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
 (window as any).default = (): void => {
   loadCultureFiles();
   const Window: any = window.location.href
-  if (Window) {
-    if (Window.includes('bootstrap5')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Bootstrap5_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('bootstrap4')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/bootstrap4_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('bootstrap')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Bootstrap_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('material3')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Material3_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('material')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Material_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('fabric')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/fabric_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('fluent')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Fluent_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('tailwind')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Tailwind_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('highcontrast')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/HighContrast_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('fusion')) {
-      (document.getElementById('change_themes') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Fusion_Diagram_Builder/style.css';
-    }
-  }
 
   let interval: number[] = [
     1, 9, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75, 0.25, 9.75
@@ -260,6 +228,9 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     getConnectorDefaults: getConnectorDefaults,
     dragEnter: dragEnter,
     textEdit: textEdit,
+    created: function (args) {
+      diagram.fitToPage();
+    }
   });
   diagram.appendTo('#diagram');
 
@@ -440,7 +411,11 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
         diagram.tool = DiagramTools.ZoomPan;
         break;
       case 'New Diagram':
-        diagram.clear();
+        if (diagram.isModified) {
+          showConfirm(() => diagram.clear());
+        } else {
+          diagram.clear();
+        }
         historyChange(args);
         break;
       case 'Print Diagram':
@@ -506,7 +481,7 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
 
       if (selectedItems.length > 1) {
         enableItems();
-        updateToolbarItems(['Align_objects', 'Group','Distribute_objects'],false );
+        updateToolbarItems(['Align_objects', 'Group', 'Distribute_objects'], false);
         //To enable distribute objcets when selected items length is greater than 2
         if (selectedItems.length > 2) {
           updateToolbarItems(['Distribute_objects'], false);
@@ -578,7 +553,7 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
 
   //To disable toolbar items while multiselection.
   function disableMultiselectedItems() {
-    updateToolbarItems(['Align_objects', 'Distribute_objects', 'Group'],true );
+    updateToolbarItems(['Align_objects', 'Distribute_objects', 'Group'], true);
   }
 
   //To handle selection of connectors.
@@ -679,7 +654,11 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
     reader.onloadend = loadDiagram;
   }
   function loadDiagram(event: any) {
-    diagram.loadDiagram(event.target.result);
+    if (diagram.isModified) {
+      showConfirm(() => diagram.loadDiagram(event.target.result));
+    } else {
+      diagram.loadDiagram(event.target.result);
+    }
   }
 
   //Function to download the diagram.
@@ -722,13 +701,13 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
         isChecked = false;
       }
     }
-  updateToolbarItems(["Cut", "Copy", "Delete", "Order", "Rotate", "Flip"],isChecked);
-  diagram.dataBind();
+    updateToolbarItems(["Cut", "Copy", "Delete", "Order", "Rotate", "Flip"], isChecked);
+    diagram.dataBind();
   }
-  
+
 
   // Enable or disable specific toolbar items
-  function updateToolbarItems(itemIds :string[], disabled: boolean) {
+  function updateToolbarItems(itemIds: string[], disabled: boolean) {
     itemIds.forEach((itemId) => {
       const item = toolbarObj.items.find((item) => item.id === itemId);
       if (item) {
@@ -867,4 +846,66 @@ function getSymbolInfo(symbol: NodeModel): SymbolInfo {
   palette.appendTo('#symbolpalette');
 
   addEvents();
+
+  // Browser / tab close protection
+  window.addEventListener('beforeunload', function (e) {
+    if (diagram.isModified) {
+      e.preventDefault();
+      e.returnValue = 'You have unsaved changes.\n\nDo you want to continue without saving?';
+    }
+  });
+
+  let pendingAction: (() => void) | null = null;
+
+  let dialogObj: Dialog = new Dialog({
+    header: 'Unsaved Changes',
+    content: 'Do you want to save your changes?',
+    target: document.getElementById('diagram'),
+    buttons: [
+      {
+        click: saveButtonClick,
+        buttonModel: { content: 'Save', isPrimary: true }
+      },
+      {
+        click: dontSaveButtonClick,
+        buttonModel: { content: "Don't Save" }
+      },
+      {
+        click: cancelButtonClick,
+        buttonModel: { content: 'Cancel' }
+      }
+    ],
+    width: '300px',
+    isModal: false
+  });
+  dialogObj.appendTo('#diagram-unsaved-dialog');
+
+
+  function showConfirm(action: (() => void)) {
+    pendingAction = action;
+    dialogObj.isModal = true;
+    dialogObj.show();
+    document.getElementById('diagram-unsaved-dialog').style.display = 'flex';
+  }
+
+  function hideConfirm() {
+    dialogObj.hide();
+    document.getElementById('diagram-unsaved-dialog').style.display = 'none';
+  }
+
+  function saveButtonClick() {
+    download(diagram.saveDiagram());
+    hideConfirm();
+    pendingAction();
+  }
+
+  function dontSaveButtonClick() {
+    hideConfirm();
+    pendingAction();
+  }
+
+  function cancelButtonClick() {
+    hideConfirm();
+  }
+
 };

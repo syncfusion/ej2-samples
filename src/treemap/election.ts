@@ -71,7 +71,6 @@ let prevTime: Date; let curTime: Date;
         },
         format: 'n',
         useGroupingSeparator: true,
-        rangeColorValuePath: 'WinPercentage',
         equalColorValuePath: 'Winner',
         leafItemSettings: {
             labelPath: 'State',

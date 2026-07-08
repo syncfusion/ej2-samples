@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { BlockEditor, FocusEventArgs } from '@syncfusion/ej2-blockeditor';
-import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2/buttons';
+import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { DialogUtility } from '@syncfusion/ej2-popups';
 import * as data from './blockData.json';
 

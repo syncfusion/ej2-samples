@@ -1,18 +1,19 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Selection, VirtualScroll,Sort,Filter } from '@syncfusion/ej2-gantt';
+import { Gantt, Selection, VirtualScroll, Sort, Filter } from '@syncfusion/ej2-gantt';
 import { virtualData } from './data-source';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Virtual scroll sample
+ * Virtual scroll Gantt sample
  */
-Gantt.Inject(Selection, VirtualScroll,Sort,Filter);
+
+Gantt.Inject(Selection, VirtualScroll, Sort, Filter);
 
 (window as any).default = (): void => {
     loadCultureFiles();
     var indicatortypes = [
         { id: 'Shimmer', type: 'Shimmer' },
-        { id: 'Spinner', type: 'Spinner' },
+        { id: 'Spinner', type: 'Spinner' }
     ];
     let gantt: Gantt = new Gantt({
         dataSource: virtualData,
@@ -31,22 +32,23 @@ Gantt.Inject(Selection, VirtualScroll,Sort,Filter);
         loadingIndicator: { indicatorType: 'Shimmer' },
         columns: [
             { field: 'TaskID' },
-            { field: 'TaskName', width:'200px'},
-            { field: 'StartDate',width: 170 },
+            { field: 'TaskName', width: 300 },
+            { field: 'StartDate', width: 170 },
             { field: 'Duration' },
-            { field: 'Progress' },
+            { field: 'Progress' }
         ],
         allowSelection: true,
         gridLines: 'Both',
         height: '650px',
-        rowHeight:46,
-        taskbarHeight:25,
+        rowHeight: 46,
+        taskbarHeight: 25,
         splitterSettings: {
             columnIndex: 2
         },
         labelSettings: {
             taskLabel: 'Progress'
         },
+        projectEndDate: new Date('09/21/2025')
     });
     gantt.appendTo('#LoadingAnimation');
     let dropDownMode: DropDownList = new DropDownList({
@@ -54,7 +56,7 @@ Gantt.Inject(Selection, VirtualScroll,Sort,Filter);
         fields: { text: 'type', value: 'id' },
         value: 'Shimmer',
         width: '125px',
-        change: function (e:any) {
+        change: function (e: any) {
             if (dropDownMode.value === 'Shimmer') {
                 gantt.loadingIndicator.indicatorType = 'Shimmer';
                 gantt.enableVirtualMaskRow = true ;

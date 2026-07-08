@@ -28,8 +28,9 @@ let count: number = 0;
         },
         // custom code end
         loaded: (args: ILoadedEventArgs) => {
-            let markers: Element = document.getElementById(args.maps.element.id + '_LayerIndex_0_Markers_Template_Group');
+            let markers: HTMLElement = document.getElementById(args.maps.element.id + '_LayerIndex_0_Markers_Template_Group');
             if (markers) {
+                markers.style.overflow = 'visible';
                 for (let i: number = 0; i < markers.childElementCount; i++) {
                     AccumulationChartRender((<Element>markers.childNodes[i].childNodes[0]).id);
                 }
@@ -121,7 +122,7 @@ let count: number = 0;
                     },
                     {
                         visible: true,
-                        template: '<div id="pieChart6" style="top:35px;left:65px;height:150px;width:200px;"></div>',
+                        template: '<div id="pieChart6" style="top:35px;left:40px;height:150px;width:200px;"></div>',
                         dataSource: [
                             { 'latitude': -23.725011735951796, 'longitude': 132.978515625 }
                         ],

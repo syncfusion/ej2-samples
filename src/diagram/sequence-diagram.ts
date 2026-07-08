@@ -8,7 +8,8 @@ import {
     UmlSequenceActivationBox,
     ConnectorModel,
     NodeModel,
-    SnapConstraints
+    SnapConstraints,
+    UmlSequenceParticipantStereotype
 } from '@syncfusion/ej2-diagrams';
 
 (window as any).default = (): void => {
@@ -21,11 +22,12 @@ import {
             {
                 id: "User",
                 content: "User",
-                isActor: true
+                stereotype: UmlSequenceParticipantStereotype.Actor
             },
             {
                 id: "Transaction",
                 content: "Transaction",
+                stereotype: UmlSequenceParticipantStereotype.Control,
                 activationBoxes: [
                     { id: "act1", startMessageID: 'msg1', endMessageID: 'msg4' }
                 ]
@@ -33,6 +35,7 @@ import {
             {
                 id: "FraudDetectionSystem",
                 content: "Fraud Detection System",
+                stereotype: UmlSequenceParticipantStereotype.Entity,
                 activationBoxes: [
                     { id: "act2", startMessageID: 'msg2', endMessageID: 'msg3' },
                     { id: "act3", startMessageID: 'msg5', endMessageID: 'msg6' }
@@ -81,11 +84,7 @@ import {
 
     // Define default properties for nodes
     function getNodeDefaults(node: NodeModel): void {
-        if (node.data instanceof UmlSequenceParticipant) {
-            if (!node.data.isActor && node.annotations) {
-                node.annotations[0].style.color = 'white';
-            }
-        } else if (node.data instanceof UmlSequenceActivationBox) {
+        if (node.data instanceof UmlSequenceActivationBox) {
             node.style = { fill: 'orange', strokeColor: 'orange' };
         }
 

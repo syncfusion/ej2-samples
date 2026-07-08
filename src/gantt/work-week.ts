@@ -3,11 +3,11 @@ import { Gantt, Selection, DayMarkers } from '@syncfusion/ej2-gantt';
 import { projectNewData } from './data-source';
 import { extend } from '@syncfusion/ej2-base';
 import { MultiSelect, CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
-import {  SelectEventArgs, RemoveEventArgs  } from '@syncfusion/ej2-dropdowns';
+import { SelectEventArgs, RemoveEventArgs  } from '@syncfusion/ej2-dropdowns';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 
 /**
- * Default Gantt sample
+ * Work Week Gantt sample
  */
 
 Gantt.Inject(Selection, DayMarkers);
@@ -28,8 +28,8 @@ MultiSelect.Inject(CheckBoxSelection);
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -39,17 +39,17 @@ MultiSelect.Inject(CheckBoxSelection);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                parentID:'ParentId'
+                parentID: 'ParentId'
             },
             treeColumnIndex: 1,
             columns: [
                 { field: 'TaskID', visible: false, width: 80 },
-                { field: 'TaskName',headerText: 'Name', width: 250 },
+                { field: 'TaskName',headerText: 'Name', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor' },
-                { field: 'Progress' },
+                { field: 'Progress' }
             ],
             labelSettings: {
                 leftLabel: 'TaskName'
@@ -63,16 +63,15 @@ MultiSelect.Inject(CheckBoxSelection);
         });
     gantt.appendTo('#WorkWeek');
     const select: any = (args: SelectEventArgs) => {
-        let workingDays: any = Object[7];
         let fieldInstance: MultiSelect = ((<any>document.getElementById('WorkingDays'))).ej2_instances[0] as MultiSelect;
-        workingDays = extend([], fieldInstance.value, [], true);
+        let workingDays: any = extend([], fieldInstance.value, [], true);
         workingDays.push(args.item.innerText);
         gantt.workWeek = workingDays;
     };
     const removed: any = (args: RemoveEventArgs) => {
         let index: number = gantt.workWeek.indexOf(args.item.innerText);
         let fieldInstance: MultiSelect = ((<any>document.getElementById('WorkingDays'))).ej2_instances[0] as MultiSelect;
-        let workingDays: any = Object[7];
+        let workingDays: any;
         if (index !== -1) {
             workingDays = fieldInstance.value;
             gantt.workWeek = workingDays;

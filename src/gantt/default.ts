@@ -13,8 +13,8 @@ Gantt.Inject(Selection);
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             taskFields: {
                 id: 'TaskID',
                 name: 'TaskName',
@@ -23,17 +23,17 @@ Gantt.Inject(Selection);
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                parentID:'ParentId'
+                parentID: 'ParentId'
             },
             treeColumnIndex: 1,
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName',headerText: 'Name', width: 250 },
+                { field: 'TaskName', headerText: 'Name', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Predecessor' },
-                { field: 'Progress' },
+                { field: 'Progress' }
             ],
             labelSettings: {
                 leftLabel: 'TaskName'
@@ -41,11 +41,11 @@ Gantt.Inject(Selection);
             splitterSettings: {
                 columnIndex: 2
             },
-            created:function() {
+            created: function() {
                 if(document.querySelector('.e-bigger'))
                 {
-                    gantt.rowHeight=48;
-                    gantt.taskbarHeight=28;
+                    gantt.rowHeight = 48;
+                    gantt.taskbarHeight = 28;
                 }
             },
             projectStartDate: new Date('03/26/2025'),

@@ -19,6 +19,29 @@
     font-size:25px;
 }
 
+.material3-dark .sb-products-popup {
+    background: #2B2831;
+    border: 1px solid #484644;
+    color: #ffffff;
+}
+
+.material3-dark .sb-products-popup li {
+    color: #ffffff;
+}
+
+.material3-dark .sb-products-popup li:hover {
+    background: #3d3842 !important;
+}
+
+.material3-dark .sb-products-popup li.active {
+    color: #d0bcff;
+}
+
+.material3-dark .sb-products-popup li a {
+    text-decoration: none;
+    color: inherit;
+    cursor: default;
+}
 
 .material3-dark .sb-content,
 .material3-dark textarea#ruleContent,
@@ -139,6 +162,9 @@ body.material3-dark,
 .material3-dark .sb-theme-popup li:hover.active .sb-theme-select {
     color: rgb(208, 188, 255);
 }
+.material3-dark .sb-products-popup li:hover.active .sb-products-select {
+    color: rgb(208, 188, 255);
+}
 .material3-dark .sb-plnr-section{
     line-height:30px;
     height:40px;
@@ -171,6 +197,7 @@ body.material3-dark,
 .material3-dark .sb-setting-btn.active,
 .material3-dark .sb-switch-popup li:hover,
 .material3-dark .theme-wrapper:hover,
+.material3-dark .products-wrapper:hover,
 .material3-dark .theme-wrapper.active,
 .material3-dark .sb-theme-popup li:hover,
 .material3-dark .sb-search-result .e-list-item:hover,
@@ -199,7 +226,10 @@ body.material3-dark,
     border: 1px solid #484644;
 }
 .material3-dark .sb-theme-popup li.active .sb-theme-select {
-    color: rgb(208, 188, 255);;
+    color: rgb(208, 188, 255);
+}
+.material3-dark .sb-products-popup li.active .sb-products-select {
+    color: rgb(208, 188, 255);
 }
 .material3-dark .setting-responsive .sb-responsive-items {
     width: 104px;
@@ -267,6 +297,10 @@ body.material3-dark,
     color:#212529;
 }
 
+.material3-dark .sb-products-select {
+    color:#212529;
+}
+
 .material3-dark .e-samplestatus.new,.material3-dark .e-samplestatus.update,.material3-dark .e-samplestatus.preview {
     margin: 5px 0;
     height: 22px;
@@ -298,6 +332,10 @@ body.material3-dark,
 }
 
 .material3-dark .sb-theme-popup li:hover .sb-theme-select {
+    color:transparent;
+}
+
+.material3-dark .sb-products-popup li:hover .sb-products-select {
     color:transparent;
 }
 

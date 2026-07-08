@@ -2,7 +2,6 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Selection, Filter, Sort, ColumnMenu, Resize } from '@syncfusion/ej2-gantt';
 import { projectNewData } from './data-source';
 import { ColumnMenuOpenEventArgs } from '@syncfusion/ej2-grids';
-
 /**
  *  Column menu Gantt sample
  */
@@ -13,8 +12,8 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             showColumnMenu: true,
             allowFiltering: true,
@@ -28,16 +27,16 @@ Gantt.Inject(Selection, Filter, Sort, ColumnMenu, Resize );
                 duration: 'Duration',
                 progress: 'Progress',
                 dependency: 'Predecessor',
-                parentID:'ParentId'
+                parentID: 'ParentId'
             },
             columns: [
                 { field: 'TaskID', headerText: 'ID', width: 100 },
-                { field: 'TaskName', headerText: 'Name', width: 250 },
+                { field: 'TaskName', headerText: 'Name', width: 280 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
                 { field: 'Progress' },
-                { field: 'Predecessor', headerText: 'Dependency', width:190 }
+                { field: 'Predecessor', headerText: 'Dependency', width: 190 }
             ],
             columnMenuOpen: (args: ColumnMenuOpenEventArgs) => {
                 if (args.parentItem != null) {

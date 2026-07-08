@@ -19,11 +19,13 @@ import { cosineSimilarity } from "../common/cosine-similarity";
     getEmbeddingsData();
 
     async function getEmbeddingsData() {
-        for (let record of MedicalRecords) {
-            let data: number[] = (await (window as any).embeddingModel(
-                record.DoctorDetails + ' ' + record.PatientID + ' ' + record.Symptoms + ' ' + record.Diagnosis
-            )) as number[];
-            productEmbeddings[record.RecordID] = data;
+        if ((window as any).embeddingModel) {
+            for (let record of MedicalRecords) {
+                let data: number[] = (await (window as any).embeddingModel(
+                    record.DoctorDetails + ' ' + record.PatientID + ' ' + record.Symptoms + ' ' + record.Diagnosis
+                )) as number[];
+                productEmbeddings[record.RecordID] = data;
+            }
         }
     }
 

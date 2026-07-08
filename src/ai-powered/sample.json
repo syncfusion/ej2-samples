@@ -1,0 +1,217 @@
+{
+  "name": "AI-Powered Samples",
+  "directory": "ai-grid",
+  "category": "Smart AI Solutions",
+  "dataSourcePath": "src/ai-grid/data-source.ts",
+  "samples": [
+    {
+      "url": "predictive-entry",
+      "name": "Predictive Data Entry",
+      "category": "Data Grid",
+      "dir": "ai-grid",
+      "sourceFiles": [
+        { "displayName": "predictive-entry.html", "path": "src/ai-grid/ai-predictive-entry.html" },
+        { "displayName": "predictive-entry.ts", "path": "src/ai-grid/predictive-entry.ts" }
+      ],
+      "description": "This demo shows the predictive data entry AI feature in Data Grid."
+    },
+    {
+      "url": "anomaly-detection",
+      "name": "Anomaly Detection",
+      "category": "Data Grid",
+      "dir": "ai-grid",
+      "sourceFiles": [
+        { "displayName": "anomaly-detection.html", "path": "src/ai-grid/ai-anomaly-detection.html" },
+        { "displayName": "anomaly-detection.ts", "path": "src/ai-grid/anomaly-detection.ts" }
+      ],
+      "description": "This demo shows the anomaly detection AI feature in Data Grid."
+    },
+    {
+      "url": "semantic-filtering",
+      "name": "Semantic Filtering (Embedding)",
+      "category": "Data Grid",
+      "dir": "ai-grid",
+      "sourceFiles": [
+        { "displayName": "semantic-filtering.html", "path": "src/ai-grid/ai-semantic-filtering.html" },
+        { "displayName": "semantic-filtering.ts", "path": "src/ai-grid/semantic-filtering.ts" }
+      ],
+      "description": "This demo shows the semantic filtering AI feature in Data Grid."
+    },
+
+    {
+      "url": "text-to-flowchart",
+      "name": "Text to Flowchart",
+      "category": "Diagram",
+      "dir": "ai-diagram",
+      "sourceFiles": [
+        { "displayName": "text-to-flowchart.html", "path": "src/ai-diagram/ai-text-to-flowchart.html" },
+        { "displayName": "text-to-flowchart.ts", "path": "src/ai-diagram/text-to-flowchart.ts" }
+      ],
+      "description": "This demo showcases the Diagram AI feature."
+    },
+    {
+      "url": "text-to-mindmap",
+      "name": "Text to MindMap",
+      "category": "Diagram",
+      "dir": "ai-diagram",
+      "sourceFiles": [
+        { "displayName": "text-to-mindmap.html", "path": "src/ai-diagram/ai-text-to-mindmap.html" },
+        { "displayName": "text-to-mindmap.ts", "path": "src/ai-diagram/text-to-mindmap.ts" }
+      ],
+      "description": "This demo showcases the Diagram AI feature."
+    },
+    {
+      "url": "text-to-umlSequenceDiagram",
+      "name": "Text to UML Sequence Diagram",
+      "category": "Diagram",
+      "dir": "ai-diagram",
+      "sourceFiles": [
+        { "displayName": "text-to-umlSequenceDiagram.html", "path": "src/ai-diagram/ai-text-to-umlSequenceDiagram.html" },
+        { "displayName": "text-to-umlSequenceDiagram.ts", "path": "src/ai-diagram/text-to-umlSequenceDiagram.ts" }
+      ],
+      "description": "This demo showcases the Diagram AI feature."
+    },
+
+    {
+      "url": "semantic-searching",
+      "name": "Semantic Searching (Embeddings)",
+      "category": "Combo Box",
+      "dir": "ai-combo-box",
+      "sourceFiles": [
+        { "displayName": "semantic-searching.html", "path": "src/ai-combo-box/ai-semantic-searching.html" },
+        { "displayName": "semantic-searching.ts", "path": "src/ai-combo-box/semantic-searching.ts" }
+      ],
+      "description": "This demo shows the semantic search AI feature in Combo Box."
+    },
+
+    {
+      "url": "task-prioritizer",
+      "name": "Smart Task Prioritizer",
+      "category": "Gantt Chart",
+      "dir": "ai-gantt",
+      "sourceFiles": [
+        { "displayName": "task-prioritizer.html", "path": "src/ai-gantt/ai-task-prioritizer.html" },
+        { "displayName": "task-prioritizer.ts", "path": "src/ai-gantt/task-prioritizer.ts" }
+      ],
+      "description": "This demo showcases the Gantt Chart AI feature."
+    },
+    {
+      "url": "progress-predictor",
+      "name": "Smart Progress Predictor",
+      "category": "Gantt Chart",
+      "dir": "ai-gantt",
+      "sourceFiles": [
+        { "displayName": "progress-predictor.html", "path": "src/ai-gantt/ai-progress-predictor.html" },
+        { "displayName": "progress-predictor.ts", "path": "src/ai-gantt/progress-predictor.ts" }
+      ],
+      "description": "This demo showcases the Gantt Chart AI feature."
+    },
+    {
+      "url": "resource-manager",
+      "name": "Smart Resource Allocation",
+      "category": "Gantt Chart",
+      "dir": "ai-gantt",
+      "sourceFiles": [
+        { "displayName": "resource-manager.html", "path": "src/ai-gantt/ai-resource-manager.html" },
+        { "displayName": "resource-manager.ts", "path": "src/ai-gantt/resource-manager.ts" }
+      ],
+      "description": "This demo showcases the Gantt Chart AI feature."
+    },
+
+    {
+      "url": "smart-image-editor",
+      "name": "Smart Image Editor",
+      "category": "Image Editor",
+      "dir": "ai-image-editor",
+      "sourceFiles": [
+        { "displayName": "smart-image-editor.html", "path": "src/ai-image-editor/ai-smart-image-editor.html" },
+        { "displayName": "smart-image-editor.ts", "path": "src/ai-image-editor/smart-image-editor.ts" },
+        { "displayName": "stability-model.ts", "path": "src/ai-image-editor/stability-model.ts" }
+      ],
+      "description": "This demo highlights the advanced AI features of the Image Editor."
+    },
+
+    {
+      "url": "task-recommendation",
+      "name": "AI Task Recommendation",
+      "category": "Kanban",
+      "dir": "ai-kanban",
+      "sourceFiles": [
+        { "displayName": "task-recommendation.html", "path": "src/ai-kanban/ai-task-recommendation.html" },
+        { "displayName": "task-recommendation.ts", "path": "src/ai-kanban/task-recommendation.ts" }
+      ],
+      "description": "This demo shows the AI task recommendation feature in Kanban."
+    },
+    {
+      "url": "sentiment-analysis",
+      "name": "Sentiment Analysis",
+      "category": "Kanban",
+      "dir": "ai-kanban",
+      "sourceFiles": [
+        { "displayName": "sentiment-analysis.html", "path": "src/ai-kanban/ai-sentiment-analysis.html" },
+        { "displayName": "sentiment-analysis.ts", "path": "src/ai-kanban/sentiment-analysis.ts" }
+      ],
+      "description": "This demo shows the sentiment analysis AI feature in Kanban."
+    },
+
+    {
+      "url": "weather-prediction",
+      "name": "Weather Prediction",
+      "category": "Maps",
+      "dir": "ai-maps",
+      "sourceFiles": [
+        { "displayName": "weather-prediction.html", "path": "src/ai-maps/ai-weather-prediction.html" },
+        { "displayName": "weather-prediction.ts", "path": "src/ai-maps/weather-prediction.ts" }
+      ],
+      "description": "This demo showcases the Maps AI feature."
+    },
+
+    {
+      "url": "smart-pivot",
+      "name": "Smart Pivot",
+      "category": "Pivot Table",
+      "dir": "ai-pivot-table",
+      "sourceFiles": [
+        { "displayName": "smart-pivot.html", "path": "src/ai-pivot-table/ai-smart-pivot.html" },
+        { "displayName": "smart-pivot.ts", "path": "src/ai-pivot-table/smart-pivot.ts" }
+      ],
+      "description": "This demo showcases the Pivot Table AI feature."
+    },
+
+    {
+      "url": "natural-language-query",
+      "name": "Natural Language Query",
+      "category": "Query Builder",
+      "dir": "ai-querybuilder",
+      "sourceFiles": [
+        { "displayName": "natural-language-query.html", "path": "src/ai-querybuilder/ai-natural-language-query.html" },
+        { "displayName": "natural-language-query.ts", "path": "src/ai-querybuilder/natural-language-query.ts" }
+      ],
+      "description": "This demo shows the natural language query AI feature in Query Builder."
+    },
+
+    {
+      "url": "default",
+      "name": "Smart Event Window",
+      "category": "Scheduler",
+      "dir": "ai-schedule",
+      "sourceFiles": [
+        { "displayName": "smart-event-window.html", "path": "src/ai-schedule/default.html" },
+        { "displayName": "smart-event-window.ts", "path": "src/ai-schedule/default.ts" }
+      ],
+      "description": "This demo demonstrates AI-powered event creation in Scheduler."
+    },
+
+    {
+      "url": "adaptive-datastructuring",
+      "name": "Adaptive Data Structuring",
+      "category": "Tree Grid",
+      "dir": "ai-tree-grid",
+      "sourceFiles": [
+        { "displayName": "adaptive-datastructuring.html", "path": "src/ai-tree-grid/ai-adaptive-datastructuring.html" },
+        { "displayName": "adaptive-datastructuring.ts", "path": "src/ai-tree-grid/adaptive-datastructuring.ts" }
+      ],
+      "description": "This demo shows the adaptive data structuring AI feature in Tree Grid."
+    }
+  ]
+}

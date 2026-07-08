@@ -5,11 +5,10 @@
 .fluent2-highcontrast.e-bigger .e-badge.sb-badge.e-samplestatus.New, .fluent2-highcontrast.e-bigger .e-badge.sb-badge.e-samplestatus.new,
 .fluent2-highcontrast.e-bigger .e-badge.sb-badge.e-samplestatus.Update, .fluent2-highcontrast.e-bigger .e-badge.sb-badge.e-samplestatus.update,
 .fluent2-highcontrast.e-bigger .e-badge.sb-badge.e-samplestatus.Preview, .fluent2-highcontrast.e-bigger .e-badge.sb-badge.e-samplestatus.preview {
-    padding: 6px 8px;
+    padding: 1px 8px;
     font-size: 10px;
     border-radius: 2px;
     height: 24px;
-    margin: 2px 0px !important;
 }
 
 .fluent2-highcontrast #search-input-wrapper:not([data-value='']) .sb-reset-icon {
@@ -157,6 +156,7 @@ color:white;
 .fluent2-highcontrast .sb-src-code,
 .fluent2-highcontrast .sb-api-section,
 .fluent2-highcontrast .sb-theme-popup,
+.fluent2-highcontrast .sb-products-popup,
 .fluent2-highcontrast .copy-tooltip,
 .fluent2-highcontrast .e-icons.copycode,
 .fluent2-highcontrast #search-input-wrapper input,
@@ -176,11 +176,15 @@ color:white;
 .fluent2-highcontrast .sb-switch-popup li:hover,
 .fluent2-highcontrast .theme-wrapper:hover,
 .fluent2-highcontrast .theme-wrapper.active,
+.fluent2-highcontrast .products-wrapper:hover,
+.fluent2-highcontrast .products-wrapper.active,
 .fluent2-highcontrast .sb-theme-popup li:hover,
+.fluent2-highcontrast .sb-products-popup li:hover,
 .fluent2-highcontrast .sb-search-result .e-list-item:hover,
 .fluent2-highcontrast .sb-left-pane .e-listview .e-list-item:hover {
     background-color: rgba(255, 255, 255, 0.12);
 }
+
 .fluent2-highcontrast .sb-left-pane .e-listview .e-list-item:hover,
 .fluent2-highcontrast .sb-search-result .e-list-item:hover {
     background-color: #1AEBFF;
@@ -233,7 +237,7 @@ color:white;
 .fluent2-highcontrast .e-samplestatus.new.tree, .fluent2-highcontrast .e-samplestatus.update.tree,.fluent2-highcontrast .e-samplestatus.preview.tree {
     margin: 6px 0;
     height: 22px;
-    margin-top: 3px;
+    margin-top: 4px;
 }
 
 .fluent2-highcontrast .e-samplestatus.new,.fluent2-highcontrast .e-samplestatus.update,.fluent2-highcontrast .e-samplestatus.preview{
@@ -251,12 +255,21 @@ color:white;
     text-transform: capitalize;
     cursor: pointer;
 }
+
+.fluent2-highcontrast.e-bigger .e-samplestatus.new,.fluent2-highcontrast.e-bigger .e-samplestatus.update,.fluent2-highcontrast.e-bigger .e-samplestatus.preview{
+    margin: 8px 10px 0px 0px;
+    height: 22px;
+}
+
 .fluent2-highcontrast .e-samplestatus.new,.fluent2-highcontrast .e-samplestatus.update,.fluent2-highcontrast .e-samplestatus.preview{
     margin: 2px 10px 0px 0px;
     height: 22px;
     margin-top: 5px;
 }
 .fluent2-highcontrast .sb-theme-select{
+    color:transparent
+}
+.fluent2-highcontrast .sb-products-select{
     color:transparent
 }
 .fluent2-highcontrast .sb-search-input .e-ddl .e-clear-icon {

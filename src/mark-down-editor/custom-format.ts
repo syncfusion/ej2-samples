@@ -61,7 +61,7 @@ let tooltipObj: Tooltip;
         if (mdsource.classList.contains('e-active')) {
             let id: string = defaultRTE.getID() + 'html-view';
             let htmlPreview: HTMLElement = defaultRTE.element.querySelector('#' + id);
-            htmlPreview.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
+            htmlPreview.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value, { lineBreak: true }) as string;
         }
     }
     function fullPreview(): void {
@@ -84,7 +84,7 @@ let tooltipObj: Tooltip;
             textArea.style.display = 'none';
             htmlPreview.style.display = 'block';
             tooltipObj.content = "Codeview";
-            htmlPreview.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value) as string;
+            htmlPreview.innerHTML = MarkdownConverter.toHtml((defaultRTE.contentModule.getEditPanel() as HTMLTextAreaElement).value, { lineBreak: true }) as string;
         }
     }
 };

@@ -5,6 +5,7 @@ import { templateData } from './data-source';
 /**
  *  Header template Gantt sample
  */
+
 Gantt.Inject(Selection);
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -15,14 +16,14 @@ Gantt.Inject(Selection);
         { resourceId: 4, resourceName: 'Fuller King' },
         { resourceId: 5, resourceName: 'Davolio Fuller' },
         { resourceId: 6, resourceName: 'Van Jack' },
-        { resourceId: 7, resourceName: 'Fuller Buchanan' },
+        { resourceId: 7, resourceName: 'Fuller Buchanan' }
     ];
     let gantt: Gantt = new Gantt(
         {
             dataSource: templateData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             taskFields: {
                 id: 'TaskID',
@@ -36,7 +37,7 @@ Gantt.Inject(Selection);
                 child: 'subtasks'
             },
             columns: [
-                { field: 'TaskName', headerTemplate: '#projectName', width: 250 },
+                { field: 'TaskName', headerTemplate: '#projectName', width: 280 },
                 { field: 'StartDate', headerTemplate: '#dateTemplate' },
                 { field: 'resources', headerTemplate: '#resource', width: 150 },
                 { field: 'Duration', headerTemplate: '#durationTemplate' },

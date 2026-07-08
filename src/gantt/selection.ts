@@ -15,8 +15,8 @@ Gantt.Inject(Selection);
         {
             dataSource: projectNewData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             allowSelection: true,
             treeColumnIndex: 1,
@@ -38,12 +38,12 @@ Gantt.Inject(Selection);
             allowResizing: true,
             columns: [
                 { field: 'TaskID', width: 70 },
-                { field: 'TaskName', width: 250 },
-                { field: 'StartDate'},
-                { field: 'EndDate'},
-                { field: 'Duration'},
-                { field: 'Predecessor'},
-                { field: 'Progress'},
+                { field: 'TaskName', width: 280 },
+                { field: 'StartDate' },
+                { field: 'EndDate' },
+                { field: 'Duration' },
+                { field: 'Predecessor' },
+                { field: 'Progress' }
             ],
             enableHover: true,
             labelSettings: {
@@ -65,7 +65,7 @@ Gantt.Inject(Selection);
         width: '125px',
         popupWidth: '100px',
         value: 'Row',
-        fields: { text: 'type', value: 'id' },
+        fields: { text: 'type', value: 'id' }
     });
     selectionModeList.appendTo('#mode');
 
@@ -77,7 +77,7 @@ Gantt.Inject(Selection);
         width: '125px',
         popupWidth: '100px',
         value: 'Single',
-        fields: { text: 'type', value: 'id' },
+        fields: { text: 'type', value: 'id' }
     });
     selectionTypeList.appendTo('#type');
 
@@ -89,7 +89,7 @@ Gantt.Inject(Selection);
         width: '125px',
         popupWidth: '100px',
         value: false,
-        fields: { text: 'type', value: 'id' },
+        fields: { text: 'type', value: 'id' }
     });
     toggleList.appendTo('#toggle');
 

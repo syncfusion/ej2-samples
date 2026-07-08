@@ -219,7 +219,7 @@ function handleSnapToLinesChange(args: any) {
     // Initializtion of the diagram.
     diagram = new Diagram({
         width: '100%', height: '645px', nodes: nodes,
-        scrollSettings: { scrollLimit: 'Infinity' },
+        scrollSettings: { scrollLimit: 'Diagram' },
         drawingObject: { type: 'Orthogonal' },
         contextMenuSettings: contextMenu,
         onUserHandleMouseDown: userHandelClick,

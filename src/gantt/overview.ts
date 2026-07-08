@@ -1,26 +1,26 @@
-import { Gantt, Selection, Toolbar, DayMarkers, Edit, Filter, Reorder, Resize, ColumnMenu, VirtualScroll, Sort, RowDD, ContextMenu, ExcelExport, PdfExport, PdfExportProperties, CriticalPath } from '@syncfusion/ej2-gantt';
+import { Gantt, Selection, Toolbar, DayMarkers, Edit, Filter, Reorder, Resize, ColumnMenu, Sort, ExcelExport, PdfExport } from '@syncfusion/ej2-gantt';
 import { loadCultureFiles } from '../common/culture-loader';
 import { editingResources, overviewData } from './data-source';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
-import { Sidebar, SidebarType } from '@syncfusion/ej2-navigations';
+import { Sidebar } from '@syncfusion/ej2-navigations';
 import { Slider } from '@syncfusion/ej2-inputs';
 import { Button, Switch } from '@syncfusion/ej2-buttons';
 import { MultiSelect, CheckBoxSelection } from '@syncfusion/ej2-dropdowns';
-import { SelectEventArgs, RemoveEventArgs } from '@syncfusion/ej2-dropdowns';
 import { extend } from '@syncfusion/ej2-base';
-import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
-import { PdfColor, } from '@syncfusion/ej2-pdf-export';
+import { NumericTextBox } from '@syncfusion/ej2-inputs';
+import { PdfColor } from '@syncfusion/ej2-pdf-export';
 
 /**
- * Overview sample
+ * Overview Gantt sample
  */
-Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Reorder, Resize, ColumnMenu, VirtualScroll, Sort, RowDD, ContextMenu, ExcelExport, PdfExport, CriticalPath);
+
+Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Reorder, Resize, ColumnMenu, Sort, ExcelExport, PdfExport );
 MultiSelect.Inject(CheckBoxSelection);
 
 let theme: any;
 let style: any;
-let CurrentTheme: any;
+let currentTheme: any;
 let statusStyleColor: any;
 let priorityStyle: any;
 var IconClass: any;
@@ -35,22 +35,22 @@ let dependency: Switch | undefined;
 (<{ Status?: Function }>window).Status = (status: any) => {
     switch (status) {
         case "In Progress":
-            statusStyleColor = (CurrentTheme) ? "#006AA6" : "#34B6FF";
+            statusStyleColor = (currentTheme) ? "#006AA6" : "#34B6FF";
             style = "display: flex; padding: 2px 10px; gap: 10px; width: 96px; height: 24px; border: solid 1px" + statusStyleColor;
             break;
         case "Open":
             style = "display: flex; justify-content:center; gap: 10px; width: 96px; height: 24px; border: solid 1px red";
             break;
         case "On Hold":
-            statusStyleColor = (CurrentTheme) ? "#766B7C" : "#CDCBD7";
+            statusStyleColor = (currentTheme) ? "#766B7C" : "#CDCBD7";
             style = "display: flex; justify-content:center; gap: 10px; width: 96px; height: 24px; border: solid 1px" + statusStyleColor;
             break;
         case "Completed":
-            statusStyleColor = (CurrentTheme) ? "#00A653" : "#92FFC8";
+            statusStyleColor = (currentTheme) ? "#00A653" : "#92FFC8";
             style = "display: flex; padding: 2px 10px; gap: 10px; width: 96px; height: 24px; border: solid 1px" + statusStyleColor;
             break;
         case "High":
-            statusStyleColor = (CurrentTheme) ? "#00A653" : "#92FFC8";
+            statusStyleColor = (currentTheme) ? "#00A653" : "#92FFC8";
             style = "display: flex; padding: 2px 10px; gap: 10px; width: 96px; height: 24px; border: solid 1px" + statusStyleColor;
             break;
     }
@@ -60,22 +60,22 @@ let dependency: Switch | undefined;
 (<{ StatusContent?: Function }>window).StatusContent = (status: any) => {
     switch (status) {
         case "In Progress":
-            statusContentstyleColor = (CurrentTheme) ? "rgb(0, 106, 166)" : "rgb(52, 182, 255)";
+            statusContentstyleColor = (currentTheme) ? "rgb(0, 106, 166)" : "rgb(52, 182, 255)";
             style = "width: 72px; height: 22px; font-style: normal; font-weight: 400; font-size: 14px; line-height: 20px; text-align: center; color: " + statusContentstyleColor;
             break;
         case "Open":
             style = "width: 54px; height: 22px; font-style: normal;  font-weight: 400; font-size: 14px; line-height: 22px; text-align: center; color:  rgb(255, 0, 0); ";
             break;
         case "On Hold":
-            statusContentstyleColor = (CurrentTheme) ? "rgb(118, 107, 124)" : "rgb(205, 203, 215)";
+            statusContentstyleColor = (currentTheme) ? "rgb(118, 107, 124)" : "rgb(205, 203, 215)";
             style = "width: 54px; height: 22px; font-style: normal;  font-weight: 400; font-size: 14px; line-height: 22px; text-align: center; color: " + statusContentstyleColor;
             break;
         case "Completed":
-            statusContentstyleColor = (CurrentTheme) ? "rgb(0, 166, 83)" : "rgb(146, 255, 200)";
+            statusContentstyleColor = (currentTheme) ? "rgb(0, 166, 83)" : "rgb(146, 255, 200)";
             style = "width: 74px; height: 22px; font-style: normal; font-weight: 400; font-size: 14px; line-height: 20px; text-align: center; color: " + statusContentstyleColor;
             break;
         case "High":
-            statusContentstyleColor = (CurrentTheme) ? "rgb(243, 86, 32)" : "rgb(255, 181, 184)";
+            statusContentstyleColor = (currentTheme) ? "rgb(243, 86, 32)" : "rgb(255, 181, 184)";
             style = "width: 31px; height: 22px; font-style: normal; font-weight: 400; font-size: 14px; line-height: 20px; text-align: center; color: " + statusContentstyleColor;
             break;
     }
@@ -85,20 +85,20 @@ let dependency: Switch | undefined;
 (<{ PriorityIconStyle?: Function }>window).PriorityIconStyle = (priority: any) => {
     switch (priority) {
         case "Low":
-            priorityStyle = (CurrentTheme) ? "#00A653" : "#FDFF88";
-            style = " margin-top:2px; color: " + priorityStyle + "!important";
+            priorityStyle = (currentTheme) ? "#00A653" : "#FDFF88";
+            style = " margin-top:2px; color: " + priorityStyle + " !important";
             break;
         case "Normal":
-            priorityStyle = (CurrentTheme) ? "#7100A6" : "#E3A9FF";
-            style = " margin-top:2px; !important; color: " + priorityStyle + "!important";
+            priorityStyle = (currentTheme) ? "#7100A6" : "#E3A9FF";
+            style = " margin-top:2px; !important; color: " + priorityStyle + " !important";
             break;
         case "Critical":
-            priorityStyle = (CurrentTheme) ? "#FF3740" : "#FFB5B8";
-            style = "margin-top:2px; color: " + priorityStyle + "!important";
+            priorityStyle = (currentTheme) ? "#FF3740" : "#FFB5B8";
+            style = "margin-top:2px; color: " + priorityStyle + " !important";
             break;
         case "High":
-            priorityStyle = (CurrentTheme) ? "#f35620" : "#FFB5B8";
-            style = "margin-top:2px; color: " + priorityStyle + "!important";
+            priorityStyle = (currentTheme) ? "#f35620" : "#FFB5B8";
+            style = "margin-top:2px; color: " + priorityStyle + " !important";
             break;
     }
     return style;
@@ -107,19 +107,19 @@ let dependency: Switch | undefined;
 (<{ PriorityContent?: Function }>window).PriorityContent = (priority: any) => {
     switch (priority) {
         case "Low":
-            priorityContentStyle = (CurrentTheme) ? "rgb(0, 166, 83)" : "rgb(253, 255, 136)";
+            priorityContentStyle = (currentTheme) ? "rgb(0, 166, 83)" : "rgb(253, 255, 136)";
             style = "width: 28px; height: 22px; font-style: normal;  font-size: 14px; margin-left:3px; line-height: 20px; text-align: center; color: " + priorityContentStyle;
             break;
         case "Normal":
-            priorityContentStyle = (CurrentTheme) ? "rgb(113, 0, 166)" : "#rgb(227, 169, 255)";
+            priorityContentStyle = (currentTheme) ? "rgb(113, 0, 166)" : "rgb(227, 169, 255)";
             style = "width: 28px; height: 22px; font-style: normal;  margin-left:3px; font-size: 14px; line-height: 20px; text-align: center; color: " + priorityContentStyle;
             break;
         case "Critical":
-            priorityContentStyle = (CurrentTheme) ? "rgb(255, 55, 64)" : "rgb(255, 181, 184)";
+            priorityContentStyle = (currentTheme) ? "rgb(255, 55, 64)" : "rgb(255, 181, 184)";
             style = "width: 48px; height: 22px; font-style: normal;  font-size: 14px; margin-left:3px; line-height: 20px; text-align: center; color: " + priorityContentStyle;
             break;
         case "High":
-            priorityContentStyle = (CurrentTheme) ? "rgb(235, 99, 67)" : "rgb(255, 181, 184)";
+            priorityContentStyle = (currentTheme) ? "rgb(235, 99, 67)" : "rgb(255, 181, 184)";
             style = "width: 31px; height: 22px; font-style: normal; font-size: 14px; margin-left:3px; line-height: 20px; text-align: center; color: " + priorityContentStyle;
             break;
     }
@@ -186,7 +186,7 @@ let dependency: Switch | undefined;
             parentID: 'ParentId',
             constraintType: 'ConstraintType',
             constraintDate: 'ConstraintDate',
-            resourceInfo: 'resource',
+            resourceInfo: 'resource'
         },
         resourceFields: {
             id: 'resourceId',
@@ -195,16 +195,16 @@ let dependency: Switch | undefined;
         pdfQueryCellInfo: pdfQueryCellInfo,
         pdfQueryTaskbarInfo: pdfQueryTaskbarInfo,
         columns: [
-            { field: 'WBSCode', headerText: 'WBS ID', width: 120 },
-            { field: 'TaskName', width: 200, headerText: 'Product Release' },
-            { field: 'Assignee', width: 195, allowSorting: false, headerText: 'Assignee', template: '#columnTemplate' },
+            { field: 'WBSCode', headerText: 'WBS ID', width: 110 },
+            { field: 'TaskName', width: 230, headerText: 'Product Release' },
+            { field: 'Assignee', width: 160, allowSorting: false, headerText: 'Assignee', template: '#columnTemplate' },
             { field: 'Status', minWidth: 100, width: 120, headerText: 'Status', template: '#columnTemplate1' },
             { field: 'Priority', minWidth: 80, width: 120, headerText: 'Priority', template: '#columnTemplate2' },
-            { field: 'WBSPredecessor', headerText: 'WBS Predecessor', width: 200 },
-            { field: 'ConstraintType', width: 200 },
-            { field: 'ConstraintDate', width: 200 },
-            { field: 'Progress', headerText: 'Completion (%)', width: 205 },
-            { field: 'TimeLog', headerText: 'Work Log', width: 150 }
+            { field: 'WBSPredecessor', headerText: 'WBS Predecessor', width: 220 },
+            { field: 'ConstraintType', width: 170 },
+            { field: 'ConstraintDate', width: 170 },
+            { field: 'Progress', headerText: 'Completion (%)', width: 160 },
+            { field: 'TimeLog', headerText: 'Work Log', width: 140 }
         ],
         toolbar: ['ExpandAll', 'CollapseAll', 'ZoomIn', 'ZoomOut', 'ZoomToFit', 'ExcelExport', 'CsvExport', 'PdfExport'],
         allowExcelExport: true,
@@ -231,12 +231,11 @@ let dependency: Switch | undefined;
                             cls.indexOf('fluent2') > 0 ? 'fluent2' : cls.indexOf('tailwind3') > 0 ? 'tailwind3' : ''
             let check: any = themeCollection.indexOf(theme);
             if (check >= 0) {
-                CurrentTheme = true;
+                currentTheme = true;
             }
             else {
-                CurrentTheme = false;
+                currentTheme = false;
             }
-
         },
         selectionSettings: {
             mode: 'Row',
@@ -253,6 +252,7 @@ let dependency: Switch | undefined;
         gridLines: "Both",
         showColumnMenu: true,
         timelineSettings: {
+            timelineUnitSize: 60,
             showTooltip: true,
             topTier: {
                 unit: 'Month',
@@ -304,7 +304,7 @@ let dependency: Switch | undefined;
         },
         allowResizing: true,
         projectStartDate: new Date('01/25/2025'),
-        projectEndDate: new Date('01/30/2026'),
+        projectEndDate: new Date('01/30/2026')
     });
     gantt.appendTo('#overviewSample');
     function pdfQueryCellInfo(args: any) {
@@ -492,7 +492,6 @@ let dependency: Switch | undefined;
                 let input: DropDownList = new DropDownList({
                     dataSource: durationUnit,
                     change: durationChange,
-
                     placeholder: 'Day',
                     fields: { text: 'Text', value: 'id' },
                     popupHeight: '350px'
@@ -510,7 +509,7 @@ let dependency: Switch | undefined;
                 const viewmode: any = [
                     { ID: "Default", Text: "Default" },
                     { ID: "Grid", Text: "Grid" },
-                    { ID: "Chart", Text: "Chart" },
+                    { ID: "Chart", Text: "Chart" }
                 ];
                 let checkListViewMode: DropDownList = new DropDownList({
                     dataSource: viewmode,
@@ -556,7 +555,7 @@ let dependency: Switch | undefined;
             gantt.eventMarkers = temp;
         } else {
             temp = gantt.eventMarkers;
-            gantt.eventMarkers = " ";
+            gantt.eventMarkers = [];
         }
     }
 
@@ -596,18 +595,16 @@ let dependency: Switch | undefined;
 
     //  Working days
     function select(args: any) {
-        let workingDays: any = Object[7];
         let fieldInstance: MultiSelect = ((<any>document.getElementById('WorkingDays'))).ej2_instances[0] as MultiSelect;
-        workingDays = extend([], fieldInstance.value, [], true);
+        let workingDays: any = extend([], fieldInstance.value, [], true);
         workingDays.push(args.item.innerText);
         gantt.workWeek = workingDays;
     };
     function removed(args: any) {
         let index: number = gantt.workWeek.indexOf(args.item.innerText);
         let fieldInstance: MultiSelect = ((<any>document.getElementById('WorkingDays'))).ej2_instances[0] as MultiSelect;
-        let workingDays: any = Object[7];
         if (index !== -1) {
-            workingDays = fieldInstance.value;
+            let workingDays: any = fieldInstance.value;
             gantt.workWeek = workingDays;
         }
     };

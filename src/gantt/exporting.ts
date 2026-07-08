@@ -1,11 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, ExcelExport, Selection, Toolbar, PdfExport, PdfExportProperties,DayMarkers } from '@syncfusion/ej2-gantt';
+import { Gantt, ExcelExport, Selection, Toolbar, PdfExport, DayMarkers } from '@syncfusion/ej2-gantt';
 import { editingData, editingResources } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
-import { Switch } from '@syncfusion/ej2-buttons';
 
 /**
- * Editing Gantt sample
+ * Exporting Gantt sample
  */
 Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers);
 (window as any).default = (): void => {
@@ -30,7 +29,7 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers);
                 { field: 'TaskName', width: 250 }
             ],
             splitterSettings: {
-                columnIndex: 2,
+                columnIndex: 2
             },
             allowExcelExport: true,
             allowPdfExport: true,
@@ -47,8 +46,8 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers);
             allowSelection: true,
             gridLines: 'Both',
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             treeColumnIndex: 1,
             resourceFields: {
                 id: 'resourceId',
@@ -59,17 +58,17 @@ Gantt.Inject(Selection, Toolbar, ExcelExport, PdfExport, DayMarkers);
             timelineSettings: {
                 topTier: {
                     unit: 'Week',
-                    format: 'MMM dd, y',
+                    format: 'MMM dd, y'
                 },
                 bottomTier: {
-                    unit: 'Day',
-                },
+                    unit: 'Day'
+                }
             },
             labelSettings: {
                 leftLabel: 'TaskName'
             },
             projectStartDate: new Date('03/26/2025'),
-            projectEndDate: new Date('09/01/2025'),
+            projectEndDate: new Date('09/01/2025')
         });
     gantt.appendTo('#GanttExport');
 };

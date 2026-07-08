@@ -1,4 +1,68 @@
-<!-- custom code start -->
+<div class="control-section">
+    <div class="content-wrapper">
+        <div id="TreeGrid" role="grid" aria-colcount="8" aria-label="Tree Grid">
+        </div>
+        <div style="padding-top: 20px; text-align: right">Reference links:
+            <a href="https://countryeconomy.com/ratings" style="padding-right: 12px">https://countryeconomy.com</a>
+            <a href="https://en.wikipedia.org/wiki/" style="padding-right: 12px">https://en.wikipedia.org/wiki/</a>
+            <a href="http://worldpopulationreview.com">http://worldpopulationreview.com</a>
+        </div>
+
+        <script id="flagtemplate" type="text/x-template">
+            ${if(name != 'Select All')}
+            <div class="image" style="display:inline-block">
+               ${if(parentItem)}
+                <img src="src/tree-grid/images/${parentItem.name}.png" class="e-image" alt="${name}" />
+                ${else} 
+                <img src="src/tree-grid/images/${name}.png" class="e-image" alt="${name}" />
+                ${/if} 
+            </div> <div style="display:inline-block; padding-left:4px; vertical-align: middle">${name}</div>
+            ${else} 
+                ${name}
+            ${/if}  
+           </script>
+           <script id="areatemplate" type="text/x-template">
+             <span>
+                 ${area} km<sup>2</sup>
+             </span>
+            </script>
+            <script id="locationtemplate" type="text/x-template">
+             <div class="image" id="coordinates">
+                 <img src="src/tree-grid/images/Map.png" class="e-image" alt="${coordinates}" /> &nbsp
+                 <a target="_blank" href="https://www.google.com/maps/place/${coordinates}" aria-label="${coordinates}">${coordinates}</a>
+             </div>
+           </script>
+           <script type="text/x-template" id="gdptemplate">
+             <div class="statustemp">
+                 <span class="statustxt">${gdp} %</span>
+             </div>
+           </script>
+           <script type="text/x-template" id="timezonetemplate">
+            ${utcZone(data)}
+            <span style="padding-left:7px;">${timezone}</span>
+          </script>
+           <script type="text/x-template" id="ratingtemplate">  
+               ${if(rating)}
+             <div class="rating">
+                 <span class="star"></span>
+                 <span class="star"></span>
+                 <span class="star"></span>
+                 <span class="star"></span>
+                 <span class="star"></span>
+             </div>
+             ${/if} 
+           </script>
+           
+           <script type="text/x-template" id="unemploymentTemplate">
+            <div id="myProgress" class="pbar">
+                <div id="myBar" class="bar">
+                    <div id="treegridlabel" class="barlabel"></div>
+                </div>
+            </div>
+           </script>
+    </div>
+</div>
+
 <style>
     .e-image {
         height: 13px;
@@ -100,71 +164,8 @@
         background-color: rgba(242, 184, 181, 1);
     }
 </style>
-<!-- custom code end -->
-<div class="control-section">
-    <div class="content-wrapper">
-        <div id="TreeGrid" role="grid" aria-colcount="8" aria-label="Tree Grid">
-        </div>
-        <div style="padding-top: 20px; text-align: right">Reference links:
-            <a href="https://countryeconomy.com/ratings" style="padding-right: 12px">https://countryeconomy.com</a>
-            <a href="https://en.wikipedia.org/wiki/" style="padding-right: 12px">https://en.wikipedia.org/wiki/</a>
-            <a href="http://worldpopulationreview.com">http://worldpopulationreview.com</a>
-        </div>
 
-        <script id="flagtemplate" type="text/x-template">
-            ${if(name != 'Select All')}
-            <div class="image" style="display:inline-block">
-               ${if(parentItem)}
-                <img src="src/tree-grid/images/${parentItem.name}.png" class="e-image" alt="${name}" />
-                ${else} 
-                <img src="src/tree-grid/images/${name}.png" class="e-image" alt="${name}" />
-                ${/if} 
-            </div> <div style="display:inline-block; padding-left:4px; vertical-align: middle">${name}</div>
-            ${else} 
-                ${name}
-            ${/if}  
-           </script>
-           <script id="areatemplate" type="text/x-template">
-             <span>
-                 ${area} km<sup>2</sup>
-             </span>
-            </script>
-            <script id="locationtemplate" type="text/x-template">
-             <div class="image" id="coordinates">
-                 <img src="src/tree-grid/images/Map.png" class="e-image" alt="${coordinates}" /> &nbsp
-                 <a target="_blank" href="https://www.google.com/maps/place/${coordinates}" aria-label="${coordinates}">${coordinates}</a>
-             </div>
-           </script>
-           <script type="text/x-template" id="gdptemplate">
-             <div class="statustemp">
-                 <span class="statustxt">${gdp} %</span>
-             </div>
-           </script>
-           <script type="text/x-template" id="timezonetemplate">
-            ${utcZone(data)}
-            <span style="padding-left:7px;">${timezone}</span>
-          </script>
-           <script type="text/x-template" id="ratingtemplate">  
-               ${if(rating)}
-             <div class="rating">
-                 <span class="star"></span>
-                 <span class="star"></span>
-                 <span class="star"></span>
-                 <span class="star"></span>
-                 <span class="star"></span>
-             </div>
-             ${/if} 
-           </script>
-           
-           <script type="text/x-template" id="unemploymentTemplate">
-            <div id="myProgress" class="pbar">
-                <div id="myBar" class="bar">
-                    <div id="treegridlabel" class="barlabel"></div>
-                </div>
-            </div>
-           </script>
-    </div>
-</div>
+<!-- custom code start -->
 
 <div id="action-description">
     <p>This <a target="_blank" 
@@ -187,4 +188,9 @@
         href="https://ej2.syncfusion.com/documentation/treegrid/getting-started/">
         documentation section</a>.
     </p>
+    <p>
+        Looking for the full TypeScript Tree Grid component overview, features, pricing, and documentation? Visit our <a target="_blank" href="https://www.syncfusion.com/javascript-ui-controls/js-tree-grid">TypeScript Tree Grid component</a> page.
+    </p>
 </div>
+
+<!-- custom code end -->

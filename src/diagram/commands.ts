@@ -196,38 +196,6 @@ function flipObjects(flipType: any) {
 (window as any).default = (): void => {
   loadCultureFiles();
   const Window: any = window.location.href
-  if (Window) {
-    if (Window.includes('bootstrap5')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Bootstrap5_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('bootstrap4')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/bootstrap4_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('bootstrap')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Bootstrap_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('material3')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Material3_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('material')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Material_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('fabric')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/fabric_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('fluent')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Fluent_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('tailwind')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Tailwind_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('highcontrast')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/HighContrast_Diagram_Builder/style.css';
-    }
-    else if (Window.includes('fusion')) {
-      (document.getElementById('change_icons') as any).href = '../../src/diagram/styles/Diagram_Builder_EJ2_Icon/Font/Fusion_Diagram_Builder/style.css';
-    }
-  }
   // Initializtion of the diagram.
   diagram = new Diagram({
     width: '100%', height: '800px',
@@ -239,6 +207,9 @@ function flipObjects(flipType: any) {
     rulerSettings: { showRulers: true },
     selectionChange: selectionChange,
     historyChange: historyChange,
+    created: function () {
+      diagram.fitToPage();
+    }
   });
   diagram.appendTo('#diagram');
 

@@ -67,7 +67,7 @@ function generateTooltipMarkup(label: string, tooltipData: any) {
         '<div style="padding-bottom: 9px; text-align: center;border-bottom: 2px solid ' + borderColor + ';">' +
         '<span style="font-weight: bold; font-size: 14px;">' + label + '</span>' +
         '</div>' +
-        '<div style="display: flex; padding-bottom: 5px;padding-top: 9px"">' +
+        '<div style="display: flex; padding-bottom: 5px;padding-top: 9px">' +
         '<span style="font-weight: bold;">Active Tasks:</span>' +
         '<span style="padding-left: 2px;">' + tooltipData.activeTasks + '</span>' +
         '</div>' +
@@ -99,8 +99,8 @@ function generateTooltipMarkup(label: string, tooltipData: any) {
         {
             dataSource: tooltipData,
             height: '650px',
-            rowHeight:46,
-            taskbarHeight:25,
+            rowHeight: 46,
+            taskbarHeight: 25,
             highlightWeekends: true,
             allowSelection: true,
             renderBaseline: true,
@@ -120,7 +120,7 @@ function generateTooltipMarkup(label: string, tooltipData: any) {
             },
             columns: [
                 { field: 'TaskID', width: 80 },
-                { field: 'TaskName', width: 250 },
+                { field: 'TaskName', width: 270 },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
                 { field: 'Duration' },
@@ -128,7 +128,7 @@ function generateTooltipMarkup(label: string, tooltipData: any) {
                 { field: 'Progress' },
                 { field: 'BaselineStartDate', width: 200 },
                 { field: 'BaselineEndDate', width: 200 },
-                { field: 'resources' },
+                { field: 'resources' }
             ],
             resourceFields: {
                 id: 'resourceId',
@@ -159,7 +159,7 @@ function generateTooltipMarkup(label: string, tooltipData: any) {
                 columnIndex: 2
             },
             projectStartDate: new Date('03/26/2025'),
-            projectEndDate: new Date('06/01/2025'),
+            projectEndDate: new Date('06/01/2025')
         });
     gantt.appendTo('#TooltipTemplate');
 };

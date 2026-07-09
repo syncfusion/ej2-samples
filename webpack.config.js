@@ -30,6 +30,13 @@ function getControlWiseBundle() {
 
 module.exports = webpackConfig({
     mode : 'development',
+    cache: {
+        type: 'filesystem',
+        cacheDirectory: './.webpack_cache',
+        buildDependencies: {
+            config: [__filename]
+        }
+    },
     entry: {
         'src/common/index.min': './src/common/index'
     },
@@ -70,3 +77,4 @@ function webpackConfig(conf) {
     }
     return conf;
 }
+

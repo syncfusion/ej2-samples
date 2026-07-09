@@ -283,11 +283,13 @@ function getSamplePathArray(samplesAr) {
 }
 
 gulp.task('tsbundle-new-window', function (done) {
-    var code = shelljs.exec('node --max-old-space-size=7168 ./node_modules/gulp/bin/gulp.js tsbundle');
-    if (code.code !== 0 || code.stderr) {
-        process.exit(1);
-    }
-    done();
+    shelljs.exec('node --max-old-space-size=7168 ./node_modules/gulp/bin/gulp.js tsbundle', {async: true}, function(code) {
+        if (code !== 0) {
+            console.error('tsbundle failed with exit code:', code);
+            process.exit(1);
+        }
+        done();
+    });
 });
 
 gulp.task('tsbundle', function (done) {
@@ -297,6 +299,16 @@ gulp.task('tsbundle', function (done) {
 
 function bundles(platform, done) {
     var webpackConfig = require(fs.realpathSync('./webpack.config.js'));
+    
+    // Add memory-efficient webpack settings
+    webpackConfig.cache = {
+        type: 'filesystem',
+        cacheDirectory: './.webpack_cache',
+        buildDependencies: {
+            config: [__filename]
+        }
+    };
+    
     return gulp.src('.')
         .pipe(webpackGulp(webpackConfig, webpack))
         .pipe(gulp.dest('.'))

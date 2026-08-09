@@ -50,6 +50,10 @@
   "devDependencies": {
     "@syncfusion/ej2-react-notifications": "*",
     "@types/chai": "^4.3.11",
+    "@types/codemirror": "^5.60.17",
+    "@types/crossroads": "^0.0.33",
+    "@types/hasher": "^0.0.35",
+    "@types/node": "^14.18.63",
     "@types/jasmine": "^5.1.4",
     "@types/jasmine-ajax": "^3.3.5",
     "@types/mocha": "^10.0.6",

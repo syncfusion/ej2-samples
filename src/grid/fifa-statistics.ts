@@ -1,7 +1,7 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Sort, RowInfo, Column, QueryCellInfoEventArgs } from '@syncfusion/ej2-grids';
 import { fifaData, webpfiles, countryInfo, teamInfo, coachInfo, topScrorerInfo, bestPlayerInfo, FifaDetails } from './data-source';
 import { Tooltip, TooltipEventArgs } from '@syncfusion/ej2-popups';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(Sort);
 

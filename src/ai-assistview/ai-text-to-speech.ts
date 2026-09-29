@@ -4,6 +4,8 @@ import { getAIResponse } from '../common/ai-service';
 
 (window as any).default = (): void => {
     loadCultureFiles();
+
+let abortController: AbortController;
 let promptsData = [
     {
         prompt: "What is AI?",
@@ -25,6 +27,7 @@ let aiAssistView = new AIAssistView({
         ],
     },
     prompts: promptsData,
+    stopRespondingClick: stopAIResponse,
     enableStreaming: true,
     promptRequest: onPromptRequest
 });
@@ -32,14 +35,21 @@ let aiAssistView = new AIAssistView({
 function toolbarItemClicked(args: ToolbarItemClickedEventArgs) {
     if (args.item.iconCss === 'e-icons e-refresh') {
         aiAssistView.prompts = [];
+        stopAIResponse();
     }
 }
 
 async function onPromptRequest(args: PromptRequestEventArgs): Promise<void> {
         if (!aiAssistView) return;
-        const abortController = new AbortController();
+        abortController = new AbortController();
         aiAssistView.addPromptResponse(await getAIResponse(args, abortController));
     }
+
+function stopAIResponse() {
+    if (abortController) {
+        abortController.abort();
+    }
+}
 
  // Render AI AssistView
  aiAssistView.appendTo('#aiAssistView');

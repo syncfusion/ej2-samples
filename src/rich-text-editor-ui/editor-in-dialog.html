@@ -1,0 +1,75 @@
+<div class="editing-in-dialog-sample">
+    <div class="control-section">
+        <div class="sample-container">
+            <button id="dialogBtn" class="e-btn e-primary">Open Editor</button>
+            <div id="editorDialog"></div>
+        </div>
+    </div>
+</div>
+
+<div id="action-description">
+    <p>This sample demonstrates how to render the Rich Text Editor UI component inside a Dialog component for composing messages or content.</p>
+</div>
+
+<div id="description">
+    <p>The Rich Text Editor UI is integrated with the Syncfusion Dialog component to create a message composer. Click the "Open Editor" button to launch the dialog with the RTE. Users can compose formatted content using the toolbar and send or cancel their message. The editor automatically initializes when the dialog opens and clears when closed.</p>
+</div>
+
+<style>
+
+.editing-in-dialog-sample .sample-container {
+    position: relative;
+    min-height: 400px;
+    border: 1px solid #e2e4e8;
+    border-radius: 8px;
+    background: var( --color-sf-content-bg-color-alt1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.material3 .editing-in-dialog-sample .sample-container{
+    background: linear-gradient(0deg, rgba(var(--color-sf-primary), 0.08), rgba(var(--color-sf-primary), 0.08)), rgba(var(--color-sf-surface));
+}
+.material3-dark .editing-in-dialog-sample .sample-container{
+    background: linear-gradient(0deg, rgba(var(--color-sf-primary), 0.08), rgba(var(--color-sf-primary), 0.08)), rgba(var(--color-sf-surface));
+}
+
+#dialogBtn {
+    padding: 10px 20px;
+    font-size: 14px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+#editorDialog {
+    position: absolute;
+}
+
+#mainDialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    z-index: 10000;
+}
+
+#dialogHeader {
+    padding: 16px;
+}
+
+#dialogContent {
+    padding: 16px;
+}
+
+#dialogFooter {
+    padding: 12px 16px;
+}
+
+#dialogEditorContent {
+    min-height: 200px;
+}
+</style>

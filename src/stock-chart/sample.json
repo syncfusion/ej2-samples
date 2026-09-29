@@ -3,6 +3,7 @@
     "directory": "stock-chart",
     "category": "Data Visualization",
     "ftName": "stock-chart",
+    "type": "update",
     "samples": [
         {
             "url": "default",
@@ -194,6 +195,28 @@
             "api": {
                 "StockChart": [
                     "stockEvents"
+                ]
+            }
+        },
+        {
+            "url": "live-candlestick-chart",
+            "name": "Live Candlestick Chart",
+            "description":"This demo for Essential<sup>®</sup> JS2 Stock Chart control shows dynamic updates using a local in-memory array as the data source. The current candle is updated with series.setData() and a new candle is appended with series.addPoint() on each simulated one-minute tick.",
+            "category": "Stock Chart",
+             "type": "new", 
+            "api": {
+                "StockChart": [
+                    "setData",
+                    "addPoint"
+                ],
+                "Series": [
+                    "dataSource",
+                    "xName",
+                    "open",
+                    "high",
+                    "low",
+                    "close",
+                    "volume"
                 ]
             }
         }

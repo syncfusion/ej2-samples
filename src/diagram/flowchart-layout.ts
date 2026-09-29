@@ -1,9 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import {
-    Diagram,
-    NodeModel,
-    ConnectorModel,
-    DiagramTools,DataBinding, FlowchartLayout, FlowShapeModel
+    Diagram, NodeModel, ConnectorModel, DiagramTools,
+    DataBinding, FlowchartLayout, FlowShapeModel, BranchDirection
 } from '@syncfusion/ej2-diagrams';
 import { ChangeEventArgs, DropDownList } from '@syncfusion/ej2-dropdowns';
 import { DataManager } from '@syncfusion/ej2-data';
@@ -135,7 +133,13 @@ let yesBranchDirection: DropDownList = new DropDownList({
     dataSource:[{text: 'Left in flow', value: 'LeftInFlow'},{text:'Right in flow', value: 'RightInFlow'},{text:'Same as flow', value: 'SameAsFlow'}],
     change: (args:ChangeEventArgs) => {
         let value: string = args.value as string;
-        diagram.layout.flowchartLayoutSettings.yesBranchDirection = value === 'Same as flow' ? 'SameAsFlow' :  value === 'Right in flow' ? 'RightInFlow' : 'LeftInFlow';
+        let yesValue: BranchDirection = value === 'Same as flow' ? 'SameAsFlow' :  value === 'Right in flow' ? 'RightInFlow' : 'LeftInFlow';
+        diagram.layout.flowchartLayoutSettings.yesBranchDirection = yesValue;
+        if (yesValue !== 'SameAsFlow' && diagram.layout.flowchartLayoutSettings.noBranchDirection === yesValue) {
+            let flippedValue: BranchDirection = yesValue === 'LeftInFlow' ? 'RightInFlow' : 'LeftInFlow';
+            diagram.layout.flowchartLayoutSettings.noBranchDirection = flippedValue;
+            noBranchDirection.index = flippedValue === 'LeftInFlow' ? 0 : 1;
+        }
         diagram.doLayout();
     }
 });
@@ -148,7 +152,13 @@ let noBranchDirection: DropDownList = new DropDownList({
      dataSource:[{text: 'Left in flow', value: 'LeftInFlow'},{text:'Right in flow', value: 'RightInFlow'},{text:'Same as flow', value: 'SameAsFlow'}],
     change: (args:ChangeEventArgs) => {
         let value: string = args.value as string;
-        diagram.layout.flowchartLayoutSettings.noBranchDirection = value === 'Same as flow' ? 'SameAsFlow' :  value === 'Right in flow' ? 'RightInFlow' : 'LeftInFlow';
+        let noValue: BranchDirection = value === 'Same as flow' ? 'SameAsFlow' :  value === 'Right in flow' ? 'RightInFlow' : 'LeftInFlow';
+        diagram.layout.flowchartLayoutSettings.noBranchDirection = noValue;
+        if (noValue !== 'SameAsFlow' && diagram.layout.flowchartLayoutSettings.yesBranchDirection === noValue) {
+            let flippedValue: BranchDirection = noValue === 'LeftInFlow' ? 'RightInFlow' : 'LeftInFlow';
+            diagram.layout.flowchartLayoutSettings.yesBranchDirection = flippedValue;
+            yesBranchDirection.index = flippedValue === 'LeftInFlow' ? 0 : 1;
+        }
         diagram.doLayout();
     }
 });

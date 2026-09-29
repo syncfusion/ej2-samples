@@ -3,7 +3,7 @@ import { Gantt, Edit, Selection, Toolbar, DayMarkers, ContextMenuItem, ContextMe
     ContextMenuOpenEventArgs, ContextMenuClickEventArgs, IGanttData } from '@syncfusion/ej2-gantt';
 import { ItemModel } from '@syncfusion/ej2-navigations';
 import { EmitType } from '@syncfusion/ej2-base';
-import { editingData, editingResources } from './data-source';
+import { contextMenuData, editingResources } from './data-source';
 
 /**
  *  Context menu in Gantt sample
@@ -34,7 +34,7 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
     ];
     let gantt: Gantt = new Gantt(
         {
-            dataSource: editingData,
+            dataSource: contextMenuData,
             dateFormat: 'MMM dd, y',
             taskFields: {
                 id: 'TaskID',
@@ -49,7 +49,7 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                 resourceInfo: 'resources'
             },
             columns: [
-                { field: 'TaskID', width: 80 },
+                { field: 'TaskID', width: 80, visible: false },
                 { field: 'TaskName', headerText: 'Job Name', width: 250, clipMode: 'EllipsisWithTooltip' },
                 { field: 'StartDate' },
                 { field: 'EndDate' },
@@ -64,7 +64,8 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                 allowEditing: true,
                 allowDeleting: true,
                 allowTaskbarEditing: true,
-                showDeleteConfirmDialog: true
+                showDeleteConfirmDialog: true,
+                allowTaskbarDraw: true
             },
             splitterSettings: {
                 columnIndex: 3,
@@ -72,6 +73,7 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
             allowResizing: true,
             allowSorting: true,
             enableContextMenu: true,
+            allowUnscheduledTasks: true,
             contextMenuItems: contextMenuItems as ContextMenuItem[],
             contextMenuClick: (args?: ContextMenuClickEventArgs) => {
                 let record: IGanttData = args.rowData;

@@ -12,6 +12,7 @@ import { getAIResponse } from '../common/ai-service';
 (window as any).default = (): void => {
     loadCultureFiles();
 
+    let abortController: AbortController;
     let sessionChats: any[] = [];
     let activeSessionId: string | null = null;
     let isFirstSessionAdded: boolean = false;
@@ -38,6 +39,7 @@ import { getAIResponse } from '../common/ai-service';
         promptSuggestions: notionSuggestions,
         promptSuggestionItemTemplate: suggestionItemContent,
         promptRequest: onPromptRequest,
+        stopRespondingClick: stopAIResponse,
         bannerTemplate: function () {
             return `<div class="banner-content">
             <div class="e-icons e-assistview-icon"></div>
@@ -169,7 +171,7 @@ import { getAIResponse } from '../common/ai-service';
 
     async function onPromptRequest(args: PromptRequestEventArgs) {
         defaultAIAssistView.promptSuggestions = [];
-        const abortController: AbortController = new AbortController();
+        abortController = new AbortController();
         let content = 'Based on the following notes content:\n\n' + (document.querySelector('.notes-content') as HTMLElement)?.innerText + '\n\n---\n\nUser prompt: ' + args.prompt;
         let modifiedArgs = {
             prompt: content,
@@ -181,6 +183,12 @@ import { getAIResponse } from '../common/ai-service';
             isFirstSessionAdded = true;
         }
         defaultAIAssistView.promptSuggestions = [];
+    }
+
+    function stopAIResponse() {
+        if (abortController) {
+            abortController.abort();
+        }
     }
 
     function toolbarItemClicked(args: ToolbarItemClickedEventArgs) {

@@ -1,0 +1,113 @@
+{
+    "name": "Modern Rich Text Editor",
+    "directory": "rich-text-editor-ui",
+    "category": "File Viewers & Editors",
+    "ftName": "rich-text-editor-ui",
+    "type": "preview",
+    "samples": [
+        {
+            "url": "basic-editing",
+            "name": "Basic Editing",
+            "description": "This demo shows how to render the Rich Text Editor UI component with a minimum configuration setting.",
+            "category": "Editor",
+            "sourceFiles": [
+                { "displayName": "basic-editing.html", "path": "src/rich-text-editor-ui/basic-editing.html" },
+                { "displayName": "basic-editing.ts", "path": "src/rich-text-editor-ui/basic-editing.ts" },
+                { "displayName": "basic-editing-content.ts", "path": "src/rich-text-editor-ui/basic-editing-content.ts" }
+            ]
+        },
+        {
+            "url": "full-featured-editing",
+            "name": "Full-Featured Editing",
+            "description": "This demo shows how to render the Rich Text Editor UI component with a minimum configuration setting.",
+            "category": "Editor",
+            "sourceFiles": [
+                { "displayName": "full-featured.html", "path": "src/rich-text-editor-ui/full-featured-editing.html" },
+                { "displayName": "full-featured.ts", "path": "src/rich-text-editor-ui/full-featured-editing.ts" },
+                { "displayName": "full-featured-content.ts", "path": "src/rich-text-editor-ui/full-featured-content.ts" }
+            ]
+        },
+        {
+            "url": "inline-editing",
+            "name": "Inline Editing",
+            "description": "An inline Rich Text Editor UI sample configured for in-place editing with a compact toolbar.",
+            "category": "Editor",
+            "sourceFiles": [
+                { "displayName": "inline-editing.html", "path": "src/rich-text-editor-ui/inline-editing.html" },
+                { "displayName": "inline-editing.ts", "path": "src/rich-text-editor-ui/inline-editing.ts" },
+                { "displayName": "inline-editing-content.ts", "path": "src/rich-text-editor-ui/inline-editing-content.ts" }
+            ]
+        },
+        {
+            "url": "toolbar",
+            "name": "Toolbar",
+            "description": "This demo shows how to configure the toolbar type and position of the Rich Text Editor UI component.",
+            "category": "Features",
+            "sourceFiles": [
+                { "displayName": "toolbar.html", "path": "src/rich-text-editor-ui/toolbar.html" },
+                { "displayName": "toolbar.ts", "path": "src/rich-text-editor-ui/toolbar.ts" },
+                { "displayName": "toolbar-content.ts", "path": "src/rich-text-editor-ui/toolbar-content.ts" }
+            ]
+        },
+        {
+            "url": "slash-commands",
+            "name": "Slash Commands",
+            "description": "This demo shows how to enable the Slash Commands feature in the Rich Text Editor UI component, which lets users open a command palette by typing \"/\" to quickly insert and format content.",
+            "category": "Features"
+        },
+        {
+            "url": "properties",
+            "name": "Properties",
+            "description": "This demo shows how to render the Rich Text Editor UI component with a minimum configuration setting.",
+            "category": "API"
+        },
+        {
+            "url": "methods",
+            "name": "Methods",
+            "description": "This demo shows how to programmatically interact with the Rich Text Editor UI component using its public methods such as getHtml, getText, getSelection, selectAll, focus, blur, save, updateToolbarItems and the commands() helper.",
+            "category": "API"
+        },
+        {
+            "url": "events",
+            "name": "Events",
+            "description": "This demo explains client-side events of Rich Text Editor UI that is triggered on editing and formatting operations with an event tracer.",
+            "category": "API"
+        },
+        {
+            "url": "email-composer",
+            "name": "Email Composer",
+            "description": "This demo showcases a Email Composer built with Rich Text Editor UI. It allows users to select recipients using MultiSelect components, enter a subject, compose rich email content with formatting tools, insert links, images, and tables, use Slash Commands for quick content creation, and simulate Send and Save Draft actions using the editor content and recipient information.",
+            "category": "Use Cases"
+        },
+        {
+            "url": "forum-discussion",
+            "name": "Forum Post Editor ",
+            "description": "This demo shows a forum discussion component with Rich Text Editor UI integrated, allowing users to create, view, copy, and delete comments with avatars and timestamps.",
+            "category": "Use Cases"
+        },
+        {
+            "url": "html-preview",
+            "name": "HTML Preview ",
+            "description": "The online HTML editor is a demo that provides LIVE experience for both content and HTML editing with Rich Text Editor features in a real-world scenario.",
+            "category": "Use Cases"
+        },
+        {
+            "url": "editor-in-dialog",
+            "name": "Editor in Dialog",
+            "description": "This demo showcases the Rich Text Editor UI component integrated inside a Dialog component, allowing users to compose formatted messages in a modal dialog with send and cancel buttons.",
+            "category": "Integration"
+        }, 
+        {
+            "url": "chat-ui",
+            "name": "Chat UI",
+            "description": "This demo demonstrates Chat UI integration with Rich Text Editor UI for composing and sending rich messages.",
+            "category": "Integration"
+        },
+        {
+            "url": "tab",
+            "name": "Tab",
+            "description": "This demo shows a tab component with Rich Text Editor UI.",
+            "category": "Integration"
+        }
+    ]
+}

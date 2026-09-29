@@ -11,7 +11,7 @@ import { getAIResponse } from '../common/ai-service';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-
+    let abortController: AbortController;
     const aiAssistViewInst = new AIAssistView({
         bannerTemplate: '#bannerContent',
         promptSuggestionsHeader: "Suggested Prompts",
@@ -23,6 +23,7 @@ import { getAIResponse } from '../common/ai-service';
             items: [ { iconCss: 'e-icons e-refresh', align: 'Right' } ],
             itemClicked: toolbarItemClicked
         },
+        stopRespondingClick: stopAIResponse,
         promptRequest: onPromptRequest
     });
 
@@ -125,7 +126,7 @@ import { getAIResponse } from '../common/ai-service';
                 prompt: args.prompt,
                 systemPrompt: toolSystemPrompt
             };
-            const abortController: AbortController = new AbortController();
+            abortController = new AbortController();
             const reply: any = await getAIResponse(aiArgs, abortController);
             const jsonText: any = reply.response || '{}';
             const aiData = JSON.parse(jsonText);
@@ -140,6 +141,12 @@ import { getAIResponse } from '../common/ai-service';
         if (args.item.iconCss === 'e-icons e-refresh') {
             aiAssistViewInst.prompts = [];
             aiAssistViewInst.promptSuggestions = generativeSuggestions;
+            stopAIResponse();
+        }
+    }
+    function stopAIResponse() {
+        if (abortController) {
+            abortController.abort();
         }
     }
 };

@@ -1,13 +1,15 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Edit, Toolbar, Page, NewRowPosition, Sort, Filter } from '@syncfusion/ej2-grids';
 import { orderDataSource } from './data-source';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 /**
- * Batch Editing sample
+ * Normal Editing sample
  */
 Grid.Inject(Edit, Toolbar, Page, Sort, Filter);
 
 (window as any).default = (): void => {
+    loadCultureFiles();
     let newRowPosition: { [key: string]: Object }[] = [
         { id: 'Top', newRowPosition: 'Top' },
         { id: 'Bottom', newRowPosition: 'Bottom' }

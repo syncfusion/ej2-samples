@@ -1,7 +1,7 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { BlockEditor, BlockAction, BlockChange, BlockChangedEventArgs, ToolbarItemClickEventArgs } from "@syncfusion/ej2-blockeditor"
 import { Button } from '@syncfusion/ej2-buttons';
-import * as data from './blockData.json';
+import * as data from './data/events.json';
 
 /**
  * Overview sample

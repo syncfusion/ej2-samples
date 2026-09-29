@@ -70,10 +70,12 @@ function dragEnter(args: IDragEnterEventArgs): void {
 }
 function textEdit(args: ITextEditEventArgs): void {
   var obj = args.element;
-  obj.annotations[0].style = {
-    color: 'white',
-    fill: 'transparent',
-  };
+  if (obj && obj instanceof Node) {
+    obj.annotations[0].style = {
+      color: 'white',
+      fill: 'transparent',
+    };
+  }
 }
 
 //To set default values for elements in symbol palette.

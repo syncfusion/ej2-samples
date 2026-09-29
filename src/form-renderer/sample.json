@@ -14,7 +14,28 @@
                     "schema"
                 ]
             },
-            "type": "new"
+            "sourceFiles":[
+                { "displayName": "default.html", "path":"src/form-renderer/default.html" },
+                { "displayName": "default.ts", "path":"src/form-renderer/default.ts" },
+                { "displayName": "datasource.ts", "path":"src/form-renderer/datasource.ts" }
+            ]
+        },
+        {
+            "url": "custom-components",
+            "name": "Custom Components",
+            "description": "This example demonstrates the custom components rendering in the Form Renderer component.",
+            "category": "Form Renderer",
+            "type": "new",
+            "api": {
+                "FormRenderer": [
+                    "schema"
+                ]
+            },
+            "sourceFiles":[
+                { "displayName": "custom-components.html", "path":"src/form-renderer/custom-components.html" },
+                { "displayName": "custom-components.ts", "path":"src/form-renderer/custom-components.ts" },
+                { "displayName": "datasource.ts", "path":"src/form-renderer/datasource.ts" }
+            ]
         }
     ],
     "dataSourcePath": "src/form-renderer/datasource.js"

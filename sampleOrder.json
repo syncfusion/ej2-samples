@@ -677,6 +677,13 @@
             "tooltip-template": "Tooltip Template"
         }
     },
+    "headless-editor":{
+        "ControlName": "Headless Editor",
+        "Samples":{
+            "overview": "Overview",
+            "default": "Default Functionalites"
+        }
+    },
     "inplace-editor": {
         "ControlName": "In-place Editor",
         "Samples": {
@@ -1009,12 +1016,23 @@
             "online-html-editor": "Online Html Editor"
         }
     },
-    "mark-down-editor": {
-        "ControlName": "Markdown Editor",
+    "rich-text-editor-ui": {
+        "ControlName": "Modern Rich Text Editor",
         "Samples": {
-            "markdown-editor": "Overview",
-            "markdown-editor-preview": "Preview",
-            "markdown-editor-custom-format": "Custom Format"
+            "basic-editing": "Basic Editing",
+            "full-featured-editing": "Full Featured Editing",
+            "inline-editing": "Inline Editing",
+            "toolbar": "Toolbar",
+            "slash-commands": "Slash Commands",
+            "properties": "Properties",
+            "methods": "Methods",
+            "events": "Events",
+            "email-composer": "Email Composer",
+            "forum-discussion": "Forum Post Editor",
+            "html-preview": "HTML Preview",
+            "editor-in-dialog": "Editor in Dialog",
+            "chat-ui": "Chat UI",
+            "tab": "Tab"
         }
     },
     "sankey": {

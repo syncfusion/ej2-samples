@@ -2,6 +2,7 @@
     "name": "TreeView",
     "directory": "treeview",	
     "category":"Navigation",
+    "type": "update",
     "ftName" :"treeview",
     "samples" : [
         {"url":"default", "name": "Default Functionalities", "category": "TreeView", "description": "This demo demonstrates the basic JavaScript tree view component that display the data in a hierarchical structure with the configuration options.", "api": { "TreeView": ["fields"] }},
@@ -12,6 +13,7 @@
         {"url":"node-editing", "name": "Node Editing", "category": "TreeView", "description": "This demo showcases the node editing functionality of tree view, you can edit any node text by double click on it or pressing F2.", "api": { "TreeView": ["fields", "allowEditing"] }},
         {"url":"multiple-selection", "name": "Multiple Selection", "category": "TreeView", "hideOnDevice": true, "description": "The TreeView component allows to select multiple nodes by pressing CTRL key, also can select the range of nodes by pressing SHIFT key.", "api": { "TreeView": ["fields", "allowMultiSelection"] }},
         {"url":"drag-and-drop", "name": "Drag and Drop", "category": "TreeView", "hideOnDevice": true, "description": "The tree view nodes can be drag and drop from one position to another, also the drop can be done to another tree view or other external container.", "api": { "TreeView": ["fields", "allowDragAndDrop", "allowMultiSelection", "nodeDragStop"] }},
-        {"url":"template", "name": "Template", "category": "TreeView", "description": "The tree view node can be customized through the template option. In this demo the tree view nodes are templated like an mail system.", "api": { "TreeView": ["fields", "cssClass", "nodeTemplate"] }}
-     ]
+        {"url":"template", "name": "Template", "category": "TreeView", "description": "The tree view node can be customized through the template option. In this demo the tree view nodes are templated like an mail system.", "api": { "TreeView": ["fields", "cssClass", "nodeTemplate"] }},
+        {"url":"virtualization", "name": "Virtualization", "type": "new", "category": "TreeView", "description": "This demo demonstrates TreeView virtualization to efficiently render large datasets by enabling virtualization.", "api": { "TreeView": ["fields", "enableVirtualization", "height"] }}
+      ]
  }

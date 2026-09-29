@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { TreeGrid, Page, Aggregate, ExcelExport, PdfExport, Toolbar } from '@syncfusion/ej2-treegrid';
 import { summaryRowData } from './data-source';
 import { CheckBox, ChangeEventArgs } from '@syncfusion/ej2-buttons';
@@ -8,6 +9,7 @@ import { DialogUtility } from '@syncfusion/ej2-popups';
  * Aggregates
  */
 (window as any).default = (): void => {
+    loadCultureFiles();
     let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: summaryRowData,

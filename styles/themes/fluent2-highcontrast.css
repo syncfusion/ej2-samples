@@ -122,6 +122,10 @@ body.fluent2-highcontrast,
 .fluent2-highcontrast .sb-bread-crumb .sb-bread-crumb-text>div {
     color: #ffffff;
 }
+.fluent2-highcontrast .sb-sdk-popup li.active .sb-sdk-select,
+.fluent2-highcontrast .sb-sdk-popup li:hover.active .sb-sdk-select {
+    color: #ffffff;
+}
 .fluent2-highcontrast .sb-theme-popup {
     border: unset;
 }
@@ -156,9 +160,13 @@ color:white;
 .fluent2-highcontrast .sb-src-code,
 .fluent2-highcontrast .sb-api-section,
 .fluent2-highcontrast .sb-theme-popup,
-.fluent2-highcontrast .sb-products-popup,
 .fluent2-highcontrast .copy-tooltip,
 .fluent2-highcontrast .e-icons.copycode,
+.fluent2-highcontrast .sdk-wrapper:hover,
+.fluent2-highcontrast .sdk-wrapper.active,
+.fluent2-highcontrast .sb-sdk-popup li:hover,
+.fluent2-highcontrast .sb-sdk-popup,
+.fluent2-highcontrast .sb-sdk-popup li:hover,
 .fluent2-highcontrast #search-input-wrapper input,
 .tailwfluent2ind-dark #search-input-wrapper input::placeholder {
     color: #ffffff;
@@ -176,10 +184,7 @@ color:white;
 .fluent2-highcontrast .sb-switch-popup li:hover,
 .fluent2-highcontrast .theme-wrapper:hover,
 .fluent2-highcontrast .theme-wrapper.active,
-.fluent2-highcontrast .products-wrapper:hover,
-.fluent2-highcontrast .products-wrapper.active,
 .fluent2-highcontrast .sb-theme-popup li:hover,
-.fluent2-highcontrast .sb-products-popup li:hover,
 .fluent2-highcontrast .sb-search-result .e-list-item:hover,
 .fluent2-highcontrast .sb-left-pane .e-listview .e-list-item:hover {
     background-color: rgba(255, 255, 255, 0.12);
@@ -231,13 +236,13 @@ color:white;
 .fluent2-highcontrast .sb-left-pane .e-treeview .e-list-item.e-hover > .e-fullrow {
     background-color: #1aebff;
 }
-.fluent2-highcontrast .sb-header-text-left,.fluent2-highcontrast .sb-header-text-right,.fluent2-highcontrast .sb-reset-icon {
+.fluent2-highcontrast .sb-header-text-left,.fluent2-highcontrast .sb-header-text-right,.fluent2-highcontrast .sb-reset-icon ,.fluent2-highcontrast #sb-sdk-switcher{
     color:#ffffff;
 }
 .fluent2-highcontrast .e-samplestatus.new.tree, .fluent2-highcontrast .e-samplestatus.update.tree,.fluent2-highcontrast .e-samplestatus.preview.tree {
     margin: 6px 0;
     height: 22px;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 .fluent2-highcontrast .e-samplestatus.new,.fluent2-highcontrast .e-samplestatus.update,.fluent2-highcontrast .e-samplestatus.preview{
@@ -269,9 +274,6 @@ color:white;
 .fluent2-highcontrast .sb-theme-select{
     color:transparent
 }
-.fluent2-highcontrast .sb-products-select{
-    color:transparent
-}
 .fluent2-highcontrast .sb-search-input .e-ddl .e-clear-icon {
     margin-left:-32px;
     background: transparent;
@@ -283,7 +285,20 @@ color:white;
     background: transparent;
   
 }
-
+.fluent2-highcontrast .sb-sdk-popup li:hover .sb-sdk-select {
+    color: transparent;
+}
+.fluent2-highcontrast .sb-sdk-popup {
+    border: unset;
+}
 .fluent2-highcontrast .sb-theme-popup li:hover .sb-theme-select {
     color:transparent;
+}
+
+.sdk-wrapper {
+    background:none;
+}
+.fluent2-highcontrast .sf-axe-msg.e-message {
+    background-color: #1C1B1F;
+    border: 1px solid #FFFFFF;
 }

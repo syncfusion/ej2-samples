@@ -1,4 +1,3 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Edit, Toolbar, Page, DialogEditEventArgs, Sort, Filter } from '@syncfusion/ej2-grids';
 import { DataUtil } from '@syncfusion/ej2-data';
 import { orderData } from './data-source';
@@ -7,6 +6,7 @@ import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { DatePicker } from '@syncfusion/ej2-calendars';
 import { Browser } from '@syncfusion/ej2-base';
 import { Dialog } from '@syncfusion/ej2-popups';
+import { loadCultureFiles } from '../common/culture-loader';
 
 /**
  * Dialog Template Editing sample

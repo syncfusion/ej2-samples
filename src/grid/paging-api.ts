@@ -1,9 +1,9 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { NumericTextBox, ChangeEventArgs } from '@syncfusion/ej2-inputs';
 import { Grid, Page, Selection, Sort, PageEventArgs, Filter, Edit, Toolbar } from '@syncfusion/ej2-grids';
 import { productData } from './data-source';
 import { L10n } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 
 L10n.load({
     'en-US': {

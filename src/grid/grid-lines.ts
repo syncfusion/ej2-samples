@@ -1,7 +1,7 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 import { Grid, Selection, GridLine, Sort, Filter, Edit, Toolbar } from '@syncfusion/ej2-grids';
 import { employeeData } from './data-source';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(Selection, Sort, Filter, Edit, Toolbar);
 

@@ -1,8 +1,8 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { NumericTextBox } from '@syncfusion/ej2-inputs';
 import { Button } from '@syncfusion/ej2-buttons';
 import { Grid, Selection, Page, Sort, Filter } from '@syncfusion/ej2-grids';
 import { inventoryData } from './data-source';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(Selection, Page, Sort, Filter);
 /**

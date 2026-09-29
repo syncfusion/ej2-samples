@@ -12,7 +12,7 @@ import { getAIResponse } from '../common/ai-service';
  */
 (window as any).default = (): void => {
     loadCultureFiles();
-
+    let abortController: AbortController;
     let splitterObj: Splitter = new Splitter({
         height: '600px',
         paneSettings: [
@@ -36,7 +36,8 @@ import { getAIResponse } from '../common/ai-service';
         promptSuggestions: defaultSuggestions,
         enableStreaming: true,
         promptRequest: onPromptRequest,
-        bannerTemplate: "#bannerContent",
+        stopRespondingClick: stopAIResponse,
+        bannerTemplate: bannerContent,
         toolbarSettings: {
             items: [ { iconCss: 'e-icons e-close', align: 'Right' } ],
             itemClicked: toolbarItemClicked
@@ -49,9 +50,9 @@ import { getAIResponse } from '../common/ai-service';
     dialogAIAssistView.appendTo('#aiAssistView');
 
     async function onPromptRequest(args: PromptRequestEventArgs) {
-        const abortController: AbortController = new AbortController();
+        abortController = new AbortController();
         let foundPrompt = defaultPromptResponseData.find((promptObj: any) => promptObj.prompt === args.prompt);
-        let response = foundPrompt ? foundPrompt.response : await getAIResponse(args, abortController);
+        let response = await getAIResponse(args, abortController);
         dialogAIAssistView.addPromptResponse(response);
         dialogAIAssistView.promptSuggestions = foundPrompt?.suggestions || defaultSuggestions;
     }
@@ -59,6 +60,7 @@ import { getAIResponse } from '../common/ai-service';
     function toolbarItemClicked(args: ToolbarItemClickedEventArgs) {
         if ((args as any).item.iconCss === 'e-icons e-close') {
             dialogOpenClose();
+            stopAIResponse();
         }
         if ((args as any).item.iconCss === 'e-icons e-assist-copy') {
             let targetElem = document.querySelector('.right-content .content');
@@ -82,5 +84,19 @@ import { getAIResponse } from '../common/ai-service';
 
     function dialogOpenClose() {
         dialogInst.visible = !dialogInst.visible;
+    }
+
+    function bannerContent(): string {
+        return `<div class="banner-content">
+                    <div class="e-icons e-assistview-icon"></div>
+                    <h3>AI Assistance</h3>
+                    <i>To get started, provide input or choose a suggestion.</i>
+                </div>`;
+    }
+
+    function stopAIResponse() {
+        if (abortController) {
+            abortController.abort();
+        }
     }
 };

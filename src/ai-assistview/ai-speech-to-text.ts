@@ -4,8 +4,8 @@ import { getAIResponse } from '../common/ai-service';
 
 (window as any).default = (): void => {
     loadCultureFiles();
-
 // Initialize AI AssistView
+let abortController: AbortController;
 let aiAssistView = new AIAssistView({
     toolbarSettings: {
         items: [{ iconCss: 'e-icons e-refresh', align: 'Right' }],
@@ -28,7 +28,8 @@ let aiAssistView = new AIAssistView({
     speechToTextSettings: {
         enable: true
     },
-    bannerTemplate: "#bannerContent",
+    bannerTemplate: bannerContent,
+    stopRespondingClick: stopAIResponse,
     promptRequest: onPromptRequest
 });
 aiAssistView.appendTo('#aiAssistView');
@@ -36,13 +37,29 @@ aiAssistView.appendTo('#aiAssistView');
 function toolbarItemClicked(args: ToolbarItemClickedEventArgs) {
     if (args.item.iconCss === 'e-icons e-refresh') {
         aiAssistView.prompts = [];
+        stopAIResponse();
     }
 }
 
 async function onPromptRequest(args: PromptRequestEventArgs): Promise<void> {
     if (!aiAssistView) return;
-    const abortController: AbortController = new AbortController();
+    abortController = new AbortController();
     var response = await getAIResponse(args, abortController);
     aiAssistView.addPromptResponse(response);
 }
+
+function bannerContent(): string {
+    return `<div class="banner-content">
+                <div class="e-icons e-listen-icon"></div>
+                <h3>Speech To Text</h3>
+                <i>Click the below mic-button to convert your voice to text.</i>
+            </div>`;
+}
+
+function stopAIResponse() {
+    if (abortController) {
+        abortController.abort();
+    }
+}
+
 };

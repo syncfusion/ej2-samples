@@ -69,7 +69,7 @@ function setNodeTemplate(node: NodeModel): void {
 (window as any).default = (): void => {
     //Initializtion of the diagram.
     let diagram: Diagram = new Diagram({
-        width: '100%', height: '550px',
+        width: '100%', height: '580px',
         layout: {
             type: 'SymmetricalLayout',
             springLength: 80,
@@ -97,7 +97,6 @@ function setNodeTemplate(node: NodeModel): void {
         }
     });
     diagram.appendTo('#diagram');
-    diagram.pan(0, 0);
 
     // Initialization of input elements for layout customization
     let springLength: NumericTextBox = new NumericTextBox({

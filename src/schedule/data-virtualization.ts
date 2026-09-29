@@ -20,8 +20,8 @@ Schedule.Inject(Month, TimelineMonth, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         height: '650px', width: '100%', currentView: 'TimelineMonth', readonly: true,
         views: [
-            { option: 'TimelineMonth', enableLazyLoading: true },
-            { option: 'Month', enableLazyLoading: true }
+            { option: 'TimelineMonth', overscanCount:20, enableLazyLoading: true },
+            { option: 'Month', overscanCount:20, enableLazyLoading: true }
         ],
         group: {
             resources: ['Resources']

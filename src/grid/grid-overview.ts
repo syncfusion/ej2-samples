@@ -1,10 +1,10 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, VirtualScroll, Sort, Filter, Selection } from '@syncfusion/ej2-grids';
 import { isNullOrUndefined, closest } from '@syncfusion/ej2-base';
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
 import { Rating } from '@syncfusion/ej2-inputs';
 import { getTradeData } from './data-source';
 import { DataManager, Query, UrlAdaptor } from '@syncfusion/ej2-data';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(Selection, VirtualScroll, Sort, Filter);
 

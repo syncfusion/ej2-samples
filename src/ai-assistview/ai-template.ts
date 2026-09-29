@@ -12,11 +12,13 @@ import { getAIResponse } from '../common/ai-service';
 (window as any).default = (): void => {
     loadCultureFiles();
 
+    let abortController: AbortController;
     let templateAIAssistView: AIAssistView = new AIAssistView({
-        bannerTemplate: '#bannerContent',
+        bannerTemplate: bannerContent,
         enableStreaming: true,
         promptItemTemplate: promptItemContent,
         responseItemTemplate: responseItemContent,
+        responseAnimationTemplate:responseAnimationContent,
         promptSuggestionItemTemplate: suggestionItemContent,
         promptSuggestionsHeader: 'Hello! Ask Questions, to better understand how your prompt interacts with AI AssistView!',
         promptSuggestions: defaultSuggestions,
@@ -25,16 +27,23 @@ import { getAIResponse } from '../common/ai-service';
                 { type: 'Input', template: '<button id="ddMenu"></button>', align: 'Right' }
             ]
         },
+        stopRespondingClick: stopAIResponse,
         promptRequest: onPromptRequest
     });
     templateAIAssistView.appendTo('#aiAssistView');
 
     async function onPromptRequest(args: PromptRequestEventArgs) {
-        const abortController: AbortController = new AbortController();
+        abortController = new AbortController();
         let foundPrompt = defaultPromptResponseData.find((promptObj: any) => promptObj.prompt === args.prompt);
-        var response = foundPrompt ? foundPrompt.response : await getAIResponse(args, abortController);
+        var response = await getAIResponse(args, abortController);
         templateAIAssistView.addPromptResponse(response);
         templateAIAssistView.promptSuggestions = foundPrompt?.suggestions || defaultSuggestions;
+    }
+
+    function stopAIResponse() {
+        if (abortController) {
+            abortController.abort();
+        }
     }
 
     function promptItemContent(ctx: any) {
@@ -57,6 +66,17 @@ import { getAIResponse } from '../common/ai-service';
                 </div>`;
     }
 
+    function responseAnimationContent(){
+        return `<div class="assistview-loading-status">
+                    <div class="assistview-grid-icon">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                     </div>
+                     <span class="assistview-loading-label">Generating</span>
+                </div>`;
+    }
+
     function suggestionItemContent(ctx: any) {
         return `<div class='suggestion-item active'>
                     <span class="e-icons e-circle-info"></span>
@@ -76,7 +96,7 @@ import { getAIResponse } from '../common/ai-service';
             { imagePath: 'src/ai-assistview/images/london.jpg', suggestion: 'Steps to publish a e-book with marketing strategy'  },
             { imagePath: 'src/ai-assistview/images/tokyo.jpg', suggestion: 'What tools or apps can help me prioritize tasks?'  }
         ],
-        itemTemplate: '#carouselTemplate'
+        itemTemplate: carouselTemplate
     });
     carouselObj.appendTo('#bannerCarousel');
 
@@ -109,4 +129,22 @@ import { getAIResponse } from '../common/ai-service';
         iconCss: 'e-icons e-user',
         cssClass: 'e-caret-hide',
     }, '#ddMenu');
+
+    function bannerContent(): string {
+        return `<div class="banner-content">
+                    <h3><span class="e-icons e-assistview-icon"></span>AI Assistance</h3>
+                    <div id="bannerCarousel"></div>
+                </div>`;
+    }
+
+    function carouselTemplate(data: any): string {
+        return `<div class="carousel-template">
+                    <img src=${data.imagePath} />
+                    <div class="e-card">
+                        <div class="e-card-header">
+                            ${data.suggestion}
+                        </div>
+                    </div>
+                </div>`;
+    }
 };

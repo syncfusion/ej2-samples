@@ -1,0 +1,41 @@
+{
+    "name": "Chart",
+    "directory": "ai-chart",
+    "type": "update",
+    "category": "Smart AI Solutions",
+    "samples": [
+        {
+            "url": "chart-assist",
+            "name": "Chart Assist",
+            "category": "Chart",
+            "type": "new",
+            "sourceFiles":[
+                { "displayName": "chart-assist.ts", "path":"src/ai-chart/chart-assist.ts" },
+                { "displayName": "chart-assist.html", "path":"src/ai-chart/ai-chart-assist.html" }
+            ],
+            "description": "This demo sample for rendering and configuring chart series using natural language prompts."
+        },
+        {
+            "url": "data-preprocessing",
+            "name": "Data Preprocessing",
+            "category": "Chart",
+            "type": "new",
+            "sourceFiles":[
+                { "displayName": "data-preprocessing.ts", "path":"src/ai-chart/data-preprocessing.ts" },
+                { "displayName": "data-preprocessing.html", "path":"src/ai-chart/ai-data-preprocessing.html" }
+            ],
+            "description": "This demo for the AI-powered data cleaning and preprocessing for tracking hourly website visitor data."
+        },
+        {
+            "url": "stock-forecasting",
+            "name": "Stock Forecasting",
+            "category": "Chart",
+            "type": "new",
+            "sourceFiles":[
+                { "displayName": "stock-forecasting.ts", "path":"src/ai-chart/stock-forecasting.ts" },
+                { "displayName": "stock-forecasting.html", "path":"src/ai-chart/ai-stock-forecasting.html" }
+            ],
+            "description": "This demo sample demonstrates how to Predict future stock values from historical series using the AI assistant panel."
+        }
+    ]
+}

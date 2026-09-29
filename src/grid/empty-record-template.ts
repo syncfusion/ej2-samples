@@ -29,6 +29,8 @@ Grid.Inject(Page, Selection, Toolbar, Edit );
         {
             dataSource: [],
             allowPaging: true,
+            emptyRecordMode: 'Sticky',
+            height: 300,
             toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
             emptyRecordTemplate: '#emptytemplate',
             editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true},
@@ -37,7 +39,10 @@ Grid.Inject(Page, Selection, Toolbar, Edit );
                 { field: 'CustomerID', headerText: 'Customer ID', validationRules: { required: true }, width: 140 },
                 { field: 'Freight', headerText: 'Freight', textAlign: 'Right', editType: 'numericedit', width: 140, format: 'C2', validationRules: { required: true } },
                 { field: 'OrderDate', headerText: 'Order Date', editType: 'datetimepickeredit', width: 160, format: { type: 'dateTime', format: 'M/d/y hh:mm a' }, },
-                { field: 'ShipCountry', headerText: 'Ship Country', editType: 'dropdownedit', width: 150, edit: { params: { dataSource: dropDownDataSource , fields: {text:"ShipCountry",value:"ShipCountry"}}}}
+                { field: 'ShipCountry', headerText: 'Ship Country', editType: 'dropdownedit', width: 150, edit: { params: { dataSource: dropDownDataSource , fields: {text:"ShipCountry",value:"ShipCountry"}}}},
+                { field: 'ShipCity', headerText: 'Ship City', width: 150 },
+                { field: 'ShipAddress', headerText: 'Ship Address', width: 200 }
+
             ],
             pageSettings: { pageCount: 5 }
         });

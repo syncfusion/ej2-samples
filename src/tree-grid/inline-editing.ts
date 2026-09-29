@@ -1,12 +1,13 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { TreeGrid, Toolbar, Edit, RowDD } from '@syncfusion/ej2-treegrid';
 import { sampleData } from './data-source';
-import { DropDownList, ChangeEventArgs } from '@syncfusion/ej2-dropdowns';
 
 TreeGrid.Inject(Toolbar, Edit, RowDD);
 /**
  * Auto wrap sample
  */
 (window as any).default = (): void => {
+    loadCultureFiles();
     let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: sampleData,
@@ -17,7 +18,7 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
                 allowAdding: true,
                 allowEditing: true,
                 allowDeleting: true,
-                mode: 'Cell',
+                mode: 'Row',
                 newRowPosition: 'Below'
 
             },
@@ -38,21 +39,5 @@ TreeGrid.Inject(Toolbar, Edit, RowDD);
         });
     treegrid.appendTo('#TreeGrid');
 
-    let dropDownColumns: DropDownList = new DropDownList({
-        dataSource: [{ id: 'CellEditing', name: 'Cell Editing' }, {id: 'RowEditing', name: 'Row Editing'}],
-        fields: { text: 'name', value: 'id' },
-        value: 'CellEditing',
-        width: 140,
-        change: (e: ChangeEventArgs) => {
-            if (e.value === 'CellEditing') {
-                treegrid.editSettings.mode = 'Cell';
-                treegrid.toolbar = ['Add', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'];
-            } else {
-                treegrid.editSettings.mode = 'Row';
-                treegrid.toolbar = ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Indent', 'Outdent'];
-            }
-        }
-    });
-    dropDownColumns.appendTo('#editmodes');
 };
 

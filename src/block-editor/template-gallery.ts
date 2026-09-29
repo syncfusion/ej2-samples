@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { BlockEditor } from '@syncfusion/ej2-blockeditor';
-import * as data from './blockData.json';
+import * as data from './data/template-gallery.json';
 
 type TemplateItem = {
   index?: string;

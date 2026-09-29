@@ -5,6 +5,7 @@ import { getUserID, AI_SERVICE_URL } from '../common/ai-service';
 (window as any).default = (): void => {
     loadCultureFiles();
     AIAssistView.Inject(AssistThinking);
+    let abortController: AbortController;
     let thinkingAIAssistView = new AIAssistView({
         bannerTemplate: '#bannerContent',
         promptSuggestions: [
@@ -12,6 +13,7 @@ import { getUserID, AI_SERVICE_URL } from '../common/ai-service';
             'Explain how climate change affects everyday life'
         ],
         promptRequest: onPromptRequest,
+        stopRespondingClick: stopAIResponse,
         enableStreaming: true
     });
     thinkingAIAssistView.appendTo('#aiAssistView');
@@ -25,7 +27,7 @@ import { getUserID, AI_SERVICE_URL } from '../common/ai-service';
             if (!userID) {
                 return;
             }
-            var abortController = new AbortController();
+            abortController = new AbortController();
             const requestBody = {
                 visitorId: userID,
                 messages: {
@@ -67,5 +69,10 @@ import { getUserID, AI_SERVICE_URL } from '../common/ai-service';
             thinkingAIAssistView.addPromptResponse({ response: "We could not reach the AI service; please try again later." });
         }
         
+    }
+    function stopAIResponse() {
+        if (abortController) {
+            abortController.abort();
+        }
     }
 };

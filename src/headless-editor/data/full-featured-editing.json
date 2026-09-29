@@ -1,0 +1,2171 @@
+{
+    "id": "30u7ijsm49lmtmsb83e",
+    "type": "document",
+    "schemaVersion": 1,
+    "attrs": {},
+    "children": [{
+            "id": "c0yenpypt49mtmsb83e",
+            "type": "heading",
+            "attrs": {
+                "level": 2,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "e4a383fa-bada-44c0-8da2-0c4dc52ffc68",
+                "type": "text",
+                "text": "Welcome to the Headless Editor Demo!",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "gdak4pmz62mtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                    "id": "db19a2c6-cde4-4043-b9a8-d235bf868cde",
+                    "type": "text",
+                    "text": "Welcome to the ",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "4da197a0-f053-4fbd-8b0c-8284d8f7e064",
+                    "type": "text",
+                    "text": "Headless editor",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "bold",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "0514a77f-5b81-4ab5-b047-9f2f4ff4e241",
+                    "type": "text",
+                    "text": "! This demo highlights all supported block types and inline formatting options. Each section below explains the purpose of the block and shows how it appears in the editor.",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "fv0x294xjjomtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "08ddd876-fd35-4366-9f3c-904eee2aa89d",
+                "type": "text",
+                "text": "Paragraph",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "ukzvaegz1k8mtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "30993ae3-9df2-4d7d-b17f-dfaacb749dc6",
+                "type": "text",
+                "text": "Paragraph blocks are used for writing regular text. They are the most common block type and support inline formatting to enhance readability and emphasis.",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "66qgkv44l3cmtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "a17a9bc5-438e-41b5-9b55-26c6ef8f4ec4",
+                "type": "text",
+                "text": "Inline Formatting",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "ybeh8m5rtxcmtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                    "id": "855bc35b-612c-4540-8b71-df17e72430af",
+                    "type": "text",
+                    "text": "Use ",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "d3fb5943-8e63-4bd6-bd14-78c34ba8096a",
+                    "type": "text",
+                    "text": "bold",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "bold",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "80272480-f03b-4d3f-89ed-a7e188bcac2d",
+                    "type": "text",
+                    "text": ", ",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "c3f69df5-8f36-4b80-9f0e-b543bdc4c9e7",
+                    "type": "text",
+                    "text": "italic",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "italic",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "76683daa-59bb-4ab6-a601-1e6bb5eda2c4",
+                    "type": "text",
+                    "text": ", and ",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "e481dc05-c8ba-4f63-bc11-22d9d53753ef",
+                    "type": "text",
+                    "text": "underline",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "underline",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "206a0f1b-577a-4d05-b3f7-cd060d21bc89",
+                    "type": "text",
+                    "text": " for emphasis; or ",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "127b3a75-d55d-43c9-95d9-821f8c715bd6",
+                    "type": "text",
+                    "text": "strikethrough",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "strikethrough",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "f10bf51a-8dd8-4874-945e-1d85728638fd",
+                    "type": "text",
+                    "text": " to indicate removals or outdated text.",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "x65qbr5suwjmtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                    "id": "fa50f7fe-3925-43ee-979d-ea529c0fb277",
+                    "type": "text",
+                    "text": "Math and chemistry: E = mc",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "e4769931-e1f2-4a7d-9b5f-6a9a276f66cf",
+                    "type": "text",
+                    "text": "2",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "superscript",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "3c888dea-60ab-4c54-9a11-d10eab4f22de",
+                    "type": "text",
+                    "text": ", H",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "1f09571c-2f68-48f9-93bc-12c037491763",
+                    "type": "text",
+                    "text": "2",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "subscript",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "539f5267-bdff-4e92-b503-5e80361b0d2e",
+                    "type": "text",
+                    "text": "O - with superscript and subscript. Add inline code ",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "50a435b3-b633-4a1d-9d55-26a0afd16f74",
+                    "type": "text",
+                    "text": "const x = 10;",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "code",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "4b56585e-673a-42e2-b3d8-b1f0b8eea496",
+                    "type": "text",
+                    "text": " and helpful ",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "f2a40aef-11ef-446e-9cee-2aefd5d9b70d",
+                    "type": "text",
+                    "text": "links",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "link",
+                        "attrs": {
+                            "href": "https://ej2.syncfusion.com/documentation/block-editor/getting-started",
+                            "title": null,
+                            "target": null,
+                            "rel": null
+                        }
+                    }]
+                },
+                {
+                    "id": "f50cfd3a-5ed9-45ec-8395-cffe39266594",
+                    "type": "text",
+                    "text": " for quick references.",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "9ykvel821vamtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "4e5f90cd-b1c4-4631-b54c-aa2c2620992c",
+                "type": "text",
+                "text": "Transform text to UPPERCASE or lowercase. Add color or background highlights as needed.",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "l40fsic9ckmtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "04b2e452-48a0-4b30-804d-843b78ea7d2f",
+                "type": "text",
+                "text": "Table Block",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "yikvfth52nmtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "ce61db81-4fe8-4804-a232-0b8a1b2a20db",
+                "type": "text",
+                "text": "Table blocks organize data in rows and columns for easy comparison or presentation. They support headers and basic styling",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "8ei0481p8g9mtmsb83f",
+            "type": "table",
+            "attrs": {},
+            "children": [{
+                    "id": "hzrppkmlkqimtmsb83f",
+                    "type": "tableRow",
+                    "attrs": {},
+                    "children": [{
+                            "id": "jj7jua3nxxcmtmsb83f",
+                            "type": "tableHeader",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "7psb8r6qmgmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "7d686f75-17aa-4a0a-98f3-9b9002505ae1",
+                                    "type": "text",
+                                    "text": "Name",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "pmqubu05u9kmtmsb83f",
+                            "type": "tableHeader",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "mvamgh2d63bmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "8b6990e8-525a-4918-9c19-346744446680",
+                                    "type": "text",
+                                    "text": "Age",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "aqnkt4otwx9mtmsb83f",
+                            "type": "tableHeader",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "41c4xntd9lpmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "2435b43b-fdef-4e3c-a4e8-ee4519b379c2",
+                                    "type": "text",
+                                    "text": "Gender",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "vabi1wobrdmtmsb83f",
+                            "type": "tableHeader",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "caq9wsalwcwmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "723a0df0-a7f1-44bb-991f-9543b6248b17",
+                                    "type": "text",
+                                    "text": "Occupation",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "ip9n0k0d6v8mtmsb83f",
+                            "type": "tableHeader",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "7e2cojtbqrmmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "d02fe5e4-ee30-4f1a-b8e9-0e0befa6c4f7",
+                                    "type": "text",
+                                    "text": "Mode of Transport",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        }
+                    ],
+                    "marks": []
+                },
+                {
+                    "id": "38hcrrdwyfvmtmsb83f",
+                    "type": "tableRow",
+                    "attrs": {},
+                    "children": [{
+                            "id": "mpsssha36qmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "qzhcneirts8mtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "4f81bedd-de9f-465b-81f0-27938bebcca3",
+                                    "type": "text",
+                                    "text": "Selma Rose",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "cj8ebfv1eeimtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "4jkossj0q07mtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "491c7361-7e8c-442a-b1cb-3c34e78834e5",
+                                    "type": "text",
+                                    "text": "30",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "ju89r33uxhmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "tgd32xtvdtmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "9601eb27-1c26-43ef-8e0f-4fb85ecacf5d",
+                                    "type": "text",
+                                    "text": "Female",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "yb7mud8qd5fmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "61e7tzvgjnymtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "cfed1823-c9a5-44ea-a82a-0965c6bebfa5",
+                                    "type": "text",
+                                    "text": "Engineer",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "ujtwoyi5r8hmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "hp3g5iyqf0wmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "97def336-07f8-4c7f-91d0-7e4a382e7090",
+                                    "type": "text",
+                                    "text": "🚴",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        }
+                    ],
+                    "marks": []
+                },
+                {
+                    "id": "2cntqz3zodimtmsb83f",
+                    "type": "tableRow",
+                    "attrs": {},
+                    "children": [{
+                            "id": "0ao3svoq0cpamtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "wudzy9hr7aemtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "983de598-3112-41d5-9e27-b99a73328371",
+                                    "type": "text",
+                                    "text": "Robert",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "yifhuue82pkmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "kzbj03kut1mtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "cc021fd8-8c85-4375-80b1-f715932bb441",
+                                    "type": "text",
+                                    "text": "28",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "2461qjxwypcmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "fwui98pjexpmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "4cac2623-36e4-4a4b-aea2-d40e204248cf",
+                                    "type": "text",
+                                    "text": "Male",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "5bjy7utmviumtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "7tuznadysebmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "c588abed-f876-4659-b7a0-8cc8865f12ea",
+                                    "type": "text",
+                                    "text": "Graphic Designer",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "h5qv2ev96dtmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "wixkxif1j4fmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "640ce54f-0f4a-40b6-a89a-ee873eeb70ee",
+                                    "type": "text",
+                                    "text": "🚗",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        }
+                    ],
+                    "marks": []
+                },
+                {
+                    "id": "60nwvkf1etemtmsb83f",
+                    "type": "tableRow",
+                    "attrs": {},
+                    "children": [{
+                            "id": "tq32vxprmsmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "g8eziqkwyzkmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "06327582-06b4-4020-8b31-e626cf269a19",
+                                    "type": "text",
+                                    "text": "William",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "1r1ldboub4wjmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "3l2abqukwn5mtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "023552c6-56cd-4f62-afc9-31c759904e74",
+                                    "type": "text",
+                                    "text": "35",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "iyyisr3uonmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "ee40qdri3aemtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "ba465f0f-79d1-4c99-b1a0-9bd2512ca828",
+                                    "type": "text",
+                                    "text": "Male",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "0hx471rkwa7mtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "5kl5dlwshsmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "02fb27cf-557d-4a5b-8afa-59f63c7af0d6",
+                                    "type": "text",
+                                    "text": "Teacher",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "pzr7ao5j0wmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "qw7nhu2kzoamtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "3d945cdc-8ce2-4f03-86b5-f700f4071cb0",
+                                    "type": "text",
+                                    "text": "🚗",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        }
+                    ],
+                    "marks": []
+                },
+                {
+                    "id": "ke08e0ffxqsmtmsb83f",
+                    "type": "tableRow",
+                    "attrs": {},
+                    "children": [{
+                            "id": "l21oolsj4fimtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "nxebhzmosemtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "83e7b45d-b1f5-488b-b6eb-2de6272f475e",
+                                    "type": "text",
+                                    "text": "Laura Grace",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "6rhtas76gbsmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "mbdl78txxzmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "55d3bacf-d36f-43bd-a292-25aea5cbc1e5",
+                                    "type": "text",
+                                    "text": "42",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "5rphi20z6bomtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "lk7kiizz8tbmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "3e2e711e-b42f-4cf5-9d6c-9e7cebbe04e8",
+                                    "type": "text",
+                                    "text": "Female",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "8p0bbgeke07mtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "jqu3dgkcoyomtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "4755204a-1c82-4ac5-be60-a49eb895f24a",
+                                    "type": "text",
+                                    "text": "Doctor",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "256w09tlcq8mtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "43kacb5lg23mtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "290a79f9-82be-429b-b0ca-372b0030f7dd",
+                                    "type": "text",
+                                    "text": "🚌",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        }
+                    ],
+                    "marks": []
+                },
+                {
+                    "id": "johgxp9vxgimtmsb83f",
+                    "type": "tableRow",
+                    "attrs": {},
+                    "children": [{
+                            "id": "4lfucnb5p97mtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "7rskmzy9ocrmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "46a236c4-ca86-4040-a546-b2bf85964a6b",
+                                    "type": "text",
+                                    "text": "Andrew James",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "ao0ovhlcpnpmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "b3shxbhreqqmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "8bd89422-e516-499e-85f8-a42eb350463c",
+                                    "type": "text",
+                                    "text": "45",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "aw4bsuouo6mtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "1nhoxm06p6rmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "e97b5080-f327-4b6c-8622-73e9eb1b2204",
+                                    "type": "text",
+                                    "text": "Male",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "ili5eq390xmtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "qm1myb2d54mtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "ba0d99da-e3c1-4d33-a4a0-912a83eb6295",
+                                    "type": "text",
+                                    "text": "Lawyer",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        },
+                        {
+                            "id": "ebw2x5bjm2umtmsb83f",
+                            "type": "tableCell",
+                            "attrs": {
+                                "colspan": 1,
+                                "rowspan": 1,
+                                "colwidth": null,
+                                "align": null,
+                                "verticalAlign": null,
+                                "backgroundColor": null,
+                                "color": null,
+                                "borderColor": null
+                            },
+                            "children": [{
+                                "id": "gefxw4s8sjrmtmsb83f",
+                                "type": "paragraph",
+                                "attrs": {
+                                    "align": null,
+                                    "indent": 0
+                                },
+                                "children": [{
+                                    "id": "ce8698f9-8a82-4653-bdce-62769b54d919",
+                                    "type": "text",
+                                    "text": "🚕",
+                                    "attrs": {},
+                                    "children": [],
+                                    "marks": []
+                                }],
+                                "marks": []
+                            }],
+                            "marks": []
+                        }
+                    ],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "diny1p1rfznmtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "b76ff2be-ff45-43e6-9bc5-ec6e5630ef74",
+                "type": "text",
+                "text": "Image Block",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "ixdknsosrn9mtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "c24aa0a9-240f-47d2-a580-39ed2d309468",
+                "type": "text",
+                "text": "Image blocks allow you to insert visuals to support or enhance your content.",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "ltrq1tud0mmtmsb83f",
+            "type": "image",
+            "attrs": {
+                "src": "https://cdn.syncfusion.com/ej2/richtexteditor-resources/RTE-Overview.png",
+                "alt": "Headless Editor",
+                "title": "Headless Editor",
+                "width": 600,
+                "height": 300,
+                "display": "block",
+                "align": "none",
+                "wrap": "none",
+                "attributes": "",
+                "indent": 0
+            },
+            "children": [],
+            "marks": []
+        },
+        {
+            "id": "xv0np3em57dmtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "27d88a04-a9cf-4d54-ac8f-4953d978a06e",
+                "type": "text",
+                "text": "Checklist",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "3ot402y7g06mtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "1026c749-227e-4274-823a-0191dbb73eeb",
+                "type": "text",
+                "text": "Checklists help track tasks or steps:",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "jczuca0ziimtmsb83f",
+            "type": "taskList",
+            "attrs": {},
+            "children": [{
+                    "id": "4z0rd0czryimtmsb83f",
+                    "type": "taskItem",
+                    "attrs": {
+                        "checked": true,
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "cdqy0zgq4eumtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "2eac546a-f2bf-4952-b1ef-ffad268b4211",
+                            "type": "text",
+                            "text": "Apply inline formatting",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                },
+                {
+                    "id": "c8e6fehd11mtmsb83f",
+                    "type": "taskItem",
+                    "attrs": {
+                        "checked": false,
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "je8mb67yk9hmtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "29a7ac17-0cc2-4371-a33a-4ea9b042655e",
+                            "type": "text",
+                            "text": "Invite reviewer ",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                },
+                {
+                    "id": "81by5e7q0ogmtmsb83f",
+                    "type": "taskItem",
+                    "attrs": {
+                        "checked": false,
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "mjv4g4td4xmtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                                "id": "3fad5a58-7fef-4ab1-9f3f-29a1e1c9b787",
+                                "type": "text",
+                                "text": "Publish guide and share ",
+                                "attrs": {},
+                                "children": [],
+                                "marks": []
+                            },
+                            {
+                                "id": "9a650cff-4c91-4bb5-b3ca-ca6a026bec32",
+                                "type": "text",
+                                "text": "the link",
+                                "attrs": {},
+                                "children": [],
+                                "marks": [{
+                                    "type": "link",
+                                    "attrs": {
+                                        "href": "https://ej2.syncfusion.com/documentation/block-editor/getting-started",
+                                        "title": null,
+                                        "target": null,
+                                        "rel": null
+                                    }
+                                }]
+                            }
+                        ],
+                        "marks": []
+                    }],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "mw3kv842lqpmtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "f3e73d92-90db-419a-a361-836b8875595a",
+                "type": "text",
+                "text": "Lists",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "drlg8q8pvrqmtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "03d28097-3bd4-4298-90a6-8bedd7953a9a",
+                "type": "text",
+                "text": "Lists organize information clearly:",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "aff1ff94-4791-420c-b66f-4e04a71b795c",
+            "type": "heading",
+            "attrs": {
+                "level": 5,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "09a51bd5-dd0f-4c09-aa01-01fd3fdb7dce",
+                "type": "text",
+                "text": "Unordered List",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "e9box4bsppmtmsb83f",
+            "type": "bulletList",
+            "attrs": {
+                "listStyleType": "disc"
+            },
+            "children": [{
+                    "id": "002z8kxun1sfmmtmsb83f",
+                    "type": "listItem",
+                    "attrs": {
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "c8tdvb6xgrnmtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "d5b7bcc3-0e67-4d49-a110-180b0d646c8c",
+                            "type": "text",
+                            "text": "Concise points for quick scanning",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                },
+                {
+                    "id": "zshzsvmd8fmtmsb83f",
+                    "type": "listItem",
+                    "attrs": {
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "na99t1gxs3mtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "849a64bb-f846-42e1-8b3f-2b13d0d230a2",
+                            "type": "text",
+                            "text": "Great for features or tips",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                },
+                {
+                    "id": "b266g9g40itmtmsb83f",
+                    "type": "listItem",
+                    "attrs": {
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "19omilah7kamtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "4a581d60-be99-426e-a4c9-3e6272e307fd",
+                            "type": "text",
+                            "text": "Easy to reorder and nest",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "99ce36f1-d3ac-4358-877a-9fcd75875d3a",
+            "type": "heading",
+            "attrs": {
+                "level": 5,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "daedf888-5767-45f6-b452-e59ecce9ca67",
+                "type": "text",
+                "text": "Ordered List",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "eaic1l3zdtmtmsb83f",
+            "type": "orderedList",
+            "attrs": {
+                "order": 1,
+                "listStyleType": "decimal"
+            },
+            "children": [{
+                    "id": "8xrozz041e5mtmsb83f",
+                    "type": "listItem",
+                    "attrs": {
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "0mrmjged37lmtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "411e2e7e-bd09-48af-a600-eca045ae1f5c",
+                            "type": "text",
+                            "text": "Start a new document",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                },
+                {
+                    "id": "87zfokaf5somtmsb83f",
+                    "type": "listItem",
+                    "attrs": {
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "weh165j2xcmtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "bc871622-a215-436c-998e-d9badabc9305",
+                            "type": "text",
+                            "text": "Add structure with headings",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                },
+                {
+                    "id": "bvanpydzigomtmsb83f",
+                    "type": "listItem",
+                    "attrs": {
+                        "align": null
+                    },
+                    "children": [{
+                        "id": "t8b44c4sv5mtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "cfb798be-6f4a-44d8-9c0f-74c87e4d0de7",
+                            "type": "text",
+                            "text": "Fill in content and review",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "xdzum98owf8mtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "e359482c-2b70-40b4-8738-34f3f919de0e",
+                "type": "text",
+                "text": "Headings",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "rlawnig3rzkmtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                    "id": "fa9ce23f-e562-495c-b7c1-ab4ebeb02ad3",
+                    "type": "text",
+                    "text": "Headings help organize content into sections. Use different levels ",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                },
+                {
+                    "id": "2bcc21d7-7ca5-44da-9181-96129956e7d0",
+                    "type": "text",
+                    "text": "(h1, h2, h3 or h4)",
+                    "attrs": {},
+                    "children": [],
+                    "marks": [{
+                        "type": "bold",
+                        "attrs": {}
+                    }]
+                },
+                {
+                    "id": "dc479463-77f4-48ce-bfb3-efe0ddeb9f8f",
+                    "type": "text",
+                    "text": " to create a hierarchy:",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "3hq6xfw0fvqmtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "420ed07c-d2f0-4976-b345-748ec5bdf874",
+                "type": "text",
+                "text": "Quote",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "1ynsvcbyt9lmtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "9955c770-a11e-4566-ac6e-b9a6cc5fc4ce",
+                "type": "text",
+                "text": "Use quote blocks to emphasize important statements or references.",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "ypi7rj1bpxjmtmsb83f",
+            "type": "blockquote",
+            "attrs": {},
+            "children": [{
+                "id": "3zvnl6v0azzmtmsb83f",
+                "type": "paragraph",
+                "attrs": {
+                    "align": null,
+                    "indent": 0
+                },
+                "children": [{
+                    "id": "77c037c1-7876-4de7-96eb-58a026f2479b",
+                    "type": "text",
+                    "text": "“Quotes are perfect for highlighting key messages or testimonials.”",
+                    "attrs": {},
+                    "children": [],
+                    "marks": []
+                }],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "r3odnodxeemtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "f620559b-20ed-4dc4-bc57-d706aec8f3e4",
+                "type": "text",
+                "text": "Callout",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "1w7qe8p6yjbmtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "b4880c6d-51b3-4310-b7b9-96f43f1559fc",
+                "type": "text",
+                "text": "Callouts are great for tips, warnings, or notes that need attention.",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "q9bmnq3qln9mtmsb83f",
+            "type": "callout",
+            "attrs": {
+                "variant": "info"
+            },
+            "children": [{
+                "id": "7c2da78twewmtmsb83f",
+                "type": "paragraph",
+                "attrs": {
+                    "align": null,
+                    "indent": 0
+                },
+                "children": [{
+                        "id": "d9a2cd9d-ae51-4bd3-a155-64a64399fcab",
+                        "type": "text",
+                        "text": "Note: ",
+                        "attrs": {},
+                        "children": [],
+                        "marks": [{
+                            "type": "bold",
+                            "attrs": {}
+                        }]
+                    },
+                    {
+                        "id": "f97c54e0-ef9e-4d12-a4cf-4c202e9bf02f",
+                        "type": "text",
+                        "text": "Callouts highlight important content such as tips, warnings, or notes.",
+                        "attrs": {},
+                        "children": [],
+                        "marks": []
+                    }
+                ],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "dsfymjl83umtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "6a9f1d0c-7b75-466d-9178-2182353cb33b",
+                "type": "text",
+                "text": "Code Block",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "jxe8gbe34simtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "b4c1aa35-83f4-4f7c-83d0-711b55d6174c",
+                "type": "text",
+                "text": "Use code blocks to display syntax-highlighted code snippets for technical documentation or tutorials.",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "izv7rggghmimtmsb83f",
+            "type": "codeBlock",
+            "attrs": {
+                "language": "plaintext"
+            },
+            "children": [{
+                "id": "65beaa07-7f92-4339-98a3-68585f9bc390",
+                "type": "text",
+                "text": "function greet(name) {\n return `Hello, ${name}!`;\n}",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "lj8ei0ab66mtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "e2b67868-91f6-44e4-b01f-d32a9cbf65b4",
+                "type": "text",
+                "text": "Toggle Block",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "z0crhic4llmtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "2af857c7-0615-4c29-b262-3eefae06f156",
+                "type": "text",
+                "text": "Toggle blocks are interactive and help manage long or optional content.",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "rq24kqdj8mmmtmsb83f",
+            "type": "collapsible",
+            "attrs": {
+                "collapsed": true
+            },
+            "children": [{
+                    "id": "q13dkse8egamtmsb83f",
+                    "type": "collapsibleHeader",
+                    "attrs": {},
+                    "children": [{
+                        "id": "enttjeutfbrmtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "57f628d7-8cf7-4542-bd65-7a98e0582099",
+                            "type": "text",
+                            "text": "Click to expand",
+                            "attrs": {},
+                            "children": [],
+                            "marks": [{
+                                "type": "bold",
+                                "attrs": {}
+                            }]
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                },
+                {
+                    "id": "atlna1xoipumtmsb83f",
+                    "type": "collapsibleBody",
+                    "attrs": {},
+                    "children": [{
+                        "id": "rvq5bp1ur3mtmsb83f",
+                        "type": "paragraph",
+                        "attrs": {
+                            "align": null,
+                            "indent": 0
+                        },
+                        "children": [{
+                            "id": "9d2665f3-3cd5-443c-893f-e4cc876e51a7",
+                            "type": "text",
+                            "text": "This is a toggle block. You can hide or show content as needed. Useful for FAQs or detailed sections.",
+                            "attrs": {},
+                            "children": [],
+                            "marks": []
+                        }],
+                        "marks": []
+                    }],
+                    "marks": []
+                }
+            ],
+            "marks": []
+        },
+        {
+            "id": "wbwjrqvzrldmtmsb83f",
+            "type": "heading",
+            "attrs": {
+                "level": 3,
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "191d5e93-b966-4a97-91a1-df3e63c1d653",
+                "type": "text",
+                "text": "Divider",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "vxtl1xp9r9mtmsb83f",
+            "type": "paragraph",
+            "attrs": {
+                "align": null,
+                "indent": 0
+            },
+            "children": [{
+                "id": "1c02b497-19fe-49bd-8781-056cb53d61c0",
+                "type": "text",
+                "text": "Dividers are horizontal lines used to separate sections or indicate a break in content.",
+                "attrs": {},
+                "children": [],
+                "marks": []
+            }],
+            "marks": []
+        },
+        {
+            "id": "v2bloxmf69lmtmsb83f",
+            "type": "horizontalRule",
+            "attrs": {},
+            "children": [],
+            "marks": []
+        }
+    ],
+    "marks": []
+}

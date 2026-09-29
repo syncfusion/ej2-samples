@@ -25,6 +25,7 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar, Pas
             },
         },
     };
+    let resetBtn = document.getElementById('resetbtn') as HTMLButtonElement;
     let formObject: FormValidator = new FormValidator('#form-element', formValidatorOptions);
 
     let defaultRTE: RichTextEditor = new RichTextEditor({
@@ -32,5 +33,10 @@ RichTextEditor.Inject(Toolbar, Link, Image, HtmlEditor, Count, QuickToolbar, Pas
         placeholder: 'Type something',
     });
     defaultRTE.appendTo('#defaultRTE');
+
+    resetBtn.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        formObject.reset();
+    })
 };
 

@@ -1,6 +1,6 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Edit, Page, CommandColumn, Sort, Filter } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
+import { loadCultureFiles } from '../common/culture-loader';
 
 /**
  * Command column sample

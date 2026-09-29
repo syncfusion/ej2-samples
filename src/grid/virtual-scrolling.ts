@@ -1,8 +1,8 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { VirtualScroll, Grid, Edit, Toolbar } from '@syncfusion/ej2-grids';
 import { Button } from '@syncfusion/ej2-buttons';
 import { createVirtualOrderData, virtualOrderData } from './data-source';
 import { Rating } from '@syncfusion/ej2-inputs';
+import { loadCultureFiles } from '../common/culture-loader';
 /**
  * virtualscrolling sample
  */

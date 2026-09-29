@@ -6,6 +6,7 @@ import {
     Category, Chart, ChartSeriesType, Legend, LineSeries,
     Tooltip
 } from '@syncfusion/ej2-charts';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(DetailRow, Sort, Filter);
 Chart.Inject(Category, Legend, LineSeries, Tooltip);
@@ -15,6 +16,7 @@ Chart.Inject(Category, Legend, LineSeries, Tooltip);
  */
 
 (window as any).default = (): void => {
+    loadCultureFiles();
     let taskData: any = [];
     let salesData: any = [];
     let grid: Grid = new Grid({
@@ -38,6 +40,7 @@ Chart.Inject(Category, Legend, LineSeries, Tooltip);
             salesData = generateData(taskData);
 
             const tabObj: Tab = new Tab({
+                enableRtl: grid.enableRtl,
                 animation: {
                     previous: { effect: 'None', duration: 0, easing: '' },
                     next: { effect: 'None', duration: 0, easing: '' }
@@ -48,6 +51,7 @@ Chart.Inject(Category, Legend, LineSeries, Tooltip);
             const kanbanObj: Kanban = new Kanban({
                 dataSource: taskData,
                 keyField: 'Status',
+                enableRtl: grid.enableRtl,
                 columns: [
                     { headerText: 'Open', keyField: 'Open' },
                     { headerText: 'In Progress', keyField: 'InProgress' },
@@ -69,6 +73,7 @@ Chart.Inject(Category, Legend, LineSeries, Tooltip);
                 height: '302px',
                 title: 'Burndown Chart',
                 tooltip: { enable: true },
+                enableRtl: grid.enableRtl,
                 series: [
                     {
                         dataSource: salesData,

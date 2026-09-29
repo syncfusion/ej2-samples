@@ -1,6 +1,6 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, QueryCellInfoEventArgs, Freeze } from '@syncfusion/ej2-grids';
 import { columnSpanData, ColumnSpanDataType } from './data-source';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(Freeze);
 

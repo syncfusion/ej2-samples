@@ -120,6 +120,74 @@
             }
         },
         {
+            "url": "task-progress-tracker",
+            "name": "Task Progress Tracker",
+            "ignoreOnBuild": true,
+            "hideOnDevice": true,
+            "category": "Product Use Case",
+            "description": "This demo presents a task-oriented Scheduler view with customized event rendering, featuring status indicators and progress tracking for effective project monitoring.",
+            "api": {
+                "Schedule": [
+                    "cssClass",
+                    "width",
+                    "height",
+                    "selectedDate",
+                    "currentView",
+                    "views",
+                    "startHour",
+                    "endHour",
+                    "showWeekend",
+                    "allowOverlap",
+                    "group",
+                    "resources",
+                    "eventSettings",
+                    "popupOpen"
+                ]
+            }
+        },
+        {
+            "url": "auto-scheduling",
+            "name": "Auto Scheduling",
+            "ignoreOnBuild": true,
+            "category": "Product Use Case",
+            "hideOnDevice": true,
+            "type": "new",
+            "description": "This demo showcases an intelligent healthcare scheduling solution that automatically assigns unplanned appointments to qualified staff based on required skills, resource availability, workload limits, and schedule conflicts. It supports both automated scheduling and drag-and-drop assignment with built-in validation and workload balancing.",
+            "api": {
+                "Schedule": [
+                    "cssClass",
+                    "width",
+                    "height",
+                    "currentView",
+                    "selectedDate",
+                    "eventDragArea",
+                    "group",
+                    "views",
+                    "resources",
+                    "eventSettings",
+                    "resourceHeaderTemplate",
+                    "allowOverlap",
+                    "allowResizing",
+                    "dragStart",
+                    "dragStop",
+                    "actionBegin",
+                    "actionComplete",
+                    "cellClick",
+                    "popupOpen",
+                    "dataBound",
+                    "toolbarItems",
+                    "appendTo",
+                    "getEvents",
+                    "addEvent",
+                    "saveEvent",
+                    "refreshTemplates",
+                    "getEventMaxID",
+                    "getCellDetails",
+                    "getResourcesByIndex"
+                ]
+            }
+        },
+        {
             "url": "integration-with-chart",
             "ignoreOnBuild": true,
             "name": "Integration with Chart",
@@ -138,6 +206,55 @@
                     "actionComplete",
                     "group",
                     "resources"
+                ]
+            }
+        },
+        {
+            "url": "event-action-buttons",
+            "ignoreOnBuild": true,
+            "name": "Event Action Buttons",
+            "category": "Product Use Case",
+            "description": "This demo showcases the event action buttons for editing and deleting events in day and week views. Click the edit or delete icons to manage your events.",
+            "api": {
+                "Schedule": [
+                    "cssClass",
+                    "width",
+                    "height",
+                    "selectedDate",
+                    "views",
+                    "eventSettings",
+                    "eventRendered",
+                    "popupOpen",
+                    "openEditor",
+                    "deleteEvent"
+                ]
+            }
+        },
+        {
+            "url": "cascading-event-editor",
+            "ignoreOnBuild": true,
+            "hideOnDevice": true,
+            "name": "Cascading Combos",
+            "category": "Product Use Case",
+            "description": "This demo showcases a cascading event editor in a scheduler where selections update related fields to improve accuracy and streamline scheduling.",
+            "api": {
+                "Schedule": [
+                    "height",
+                    "selectedDate",
+                    "currentView",
+                    "views",
+                    "eventSettings",
+                    "group",
+                    "resources",
+                    "editorTemplate",
+                    "popupOpen",
+                    "popupClose",
+                    "eventRendered",
+                    "resourceHeaderTemplate",
+                    "headerIndentTemplate",
+                    "cssClass",
+                    "actionBegin",
+                    "actionComplete"
                 ]
             }
         },
@@ -522,7 +639,6 @@
             "url": "limit-concurrent-events",
             "name": "Limit Concurrent Event",
             "category": "Views",
-            "type":"new",
             "description": "This demo shows how to limit the number of concurrent events displayed in a single time slot on the Schedule.",
             "api": {
                 "Schedule": [

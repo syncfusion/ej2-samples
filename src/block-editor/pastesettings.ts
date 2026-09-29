@@ -2,7 +2,7 @@ import { loadCultureFiles } from '../common/culture-loader';
 import { isNullOrUndefined } from '@syncfusion/ej2-base';
 import { BlockEditor } from "@syncfusion/ej2-blockeditor"
 import { DropDownList } from '@syncfusion/ej2-dropdowns';
-import * as data from './blockData.json';
+import * as data from './data/paste-settings.json';
 
 (window as any).default = (): void => {
   loadCultureFiles();

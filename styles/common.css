@@ -1,4 +1,3 @@
-
 .e-samplestatus.preview {
     background-color: #0275d8 !important;
 }
@@ -391,16 +390,8 @@
     white-space: nowrap;
 }
 
-.sb-products-text {
-    font-size: 12px;
-    font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
-    opacity: 54;
-    margin-right: 4px;
-    display: none;
-}
 
-.sb-theme-switch,
-.sb-products-switch {
+.sb-theme-switch{
     font-size: 16px;
     display: flex;
     align-items: center;
@@ -491,8 +482,7 @@
 }
 
 .theme-wrapper:hover,
-.theme-wrapper.active,
-.products-wrapper:hover{ 
+.theme-wrapper.active{ 
     background-color: rgb(216, 216, 216);
 }
 
@@ -511,21 +501,6 @@
     flex-shrink: 0;
 }
 
-.products-wrapper {
-    height: 32px;
-    width: auto;
-    min-width: 35px;
-    margin-top: 5px;
-    margin-right: 2px;
-    cursor: default;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 2px;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
 
 .theme-wrapper>div {
     float: none;
@@ -536,14 +511,6 @@
     align-items: center;
 }
 
-.products-wrapper>div {
-    float: none;
-    padding-left: 3px;
-    line-height: 32px;
-    letter-spacing: .5px;
-    display: flex;
-    align-items: center;
-}
 
 .sb-download-btn {
     background-color: #006ee5;
@@ -608,35 +575,6 @@
     cursor: default;
 }
 
-.sb-products-popup {
-    background: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.36);
-    border-radius: 4px;
-    width: 200px;
-    z-index: 1001;
-}
-
-.sb-products-popup li {
-    line-height: 30px;
-    cursor: default;
-    padding: 4px 38px 6px 15px;
-    font-size: 14px;
-}
-
-.sb-products-popup li:hover {
-    background: rgb(238, 238, 238);
-}
-
-.sb-products-popup li.active {
-    font-weight: 500;
-}
-
-.sb-products-popup li a {
-    text-decoration: none;
-    color: inherit;
-    cursor: default;
-}
 
 .sb-theme-popup {
     background: #FFFFFF;
@@ -653,23 +591,6 @@
     padding-top: 4px;
 }
 
-.sb-products-popup li {
-    line-height: 30px;
-    cursor: default;
-    padding: 4px 38px 6px 15px;
-    font-size: 14px;
-}
-
-.sb-products-popup li:hover {
-    background: rgb(238, 238, 238);
-}
-
-.sb-products-select {
-    padding-left: 3px;
-    vertical-align: middle;
-    font-size: 24px;
-    color: #ffffff;
-}
 
 .sb-theme-select {
     padding-left: 3px;
@@ -897,9 +818,7 @@
     display: none;
 }
 
-.sb-setting-products-section {
-    display: none;
-}
+
 
 .sb-setting-item {
     padding-bottom: 12px;
@@ -1024,6 +943,15 @@
     width: 100%;
     display: table;
     cursor: pointer;
+}
+
+.sb-left-pane .e-treeview .e-list-text > div {
+    display: flex;
+    gap: 8px;
+}
+
+.sb-left-pane .e-treeview .tree-text {
+    flex: 1;
 }
 
 .sb-adjust-juggle {
@@ -1577,14 +1505,11 @@ button#tab-navigation-prev {
 }
 
 @media (max-width: 764px) {
-    .products-wrapper {
+    .sdk-wrapper {
         display: none;
     }
     .theme-wrapper {
         display: none;
-    }
-    .sb-setting-products-section {
-        display: block;
     }
     .sb-setting-theme-section {
         display: block;
@@ -1595,8 +1520,7 @@ button#tab-navigation-prev {
 }
 
 @media (min-width: 900px) {
-    .sb-theme-text,
-    .sb-products-text {
+    .sb-theme-text {
         display: inline;
     }
 }
@@ -1607,8 +1531,7 @@ button#tab-navigation-prev {
 
 @media (max-width: 550px) {
     .e-ddl.e-popup,
-    #sb-setting-theme_popup,
-    #sb-setting-products_popup {
+    #sb-setting-theme_popup {
         z-index: 100001;
     }
     .sb-left-pane {
@@ -1721,11 +1644,6 @@ button#tab-navigation-prev {
         padding: 16px 0px;
         overflow: visible;
     }
-    .sb-setting-products-section {
-        display: block;
-        padding: 16px 0px;
-        overflow: visible;
-    }
     .sb-icon-Dropdown {
         padding-right: 10px;
     }
@@ -1733,15 +1651,6 @@ button#tab-navigation-prev {
         font-size: 25px;
     }
     #sb-setting-theme_popup {
-        width: 200px !important;
-        z-index: 100001 !important;
-    }
-    #sb-setting-products {
-        width: 100%;
-        height: 32px;
-        border-radius: 3px;
-    }
-    #sb-setting-products_popup {
         width: 200px !important;
         z-index: 100001 !important;
     }
@@ -1834,6 +1743,9 @@ button#tab-navigation-prev {
     }
     .sb-mobilefooter>.e-btn.e-flat:hover {
         color: #1783ff;
+    }
+    .sb-navigation-prev.e-disabled,.sb-navigation-next.e-disabled {
+    color: #a8a4a4 !important;
     }
     .sb-mobilefooter>.e-btn.e-disabled:hover {
         color: #5a5a5a;
@@ -2044,10 +1956,6 @@ aside#settings {
 .sb-left-pane .e-treeview .e-list-text {
     width: 100%;
     font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
-}
-
-.sb-left-pane .e-treeview .e-text-content {
-    padding-right: 16px;
 }
 
 .tree-text {
@@ -2594,4 +2502,190 @@ aside#settings {
 .bootstrap5\.3.e-bigger #ai-toast .e-toast .e-toast-message .e-toast-content {
     padding-left: 12px !important;
     padding-bottom: 12px !important;
+}
+
+
+
+
+
+
+/* Hide SDK settings section by default (desktop/tablet) */
+.sb-setting-sdk-section {
+    display: none;
+}
+
+/* Show only on mobile */
+@media (max-width: 550px) {
+    .sb-setting-sdk-section {
+        display: block;
+    }
+}
+
+/* ===== SDK Samples Dropdown ===== */
+.sb-sdk-popup {
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.36);
+    border-radius: 4px;
+    width: 200px;
+    z-index: 10012;
+}
+
+.sb-sdk-popup li {
+    line-height: 30px;
+    cursor: default;
+    padding-top: 4px;
+}
+
+.sb-sdk-popup li:hover {
+    background: rgb(238, 238, 238);
+}
+
+.sb-sdk-popup li.active .sb-sdk-select {
+    color: rgb(255, 109, 63);
+}
+
+.sb-sdk-popup li:hover .sb-sdk-select {
+    color: rgb(238, 238, 238);
+}
+
+.sb-sdk-popup li:hover.active .sb-sdk-select {
+    color: rgb(255, 109, 63);
+}
+
+.sb-sdk-select {
+    padding-left: 3px;
+    vertical-align: middle;
+    color: transparent;
+}
+
+.sb-sdk-text {
+    font-size: 13px;
+    font-family: "Roboto", "Segoe UI", "GeezaPro", "DejaVu Serif", "sans-serif";
+    white-space: nowrap;
+}
+
+.sb-sdk-switch,
+.sb-sdk-switcher-wrapper {
+    display: inline-block;
+}
+
+.sdk-wrapper:hover,
+.sdk-wrapper.active {
+    background-color: rgb(216, 216, 216);
+}
+
+#sb-sdk-switcher {
+    z-index: 1003 !important;
+    font-size: 20px;
+}
+
+.sdk-wrapper {
+    width: 200px;
+    height: 32px;
+    margin-top: 5px;
+    margin-left: 8px;
+    cursor: default;
+    padding: 0px 10px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #d9d9d9;
+    position: relative;
+    border-radius: 4px;
+    background: #fff;
+    color: #1f2937;
+    font-size: 14px;
+    cursor: pointer;
+    gap: 12px;
+}
+
+.sb-sdk-switcher-wrapper{
+    padding-top:3px;
+}
+
+.sdk-wrapper > div {
+    padding-left: 3px;
+    line-height: 32px;
+    letter-spacing: .5px;
+}
+
+/* Hide SDK button on mobile */
+@media (max-width: 550px) {
+    .sdk-wrapper {
+        display: none !important;
+    }
+}
+
+/* Left pane SDK filter: hide non-matching tree nodes and list items */
+.sdk-filter-active [control-name].sdk-hidden {
+    display: none !important;
+}
+
+/* Hide tree parent category nodes when all children are hidden */
+.sdk-filter-active .e-list-item.sdk-parent-hidden {
+    display: none !important;
+}
+
+.sdk-filter-active .e-list-item.sdk-sample-hidden {
+    display: none !important;
+}
+
+/* Hide group headers that have no visible items */
+.sdk-filter-active .e-list-group-item.sdk-group-hidden {
+    display: none !important;
+}
+
+/* ===== End SDK Samples Dropdown ===== */
+/* ===== WCAG Button Styles ===== */
+.sb-wcag-btn {
+    padding-right: 17px;
+    font-size: 14px;
+    height: 38px;
+    line-height: 35px;
+    color: #3C78EF;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.sb-wcag-btn:hover {
+    color: #1783ff;
+}
+
+.sb-wcag-btn:focus,
+.sb-wcag-btn:focus-visible {
+    color: #1783ff;
+    outline: none;
+}
+
+.sb-wcag-text {
+    font-size: 15px;
+}
+
+.sb-axe-tooltip .e-tip-content {
+    white-space: normal;
+    line-height: 1.45;
+    text-align: left;
+    font-size: 13px;
+}
+
+/* Dark mode styles for WCAG button */
+.e-dark-mode .sb-wcag-btn,
+.fluent2-highcontrast .sb-wcag-btn {
+    color: #b3e5fc;
+}
+
+.e-dark-mode .sb-wcag-btn:hover,
+.fluent2-highcontrast .sb-wcag-btn:hover {
+    color: #e3f2fd;
+}
+
+.e-dark-mode .sb-wcag-btn:focus,
+.e-dark-mode .sb-wcag-btn:focus-visible,
+.fluent2-highcontrast .sb-wcag-btn:focus,
+.fluent2-highcontrast .sb-wcag-btn:focus-visible {
+    color: #e3f2fd;
+    outline: none;
 }

@@ -136,6 +136,12 @@ export let streamingSuggestions: any = [
     "What is Markdown and how is it used?"
 ];
 
+export let telemetrySuggestions: string[] = [
+    "Suggest a 3-day itinerary for Paris",
+    "Find the best budget hotels in Barcelona",
+    "What are the top travel destinations in autumn?"
+];
+
 export let assistantSuggestions: any = [
     "How is AI used in everyday life?",
     "C# console app to manage library books"

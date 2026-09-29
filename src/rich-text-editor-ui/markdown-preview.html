@@ -1,0 +1,188 @@
+<div class="control-section">
+  <div id="splitter-rte-markdown-preview">
+    <div class="markdown-preview-editor-pane">
+      <div id="editor"></div>
+    </div>
+    <div class="markdown-preview-header">
+      <div class="markdown-preview-header-title">
+        <div class="markdown-preview-header-content">
+          <h6 class="markdown-preview-title"><b>MARKDOWN PREVIEW</b></h6>
+          <button id="copyMarkdownBtn" class="e-btn e-flat" title="Copy Markdown to clipboard">
+            <span class="e-icons e-btn-icon e-copy"></span> Copy
+          </button>
+        </div>
+      </div>
+      <div class="markdown-preview-source-pane"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .markdown-preview-editor-pane {
+    width: 100%;
+    height: 100%;
+  }
+
+  .markdown-preview-header {
+    float: left;
+    width: 50%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .markdown-preview-header-title {
+    padding: 0.5rem 1rem;
+  }
+
+  .markdown-preview-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .markdown-preview-title {
+    color: #333333;
+    letter-spacing: 1px;
+    text-align: center;
+    margin: 0.75rem 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .markdown-preview-source-pane {
+    flex: 1;
+    overflow: auto;
+    border-top: 1px solid #e8e8e8;
+  }
+
+  .control-section {
+    padding: 0;
+    height: 450px;
+  }
+
+  #splitter-rte-markdown-preview .CodeMirror {
+    height: 100%;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .CodeMirror-scroll {
+    border-top: 1px solid #e8e8e8;
+  }
+
+  .e-splitter.e-splitter-horizontal,
+  .e-splitter.e-splitter-vertical {
+    border-left: none;
+  }
+
+  /* Dark theme support */
+  .fabric-dark .markdown-preview-title {
+    color: #fff;
+  }
+
+  .fabric-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .fabric-dark .markdown-preview-source-pane .CodeMirror {
+    background-color: #201F1F;
+    color: #fff;
+  }
+
+  .fluent-dark .markdown-preview-title {
+    color: #fff;
+  }
+
+  .fluent-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .fluent-dark .markdown-preview-source-pane .CodeMirror {
+    background-color: #1B1A19;
+    color: #fff;
+  }
+
+  .fluent2-dark .markdown-preview-title {
+    color: #fff;
+  }
+
+  .fluent2-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .fluent2-dark .markdown-preview-source-pane .CodeMirror {
+    background-color: #1B1A19;
+    color: #fff;
+  }
+
+  .material3-dark .markdown-preview-title {
+    color: #fff;
+  }
+
+  .material3-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .material3-dark .markdown-preview-source-pane .CodeMirror {
+    background-color: #1C1B1F;
+    color: #fff;
+  }
+
+  .bootstrap-dark .markdown-preview-title {
+    color: #fff;
+  }
+
+  .bootstrap-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .bootstrap-dark .markdown-preview-source-pane .CodeMirror {
+    background-color: #1A1A1A;
+    color: #fff;
+  }
+
+  .bootstrap5-dark .markdown-preview-title,
+  .bootstrap5\.3-dark .markdown-preview-title {
+    color: #fff;
+  }
+
+  .bootstrap5-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .bootstrap5-dark .markdown-preview-source-pane .CodeMirror,
+  .bootstrap5\.3-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .bootstrap5\.3-dark .markdown-preview-source-pane .CodeMirror {
+    background-color: #212529;
+    color: #fff;
+  }
+
+  .material-dark .markdown-preview-title {
+    color: #fff;
+  }
+
+  .material-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .material-dark .markdown-preview-source-pane .CodeMirror {
+    background-color: #303030;
+    color: #fff;
+  }
+
+  .tailwind-dark .markdown-preview-title,
+  .tailwind3-dark .markdown-preview-title {
+    color: #fff;
+  }
+
+  .tailwind-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .tailwind-dark .markdown-preview-source-pane .CodeMirror,
+  .tailwind3-dark .markdown-preview-source-pane .CodeMirror-gutters,
+  .tailwind3-dark .markdown-preview-source-pane .CodeMirror {
+    background-color: #1F2937;
+    color: #fff;
+  }
+
+  .highcontrast .markdown-preview-title,
+  .fluent2-highcontrast .markdown-preview-title {
+    color: #fff;
+  }
+
+  .highcontrast .markdown-preview-source-pane .CodeMirror-gutters,
+  .highcontrast .markdown-preview-source-pane .CodeMirror,
+  .fluent2-highcontrast .markdown-preview-source-pane .CodeMirror-gutters,
+  .fluent2-highcontrast .markdown-preview-source-pane .CodeMirror {
+    background-color: #000000;
+    color: #fff;
+  }
+
+  h6.markdown-preview-title {
+    font-size: 14px;
+  }
+</style>

@@ -15,7 +15,7 @@ import { templateMessagedata } from './messageData';
         showTimeBreak: true,
         showFooter: false,
         user: { id: 'admin', user: 'Admin', avatarUrl: './src/chat-ui/images/bot.png' },
-        emptyChatTemplate: '#emptyChatTemplate',
+        emptyChatTemplate: emptyChatTemplate,
         messageTemplate: (context: any) => messageTemplate(context),
         timeBreakTemplate: (context: any) => timeBreakTemplate(context),
         messageSend: () => {
@@ -93,4 +93,11 @@ import { templateMessagedata } from './messageData';
         templateChatUI.addMessage(message);
         bindClickAction();
     }, 1500);
+
+    function emptyChatTemplate(): string {
+        return `<div class="emptychat-content">
+                    <h3><span class="e-icons e-comment-show"></span></h3>
+                    <div class="emptyChatText" style="font-size: 16px;">Just a second, we're preparing your chat...</div>
+                </div>`;
+    }
 };

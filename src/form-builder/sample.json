@@ -1,0 +1,19 @@
+{
+    "name": "Form Builder",
+    "directory": "form-builder",
+    "category": "Forms",
+    "type": "preview",
+    "samples": [
+        {
+            "url": "default",
+            "name": "Default Functionalities",
+            "description": "This example demonstrates the basic form builder component that allows schema-driven form creation.",
+            "category": "Form Builder",
+            "type": "new",
+            "sourceFiles": [
+                { "displayName": "default.html", "path": "src/form-builder/default.html" },
+                { "displayName": "default.ts", "path": "src/form-builder/default.ts" }
+            ]
+        }
+    ]
+}

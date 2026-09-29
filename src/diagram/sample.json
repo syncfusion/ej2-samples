@@ -10,7 +10,6 @@
             "url": "default-functionalities",
             "name": "Flow Chart",
             "description": "This sample visualizes the processing of an order placed using credit card with built-in flow shapes.",
-            "type":"update",
             "category": "Getting Started"
         },
         {
@@ -273,8 +272,7 @@
             "url": "entity-relationship-diagram",
             "name": "Entity Relationship Diagram",
             "description": "This sample demonstrates a healthcare appointment management ER diagram created using the Syncfusion® JavaScript Diagram.",
-            "category": "Use Case Diagram",
-            "type": "new"	
+            "category": "Use Case Diagram"
         },
         {
             "url": "uml-activity",
@@ -286,8 +284,7 @@
             "url": "sequence-diagram",
             "name": "UML Sequence Diagram",
             "description": "This sample presents a UML sequence diagram to depict interactions in a secure transaction process involving a user, transaction system, and fraud detection using diagram model.",
-            "category": "Use Case Diagram",
-            "type":"update"
+            "category": "Use Case Diagram"
         },
         {
             "url": "uml-class-diagram",
@@ -354,6 +351,13 @@
             "name": "Serpentine Diagram",
             "description": "Visualizes a serpentine layout with custom arrangement showcasing 20 key medical research breakthroughs that revolutionized healthcare from 1796 to 1996 achieved with Diagram component",
             "category": "Use Case Diagram"
+        },
+        {
+            "url": "purchase-approval-workflow",
+            "name": "Purchase Approval Workflow",
+            "description": "This sample demonstrates an interactive purchase approval workflow that checks the budget first, then routes requests through manager approval, purchase processing, or rejection.",
+            "type": "new",
+            "category": "Real-time Diagrams"
         },
         {
             "url": "angle-diagram",

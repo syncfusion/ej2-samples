@@ -1,7 +1,7 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Page, Selection, DetailRow, Sort, Filter } from '@syncfusion/ej2-grids';
 import { DataManager, ODataV4Adaptor } from '@syncfusion/ej2-data';
 import { employeeData } from './data-source';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(Page, Selection, DetailRow, Sort, Filter);
 /**

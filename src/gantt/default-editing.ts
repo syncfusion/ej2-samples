@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Edit, Selection, Toolbar, DayMarkers } from '@syncfusion/ej2-gantt';
-import { editingData, editingResources } from './data-source';
+import { defaultEditingData, editingResources } from './data-source';
 /**
  * Editing Gantt sample
  */
@@ -10,7 +10,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
     let startDate: Date;
     let gantt: Gantt = new Gantt(
         {
-            dataSource: editingData,
+            dataSource: defaultEditingData,
             dateFormat: 'MMM dd, y',
             taskFields: {
                 id: 'TaskID',
@@ -18,6 +18,7 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 startDate: 'StartDate',
                 endDate: 'EndDate',
                 duration: 'Duration',
+                durationUnit: 'DurationUnit',
                 progress: 'Progress',
                 dependency: 'Predecessor',
                 parentID: 'ParentId',
@@ -64,9 +65,9 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
             columns: [
                 { field: 'TaskID', width: 80 },
                 { field: 'TaskName', headerText: 'Job Name', width: 260, clipMode: 'EllipsisWithTooltip', validationRules: { required: true, minLength: [5, 'Task name should have a minimum length of 5 characters'] } },
+                { field: 'Duration', validationRules: { required: true} },
                 { field: 'StartDate' },
                 { field: 'EndDate', validationRules: { required: [customFn, 'Please enter a value greater than the start date.'] } },
-                { field: 'Duration', validationRules: { required: true} },
                 { field: 'Progress', validationRules: { required: true, min: 0, max: 100 } },
                 { field: 'Predecessor' }
             ],

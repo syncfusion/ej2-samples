@@ -23,6 +23,7 @@ import { integrationMessagedata, botMessagedata, lauraMessagedata, suyamaMessage
 
     let chatUiInst = new ChatUI({
         headerText: 'Albert',
+        emptyChatTemplate: emptyChatTemplate,
         headerIconCss: 'chat_user1_avatar',
         messages: chatMessages.user1,
         user: { id: 'user1', user: 'Albert', avatarUrl: './src/chat-ui/images/andrew.png' },
@@ -89,8 +90,8 @@ import { integrationMessagedata, botMessagedata, lauraMessagedata, suyamaMessage
             { headerText: 'Charlie', headerIconCss: 'chat_user2_avatar', user: { id: 'user2', user: 'Charlie', avatarUrl: './src/chat-ui/images/charlie.png' }, messages: chatMessages.user2 },
             { headerText: 'Laura Callahan', headerIconCss: 'chat_user3_avatar', user: { id: 'user3', user: 'Laura', avatarUrl: './src/chat-ui/images/laura.png' }, messages: chatMessages.user3 },
             { headerText: 'New Dev Team', headerIconCss: 'chat_team_avatar', user: { id: 'team', user: 'Admin', avatarUrl: './src/chat-ui/images/calendar.png' }, messages: chatMessages.team },
-            { headerText: 'Reena', headerIconCss: 'chat_user4_avatar', user: { id: 'user4', user: 'Albert' }, messages: chatMessages.user4 },
-        ];
+            { headerText: 'Reena', headerIconCss: 'chat_user4_avatar', user: { id: 'user4', user: 'Reena', avatarUrl: './src/chat-ui/images/reena.png' }, messages: chatMessages.user4 },
+        ];  
 
         Object.assign(chatUiInst, userSettings[index]);
         chatUiInst.dataBind();
@@ -115,4 +116,11 @@ import { integrationMessagedata, botMessagedata, lauraMessagedata, suyamaMessage
     // Attach event listeners to buttons or other UI elements to trigger toggling
     const chatButton = document.getElementById('chatbtn') as HTMLElement;
     chatButton.addEventListener('click', toggleListView);
+
+    function emptyChatTemplate(): string {
+        return `<div class="emptychat-content">
+                    <h3><span class="e-icons e-comment-show"></span></h3>
+                    <div class="emptyChatText" style="font-size: 16px;">No conversations yet</div>
+                </div>`;
+    }
 };

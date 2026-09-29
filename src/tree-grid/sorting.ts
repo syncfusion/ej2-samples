@@ -1,3 +1,4 @@
+import { loadCultureFiles } from '../common/culture-loader';
 import { CheckBox } from '@syncfusion/ej2-buttons';
 import { TreeGrid, Sort, Page } from '@syncfusion/ej2-treegrid';
 import { SortEventArgs } from '@syncfusion/ej2-grids';
@@ -8,6 +9,7 @@ TreeGrid.Inject(Sort, Page);
  * Sorting sample
  */
 (window as any).default = (): void => {
+    loadCultureFiles();
     let treegrid: TreeGrid = new TreeGrid(
         {
             dataSource: sortData,

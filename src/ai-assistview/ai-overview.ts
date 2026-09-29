@@ -10,6 +10,7 @@ import { getAIResponse } from '../common/ai-service';
     loadCultureFiles();
     AIAssistView.Inject(AssistThinking);
 
+    let abortController: AbortController;
     let defaultPrompts: PromptModel[] = [
         {
             prompt: 'How does the weather vary throughout the week in Germany and Japan?',
@@ -114,6 +115,7 @@ import { getAIResponse } from '../common/ai-service';
         },
         speechToTextSettings: { enable: true },
         bannerTemplate: '#bannerContent',
+        stopRespondingClick: stopAIResponse,
         promptRequest: onPromptRequest
     });
 
@@ -196,11 +198,17 @@ import { getAIResponse } from '../common/ai-service';
     }
 
     async function onPromptRequest(args: PromptRequestEventArgs) {
-        const abortController: AbortController = new AbortController();
+        abortController = new AbortController();
         let foundPrompt = (defaultPromptResponseData || []).find((p: any) => p.prompt === args.prompt);
-        let responseHtml = foundPrompt ? (foundPrompt.regeneratedResponses ? getRandomResponse(foundPrompt.regeneratedResponses) : foundPrompt.response) : await getAIResponse(args, abortController);
+        let responseHtml = await getAIResponse(args, abortController);
 
         aiAssistView.addPromptResponse(responseHtml);
         aiAssistView.promptSuggestions = foundPrompt?.suggestions || overviewSuggestions || [];
+    }
+
+	function stopAIResponse() {
+        if (abortController) {
+            abortController.abort();
+        }
     }
 };

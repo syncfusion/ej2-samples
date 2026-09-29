@@ -1,5 +1,5 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Sort, Page, Selection, Column } from '@syncfusion/ej2-grids';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(Sort, Page, Selection);
 

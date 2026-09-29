@@ -11,6 +11,7 @@ import { getAIResponse } from '../common/ai-service';
 
     let claudeContainer = document.getElementById('claudeContainer');
     let isFirstPrompt = true;
+    let abortController: AbortController 
 
     let claudeAIAssistView = new AIAssistView({
         promptRequest: onPromptRequest,
@@ -18,6 +19,7 @@ import { getAIResponse } from '../common/ai-service';
         showHeader: false,
         promptPlaceholder: 'How can i help you today?',
         enableAttachments: true,
+        stopRespondingClick: stopAIResponse,
         bannerTemplate: "#bannerContent",
         created: created,
         attachmentSettings: {
@@ -52,10 +54,15 @@ import { getAIResponse } from '../common/ai-service';
             isFirstPrompt = false;
         }
 
-        const abortController: AbortController = new AbortController();
-        let foundPrompt = defaultPromptResponseData.find((p: any) => p.prompt === args.prompt);
-        let response = foundPrompt ? foundPrompt.response : await getAIResponse(args, abortController);
+        abortController = new AbortController();
+        let response = await getAIResponse(args, abortController);
         claudeAIAssistView.addPromptResponse(response);
+    }
+
+    function stopAIResponse() {
+        if (abortController) {
+            abortController.abort();
+        }
     }
 
     function created() {

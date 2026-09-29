@@ -1,7 +1,7 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, DetailRow, Toolbar, PdfExport, ExcelExport } from '@syncfusion/ej2-grids';
 import { employeeData, customerData, hierarchyOrderdata } from './data-source';
 import { ClickEventArgs } from '@syncfusion/ej2-navigations';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(DetailRow, Toolbar, PdfExport, ExcelExport);
 /**

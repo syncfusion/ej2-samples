@@ -1,6 +1,6 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Edit, Toolbar, Page, Sort, Filter } from '@syncfusion/ej2-grids';
 import { orderData } from './data-source';
+import { loadCultureFiles } from '../common/culture-loader';
 
 /**
  * Dialog Editing sample

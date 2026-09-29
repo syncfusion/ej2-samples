@@ -76,9 +76,8 @@ import { getAIResponse } from '../common/ai-service';
         responseView.innerHTML = responseItemElem + responseView.innerHTML;
         setTimeout( async() => {
             const abortController: AbortController = new AbortController();
-            let foundPrompt = defaultPromptResponseData.find((promptObj: any) => promptObj.prompt === prompt);
             let args = { prompt: prompt };
-            let response = foundPrompt ? foundPrompt.response : await getAIResponse(args, abortController);
+            let response = await getAIResponse(args, abortController);
             (responseView as any).children[0].querySelector('.content').innerHTML = response;
             let copyBtn = responseView.children[0].querySelector('#copyBtn') as HTMLElement;
             copyBtn.classList.remove('e-skeleton', 'e-shimmer-wave');

@@ -10,6 +10,7 @@ import { getAIResponse } from '../common/ai-service';
 (window as any).default = (): void => {
     loadCultureFiles();
 
+    let abortController: AbortController;
     let geminiContainer = document.getElementById('geminiContainer');
     let isFirstPrompt = true;
 
@@ -23,6 +24,7 @@ import { getAIResponse } from '../common/ai-service';
             enable: true
         },
         bannerTemplate: "#bannerContent",
+        stopRespondingClick: stopAIResponse,
         created: created,
         attachmentSettings: {
             saveUrl: 'https://ej2services.syncfusion.com/js/development/api/FileUploader/Save',
@@ -60,11 +62,16 @@ import { getAIResponse } from '../common/ai-service';
             isFirstPrompt = false;
         }
 
-        const abortController: AbortController = new AbortController();
-        let foundPrompt = defaultPromptResponseData.find((p: any) => p.prompt === args.prompt);
-        let response = foundPrompt ? foundPrompt.response : await getAIResponse(args, abortController);
+        abortController = new AbortController();
+        let response = await getAIResponse(args, abortController);
         geminiAIAssistView.addPromptResponse(response);
         toggleButtons();
+    }
+
+    function stopAIResponse() {
+        if (abortController) {
+            abortController.abort();
+        }
     }
 
     function toggleButtons() {

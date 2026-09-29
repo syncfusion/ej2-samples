@@ -1,4 +1,3 @@
-
 .fluent2-dark .e-samplestatus.new, .fluent2-dark .e-samplestatus.new.tree, .fluent2-dark .e-samplestatus.New, .fluent2-dark .e-samplestatus.New.tree,
 .fluent2-dark .e-samplestatus.update, .fluent2-dark .e-samplestatus.update.tree, .fluent2-dark .e-samplestatus.Update, .fluent2-dark .e-samplestatus.Update.tree,
 .fluent2-dark .e-samplestatus.preview, .fluent2-dark .e-samplestatus.preview.tree, .fluent2-dark .e-samplestatus.Preview, .fluent2-dark .e-samplestatus.Preview.tree {
@@ -26,28 +25,8 @@
     margin: 2px 0px !important;
 }
 
-.fluent2-dark .sb-products-popup {
-    background: #2b2b2b;
-    border: 1px solid #515151;
-    color: #ffffff;
-}
-
-.fluent2-dark .sb-products-popup li {
-    color: #ffffff;
-}
-
-.fluent2-dark .sb-products-popup li:hover {
-    background: #414141;
-}
-
-.fluent2-dark .sb-products-popup li.active {
-    color: #6ac5ff;
-}
 
 .fluent2-dark .sb-theme-select{
-    color:transparent
-}
-.fluent2-dark .sb-products-select{
     color:transparent
 }
 
@@ -164,6 +143,16 @@ body.fluent2-dark,
 .fluent2-dark .sb-switch-popup li:first-child {
     color: #479EF5;
 }
+.fluent2-dark .sb-sdk-popup li:hover .sb-sdk-select {
+    color: transparent;
+}
+.fluent2-dark .sb-sdk-popup li.active .sb-sdk-select {
+    color: #479EF5 !important;
+}
+
+.fluent2-dark .sb-sdk-popup li:hover.active .sb-sdk-select {
+    color: #479EF5 !important;
+}
 .fluent2-dark .sb-component-name {
     color: #FFFFFF;
 }
@@ -222,13 +211,29 @@ color:white;
 .fluent2-dark .sb-switch-popup li:hover,
 .fluent2-dark .theme-wrapper:hover,
 .fluent2-dark .theme-wrapper.active,
-.fluent2-dark .products-wrapper:hover,
 .fluent2-dark .sb-theme-popup li:hover,
 .fluent2-dark .sb-search-result .e-list-item:hover,
 .fluent2-dark .sb-switch-btn:hover,
 .fluent2-dark .sb-switch-btn.active,
 .fluent2-dark .sb-left-pane .e-listview .e-list-item:hover {
     background-color: #333333;
+}
+.fluent2-dark .sdk-wrapper:hover,
+.fluent2-dark .sdk-wrapper.active {
+  background-color: #333333;
+}
+
+.fluent2-dark .sb-sdk-popup {
+  background-color: #1f1f1f;
+  border: unset;
+  color: #ffffff;
+}
+
+.fluent2-dark .sb-sdk-popup li {
+  color: #ffffff;
+}
+.fluent2-dark .sb-sdk-popup li:hover {
+  background-color: #333333;
 }
 .fluent2-dark .setting-responsive .sb-responsive-items {
     width: 104px;
@@ -269,13 +274,13 @@ color:white;
 .fluent2-dark .sb-left-pane .e-treeview .e-list-item.e-hover > .e-fullrow {
     background-color: #333;
 }
-.fluent2-dark .sb-header-text-left,.fluent2-dark .sb-header-text-right,.fluent2-dark .sb-reset-icon {
+.fluent2-dark .sb-header-text-left,.fluent2-dark .sb-header-text-right,.fluent2-dark .sb-reset-icon ,.fluent2-dark #sb-sdk-switcher{
     color:#ffffff;
 }
 .fluent2-dark .e-samplestatus.new.tree, .fluent2-dark .e-samplestatus.update.tree,.fluent2-dark .e-samplestatus.preview.tree {
     margin: 6px 0;
     height: 22px;
-    margin-top: 3px;
+    margin-top: 6px;
 }
 
 .fluent2-dark .e-samplestatus.new,.fluent2-dark .e-samplestatus.update,.fluent2-dark .e-samplestatus.preview{
@@ -393,4 +398,9 @@ color:white;
 
 .fluent2-dark .sb-theme-popup li:not(.active):hover .sb-theme-select {
     color:transparent;
+}
+
+.fluent2-dark .sf-axe-msg.e-message {
+    background-color: #1f1f1f;
+    border: 2px solid #3b3a39;
 }

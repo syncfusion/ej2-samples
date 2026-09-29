@@ -79,12 +79,13 @@ import 'codemirror/mode/htmlmixed/htmlmixed.js';
         mirrorView.style.display = 'block';
       }
       let srcViewEle: HTMLElement = document.querySelector('#src-view');
-      let codemirrorEle: HTMLElement = document.querySelector('.CodeMirror-wrap');
-      if (codemirrorEle) {
-        codemirrorEle.remove();
+      if (!myCodeMirror) {
+        renderCodeMirror(srcViewEle as HTMLElement, defaultRTE.value);
       }
-      if(defaultRTE.value){
-      renderCodeMirror(srcViewEle as HTMLElement, defaultRTE.value);
+      else if (!myCodeMirror.hasFocus() && myCodeMirror.getValue() !== defaultRTE.value) {
+        const cursor = myCodeMirror.getCursor();
+        myCodeMirror.setValue(defaultRTE.value);
+        myCodeMirror.setCursor(cursor);
       }
     }
     function renderCodeMirror(mirrorView: HTMLElement, content: string): void {

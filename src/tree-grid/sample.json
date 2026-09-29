@@ -2,6 +2,7 @@
     "name": "Tree Grid",
     "directory": "tree-grid",
     "category": "Grids",
+    "type":"update",
     "ftName": "tree-grid",
     "samples": [
          {  
@@ -10,6 +11,7 @@
          },
          { "url": "live-data", "name": "Live Data", "category": "Tree Grid","api": { "TreeGrid": ["dataSource","childMapping", "columns", "enableVirtualization", "enableVirtualMaskRow", "allowSelection", "height", "rowHeight", "queryCellInfo"]},
          "description":"This demo for Essential<sup>®</sup> JS 2 Tree Grid component shows the grid Local Live Data Update"},
+        
         {  
             "url": "default", "name": "Default Functionalities", "category":"Tree Grid","api":{"TreeGrid":["dataSource","childMapping","treeColumnIndex","height","columns"] },
             "description": "This example shows how the Syncfusion<sup>®</sup> TypeScript Tree Grid control looks with its default configuration."
@@ -91,7 +93,7 @@
          },
          {
             "url":"checkbox-column", "name": "Checkbox Column", "category":"Columns","api":{"TreeGrid":["dataSource","childMapping","allowPaging","columns","treeColumnIndex"] },
-            "description": "This demo explains how the hierarchy selection between the records using column checkboxes in Essential<sup>®</sup> TypeScript Tree Grid control."
+            "type": "update", "description": "This demo explains how the hierarchy selection between the records using column checkboxes in Essential<sup>®</sup> TypeScript Tree Grid control."
          },
          {  
             "url": "row-template", "name": "Row Template", "category": "Rows","api":{"TreeGrid":["dataSource","rowTemplate","height","width","columns","childMapping","treeColumnIndex"] },
@@ -132,6 +134,10 @@
          {
             "url":"batch-edit", "name": "Batch Editing", "category": "Editing", "api":{"TreeGrid":["dataSource", "childMapping", "treeColumnIndex","height", "editSettings", "toolbar", "columns"] },
             "description":"This example shows how to add and edit row or cell in the Batch mode using Syncfusion<sup>®</sup> TypeScript Tree Grid control."
+         },
+         {
+            "url":"cell-edit", "name": "Cell Editing","type": "new", "category": "Editing", "api":{"TreeGrid":["dataSource", "childMapping", "treeColumnIndex","height", "editSettings", "toolbar", "columns"] },
+            "description":"This example shows how to add row and edit cell in the Cell mode using Syncfusion<sup>®</sup> TypeScript Tree Grid control."
          },
          {
             "url":"command-column", "name": "Command Column", "category": "Editing","api":{"TreeGrid":["dataSource", "childMapping", "treeColumnIndex", "editSettings", "columns","height"] },
@@ -189,6 +195,9 @@
          {
             "url":"frozen-api", "name": "Freeze Direction", "category":"Scrolling","api":{"TreeGrid":["dataSource","childMapping","columns","treeColumnIndex","frozenColumns"] },
             "description": "This demo for Essential<sup>®</sup> JS 2 Tree Grid control shows frozen columns feature of Tree Grid with Freeze direction Left/Right."
+         },
+          {
+            "url": "dom-virtualization", "name": "DOM Virtualization",  "type": "new","description":"This demo showcases DOM virtualization in the Tree Grid by rendering only the rows needed for the current viewport while working with a large self-referential data source.", "category":"Scrolling","api":{"TreeGrid":["dataSource","enableDomVirtualization","domVirtualizationSettings","idMapping","parentIdMapping","height","rowHeight","columns"] }
          },
          {
             "url":"virtual-scrolling", "name": "Virtual Scrolling",  "description":"This demo demonstrates how to use Essential<sup>®</sup> JS 2 Tree Grid to show a large data view without performance degradation by rendering only the required rows.", "category":"Scrolling","api":{"TreeGrid":["dataSource","enableVirtualization","dataBound","height","columns"] } 

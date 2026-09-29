@@ -1,6 +1,6 @@
 {
   "name": "@syncfusion/ej2-samples",
-  "version": "34.2.2",
+  "version": "35.1.37",
   "description": "Samples for Syncfusion Essential JS 2",
   "author": "Syncfusion Inc.",
   "license": "SEE LICENSE IN license",
@@ -39,6 +39,9 @@
     "@syncfusion/ej2-treemap": "*",
     "@syncfusion/ej2-blockeditor": "*",
     "@syncfusion/ej2-form-renderer": "*",
+    "@syncfusion/ej2-form-builder": "*",
+    "@syncfusion/ej2-richtexteditor-ui": "*",
+    "@syncfusion/ej2-headless-editor": "*",
     "codemirror": "5.65.15",
     "crossroads": "0.12.2",
     "fuse.js": "6.6.2",

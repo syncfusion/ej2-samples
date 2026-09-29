@@ -1,9 +1,9 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid, Filter, Page, Selection, Sort, PredicateModel, KeyboardEventArgs, IFilterUI } from '@syncfusion/ej2-grids';
 import { productData } from './data-source';
 import { NumericTextBox, TextBox } from '@syncfusion/ej2-inputs';
 import { ChangeEventArgs, DropDownList } from '@syncfusion/ej2-dropdowns';
 import { closest } from '@syncfusion/ej2-base';
+import { loadCultureFiles } from '../common/culture-loader';
 
 Grid.Inject(Filter, Page, Selection, Sort);
 

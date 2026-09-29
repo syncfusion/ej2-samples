@@ -3,7 +3,7 @@
     "directory": "inline-ai-assist",
     "category": "Interactive Chat",
     "ftName": "inline-ai-assist",
-    "type": "preview",
+    "type": "update",
     "samples": [
         {
             "url": "ai-overview",
@@ -15,6 +15,18 @@
                 { "displayName": "ai-overview.ts", "path":"src/inline-ai-assist/ai-overview.ts" },
                 { "displayName": "ai-overview.html", "path":"src/inline-ai-assist/ai-overview.html" },
                 { "displayName": "service.js", "path":"src/inline-ai-assist/service.js" }
+            ]
+        },
+        {
+            "url": "ai-inline-speech-to-text",
+            "name": "Speech To Text",
+            "category": "Speech",
+            "type":"new",
+            "api":{ "InlineAIAssist": ["promptRequest", "relateTo", "commandSettings", "responseSettings", "speechToTextSettings"] },
+            "description": "Demonstrates the Inline AI Assist component with built-in speech-to-text support for voice input.",
+            "sourceFiles": [
+                { "displayName": "ai-inline-speech-to-text.ts", "path":"src/inline-ai-assist/ai-inline-speech-to-text.ts" },
+                { "displayName": "ai-inline-speech-to-text.html", "path":"src/inline-ai-assist/ai-inline-speech-to-text.html" }
             ]
         },
         {

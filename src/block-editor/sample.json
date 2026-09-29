@@ -3,20 +3,17 @@
     "directory": "block-editor",
     "category": "File Viewers & Editors",
     "ftName": "BlockEditor",
-    "type": "update",
-    "dataSourcePath": "src/block-editor/blockData.json",
     "samples": [
         {
             "url": "overview",
             "name": "Overview",
             "category": "Block Editor",
-            "type": "update",
             "api":{ "BlockEditor": ["blocks"] },
             "description": "This demo describes basic and advanced features of the Block Editor control with all its tools and functionalities.",
             "sourceFiles": [
                 { "displayName": "overview.ts", "path":"src/block-editor/overview.ts" },
                 { "displayName": "overview.html", "path":"src/block-editor/overview.html" },
-                { "displayName": "blockData.json", "path":"src/block-editor/blockData.json" }
+                { "displayName": "overview.json", "path":"src/block-editor/data/overview.json" }
             ]
         },
         {
@@ -26,9 +23,9 @@
             "api":{ "BlockEditor": ["pasteSettings"] },
             "description": "This demo covers important Paste Settings of the TS Block control.",
             "sourceFiles": [
-                { "displayName": "pastesettings.ts", "path":"src/block-editor/pastesettings.ts" },
-                { "displayName": "pastesettings.html", "path":"src/block-editor/pastesettings.html" },
-                { "displayName": "blockData.json", "path":"src/block-editor/blockData.json" }
+                { "displayName": "paste-settings.ts", "path":"src/block-editor/pastesettings.ts" },
+                { "displayName": "paste-settings.html", "path":"src/block-editor/pastesettings.html" },
+                { "displayName": "paste-settings.json", "path":"src/block-editor/data/paste-settings.json" }
             ]
         },
         {
@@ -40,14 +37,14 @@
             "sourceFiles": [
                 { "displayName": "api.ts", "path":"src/block-editor/api.ts" },
                 { "displayName": "api.html", "path":"src/block-editor/api.html" },
-                { "displayName": "blockData.json", "path":"src/block-editor/blockData.json" }
+                { "displayName": "api.json", "path":"src/block-editor/data/api.json" }
             ]
         },
         {
             "url": "events",
             "name": "Events",
             "category": "Block Editor",
-            "api":{
+            "api": {
                 "BlockEditor": [
                     "blocks",
                     "created",
@@ -66,7 +63,7 @@
             "sourceFiles": [
                 { "displayName": "events.ts", "path":"src/block-editor/events.ts" },
                 { "displayName": "events.html", "path":"src/block-editor/events.html" },
-                { "displayName": "blockData.json", "path":"src/block-editor/blockData.json" }
+                { "displayName": "events.json", "path":"src/block-editor/data/events.json" }
             ]
         },
         {
@@ -83,7 +80,7 @@
           "sourceFiles": [
             { "displayName": "template-gallery.ts", "path": "src/block-editor/template-gallery.ts" },
             { "displayName": "template-gallery.html", "path": "src/block-editor/template-gallery.html" },
-            { "displayName": "blockData.json", "path": "src/block-editor/blockData.json" }
+            { "displayName": "template-gallery.json", "path": "src/block-editor/data/template-gallery.json" }
           ]
         },
         {

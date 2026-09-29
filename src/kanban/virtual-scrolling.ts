@@ -12,7 +12,7 @@ import { addClass } from '@syncfusion/ej2/base';
         enableVirtualization: true, // To enable virtual scrolling feature.
         dataSource: generateKanbanDataVirtualScrollData(),
         keyField: 'Status',
-         height: '525px',
+        height: '525px',
         enableTooltip: true,
         columns: [
             { headerText: 'To Do', keyField: 'Open' },

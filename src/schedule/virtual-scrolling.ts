@@ -15,8 +15,8 @@ Schedule.Inject(Month, TimelineMonth, Resize, DragAndDrop);
     let scheduleObj: Schedule = new Schedule({
         height: '650px', width: '100%', currentView: 'TimelineMonth', cssClass: 'virtual-scroll',
         views: [
-            { option: 'TimelineMonth', eventTemplate: '#timeline-event-template', allowVirtualScrolling: true },
-            { option: 'Month', eventTemplate: '#timeline-event-template', allowVirtualScrolling: true }
+            { option: 'TimelineMonth', overscanCount:20, eventTemplate: '#timeline-event-template', allowVirtualScrolling: true },
+            { option: 'Month', overscanCount:20, eventTemplate: '#timeline-event-template', allowVirtualScrolling: true }
         ],
         group: {
             byGroupID: false,

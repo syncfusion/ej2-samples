@@ -1,7 +1,7 @@
-import { loadCultureFiles } from '../common/culture-loader';
 import { Grid } from '@syncfusion/ej2-grids';
 import { employeeDetail } from './data-source';
 import { ChipList } from '@syncfusion/ej2-buttons';
+import { loadCultureFiles } from '../common/culture-loader';
 
 /**
  * Default Grid sample

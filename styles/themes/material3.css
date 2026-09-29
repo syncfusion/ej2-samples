@@ -68,3 +68,6 @@
 .material3 .sb-search-input .e-ddl .e-clear-icon:hover {
     background: white !important;
 }
+.material3 .sf-axe-msg.e-message{
+    background-image: none !important;
+}

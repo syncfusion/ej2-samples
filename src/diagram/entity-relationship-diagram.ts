@@ -16,7 +16,6 @@ import {
     NodeModel,
     SnapConstraints,
     SymbolPalette,
-    UndoRedo,
     UserHandleEventsArgs,
     ContextMenuSettingsModel,
     Connector,
@@ -28,7 +27,7 @@ import {
 } from '@syncfusion/ej2-diagrams';
 import { MenuEventArgs } from '@syncfusion/ej2-navigations';
 
-Diagram.Inject(DataBinding, UndoRedo, LineRouting, AvoidLineOverlapping, ErDiagrams, DiagramContextMenu);
+Diagram.Inject(DataBinding, LineRouting, AvoidLineOverlapping, ErDiagrams, DiagramContextMenu);
 SymbolPalette.Inject(ErDiagrams);
 
 function addEvents() {

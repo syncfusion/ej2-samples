@@ -584,7 +584,6 @@ Zooming = new CheckBox({
       if (args.checked) {
         // If checkbox is checked
         diagram.contextMenuSettings.show = true;
-        diagram.refresh(); // Refresh the diagram to apply changes
       } else {
         diagram.contextMenuSettings.show = false;
       }

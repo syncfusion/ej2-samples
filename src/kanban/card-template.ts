@@ -70,16 +70,21 @@ import { DatePicker } from '@syncfusion/ej2-calendars';
                 textareaObj.appendTo(args.element.querySelector('#Description') as HTMLInputElement);
                 
                 let datepicker: DatePicker = new DatePicker({
-                    value: curData.Date as Date, 
+                    value: curData.Date ? new Date(curData.Date as string) : null, 
                     format: 'MM/dd/yyyy',
                 });
                 datepicker.appendTo(args.element.querySelector('#datepicker') as HTMLInputElement);
             }
         }
             function  onDialogClose(args: DialogEventArgs) {
-                if(args.element.querySelector('#datepicker') as any)
-                {
-                    args.data.Date =(args.element.querySelector('#datepicker') as any).ej2_instances[0].value.toLocaleString('es-PR').split(",")[0];
+                const datePicker = args.element.querySelector('#datepicker') as any;
+                if (datePicker) {
+                    const selectedDate = datePicker.ej2_instances[0].value;
+                    if (selectedDate instanceof Date) {
+                        args.data.Date = selectedDate.toLocaleDateString('es-PR');
+                    } else {
+                        args.data.Date = `U+200B`;
+                    }
                 }
        }
 };

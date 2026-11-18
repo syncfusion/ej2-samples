@@ -80,8 +80,7 @@ import { getAIResponse } from '../common/ai-service';
                 prompt: args.prompt,
                 systemPrompt: buildSystemPrompt((args as any).mentions || [])
             };
-            let reply: any = await getAIResponse(aiArgs, abortController);
-            let response: any = aiArgs.systemPrompt && reply?.response ? reply.response : reply;
+            let response: any = await getAIResponse(aiArgs, abortController);
             mentionAIAssistView.addPromptResponse(response);
         } catch (error) {
             mentionAIAssistView.addPromptResponse("We could not reach the AI service; please try again later.");

@@ -90,7 +90,6 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
             if (isDropDownExist) {
                 isDropDownExist = false;
                 let chartTypeDropDown: DropDownList = new DropDownList({
-                    floatLabelType: 'Auto',
                     dataSource: chartData,
                     value:chartType,
                     width: 200,

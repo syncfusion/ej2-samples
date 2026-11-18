@@ -45,7 +45,6 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
       if (document.getElementById('displayOptionddl') && document.getElementById('displayOptionddl') && document.getElementById('toolbar-switch') && !isInitial) {
         isInitial = true;
         displayOptionDropDown = new DropDownList({
-          floatLabelType: 'Auto',
           width: 100,
           value: displayOption,
           change: (args: any) => {
@@ -65,7 +64,6 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
         });
         displayOptionDropDown.appendTo('#displayOptionddl');
         primaryViewDropDown = new DropDownList({
-          floatLabelType: 'Auto',
           width: 100,
           value: preference,
           change: (args: any) => {

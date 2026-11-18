@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Edit, Selection, Toolbar, DayMarkers } from '@syncfusion/ej2-gantt';
+import { Gantt, Edit, Selection, Toolbar, DayMarkers, NotesEditor } from '@syncfusion/ej2-gantt';
 import { defaultEditingData, editingResources } from './data-source';
 /**
  * Editing Gantt sample
  */
-Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
+Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, NotesEditor);
 (window as any).default = (): void => {
     loadCultureFiles();
     let startDate: Date;
@@ -69,7 +69,8 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 { field: 'StartDate' },
                 { field: 'EndDate', validationRules: { required: [customFn, 'Please enter a value greater than the start date.'] } },
                 { field: 'Progress', validationRules: { required: true, min: 0, max: 100 } },
-                { field: 'Predecessor' }
+                { field: 'Predecessor' },
+                { field: 'info', disableHtmlEncode: true }
             ],
             labelSettings: {
                 leftLabel: 'TaskName',

@@ -1,10 +1,10 @@
 import { loadCultureFiles } from '../common/culture-loader';
-import { Gantt, Edit, Selection, Toolbar, DayMarkers } from '@syncfusion/ej2-gantt';
+import { Gantt, Edit, Selection, Toolbar, DayMarkers, NotesEditor } from '@syncfusion/ej2-gantt';
 import { constraintData } from './data-source';
 /**
  * Constraints Gantt sample
  */
-Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
+Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, NotesEditor);
 
 (window as any).default = (): void => {
     loadCultureFiles();
@@ -66,7 +66,8 @@ Gantt.Inject(Edit, Selection, Toolbar, DayMarkers);
                 { field: 'ConstraintDate', width: 200 },
                 { field: 'EndDate' },
                 { field: 'Predecessor' },
-                { field: 'Progress'}
+                { field: 'Progress'},
+                { field: 'info', disableHtmlEncode: true }
             ],
             labelSettings: {
                 leftLabel: 'TaskName',

@@ -52,7 +52,6 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     });
     pivotObj.appendTo('#PivotView');
     let modeddl: DropDownList = new DropDownList({
-        floatLabelType: 'Auto',
         width: 150,
         change: function (args: ChangeEventArgs) {
             pivotObj.gridSettings.selectionSettings.mode = args.value as SelectionMode;
@@ -61,7 +60,6 @@ let Pivot_Data: IDataSet[] = (pivotData as any).data;
     });
     modeddl.appendTo('#mode');
     let typeddl: DropDownList = new DropDownList({
-        floatLabelType: 'Auto',
         width: 150,
         change: function (args: ChangeEventArgs) {
             pivotObj.gridSettings.selectionSettings.type = args.value as SelectionType;

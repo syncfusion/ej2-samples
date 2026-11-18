@@ -86,4 +86,4 @@ Gantt.Inject(Selection, Toolbar, DayMarkers, Edit, Filter, Sort, ContextMenu, Ro
 
     gantt.appendTo('#SerialNum');
 
-}
+};

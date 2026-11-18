@@ -1,6 +1,6 @@
 import { loadCultureFiles } from '../common/culture-loader';
 import { Gantt, Edit, Selection, Toolbar, DayMarkers, ContextMenuItem, ContextMenu, Resize, Sort,
-    ContextMenuOpenEventArgs, ContextMenuClickEventArgs, IGanttData } from '@syncfusion/ej2-gantt';
+    ContextMenuOpenEventArgs, ContextMenuClickEventArgs, IGanttData, NotesEditor } from '@syncfusion/ej2-gantt';
 import { ItemModel } from '@syncfusion/ej2-navigations';
 import { EmitType } from '@syncfusion/ej2-base';
 import { contextMenuData, editingResources } from './data-source';
@@ -9,7 +9,7 @@ import { contextMenuData, editingResources } from './data-source';
  *  Context menu in Gantt sample
  */
 
-Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort);
+Gantt.Inject(Edit, Selection, Toolbar, DayMarkers, ContextMenu, Resize, Sort, NotesEditor);
 let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpenEventArgs) => {
     let record: IGanttData = args.rowData;
     if (args.type !== 'Header' && record) {
@@ -57,7 +57,7 @@ let contextMenuOpen: EmitType<ContextMenuOpenEventArgs> = (args?: ContextMenuOpe
                 { field: 'Progress' },
                 { field: 'Predecessor' },
                 { field: 'resources' },
-                { field: 'info' }
+                { field: 'info', disableHtmlEncode: true }
             ],
             editSettings: {
                 allowAdding: true,

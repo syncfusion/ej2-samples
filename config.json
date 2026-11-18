@@ -185,6 +185,7 @@
 		"blockData",
 		"Sankey",
 		"sankey",
-		"designer"
+		"designer",
+		null
 	]
 }
